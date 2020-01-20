@@ -1,0 +1,29 @@
+---
+title: "Using pkgtemplate"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using pkgtemplate}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In order to create a new package the user should
+
+1) Go to the pkgtemplate [GitHub repository](https://github.com/poissonconsulting/pkgtemplate) and choose 'Use this template'.
+1) Clone the new repository and replace 'pkgtemplate' with the name of the new package in `DESCRIPTION`, `NEWS.md`, `tests/testthat.R`, `vignettes/pkgtemplate.Rmd` and this `README.Rmd` file.
+1) `devtools::check()` the package and fix any Errors, Warnings or Notes.
+1) Knit this `README.Rmd` file and `pkgdown::build_site()`.
+1) Add the project to [Travis](https://www.travis-ci.com/poissonconsulting/pkgtemplate) and in the [Settings](https://www.travis-ci.com/poissonconsulting/pkgtemplate/settings) add a Cron Job to run the master branch daily if there hasn't been a build in the last 24h.
+1) Add the project to [Appveyor](https://ci.appveyor.com/project/poissonconsulting/pkgtemplate).
+1) Rename the `pkgtemplate.Rproj` and `vignettes/pkgtemplate.Rmd` files.
+1) Push the changes to the new repository.
+1) Go to the repository GitHub [settings](https://github.com/poissonconsulting/pkgtemplate/settings) and set the GitHub Pages Source to be the master branch /docs folder.
+1) Edit the GitHub repository [description](https://github.com/poissonconsulting/pkgtemplate/) and set the website to be <https://poissonconsulting.github.io/pkgtemplate/>.
+1) If you aren't developing a Shiny app, run  `pkgtemplate:::cannibalise_shiny(getwd())`  to remove any Shiny-related files (make sure that getwd() points to the correct place!) 
