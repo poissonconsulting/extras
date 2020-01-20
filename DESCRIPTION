@@ -3,10 +3,6 @@ Title: Extra Functions for Data Modeling
 Version: 0.0.0.9001
 Authors@R: c(
     person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "cre"), comment = c(ORCID = "0000-0002-7683-4592")),
-    person("Sebastian", "Dalgarno", , "seb@poissonconsulting.ca", "ctb", comment = c(ORCID = "0000-0002-3658-4517")),
-    person("Evan", "Amies-Galonski", , "evan@poissonconsulting.ca", "ctb", comment = c(ORCID = 0000-0003-1096-2089)),
-    person("Ayla", "Pearson", role = "ctb", comment = c(ORCID = "0000-0001-7388-1222")),
-    person("Kirill", "M\u00fcller", role = "ctb", comment = c(ORCID = "0000-0002-1416-3412")),
     person("Poisson Consulting", role = c("cph", "fnd"))
     )
 Description: Extra functions used by data modeling packages.
