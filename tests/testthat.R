@@ -1,4 +1,4 @@
 library(testthat)
-library(pkgtemplate)
+library(extras)
 
-test_check("pkgtemplate")
+test_check("extras")

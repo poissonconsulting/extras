@@ -1,5 +1,5 @@
-Package: pkgtemplate
-Title: What the Package Does (One Line, Title Case)
+Package: extras
+Title: Extra Functions for Data Modeling
 Version: 0.0.0.9000
 Authors@R: c(
     person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "cre"), comment = c(ORCID = "0000-0002-7683-4592")),
@@ -9,25 +9,19 @@ Authors@R: c(
     person("Kirill", "M\u00fcller", role = "ctb", comment = c(ORCID = "0000-0002-1416-3412")),
     person("Poisson Consulting", role = c("cph", "fnd"))
     )
-Description: What the package does (one paragraph).
+Description: Extra functions used by data modeling packages.
 License: MIT + file LICENSE
 Imports:
     stats,
-    chk,
-    lifecycle,
-    shiny
+    chk
 Suggests: 
     covr,
     testthat (>= 2.1.0),
-    knitr,
-    rmarkdown
-Remotes: poissonconsulting/chk
-URL: https://github.com/poissonconsulting/pkgtemplate
-BugReports: https://github.com/poissonconsulting/pkgtemplate/issues
+    knitr
+URL: https://github.com/poissonconsulting/extras
+BugReports: https://github.com/poissonconsulting/extras/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
-RdMacros: lifecycle
 Language: en-US
-VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
