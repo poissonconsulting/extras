@@ -21,10 +21,6 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Sebastian Dalgarno \email{seb@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-3658-4517}{ORCID}) [contributor]
-  \item Evan Amies-Galonski \email{evan@poissonconsulting.ca} (\href{https://orcid.org/-3188}{ORCID}) [contributor]
-  \item Ayla Pearson (\href{https://orcid.org/0000-0001-7388-1222}{ORCID}) [contributor]
-  \item Kirill Müller (\href{https://orcid.org/0000-0002-1416-3412}{ORCID}) [contributor]
   \item Poisson Consulting [copyright holder, funder]
 }
 

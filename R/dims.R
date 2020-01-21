@@ -1,21 +1,29 @@
-#' @importFrom universals dims
-#' @export
-universals::dims
-
 #' Dimensions of a default object
-#' @inheritParams universals::dims
-#' @seealso \code{\link[universals]{dims}()}
+#' 
+#' @inherit universals::dims
 #' @export
 #' @examples 
 #' dims(character(0))
 #' dims(1:3)
 dims.default <- function(x, ...) {
-  if (is.vector(x) || is.factor(x)) length(x) else dim(x)
+  if (is.vector(x)) length(x) else dim(x)
 }
 
-#' Dimensions of a data frame
-#' @inheritParams universals::dims
-#' @seealso \code{\link[universals]{dims}()}
+#' Dimensions of a Factor
+#' 
+#' @inherit universals::dims
+#' @export
+#' @examples 
+#' dims(factor("a"))
+dims.factor <- function(x, ...) {
+  length(x)
+}
+
+
+#' Dimensions of a Data Frame
+#' 
+#' @inherit universals::dims
+#' @param x A data.frame.
 #' @export
 #' @examples 
 #' dims(data.frame())

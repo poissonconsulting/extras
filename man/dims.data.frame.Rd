@@ -2,22 +2,27 @@
 % Please edit documentation in R/dims.R
 \name{dims.data.frame}
 \alias{dims.data.frame}
-\title{Dimensions of a data frame}
+\title{Dimensions of a Data Frame}
 \usage{
 \method{dims}{data.frame}(x, ...)
 }
 \arguments{
-\item{x}{An object. See the individual methods for specifics.}
+\item{x}{A data.frame.}
 
 \item{...}{Other arguments passed to methods.}
 }
+\value{
+An integer vector of the dimensions.
+}
 \description{
-Dimensions of a data frame
+Gets the dimensions of an object.
+Unlike \code{base::dim()}, dims works as intuitively expected
+for vectors and data.frames.
 }
 \examples{
 dims(data.frame())
 dims(data.frame(x = 1:3))
 }
 \seealso{
-\code{\link[universals]{dims}()}
+\code{\link[base:dim]{base::dim()}}
 }
