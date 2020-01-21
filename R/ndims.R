@@ -9,7 +9,6 @@ universals::ndims
 #' @examples 
 #' ndims(character(0))
 #' ndims(1:3)
-#' @export
 ndims.default <- function(x, ...) {
   length(dims(x))
 }
