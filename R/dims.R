@@ -1,4 +1,8 @@
-#' Dimensions of a default object
+#' @importFrom universals dims
+#' @export
+universals::dims
+
+#' Dimensions of an Object
 #' 
 #' @inherit universals::dims
 #' @export

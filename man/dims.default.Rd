@@ -2,7 +2,7 @@
 % Please edit documentation in R/dims.R
 \name{dims.default}
 \alias{dims.default}
-\title{Dimensions of a default object}
+\title{Dimensions of an Object}
 \usage{
 \method{dims}{default}(x, ...)
 }
