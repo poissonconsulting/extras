@@ -15,12 +15,15 @@
 A integer scalar of the number of dimensions.
 }
 \description{
-Gets the number of dimensions of an object as defined by \code{\link[universals:dims]{dims()}}.
+Gets the number of dimensions of an object.
 }
 \examples{
 ndims(character(0))
 ndims(1:3)
 }
 \seealso{
-\code{\link[universals:dims]{dims()}}
+Other {dimensions}: 
+\code{\link[universals]{dims}()},
+\code{\link[universals]{npdims}()},
+\code{\link[universals]{pdims}()}
 }

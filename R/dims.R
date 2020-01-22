@@ -23,7 +23,6 @@ dims.factor <- function(x, ...) {
   length(x)
 }
 
-
 #' Dimensions of a Data Frame
 #' 
 #' @inherit universals::dims
