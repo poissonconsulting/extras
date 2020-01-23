@@ -1,4 +1,3 @@
-#' @importFrom universals ndims
 #' @export
 universals::ndims
 

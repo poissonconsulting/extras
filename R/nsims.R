@@ -1,6 +1,3 @@
-#' @importFrom universals nsims
-#' @importFrom universals nchains
-#' @importFrom universals niters
 #' @export
 universals::nsims
 
