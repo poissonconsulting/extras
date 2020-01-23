@@ -23,5 +23,6 @@ value must be a unique character vector of the same length as the object's param
 \seealso{
 Other {parameters}: 
 \code{\link[universals]{npars}()},
+\code{\link[universals]{pars_terms}()},
 \code{\link[universals]{pars}()}
 }
