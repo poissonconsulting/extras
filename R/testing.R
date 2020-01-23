@@ -1,3 +1,7 @@
+nchains.integer <- function(x, ...) {
+  2L
+}
+
 nsims.integer <- function(x, ...) {
   2L
 }

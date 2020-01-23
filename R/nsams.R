@@ -1,5 +1,4 @@
 #' @importFrom universals nsams
-#' @importFrom universals nsims
 #' @importFrom universals nterms
 #' @export
 universals::nsams
