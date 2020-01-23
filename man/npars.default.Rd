@@ -26,4 +26,8 @@ Other {MCMC dimensions}:
 \code{\link[universals]{nsams}()},
 \code{\link[universals]{nsims}()},
 \code{\link[universals]{nterms}()}
+
+Other {parameters}: 
+\code{\link[universals]{pars}()},
+\code{\link[universals]{set_pars}()}
 }

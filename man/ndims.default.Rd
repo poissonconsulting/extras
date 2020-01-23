@@ -25,5 +25,6 @@ ndims(1:3)
 Other {dimensions}: 
 \code{\link[universals]{dims}()},
 \code{\link[universals]{npdims}()},
-\code{\link[universals]{pdims}()}
+\code{\link[universals]{pdims}()},
+\code{\link[universals]{tindex}()}
 }
