@@ -2,8 +2,6 @@
 #' @export
 universals::dims
 
-#' Dimensions of an Object
-#' 
 #' @inherit universals::dims
 #' @export
 #' @examples 
@@ -13,8 +11,6 @@ dims.default <- function(x, ...) {
   if (is.vector(x)) length(x) else dim(x)
 }
 
-#' Dimensions of a Factor
-#' 
 #' @inherit universals::dims
 #' @export
 #' @examples 
@@ -23,10 +19,7 @@ dims.factor <- function(x, ...) {
   length(x)
 }
 
-#' Dimensions of a Data Frame
-#' 
 #' @inherit universals::dims
-#' @param x A data.frame.
 #' @export
 #' @examples 
 #' dims(data.frame())

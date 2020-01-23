@@ -2,7 +2,7 @@
 % Please edit documentation in R/ndims.R
 \name{ndims.data.frame}
 \alias{ndims.data.frame}
-\title{Dimensions of a Data Frame}
+\title{Number of Dimensions of an Object}
 \usage{
 \method{ndims}{data.frame}(x, ...)
 }

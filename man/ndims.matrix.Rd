@@ -2,7 +2,7 @@
 % Please edit documentation in R/ndims.R
 \name{ndims.matrix}
 \alias{ndims.matrix}
-\title{Dimensions of a Matrix}
+\title{Number of Dimensions of an Object}
 \usage{
 \method{ndims}{matrix}(x, ...)
 }

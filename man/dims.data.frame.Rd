@@ -2,12 +2,12 @@
 % Please edit documentation in R/dims.R
 \name{dims.data.frame}
 \alias{dims.data.frame}
-\title{Dimensions of a Data Frame}
+\title{Dimensions of an Object}
 \usage{
 \method{dims}{data.frame}(x, ...)
 }
 \arguments{
-\item{x}{A data.frame.}
+\item{x}{An object.}
 
 \item{...}{Other arguments passed to methods.}
 }

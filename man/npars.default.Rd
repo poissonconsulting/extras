@@ -2,7 +2,7 @@
 % Please edit documentation in R/npars.R
 \name{npars.default}
 \alias{npars.default}
-\title{Number of Parameters of an Object}
+\title{Number of Parameters}
 \usage{
 \method{npars}{default}(x, ...)
 }

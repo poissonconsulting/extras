@@ -2,8 +2,6 @@
 #' @export
 universals::ndims
 
-#' Number of Dimensions of an Object
-#' 
 #' @inherit universals::ndims
 #' @export
 #' @examples 
@@ -13,10 +11,7 @@ ndims.default <- function(x, ...) {
   length(dims(x))
 }
 
-#' Dimensions of a Matrix
-#' 
 #' @inherit universals::ndims
-#'
 #' @details Always 2L.
 #' @export
 #' @examples 
@@ -25,10 +20,7 @@ ndims.matrix <- function(x, ...) {
   2L
 }
 
-#' Dimensions of a Data Frame
-#' 
 #' @inherit universals::ndims
-#'
 #' @details Always 2L.
 #' @export
 #' @examples 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dims.R
 \name{dims.factor}
 \alias{dims.factor}
-\title{Dimensions of a Factor}
+\title{Dimensions of an Object}
 \usage{
 \method{dims}{factor}(x, ...)
 }
