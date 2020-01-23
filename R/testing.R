@@ -1,10 +1,15 @@
+nsims.integer <- function(x, ...) {
+  2L
+}
 
-# for testing
+nterms.integer <- function(x, ...) {
+  length(x)
+}
+
 pars.character <- function(x, ...) {
   unique(x)
 }
 
-# for testing
 set_pars.character <- function(x, value) {
   chk_identical(length(value), length(x))
   value
