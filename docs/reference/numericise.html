@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dimensions — dims.default • extras</title>
+<title>Numericise (or Numericize) — numericise • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,10 @@
 
 
 
-<meta property="og:title" content="Dimensions — dims.default" />
-<meta property="og:description" content="Gets the dimensions of an object." />
+<meta property="og:title" content="Numericise (or Numericize) — numericise" />
+<meta property="og:description" content="Attempts to coerce a non-numeric R object to
+an numeric atomic object or list of numeric atomic objects.
+If possible the dimensionality is preserved." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -115,17 +117,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Dimensions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/dims.R'><code>R/dims.R</code></a></small>
-    <div class="hidden name"><code>dims.default.Rd</code></div>
+    <h1>Numericise (or Numericize)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/numericise.R'><code>R/numericise.R</code></a></small>
+    <div class="hidden name"><code>numericise.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Gets the dimensions of an object.</p>
+    <p>Attempts to coerce a non-numeric R object to
+an numeric atomic object or list of numeric atomic objects.
+If possible the dimensionality is preserved.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for default</span>
-<span class='fu'><a href='https://rdrr.io/pkg/universals/man/dims.html'>dims</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='fu'>numericize</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for logical</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for integer</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for double</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for factor</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for Date</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for POSIXct</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for hms</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for matrix</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for array</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for list</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>numericise</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,21 +183,33 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An integer vector of the dimensions.</p>
+    <p>The modified object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Unlike <code><a href='https://rdrr.io/r/base/dim.html'>base::dim()</a></code>, dims returns the length of an atomic vector.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>Date, POSIXct and hms objects are floored first.</p>
+<p><code>numericize()</code> is an alias for numericise.</p>
+    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/dim.html'>base::dim()</a></code></p>
-<p>Other dimensions: 
-<code><a href='https://rdrr.io/pkg/universals/man/ndims.html'>ndims</a>()</code>,
-<code><a href='https://rdrr.io/pkg/universals/man/npdims.html'>npdims</a>()</code>,
-<code><a href='https://rdrr.io/pkg/universals/man/pdims.html'>pdims</a>()</code>,
-<code><a href='https://rdrr.io/pkg/universals/man/tindex.html'>tindex</a>()</code></p></div>
+    
+<ul>
+<li><p><code>default</code>: Numericise default object</p></li>
+<li><p><code>logical</code>: Numericise logical vector</p></li>
+<li><p><code>integer</code>: Numericise integer vector</p></li>
+<li><p><code>double</code>: Numericise double vector</p></li>
+<li><p><code>factor</code>: Numericise factor</p></li>
+<li><p><code>Date</code>: Numericise Date</p></li>
+<li><p><code>POSIXct</code>: Numericise POSIXct</p></li>
+<li><p><code>hms</code>: Numericise hms</p></li>
+<li><p><code>matrix</code>: Numericise matrix</p></li>
+<li><p><code>array</code>: Numericise array</p></li>
+<li><p><code>list</code>: Numericise list</p></li>
+<li><p><code>data.frame</code>: Numericise data.frame</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/universals/man/dims.html'>dims</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(<span class='fl'>0</span>))</div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/universals/man/dims.html'>dims</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] 3</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>numericize</span>(<span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>numericize</span>(<span class='st'>"1.9"</span>)</div><div class='output co'>#&gt; [1] 1.9</div><div class='input'><span class='fu'>numericize</span>(<span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"beta"</span>, <span class='st'>"alpha"</span>)))</div><div class='output co'>#&gt; [1] 2 1</div><div class='input'><span class='fu'>numericize</span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>, <span class='fl'>NA</span>, <span class='fl'>TRUE</span>), <span class='fl'>2</span>))</div><div class='output co'>#&gt;      [,1] [,2]
+#&gt; [1,]    1   NA
+#&gt; [2,]    0    1</div><div class='input'><span class='fu'>numericize</span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"1970-02-03"</span>))</div><div class='output co'>#&gt; [1] 33</div><div class='input'><span class='fu'>numericize</span>(<span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='st'>"1970-02-03"</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"GMT"</span>))</div><div class='output co'>#&gt; [1] 2851200</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -164,7 +217,7 @@
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#methods-by-class-">Methods (by class)</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

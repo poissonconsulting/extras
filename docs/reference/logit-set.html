@@ -76,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
       </span>
     </div>
 
@@ -116,7 +116,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Logistic Transformation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/translations.R'><code>R/translations.R</code></a></small>
     <div class="hidden name"><code>logit-set.Rd</code></div>
     </div>
 
@@ -131,14 +131,25 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>The object to replace.</p></td>
+      <td><p>An existing object.</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>The numeric vector to transform</p></td>
+      <td><p>A numeric atomic object of the value to inverse logistically transform.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>A wrapper on <code><a href='https://rdrr.io/r/stats/Logistic.html'>stats::plogis(value)</a></code>.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other translations: 
+<code><a href='ilogit.html'>ilogit</a>()</code>,
+<code>log&lt;-()</code>,
+<code><a href='logit.html'>logit</a>()</code>,
+<code><a href='phi.html'>phi</a>()</code>,
+<code><a href='pow.html'>pow</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
@@ -149,6 +160,8 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
