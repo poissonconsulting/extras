@@ -2,7 +2,7 @@
 % Please edit documentation in R/ndims.R
 \name{ndims.matrix}
 \alias{ndims.matrix}
-\title{Number of Dimensions of an Object}
+\title{Number of Dimensions}
 \usage{
 \method{ndims}{matrix}(x, ...)
 }
@@ -15,7 +15,7 @@
 A integer scalar of the number of dimensions.
 }
 \description{
-Gets the number of dimensions of an object.
+Gets the number of dimensions of an object as returned by \code{dims()}.
 }
 \details{
 Always 2L.

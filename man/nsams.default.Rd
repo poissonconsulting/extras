@@ -2,7 +2,7 @@
 % Please edit documentation in R/nsams.R
 \name{nsams.default}
 \alias{nsams.default}
-\title{Number of MCMC Samples}
+\title{Number of Samples}
 \usage{
 \method{nsams}{default}(x, ...)
 }
@@ -12,11 +12,11 @@
 \item{...}{Other arguments passed to methods.}
 }
 \value{
-An integer scalar of the number of sample values.
+An integer scalar of the number of samples.
 }
 \description{
-Gets the number of MCMC samples (simulations * terms)
-of a Monte Carlo Markov Chain (MCMC) object.
+Gets the number of samples values (simulations * terms)
+of an MCMC object.
 }
 \seealso{
 Other {MCMC dimensions}: 

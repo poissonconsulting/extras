@@ -14,13 +14,14 @@
 \item{...}{Other arguments passed to methods.}
 }
 \value{
-The object with missing values filled.
+The modified object.
 }
 \description{
-Fills missing values.
+Fills an object's missing values.
 }
 \seealso{
 Other {MCMC manipulations}: 
+\code{\link[universals]{bind_chains}()},
 \code{\link[universals]{collapse_chains}()},
 \code{\link[universals]{complete_terms}()},
 \code{\link[universals]{split_chains}()}

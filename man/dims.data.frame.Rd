@@ -2,7 +2,7 @@
 % Please edit documentation in R/dims.R
 \name{dims.data.frame}
 \alias{dims.data.frame}
-\title{Dimensions of an Object}
+\title{Dimensions}
 \usage{
 \method{dims}{data.frame}(x, ...)
 }
@@ -16,8 +16,9 @@ An integer vector of the dimensions.
 }
 \description{
 Gets the dimensions of an object.
-Unlike \code{base::dim()}, dims works as intuitively expected
-for vectors and data.frames.
+}
+\details{
+Unlike \code{base::dim()}, dims returns the length of an atomic vector.
 }
 \examples{
 dims(data.frame())
