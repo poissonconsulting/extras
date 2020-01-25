@@ -20,9 +20,11 @@ MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org
 <!-- ![CRAN downloads](https://cranlogs.r-pkg.org/badges/extras) -->
 <!-- badges: end -->
 
-extras provides a template for a new R package.
+`extras` provides extra functions for data modeling.
 
-It includes useful internal functions.
+It includes functions to numericise objects; simple methods for S3
+generics in the universals package; and R translations of common JAGS
+and TMB functions.
 
 ## Installation
 
@@ -47,15 +49,39 @@ install.packages("extras")
 
 ## Demonstration
 
-In order to create a new package the user should go to the extras
-[GitHub repository](https://github.com/poissonconsulting/extras) and
-choose ‘Use this template’.
+### Numericise Objects
 
-extras includes files used for development of Shiny applications. To
-remove these from the repository, run:
+The `numericise()` (or `numericize()`) function converts simple objects
+to a list of numeric atomic object suitable for input to an analytic
+engine.
 
 ``` r
-extras:::cannibalise_shiny(getwd())
+library(extras)
+
+data <- data.frame(logical = TRUE, real = 1.1, integer = 3L, 
+                   factor = factor("b", levels = c("a", "b")),
+                   date = as.Date("2001-01-01"),
+                   datetime = as.POSIXct("2001-03-01"))
+
+numericise(data)
+#>   logical real integer factor  date  datetime
+#> 1       1  1.1       3      2 11323 983433600
+```
+
+### Simple universals Methods
+
+The `extras` package provides simple methods for S3 generics in the
+universals package. For example the `dims()` and `ndims()` functions are
+defined for vectors.
+
+``` r
+x <- 1:10
+dim(x) # the base R function
+#> NULL
+dims(x) 
+#> [1] 10
+ndims(x)
+#> [1] 1
 ```
 
 ## Information

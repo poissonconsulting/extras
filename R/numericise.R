@@ -1,13 +1,12 @@
 #' Numericise (or Numericize)
 #'
 #' Attempts to coerce a non-numeric R object to
-#' an numeric atomic object.
+#' an numeric atomic object or list of numeric atomic objects.
 #' If possible the dimensionality is preserved.
 #'
 #' Date, POSIXct and hms objects are floored first.
 #'
-#' @param x An R object.
-#' @param ... Unused
+#' @inheritParams params
 #' @return The modified object.
 #' @aliases numericize
 #' @export

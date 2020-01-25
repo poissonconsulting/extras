@@ -5,8 +5,12 @@ Authors@R: c(
     person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "cre"), comment = c(ORCID = "0000-0002-7683-4592")),
     person("Poisson Consulting", role = c("cph", "fnd"))
     )
-Description: Extra functions used by data modeling packages.
+Description: Extra functions for data modeling.
+    It includes functions to numericise objects; 
+    simple methods for S3 generics in the universals package;
+    and R translations of common JAGS and TMB functions.
 License: MIT + file LICENSE
+Depends: R (>= 3.3)
 Imports:
     stats,
     chk,

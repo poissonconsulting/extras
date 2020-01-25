@@ -6,7 +6,10 @@
 \alias{extras-package}
 \title{extras: Extra Functions for Data Modeling}
 \description{
-Extra functions used by data modeling packages.
+Extra functions for data modeling.
+    It includes functions to numericise objects; 
+    simple methods for S3 generics in the universals package;
+    and R translations of common JAGS and TMB functions.
 }
 \seealso{
 Useful links:

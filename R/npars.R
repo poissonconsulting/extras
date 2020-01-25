@@ -4,5 +4,5 @@ universals::npars
 #' @inherit universals::npars
 #' @export
 npars.default <- function(x, ...) {
-  length(pars(x, ...))
+  length(pars(x))
 }

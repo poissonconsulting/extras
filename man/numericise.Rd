@@ -46,16 +46,16 @@ numericize(x, ...)
 \method{numericise}{data.frame}(x, ...)
 }
 \arguments{
-\item{x}{An R object.}
+\item{x}{An object.}
 
-\item{...}{Unused}
+\item{...}{Other arguments passed to methods.}
 }
 \value{
 The modified object.
 }
 \description{
 Attempts to coerce a non-numeric R object to
-an numeric atomic object.
+an numeric atomic object or list of numeric atomic objects.
 If possible the dimensionality is preserved.
 }
 \details{
