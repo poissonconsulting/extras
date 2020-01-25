@@ -1,2 +1,2 @@
-#' @import chk universals
+#' @import stats chk universals
 NULL

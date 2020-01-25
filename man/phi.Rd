@@ -7,11 +7,26 @@
 phi(x)
 }
 \arguments{
-\item{x}{A numeric vector}
+\item{x}{A numeric atomic object.}
+}
+\value{
+A numeric atomic object.
 }
 \description{
 The standard normal cumulative density function.
 }
+\details{
+A wrapper on \code{stats::pnorm()}.
+}
 \examples{
 phi(0:2)
 }
+\seealso{
+Other {translations}: 
+\code{\link{ilogit}()},
+\code{\link{log<-}()},
+\code{\link{logit<-}()},
+\code{\link{logit}()},
+\code{\link{pow}()}
+}
+\concept{{translations}}

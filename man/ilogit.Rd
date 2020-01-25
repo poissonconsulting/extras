@@ -7,11 +7,26 @@
 ilogit(x)
 }
 \arguments{
-\item{x}{The numeric vector to transform.}
+\item{x}{A numeric atomic object.}
+}
+\value{
+A numeric atomic object.
 }
 \description{
-Inverse Logistic Transformation
+Performs the inverse logistic transformation on a numeric atomic object.
+}
+\details{
+A wrapper on \code{stats::plogis()}.
 }
 \examples{
-ilogit(c(0.25, 0.5, 0.75))
+ilogit(c(-1, 0, 5))
 }
+\seealso{
+Other {translations}: 
+\code{\link{log<-}()},
+\code{\link{logit<-}()},
+\code{\link{logit}()},
+\code{\link{phi}()},
+\code{\link{pow}()}
+}
+\concept{{translations}}

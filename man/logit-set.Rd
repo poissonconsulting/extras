@@ -7,15 +7,27 @@
 logit(x) <- value
 }
 \arguments{
-\item{x}{The object to replace.}
+\item{x}{An existing object.}
 
-\item{value}{The numeric vector to transform}
+\item{value}{A numeric atomic object of the value to inverse logistically transform.}
 }
 \description{
 Logistic Transformation
+}
+\details{
+A wrapper on \code{stats::plogis(value)}.
 }
 \examples{
 x <- 1
 logit(x) <- 0.5
 x
 }
+\seealso{
+Other {translations}: 
+\code{\link{ilogit}()},
+\code{\link{log<-}()},
+\code{\link{logit}()},
+\code{\link{phi}()},
+\code{\link{pow}()}
+}
+\concept{{translations}}

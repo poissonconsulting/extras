@@ -81,7 +81,13 @@ ndims(x)
 
 ## JAGS and TMB Functions
 
+`extras` also provides R versions of common JAGS and TMB (C++) functions such as `logit<-` and `pow()`.
 
+```{r}
+mu <- NULL
+logit(mu) <- 2
+mu
+```
 
 ## Information
 

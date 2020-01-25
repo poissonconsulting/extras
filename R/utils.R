@@ -1,64 +1,96 @@
 #' Power
 #'
-#' R equivalent to the C++  function.
+#' R equivalent to the C++ power function.
+#' 
+#' Wrapper on `x^n`.
 #'
-#' @param x A numeric vector
-#' @param n A numeric vector of the power term.
+#' @param x A numeric atomic object of the base.
+#' @param n A numeric atomic object of the exponent.
+#' @return A numeric atomic object of x raised to n.
+#' @family {translations}
 #' @export
 #' @examples
 #' pow(10, 2)
-pow <- function(x, n) x^n
+pow <- function(x, n) {
+  x^n
+}
 
 #' Phi
 #'
 #' The standard normal cumulative density function.
 #'
-#' @param x A numeric vector
+#' A wrapper on `stats::pnorm()`.
+#' 
+#' @param x A numeric atomic object.
+#' @return A numeric atomic object.
+#' @family {translations}
 #' @export
 #' @examples
 #' phi(0:2)
-phi <- function(x) stats::pnorm(x)
+phi <- function(x) {
+  stats::pnorm(x)
+}
 
 #' Log Transformation
 #'
-#' @param x The object to replace.
-#' @param value The numeric vector to transform
+#' @details A wrapper on `exp(value)`.
+#' 
+#' @param x An existing object.
+#' @param value A numeric atomic object of the value to exponentiate.
+#' @family {translations}
 #' @export
 #' @examples
-#' x <- 1
+#' x <- NULL
 #' log(x) <- 0.5
 #' x
 `log<-` <- function(x, value) {
-  x <- exp(value)
-  x
+  exp(value)
+}
+
+#' Logistic Transformation
+#' 
+#' Performs the logistic transformation on a numeric atomic object.
+#' 
+#' A wrapper on `stats::plogis()`.
+#'
+#' @param x A numeric atomic object.
+#' @return The logistically transformed numeric atomic object.
+#' @family {translations}
+#' @export
+#' @examples
+#' logit(c(0.25, 0.5, 0.75))
+logit <- function(x) {
+  stats::qlogis(x)
 }
 
 #' Logistic Transformation
 #'
-#' @param x The numeric vector to transform.
-#' @export
-#' @examples
-#' logit(c(0.25, 0.5, 0.75))
-logit <- function(x) log(x / (1 - x))
-
-#' Logistic Transformation
-#'
-#' @param x The object to replace.
-#' @param value The numeric vector to transform
+#' @details A wrapper on `stats::plogis(value)`.
+#' 
+#' @param x An existing object.
+#' @param value A numeric atomic object of the value to inverse logistically transform.
+#' @family {translations}
 #' @export
 #' @examples
 #' x <- 1
 #' logit(x) <- 0.5
 #' x
 `logit<-` <- function(x, value) {
-  x <- ilogit(value)
-  x
+  stats::plogis(value)
 }
 
 #' Inverse Logistic Transformation
+#' 
+#' Performs the inverse logistic transformation on a numeric atomic object.
+#' 
+#' A wrapper on `stats::plogis()`.
 #'
-#' @param x The numeric vector to transform.
+#' @param x A numeric atomic object.
+#' @return A numeric atomic object.
+#' @family {translations}
 #' @export
 #' @examples
-#' ilogit(c(0.25, 0.5, 0.75))
-ilogit <- function(x) 1 / (1 + exp(-x))
+#' ilogit(c(-1, 0, 5))
+ilogit <- function(x) {
+  stats::plogis(x)
+}

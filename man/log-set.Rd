@@ -7,15 +7,27 @@
 log(x) <- value
 }
 \arguments{
-\item{x}{The object to replace.}
+\item{x}{An existing object.}
 
-\item{value}{The numeric vector to transform}
+\item{value}{A numeric atomic object of the value to exponentiate.}
 }
 \description{
 Log Transformation
 }
+\details{
+A wrapper on \code{exp(value)}.
+}
 \examples{
-x <- 1
+x <- NULL
 log(x) <- 0.5
 x
 }
+\seealso{
+Other {translations}: 
+\code{\link{ilogit}()},
+\code{\link{logit<-}()},
+\code{\link{logit}()},
+\code{\link{phi}()},
+\code{\link{pow}()}
+}
+\concept{{translations}}

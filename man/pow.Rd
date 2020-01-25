@@ -7,13 +7,28 @@
 pow(x, n)
 }
 \arguments{
-\item{x}{A numeric vector}
+\item{x}{A numeric atomic object of the base.}
 
-\item{n}{A numeric vector of the power term.}
+\item{n}{A numeric atomic object of the exponent.}
+}
+\value{
+A numeric atomic object of x raised to n.
 }
 \description{
-R equivalent to the C++  function.
+R equivalent to the C++ power function.
+}
+\details{
+Wrapper on \code{x^n}.
 }
 \examples{
 pow(10, 2)
 }
+\seealso{
+Other {translations}: 
+\code{\link{ilogit}()},
+\code{\link{log<-}()},
+\code{\link{logit<-}()},
+\code{\link{logit}()},
+\code{\link{phi}()}
+}
+\concept{{translations}}

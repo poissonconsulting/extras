@@ -7,11 +7,26 @@
 logit(x)
 }
 \arguments{
-\item{x}{The numeric vector to transform.}
+\item{x}{A numeric atomic object.}
+}
+\value{
+The logistically transformed numeric atomic object.
 }
 \description{
-Logistic Transformation
+Performs the logistic transformation on a numeric atomic object.
+}
+\details{
+A wrapper on \code{stats::plogis()}.
 }
 \examples{
 logit(c(0.25, 0.5, 0.75))
 }
+\seealso{
+Other {translations}: 
+\code{\link{ilogit}()},
+\code{\link{log<-}()},
+\code{\link{logit<-}()},
+\code{\link{phi}()},
+\code{\link{pow}()}
+}
+\concept{{translations}}
