@@ -1,34 +1,17 @@
-#' Power
-#'
-#' R equivalent to the C++ power function.
+#' Inverse Logistic Transformation
 #' 
-#' Wrapper on `x^n`.
-#'
-#' @param x A numeric atomic object of the base.
-#' @param n A numeric atomic object of the exponent.
-#' @return A numeric atomic object of x raised to n.
-#' @family {translations}
-#' @export
-#' @examples
-#' pow(10, 2)
-pow <- function(x, n) {
-  x^n
-}
-
-#' Phi
-#'
-#' The standard normal cumulative density function.
-#'
-#' A wrapper on `stats::pnorm()`.
+#' Performs the inverse logistic transformation on a numeric atomic object.
 #' 
+#' A wrapper on `stats::plogis()`.
+#'
 #' @param x A numeric atomic object.
 #' @return A numeric atomic object.
 #' @family {translations}
 #' @export
 #' @examples
-#' phi(0:2)
-phi <- function(x) {
-  stats::pnorm(x)
+#' ilogit(c(-1, 0, 5))
+ilogit <- function(x) {
+  stats::plogis(x)
 }
 
 #' Log Transformation
@@ -79,18 +62,35 @@ logit <- function(x) {
   stats::plogis(value)
 }
 
-#' Inverse Logistic Transformation
-#' 
-#' Performs the inverse logistic transformation on a numeric atomic object.
-#' 
-#' A wrapper on `stats::plogis()`.
+#' Phi
 #'
+#' The standard normal cumulative density function.
+#'
+#' A wrapper on `stats::pnorm()`.
+#' 
 #' @param x A numeric atomic object.
 #' @return A numeric atomic object.
 #' @family {translations}
 #' @export
 #' @examples
-#' ilogit(c(-1, 0, 5))
-ilogit <- function(x) {
-  stats::plogis(x)
+#' phi(0:2)
+phi <- function(x) {
+  stats::pnorm(x)
+}
+
+#' Power
+#'
+#' R equivalent to the C++ power function.
+#' 
+#' Wrapper on `x^n`.
+#'
+#' @param x A numeric atomic object of the base.
+#' @param n A numeric atomic object of the exponent.
+#' @return A numeric atomic object of x raised to n.
+#' @family {translations}
+#' @export
+#' @examples
+#' pow(10, 2)
+pow <- function(x, n) {
+  x^n
 }
