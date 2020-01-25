@@ -1,6 +1,6 @@
-context("extra")
+context("translations")
 
-test_that("extra", {
+test_that("translations", {
   expect_identical(pow(5, 2), 25)
   expect_identical(phi(0), 0.5)
   expect_equal(phi(2), 0.9772499, tolerance = 0.0000001)
@@ -15,7 +15,7 @@ test_that("extra", {
   expect_equal(ilogit(logit(0.67)), 0.67)
 })
 
-test_that("extra2", {
+test_that("translations2", {
   x <- seq(0, 1, by = 0.25)
   expect_identical(logit(x), qlogis(x))
   expect_identical(ilogit(logit(x)), x)
