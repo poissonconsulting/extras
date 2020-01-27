@@ -7,6 +7,8 @@
 \item{x}{An object.}
 
 \item{...}{Other arguments passed to methods.}
+
+\item{nas}{A flag specifying whether to also fill missing values.}
 }
 \description{
 Parameter Descriptions
