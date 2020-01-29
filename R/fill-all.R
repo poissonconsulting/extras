@@ -2,13 +2,12 @@
 universals::fill_all
 
 .fill_all <- function(x, value, nas) {
-  y <- rep(value, length(x))
-  if(ndims(x) > 1)
-    dim(y) <- dim(x)
+  is_na <- is.na(x)
+  x[] <- value
   if(!nas) {
-    is.na(y[is.na(x)]) <- TRUE
+    is.na(x[is_na]) <- TRUE
   }
-  y
+  x
 }
 
 #' @inherit universals::fill_all
