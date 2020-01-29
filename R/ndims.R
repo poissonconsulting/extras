@@ -7,7 +7,7 @@ universals::ndims
 #' ndims(character(0))
 #' ndims(1:3)
 ndims.default <- function(x, ...) {
-  length(dims(x))
+  length(dims(x, ...))
 }
 
 #' @inherit universals::ndims
