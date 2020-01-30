@@ -26,9 +26,6 @@ ndims(matrix(1))
 \seealso{
 Other {dimensions}: 
 \code{\link[universals]{dims}()},
-\code{\link[universals]{npdims_terms}()},
 \code{\link[universals]{npdims}()},
-\code{\link[universals]{pdims_terms}()},
-\code{\link[universals]{pdims}()},
-\code{\link[universals]{tindex}()}
+\code{\link[universals]{pdims}()}
 }

@@ -21,8 +21,5 @@ Gets the number of the dimensions of each parameter of an object.
 Other {dimensions}: 
 \code{\link[universals]{dims}()},
 \code{\link[universals]{ndims}()},
-\code{\link[universals]{npdims_terms}()},
-\code{\link[universals]{pdims_terms}()},
-\code{\link[universals]{pdims}()},
-\code{\link[universals]{tindex}()}
+\code{\link[universals]{pdims}()}
 }

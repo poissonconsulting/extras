@@ -25,13 +25,6 @@ pdims.default <- function(x, scalar = NA, ...) {
   return(list(scalar = c(2L, 1L), vector = 3L))
 }
 
-pdims_terms.default <- function(x, scalar = NA, ...) {
-  chk_unused(...)
-  if(vld_true(scalar)) return(list(scalar = c(2L, 1L)))
-  if(vld_false(scalar)) return(list(vector = 3L))
-  return(list(scalar = c(2L, 1L), vector = 3L))
-}
-
 set_pars.character <- function(x, value) {
   chk_identical(length(value), length(x))
   value

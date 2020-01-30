@@ -29,9 +29,6 @@ dims(1:3)
 
 Other {dimensions}: 
 \code{\link[universals]{ndims}()},
-\code{\link[universals]{npdims_terms}()},
 \code{\link[universals]{npdims}()},
-\code{\link[universals]{pdims_terms}()},
-\code{\link[universals]{pdims}()},
-\code{\link[universals]{tindex}()}
+\code{\link[universals]{pdims}()}
 }
