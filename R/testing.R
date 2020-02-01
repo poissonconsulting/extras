@@ -2,26 +2,22 @@ nchains.integer <- function(x, ...) {
   2L
 }
 
-nsims.integer <- function(x, ...) {
-  2L
+niters.integer <- function(x, ...) {
+  1L
 }
 
 nterms.integer <- function(x, ...) {
   length(x)
 }
 
-pars.character <- function(x, scalar = NA, ...) {
+pars.character <- function(x, ...) {
   chk_unused(...)
   x <- unique(x)
-  if(vld_true(scalar)) return(x[x == "scalar"])
-  if(vld_false(scalar)) return(x[x != "scalar"])
   x
 }
 
-pdims.default <- function(x, scalar = NA, ...) {
+pdims.default <- function(x, ...) {
   chk_unused(...)
-  if(vld_true(scalar)) return(list(scalar = c(2L, 1L)))
-  if(vld_false(scalar)) return(list(vector = 3L))
   return(list(scalar = c(2L, 1L), vector = 3L))
 }
 
