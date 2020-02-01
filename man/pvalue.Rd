@@ -18,3 +18,6 @@ Bayesian P-Value
 \examples{
 pvalue(as.numeric(0:100))
 }
+\seealso{
+\code{\link{svalue}}
+}
