@@ -2,7 +2,7 @@
 #'
 #' @param x A numeric vector of MCMC values.
 #' @return A number between 0 and 1.
-#' @seealso \code{\link{svalue}}
+#' @family {MCMC vector to scalar functions}
 #' @export
 #' @examples
 #' pvalue(as.numeric(0:100))
