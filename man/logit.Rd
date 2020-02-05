@@ -13,10 +13,10 @@ logit(x)
 The logistically transformed numeric atomic object.
 }
 \description{
-Performs the logistic transformation on a numeric atomic object.
+Logistic transforms a numeric atomic object.
 }
 \details{
-A wrapper on \code{stats::plogis()}.
+A wrapper on \code{\link[stats:plogis]{stats::plogis()}}.
 }
 \examples{
 logit(c(0.25, 0.5, 0.75))

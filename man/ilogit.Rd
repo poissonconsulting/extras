@@ -13,10 +13,10 @@ ilogit(x)
 A numeric atomic object.
 }
 \description{
-Performs the inverse logistic transformation on a numeric atomic object.
+Inverse logistically transforms a numeric atomic object.
 }
 \details{
-A wrapper on \code{stats::plogis()}.
+A wrapper on \code{\link[stats:plogis]{stats::plogis()}}.
 }
 \examples{
 ilogit(c(-1, 0, 5))

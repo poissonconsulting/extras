@@ -33,7 +33,6 @@ chk_pars <- function(x, x_name = NULL) {
 #' @describeIn chk_pars Validate Parameter Names
 #'
 #' @export
-#' @export
 #' @examples
 #' vld_pars(c("x", "a1._", "X"))
 #' vld_pars(c("x[1]", "a1", "a1", "._0"))

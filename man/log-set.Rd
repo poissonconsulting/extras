@@ -7,15 +7,15 @@
 log(x) <- value
 }
 \arguments{
-\item{x}{An existing object.}
+\item{x}{An existing R object.}
 
-\item{value}{A numeric atomic object of the value to exponentiate.}
+\item{value}{A numeric atomic object.}
 }
 \description{
-Log Transformation
+Replaces a object with the exponent of value.
 }
 \details{
-A wrapper on \code{exp(value)}.
+A wrapper on \code{\link{exp}}\code{(value)}.
 }
 \examples{
 x <- NULL

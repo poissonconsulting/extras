@@ -1,8 +1,8 @@
 #' Inverse Logistic Transformation
 #'
-#' Performs the inverse logistic transformation on a numeric atomic object.
+#' Inverse logistically transforms a numeric atomic object.
 #'
-#' A wrapper on `stats::plogis()`.
+#' A wrapper on [`stats::plogis()`].
 #'
 #' @param x A numeric atomic object.
 #' @return A numeric atomic object.
@@ -16,10 +16,12 @@ ilogit <- function(x) {
 
 #' Log Transformation
 #'
-#' @details A wrapper on `exp(value)`.
+#' Replaces a object with the exponent of value.
 #'
-#' @param x An existing object.
-#' @param value A numeric atomic object of the value to exponentiate.
+#' @details A wrapper on [`exp`]`(value)`.
+#'
+#' @param x An existing R object.
+#' @param value A numeric atomic object.
 #' @family {translations}
 #' @export
 #' @examples
@@ -32,9 +34,9 @@ ilogit <- function(x) {
 
 #' Logistic Transformation
 #'
-#' Performs the logistic transformation on a numeric atomic object.
+#' Logistic transforms a numeric atomic object.
 #'
-#' A wrapper on `stats::plogis()`.
+#' A wrapper on [`stats::plogis()`].
 #'
 #' @param x A numeric atomic object.
 #' @return The logistically transformed numeric atomic object.
