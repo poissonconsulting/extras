@@ -3,28 +3,24 @@
 
 # extras
 
-<!-- badges: start -->
+<!-- <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Travis build
-status](https://travis-ci.com/poissonconsulting/extras.svg?branch=master)](https://travis-ci.com/poissonconsulting/extras)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/extras?branch=master&svg=true)](https://ci.appveyor.com/project/poissonconsulting/extras)
-[![Codecov test
-coverage](https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/extras?branch=master)
-[![License:
-MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-<!-- [![Tinyverse status](https://tinyverse.netlify.com/badge/extras)](https://CRAN.R-project.org/package=extras) -->
+–\>
+<!-- [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) -->
+<!-- [![Travis build status](https://travis-ci.com/poissonconsulting/extras.svg?branch=master)](https://travis-ci.com/poissonconsulting/extras) -->
+<!-- [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/extras?branch=master&svg=true)](https://ci.appveyor.com/project/poissonconsulting/extras) -->
+<!-- [![Codecov test coverage](https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/extras?branch=master) -->
+<!-- [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) -->
+<!-- <!-- [![Tinyverse status](https://tinyverse.netlify.com/badge/extras)](https://CRAN.R-project.org/package=extras) -->
+–\>
 <!-- [![CRAN status](https://www.r-pkg.org/badges/version/extras)](https://cran.r-project.org/package=extras) -->
-<!-- ![CRAN downloads](https://cranlogs.r-pkg.org/badges/extras) -->
-<!-- badges: end -->
+<!-- <!-- ![CRAN downloads](https://cranlogs.r-pkg.org/badges/extras) -->
+–\> <!-- <!-- badges: end --> –\>
 
-`extras` provides extra functions for data modeling.
-
-It includes functions to numericise objects; simple methods for S3
-generics in the universals package; and R translations of common JAGS
-and TMB functions.
+`extras` provides basic functions for Bayesian analyses including
+implementations of simple S3 generics from the universals package;
+functions to summarise MCMC samples; and R translations of a handful of
+common functions from modeling languages such as BUGS/JAGS and C++.
 
 ## Installation
 
@@ -49,58 +45,57 @@ install.packages("extras")
 
 ## Demonstration
 
-### Numericise Objects
+### Simple Generics
 
-The `numericise()` (or `numericize()`) function converts simple objects
-to a list of numeric atomic object suitable for input to an analytic
-engine.
+The `extras` package provides simple S3 generics from the universals
+package like `dims()`.
 
 ``` r
 library(extras)
 
-data <- data.frame(logical = TRUE, real = 1.1, integer = 3L, 
-                   factor = factor("b", levels = c("a", "b")),
-                   date = as.Date("2001-01-01"),
-                   datetime = as.POSIXct("2001-03-01"))
-
-numericise(data)
-#>   logical real integer factor  date  datetime
-#> 1       1  1.1       3      2 11323 983433600
+x <- 1:10
+dim(x) # base R (returns NULL!)
+#> NULL
+dims(x)
+#> [1] 10
 ```
 
-### Simple universals Methods
-
-The `extras` package provides simple methods for S3 generics in the
-universals package. For example the `dims()` and `ndims()` functions are
-defined for vectors.
+as well as those to summarise MCMC samples like `svalue()` which gives
+the surprisal value
 
 ``` r
-x <- 1:10
-dim(x) # the base R function
-#> NULL
-dims(x) 
-#> [1] 10
-ndims(x)
-#> [1] 1
+set.seed(1)
+x <- rnorm(100)
+svalue(rnorm(100))
+#> [1] 0.3183615
+svalue(rnorm(100, mean = 1))
+#> [1] 1.704015
+svalue(rnorm(100, mean = 2))
+#> [1] 3.850857
+svalue(rnorm(100, mean = 3))
+#> [1] 5.073249
 ```
 
-## JAGS and TMB Functions
+## R translations
 
-`extras` also provides R versions of common JAGS and TMB (C++) functions
-such as `logit<-` and `pow()`.
+The package also provides R translations of BUGS/JAGS functions such as
+`log<-` and `logit<-`.
 
 ``` r
 mu <- NULL
-logit(mu) <- 2
+log(mu) <- 1
 mu
-#> [1] 0.8807971
+#> [1] 2.718282
 ```
 
-## Information
+And C++ functions such as `pow()`.
 
-For more information see the [Get
-Started](https://poissonconsulting.github.io/extras/articles/extras.html)
-vignette.
+``` r
+2^3 # base R
+#> [1] 8
+pow(2, 3)
+#> [1] 8
+```
 
 ## Contribution
 
