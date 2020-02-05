@@ -44,4 +44,3 @@ vld_pars <- function(x) {
     vld_unique(x) &&
     vld_match(x, p0("^[[:alpha:]][[:alnum:]._]*$"))
 }
-
