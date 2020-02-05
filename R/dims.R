@@ -3,7 +3,7 @@ universals::dims
 
 #' @inherit universals::dims
 #' @export
-#' @examples 
+#' @examples
 #' dims(character(0))
 #' dims(1:3)
 dims.default <- function(x, ...) {
@@ -12,7 +12,7 @@ dims.default <- function(x, ...) {
 
 #' @inherit universals::dims
 #' @export
-#' @examples 
+#' @examples
 #' dims(factor("a"))
 dims.factor <- function(x, ...) {
   length(x)
@@ -20,7 +20,7 @@ dims.factor <- function(x, ...) {
 
 #' @inherit universals::dims
 #' @export
-#' @examples 
+#' @examples
 #' dims(data.frame())
 #' dims(data.frame(x = 1:3))
 dims.data.frame <- function(x, ...) {

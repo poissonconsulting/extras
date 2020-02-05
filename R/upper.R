@@ -11,10 +11,14 @@ upper <- function(x, conf_level = 0.95) {
   chk_numeric(x)
   chk_number(conf_level)
   chk_range(conf_level)
-  
-  if(!length(x)) return(NA_real_)
-  if(anyNA(x)) return(NA_real_)
-  
+
+  if (!length(x)) {
+    return(NA_real_)
+  }
+  if (anyNA(x)) {
+    return(NA_real_)
+  }
+
   lower <- (1 - conf_level) / 2
   upper <- conf_level + lower
 

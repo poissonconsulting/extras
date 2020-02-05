@@ -47,7 +47,7 @@ test_that("numericise.matrix", {
     numericise(matrix(NA, c(2, 3, 4))),
     matrix(NA_integer_, c(2, 3, 4))
   )
-    expect_identical(numericise(matrix(NA_real_)), matrix(NA_real_))
+  expect_identical(numericise(matrix(NA_real_)), matrix(NA_real_))
 })
 
 test_that("numericise.array", {

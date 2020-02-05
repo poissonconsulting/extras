@@ -3,7 +3,7 @@ universals::ndims
 
 #' @inherit universals::ndims
 #' @export
-#' @examples 
+#' @examples
 #' ndims(character(0))
 #' ndims(1:3)
 ndims.default <- function(x, ...) {
@@ -13,7 +13,7 @@ ndims.default <- function(x, ...) {
 #' @inherit universals::ndims
 #' @details Always 2L.
 #' @export
-#' @examples 
+#' @examples
 #' ndims(matrix(1))
 ndims.matrix <- function(x, ...) {
   2L
@@ -22,7 +22,7 @@ ndims.matrix <- function(x, ...) {
 #' @inherit universals::ndims
 #' @details Always 2L.
 #' @export
-#' @examples 
+#' @examples
 #' ndims(data.frame())
 ndims.data.frame <- function(x, ...) {
   2L

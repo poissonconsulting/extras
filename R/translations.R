@@ -1,7 +1,7 @@
 #' Inverse Logistic Transformation
-#' 
+#'
 #' Performs the inverse logistic transformation on a numeric atomic object.
-#' 
+#'
 #' A wrapper on `stats::plogis()`.
 #'
 #' @param x A numeric atomic object.
@@ -17,7 +17,7 @@ ilogit <- function(x) {
 #' Log Transformation
 #'
 #' @details A wrapper on `exp(value)`.
-#' 
+#'
 #' @param x An existing object.
 #' @param value A numeric atomic object of the value to exponentiate.
 #' @family {translations}
@@ -31,9 +31,9 @@ ilogit <- function(x) {
 }
 
 #' Logistic Transformation
-#' 
+#'
 #' Performs the logistic transformation on a numeric atomic object.
-#' 
+#'
 #' A wrapper on `stats::plogis()`.
 #'
 #' @param x A numeric atomic object.
@@ -49,7 +49,7 @@ logit <- function(x) {
 #' Logistic Transformation
 #'
 #' @details A wrapper on `stats::plogis(value)`.
-#' 
+#'
 #' @param x An existing object.
 #' @param value A numeric atomic object of the value to inverse logistically transform.
 #' @family {translations}
@@ -67,7 +67,7 @@ logit <- function(x) {
 #' The standard normal cumulative density function.
 #'
 #' A wrapper on `stats::pnorm()`.
-#' 
+#'
 #' @param x A numeric atomic object.
 #' @return A numeric atomic object.
 #' @family {translations}
@@ -81,7 +81,7 @@ phi <- function(x) {
 #' Power
 #'
 #' R equivalent to the C++ power function.
-#' 
+#'
 #' Wrapper on `x^n`.
 #'
 #' @param x A numeric atomic object of the base.

@@ -7,6 +7,8 @@ test_that("npars works", {
   expect_identical(npars(c("scalar", "scalar", "vector")), 2L)
   expect_identical(npars(c("scalar", "scalar", "vector", "vector2")), 3L)
   expect_error(npars(c("scalar", "scalar", "vector", "vector2"),
-                         scalar2 = FALSE), "`...` must be unused.",
-               class = "chk_error")
+    scalar2 = FALSE
+  ), "`...` must be unused.",
+  class = "chk_error"
+  )
 })
