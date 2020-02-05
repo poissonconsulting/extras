@@ -15,7 +15,12 @@ lower(x, conf_level = 0.95)
 A number.
 }
 \description{
-Lower Credible Limit
+Calculates the lower credible limit for a
+vector of MCMC values.
+}
+\details{
+By default it returns the 95\% credible limit which
+corresponds to the 2.5\% quantile.
 }
 \examples{
 lower(as.numeric(0:100))

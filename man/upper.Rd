@@ -15,7 +15,12 @@ upper(x, conf_level = 0.95)
 A number.
 }
 \description{
-Upper Credible Limit
+Calculates the upper credible limit for a
+vector of MCMC values.
+}
+\details{
+By default it returns the 95\% credible limit which
+corresponds to the 97.5\% quantile.
 }
 \examples{
 upper(as.numeric(0:100))

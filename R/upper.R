@@ -1,5 +1,11 @@
 #' Upper Credible Limit
 #'
+#' Calculates the upper credible limit for a
+#' vector of MCMC values.
+#'
+#' By default it returns the 95% credible limit which
+#' corresponds to the 97.5% quantile.
+#'
 #' @inheritParams params
 #' @param x A numeric vector of MCMC values.
 #' @return A number.
