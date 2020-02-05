@@ -2,9 +2,12 @@
 % Please edit documentation in R/chk-pars.R
 \name{chk_pars}
 \alias{chk_pars}
+\alias{vld_pars}
 \title{Check Parameter Names}
 \usage{
 chk_pars(x, x_name = NULL)
+
+vld_pars(x)
 }
 \arguments{
 \item{x}{An object.}
@@ -12,15 +15,28 @@ chk_pars(x, x_name = NULL)
 \item{x_name}{A string of the name of object x or NULL.}
 }
 \value{
-\code{NULL}, invisibly. Called for the side effect of throwing an error
-if the condition is not met.
+The \code{chk_} function throws an informative error if the test fails.
+
+The \code{vld_} function returns a flag indicating whether the test was met.
 }
 \description{
-Checks if valid parameter names using \verb{[vld_pars](x)}.
+Checks if valid parameter names.
 }
+\details{
+The character vector must consist of unique,
+non-missing values that start with an alpha
+and only include alphanumeric characters and '_' or '.'.
+}
+\section{Functions}{
+\itemize{
+\item \code{vld_pars}: Validate Parameter Names
+}}
+
 \examples{
 x <- c("x", "a1._", "X")
 chk_pars(x)
 y <- c("x[1]", "a1", "a1", "._0")
 try(chk_pars(y))
+vld_pars(c("x", "a1._", "X"))
+vld_pars(c("x[1]", "a1", "a1", "._0"))
 }

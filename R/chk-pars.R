@@ -1,11 +1,17 @@
 #' Check Parameter Names
 #'
-#' Checks if valid parameter names using `[vld_pars](x)`.
+#' Checks if valid parameter names.
+#'
+#' The character vector must consist of unique,
+#' non-missing values that start with an alpha
+#' and only include alphanumeric characters and '_' or '.'.
 #'
 #' @inheritParams params
 #' @inheritParams chk::chk_flag
-#' @return `NULL`, invisibly. Called for the side effect of throwing an error
-#'   if the condition is not met.
+#' @return
+#' The `chk_` function throws an informative error if the test fails.
+#'
+#' The `vld_` function returns a flag indicating whether the test was met.
 #' @export
 #' @examples
 #' x <- c("x", "a1._", "X")
@@ -24,16 +30,9 @@ chk_pars <- function(x, x_name = NULL) {
   chk_match(x, p0("^[[:alpha:]][[:alnum:]._]*$"), x_name = x_name)
 }
 
-#' Validate Parameter Names
+#' @describeIn chk_pars Validate Parameter Names
 #'
-#' Validates a character vector of parameter names.
-#'
-#' The character vector must consist of unique, non-missing values.
-#'
-#' @inheritParams params
-#' @inheritParams chk::chk_flag
-#' @return A flag indicating whether the condition was met.
-# @seealso [chk_pars()]
+#' @export
 #' @export
 #' @examples
 #' vld_pars(c("x", "a1._", "X"))
