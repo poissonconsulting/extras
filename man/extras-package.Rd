@@ -4,12 +4,13 @@
 \name{extras-package}
 \alias{extras}
 \alias{extras-package}
-\title{extras: Extra Functions for Data Modeling}
+\title{extras: Basic Functions for Bayesian Analyses}
 \description{
-Extra functions for data modeling.
-    It includes functions to numericise objects; 
-    simple methods for S3 generics in the universals package;
-    and R translations of common JAGS and TMB functions.
+Provides basic functions for Bayesian analyses
+    including implementations of simple S3 generics; 
+    functions to summarise MCMC samples.
+    and R translations of a handful of common functions 
+    from modeling languages such as BUGS/JAGS and C++.
 }
 \seealso{
 Useful links:
