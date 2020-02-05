@@ -14,7 +14,7 @@ Depends: R (>= 3.3)
 Imports:
     stats,
     chk,
-    universals (>= 0.0.0.9004)
+    universals
 Suggests: 
     covr,
     testthat,

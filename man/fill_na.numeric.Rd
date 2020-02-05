@@ -17,7 +17,7 @@
 The modified object.
 }
 \description{
-Fills an object's missing values.
+Fills an object's missing values while preserving the object's class.
 }
 \seealso{
 Other {MCMC manipulations}: 

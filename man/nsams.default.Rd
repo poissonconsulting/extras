@@ -15,7 +15,7 @@
 An integer scalar of the number of samples.
 }
 \description{
-Gets the number of samples values (simulations * terms)
+Gets the number of sample values (simulations * terms)
 of an MCMC object.
 }
 \seealso{
