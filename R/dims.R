@@ -17,12 +17,3 @@ dims.default <- function(x, ...) {
 dims.factor <- function(x, ...) {
   length(x)
 }
-
-#' @inherit universals::dims
-#' @export
-#' @examples
-#' dims(data.frame())
-#' dims(data.frame(x = 1:3))
-dims.data.frame <- function(x, ...) {
-  return(c(nrow(x), ncol(x)))
-}

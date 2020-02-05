@@ -2,7 +2,7 @@
 % Please edit documentation in R/chk.R
 \name{chk_pars}
 \alias{chk_pars}
-\title{Check Parameter names}
+\title{Check Parameter Names}
 \usage{
 chk_pars(x, x_name = NULL)
 }
@@ -16,7 +16,7 @@ chk_pars(x, x_name = NULL)
 if the condition is not met.
 }
 \description{
-Checks if parameter names using \verb{[vld_pars](x)}.
+Checks if valid parameter names using \verb{[vld_pars](x)}.
 }
 \examples{
 x <- c("x", "a1._", "X")

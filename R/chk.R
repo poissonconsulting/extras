@@ -1,6 +1,6 @@
-#' Check Parameter names
+#' Check Parameter Names
 #'
-#' Checks if parameter names using `[vld_pars](x)`.
+#' Checks if valid parameter names using `[vld_pars](x)`.
 #'
 #' @inheritParams params
 #' @inheritParams chk::chk_flag
