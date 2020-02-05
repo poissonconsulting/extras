@@ -21,6 +21,9 @@ The modified object.
 \description{
 Fills all of an object's (missing and non-missing) values while preserving the object's dimensionality and class.
 }
+\examples{
+fill_all(matrix(1:4, nrow = 2), value = -1)
+}
 \seealso{
 Other {MCMC manipulations}: 
 \code{\link[universals]{bind_chains}()},

@@ -21,6 +21,9 @@ The modified object.
 \description{
 Fills all of an object's (missing and non-missing) values while preserving the object's dimensionality and class.
 }
+\examples{
+fill_all(c("some", "words"), value = TRUE)
+}
 \seealso{
 Other {MCMC manipulations}: 
 \code{\link[universals]{bind_chains}()},

@@ -21,6 +21,11 @@ The modified object.
 \description{
 Fills all of an object's (missing and non-missing) values while preserving the object's dimensionality and class.
 }
+\examples{
+fill_all(c(TRUE, NA, FALSE))
+fill_all(c(TRUE, NA, FALSE, nas = FALSE))
+fill_all(c(TRUE, NA, FALSE, value = NA))
+}
 \seealso{
 Other {MCMC manipulations}: 
 \code{\link[universals]{bind_chains}()},

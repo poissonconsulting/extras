@@ -19,6 +19,9 @@ The modified object.
 \description{
 Fills an object's missing values while preserving the object's class.
 }
+\examples{
+fill_na(c(TRUE, NA))
+}
 \seealso{
 Other {MCMC manipulations}: 
 \code{\link[universals]{bind_chains}()},
