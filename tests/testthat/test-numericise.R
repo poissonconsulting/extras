@@ -22,7 +22,7 @@ test_that("numericise.factor", {
 })
 
 test_that("numericise.character", {
-  expect_identical(numericise("1"), 1)
+  expect_error(numericise("1"))
 })
 
 test_that("numericise.Date", {
@@ -51,13 +51,8 @@ test_that("numericise.array", {
 })
 
 test_that("numericise.list", {
-  expect_identical(
-    numericise(list(x = TRUE)),
-    1
-  )
-  expect_identical(
-    numericise(list(x = TRUE, y = list(z = factor(3)))),
-    c(1, NA)
+  expect_error(
+    numericise(list(x = TRUE))
   )
 
   expect_error(
@@ -75,13 +70,11 @@ test_that("numericise.data.frame", {
     numericise(data.frame(x = TRUE)),
     structure(1L, .Dim = c(1L, 1L), .Dimnames = list(NULL, "x"))
   )
-  expect_identical(
+  expect_error(
     numericise(data.frame(
       x = factor(3:2), y = c(FALSE, NA), z = c("1", "2"),
       stringsAsFactors = FALSE
-    )),
-    structure(c(2, 1, 0, NA, 1, 2), .Dim = 2:3, .Dimnames = list(
-    NULL, c("x", "y", "z")))
+    ))
   )
 
   expect_identical(
