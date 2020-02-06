@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Number of Samples — nsams.default • extras</title>
+<title>Number of Parameter Dimensions — npdims.default • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,9 +42,8 @@
 
 
 
-<meta property="og:title" content="Number of Samples — nsams.default" />
-<meta property="og:description" content="Gets the number of sample values (simulations * terms)
-of an MCMC object." />
+<meta property="og:title" content="Number of Parameter Dimensions — npdims.default" />
+<meta property="og:description" content="Gets the number of the dimensions of each parameter of an object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -116,18 +115,17 @@ of an MCMC object." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Number of Samples</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/nsams.R'><code>R/nsams.R</code></a></small>
-    <div class="hidden name"><code>nsams.default.Rd</code></div>
+    <h1>Number of Parameter Dimensions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/npdims.R'><code>R/npdims.R</code></a></small>
+    <div class="hidden name"><code>npdims.default.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Gets the number of sample values (simulations * terms)
-of an MCMC object.</p>
+    <p>Gets the number of the dimensions of each parameter of an object.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for default</span>
-<span class='fu'><a href='https://rdrr.io/pkg/universals/man/nsams.html'>nsams</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/pkg/universals/man/npdims.html'>npdims</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,16 +142,13 @@ of an MCMC object.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An integer scalar of the number of samples.</p>
+    <p>A named integer vector of the number of dimensions of each parameter.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other MCMC dimensions: 
-<code><a href='https://rdrr.io/pkg/universals/man/nchains.html'>nchains</a>()</code>,
-<code><a href='https://rdrr.io/pkg/universals/man/niters.html'>niters</a>()</code>,
-<code><a href='https://rdrr.io/pkg/universals/man/npars_scalar.html'>npars_scalar</a>()</code>,
-<code><a href='https://rdrr.io/pkg/universals/man/npars.html'>npars</a>()</code>,
-<code><a href='https://rdrr.io/pkg/universals/man/nsims.html'>nsims</a>()</code>,
-<code><a href='https://rdrr.io/pkg/universals/man/nterms.html'>nterms</a>()</code></p></div>
+    <div class='dont-index'><p>Other dimensions: 
+<code><a href='https://rdrr.io/pkg/universals/man/dims.html'>dims</a>()</code>,
+<code><a href='https://rdrr.io/pkg/universals/man/ndims.html'>ndims</a>()</code>,
+<code><a href='https://rdrr.io/pkg/universals/man/pdims.html'>pdims</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
