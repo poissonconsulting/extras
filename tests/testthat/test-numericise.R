@@ -89,3 +89,9 @@ test_that("numericise.data.frame", {
 5L), .Dimnames = list(NULL, c("lgl", "int", "dbl", "dte", "fac"
 ))))
 })
+
+test_that("numericise.hms", {
+  x <- structure(10.9, class = c("hms", "difftime"), units = "secs")
+  expect_identical(numericise(x), 10.9)
+})
+

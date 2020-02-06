@@ -20,7 +20,8 @@ Imports:
 Suggests: 
     covr,
     testthat,
-    knitr
+    knitr,
+    hms
 Remotes: poissonconsulting/universals
 URL: https://github.com/poissonconsulting/extras
 BugReports: https://github.com/poissonconsulting/extras/issues

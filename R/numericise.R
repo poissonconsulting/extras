@@ -100,3 +100,16 @@ numericise.data.frame <- function(x, ...) {
   x <- as.matrix(x)
   x
 }
+
+#' @inherit universals::numericise
+#' @return A double numeric atomic vector object.
+#' @export
+#' @examples
+#' numericise(hms::as_hms("00:01:03"))
+numericise.hms <- function(x, ...) {
+  # I'm not sure if this test is needed since S3 function
+  if(!requireNamespace("hms", quietly = TRUE))
+    err("Please install the 'hms' package.")
+  x <- unclass(x)
+  as.numeric(x)
+}
