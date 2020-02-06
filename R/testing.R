@@ -16,6 +16,12 @@ pars.character <- function(x, ...) {
   x
 }
 
+pars_scalar.character <- function(x, ...) {
+  chk_unused(...)
+  x <- unique(x)
+  x
+}
+
 pdims.default <- function(x, ...) {
   chk_unused(...)
   return(list(scalar = c(2L, 1L), vector = 3L))
