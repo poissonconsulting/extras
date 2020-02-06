@@ -5,13 +5,6 @@ universals::numericise
 universals::numericize
 
 #' @inherit universals::numericise
-#' @return A double numeric atomic object.
-#' @export
-#' @examples
-#' as.POSIXlt("1970-01-01", tz = "UTC")
-numericise.default <- function(x, ...) as.double(x)
-
-#' @inherit universals::numericise
 #' @return An integer numeric atomic object.
 #' @export
 #' @examples
