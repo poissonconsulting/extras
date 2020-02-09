@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 `extras` provides basic functions for Bayesian analyses
 including implementations of simple S3 generics from the universals package; 
 functions to summarise MCMC samples; and R translations of a handful of common functions 
-from modeling languages such as BUGS/JAGS and C++.
+from modeling languages such as BUGS/JAGS and C++ (STAN and TMB).
     
 ## Installation
 
@@ -61,11 +61,12 @@ The `extras` package provides simple S3 generics from the universals package lik
 library(extras)
 
 x <- 1:10
-dim(x) # base R (returns NULL!)
+dim(x) # base R (returns NULL)
 dims(x)
 ```
 
-as well as those to summarise MCMC samples like `svalue()` which gives the surprisal value
+as well as those to summarise MCMC samples like `svalue()` which gives the *surprisal value* (Greenland, 2019)
+
 ```{r}
 set.seed(1)
 x <- rnorm(100)
@@ -86,10 +87,15 @@ mu
 ```
 
 And C++ functions such as `pow()`.
+
 ```{r}
 2^3 # base R
 pow(2, 3)
 ```
+
+## References
+
+Greenland, S. 2019. Valid P -Values Behave Exactly as They Should: Some Misleading Criticisms of P -Values and Their Resolution With S -Values. The American Statistician 73(sup1): 106–114. http://doi.org/10.1080/00031305.2018.1529625.
 
 ## Contribution
 

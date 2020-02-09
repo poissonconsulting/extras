@@ -24,7 +24,8 @@ status](https://www.r-pkg.org/badges/version/extras)](https://cran.r-project.org
 `extras` provides basic functions for Bayesian analyses including
 implementations of simple S3 generics from the universals package;
 functions to summarise MCMC samples; and R translations of a handful of
-common functions from modeling languages such as BUGS/JAGS and C++.
+common functions from modeling languages such as BUGS/JAGS and C++ (STAN
+and TMB).
 
 ## Installation
 
@@ -58,14 +59,14 @@ package like `dims()`.
 library(extras)
 
 x <- 1:10
-dim(x) # base R (returns NULL!)
+dim(x) # base R (returns NULL)
 #> NULL
 dims(x)
 #> [1] 10
 ```
 
 as well as those to summarise MCMC samples like `svalue()` which gives
-the surprisal value
+the *surprisal value* (Greenland, 2019)
 
 ``` r
 set.seed(1)
@@ -100,6 +101,13 @@ And C++ functions such as `pow()`.
 pow(2, 3)
 #> [1] 8
 ```
+
+## References
+
+Greenland, S. 2019. Valid P -Values Behave Exactly as They Should: Some
+Misleading Criticisms of P -Values and Their Resolution With S -Values.
+The American Statistician 73(sup1): 106–114.
+<http://doi.org/10.1080/00031305.2018.1529625>.
 
 ## Contribution
 
