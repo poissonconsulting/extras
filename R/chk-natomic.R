@@ -1,6 +1,6 @@
 #' Check Numeric Atomic Object
 #'
-#' Checks if numeric object using
+#' Checks if numeric atomic object using
 #' `is.numeric(x) && is.atomic(x)`.
 #'
 #' @inheritParams chk::chk_true
