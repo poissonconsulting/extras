@@ -1,5 +1,3 @@
-context("chk")
-
 test_that("chk_pars", {
   expect_null(chk_pars(character(0)))
   expect_invisible(chk_pars(character(0)))

@@ -1,5 +1,3 @@
-context("fill-na")
-
 test_that("fill_na atomic objects", {
   expect_identical(fill_na(numeric(0)), numeric(0))
   expect_identical(fill_na(integer(0)), integer(0))

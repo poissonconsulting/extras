@@ -1,5 +1,3 @@
-context("fill-all")
-
 test_that("fill_all atomic objects", {
   expect_identical(fill_all(numeric(0)), numeric(0))
   expect_identical(fill_all(numeric(0), nas = FALSE), numeric(0))

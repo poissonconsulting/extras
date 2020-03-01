@@ -1,5 +1,3 @@
-context("upper")
-
 test_that("upper", {
   expect_identical(upper(NA_integer_), NA_real_)
   expect_identical(upper(integer(0)), NA_real_)

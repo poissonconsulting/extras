@@ -1,5 +1,3 @@
-context("svalue")
-
 test_that("svalue", {
   expect_identical(svalue(NA_integer_), NA_real_)
   expect_identical(svalue(integer(0)), NA_real_)

@@ -1,5 +1,3 @@
-context("lower")
-
 test_that("lower", {
   expect_identical(lower(NA_integer_), NA_real_)
   expect_identical(lower(integer(0)), NA_real_)

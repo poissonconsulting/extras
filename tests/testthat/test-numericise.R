@@ -1,5 +1,3 @@
-context("numericise")
-
 test_that("numericize", {
   expect_identical(numericize(TRUE), 1L)
 })

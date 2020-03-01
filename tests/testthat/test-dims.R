@@ -1,5 +1,3 @@
-context("dims")
-
 test_that("dims.vector", {
   expect_identical(dims(integer(0)), 0L)
   expect_identical(dims(list()), 0L)

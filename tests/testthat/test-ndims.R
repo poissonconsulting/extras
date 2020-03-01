@@ -1,5 +1,3 @@
-context("ndims")
-
 test_that("ndims.vector", {
   expect_identical(ndims(integer(0)), 1L)
   expect_identical(ndims(list()), 1L)

@@ -1,5 +1,3 @@
-context("set-pars")
-
 test_that("set_pars works", {
   x <- "a"
   pars(x) <- "b"

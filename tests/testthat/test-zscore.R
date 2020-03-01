@@ -1,5 +1,3 @@
-context("zscore")
-
 test_that("zscore", {
   expect_identical(zscore(NA_integer_), NA_real_)
   expect_identical(zscore(integer(0)), NA_real_)

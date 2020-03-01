@@ -1,5 +1,3 @@
-context("translations")
-
 test_that("translations", {
   expect_identical(pow(5, 2), 25)
   expect_identical(phi(0), 0.5)
