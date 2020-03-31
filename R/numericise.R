@@ -1,10 +1,33 @@
+#' Numericise (or Numericize)
+#'
+#' Coerce an R object to a numeric atomic object.
+#'
+#' @inheritParams params
+#' @return A numeric atomic object.
+#' @aliases numericize
 #' @export
-universals::numericise
+#' @examples
+#' numericise.foobar <- function(x, ...) {
+#'   NotYetImplemented()
+#'   # replace with code to numericise an object of class 'foobar'
+#' }
+numericise <- function(x, ...) UseMethod("numericise")
 
+#' @rdname numericise
+#' @details
+#' `numericize()` is an alias for numericise.
+#' If you want to implement a method for a class `"foo"`, implement
+#' `numericise.foo()`.
+#'
 #' @export
-universals::numericize
+#' @examples
+#' numericise.foobar <- function(x, ...) {
+#'   NotYetImplemented()
+#'   # replace with code to numericise an object of class 'foobar'
+#' }
+numericize <- function(x, ...) UseMethod("numericise")
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return An integer numeric atomic object.
 #' @export
 #' @examples
@@ -12,28 +35,28 @@ universals::numericize
 #' numericise(matrix(c(TRUE, FALSE), nrow = 2))
 numericise.logical <- function(x, ...) as.integer(x)
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return An integer numeric atomic object.
 #' @export
 #' @examples
 #' numericise(2L)
 numericise.integer <- function(x, ...) x
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return A double numeric atomic object.
 #' @export
 #' @examples
 #' numericise(c(1, 3))
 numericise.double <- function(x, ...) x
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return A positive integer numeric atomic vector object.
 #' @export
 #' @examples
 #' numericise(factor(c("c", "a")))
 numericise.factor <- function(x, ...) as.integer(x)
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return A double numeric atomic vector object.
 #' @export
 #' @examples
@@ -43,7 +66,7 @@ numericise.Date <- function(x, ...) {
   as.numeric(x)
 }
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return A double numeric atomic vector object.
 #' @export
 #' @examples
@@ -53,7 +76,7 @@ numericise.POSIXct <- function(x, ...) {
   as.numeric(x)
 }
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return A double numeric atomic matrix object.
 #' @export
 #' @examples
@@ -69,7 +92,7 @@ numericise.matrix <- function(x, ...) {
   x
 }
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return A double numeric atomic matrix object.
 #' @export
 #' @examples
@@ -85,7 +108,7 @@ numericise.array <- function(x, ...) {
   x
 }
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return A double numeric atomic matrix object.
 #' @export
 #' @examples
@@ -101,7 +124,7 @@ numericise.data.frame <- function(x, ...) {
   x
 }
 
-#' @inherit universals::numericise
+#' @inherit numericise
 #' @return A double numeric atomic vector object.
 #' @export
 #' @examples
