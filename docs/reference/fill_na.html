@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Numericise (or Numericize) — numericise.array • extras</title>
+<title>Fill Missing Values — fill_na • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Numericise (or Numericize) — numericise.array" />
-<meta property="og:description" content="Coerce an R object to a numeric atomic object." />
+<meta property="og:title" content="Fill Missing Values — fill_na" />
+<meta property="og:description" content="Fills an object's missing values while preserving the object's class." />
 
 
 
@@ -118,17 +118,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Numericise (or Numericize)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/numericise.R'><code>R/numericise.R</code></a></small>
-    <div class="hidden name"><code>numericise.array.Rd</code></div>
+    <h1>Fill Missing Values</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/fill-na.R'><code>R/fill-na.R</code></a></small>
+    <div class="hidden name"><code>fill_na.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Coerce an R object to a numeric atomic object.</p>
+    <p>Fills an object's missing values while preserving the object's class.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for array</span>
-<span class='fu'><a href='numericise.html'>numericise</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>fill_na</span>(<span class='no'>x</span>, <span class='no'>value</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,6 +137,10 @@
       <td><p>An object.</p></td>
     </tr>
     <tr>
+      <th>value</th>
+      <td><p>A scalar of the value to replace missing values with.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Other arguments passed to methods.</p></td>
     </tr>
@@ -145,15 +148,8 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A double numeric atomic matrix object.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>The modified object.</p>
 
-    <p><code><a href='numericise.html'>numericize()</a></code> is an alias for numericise.
-If you want to implement a method for a class <code>"foo"</code>, implement
-<code>numericise.foo()</code>.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='numericise.html'>numericise</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span>(<span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; [1] 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

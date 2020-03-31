@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Numericise (or Numericize) — numericise.array • extras</title>
+<title>Numericise (or Numericize) — numericise.hms • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Numericise (or Numericize) — numericise.array" />
+<meta property="og:title" content="Numericise (or Numericize) — numericise.hms" />
 <meta property="og:description" content="Coerce an R object to a numeric atomic object." />
 
 
@@ -120,14 +120,14 @@
     <div class="page-header">
     <h1>Numericise (or Numericize)</h1>
     <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/numericise.R'><code>R/numericise.R</code></a></small>
-    <div class="hidden name"><code>numericise.array.Rd</code></div>
+    <div class="hidden name"><code>numericise.hms.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Coerce an R object to a numeric atomic object.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for array</span>
+    <pre class="usage"><span class='co'># S3 method for hms</span>
 <span class='fu'><a href='numericise.html'>numericise</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -145,7 +145,7 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A double numeric atomic matrix object.</p>
+    <p>A double numeric atomic vector object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code><a href='numericise.html'>numericize()</a></code> is an alias for numericise.
@@ -153,7 +153,7 @@ If you want to implement a method for a class <code>"foo"</code>, implement
 <code>numericise.foo()</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='numericise.html'>numericise</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span>(<span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; [1] 1</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='numericise.html'>numericise</a></span>(<span class='kw pkg'>hms</span><span class='kw ns'>::</span><span class='fu'><a href='https://hms.tidyverse.org/reference/hms.html'>as_hms</a></span>(<span class='st'>"00:01:03"</span>))</div><div class='output co'>#&gt; [1] 63</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
