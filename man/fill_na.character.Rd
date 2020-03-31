@@ -23,11 +23,3 @@ Fills an object's missing values while preserving the object's class.
 fill_na(c("text", NA))
 fill_na(matrix(c("text", NA)), value = Inf)
 }
-\seealso{
-Other MCMC manipulations: 
-\code{\link[universals]{bind_chains}()},
-\code{\link[universals]{collapse_chains}()},
-\code{\link[universals]{estimates}()},
-\code{\link[universals]{fill_all}()},
-\code{\link[universals]{split_chains}()}
-}

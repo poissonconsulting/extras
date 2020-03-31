@@ -1,7 +1,14 @@
+#' Fill Missing Values
+#'
+#' Fills an object's missing values while preserving the object's class.
+#'
+#' @inheritParams params
+#' @param value A scalar of the value to replace missing values with.
+#' @return The modified object.
 #' @export
-universals::fill_na
+fill_na <- function(x, value, ...) UseMethod("fill_na")
 
-#' @inherit universals::fill_na
+#' @inherit fill_na
 #' @export
 #' @examples
 #' fill_na(c(TRUE, NA))
@@ -13,7 +20,7 @@ fill_na.logical <- function(x, value = FALSE, ...) {
   x
 }
 
-#' @inherit universals::fill_na
+#' @inherit fill_na
 #' @export
 #' @examples
 #' fill_na(c(1L, NA), 0)
@@ -25,7 +32,7 @@ fill_na.integer <- function(x, value = 0L, ...) {
   x
 }
 
-#' @inherit universals::fill_na
+#' @inherit fill_na
 #' @export
 #' @examples
 #' fill_na(c(1, NA), Inf)
@@ -37,7 +44,7 @@ fill_na.numeric <- function(x, value = 0, ...) {
   x
 }
 
-#' @inherit universals::fill_na
+#' @inherit fill_na
 #' @export
 #' @examples
 #' fill_na(c("text", NA))
