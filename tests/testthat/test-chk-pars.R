@@ -40,4 +40,3 @@ test_that("vld_pars", {
   expect_false(vld_pars("_a"))
   expect_false(vld_pars("1a"))
 })
-

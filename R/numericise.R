@@ -131,8 +131,9 @@ numericise.data.frame <- function(x, ...) {
 #' numericise(hms::as_hms("00:01:03"))
 numericise.hms <- function(x, ...) {
   # I'm not sure if this test is needed since S3 function
-  if(!requireNamespace("hms", quietly = TRUE))
+  if (!requireNamespace("hms", quietly = TRUE)) {
     err("Please install the 'hms' package.")
+  }
   x <- unclass(x)
   as.numeric(x)
 }

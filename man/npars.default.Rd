@@ -28,14 +28,11 @@ npars.foobar <- function(x, ...) {
 Other MCMC dimensions: 
 \code{\link[universals]{nchains}()},
 \code{\link[universals]{niters}()},
-\code{\link[universals]{npars_scalar}()},
 \code{\link[universals]{nsams}()},
 \code{\link[universals]{nsims}()},
 \code{\link[universals]{nterms}()}
 
 Other parameters: 
-\code{\link[universals]{npars_scalar}()},
-\code{\link[universals]{pars_scalar}()},
 \code{\link[universals]{pars}()},
 \code{\link[universals]{set_pars}()}
 }

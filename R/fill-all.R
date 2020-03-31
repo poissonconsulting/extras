@@ -51,8 +51,8 @@ fill_all.integer <- function(x, value = 0L, nas = TRUE, ...) {
 #' @inheritParams params
 #' @export
 #' @examples
-#' fill_all(c(1,4,NA), value = TRUE)
-#' fill_all(c(1,4,NA), value = TRUE, nas = FALSE)
+#' fill_all(c(1, 4, NA), value = TRUE)
+#' fill_all(c(1, 4, NA), value = TRUE, nas = FALSE)
 fill_all.numeric <- function(x, value = 0, nas = TRUE, ...) {
   chk_scalar(value)
   chk_flag(nas)

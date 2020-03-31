@@ -60,7 +60,8 @@ test_that("numericise.list", {
       dbl = c(2.5, 1.5),
       dte = as.Date(c("2001-01-02", "2001-01-01")),
       fac = factor(c("b", "a"))
-    )))
+    ))
+  )
 })
 
 test_that("numericise.data.frame", {
@@ -83,13 +84,14 @@ test_that("numericise.data.frame", {
       dte = as.Date(c("2001-01-02", "2001-01-01")),
       fac = factor(c("b", "a"))
     )),
-    structure(c(1, NA, 1, 2, 2.5, 1.5, 11324, 11323, 2, 1), .Dim = c(2L,
-5L), .Dimnames = list(NULL, c("lgl", "int", "dbl", "dte", "fac"
-))))
+    structure(c(1, NA, 1, 2, 2.5, 1.5, 11324, 11323, 2, 1), .Dim = c(
+      2L,
+      5L
+    ), .Dimnames = list(NULL, c("lgl", "int", "dbl", "dte", "fac")))
+  )
 })
 
 test_that("numericise.hms", {
   x <- structure(10.9, class = c("hms", "difftime"), units = "secs")
   expect_identical(numericise(x), 10.9)
 })
-

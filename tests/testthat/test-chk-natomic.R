@@ -18,4 +18,3 @@ test_that("chk_natomic", {
   expect_true(vld_natomic(matrix(1)))
   expect_true(vld_natomic(array(1)))
 })
-
