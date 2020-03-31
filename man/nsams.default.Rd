@@ -18,8 +18,13 @@ An integer scalar of the number of samples.
 Gets the number of sample values (simulations * terms)
 of an MCMC object.
 }
+\examples{
+nsams.foobar <- function(x, ...) {
+  nsims(x, ...) * nterms(x, ...)
+}
+}
 \seealso{
-Other {MCMC dimensions}: 
+Other MCMC dimensions: 
 \code{\link[universals]{nchains}()},
 \code{\link[universals]{niters}()},
 \code{\link[universals]{npars_scalar}()},

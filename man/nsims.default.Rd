@@ -18,8 +18,13 @@ An integer scalar of the number of simulations.
 Gets the number of simulations (iterations * chains)
 of an MCMC object.
 }
+\examples{
+nsims.foobar <- function(x, ...) {
+  niters(x, ...) * nchains(x, ...)
+}
+}
 \seealso{
-Other {MCMC dimensions}: 
+Other MCMC dimensions: 
 \code{\link[universals]{nchains}()},
 \code{\link[universals]{niters}()},
 \code{\link[universals]{npars_scalar}()},

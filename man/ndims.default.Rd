@@ -22,7 +22,7 @@ ndims(character(0))
 ndims(1:3)
 }
 \seealso{
-Other {dimensions}: 
+Other dimensions: 
 \code{\link[universals]{dims}()},
 \code{\link[universals]{npdims}()},
 \code{\link[universals]{pdims}()}

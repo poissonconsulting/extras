@@ -23,7 +23,7 @@ Fills an object's missing values while preserving the object's class.
 fill_na(c(1L, NA), 0)
 }
 \seealso{
-Other {MCMC manipulations}: 
+Other MCMC manipulations: 
 \code{\link[universals]{bind_chains}()},
 \code{\link[universals]{collapse_chains}()},
 \code{\link[universals]{estimates}()},

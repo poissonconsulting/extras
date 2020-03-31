@@ -24,11 +24,3 @@ Fills all of an object's (missing and non-missing) values while preserving the o
 \examples{
 fill_all(c("some", "words"), value = TRUE)
 }
-\seealso{
-Other {MCMC manipulations}: 
-\code{\link[universals]{bind_chains}()},
-\code{\link[universals]{collapse_chains}()},
-\code{\link[universals]{estimates}()},
-\code{\link[universals]{fill_na}()},
-\code{\link[universals]{split_chains}()}
-}

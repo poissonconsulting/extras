@@ -17,10 +17,15 @@ An integer scalar of the number of scalar parameters.
 \description{
 Gets the number of scalar parameters of an object.
 }
+\examples{
+npars_scalar.foobar <- function(x, ...) {
+  length(pars_scalar(x, ...))
+}
+}
 \seealso{
 \code{\link[universals:pars_scalar]{pars_scalar()}}
 
-Other {MCMC dimensions}: 
+Other MCMC dimensions: 
 \code{\link[universals]{nchains}()},
 \code{\link[universals]{niters}()},
 \code{\link[universals]{npars}()},
@@ -28,7 +33,7 @@ Other {MCMC dimensions}:
 \code{\link[universals]{nsims}()},
 \code{\link[universals]{nterms}()}
 
-Other {parameters}: 
+Other parameters: 
 \code{\link[universals]{npars}()},
 \code{\link[universals]{pars_scalar}()},
 \code{\link[universals]{pars}()},

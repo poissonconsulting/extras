@@ -24,7 +24,7 @@ Always 2L.
 ndims(data.frame())
 }
 \seealso{
-Other {dimensions}: 
+Other dimensions: 
 \code{\link[universals]{dims}()},
 \code{\link[universals]{npdims}()},
 \code{\link[universals]{pdims}()}

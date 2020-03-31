@@ -1,5 +1,12 @@
+#' Fill All Values
+#'
+#' Fills all of an object's (missing and non-missing) values while preserving the object's dimensionality and class.
+#'
+#' @inheritParams params
+#' @param value A scalar of the value to replace all values with.
+#' @return The modified object.
 #' @export
-universals::fill_all
+fill_all <- function(x, value, ...) UseMethod("fill_all")
 
 fill_all_impl <- function(x, value, nas) {
   is_na <- is.na(x)
@@ -10,7 +17,7 @@ fill_all_impl <- function(x, value, nas) {
   x
 }
 
-#' @inherit universals::fill_all
+#' @inherit fill_all
 #' @inheritParams params
 #' @export
 #' @examples
@@ -26,7 +33,7 @@ fill_all.logical <- function(x, value = FALSE, nas = TRUE, ...) {
   fill_all_impl(x, value, nas)
 }
 
-#' @inherit universals::fill_all
+#' @inherit fill_all
 #' @inheritParams params
 #' @export
 #' @examples
@@ -40,7 +47,7 @@ fill_all.integer <- function(x, value = 0L, nas = TRUE, ...) {
   fill_all_impl(x, value, nas)
 }
 
-#' @inherit universals::fill_all
+#' @inherit fill_all
 #' @inheritParams params
 #' @export
 #' @examples
@@ -55,7 +62,7 @@ fill_all.numeric <- function(x, value = 0, nas = TRUE, ...) {
   fill_all_impl(x, value, nas)
 }
 
-#' @inherit universals::fill_all
+#' @inherit fill_all
 #' @inheritParams params
 #' @export
 #' @examples

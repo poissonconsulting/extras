@@ -24,7 +24,7 @@ fill_na(c("text", NA))
 fill_na(matrix(c("text", NA)), value = Inf)
 }
 \seealso{
-Other {MCMC manipulations}: 
+Other MCMC manipulations: 
 \code{\link[universals]{bind_chains}()},
 \code{\link[universals]{collapse_chains}()},
 \code{\link[universals]{estimates}()},
