@@ -19,10 +19,9 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Basic Functions for Bayesian Analyses">
 <meta property="og:description" content="Provides basic functions for Bayesian analyses
-    including implementations of simple S3 generics from the universals
-    package; functions to summarise MCMC samples; and R translations of a
+    including those to summarise MCMC samples; and R translations of a
     handful of common functions from modeling languages such as BUGS/JAGS
-    and C++ (STAN and TMB).">
+    and STAN.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -84,7 +83,8 @@
 <a href="#extras" class="anchor"></a>extras</h1></div>
 <!-- badges: start -->
 
-<p><code>extras</code> provides basic functions for Bayesian analyses including implementations of simple S3 generics from the universals package; functions to summarise MCMC samples; and R translations of a handful of common functions from modeling languages such as BUGS/JAGS and C++ (STAN and TMB).</p>
+<!-- badges: end -->
+<p><code>extras</code> provides basic functions for Bayesian analyses; functions to summarise MCMC samples; and R translations of a handful of common functions from modeling languages such as BUGS/JAGS and C++ (STAN and TMB).</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -103,13 +103,13 @@
 <div id="simple-generics" class="section level3">
 <h3 class="hasAnchor">
 <a href="#simple-generics" class="anchor"></a>Simple Generics</h3>
-<p>The <code>extras</code> package provides simple S3 generics from the universals package like <code><a href="https://rdrr.io/pkg/universals/man/dims.html">dims()</a></code>.</p>
+<p>The <code>extras</code> package provides simple S3 generics from the universals package like <code>dims()</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">extras</span>)
 
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">10</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="no">x</span>) <span class="co"># base R (returns NULL)</span>
 <span class="co">#&gt; NULL</span>
-<span class="fu"><a href="https://rdrr.io/pkg/universals/man/dims.html">dims</a></span>(<span class="no">x</span>)
+<span class="fu">dims</span>(<span class="no">x</span>)
 <span class="co">#&gt; [1] 10</span></pre></div>
 <p>as well as those to summarise MCMC samples like <code><a href="reference/svalue.html">svalue()</a></code> which gives the <em>surprisal value</em> (Greenland, 2019)</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">1</span>)
@@ -188,8 +188,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://travis-ci.com/poissonconsulting/extras"><img src="https://travis-ci.com/poissonconsulting/extras.svg?branch=master" alt="Travis build status"></a></li>
-<li><a href="https://ci.appveyor.com/project/poissonconsulting/extras"><img src="https://ci.appveyor.com/api/projects/status/github/poissonconsulting/extras?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
+<li><a href="https://github.com/poissonconsulting/extras/actions"><img src="https://github.com/poissonconsulting/extras/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://codecov.io/gh/poissonconsulting/extras?branch=master"><img src="https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a></li>
 <li><a href="https://cran.r-project.org/package=extras"><img src="https://www.r-pkg.org/badges/version/extras" alt="CRAN status"></a></li>
