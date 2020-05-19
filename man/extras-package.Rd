@@ -7,10 +7,9 @@
 \title{extras: Basic Functions for Bayesian Analyses}
 \description{
 Provides basic functions for Bayesian analyses
-    including implementations of simple S3 generics from the universals
-    package; functions to summarise MCMC samples; and R translations of a
-    handful of common functions from modeling languages such as BUGS/JAGS
-    and C++ (STAN and TMB).
+    including those to summarise MCMC samples; and R translations of a
+    handful of common functions from modeling languages such as 'BUGS'/'JAGS'
+    and 'STAN'.
 }
 \seealso{
 Useful links:
