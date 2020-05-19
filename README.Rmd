@@ -42,28 +42,11 @@ To install the developmental version from [GitHub](https://github.com/poissoncon
 remotes::install_github("poissonconsulting/extras")
 ```
 
-To install the latest developmental release from the Poisson drat [repository](https://github.com/poissonconsulting/drat)
-```{r, eval=FALSE}
-# install.packages("drat")
-drat::addRepo("poissonconsulting")
-install.packages("extras")
-```
-
 ## Demonstration
 
-### Simple Generics
+### Summarise MCMC Samples
 
-The `extras` package provides simple S3 generics from the universals package like `dims()`.
-
-```{r}
-library(extras)
-
-x <- 1:10
-dim(x) # base R (returns NULL)
-dims(x)
-```
-
-as well as those to summarise MCMC samples like `svalue()` which gives the *surprisal value* (Greenland, 2019)
+The `extras` package provides functions to summarise MCMC samples like `svalue()` which gives the *surprisal value* (Greenland, 2019)
 
 ```{r}
 set.seed(1)
@@ -84,7 +67,7 @@ log(mu) <- 1
 mu
 ```
 
-And C++ functions such as `pow()`.
+And STAN (C++) functions such as `pow()`.
 
 ```{r}
 2^3 # base R
