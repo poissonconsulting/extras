@@ -1,32 +1,37 @@
 Package: extras
 Title: Basic Functions for Bayesian Analyses
 Version: 0.0.0.9009
-Authors@R: c(
-    person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "cre"), comment = c(ORCID = "0000-0002-7683-4592")),
-    person("Poisson Consulting", role = c("cph", "fnd"))
-    )
+Authors@R: 
+    c(person(given = "Joe",
+             family = "Thorley",
+             role = c("aut", "cre"),
+             email = "joe@poissonconsulting.ca",
+             comment = c(ORCID = "0000-0002-7683-4592")),
+      person(given = "Poisson Consulting",
+             role = c("cph", "fnd")))
 Description: Provides basic functions for Bayesian analyses
-    including implementations of simple S3 generics 
-    from the universals package; 
-    functions to summarise MCMC samples;
-    and R translations of a handful of common functions 
-    from modeling languages such as BUGS/JAGS and C++ (STAN and TMB).
+    including implementations of simple S3 generics from the universals
+    package; functions to summarise MCMC samples; and R translations of a
+    handful of common functions from modeling languages such as BUGS/JAGS
+    and C++ (STAN and TMB).
 License: MIT + file LICENSE
-Depends: R (>= 3.3)
+URL: https://github.com/poissonconsulting/extras
+BugReports: https://github.com/poissonconsulting/extras/issues
+Depends: 
+    R (>= 3.3)
 Imports:
-    stats,
     chk,
+    stats,
     universals
 Suggests: 
     covr,
-    testthat,
+    hms,
     knitr,
-    hms
-Remotes: poissonconsulting/universals
-URL: https://github.com/poissonconsulting/extras
-BugReports: https://github.com/poissonconsulting/extras/issues
+    testthat
+Remotes: 
+    poissonconsulting/universals
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.0
 Language: en-US
+LazyData: true
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0

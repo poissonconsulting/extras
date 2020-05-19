@@ -17,17 +17,15 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Travis build status](https://travis-ci.com/poissonconsulting/extras.svg?branch=master)](https://travis-ci.com/poissonconsulting/extras)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/extras?branch=master&svg=true)](https://ci.appveyor.com/project/poissonconsulting/extras)
+[![R build status](https://github.com/poissonconsulting/extras/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/extras/actions)
 [![Codecov test coverage](https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/extras?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![CRAN status](https://www.r-pkg.org/badges/version/extras)](https://cran.r-project.org/package=extras)
-<!-- [![Tinyverse status](https://tinyverse.netlify.com/badge/extras)](https://CRAN.R-project.org/package=extras) -->
 <!-- ![CRAN downloads](https://cranlogs.r-pkg.org/badges/extras) -->
+
 <!-- badges: end -->
 
-`extras` provides basic functions for Bayesian analyses
-including implementations of simple S3 generics from the universals package; 
+`extras` provides basic functions for Bayesian analyses; 
 functions to summarise MCMC samples; and R translations of a handful of common functions 
 from modeling languages such as BUGS/JAGS and C++ (STAN and TMB).
     

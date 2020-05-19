@@ -12,3 +12,5 @@
 ^pkgdown$
 ^build\.R$
 ^cran-comments\.md$
+^\.github$
+^scripts$
