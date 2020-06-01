@@ -1,6 +1,6 @@
 Package: extras
 Title: Basic Functions for Bayesian Analyses
-Version: 0.0.0.9009
+Version: 0.0.1
 Authors@R: 
     c(person(given = "Joe",
              family = "Thorley",
