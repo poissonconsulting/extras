@@ -19,7 +19,8 @@ logit <- function(x) {
 #' @details A wrapper on `stats::plogis(value)`.
 #'
 #' @param x An existing object.
-#' @param value A numeric atomic object of the value to inverse logistically transform.
+#' @param value A numeric atomic object of the value to
+#' inverse logistically transform.
 #' @family {translations}
 #' @export
 #' @examples

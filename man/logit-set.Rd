@@ -9,7 +9,8 @@ logit(x) <- value
 \arguments{
 \item{x}{An existing object.}
 
-\item{value}{A numeric atomic object of the value to inverse logistically transform.}
+\item{value}{A numeric atomic object of the value to
+inverse logistically transform.}
 }
 \description{
 Logistic Transformation

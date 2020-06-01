@@ -1,6 +1,7 @@
 #' Fill All Values
 #'
-#' Fills all of an object's (missing and non-missing) values while preserving the object's dimensionality and class.
+#' Fills all of an object's (missing and non-missing) values
+#' while preserving the object's dimensionality and class.
 #'
 #' @inheritParams params
 #' @param value A scalar of the value to replace all values with.

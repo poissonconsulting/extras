@@ -10,7 +10,8 @@
 
 \item{nas}{A flag specifying whether to also fill missing values.}
 
-\item{conf_level}{A numeric scalar between 0 and 1 specifying the confidence level.}
+\item{conf_level}{A numeric scalar between 0 and 1
+specifying the confidence level.}
 }
 \description{
 Parameter Descriptions
