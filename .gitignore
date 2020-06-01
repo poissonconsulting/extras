@@ -4,4 +4,12 @@
 .Ruserdata
 
 .DS_Store
-inst/doc
+.Renviron
+.RProfile
+.httr-oauth
+
+*.html
+
+docs/
+inst/docs/
+scripts/

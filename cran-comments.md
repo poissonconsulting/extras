@@ -1,10 +1,12 @@
 ## Test environments
 
-release 3.6.2
+release 4.0.0
 
-* OS X (local) - release
-* Ubuntu (travis) - 3.3 to devel
-* Windows (appveyor) - release
+* OSX (local) - release
+* OSX (actions) - release and devel
+* Ubuntu (actions) - 3.3 to release
+* Windows (winbuilder) - devel
+* Windows (actions) - release
 
 ## R CMD check results
 

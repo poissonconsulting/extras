@@ -49,6 +49,7 @@ remotes::install_github("poissonconsulting/extras")
 The `extras` package provides functions to summarise MCMC samples like `svalue()` which gives the *surprisal value* (Greenland, 2019)
 
 ```{r}
+library(extras)
 set.seed(1)
 x <- rnorm(100)
 svalue(rnorm(100))
@@ -84,5 +85,7 @@ Please report any [issues](https://github.com/poissonconsulting/extras/issues).
 
 [Pull requests](https://github.com/poissonconsulting/extras/pulls) are always welcome.
 
-Please note that this project is released with a [Contributor Code of Conduct](https://github.com/poissonconsulting/extras/blob/master/CODE_OF_CONDUCT.md).
-By contributing, you agree to abide by its terms.
+## Code of Conduct
+
+Please note that the extras project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). 
+By contributing to this project, you agree to abide by its terms.

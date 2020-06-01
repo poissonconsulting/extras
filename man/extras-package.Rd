@@ -8,8 +8,8 @@
 \description{
 Provides basic functions for Bayesian analyses
     including those to summarise MCMC samples; and R translations of a
-    handful of common functions from modeling languages such as 'BUGS'/'JAGS'
-    and 'STAN'.
+    handful of common functions from modeling languages such as
+    'BUGS' and 'STAN'.
 }
 \seealso{
 Useful links:

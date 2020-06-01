@@ -36,36 +36,15 @@ To install the developmental version from
 remotes::install_github("poissonconsulting/extras")
 ```
 
-To install the latest developmental release from the Poisson drat
-[repository](https://github.com/poissonconsulting/drat)
-
-``` r
-# install.packages("drat")
-drat::addRepo("poissonconsulting")
-install.packages("extras")
-```
-
 ## Demonstration
 
-### Simple Generics
+### Summarise MCMC Samples
 
-The `extras` package provides simple S3 generics from the universals
-package like `dims()`.
+The `extras` package provides functions to summarise MCMC samples like
+`svalue()` which gives the *surprisal value* (Greenland, 2019)
 
 ``` r
 library(extras)
-
-x <- 1:10
-dim(x) # base R (returns NULL)
-#> NULL
-dims(x)
-#> [1] 10
-```
-
-as well as those to summarise MCMC samples like `svalue()` which gives
-the *surprisal value* (Greenland, 2019)
-
-``` r
 set.seed(1)
 x <- rnorm(100)
 svalue(rnorm(100))
@@ -90,7 +69,7 @@ mu
 #> [1] 2.718282
 ```
 
-And C++ functions such as `pow()`.
+And STAN (C++) functions such as `pow()`.
 
 ``` r
 2^3 # base R
@@ -114,6 +93,9 @@ Please report any
 [Pull requests](https://github.com/poissonconsulting/extras/pulls) are
 always welcome.
 
-Please note that this project is released with a [Contributor Code of
-Conduct](https://github.com/poissonconsulting/extras/blob/master/CODE_OF_CONDUCT.md).
-By contributing, you agree to abide by its terms.
+## Code of Conduct
+
+Please note that the extras project is released with a [Contributor Code
+of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
