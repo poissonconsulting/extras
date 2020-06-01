@@ -92,27 +92,16 @@
 <p>To install the developmental version from <a href="https://github.com/poissonconsulting/extras">GitHub</a></p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("remotes")</span>
 <span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"poissonconsulting/extras"</span>)</pre></div>
-<p>To install the latest developmental release from the Poisson drat <a href="https://github.com/poissonconsulting/drat">repository</a></p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("drat")</span>
-<span class="kw pkg">drat</span><span class="kw ns">::</span><span class="fu">addRepo</span>(<span class="st">"poissonconsulting"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"extras"</span>)</pre></div>
 </div>
 <div id="demonstration" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demonstration" class="anchor"></a>Demonstration</h2>
-<div id="simple-generics" class="section level3">
+<div id="summarise-mcmc-samples" class="section level3">
 <h3 class="hasAnchor">
-<a href="#simple-generics" class="anchor"></a>Simple Generics</h3>
-<p>The <code>extras</code> package provides simple S3 generics from the universals package like <code>dims()</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">extras</span>)
-
-<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">10</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="no">x</span>) <span class="co"># base R (returns NULL)</span>
-<span class="co">#&gt; NULL</span>
-<span class="fu">dims</span>(<span class="no">x</span>)
-<span class="co">#&gt; [1] 10</span></pre></div>
-<p>as well as those to summarise MCMC samples like <code><a href="reference/svalue.html">svalue()</a></code> which gives the <em>surprisal value</em> (Greenland, 2019)</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">1</span>)
+<a href="#summarise-mcmc-samples" class="anchor"></a>Summarise MCMC Samples</h3>
+<p>The <code>extras</code> package provides functions to summarise MCMC samples like <code><a href="reference/svalue.html">svalue()</a></code> which gives the <em>surprisal value</em> (Greenland, 2019)</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">extras</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">1</span>)
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span>)
 <span class="fu"><a href="reference/svalue.html">svalue</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span>))
 <span class="co">#&gt; [1] 0.3183615</span>
@@ -128,12 +117,12 @@
 <h2 class="hasAnchor">
 <a href="#r-translations" class="anchor"></a>R translations</h2>
 <p>The package also provides R translations of BUGS/JAGS functions such as <code>log&lt;-</code> and <code>logit&lt;-</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="no">mu</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="no">mu</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="no">mu</span>) <span class="kw">&lt;-</span> <span class="fl">1</span>
 <span class="no">mu</span>
 <span class="co">#&gt; [1] 2.718282</span></pre></div>
-<p>And C++ functions such as <code><a href="reference/pow.html">pow()</a></code>.</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="fl">2</span>^<span class="fl">3</span> <span class="co"># base R</span>
+<p>And STAN (C++) functions such as <code><a href="reference/pow.html">pow()</a></code>.</p>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="fl">2</span>^<span class="fl">3</span> <span class="co"># base R</span>
 <span class="co">#&gt; [1] 8</span>
 <span class="fu"><a href="reference/pow.html">pow</a></span>(<span class="fl">2</span>, <span class="fl">3</span>)
 <span class="co">#&gt; [1] 8</span></pre></div>
@@ -148,7 +137,11 @@
 <a href="#contribution" class="anchor"></a>Contribution</h2>
 <p>Please report any <a href="https://github.com/poissonconsulting/extras/issues">issues</a>.</p>
 <p><a href="https://github.com/poissonconsulting/extras/pulls">Pull requests</a> are always welcome.</p>
-<p>Please note that this project is released with a <a href="https://github.com/poissonconsulting/extras/blob/master/CODE_OF_CONDUCT.md">Contributor Code of Conduct</a>. By contributing, you agree to abide by its terms.</p>
+</div>
+<div id="code-of-conduct" class="section level2">
+<h2 class="hasAnchor">
+<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
+<p>Please note that the extras project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
   </div>
