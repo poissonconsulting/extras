@@ -11,8 +11,8 @@ Authors@R:
              role = c("cph", "fnd")))
 Description: Provides basic functions for Bayesian analyses
     including those to summarise MCMC samples; and R translations of a
-    handful of common functions from modeling languages such as 'BUGS'/'JAGS'
-    and 'STAN'.
+    handful of common functions from modeling languages such as
+    'BUGS' and 'STAN'.
 License: MIT + file LICENSE
 URL: https://github.com/poissonconsulting/extras
 BugReports: https://github.com/poissonconsulting/extras/issues
@@ -27,8 +27,6 @@ Suggests:
     hms,
     knitr,
     testthat
-Remotes: 
-    poissonconsulting/universals
 Encoding: UTF-8
 Language: en-US
 LazyData: true
