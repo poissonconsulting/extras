@@ -13,7 +13,8 @@ zscore(x)
 A number.
 }
 \description{
-Z-Score
+The Bayesian z-score is here defined as the number of standard deviations
+from the mean estimate to zero.
 }
 \examples{
 zscore(as.numeric(0:100))
