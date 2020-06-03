@@ -3,7 +3,6 @@
 #' Fills an object's missing values while preserving the object's class.
 #'
 #' @inheritParams params
-#' @param value A scalar of the value to replace missing values with.
 #' @return The modified object.
 #' @export
 fill_na <- function(x, value, ...) UseMethod("fill_na")

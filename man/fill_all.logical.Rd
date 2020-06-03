@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{An object.}
 
-\item{value}{A scalar of the value to replace all values with.}
+\item{value}{A scalar of the value to replace values with.}
 
 \item{nas}{A flag specifying whether to also fill missing values.}
 

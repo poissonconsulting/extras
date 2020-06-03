@@ -9,7 +9,7 @@ fill_na(x, value, ...)
 \arguments{
 \item{x}{An object.}
 
-\item{value}{A scalar of the value to replace missing values with.}
+\item{value}{A scalar of the value to replace values with.}
 
 \item{...}{Other arguments passed to methods.}
 }

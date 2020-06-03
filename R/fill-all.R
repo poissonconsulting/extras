@@ -4,7 +4,6 @@
 #' while preserving the object's dimensionality and class.
 #'
 #' @inheritParams params
-#' @param value A scalar of the value to replace all values with.
 #' @return The modified object.
 #' @export
 fill_all <- function(x, value, ...) UseMethod("fill_all")
