@@ -22,11 +22,11 @@ A wrapper on \code{\link[stats:plogis]{stats::plogis()}}.
 logit(c(0.25, 0.5, 0.75))
 }
 \seealso{
-Other {translations}: 
+Other translations: 
 \code{\link{ilogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{phi}()},
 \code{\link{pow}()}
 }
-\concept{{translations}}
+\concept{translations}

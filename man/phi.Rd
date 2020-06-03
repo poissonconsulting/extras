@@ -22,11 +22,11 @@ A wrapper on \code{stats::pnorm()}.
 phi(0:2)
 }
 \seealso{
-Other {translations}: 
+Other translations: 
 \code{\link{ilogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},
 \code{\link{pow}()}
 }
-\concept{{translations}}
+\concept{translations}

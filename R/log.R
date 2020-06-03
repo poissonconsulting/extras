@@ -6,7 +6,7 @@
 #'
 #' @param x An existing R object.
 #' @param value A numeric atomic object.
-#' @family {translations}
+#' @family translations
 #' @export
 #' @examples
 #' x <- NULL

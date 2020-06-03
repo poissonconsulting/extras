@@ -24,11 +24,11 @@ Wrapper on \code{x^n}.
 pow(10, 2)
 }
 \seealso{
-Other {translations}: 
+Other translations: 
 \code{\link{ilogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},
 \code{\link{phi}()}
 }
-\concept{{translations}}
+\concept{translations}

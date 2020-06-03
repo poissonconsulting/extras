@@ -7,7 +7,7 @@
 #' @param x A numeric atomic object of the base.
 #' @param n A numeric atomic object of the exponent.
 #' @return A numeric atomic object of x raised to n.
-#' @family {translations}
+#' @family translations
 #' @export
 #' @examples
 #' pow(10, 2)

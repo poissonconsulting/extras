@@ -6,7 +6,7 @@
 #'
 #' @param x A numeric atomic object.
 #' @return A numeric atomic object.
-#' @family {translations}
+#' @family translations
 #' @export
 #' @examples
 #' ilogit(c(-1, 0, 5))

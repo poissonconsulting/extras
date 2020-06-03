@@ -24,11 +24,11 @@ logit(x) <- 0.5
 x
 }
 \seealso{
-Other {translations}: 
+Other translations: 
 \code{\link{ilogit}()},
 \code{\link{log<-}()},
 \code{\link{logit}()},
 \code{\link{phi}()},
 \code{\link{pow}()}
 }
-\concept{{translations}}
+\concept{translations}

@@ -6,7 +6,7 @@
 #'
 #' @param x A numeric atomic object.
 #' @return The logistically transformed numeric atomic object.
-#' @family {translations}
+#' @family translations
 #' @export
 #' @examples
 #' logit(c(0.25, 0.5, 0.75))
@@ -21,7 +21,7 @@ logit <- function(x) {
 #' @param x An existing object.
 #' @param value A numeric atomic object of the value to
 #' inverse logistically transform.
-#' @family {translations}
+#' @family translations
 #' @export
 #' @examples
 #' x <- 1
