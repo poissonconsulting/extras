@@ -1,6 +1,6 @@
 #' Power
 #'
-#' R equivalent to the C++ power function.
+#' R equivalent to the power function.
 #'
 #' Wrapper on `x^n`.
 #'

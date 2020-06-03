@@ -15,7 +15,7 @@ pow(x, n)
 A numeric atomic object of x raised to n.
 }
 \description{
-R equivalent to the C++ power function.
+R equivalent to the power function.
 }
 \details{
 Wrapper on \code{x^n}.
