@@ -3,11 +3,41 @@
 \name{numericise}
 \alias{numericise}
 \alias{numericize}
+\alias{numericise.logical}
+\alias{numericise.integer}
+\alias{numericise.double}
+\alias{numericise.factor}
+\alias{numericise.Date}
+\alias{numericise.POSIXct}
+\alias{numericise.hms}
+\alias{numericise.matrix}
+\alias{numericise.array}
+\alias{numericise.data.frame}
 \title{Numericise (or Numericize)}
 \usage{
 numericise(x, ...)
 
 numericize(x, ...)
+
+\method{numericise}{logical}(x, ...)
+
+\method{numericise}{integer}(x, ...)
+
+\method{numericise}{double}(x, ...)
+
+\method{numericise}{factor}(x, ...)
+
+\method{numericise}{Date}(x, ...)
+
+\method{numericise}{POSIXct}(x, ...)
+
+\method{numericise}{hms}(x, ...)
+
+\method{numericise}{matrix}(x, ...)
+
+\method{numericise}{array}(x, ...)
+
+\method{numericise}{data.frame}(x, ...)
 }
 \arguments{
 \item{x}{An object.}
@@ -25,13 +55,64 @@ Coerce an R object to a numeric atomic object.
 If you want to implement a method for a class \code{"foo"}, implement
 \code{numericise.foo()}.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{logical}: Numericise a logical Object
+
+\item \code{integer}: Numericise an integer Object
+
+\item \code{double}: Numericise an double Object
+
+\item \code{factor}: Numericise a factor
+
+\item \code{Date}: Numericise a Date vector
+
+\item \code{POSIXct}: Numericise a POSIXct vector
+
+\item \code{hms}: Numericise a hms vector
+
+\item \code{matrix}: Numericise a matrix
+
+\item \code{array}: Numericise an array
+
+\item \code{data.frame}: Numericise a data.frame
+}}
+
 \examples{
-numericise.foobar <- function(x, ...) {
-  NotYetImplemented()
-  # replace with code to numericise an object of class 'foobar'
-}
-numericise.foobar <- function(x, ...) {
-  NotYetImplemented()
-  # replace with code to numericise an object of class 'foobar'
-}
+
+# logical
+numericise(TRUE)
+numericise(matrix(c(TRUE, FALSE), nrow = 2))
+
+# integer
+numericise(2L)
+
+# double
+numericise(c(1, 3))
+
+# factor
+numericise(factor(c("c", "a")))
+
+# Date
+numericise(as.Date("1972-01-01"))
+
+# POSIXct
+numericise(as.POSIXct("1972-01-01", tz = "UTC"))
+
+# hms
+numericise(hms::as_hms("00:01:03"))
+
+# matrix
+numericise(matrix(TRUE))
+
+# array
+numericise(array(TRUE))
+
+# data.frame
+numericise(data.frame(
+  logical = c(TRUE, FALSE, NA),
+  integer = 1:3,
+  numeric = c(4, 10, NA),
+  factor = as.factor(c("c", "A", "green"))
+))
 }
