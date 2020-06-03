@@ -7,8 +7,8 @@
 \title{extras: Helper Functions for Bayesian Analyses}
 \description{
 Provides helper functions for Bayesian analyses
-    including those to summarise MCMC samples and R translations of 
-    'BUGS' (and 'JAGS') functions.
+    including those to numericise R objects and summarise MCMC samples
+    as well as R translations of 'BUGS' (and 'JAGS') functions.
 }
 \seealso{
 Useful links:

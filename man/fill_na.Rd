@@ -19,3 +19,8 @@ The modified object.
 \description{
 Fills an object's missing values while preserving the object's class.
 }
+\seealso{
+Other fill: 
+\code{\link{fill_all}()}
+}
+\concept{fill}

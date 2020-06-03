@@ -5,6 +5,7 @@
 #'
 #' @inheritParams params
 #' @return The modified object.
+#' @family fill
 #' @export
 fill_all <- function(x, value, ...) UseMethod("fill_all")
 
@@ -17,10 +18,11 @@ fill_all_impl <- function(x, value, nas) {
   x
 }
 
-#' @inherit fill_all
-#' @inheritParams params
+#' @describeIn fill_all Fill All for logical Objects
 #' @export
 #' @examples
+#'
+#' # logical
 #' fill_all(c(TRUE, NA, FALSE))
 #' fill_all(c(TRUE, NA, FALSE, nas = FALSE))
 #' fill_all(c(TRUE, NA, FALSE, value = NA))
@@ -33,10 +35,11 @@ fill_all.logical <- function(x, value = FALSE, nas = TRUE, ...) {
   fill_all_impl(x, value, nas)
 }
 
-#' @inherit fill_all
-#' @inheritParams params
+#' @describeIn fill_all Fill All for integer Objects
 #' @export
 #' @examples
+#'
+#' # integer
 #' fill_all(matrix(1:4, nrow = 2), value = -1)
 fill_all.integer <- function(x, value = 0L, nas = TRUE, ...) {
   chk_scalar(value)
@@ -47,10 +50,11 @@ fill_all.integer <- function(x, value = 0L, nas = TRUE, ...) {
   fill_all_impl(x, value, nas)
 }
 
-#' @inherit fill_all
-#' @inheritParams params
+#' @describeIn fill_all Fill All for numeric Objects
 #' @export
 #' @examples
+#'
+#' # numeric
 #' fill_all(c(1, 4, NA), value = TRUE)
 #' fill_all(c(1, 4, NA), value = TRUE, nas = FALSE)
 fill_all.numeric <- function(x, value = 0, nas = TRUE, ...) {
@@ -62,10 +66,11 @@ fill_all.numeric <- function(x, value = 0, nas = TRUE, ...) {
   fill_all_impl(x, value, nas)
 }
 
-#' @inherit fill_all
-#' @inheritParams params
+#' @describeIn fill_all Fill All for character Objects
 #' @export
 #' @examples
+#'
+#' # character
 #' fill_all(c("some", "words"), value = TRUE)
 fill_all.character <- function(x, value = "0", nas = TRUE, ...) {
   chk_scalar(value)

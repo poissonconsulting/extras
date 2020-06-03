@@ -2,9 +2,21 @@
 % Please edit documentation in R/fill-all.R
 \name{fill_all}
 \alias{fill_all}
+\alias{fill_all.logical}
+\alias{fill_all.integer}
+\alias{fill_all.numeric}
+\alias{fill_all.character}
 \title{Fill All Values}
 \usage{
 fill_all(x, value, ...)
+
+\method{fill_all}{logical}(x, value = FALSE, nas = TRUE, ...)
+
+\method{fill_all}{integer}(x, value = 0L, nas = TRUE, ...)
+
+\method{fill_all}{numeric}(x, value = 0, nas = TRUE, ...)
+
+\method{fill_all}{character}(x, value = "0", nas = TRUE, ...)
 }
 \arguments{
 \item{x}{An object.}
@@ -12,6 +24,8 @@ fill_all(x, value, ...)
 \item{value}{A scalar of the value to replace values with.}
 
 \item{...}{Other arguments passed to methods.}
+
+\item{nas}{A flag specifying whether to also fill missing values.}
 }
 \value{
 The modified object.
@@ -20,3 +34,36 @@ The modified object.
 Fills all of an object's (missing and non-missing) values
 while preserving the object's dimensionality and class.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{logical}: Fill All for logical Objects
+
+\item \code{integer}: Fill All for integer Objects
+
+\item \code{numeric}: Fill All for numeric Objects
+
+\item \code{character}: Fill All for character Objects
+}}
+
+\examples{
+
+# logical
+fill_all(c(TRUE, NA, FALSE))
+fill_all(c(TRUE, NA, FALSE, nas = FALSE))
+fill_all(c(TRUE, NA, FALSE, value = NA))
+
+# integer
+fill_all(matrix(1:4, nrow = 2), value = -1)
+
+# numeric
+fill_all(c(1, 4, NA), value = TRUE)
+fill_all(c(1, 4, NA), value = TRUE, nas = FALSE)
+
+# character
+fill_all(c("some", "words"), value = TRUE)
+}
+\seealso{
+Other fill: 
+\code{\link{fill_na}()}
+}
+\concept{fill}

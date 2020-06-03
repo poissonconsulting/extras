@@ -1,6 +1,6 @@
 #' Z-Score
 #'
-#' @param x A numeric vector of MCMC values.
+#' @param x A numeric object of MCMC values.
 #' @return A number.
 #' @family summary
 #' @export

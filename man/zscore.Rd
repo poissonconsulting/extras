@@ -7,7 +7,7 @@
 zscore(x)
 }
 \arguments{
-\item{x}{A numeric vector of MCMC values.}
+\item{x}{A numeric object of MCMC values.}
 }
 \value{
 A number.

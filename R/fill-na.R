@@ -4,6 +4,7 @@
 #'
 #' @inheritParams params
 #' @return The modified object.
+#' @family fill
 #' @export
 fill_na <- function(x, value, ...) UseMethod("fill_na")
 

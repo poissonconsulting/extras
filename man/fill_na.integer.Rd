@@ -22,3 +22,7 @@ Fills an object's missing values while preserving the object's class.
 \examples{
 fill_na(c(1L, NA), 0)
 }
+\seealso{
+Other fill: 
+\code{\link{fill_all}()}
+}
