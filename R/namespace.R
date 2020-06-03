@@ -1,2 +1,2 @@
-#' @import stats chk
+#' @import chk
 NULL
