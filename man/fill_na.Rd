@@ -2,9 +2,21 @@
 % Please edit documentation in R/fill-na.R
 \name{fill_na}
 \alias{fill_na}
+\alias{fill_na.logical}
+\alias{fill_na.integer}
+\alias{fill_na.numeric}
+\alias{fill_na.character}
 \title{Fill Missing Values}
 \usage{
 fill_na(x, value, ...)
+
+\method{fill_na}{logical}(x, value = FALSE, ...)
+
+\method{fill_na}{integer}(x, value = 0L, ...)
+
+\method{fill_na}{numeric}(x, value = 0, ...)
+
+\method{fill_na}{character}(x, value = "0", ...)
 }
 \arguments{
 \item{x}{An object.}
@@ -18,6 +30,32 @@ The modified object.
 }
 \description{
 Fills an object's missing values while preserving the object's class.
+}
+\section{Methods (by class)}{
+\itemize{
+\item \code{logical}: Fill Missing Values for logical Objects
+
+\item \code{integer}: Fill Missing Values for integer Objects
+
+\item \code{numeric}: Fill Missing Values for numeric Objects
+
+\item \code{character}: Fill Missing Values for character Objects
+}}
+
+\examples{
+
+# logical
+fill_na(c(TRUE, NA))
+
+# integer
+fill_na(c(1L, NA), 0)
+
+# numeric
+fill_na(c(1, NA), Inf)
+
+# character
+fill_na(c("text", NA))
+fill_na(matrix(c("text", NA)), value = Inf)
 }
 \seealso{
 Other fill: 
