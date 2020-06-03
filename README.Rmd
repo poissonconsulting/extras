@@ -26,9 +26,10 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 `extras` provides helper functions for Bayesian analyses.
-In particular it provides functions to summarise MCMC samples
-and R translations of `BUGS` (and `JAGS`) functions.
-    
+
+In particular it provides functions to numericise R objects and
+summarise MCMC samples as well as R translations of `BUGS` (and `JAGS`) functions.
+
 ## Installation
 
 <!-- To install the latest release from [CRAN](https://cran.r-project.org) -->
@@ -44,12 +45,26 @@ remotes::install_github("poissonconsulting/extras")
 
 ## Demonstration
 
+### Numericise R Objects
+
+Atomic vectors, matrices, arrays and data.frames of appropriate classes can be converted to numeric objects suitable for Bayesian analysis using the `numericise()` (and `numericize()`) function.
+
+```{r}
+library(extras)
+numericise(
+  data.frame(logical = c(TRUE, FALSE),
+             factor = factor(c("blue", "green")),
+             Date = as.Date(c("2000-01-01", "2000-01-02")),
+             hms = hms::as_hms(c("00:00:02", "00:01:01"))
+  )
+)
+```
+
 ### Summarise MCMC Samples
 
 The `extras` package provides functions to summarise MCMC samples like `svalue()` which gives the *surprisal value* (Greenland, 2019)
 
 ```{r}
-library(extras)
 set.seed(1)
 x <- rnorm(100)
 svalue(rnorm(100))
@@ -82,3 +97,4 @@ Please report any [issues](https://github.com/poissonconsulting/extras/issues).
 
 Please note that the extras project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). 
 By contributing to this project, you agree to abide by its terms.
+
