@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian Surprisal Value — svalue • extras</title>
+<title>Surprisal Value — svalue • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,10 @@
 
 
 
-<meta property="og:title" content="Bayesian Surprisal Value — svalue" />
-<meta property="og:description" content="Bayesian Surprisal Value" />
+<meta property="og:title" content="Surprisal Value — svalue" />
+<meta property="og:description" content="The surprisal value is the probability of the pvalue expressed in
+terms of how many consecutive heads would have to be thrown on a fair coin
+is a single attempt to achieve the same probability." />
 
 
 
@@ -118,13 +120,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian Surprisal Value</h1>
+    <h1>Surprisal Value</h1>
     <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/svalue.R'><code>R/svalue.R</code></a></small>
     <div class="hidden name"><code>svalue.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Bayesian Surprisal Value</p>
+    <p>The surprisal value is the probability of the <a href='pvalue.html'>pvalue</a> expressed in
+terms of how many consecutive heads would have to be thrown on a fair coin
+is a single attempt to achieve the same probability.</p>
     </div>
 
     <pre class="usage"><span class='fu'>svalue</span>(<span class='no'>x</span>)</pre>
@@ -134,13 +138,19 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A numeric vector of MCMC values.</p></td>
+      <td><p>A numeric object of MCMC values.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A non-negative number.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Greenland, S. 2019. Valid P -Values Behave Exactly as They Should:
+Some Misleading Criticisms of P -Values and Their Resolution With S -Values.
+The American Statistician 73(sup1): 106–114.
+http://doi.org/10.1080/00031305.2018.1529625.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other summary: 
