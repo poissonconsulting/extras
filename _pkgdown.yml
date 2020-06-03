@@ -1,1 +1,21 @@
 destination: docs
+
+reference:
+- title: Summary Functions
+  desc: Functions to summarise MCMC vectors as scalars
+  contents:
+  - '`lower`'
+  - '`upper`'
+  - '`zscore`'
+  - '`pvalue`'
+  - '`svalue`'
+- title: Translations
+  desc: Translations of BUGS/JAGS functions
+  contents:
+  - '`log<-`'
+  - '`logit`'
+  - '`logit<-`'
+  - '`ilogit`'
+  - '`phi`'
+  - '`pow`'
+

@@ -19,10 +19,9 @@ status](https://www.r-pkg.org/badges/version/extras)](https://cran.r-project.org
 
 <!-- badges: end -->
 
-`extras` provides basic functions for Bayesian analyses; functions to
-summarise MCMC samples; and R translations of a handful of common
-functions from modeling languages such as BUGS/JAGS and C++ (STAN and
-TMB).
+`extras` provides helper functions for Bayesian analyses. In particular
+in provides functions to summarise MCMC samples and R translations of
+`BUGS` (and `JAGS`) functions.
 
 ## Installation
 
@@ -59,23 +58,14 @@ svalue(rnorm(100, mean = 3))
 
 ## R translations
 
-The package also provides R translations of BUGS/JAGS functions such as
-`log<-` and `logit<-`.
+The package also provides R translations of `BUGS` (and `JAGS`)
+functions such as `log<-` and `logit<-`.
 
 ``` r
 mu <- NULL
 log(mu) <- 1
 mu
 #> [1] 2.718282
-```
-
-And STAN (C++) functions such as `pow()`.
-
-``` r
-2^3 # base R
-#> [1] 8
-pow(2, 3)
-#> [1] 8
 ```
 
 ## References

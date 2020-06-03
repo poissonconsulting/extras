@@ -86,9 +86,9 @@ numericise.matrix <- function(x, ...) {
     mode(x) <- "integer"
     return(x)
   }
-  dims <- dims(x)
+  dim <- dim(x)
   x <- numericize(as.vector(x))
-  dim(x) <- dims
+  dim(x) <- dim
   x
 }
 
@@ -102,9 +102,9 @@ numericise.array <- function(x, ...) {
     mode(x) <- "integer"
     return(x)
   }
-  dims <- dims(x)
+  dim <- dim(x)
   x <- numericize(as.vector(x))
-  dim(x) <- dims
+  dim(x) <- dim
   x
 }
 

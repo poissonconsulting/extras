@@ -1,5 +1,5 @@
 Package: extras
-Title: Basic Functions for Bayesian Analyses
+Title: Helper Functions for Bayesian Analyses
 Version: 0.0.1
 Authors@R: 
     c(person(given = "Joe",
@@ -9,10 +9,9 @@ Authors@R:
              comment = c(ORCID = "0000-0002-7683-4592")),
       person(given = "Poisson Consulting",
              role = c("cph", "fnd")))
-Description: Provides basic functions for Bayesian analyses
-    including those to summarise MCMC samples; and R translations of a
-    handful of common functions from modeling languages such as
-    'BUGS' and 'STAN'.
+Description: Provides helper functions for Bayesian analyses
+    including those to summarise MCMC samples and R translations of 
+    'BUGS' (and 'JAGS') functions.
 License: MIT + file LICENSE
 URL: https://github.com/poissonconsulting/extras
 BugReports: https://github.com/poissonconsulting/extras/issues
@@ -20,8 +19,7 @@ Depends:
     R (>= 3.3)
 Imports:
     chk,
-    stats,
-    universals
+    stats
 Suggests: 
     covr,
     hms,

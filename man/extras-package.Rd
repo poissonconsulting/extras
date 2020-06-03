@@ -4,12 +4,11 @@
 \name{extras-package}
 \alias{extras}
 \alias{extras-package}
-\title{extras: Basic Functions for Bayesian Analyses}
+\title{extras: Helper Functions for Bayesian Analyses}
 \description{
-Provides basic functions for Bayesian analyses
-    including those to summarise MCMC samples; and R translations of a
-    handful of common functions from modeling languages such as
-    'BUGS' and 'STAN'.
+Provides helper functions for Bayesian analyses
+    including those to summarise MCMC samples and R translations of 
+    'BUGS' (and 'JAGS') functions.
 }
 \seealso{
 Useful links:

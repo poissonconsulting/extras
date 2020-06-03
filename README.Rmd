@@ -25,9 +25,9 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-`extras` provides basic functions for Bayesian analyses; 
-functions to summarise MCMC samples; and R translations of a handful of common functions 
-from modeling languages such as BUGS/JAGS and C++ (STAN and TMB).
+`extras` provides helper functions for Bayesian analyses.
+In particular it provides functions to summarise MCMC samples
+and R translations of `BUGS` (and `JAGS`) functions.
     
 ## Installation
 
@@ -60,19 +60,12 @@ svalue(rnorm(100, mean = 3))
 
 ## R translations
 
-The package also provides R translations of BUGS/JAGS functions such as `log<-` and `logit<-`.
+The package also provides R translations of `BUGS` (and `JAGS`) functions such as `log<-` and `logit<-`.
 
 ```{r}
 mu <- NULL
 log(mu) <- 1
 mu
-```
-
-And STAN (C++) functions such as `pow()`.
-
-```{r}
-2^3 # base R
-pow(2, 3)
 ```
 
 ## References
