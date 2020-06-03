@@ -19,10 +19,10 @@ Bayesian Surprisal Value
 svalue(as.numeric(0:100))
 }
 \seealso{
-Other {MCMC vector to scalar functions}: 
+Other summary: 
 \code{\link{lower}()},
 \code{\link{pvalue}()},
 \code{\link{upper}()},
 \code{\link{zscore}()}
 }
-\concept{{MCMC vector to scalar functions}}
+\concept{summary}

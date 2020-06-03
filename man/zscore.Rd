@@ -19,10 +19,10 @@ Z-Score
 zscore(as.numeric(0:100))
 }
 \seealso{
-Other {MCMC vector to scalar functions}: 
+Other summary: 
 \code{\link{lower}()},
 \code{\link{pvalue}()},
 \code{\link{svalue}()},
 \code{\link{upper}()}
 }
-\concept{{MCMC vector to scalar functions}}
+\concept{summary}

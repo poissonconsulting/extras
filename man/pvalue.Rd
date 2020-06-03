@@ -19,10 +19,10 @@ Bayesian P-Value
 pvalue(as.numeric(0:100))
 }
 \seealso{
-Other {MCMC vector to scalar functions}: 
+Other summary: 
 \code{\link{lower}()},
 \code{\link{svalue}()},
 \code{\link{upper}()},
 \code{\link{zscore}()}
 }
-\concept{{MCMC vector to scalar functions}}
+\concept{summary}

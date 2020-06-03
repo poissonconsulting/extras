@@ -27,10 +27,10 @@ corresponds to the 97.5\% quantile.
 upper(as.numeric(0:100))
 }
 \seealso{
-Other {MCMC vector to scalar functions}: 
+Other summary: 
 \code{\link{lower}()},
 \code{\link{pvalue}()},
 \code{\link{svalue}()},
 \code{\link{zscore}()}
 }
-\concept{{MCMC vector to scalar functions}}
+\concept{summary}

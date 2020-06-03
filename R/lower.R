@@ -9,7 +9,7 @@
 #' @inheritParams params
 #' @param x A numeric vector of MCMC values.
 #' @return A number.
-#' @family {MCMC vector to scalar functions}
+#' @family summary
 #' @export
 #' @examples
 #' lower(as.numeric(0:100))

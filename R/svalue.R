@@ -4,7 +4,7 @@
 #'
 #' @param x A numeric vector of MCMC values.
 #' @return A non-negative number.
-#' @family {MCMC vector to scalar functions}
+#' @family summary
 #' @export
 #' @examples
 #' svalue(as.numeric(0:100))
