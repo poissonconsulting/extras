@@ -1,6 +1,6 @@
 #' Surprisal Value
 #'
-#' The surprisal value is the probability of the [pvalue] expressed in
+#' The surprisal value (Greenland 2019) is the [pvalue] expressed in
 #' terms of how many consecutive heads would have to be thrown on a fair coin
 #' in a single attempt to achieve the same probability.
 #'
