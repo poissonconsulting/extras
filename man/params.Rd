@@ -18,3 +18,4 @@ specifying the confidence level.}
 \description{
 Parameter Descriptions
 }
+\keyword{internal}

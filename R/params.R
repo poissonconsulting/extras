@@ -1,5 +1,6 @@
 #' Parameter Descriptions
 #'
+#' @keywords internal
 #' @param x An object.
 #' @param ... Other arguments passed to methods.
 #' @param nas A flag specifying whether to also fill missing values.

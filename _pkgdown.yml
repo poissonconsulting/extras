@@ -1,6 +1,12 @@
 destination: docs
 
 reference:
+- title: Manipulate Objects
+  desc: Functions to numericise and fill objects
+  contents:
+  - '`numericise`'
+  - '`fill_na`'
+  - '`fill_all`'
 - title: Summary Functions
   desc: Functions to summarise MCMC vectors as scalars
   contents:
@@ -14,8 +20,12 @@ reference:
   contents:
   - '`log<-`'
   - '`logit`'
-  - '`logit<-`'
   - '`ilogit`'
+  - '`logit<-`'
   - '`phi`'
   - '`pow`'
-
+- title: Checks and Validation
+  desc: Functions to check argument values
+  contents:
+  - '`chk_natomic`'
+  - '`chk_pars`'

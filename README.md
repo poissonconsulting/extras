@@ -80,9 +80,12 @@ svalue(rnorm(100, mean = 3))
 ## R translations
 
 The package also provides R translations of `BUGS` (and `JAGS`)
-functions such as `log<-` and `logit<-`.
+functions such as `pow()` and `log<-()`.
 
 ``` r
+pow(10, 2)
+#> [1] 100
+
 mu <- NULL
 log(mu) <- 1
 mu
