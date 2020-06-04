@@ -11,7 +11,7 @@
 #' @family summary
 #' @references
 #' Kery, M., and Schaub, M. 2011.
-#' Bayesian population analysis using WinBUGS : a hierarchical perspective.
+#' Bayesian population analysis using WinBUGS: a hierarchical perspective.
 #' Academic Press, Boston. Available from <http://www.vogelwarte.ch/bpa.html>.
 #' @export
 #' @examples
