@@ -16,8 +16,7 @@ specifying the confidence level.}
 A number.
 }
 \description{
-Calculates the upper credible limit for a
-vector of MCMC values.
+Calculates the quantile-based upper credible limit.
 }
 \details{
 By default it returns the 95\% credible limit which

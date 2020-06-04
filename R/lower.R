@@ -1,7 +1,6 @@
 #' Lower Credible Limit
 #'
-#' Calculates the lower credible limit for a
-#' vector of MCMC values.
+#' Calculates the quantile-based lower credible limit.
 #'
 #' By default it returns the 95% credible limit which
 #' corresponds to the 2.5% quantile.
