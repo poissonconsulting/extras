@@ -10,7 +10,7 @@ Authors@R:
       person(given = "Poisson Consulting",
              role = c("cph", "fnd")))
 Description: Provides helper functions for Bayesian analyses
-    including those to numericise R objects and summarise MCMC samples
+    including those to 'numericise' R objects and summarise MCMC samples
     as well as R translations of 'BUGS' (and 'JAGS') functions.
 License: MIT + file LICENSE
 URL: https://github.com/poissonconsulting/extras
