@@ -137,4 +137,3 @@ numericise.data.frame <- function(x, ...) {
   x <- as.matrix(x)
   x
 }
-
