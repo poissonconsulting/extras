@@ -1,6 +1,7 @@
 test_that("pvalue", {
   expect_identical(pvalue(NA_integer_), NA_real_)
   expect_identical(pvalue(integer(0)), NA_real_)
+  expect_equal(pvalue(c(1, NA)), NA_real_)
   expect_equal(pvalue(1), 1 / 2)
   expect_equal(pvalue(c(1, 1)), 1 / 3)
   expect_equal(pvalue(c(1, 1, 1)), 1 / 4)

@@ -13,7 +13,7 @@ svalue(x)
 A non-negative number.
 }
 \description{
-The surprisal value is the probability of the \link{pvalue} expressed in
+The surprisal value (Greenland 2019) is the \link{pvalue} expressed in
 terms of how many consecutive heads would have to be thrown on a fair coin
 in a single attempt to achieve the same probability.
 }

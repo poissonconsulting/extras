@@ -14,9 +14,8 @@ A number between 0 and 1.
 }
 \description{
 A Bayesian p-value (p) is here defined in terms of the quantile-based
-(1-p) * 100\% credible interval (CRI) that just includes 0 (Kery and Schaub 2011).
-}
-\details{
+(1-p) * 100\% credible interval (CRI) that
+just includes 0 (Kery and Schaub 2011).
 In other words a p-value of 0.05 indicates that the 95\% CRI just includes 0.
 }
 \examples{
@@ -24,7 +23,7 @@ pvalue(as.numeric(0:100))
 }
 \references{
 Kery, M., and Schaub, M. 2011.
-Bayesian population analysis using WinBUGS : a hierarchical perspective.
+Bayesian population analysis using WinBUGS: a hierarchical perspective.
 Academic Press, Boston. Available from \url{http://www.vogelwarte.ch/bpa.html}.
 }
 \seealso{
