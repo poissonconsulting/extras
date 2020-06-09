@@ -6,13 +6,15 @@
 \alias{extras-package}
 \title{extras: Helper Functions for Bayesian Analyses}
 \description{
-Provides helper functions for Bayesian analyses
-    including those to 'numericise' R objects and summarise MCMC samples
-    as well as R translations of 'BUGS' (and 'JAGS') functions.
+Provides functions to numericise 'R' objects and summarise MCMC
+    (Monte-Carlo Markov Chain) samples
+    as well as R translations of BUGS (Bayesian Using Gibbs Sampling)
+    and JAGS (Just Another Gibbs Sampler) functions.
 }
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://poissonconsulting.github.io/extras}
   \item \url{https://github.com/poissonconsulting/extras}
   \item Report bugs at \url{https://github.com/poissonconsulting/extras/issues}
 }
