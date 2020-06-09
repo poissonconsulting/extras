@@ -11,6 +11,9 @@ log(x) <- value
 
 \item{value}{A numeric atomic object.}
 }
+\value{
+Called for the side effect of updating \code{x}.
+}
 \description{
 Replaces a object with the exponent of value.
 }

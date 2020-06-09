@@ -16,7 +16,7 @@ A numeric atomic object.
 The standard normal cumulative density function.
 }
 \details{
-A wrapper on \code{stats::pnorm()}.
+A wrapper on \code{\link[stats:pnorm]{stats::pnorm()}}.
 }
 \examples{
 phi(0:2)

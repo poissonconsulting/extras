@@ -7,6 +7,7 @@
 #' @param x An existing R object.
 #' @param value A numeric atomic object.
 #' @family translations
+#' @return Called for the side effect of updating `x`.
 #' @export
 #' @examples
 #' x <- NULL

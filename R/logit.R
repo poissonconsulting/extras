@@ -2,7 +2,7 @@
 #'
 #' Logistic transforms a numeric atomic object.
 #'
-#' A wrapper on [`stats::plogis()`].
+#' A wrapper on [`stats::qlogis()`].
 #'
 #' @param x A numeric atomic object.
 #' @return The logistically transformed numeric atomic object.
@@ -22,6 +22,7 @@ logit <- function(x) {
 #' @param value A numeric atomic object of the value to
 #' inverse logistically transform.
 #' @family translations
+#' @return Called for the side effect of updating `x`.
 #' @export
 #' @examples
 #' x <- 1

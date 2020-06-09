@@ -12,6 +12,9 @@ logit(x) <- value
 \item{value}{A numeric atomic object of the value to
 inverse logistically transform.}
 }
+\value{
+Called for the side effect of updating \code{x}.
+}
 \description{
 Logistic Transformation
 }
