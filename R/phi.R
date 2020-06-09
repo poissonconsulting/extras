@@ -2,7 +2,7 @@
 #'
 #' The standard normal cumulative density function.
 #'
-#' A wrapper on `stats::pnorm()`.
+#' A wrapper on [stats::pnorm()].
 #'
 #' @param x A numeric atomic object.
 #' @return A numeric atomic object.

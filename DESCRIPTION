@@ -9,11 +9,12 @@ Authors@R:
              comment = c(ORCID = "0000-0002-7683-4592")),
       person(given = "Poisson Consulting",
              role = c("cph", "fnd")))
-Description: Provides helper functions for Bayesian analyses
-    including those to 'numericise' R objects and summarise MCMC samples
-    as well as R translations of 'BUGS' (and 'JAGS') functions.
+Description: Provides functions to numericise 'R' objects and summarise MCMC
+    (Monte-Carlo Markov Chain) samples
+    as well as R translations of BUGS (Bayesian Using Gibbs Sampling)
+    and JAGS (Just Another Gibbs Sampler) functions.
 License: MIT + file LICENSE
-URL: https://github.com/poissonconsulting/extras
+URL: https://poissonconsulting.github.io/extras, https://github.com/poissonconsulting/extras
 BugReports: https://github.com/poissonconsulting/extras/issues
 Depends: 
     R (>= 3.3)
