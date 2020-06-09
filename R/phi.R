@@ -11,6 +11,6 @@
 #' @examples
 #' phi(0:2)
 phi <- function(x) {
-  chk_natomic(x)
+  chk_numeric(x)
   stats::pnorm(x)
 }
