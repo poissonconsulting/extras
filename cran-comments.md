@@ -23,8 +23,8 @@ release 4.0.0
 The DESCRIPTION description field has been updated accordingly to read
 
 ```
-Description: Functions to numericise 'R' objects and summarise 'MCMC'
-    (Monte Carlo Markov Chain) samples
+Description: Functions to 'numericise' 'R' objects (coerce to numeric objects)
+    and summarise 'MCMC' (Monte Carlo Markov Chain) samples
     as well as 'R' translations of 'BUGS' (Bayesian Using Gibbs Sampling)
     and 'JAGS' (Just Another Gibbs Sampler) functions.
 ```
