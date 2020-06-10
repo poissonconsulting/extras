@@ -27,5 +27,4 @@ reference:
 - title: Checks and Validation
   desc: Functions to check argument values
   contents:
-  - '`chk_natomic`'
   - '`chk_pars`'
