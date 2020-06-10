@@ -9,8 +9,8 @@ Authors@R:
              comment = c(ORCID = "0000-0002-7683-4592")),
       person(given = "Poisson Consulting",
              role = c("cph", "fnd")))
-Description: Functions to numericise 'R' objects and summarise 'MCMC'
-    (Monte Carlo Markov Chain) samples
+Description: Functions to 'numericise' 'R' objects (coerce to numeric objects)
+    and summarise 'MCMC' (Monte Carlo Markov Chain) samples
     as well as 'R' translations of 'BUGS' (Bayesian Using Gibbs Sampling)
     and 'JAGS' (Just Another Gibbs Sampler) functions.
 License: MIT + file LICENSE
