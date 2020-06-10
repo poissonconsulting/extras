@@ -1,0 +1,11 @@
+test_that("numeric", {
+  expect_true(is.numeric(1))
+  expect_true(is.numeric(integer(0)))
+  expect_true(is.numeric(matrix(1L)))
+  expect_true(is.numeric(array(1L)))
+  expect_false(is.numeric(TRUE))
+  expect_false(is.numeric(TRUE))
+  expect_false(is.numeric(structure(TRUE, class = "numeric")))
+  expect_true(is.numeric(structure(1, class = "numeric")))
+  expect_false(is.numeric(structure(list(), class = "numeric")))
+})
