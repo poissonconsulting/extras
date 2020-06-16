@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9000</span>
       </span>
     </div>
 
@@ -127,9 +127,9 @@
     <p>Checks if valid parameter names.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>chk_pars</span>(<span class='no'>x</span>, <span class='kw'>x_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>chk_pars</a></span>(<span class='kw'>x</span>, x_name = <span class='kw'>NULL</span>)
 
-<span class='fu'>vld_pars</span>(<span class='no'>x</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>vld_pars</a></span>(<span class='kw'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,10 +161,10 @@ and only include alphanumeric characters and '_' or '.'.</p>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span>)
-<span class='fu'>chk_pars</span>(<span class='no'>x</span>)
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'>chk_pars</span>(<span class='no'>y</span>))</div><div class='output co'>#&gt; Error : `y` must be unique.</div><div class='input'><span class='fu'>vld_pars</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>vld_pars</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span>))</div><div class='output co'>#&gt; [1] FALSE</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>chk_pars</a></span>(<span class='kw'>x</span>)
+<span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>chk_pars</a></span>(<span class='kw'>y</span>))</div><div class='output co'>#&gt; Error : `y` must be unique.</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>vld_pars</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>vld_pars</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span>))</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
