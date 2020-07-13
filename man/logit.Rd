@@ -16,7 +16,7 @@ The logistically transformed numeric atomic object.
 Logistic transforms a numeric atomic object.
 }
 \details{
-A wrapper on \code{\link[stats:qlogis]{stats::qlogis()}}.
+A wrapper on \code{\link[stats:Logistic]{stats::qlogis()}}.
 }
 \examples{
 logit(c(0.25, 0.5, 0.75))
