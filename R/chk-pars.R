@@ -26,7 +26,7 @@ chk_pars <- function(x, x_name = NULL) {
   if (is.null(x_name)) x_name <- deparse_backtick_chk(substitute(x))
 
   chk_s3_class(x, "character", x_name = x_name)
-  chk_match(x, par_pattern(TRUE, TRUE), x_name = x_name)
+  chk_match(x, p0("^", par_pattern(), "$"), x_name = x_name)
 }
 
 #' @describeIn chk_pars Validate Parameter Names
@@ -37,5 +37,5 @@ chk_pars <- function(x, x_name = NULL) {
 #' vld_pars(c("x[1]", "a1", "a1", "._0"))
 vld_pars <- function(x) {
   vld_s3_class(x, "character") &&
-    vld_match(x, par_pattern(TRUE, TRUE))
+    vld_match(x, p0("^", par_pattern(), "$"))
 }

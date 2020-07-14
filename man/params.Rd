@@ -14,10 +14,6 @@
 specifying the confidence level.}
 
 \item{value}{A scalar of the value to replace values with.}
-
-\item{ht}{A flag specifying whether to begin the pattern with "^".}
-
-\item{ds}{A flag specifying whether to end the pattern with "$".}
 }
 \description{
 Parameter Descriptions

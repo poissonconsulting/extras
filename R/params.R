@@ -7,8 +7,6 @@
 #' @param conf_level A numeric scalar between 0 and 1
 #' specifying the confidence level.
 #' @param value A scalar of the value to replace values with.
-#' @param ht A flag specifying whether to begin the pattern with "^".
-#' @param ds A flag specifying whether to end the pattern with "$".
 #'
 #' @name params
 NULL
