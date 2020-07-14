@@ -4,11 +4,12 @@
 \alias{par_pattern}
 \title{Parameter Pattern}
 \usage{
-par_pattern(partial = FALSE)
+par_pattern(ht = FALSE, ds = FALSE)
 }
 \arguments{
-\item{partial}{A flag specifying whether the pattern is a partial pattern.
-By default FALSE.}
+\item{ht}{A flag specifying whether to begin the pattern with "^".}
+
+\item{ds}{A flag specifying whether to end the pattern with "$".}
 }
 \value{
 A string of the regular expression for a parameter name.
@@ -18,5 +19,6 @@ Parameter Pattern
 }
 \examples{
 par_pattern()
-par_pattern(partial = TRUE)
+par_pattern(ht = TRUE)
+par_pattern(ds = TRUE)
 }

@@ -6,8 +6,11 @@
 #'
 #' @examples
 #' par_pattern()
-#' par_pattern(partial = TRUE)
-par_pattern <- function(partial = FALSE) {
-  if(isTRUE(partial)) return ("[[:alpha:]][[:alnum:]._]*")
-  p0("^", par_pattern(TRUE), "$")
+#' par_pattern(ht = TRUE)
+#' par_pattern(ds = TRUE)
+par_pattern <- function(ht = FALSE, ds = FALSE) {
+  x <- "[[:alpha:]][[:alnum:]._]*"
+  if(isTRUE(ht)) x <- paste0("^", x)
+  if(isTRUE(ds)) x <- paste0(x, "$")
+  x
 }

@@ -15,8 +15,9 @@ specifying the confidence level.}
 
 \item{value}{A scalar of the value to replace values with.}
 
-\item{partial}{A flag specifying whether the pattern is a partial pattern.
-By default FALSE.}
+\item{ht}{A flag specifying whether to begin the pattern with "^".}
+
+\item{ds}{A flag specifying whether to end the pattern with "$".}
 }
 \description{
 Parameter Descriptions
