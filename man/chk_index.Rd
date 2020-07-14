@@ -31,7 +31,7 @@ Checks if an object is a vector of one or more positive integer values.
 x <- c(2L, 1L)
 chk_index(x)
 y <- c(2L, -1L)
-try(chk_pars(y))
+try(chk_index(y))
 vld_index(c(-1))
-vld_pars(c(3L, 1L))
+vld_index(c(3L, 1L))
 }

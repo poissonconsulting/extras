@@ -13,7 +13,7 @@
 #' x <- c(2L, 1L)
 #' chk_index(x)
 #' y <- c(2L, -1L)
-#' try(chk_pars(y))
+#' try(chk_index(y))
 chk_index <- function(x, x_name = NULL) {
   if (vld_index(x)) {
     return(invisible())
@@ -31,7 +31,7 @@ chk_index <- function(x, x_name = NULL) {
 #' @export
 #' @examples
 #' vld_index(c(-1))
-#' vld_pars(c(3L, 1L))
+#' vld_index(c(3L, 1L))
 vld_index <- function(x) {
   vld_integer(x) & vld_gt(x) & vld_not_any_na(x) & vld_not_empty(x)
 }
