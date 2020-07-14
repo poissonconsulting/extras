@@ -1,3 +1,8 @@
+# extras 0.0.1.9002
+
+- Added chk_indices() and vld_indices().
+
+
 # extras 0.0.1.9001
 
 - Added par_pattern() and chk_pars() and vld_pars() now permit missing values and duplicates.
