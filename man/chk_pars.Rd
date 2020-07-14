@@ -23,9 +23,10 @@ The \code{vld_} function returns a flag indicating whether the test was met.
 Checks if valid parameter names.
 }
 \details{
-The character vector must consist of unique,
-non-missing values that start with an alpha
+The character vector must consist of values that start with an alpha
 and only include alphanumeric characters and '_' or '.'.
+
+Missing values and duplicates are permitted.
 }
 \section{Functions}{
 \itemize{

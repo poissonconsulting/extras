@@ -14,6 +14,9 @@
 specifying the confidence level.}
 
 \item{value}{A scalar of the value to replace values with.}
+
+\item{partial}{A flag specifying whether the pattern is a partial pattern.
+By default FALSE.}
 }
 \description{
 Parameter Descriptions
