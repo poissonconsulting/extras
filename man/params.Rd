@@ -14,6 +14,9 @@
 specifying the confidence level.}
 
 \item{value}{A scalar of the value to replace values with.}
+
+\item{directional}{A flag indicating whether probabilities less than 0.5
+should be returned as negative values.}
 }
 \description{
 Parameter Descriptions
