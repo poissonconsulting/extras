@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parameter Descriptions — params • extras</title>
+<title>Check Indices — chk_indices • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Parameter Descriptions — params" />
-<meta property="og:description" content="Parameter Descriptions" />
+<meta property="og:title" content="Check Indices — chk_indices" />
+<meta property="og:description" content="Checks if an object is a list of indices ie vectors of one or more positive integer values." />
 
 
 
@@ -118,15 +118,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parameter Descriptions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/params.R'><code>R/params.R</code></a></small>
-    <div class="hidden name"><code>params.Rd</code></div>
+    <h1>Check Indices</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/chk-indices.R'><code>R/chk-indices.R</code></a></small>
+    <div class="hidden name"><code>chk_indices.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Parameter Descriptions</p>
+    <p>Checks if an object is a list of indices ie vectors of one or more positive integer values.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>chk_indices</span>(<span class='kw'>x</span>, x_name = <span class='kw'>NULL</span>)
+
+<span class='fu'>vld_indices</span>(<span class='kw'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -136,30 +139,27 @@
       <td><p>An object.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Other arguments passed to methods.</p></td>
-    </tr>
-    <tr>
-      <th>nas</th>
-      <td><p>A flag specifying whether to also fill missing values.</p></td>
-    </tr>
-    <tr>
-      <th>conf_level</th>
-      <td><p>A numeric scalar between 0 and 1
-specifying the confidence level.</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>A scalar of the value to replace values with.</p></td>
-    </tr>
-    <tr>
-      <th>directional</th>
-      <td><p>A flag indicating whether probabilities less than 0.5
-should be returned as negative values.</p></td>
+      <th>x_name</th>
+      <td><p>A string of the name of object x or NULL.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>The <code>chk_</code> function throws an informative error if the test fails.</p>
+<p>The <code>vld_</code> function returns a flag indicating whether the test was met.</p>
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+<ul>
+<li><p><code>vld_indices</code>: Validate Indices</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2L</span>, <span class='fl'>1L</span>))
+<span class='fu'>chk_indices</span>(<span class='kw'>x</span>)
+<span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2L</span>, <span class='fl'>1L</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'>chk_indices</span>(<span class='kw'>y</span>))</div><div class='output co'>#&gt; Error : `y` must be a list.</div><div class='input'><span class='fu'>vld_indices</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3L</span>, <span class='fl'>1L</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>vld_indices</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3L</span>, <span class='fl'>1L</span>)))</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

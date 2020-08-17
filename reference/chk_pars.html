@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9002</span>
       </span>
     </div>
 
@@ -127,9 +127,9 @@
     <p>Checks if valid parameter names.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>chk_pars</a></span>(<span class='kw'>x</span>, x_name = <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>chk_pars</span>(<span class='kw'>x</span>, x_name = <span class='kw'>NULL</span>)
 
-<span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>vld_pars</a></span>(<span class='kw'>x</span>)</pre>
+<span class='fu'>vld_pars</span>(<span class='kw'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,9 +150,9 @@
 <p>The <code>vld_</code> function returns a flag indicating whether the test was met.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The character vector must consist of unique,
-non-missing values that start with an alpha
+    <p>The character vector must consist of values that start with an alpha
 and only include alphanumeric characters and '_' or '.'.</p>
+<p>Missing values and duplicates are permitted.</p>
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
@@ -162,9 +162,9 @@ and only include alphanumeric characters and '_' or '.'.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>chk_pars</a></span>(<span class='kw'>x</span>)
+<span class='fu'>chk_pars</span>(<span class='kw'>x</span>)
 <span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>chk_pars</a></span>(<span class='kw'>y</span>))</div><div class='output co'>#&gt; Error : `y` must be unique.</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>vld_pars</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/extras/man/chk_pars.html'>vld_pars</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span>))</div><div class='output co'>#&gt; [1] FALSE</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'>chk_pars</span>(<span class='kw'>y</span>))</div><div class='output co'>#&gt; Error : `y` must have values matching regular expression '^[[:alpha:]][[:alnum:]._]*$'.</div><div class='input'><span class='fu'>vld_pars</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>vld_pars</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span>))</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
