@@ -38,6 +38,7 @@ reference:
   contents:
   - '`pextreme`'
   - '`sextreme`'
+  - '`par_pattern`'
 - title: Generics
   desc: Generic Functions
   contents:
