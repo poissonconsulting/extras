@@ -29,8 +29,15 @@ reference:
   contents:
   - '`chk_pars`'
   - '`vld_pars`'
+  - '`chk_index`'
+  - '`vld_index`'
   - '`chk_indices`'
   - '`vld_indices`'
+- title: Miscellaneous
+  desc: Miscellaneous functions
+  contents:
+  - '`pextreme`'
+  - '`sextreme`'
 - title: Generics
   desc: Generic Functions
   contents:
