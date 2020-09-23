@@ -28,3 +28,10 @@ reference:
   desc: Functions to check argument values
   contents:
   - '`chk_pars`'
+  - '`vld_pars`'
+  - '`chk_indices`'
+  - '`vld_indices`'
+- title: Generics
+  desc: Generic Functions
+  contents:
+  - '`as_list`'
