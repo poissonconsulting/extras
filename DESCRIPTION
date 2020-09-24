@@ -18,7 +18,7 @@ Description: Functions to 'numericise' 'R' objects (coerce to numeric objects)
     as well as 'R' translations of 'BUGS' (Bayesian Using Gibbs Sampling)
     and 'JAGS' (Just Another Gibbs Sampler) functions.
 License: MIT + file LICENSE
-URL: https://poissonconsulting.github.io/extras, https://github.com/poissonconsulting/extras
+URL: https://poissonconsulting.github.io/extras/, https://github.com/poissonconsulting/extras
 BugReports: https://github.com/poissonconsulting/extras/issues
 Depends: 
     R (>= 3.3)
@@ -35,4 +35,4 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1.9000
+RoxygenNote: 7.1.1

@@ -42,4 +42,4 @@ reference:
 - title: Generics
   desc: Generic Functions
   contents:
-  - '`as_list`'
+  - '`as_list_unnamed`'

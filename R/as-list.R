@@ -6,16 +6,16 @@
 #' @inheritParams params
 #' @return A list.
 #' @export
-as_list <- function(x, ...) {
-  UseMethod("as_list")
+as_list_unnamed <- function(x, ...) {
+  UseMethod("as_list_unnamed")
 }
 
-#' @rdname as_list
+#' @rdname as_list_unnamed
 #' @export
 #' @examples
-#' as_list(1:3)
-#' as_list(c(x = 1, y = 2))
-as_list.default <- function(x, ...) {
+#' as_list_unnamed(1:3)
+#' as_list_unnamed(c(x = 1, y = 2))
+as_list_unnamed.default <- function(x, ...) {
   x <- as.list(x)
   names <- names(x)
   attributes(x) <- NULL
