@@ -24,7 +24,7 @@ pvalue(as.numeric(0:100))
 \references{
 Kery, M., and Schaub, M. 2011.
 Bayesian population analysis using WinBUGS: a hierarchical perspective.
-Academic Press, Boston. Available from \url{http://www.vogelwarte.ch/bpa.html}.
+Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/de/projekte/publikationen/bpa/}.
 }
 \seealso{
 Other summary: 
