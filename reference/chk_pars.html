@@ -121,9 +121,9 @@
     <p>Checks if valid parameter names.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>chk_pars</span>(<span class='kw'>x</span>, x_name = <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>chk_pars</span><span class='op'>(</span><span class='va'>x</span>, x_name <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>vld_pars</span>(<span class='kw'>x</span>)</pre>
+<span class='fu'>vld_pars</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,12 +155,12 @@ and only include alphanumeric characters and '_' or '.'.</p>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span>)
-<span class='fu'>chk_pars</span>(<span class='kw'>x</span>)
-<span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'>chk_pars</span>(<span class='kw'>y</span>))
-</div><div class='output co'>#&gt; Error : `y` must have values matching regular expression '^[[:alpha:]][[:alnum:]._]*$'.</div><div class='input'><span class='fu'>vld_pars</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span>))
-</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>vld_pars</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span>))
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span><span class='op'>)</span>
+<span class='fu'>chk_pars</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='fu'>chk_pars</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Error : `y` must have values matching regular expression '^[[:alpha:]][[:alnum:]._]*$'.</div><div class='input'><span class='fu'>vld_pars</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"a1._"</span>, <span class='st'>"X"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>vld_pars</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x[1]"</span>, <span class='st'>"a1"</span>, <span class='st'>"a1"</span>, <span class='st'>"._0"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log Transformation — log&lt;- • extras</title>
+<title>As List — as_list_unnamed • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Log Transformation — log&lt;-" />
-<meta property="og:description" content="Replaces a object with the exponent of value." />
+<meta property="og:title" content="As List — as_list_unnamed" />
+<meta property="og:description" content="Coerces an object to an list.
+All attributes are removed except any names." />
 
 
 
@@ -112,50 +113,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log Transformation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/log.R'><code>R/log.R</code></a></small>
-    <div class="hidden name"><code>log-set.Rd</code></div>
+    <h1>As List</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/as-list.R'><code>R/as-list.R</code></a></small>
+    <div class="hidden name"><code>as_list_unnamed.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Replaces a object with the exponent of value.</p>
+    <p>Coerces an object to an list.
+All attributes are removed except any names.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
+    <pre class="usage"><span class='fu'>as_list_unnamed</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>as_list_unnamed</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An existing R object.</p></td>
+      <td><p>An object.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>A numeric atomic object.</p></td>
+      <th>...</th>
+      <td><p>Other arguments passed to methods.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Called for the side effect of updating <code>x</code>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>A wrapper on <code><a href='https://rdrr.io/r/base/Log.html'>exp</a></code><code>(value)</code>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other translations: 
-<code><a href='ilogit.html'>ilogit</a>()</code>,
-<code>logit&lt;-()</code>,
-<code><a href='logit.html'>logit</a>()</code>,
-<code><a href='phi.html'>phi</a>()</code>,
-<code><a href='pow.html'>pow</a>()</code></p></div>
+    <p>A list.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fl'>0.5</span>
-<span class='va'>x</span>
-</div><div class='output co'>#&gt; [1] 1.648721</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>as_list_unnamed</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [[1]]
+#&gt; [1] 1
+#&gt; 
+#&gt; [[2]]
+#&gt; [1] 2
+#&gt; 
+#&gt; [[3]]
+#&gt; [1] 3
+#&gt; </div><div class='input'><span class='fu'>as_list_unnamed</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span>, y <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $x
+#&gt; [1] 1
+#&gt; 
+#&gt; $y
+#&gt; [1] 2
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
