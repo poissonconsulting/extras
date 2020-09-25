@@ -80,7 +80,7 @@ svalue(rnorm(100, mean = 3))
 ## R translations
 
 The package also provides R translations of `BUGS` (and `JAGS`)
-functions such as `pow()` and `log<-()`.
+functions such as `pow()` and `log<-`.
 
 ``` r
 pow(10, 2)
@@ -97,7 +97,7 @@ mu
 Greenland, S. 2019. Valid P -Values Behave Exactly as They Should: Some
 Misleading Criticisms of P -Values and Their Resolution With S -Values.
 The American Statistician 73(sup1): 106–114.
-<http://doi.org/10.1080/00031305.2018.1529625>.
+<https://doi.org/10.1080/00031305.2018.1529625>.
 
 ## Contribution
 
