@@ -1,3 +1,8 @@
+# extras 0.1.0.9000
+
+- Same as previous version.
+
+
 # extras 0.1.0
 
 - Added `chk_indices()` and `vld_indices()` to check (validate) if an object is a list of indices ie a vector of one or more positive integer values.
