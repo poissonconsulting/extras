@@ -1,3 +1,7 @@
+impl_dev <- function(x, mu, dev) {
+  sign(x - mu) * sqrt(2 * dev)
+}
+
 #' Poisson Deviance Residual
 #'
 #' @param x A non-negative whole numeric vector of values.
@@ -13,7 +17,7 @@ devpois <- function(x, lambda) {
   .NotYetImplemented()
   dev <- x * log(x/lambda) - (x - lambda)
   dev <- pmax(dev, 0)
-  sign(x - lambda) * sqrt(2 * dev)
+  impl_dev(x, lambda, dev)
 }
 
 #' Normal Deviance Residual
@@ -30,7 +34,7 @@ devpois <- function(x, lambda) {
 #' devnorm(c(-2:2))
 devnorm <- function(x, mean = 0, sd = 1) {
   dev <- dnorm(mean, mean, sd, log = TRUE) - dnorm(x, mean, sd, log = TRUE)
-  sign(x - mean) * sqrt(2 * dev)
+  impl_dev(x, mean, dev)
 }
 
 #' Log-Normal Deviance Residual
@@ -66,7 +70,7 @@ devbinom <- function(x, size, prob) {
   .NotYetImplemented()
   mu <- size * prob
   dev <- x * log(x / mu) + (size - x) * log((size-x)/(size - mu))
-  sign(x - mu) * sqrt(2 * dev)
+  impl_dev(x, mu, dev)
 }
 
 #' Bernoulli Deviance Residual
@@ -82,5 +86,5 @@ devbinom <- function(x, size, prob) {
 #' devbern(c(TRUE, FALSE), 0.7)
 devbern <- function(x, prob) {
   dev <- ifelse(x == 1, -log(prob), -log(1-prob))
-  sign(x - prob) * sqrt(2 * dev)
+  impl_dev(x, prob, dev)
 }
