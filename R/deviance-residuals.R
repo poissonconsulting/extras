@@ -14,8 +14,7 @@ impl_dev <- function(x, mu, dev) {
 #' @examples
 #' # devpois(c(1,3.5,4), 3)
 devpois <- function(x, lambda) {
-  .NotYetImplemented()
-  dev <- x * log(x/lambda) - (x - lambda)
+  dev <- (log(lambda) * lambda - lambda - lfactorial(lambda)) - (log(lambda) * x - lambda - lfactorial(x))
   dev <- pmax(dev, 0)
   impl_dev(x, lambda, dev)
 }
