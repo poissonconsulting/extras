@@ -20,7 +20,7 @@ An numeric vector of the corresponding deviance residuals.
 Binomial Deviance Residual
 }
 \examples{
-# devbinom(c(0, 1, 2), 2, 0.3)
+devbinom(c(0, 1, 2), 2, 0.3)
 }
 \seealso{
 Other devdist: 

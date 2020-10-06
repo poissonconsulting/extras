@@ -5,9 +5,9 @@ test_that("devpois", {
   expect_identical(devpois(NA, 1), NA_real_)
   expect_identical(devpois(1, NA), NA_real_)
   expect_equal(devpois(c(1,3.5,4), 3),
-               c(-0.900516638500549, 0.474701921800054, 0.758527616440932))
-  expect_identical(devpois(c(1,3,4), c(1, 3.5, 4)),
-                   c(0, 0, 0))
+               c(-1.34267472705186, 0.281166781094084, 0.549050616623137))
+  expect_equal(devpois(c(1,3,4), c(1, 3.5, 4)),
+                   c(0, -0.274036349845144, 0))
 })
 
 test_that("devnorm", {
@@ -16,12 +16,14 @@ test_that("devnorm", {
   expect_identical(devnorm(NA, 1, 1), NA_real_)
   expect_identical(devnorm(1, NA, 1), NA_real_)
   expect_identical(devnorm(1, 1, NA), NA_real_)
-  expect_equal(devnorm(-2:2), -2:2)
-  expect_equal(devnorm(-2:2, sd = 2), -2:2/2)
-  expect_equal(devnorm(-2:2, sd = 1/2), -2:2 * 2)
+  expect_equal(devnorm(-2:2), c(-2.82842712474619, -1.4142135623731, 0, 1.4142135623731, 2.82842712474619
+  ))
+  expect_equal(devnorm(-2:2, sd = 2), devnorm(-2:2)/2)
+  expect_equal(devnorm(-2:2, sd = 1/2), devnorm(-2:2) * 2)
   expect_equal(devnorm(-2:2, mean = -2:2), rep(0, 5))
   expect_equal(devnorm(-2:2, mean = -1:3, sd = 1:5),
-               c(-1, -0.5, -1/3, -0.25, -0.2))
+               c(-1.4142135623731, -0.707106781186548, -0.471404520791032, -0.353553390593274,
+                 -0.282842712474619))
 })
 
 test_that("devlnorm", {
@@ -33,12 +35,14 @@ test_that("devlnorm", {
   expect_identical(devlnorm(NA, 1, 1), NA_real_)
   expect_identical(devlnorm(1, NA, 1), NA_real_)
   expect_identical(devlnorm(1, 1, NA), NA_real_)
-  expect_equal(devlnorm(exp(-2:2)), -2:2)
-  expect_equal(devlnorm(exp(-2:2), sdlog = 2), -2:2/2)
-  expect_equal(devlnorm(exp(-2:2), sdlog = 1/2), -2:2 * 2)
+  expect_equal(devlnorm(exp(-2:2)), c(-2.82842712474619, -1.4142135623731, 0, 1.4142135623731, 2.82842712474619
+  ))
+  expect_equal(devlnorm(exp(-2:2), sdlog = 2), devnorm(-2:2)/2)
+  expect_equal(devlnorm(exp(-2:2), sdlog = 1/2), devnorm(-2:2) * 2)
   expect_equal(devlnorm(exp(-2:2), meanlog = -2:2), rep(0, 5))
   expect_equal(devlnorm(exp(-2:2), meanlog = -1:3, sdlog = 1:5),
-               c(-1, -0.5, -1/3, -0.25, -0.2))
+               c(-1.4142135623731, -0.707106781186548, -0.471404520791032, -0.353553390593274,
+                 -0.282842712474619))
 })
 
 test_that("devbinom", {
@@ -46,16 +50,16 @@ test_that("devbinom", {
   expect_identical(devbinom(NA, 1, 1), NA_real_)
   expect_identical(devbinom(1, NA, 1), NA_real_)
   expect_identical(devbinom(1, 1, NA), NA_real_)
-#  expect_identical(devbinom(0, 1, 0.5), -1.17741002251547) # should be same as devbern?
-#  expect_identical(devbinom(1, 1, 0.5), 1.17741002251547) # should be same as devbern?
-#  expect_identical(devbinom(0, 1, 0.7), 0.844600430900592) # should be same as devbern?
-#  expect_identical(devbinom(1, 1, 0.7), -1.55175565365552) # should be same as devbern?
+  expect_equal(devbinom(0, 1, 0.5), -1.17741002251547)
+  expect_equal(devbinom(1, 1, 0.5), 1.17741002251547)
+  expect_equal(devbinom(0, 1, 0.7), -1.55175565365552)
+  expect_equal(devbinom(1, 1, 0.7), 0.844600430900592)
   expect_identical(devbinom(1, 2, 0.5), 0)
   expect_identical(devbinom(5, 10, 0.5), 0)
-  expect_equal(devbinom(1, 10, 0.5), -2.54041098821328)
+  expect_equal(devbinom(1, 10, 0.5), -3.25271578350125)
   expect_equal(devbinom(1:9, 10, 0.5),
-               c(-2.54041098821328, -1.85621474929013, -1.21814395268324, -0.603856865149274,
-                 0, 0.603856865149274, 1.21814395268324, 1.85621474929013, 2.54041098821328
+               c(-3.25271578350125, -2.74227242773795, -2.17039427586256, -1.47914119729235,
+                 0, 1.47914119729235, 2.17039427586256, 2.74227242773795, 3.25271578350125
                ))
 })
 
@@ -76,4 +80,3 @@ test_that("devbern", {
   expect_equal(devbern(c(1,0), c(0.7, 0.5)),
                c(0.844600430900592,  -1.17741002251547))
 })
-
