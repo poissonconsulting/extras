@@ -1,3 +1,7 @@
+# extras 0.1.0.9001
+
+- Added `devbern()`, `devbinom()`, `devpois()`, `devnorm()` and `devlnorm()` to calculate deviance residuals.
+
 # extras 0.1.0.9000
 
 - Same as previous version.
