@@ -12,9 +12,9 @@ impl_dev <- function(x, mu, dev) {
 #' @export
 #'
 #' @examples
-#' # devpois(c(1,3.5,4), 3)
+#' devpois(c(1,3.5,4), 3)
 devpois <- function(x, lambda) {
-  dev <- (log(lambda) * lambda - lambda - lfactorial(lambda)) - (log(lambda) * x - lambda - lfactorial(x))
+  dev <- log(lambda) * (lambda - x) - lfactorial(lambda) + lfactorial(x)
   dev <- pmax(dev, 0)
   impl_dev(x, lambda, dev)
 }
@@ -66,9 +66,8 @@ devlnorm <- function(x, meanlog = 0, sdlog = 1) {
 #' @examples
 #' # devbinom(c(0, 1, 2), 2, 0.3)
 devbinom <- function(x, size, prob) {
-  .NotYetImplemented()
   mu <- size * prob
-  dev <- x * log(x / mu) + (size - x) * log((size-x)/(size - mu))
+  dev <- (lchoose(size, mu) + log(prob) * mu + log(1-prob) * (size - mu)) - (lchoose(size, x) + log(prob) * x + log(1-prob) * (size - x))
   impl_dev(x, mu, dev)
 }
 

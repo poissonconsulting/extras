@@ -33,6 +33,14 @@ reference:
   - '`vld_index`'
   - '`chk_indices`'
   - '`vld_indices`'
+- title: Deviance
+  desc: Deviance Residuals
+  contents:
+  - '`devbern`'
+  - '`devbinom`'
+  - '`devlnorm`'
+  - '`devnorm`'
+  - '`devpois`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:

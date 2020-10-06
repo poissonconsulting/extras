@@ -42,22 +42,21 @@ test_that("devlnorm", {
 })
 
 test_that("devbinom", {
-#   expect_identical(devbinom(integer(0), integer(0), integer(0)), numeric(0))
-#   expect_identical(devbinom(NA, 1, 1), NA_real_)
-#   expect_identical(devbinom(1, NA, 1), NA_real_)
-#   expect_identical(devbinom(1, 1, NA), NA_real_)
-# #  expect_identical(devbinom(0, 1, 0.5), -1.17741002251547) # should be same as devbern?
-# #  expect_identical(devbinom(1, 1, 0.5), 1.17741002251547) # should be same as devbern?
-# #  expect_identical(devbinom(0, 1, 0.7), 0.844600430900592) # should be same as devbern?
-# #  expect_identical(devbinom(1, 1, 0.7), -1.55175565365552) # should be same as devbern?
-#   expect_identical(devbinom(1, 2, 0.5), 0)
-#   expect_identical(devbinom(5, 10, 0.5), 0)
-#   expect_equal(devbinom(1, 10, 0.5), -2.71316865369073)
-#   expect_equal(devbinom(1:9, 10, 0.5),
-#                c(-2.71316865369073, -1.96338868806845,
-#                  -1.28283185573988, -0.634594572159089,
-#                  0, 0.634594572159089, 1.28283185573988,
-#                  1.96338868806845, 2.71316865369073))
+  expect_identical(devbinom(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(devbinom(NA, 1, 1), NA_real_)
+  expect_identical(devbinom(1, NA, 1), NA_real_)
+  expect_identical(devbinom(1, 1, NA), NA_real_)
+#  expect_identical(devbinom(0, 1, 0.5), -1.17741002251547) # should be same as devbern?
+#  expect_identical(devbinom(1, 1, 0.5), 1.17741002251547) # should be same as devbern?
+#  expect_identical(devbinom(0, 1, 0.7), 0.844600430900592) # should be same as devbern?
+#  expect_identical(devbinom(1, 1, 0.7), -1.55175565365552) # should be same as devbern?
+  expect_identical(devbinom(1, 2, 0.5), 0)
+  expect_identical(devbinom(5, 10, 0.5), 0)
+  expect_equal(devbinom(1, 10, 0.5), -2.54041098821328)
+  expect_equal(devbinom(1:9, 10, 0.5),
+               c(-2.54041098821328, -1.85621474929013, -1.21814395268324, -0.603856865149274,
+                 0, 0.603856865149274, 1.21814395268324, 1.85621474929013, 2.54041098821328
+               ))
 })
 
 test_that("devbern", {

@@ -18,7 +18,7 @@ An numeric vector of the corresponding deviance residuals.
 Poisson Deviance Residual
 }
 \examples{
-# devpois(c(1,3.5,4), 3)
+devpois(c(1,3.5,4), 3)
 }
 \seealso{
 Other devdist: 
