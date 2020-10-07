@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Poisson Deviance Residual — devpois • extras</title>
+<title>Poisson Deviance — devpois • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Poisson Deviance Residual — devpois" />
-<meta property="og:description" content="Poisson Deviance Residual" />
+<meta property="og:title" content="Poisson Deviance — devpois" />
+<meta property="og:description" content="Poisson Deviance" />
 
 
 
@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9002</span>
       </span>
     </div>
 
@@ -112,16 +112,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Poisson Deviance Residual</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/deviance-residuals.R'><code>R/deviance-residuals.R</code></a></small>
+    <h1>Poisson Deviance</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/deviance.R'><code>R/deviance.R</code></a></small>
     <div class="hidden name"><code>devpois.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Poisson Deviance Residual</p>
+    <p>Poisson Deviance</p>
     </div>
 
-    <pre class="usage"><span class='fu'>devpois</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>lambda</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>devpois</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>lambda</span>, residual <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,11 +134,15 @@
       <th>lambda</th>
       <td><p>A non-negative numeric vector of means.</p></td>
     </tr>
+    <tr>
+      <th>residual</th>
+      <td><p>A flag specifying whether to return the deviance residual as opposed to the deviance.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An numeric vector of the corresponding deviance residuals.</p>
+    <p>An numeric vector of the corresponding deviances or deviance residuals.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other devdist: 
@@ -148,7 +152,7 @@
 <code><a href='devnorm.html'>devnorm</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>devpois</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3.5</span>,<span class='fl'>4</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='fu'>devpois</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3.5</span>,<span class='fl'>4</span><span class='op'>)</span>, <span class='fl'>3</span>, residual <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] -1.3426747  0.2811668  0.5490506</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

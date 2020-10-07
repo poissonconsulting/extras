@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Normal Deviance Residual — devnorm • extras</title>
+<title>Normal Deviance — devnorm • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Normal Deviance Residual — devnorm" />
-<meta property="og:description" content="Normal Deviance Residual" />
+<meta property="og:title" content="Normal Deviance — devnorm" />
+<meta property="og:description" content="Normal Deviance" />
 
 
 
@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9002</span>
       </span>
     </div>
 
@@ -112,16 +112,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Normal Deviance Residual</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/deviance-residuals.R'><code>R/deviance-residuals.R</code></a></small>
+    <h1>Normal Deviance</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/deviance.R'><code>R/deviance.R</code></a></small>
     <div class="hidden name"><code>devnorm.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Normal Deviance Residual</p>
+    <p>Normal Deviance</p>
     </div>
 
-    <pre class="usage"><span class='fu'>devnorm</span><span class='op'>(</span><span class='va'>x</span>, mean <span class='op'>=</span> <span class='fl'>0</span>, sd <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>devnorm</span><span class='op'>(</span><span class='va'>x</span>, mean <span class='op'>=</span> <span class='fl'>0</span>, sd <span class='op'>=</span> <span class='fl'>1</span>, residual <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,11 +138,15 @@
       <th>sd</th>
       <td><p>A non-negative numeric vector of the standard deviations.</p></td>
     </tr>
+    <tr>
+      <th>residual</th>
+      <td><p>A flag specifying whether to return the deviance residual as opposed to the deviance.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An numeric vector of the corresponding deviance residuals.</p>
+    <p>An numeric vector of the corresponding deviances or deviance residuals.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other devdist: 
@@ -152,7 +156,7 @@
 <code><a href='devpois.html'>devpois</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>devnorm</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='fu'>devnorm</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>)</span>, residual <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] -2.828427 -1.414214  0.000000  1.414214  2.828427</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
