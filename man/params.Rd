@@ -15,8 +15,10 @@ specifying the confidence level.}
 
 \item{value}{A scalar of the value to replace values with.}
 
-\item{directional}{A flag indicating whether probabilities less than 0.5
+\item{directional}{A flag specifying whether probabilities less than 0.5
 should be returned as negative values.}
+
+\item{residual}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
 \description{
 Parameter Descriptions

@@ -9,7 +9,7 @@ sextreme(x, directional = FALSE)
 \arguments{
 \item{x}{A numeric vector of values between 0 and 1.}
 
-\item{directional}{A flag indicating whether probabilities less than 0.5
+\item{directional}{A flag specifying whether probabilities less than 0.5
 should be returned as negative values.}
 }
 \value{
