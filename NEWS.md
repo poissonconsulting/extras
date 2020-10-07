@@ -1,3 +1,8 @@
+# extras 0.1.0.9002
+
+- Added residual = FALSE argument to deviance functions.
+
+
 # extras 0.1.0.9001
 
 - Added `devbern()`, `devbinom()`, `devpois()`, `devnorm()` and `devlnorm()` to calculate deviance residuals.
