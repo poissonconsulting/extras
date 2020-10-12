@@ -1,3 +1,8 @@
+# extras 0.1.0.9004
+
+- Added `res_bern()`, `res_binom()`, `res_pois()`, `res_norm()` and `res_lnorm()` to calculate residuals.
+
+
 # extras 0.1.0.9003
 
 - Rename devxx() to dev_xx().
