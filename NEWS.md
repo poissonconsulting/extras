@@ -1,3 +1,8 @@
+# extras 0.1.0.9005
+
+- Renamed residual argument of dev_xx() functions to res.
+
+
 # extras 0.1.0.9004
 
 - Added `res_bern()`, `res_binom()`, `res_pois()`, `res_norm()` and `res_lnorm()` to calculate residuals.
