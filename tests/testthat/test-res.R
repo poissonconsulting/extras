@@ -6,7 +6,7 @@ test_that("res_pois", {
   expect_identical(res_pois(1, NA), NA_real_)
   expect_error(res_pois(1, 3, type = "unknown"))
   expect_equal(res_pois(1, 3, type = "raw"), -2)
-  expect_equal(res_pois(1, 3), dev_pois(1, 3, residual = TRUE))
+  expect_equal(res_pois(1, 3), dev_pois(1, 3, res = TRUE))
   expect_equal(res_pois(c(1,3.5,4), 3, type = "raw"),
                c(-2, 0.5, 1))
 })
@@ -18,7 +18,7 @@ test_that("res_norm", {
   expect_identical(res_norm(NA, 1, 1), NA_real_)
   expect_identical(res_norm(1, NA, 1), NA_real_)
   expect_identical(res_norm(1, 1, NA), NA_real_)
-  expect_equal(res_norm(-2), dev_norm(-2, residual = TRUE))
+  expect_equal(res_norm(-2), dev_norm(-2, res = TRUE))
   expect_equal(res_norm(-2:2), c(-2.82842712474619, -1.4142135623731, 0, 1.4142135623731, 2.82842712474619
   ))
   expect_equal(res_norm(-2:2, type = "raw"), -2:2)
@@ -49,7 +49,7 @@ test_that("res_binom", {
   expect_identical(res_binom(NA, 1, 1), NA_real_)
   expect_identical(res_binom(1, NA, 1), NA_real_)
   expect_identical(res_binom(1, 1, NA), NA_real_)
-  expect_equal(res_binom(1, 3, 0.5), dev_binom(1, 3, 0.5, residual = TRUE))
+  expect_equal(res_binom(1, 3, 0.5), dev_binom(1, 3, 0.5, res = TRUE))
   expect_equal(res_binom(0, 1, 0.5), -1.17741002251547)
   expect_equal(res_binom(1, 1, 0.5), 1.17741002251547)
   expect_equal(res_binom(0, 1, 0.7), -1.55175565365552)
@@ -72,7 +72,7 @@ test_that("res_bern", {
   expect_identical(res_bern(0, 0), 0)
   expect_identical(res_bern(1, 0), Inf)
   expect_identical(res_bern(0, 1), -Inf)
-  expect_equal(res_bern(0, 0.5), dev_bern(0, 0.5, residual = TRUE))
+  expect_equal(res_bern(0, 0.5), dev_bern(0, 0.5, res = TRUE))
   expect_identical(res_bern(0, 1), -Inf)
   expect_identical(res_bern(c(1, 1, 0, 0), c(0, 1, 0, 1)),
                    c(Inf, 0, 0, -Inf))

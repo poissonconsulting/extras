@@ -9,7 +9,7 @@
 #' @param value A scalar of the value to replace values with.
 #' @param directional A flag specifying whether probabilities less than 0.5
 #' should be returned as negative values.
-#' @param residual A flag specifying whether to return the deviance residual as opposed to the deviance.
+#' @param res A flag specifying whether to return the deviance residual as opposed to the deviance.
 #' @param mean A numeric vector of the means.
 #' @param sd A non-negative numeric vector of the standard deviations.
 #' @param meanlog A numeric vector of the means on the log scale.

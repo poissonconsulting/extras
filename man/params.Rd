@@ -18,7 +18,7 @@ specifying the confidence level.}
 \item{directional}{A flag specifying whether probabilities less than 0.5
 should be returned as negative values.}
 
-\item{residual}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 
 \item{mean}{A numeric vector of the means.}
 

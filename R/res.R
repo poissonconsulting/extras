@@ -13,7 +13,7 @@ res_pois <- function(x, lambda, type = "dev") {
   chk_string(type)
   switch(type,
          raw = x - lambda,
-         dev = dev_pois(x, lambda, residual = TRUE),
+         dev = dev_pois(x, lambda, res = TRUE),
          chk_subset(x, c("raw", "dev")))
 }
 
@@ -32,7 +32,7 @@ res_norm <- function(x,  mean = 0, sd = 1, type = "dev") {
   chk_string(type)
   switch(type,
          raw = x - mean,
-         dev = dev_norm(x, mean = mean, sd = sd, residual = TRUE),
+         dev = dev_norm(x, mean = mean, sd = sd, res = TRUE),
          chk_subset(x, c("raw", "dev")))
 }
 
@@ -67,7 +67,7 @@ res_binom <- function(x, size, prob, type = "dev") {
   chk_string(type)
   switch(type,
          raw = x - size * prob,
-         dev = dev_binom(x, size = size, prob = prob, residual = TRUE),
+         dev = dev_binom(x, size = size, prob = prob, res = TRUE),
          chk_subset(x, c("raw", "dev")))
 }
 
@@ -86,6 +86,6 @@ res_bern <- function(x, prob, type = "dev") {
   chk_string(type)
   switch(type,
          raw = x - prob,
-         dev = dev_bern(x, prob = prob, residual = TRUE),
+         dev = dev_bern(x, prob = prob, res = TRUE),
          chk_subset(x, c("raw", "dev")))
 }

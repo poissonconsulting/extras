@@ -4,7 +4,7 @@
 \alias{dev_binom}
 \title{Binomial Deviances}
 \usage{
-dev_binom(x, size, prob, residual = FALSE)
+dev_binom(x, size, prob, res = FALSE)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
@@ -13,10 +13,10 @@ dev_binom(x, size, prob, residual = FALSE)
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
-\item{residual}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
 \value{
-An numeric vector of the corresponding deviances or deviance residuals.
+An numeric vector of the corresponding deviances or deviance ress.
 }
 \description{
 Binomial Deviances

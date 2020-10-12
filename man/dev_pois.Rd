@@ -4,17 +4,17 @@
 \alias{dev_pois}
 \title{Poisson Deviances}
 \usage{
-dev_pois(x, lambda, residual = FALSE)
+dev_pois(x, lambda, res = FALSE)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{residual}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
 \value{
-An numeric vector of the corresponding deviances or deviance residuals.
+An numeric vector of the corresponding deviances or deviance ress.
 }
 \description{
 Poisson Deviances

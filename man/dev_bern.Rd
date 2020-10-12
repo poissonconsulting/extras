@@ -4,17 +4,17 @@
 \alias{dev_bern}
 \title{Bernoulli Deviances}
 \usage{
-dev_bern(x, prob, residual = FALSE)
+dev_bern(x, prob, res = FALSE)
 }
 \arguments{
 \item{x}{A vector of 0s and 1s.}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
-\item{residual}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
 \value{
-An numeric vector of the corresponding deviances or deviance residuals.
+An numeric vector of the corresponding deviances or deviance ress.
 }
 \description{
 Bernoulli Deviances

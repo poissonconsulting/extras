@@ -4,7 +4,7 @@
 \alias{dev_norm}
 \title{Normal Deviances}
 \usage{
-dev_norm(x, mean = 0, sd = 1, residual = FALSE)
+dev_norm(x, mean = 0, sd = 1, res = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
@@ -13,10 +13,10 @@ dev_norm(x, mean = 0, sd = 1, residual = FALSE)
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
-\item{residual}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
 \value{
-An numeric vector of the corresponding deviances or deviance residuals.
+An numeric vector of the corresponding deviances or deviance ress.
 }
 \description{
 Normal Deviances
