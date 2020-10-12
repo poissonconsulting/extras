@@ -1,3 +1,8 @@
+# extras 0.1.0.9003
+
+- Rename devxx() to dev_xx().
+
+
 # extras 0.1.0.9002
 
 - Added residual = FALSE argument to deviance functions.
