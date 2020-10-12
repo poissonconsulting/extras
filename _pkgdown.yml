@@ -49,6 +49,14 @@ reference:
   - '`res_lnorm`'
   - '`res_norm`'
   - '`res_pois`'
+- title: Log-Likelihood
+  desc: Log-likelihood functions
+  contents:
+  - '`log_lik_bern`'
+  - '`log_lik_binom`'
+  - '`log_lik_lnorm`'
+  - '`log_lik_norm`'
+  - '`log_lik_pois`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:

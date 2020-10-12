@@ -1,3 +1,3 @@
 #' @import chk
-#' @importFrom stats dnorm
+#' @importFrom stats dbinom dlnorm dnorm dpois
 NULL
