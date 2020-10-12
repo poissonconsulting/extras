@@ -2,7 +2,7 @@
 % Please edit documentation in R/dev.R
 \name{dev_binom}
 \alias{dev_binom}
-\title{Binomial Deviance}
+\title{Binomial Deviances}
 \usage{
 dev_binom(x, size, prob, residual = FALSE)
 }
@@ -19,10 +19,10 @@ dev_binom(x, size, prob, residual = FALSE)
 An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
-Binomial Deviance
+Binomial Deviances
 }
 \examples{
-dev_binom(c(0, 1, 2), 2, 0.3, residual = TRUE)
+dev_binom(c(0, 1, 2), 2, 0.3)
 }
 \seealso{
 Other devdist: 

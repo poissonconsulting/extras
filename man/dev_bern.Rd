@@ -2,12 +2,12 @@
 % Please edit documentation in R/dev.R
 \name{dev_bern}
 \alias{dev_bern}
-\title{Bernoulli Deviance}
+\title{Bernoulli Deviances}
 \usage{
 dev_bern(x, prob, residual = FALSE)
 }
 \arguments{
-\item{x}{A logical vector.}
+\item{x}{A vector of 0s and 1s.}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
@@ -17,10 +17,10 @@ dev_bern(x, prob, residual = FALSE)
 An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
-Bernoulli Deviance
+Bernoulli Deviances
 }
 \examples{
-dev_bern(c(TRUE, FALSE), 0.7, residual = TRUE)
+dev_bern(c(TRUE, FALSE), 0.7)
 }
 \seealso{
 Other devdist: 

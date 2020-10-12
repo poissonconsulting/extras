@@ -17,6 +17,7 @@
 #' @param size A non-negative whole numeric vector of the number of trials.
 #' @param prob A numeric vector of values between 0 and 1 of the probability of success.
 #' @param lambda A non-negative numeric vector of means.
+#' @param type A string of the residual type ('raw' or 'dev').
 #'
 #' @name params
 NULL

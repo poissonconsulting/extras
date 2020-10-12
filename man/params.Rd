@@ -33,6 +33,8 @@ should be returned as negative values.}
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
 \item{lambda}{A non-negative numeric vector of means.}
+
+\item{type}{A string of the residual type ('raw' or 'dev').}
 }
 \description{
 Parameter Descriptions

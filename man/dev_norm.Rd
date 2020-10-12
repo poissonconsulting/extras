@@ -2,7 +2,7 @@
 % Please edit documentation in R/dev.R
 \name{dev_norm}
 \alias{dev_norm}
-\title{Normal Deviance}
+\title{Normal Deviances}
 \usage{
 dev_norm(x, mean = 0, sd = 1, residual = FALSE)
 }
@@ -19,10 +19,10 @@ dev_norm(x, mean = 0, sd = 1, residual = FALSE)
 An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
-Normal Deviance
+Normal Deviances
 }
 \examples{
-dev_norm(c(-2:2), residual = TRUE)
+dev_norm(c(-2:2))
 }
 \seealso{
 Other devdist: 

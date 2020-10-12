@@ -1,0 +1,86 @@
+test_that("res_pois", {
+  expect_identical(res_pois(integer(0), integer(0)), numeric(0))
+  expect_identical(res_pois(1, 1), 0)
+  expect_identical(res_pois(0, 1), 0)
+  expect_identical(res_pois(NA, 1), NA_real_)
+  expect_identical(res_pois(1, NA), NA_real_)
+  expect_error(res_pois(1, 3, type = "unknown"))
+  expect_equal(res_pois(1, 3, type = "raw"), -2)
+  expect_equal(res_pois(1, 3), dev_pois(1, 3, residual = TRUE))
+  expect_equal(res_pois(c(1,3.5,4), 3, type = "raw"),
+               c(-2, 0.5, 1))
+})
+
+
+test_that("res_norm", {
+  expect_identical(res_norm(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(res_norm(0), 0)
+  expect_identical(res_norm(NA, 1, 1), NA_real_)
+  expect_identical(res_norm(1, NA, 1), NA_real_)
+  expect_identical(res_norm(1, 1, NA), NA_real_)
+  expect_equal(res_norm(-2), dev_norm(-2, residual = TRUE))
+  expect_equal(res_norm(-2:2), c(-2.82842712474619, -1.4142135623731, 0, 1.4142135623731, 2.82842712474619
+  ))
+  expect_equal(res_norm(-2:2, type = "raw"), -2:2)
+  expect_equal(res_norm(-2:2, mean = 2, type = "raw"), -4:0)
+  expect_equal(res_norm(-2:2, mean = -2:2, type = "raw"), rep(0,5))
+})
+
+test_that("res_lnorm", {
+  expect_identical(res_lnorm(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(res_lnorm(exp(0)), 0)
+  expect_identical(res_lnorm(1), 0)
+  expect_identical(res_lnorm(0), -Inf)
+  expect_identical(res_lnorm(-1), -Inf)
+  expect_identical(res_lnorm(NA, 1, 1), NA_real_)
+  expect_identical(res_lnorm(1, NA, 1), NA_real_)
+  expect_identical(res_lnorm(1, 1, NA), NA_real_)
+  expect_equal(res_lnorm(exp(-2:2)), c(-2.82842712474619, -1.4142135623731, 0, 1.4142135623731, 2.82842712474619
+  ))
+  expect_equal(res_lnorm(exp(-2:2), meanlog = -1:3, sdlog = 1:5),
+               c(-1.4142135623731, -0.707106781186548, -0.471404520791032, -0.353553390593274,
+                 -0.282842712474619))
+  expect_equal(res_lnorm(1, type = "raw"), 0)
+  expect_equal(res_lnorm(exp(1), type = "raw"), 1)
+})
+
+test_that("res_binom", {
+  expect_identical(res_binom(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(res_binom(NA, 1, 1), NA_real_)
+  expect_identical(res_binom(1, NA, 1), NA_real_)
+  expect_identical(res_binom(1, 1, NA), NA_real_)
+  expect_equal(res_binom(1, 3, 0.5), dev_binom(1, 3, 0.5, residual = TRUE))
+  expect_equal(res_binom(0, 1, 0.5), -1.17741002251547)
+  expect_equal(res_binom(1, 1, 0.5), 1.17741002251547)
+  expect_equal(res_binom(0, 1, 0.7), -1.55175565365552)
+  expect_equal(res_binom(1, 1, 0.7), 0.844600430900592)
+  expect_identical(res_binom(1, 2, 0.5), 0)
+  expect_identical(res_binom(5, 10, 0.5), 0)
+  expect_equal(res_binom(1, 10, 0.5), -3.25271578350125)
+  expect_equal(res_binom(1:9, 10, 0.5),
+               c(-3.25271578350125, -2.74227242773795, -2.17039427586256, -1.47914119729235,
+                 0, 1.47914119729235, 2.17039427586256, 2.74227242773795, 3.25271578350125
+               ))
+  expect_equal(res_binom(0, 2, 0.5, type = "raw"), -1)
+})
+
+test_that("res_bern", {
+  expect_identical(res_bern(logical(0), integer(0)), numeric(0))
+  expect_identical(res_bern(NA, 1), NA_real_)
+  expect_identical(res_bern(1, NA), NA_real_)
+  expect_identical(res_bern(1, 1), 0)
+  expect_identical(res_bern(0, 0), 0)
+  expect_identical(res_bern(1, 0), Inf)
+  expect_identical(res_bern(0, 1), -Inf)
+  expect_equal(res_bern(0, 0.5), dev_bern(0, 0.5, residual = TRUE))
+  expect_identical(res_bern(0, 1), -Inf)
+  expect_identical(res_bern(c(1, 1, 0, 0), c(0, 1, 0, 1)),
+                   c(Inf, 0, 0, -Inf))
+  expect_equal(res_bern(c(1,0), 0.5),
+               c(1.17741002251547, -1.17741002251547))
+  expect_equal(res_bern(c(1,0), 0.7),
+               c(0.844600430900592, -1.55175565365552))
+  expect_equal(res_bern(c(1,0), c(0.7, 0.5)),
+               c(0.844600430900592,  -1.17741002251547))
+  expect_equal(res_bern(c(0,1), c(1, 0), type = "raw"), c(-1, 1))
+})

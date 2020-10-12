@@ -2,7 +2,7 @@ impl_dev <- function(x, mu, dev) {
   sign(x - mu) * sqrt(dev)
 }
 
-#' Poisson Deviance
+#' Poisson Deviances
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
@@ -12,7 +12,7 @@ impl_dev <- function(x, mu, dev) {
 #' @export
 #'
 #' @examples
-#' dev_pois(c(1,3.5,4), 3, residual = TRUE)
+#' dev_pois(c(1,3.5,4), 3)
 dev_pois <- function(x, lambda, residual = FALSE) {
   dev <- x * log(x/lambda) - (x - lambda)
   dev[x == 0] <- 0
@@ -22,7 +22,7 @@ dev_pois <- function(x, lambda, residual = FALSE) {
   impl_dev(x, lambda, dev)
 }
 
-#' Normal Deviance
+#' Normal Deviances
 #'
 #' @inheritParams params
 #' @param x A numeric vector of values.
@@ -32,7 +32,7 @@ dev_pois <- function(x, lambda, residual = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_norm(c(-2:2), residual = TRUE)
+#' dev_norm(c(-2:2))
 dev_norm <- function(x, mean = 0, sd = 1, residual = FALSE) {
   dev <- (x - mean)^2/sd^2
   dev <- dev * 2
@@ -40,7 +40,7 @@ dev_norm <- function(x, mean = 0, sd = 1, residual = FALSE) {
   impl_dev(x, mean, dev)
 }
 
-#' Log-Normal Deviance
+#' Log-Normal Deviances
 #'
 #' @inheritParams params
 #' @param x A numeric vector of values.
@@ -50,13 +50,13 @@ dev_norm <- function(x, mean = 0, sd = 1, residual = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_lnorm(exp(-2:2), residual = TRUE)
+#' dev_lnorm(exp(-2:2))
 dev_lnorm <- function(x, meanlog = 0, sdlog = 1, residual = FALSE) {
   x <- pmax(x, 0)
   dev_norm(log(x), mean = meanlog, sd = sdlog, residual = residual)
 }
 
-#' Binomial Deviance
+#' Binomial Deviances
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
@@ -66,7 +66,7 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, residual = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_binom(c(0, 1, 2), 2, 0.3, residual = TRUE)
+#' dev_binom(c(0, 1, 2), 2, 0.3)
 dev_binom <- function(x, size, prob, residual = FALSE) {
   mu <- size * prob
   dev1 <- x * log(x/mu)
@@ -81,17 +81,17 @@ dev_binom <- function(x, size, prob, residual = FALSE) {
   impl_dev(x, mu, dev)
 }
 
-#' Bernoulli Deviance
+#' Bernoulli Deviances
 #'
 #' @inheritParams params
-#' @param x A logical vector.
+#' @param x A vector of 0s and 1s.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
 #' @export
 #'
 #' @examples
-#' dev_bern(c(TRUE, FALSE), 0.7, residual = TRUE)
+#' dev_bern(c(TRUE, FALSE), 0.7)
 dev_bern <- function(x, prob, residual = FALSE) {
   dev <- ifelse(x == 1, -log(prob), -log(1-prob))
   dev <- dev * 2

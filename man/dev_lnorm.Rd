@@ -2,7 +2,7 @@
 % Please edit documentation in R/dev.R
 \name{dev_lnorm}
 \alias{dev_lnorm}
-\title{Log-Normal Deviance}
+\title{Log-Normal Deviances}
 \usage{
 dev_lnorm(x, meanlog = 0, sdlog = 1, residual = FALSE)
 }
@@ -19,10 +19,10 @@ dev_lnorm(x, meanlog = 0, sdlog = 1, residual = FALSE)
 An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
-Log-Normal Deviance
+Log-Normal Deviances
 }
 \examples{
-dev_lnorm(exp(-2:2), residual = TRUE)
+dev_lnorm(exp(-2:2))
 }
 \seealso{
 Other devdist: 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dev.R
 \name{dev_pois}
 \alias{dev_pois}
-\title{Poisson Deviance}
+\title{Poisson Deviances}
 \usage{
 dev_pois(x, lambda, residual = FALSE)
 }
@@ -17,10 +17,10 @@ dev_pois(x, lambda, residual = FALSE)
 An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
-Poisson Deviance
+Poisson Deviances
 }
 \examples{
-dev_pois(c(1,3.5,4), 3, residual = TRUE)
+dev_pois(c(1,3.5,4), 3)
 }
 \seealso{
 Other devdist: 

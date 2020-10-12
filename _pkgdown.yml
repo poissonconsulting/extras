@@ -34,13 +34,21 @@ reference:
   - '`chk_indices`'
   - '`vld_indices`'
 - title: Deviance
-  desc: Deviance Residuals
+  desc: Deviances and Deviance Residuals
   contents:
   - '`dev_bern`'
   - '`dev_binom`'
   - '`dev_lnorm`'
   - '`dev_norm`'
   - '`dev_pois`'
+- title: Residual
+  desc: Raw and Deviance Residuals
+  contents:
+  - '`res_bern`'
+  - '`res_binom`'
+  - '`res_lnorm`'
+  - '`res_norm`'
+  - '`res_pois`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:
