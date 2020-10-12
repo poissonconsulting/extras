@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • extras</title>
+<title>Log-Normal Deviance — dev_lnorm • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Log-Normal Deviance — dev_lnorm" />
+<meta property="og:description" content="Log-Normal Deviance" />
 
 
 
@@ -65,7 +66,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -111,61 +112,58 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/poissonconsulting/extras/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Log-Normal Deviance</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/dev.R'><code>R/dev.R</code></a></small>
+    <div class="hidden name"><code>dev_lnorm.Rd</code></div>
     </div>
 
-    <div id="extras-0109002" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0.9002">
-<a href="#extras-0109002" class="anchor"></a>extras 0.1.0.9002<small> Unreleased </small>
-</h1>
-<ul>
-<li>Added residual = FALSE argument to deviance functions.</li>
-</ul>
-</div>
-    <div id="extras-0109001" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0.9001">
-<a href="#extras-0109001" class="anchor"></a>extras 0.1.0.9001<small> Unreleased </small>
-</h1>
-<ul>
-<li>Added <code>devbern()</code>, <code>devbinom()</code>, <code>devpois()</code>, <code>devnorm()</code> and <code>devlnorm()</code> to calculate deviance residuals.</li>
-</ul>
-</div>
-    <div id="extras-0109000" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0.9000">
-<a href="#extras-0109000" class="anchor"></a>extras 0.1.0.9000<small> Unreleased </small>
-</h1>
-<ul>
-<li>Same as previous version.</li>
-</ul>
-</div>
-    <div id="extras-010" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0">
-<a href="#extras-010" class="anchor"></a>extras 0.1.0<small> 2020-09-26 </small>
-</h1>
-<ul>
-<li>Added <code><a href="../reference/chk_indices.html">chk_indices()</a></code> and <code><a href="../reference/chk_indices.html">vld_indices()</a></code> to check (validate) if an object is a list of indices ie a vector of one or more positive integer values.</li>
-<li>Added <code><a href="../reference/par_pattern.html">par_pattern()</a></code> to provide string of regular expression for a parameter name.</li>
-<li>Added <code><a href="../reference/as_list_unnamed.html">as_list_unnamed()</a></code> generic which by default strips all attributes except names.</li>
-<li>Modified <code><a href="../reference/chk_pars.html">chk_pars()</a></code> and <code><a href="../reference/chk_pars.html">vld_pars()</a></code> to permit missing values and duplicates.</li>
-</ul>
-</div>
-    <div id="extras-001" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.1">
-<a href="#extras-001" class="anchor"></a>extras 0.0.1<small> 2020-06-16 </small>
-</h1>
-<ul>
-<li>Initial submission to CRAN.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Log-Normal Deviance</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>dev_lnorm</span><span class='op'>(</span><span class='va'>x</span>, meanlog <span class='op'>=</span> <span class='fl'>0</span>, sdlog <span class='op'>=</span> <span class='fl'>1</span>, residual <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A numeric vector of values.</p></td>
+    </tr>
+    <tr>
+      <th>meanlog</th>
+      <td><p>A numeric vector of the means on the log scale.</p></td>
+    </tr>
+    <tr>
+      <th>sdlog</th>
+      <td><p>A non-negative numeric vector of the standard deviations on the log scale.</p></td>
+    </tr>
+    <tr>
+      <th>residual</th>
+      <td><p>A flag specifying whether to return the deviance residual as opposed to the deviance.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An numeric vector of the corresponding deviances or deviance residuals.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other devdist: 
+<code><a href='dev_bern.html'>dev_bern</a>()</code>,
+<code><a href='dev_binom.html'>dev_binom</a>()</code>,
+<code><a href='dev_norm.html'>dev_norm</a>()</code>,
+<code><a href='dev_pois.html'>dev_pois</a>()</code></p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>dev_lnorm</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>)</span>, residual <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -2.828427 -1.414214  0.000000  1.414214  2.828427</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
