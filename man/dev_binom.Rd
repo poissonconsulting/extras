@@ -11,7 +11,7 @@ dev_binom(x, size, prob, residual = FALSE)
 
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
-\item{prob}{A numeric vector of values between 0 and 1 o the probability of success of each trial.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
 \item{residual}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }

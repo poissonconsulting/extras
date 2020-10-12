@@ -6,7 +6,6 @@ impl_dev <- function(x, mu, dev) {
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
-#' @param lambda A non-negative numeric vector of means.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
@@ -27,8 +26,6 @@ dev_pois <- function(x, lambda, residual = FALSE) {
 #'
 #' @inheritParams params
 #' @param x A numeric vector of values.
-#' @param mean A numeric vector of the means.
-#' @param sd A non-negative numeric vector of the standard deviations.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
@@ -47,8 +44,6 @@ dev_norm <- function(x, mean = 0, sd = 1, residual = FALSE) {
 #'
 #' @inheritParams params
 #' @param x A numeric vector of values.
-#' @param meanlog A numeric vector of the means on the log scale.
-#' @param sdlog A non-negative numeric vector of the standard deviations on the log scale.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
@@ -65,8 +60,6 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, residual = FALSE) {
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
-#' @param size A non-negative whole numeric vector of the number of trials.
-#' @param prob A numeric vector of values between 0 and 1 o the probability of success of each trial.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
@@ -92,7 +85,6 @@ dev_binom <- function(x, size, prob, residual = FALSE) {
 #'
 #' @inheritParams params
 #' @param x A logical vector.
-#' @param prob A numeric vector of values between 0 and 1 of the probability of TRUE.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist

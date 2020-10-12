@@ -19,6 +19,20 @@ specifying the confidence level.}
 should be returned as negative values.}
 
 \item{residual}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+
+\item{mean}{A numeric vector of the means.}
+
+\item{sd}{A non-negative numeric vector of the standard deviations.}
+
+\item{meanlog}{A numeric vector of the means on the log scale.}
+
+\item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
+
+\item{size}{A non-negative whole numeric vector of the number of trials.}
+
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+
+\item{lambda}{A non-negative numeric vector of means.}
 }
 \description{
 Parameter Descriptions

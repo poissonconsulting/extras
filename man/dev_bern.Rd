@@ -9,7 +9,7 @@ dev_bern(x, prob, residual = FALSE)
 \arguments{
 \item{x}{A logical vector.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of TRUE.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
 \item{residual}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
