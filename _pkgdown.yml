@@ -36,11 +36,11 @@ reference:
 - title: Deviance
   desc: Deviance Residuals
   contents:
-  - '`devbern`'
-  - '`devbinom`'
-  - '`devlnorm`'
-  - '`devnorm`'
-  - '`devpois`'
+  - '`dev_bern`'
+  - '`dev_binom`'
+  - '`dev_lnorm`'
+  - '`dev_norm`'
+  - '`dev_pois`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:
