@@ -15,7 +15,7 @@ impl_dev <- function(x, mu, dev) {
 #' dev_pois(c(1,3.5,4), 3)
 dev_pois <- function(x, lambda, res = FALSE) {
   dev <- x * log(x/lambda) - (x - lambda)
-  dev[x == 0] <- 0
+  dev[x == 0] <- lambda
   dev <- pmax(dev, 0)
   dev <- dev * 2
   if(vld_false(res)) return(dev)
@@ -109,15 +109,14 @@ dev_bern <- function(x, prob, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_pois(c(1,3.5,4), 3)
+#' dev_gamma_pois(c(1,3.5,4), 3, 2)
 dev_gamma_pois <- function(x, lambda, theta, res = FALSE) {
   dev1 <- 1/theta * log((1 + lambda * theta) / (1 + x * theta))
   dev2 <- x * log((lambda + x * lambda * theta) / (x + x * lambda * theta))
   dev <- dev1 - dev2
-  dev[theta == 0] <- x * log(x/lambda) - (x - lambda)
-  dev[x == 0] <- 0
   dev <- pmax(dev, 0)
   dev <- dev * 2
+  dev[theta == 0] <- dev_pois(x[theta == 0], lambda[theta == 0], res = FALSE)
   if(vld_false(res)) return(dev)
   impl_dev(x, lambda, dev)
 }

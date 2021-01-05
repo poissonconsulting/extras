@@ -1,7 +1,7 @@
 test_that("res_pois", {
   expect_identical(res_pois(integer(0), integer(0)), numeric(0))
   expect_identical(res_pois(1, 1), 0)
-  expect_identical(res_pois(0, 1), 0)
+  expect_equal(res_pois(0, 1), -1.4142135623731)
   expect_identical(res_pois(NA, 1), NA_real_)
   expect_identical(res_pois(1, NA), NA_real_)
   expect_error(res_pois(1, 3, type = "unknown"))
@@ -88,7 +88,7 @@ test_that("res_bern", {
 test_that("res_gamma_pois", {
   expect_identical(res_gamma_pois(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(res_gamma_pois(1, 1, 0), 0)
-  expect_identical(res_gamma_pois(0, 1, 0), 0)
+  expect_equal(res_gamma_pois(0, 1, 0), -1.4142135623731)
   expect_identical(res_gamma_pois(1, 1, 1), 0)
   expect_identical(res_gamma_pois(NA, 1, 1), NA_real_)
   expect_identical(res_gamma_pois(1, NA, 1), NA_real_)
