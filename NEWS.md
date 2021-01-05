@@ -1,3 +1,9 @@
+# extras 0.1.0.9006
+
+- Added `dev_gamma_pois()` and `res_gamma_pois()`.
+- Added `log_lik_bern()`, `log_lik_binom()`, `log_lik_pois()`, `log_lik_norm()` and `log_lik_lnorm()` to calculate log-likelihoods.
+
+
 # extras 0.1.0.9005
 
 - Renamed residual argument of dev_xx() functions to res.
