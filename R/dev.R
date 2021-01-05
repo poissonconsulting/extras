@@ -112,10 +112,10 @@ dev_bern <- function(x, prob, res = FALSE) {
 #' dev_pois(c(1,3.5,4), 3)
 dev_gamma_pois <- function(x, lambda, theta, res = FALSE) {
   dev1 <- 1/theta * log((1 + lambda * theta) / (1 + x * theta))
-  dev2 <- x * log((lambda + x * theta) / (x + x * lambda * theta))
-  dev1[theta == 0] <- 0
-  dev2[x == 0] <- 0
+  dev2 <- x * log((lambda + x * lambda * theta) / (x + x * lambda * theta))
   dev <- dev1 - dev2
+  dev[theta == 0] <- x * log(x/lambda) - (x - lambda)
+  dev[x == 0] <- 0
   dev <- pmax(dev, 0)
   dev <- dev * 2
   if(vld_false(res)) return(dev)

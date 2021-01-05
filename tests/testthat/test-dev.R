@@ -93,7 +93,7 @@ test_that("dev_gamma_pois", {
   expect_identical(dev_gamma_pois(1, 1, 0), 0)
   expect_identical(dev_gamma_pois(0, 1, 0), 0)
   expect_identical(dev_gamma_pois(1, 1, 1), 0)
-  expect_equal(dev_gamma_pois(0, 1, 1), 1.38629436111989)
+  expect_equal(dev_gamma_pois(0, 1, 0), dev_pois(0, 1))
 
   expect_identical(dev_gamma_pois(NA, 1, 1), NA_real_)
   expect_identical(dev_gamma_pois(1, NA, 1), NA_real_)
@@ -101,7 +101,7 @@ test_that("dev_gamma_pois", {
   expect_equal(dev_gamma_pois(1, 3, 1), dev_gamma_pois(1, 3, 1, res = TRUE)^2)
 
   expect_equal(dev_gamma_pois(c(1, 3.5 , 4), 3, 0, res = TRUE),
-               c(0, 1.03877560560056, 1.51705523288186)) # first one seems wrong!
+               c(-1.34267472705186, 0.281166781094084, 0.549050616623137))
   expect_equal(dev_gamma_pois(c(1,3,4), c(1, 3.5, 4), 0, res = TRUE),
-               c(0, 0, 0)) # middle one seems wrong!
+               c(0, -0.274036349845144, 0))
 })
