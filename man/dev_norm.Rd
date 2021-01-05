@@ -16,7 +16,7 @@ dev_norm(x, mean = 0, sd = 1, res = FALSE)
 \item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
 \value{
-An numeric vector of the corresponding deviances or deviance ress.
+An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
 Normal Deviances

@@ -7,7 +7,7 @@ impl_dev <- function(x, mu, dev) {
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
 #'
-#' @return An numeric vector of the corresponding deviances or deviance ress.
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
 #' @export
 #'
@@ -27,7 +27,7 @@ dev_pois <- function(x, lambda, res = FALSE) {
 #' @inheritParams params
 #' @param x A numeric vector of values.
 #'
-#' @return An numeric vector of the corresponding deviances or deviance ress.
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
 #' @export
 #'
@@ -45,7 +45,7 @@ dev_norm <- function(x, mean = 0, sd = 1, res = FALSE) {
 #' @inheritParams params
 #' @param x A numeric vector of values.
 #'
-#' @return An numeric vector of the corresponding deviances or deviance ress.
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
 #' @export
 #'
@@ -61,7 +61,7 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, res = FALSE) {
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
 #'
-#' @return An numeric vector of the corresponding deviances or deviance ress.
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
 #' @export
 #'
@@ -86,7 +86,7 @@ dev_binom <- function(x, size, prob, res = FALSE) {
 #' @inheritParams params
 #' @param x A vector of 0s and 1s.
 #'
-#' @return An numeric vector of the corresponding deviances or deviance ress.
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
 #' @export
 #'
@@ -104,7 +104,7 @@ dev_bern <- function(x, prob, res = FALSE) {
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
 #'
-#' @return An numeric vector of the corresponding deviances or deviance ress.
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family devdist
 #' @export
 #'

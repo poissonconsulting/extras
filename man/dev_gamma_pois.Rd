@@ -16,7 +16,7 @@ dev_gamma_pois(x, lambda, theta, res = FALSE)
 \item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
 \value{
-An numeric vector of the corresponding deviances or deviance ress.
+An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
 Gamma-Poisson Deviances
