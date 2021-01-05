@@ -84,3 +84,18 @@ test_that("res_bern", {
                c(0.844600430900592,  -1.17741002251547))
   expect_equal(res_bern(c(0,1), c(1, 0), type = "raw"), c(-1, 1))
 })
+
+test_that("res_gamma_pois", {
+  expect_identical(res_gamma_pois(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(res_gamma_pois(1, 1, 0), 0)
+  expect_identical(res_gamma_pois(0, 1, 0), 0)
+  expect_identical(res_gamma_pois(1, 1, 1), 0)
+  expect_identical(res_gamma_pois(NA, 1, 1), NA_real_)
+  expect_identical(res_gamma_pois(1, NA, 1), NA_real_)
+  expect_identical(res_gamma_pois(1, 1, NA), NA_real_)
+  expect_error(res_gamma_pois(1, 3, 1, type = "unknown"))
+  expect_equal(res_gamma_pois(1, 3, 1, type = "raw"), -2)
+  expect_equal(res_gamma_pois(1, 3, 2), dev_gamma_pois(1, 3, 2, res = TRUE))
+  expect_equal(res_gamma_pois(c(1,3.5,4), 3, 10, type = "raw"),
+               c(-2, 0.5, 1))
+})

@@ -25,6 +25,7 @@ res_bern(c(TRUE, FALSE), 0.7)
 \seealso{
 Other res_dist: 
 \code{\link{res_binom}()},
+\code{\link{res_gamma_pois}()},
 \code{\link{res_lnorm}()},
 \code{\link{res_norm}()},
 \code{\link{res_pois}()}

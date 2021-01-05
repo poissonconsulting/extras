@@ -28,6 +28,7 @@ dev_lnorm(exp(-2:2))
 Other devdist: 
 \code{\link{dev_bern}()},
 \code{\link{dev_binom}()},
+\code{\link{dev_gamma_pois}()},
 \code{\link{dev_norm}()},
 \code{\link{dev_pois}()}
 }

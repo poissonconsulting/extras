@@ -89,3 +89,22 @@ res_bern <- function(x, prob, type = "dev") {
          dev = dev_bern(x, prob = prob, res = TRUE),
          chk_subset(x, c("raw", "dev")))
 }
+
+#' Gamma Poisson Residuals
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_gamma_pois(c(0, 1, 2), 1, 1)
+res_gamma_pois <- function(x, lambda, theta, type = "dev") {
+  chk_string(type)
+  switch(type,
+         raw = x - lambda,
+         dev = dev_gamma_pois(x, lambda = lambda, theta = theta, res = TRUE),
+         chk_subset(x, c("raw", "dev")))
+}

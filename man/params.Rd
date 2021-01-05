@@ -34,6 +34,8 @@ should be returned as negative values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 
+\item{theta}{A non-negative numeric vector.}
+
 \item{type}{A string of the residual type ('raw' or 'dev').}
 }
 \description{
