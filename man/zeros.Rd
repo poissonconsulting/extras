@@ -4,10 +4,12 @@
 \alias{zeros}
 \title{Zeros}
 \usage{
-zeros(x)
+zeros(x, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
+
+\item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
 A non-negative integer.
