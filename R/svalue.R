@@ -6,6 +6,7 @@
 #'
 #'
 #' @param x A numeric object of MCMC values.
+#' @inheritParams params
 #' @return A non-negative number.
 #' @family summary
 #' @references
@@ -16,6 +17,6 @@
 #' @export
 #' @examples
 #' svalue(as.numeric(0:100))
-svalue <- function(x) {
-  -log(pvalue(x), 2)
+svalue <- function(x, threshold = 0) {
+  -log(pvalue(x, threshold = threshold), 2)
 }

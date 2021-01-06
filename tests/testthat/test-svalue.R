@@ -5,4 +5,6 @@ test_that("svalue", {
   expect_equal(svalue(c(1, 1)), 1.58496250072116)
   expect_equal(svalue(0), 0)
   expect_equal(svalue(c(rep(-1, 25), rep(1, 1000 - 25))), 4.2948009168645)
+  expect_equal(svalue(-9:10), 0.070389327891398)
+  expect_equal(svalue(-9:10 + 1, threshold = 1), 0.070389327891398)
 })

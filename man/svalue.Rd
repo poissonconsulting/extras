@@ -4,10 +4,12 @@
 \alias{svalue}
 \title{Surprisal Value}
 \usage{
-svalue(x)
+svalue(x, threshold = 0)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
+
+\item{threshold}{A number of the threshold value.}
 }
 \value{
 A non-negative number.

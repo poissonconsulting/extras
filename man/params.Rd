@@ -39,6 +39,8 @@ should be returned as negative values.}
 \item{type}{A string of the residual type ('raw' or 'dev').}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
+
+\item{threshold}{A number of the threshold value.}
 }
 \description{
 Parameter Descriptions

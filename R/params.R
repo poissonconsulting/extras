@@ -20,6 +20,6 @@
 #' @param theta A non-negative numeric vector.
 #' @param type A string of the residual type ('raw' or 'dev').
 #' @param na_rm A flag specifying whether to remove missing values.
-#'
+#' @param threshold A number of the threshold value.
 #' @name params
 NULL
