@@ -36,6 +36,7 @@ Other summary:
 \code{\link{svalue}()},
 \code{\link{variance}()},
 \code{\link{xtr_mean}()},
+\code{\link{xtr_median}()},
 \code{\link{zeros}()},
 \code{\link{zscore}()}
 }

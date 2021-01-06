@@ -1,0 +1,10 @@
+test_that("xtr_median", {
+  expect_identical(xtr_median(NA_integer_), NA_real_)
+  expect_identical(xtr_median(integer(0)), NA_real_)
+  expect_equal(xtr_median(1), 1)
+  expect_equal(xtr_median(c(1, 1)), 1)
+  expect_equal(xtr_median(c(1, 2)), 1.5)
+  expect_equal(xtr_median(c(1, 2, 10)), 2)
+  expect_equal(xtr_median(c(1, 2, NA_real_)), NA_real_)
+  expect_equal(xtr_median(c(1, 2, NA_real_), na_rm = TRUE), 1.5)
+})

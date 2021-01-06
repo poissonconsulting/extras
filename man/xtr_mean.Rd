@@ -29,6 +29,7 @@ Other summary:
 \code{\link{svalue}()},
 \code{\link{upper}()},
 \code{\link{variance}()},
+\code{\link{xtr_median}()},
 \code{\link{zeros}()},
 \code{\link{zscore}()}
 }

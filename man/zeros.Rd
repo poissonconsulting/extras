@@ -30,6 +30,7 @@ Other summary:
 \code{\link{upper}()},
 \code{\link{variance}()},
 \code{\link{xtr_mean}()},
+\code{\link{xtr_median}()},
 \code{\link{zscore}()}
 }
 \concept{summary}
