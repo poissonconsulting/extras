@@ -12,15 +12,17 @@
 #' @export
 #' @examples
 #' lower(as.numeric(0:100))
-lower <- function(x, conf_level = 0.95) {
+lower <- function(x, conf_level = 0.95, na_rm = FALSE) {
   chk_numeric(x)
   chk_number(conf_level)
   chk_range(conf_level)
 
-  if (!length(x)) {
-    return(NA_real_)
+  if(anyNA(x)) {
+    if(isFALSE(na_rm)) return(NA_real_)
+    x <- as.vector(x)
+    x <- x[!is.na(x)]
   }
-  if (anyNA(x)) {
+  if (!length(x)) {
     return(NA_real_)
   }
 

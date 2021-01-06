@@ -7,4 +7,7 @@ test_that("zscore", {
   expect_equal(zscore(0), NA_real_)
   set.seed(101)
   expect_equal(zscore(rnorm(1000, 2)), 2.04891535423035)
+  expect_equal(zscore(1:3), 2)
+  expect_equal(zscore(c(1:3, NA)), NA_real_)
+  expect_equal(zscore(c(1:3, NA), na_rm = TRUE), 2)
 })

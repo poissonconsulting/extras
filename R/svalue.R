@@ -17,6 +17,6 @@
 #' @export
 #' @examples
 #' svalue(as.numeric(0:100))
-svalue <- function(x, threshold = 0) {
-  -log(pvalue(x, threshold = threshold), 2)
+svalue <- function(x, threshold = 0, na_rm = FALSE) {
+  -log(pvalue(x, threshold = threshold, na_rm = na_rm), 2)
 }

@@ -4,13 +4,15 @@
 \alias{upper}
 \title{Upper Credible Limit}
 \usage{
-upper(x, conf_level = 0.95)
+upper(x, conf_level = 0.95, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
 
 \item{conf_level}{A numeric scalar between 0 and 1
 specifying the confidence level.}
+
+\item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
 A number.

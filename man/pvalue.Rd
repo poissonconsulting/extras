@@ -4,12 +4,14 @@
 \alias{pvalue}
 \title{Bayesian P-Value}
 \usage{
-pvalue(x, threshold = 0)
+pvalue(x, threshold = 0, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
 
 \item{threshold}{A number of the threshold value.}
+
+\item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
 A number between 0 and 1.

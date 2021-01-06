@@ -4,10 +4,12 @@
 \alias{zscore}
 \title{Z-Score}
 \usage{
-zscore(x)
+zscore(x, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
+
+\item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
 A number.

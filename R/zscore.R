@@ -4,19 +4,22 @@
 #' from the mean estimate to zero.
 #'
 #' @param x A numeric object of MCMC values.
+#' @inheritParams params
 #' @return A number.
 #' @family summary
 #' @export
 #' @examples
 #' zscore(as.numeric(0:100))
-zscore <- function(x) {
+zscore <- function(x, na_rm = FALSE) {
   chk_numeric(x)
-  if (!length(x)) {
+
+  if(anyNA(x)) {
+    if(isFALSE(na_rm)) return(NA_real_)
+    x <- as.vector(x)
+    x <- x[!is.na(x)]
+  }
+  if (length(x) < 2) {
     return(NA_real_)
   }
-  x <- mean(x) / stats::sd(x)
-  if (is.nan(x)) {
-    return(NA_real_)
-  }
-  x
+  mean(x) / stats::sd(x)
 }

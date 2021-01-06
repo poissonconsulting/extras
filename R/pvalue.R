@@ -16,10 +16,15 @@
 #' @export
 #' @examples
 #' pvalue(as.numeric(0:100))
-pvalue <- function(x, threshold = 0) {
+pvalue <- function(x, threshold = 0, na_rm = FALSE) {
   chk_numeric(x)
   chk_number(threshold)
 
+  if(anyNA(x)) {
+    if(isFALSE(na_rm)) return(NA_real_)
+    x <- as.vector(x)
+    x <- x[!is.na(x)]
+  }
   if (!length(x)) {
     return(NA_real_)
   }
