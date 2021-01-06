@@ -28,9 +28,13 @@ The American Statistician 73(sup1): 106–114.
 }
 \seealso{
 Other summary: 
+\code{\link{kurtosis}()},
 \code{\link{lower}()},
 \code{\link{pvalue}()},
+\code{\link{skewness}()},
 \code{\link{upper}()},
+\code{\link{variance}()},
+\code{\link{xtr_mean}()},
 \code{\link{zeros}()},
 \code{\link{zscore}()}
 }

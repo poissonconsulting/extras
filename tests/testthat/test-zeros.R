@@ -4,7 +4,6 @@ test_that("zeros", {
   expect_equal(zeros(1), 0L)
   expect_equal(zeros(c(1, 1)), 0L)
   expect_equal(zeros(c(0, 0)), 2L)
+  expect_equal(zeros(c(0, 1)), 1L)
   expect_equal(zeros(c(0, NA_real_)), NA_integer_)
-  expect_equal(zeros(c(0, NA_real_), na_rm = TRUE), 1L)
-  expect_equal(zeros(c(TRUE, FALSE, TRUE)), 1L)
 })

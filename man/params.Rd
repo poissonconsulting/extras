@@ -37,8 +37,6 @@ should be returned as negative values.}
 \item{theta}{A non-negative numeric vector.}
 
 \item{type}{A string of the residual type ('raw' or 'dev').}
-
-\item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \description{
 Parameter Descriptions

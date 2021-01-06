@@ -28,9 +28,13 @@ Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/de/projekt
 }
 \seealso{
 Other summary: 
+\code{\link{kurtosis}()},
 \code{\link{lower}()},
+\code{\link{skewness}()},
 \code{\link{svalue}()},
 \code{\link{upper}()},
+\code{\link{variance}()},
+\code{\link{xtr_mean}()},
 \code{\link{zeros}()},
 \code{\link{zscore}()}
 }

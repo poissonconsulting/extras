@@ -1,0 +1,65 @@
+#' Mean
+#'
+#' @param x A numeric object of MCMC values.
+#'
+#' @return A number.
+#' @family summary
+#' @export
+#' @examples
+#' xtr_mean(1:10)
+xtr_mean <- function(x) {
+  chk_numeric(x)
+  if(!length(x)) return(NA_real_)
+  if(anyNA(x)) return(NA_real_)
+  mean(x)
+}
+
+#' Variance
+#'
+#' @param x A numeric object of MCMC values.
+#'
+#' @return A number.
+#' @family summary
+#' @export
+#' @examples
+#' variance(1:10)
+variance <- function(x) {
+  chk_numeric(x)
+  if(length(x) < 1) return(NA_real_)
+  if(anyNA(x)) return(NA_real_)
+  stats::var(x)
+}
+
+#' Skewness
+#'
+#' @param x A numeric object of MCMC values.
+#' @return A number.
+#' @family summary
+#' @export
+#' @examples
+#' skewness(1:10)
+skewness <- function(x) {
+  chk_numeric(x)
+  if(length(x) < 2) return(NA_real_)
+  if(anyNA(x)) return(NA_real_)
+  n <- length(x)
+  mu <- xtr_mean(x)
+  (sum((x - mu)^3)/n) / (sum((x - mu)^2)/n)^(3/2)
+}
+
+#' Kurtosis
+#'
+#' @param x A numeric object of MCMC values.
+#' @return A number.
+#' @family summary
+#' @export
+#' @examples
+#' kurtosis(1:10)
+kurtosis <- function(x) {
+  chk_numeric(x)
+  if(length(x) < 2) return(NA_real_)
+  if(anyNA(x)) return(NA_real_)
+  n <- length(x)
+  mu <- xtr_mean(x)
+  n * sum((x - mu)^4)/(sum((x - mu)^2)^2)
+}
