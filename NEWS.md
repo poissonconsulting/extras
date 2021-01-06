@@ -1,3 +1,9 @@
+# extras 0.1.0.9007
+
+- Added moments functions `xtr_mean()`, `variance()`, `skewness()`, `kurtosis()`.
+- Added zeros() function to sum number of 0 values in a numeric or mcmc object.
+
+
 # extras 0.1.0.9006
 
 - Added `dev_gamma_pois()` and `res_gamma_pois()`.
