@@ -31,6 +31,7 @@ Other summary:
 \code{\link{lower}()},
 \code{\link{svalue}()},
 \code{\link{upper}()},
+\code{\link{zeros}()},
 \code{\link{zscore}()}
 }
 \concept{summary}

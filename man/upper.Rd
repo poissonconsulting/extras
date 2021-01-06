@@ -30,6 +30,7 @@ Other summary:
 \code{\link{lower}()},
 \code{\link{pvalue}()},
 \code{\link{svalue}()},
+\code{\link{zeros}()},
 \code{\link{zscore}()}
 }
 \concept{summary}
