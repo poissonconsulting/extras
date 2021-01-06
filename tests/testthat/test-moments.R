@@ -4,7 +4,8 @@ test_that("xtr_mean", {
   expect_equal(xtr_mean(1), 1)
   expect_equal(xtr_mean(c(1, 1)), 1)
   expect_equal(xtr_mean(c(1, 2)), 1.5)
-  expect_equal(xtr_mean(c(0, NA_real_)), NA_real_)
+  expect_equal(xtr_mean(c(1, 2, NA_real_)), NA_real_)
+  expect_equal(xtr_mean(c(1, 2, NA_real_), na_rm = TRUE), 1.5)
 })
 
 test_that("variance", {
@@ -13,7 +14,8 @@ test_that("variance", {
   expect_equal(variance(1), NA_real_)
   expect_equal(variance(c(1, 1)), 0)
   expect_equal(variance(c(1, 2)), 0.5)
-  expect_equal(variance(c(0, NA_real_)), NA_real_)
+  expect_equal(variance(c(1, 2, NA_real_)), NA_real_)
+  expect_equal(variance(c(1, 2, NA_real_), na_rm = TRUE), 0.5)
 })
 
 test_that("skewness", {
@@ -24,7 +26,8 @@ test_that("skewness", {
   expect_equal(skewness(c(1, 2)), 0)
   expect_equal(skewness(c(1, 2, 3)), 0)
   expect_equal(skewness(c(1, 1, 3)), 0.707106781186547)
-  expect_equal(skewness(c(0, NA_real_)), NA_real_)
+  expect_equal(skewness(c(1, 1, 3, NA_real_)), NA_real_)
+  expect_equal(skewness(c(1, 1, 3, NA_real_), na_rm = TRUE), 0.707106781186547)
 })
 
 test_that("kurtosis", {
@@ -35,5 +38,6 @@ test_that("kurtosis", {
   expect_equal(kurtosis(c(1, 2)), 1)
   expect_equal(kurtosis(c(1, 2, 3)), 1.5)
   expect_equal(kurtosis(c(1, 1, 3)), 1.5)
-  expect_equal(kurtosis(c(0, NA_real_)), NA_real_)
+  expect_equal(kurtosis(c(1, 1, 3, NA_real_)), NA_real_)
+  expect_equal(kurtosis(c(1, 1, 3, NA_real_), na_rm = TRUE), 1.5)
 })

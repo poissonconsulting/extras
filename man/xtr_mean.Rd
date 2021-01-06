@@ -4,10 +4,12 @@
 \alias{xtr_mean}
 \title{Mean}
 \usage{
-xtr_mean(x)
+xtr_mean(x, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
+
+\item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
 A number.
