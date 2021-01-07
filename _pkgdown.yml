@@ -82,9 +82,10 @@ reference:
 - title: Generics
   desc: Generic Functions
   contents:
-  - '`as_list_unnamed`'
+  - '`as_list`'
 - title: Deprecated
   desc: Deprecated functions
   contents:
   - '`pextreme`'
   - '`sextreme`'
+  - '`as_list_unnamed`'
