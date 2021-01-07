@@ -23,11 +23,11 @@ Poisson Deviances
 dev_pois(c(1,3.5,4), 3)
 }
 \seealso{
-Other devdist: 
+Other dev_dist: 
 \code{\link{dev_bern}()},
 \code{\link{dev_binom}()},
 \code{\link{dev_gamma_pois}()},
 \code{\link{dev_lnorm}()},
 \code{\link{dev_norm}()}
 }
-\concept{devdist}
+\concept{dev_dist}

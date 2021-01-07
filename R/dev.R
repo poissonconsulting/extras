@@ -8,7 +8,7 @@ impl_dev <- function(x, mu, dev) {
 #' @param x A non-negative whole numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
-#' @family devdist
+#' @family dev_dist
 #' @export
 #'
 #' @examples
@@ -28,7 +28,7 @@ dev_pois <- function(x, lambda, res = FALSE) {
 #' @param x A numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
-#' @family devdist
+#' @family dev_dist
 #' @export
 #'
 #' @examples
@@ -46,7 +46,7 @@ dev_norm <- function(x, mean = 0, sd = 1, res = FALSE) {
 #' @param x A numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
-#' @family devdist
+#' @family dev_dist
 #' @export
 #'
 #' @examples
@@ -62,7 +62,7 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, res = FALSE) {
 #' @param x A non-negative whole numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
-#' @family devdist
+#' @family dev_dist
 #' @export
 #'
 #' @examples
@@ -87,7 +87,7 @@ dev_binom <- function(x, size = 1, prob = 0.5, res = FALSE) {
 #' @param x A vector of 0s and 1s.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
-#' @family devdist
+#' @family dev_dist
 #' @export
 #'
 #' @examples
@@ -105,7 +105,7 @@ dev_bern <- function(x, prob = 0.5, res = FALSE) {
 #' @param x A non-negative whole numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
-#' @family devdist
+#' @family dev_dist
 #' @export
 #'
 #' @examples
