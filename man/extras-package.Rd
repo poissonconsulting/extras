@@ -6,9 +6,10 @@
 \alias{extras-package}
 \title{extras: Helper Functions for Bayesian Analyses}
 \description{
-Functions to 'numericise' 'R' objects (coerce to numeric objects)
-    and summarise 'MCMC' (Monte Carlo Markov Chain) samples
-    as well as 'R' translations of 'BUGS' (Bayesian Using Gibbs Sampling)
+Functions to 'numericise' 'R' objects (coerce to numeric objects),
+    summarise 'MCMC' (Monte Carlo Markov Chain) samples and
+    calculate deviance residuals as well as 
+    'R' translations of 'BUGS' (Bayesian Using Gibbs Sampling)
     and 'JAGS' (Just Another Gibbs Sampler) functions.
 }
 \seealso{
