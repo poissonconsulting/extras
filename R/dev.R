@@ -15,7 +15,13 @@ impl_dev <- function(x, mu, dev) {
 #' dev_pois(c(1,3.5,4), 3)
 dev_pois <- function(x, lambda, res = FALSE) {
   dev <- x * log(x/lambda) - (x - lambda)
-  dev[x == 0] <- lambda
+  zero <- !is.na(x) & x == 0
+  if(any(zero)) {
+    if(length(lambda) == 1) {
+      lambda <- rep(lambda, length(x))
+    }
+    dev[zero] <- lambda[zero]
+  }
   dev <- pmax(dev, 0)
   dev <- dev * 2
   if(vld_false(res)) return(dev)
@@ -71,9 +77,9 @@ dev_binom <- function(x, size = 1, prob = 0.5, res = FALSE) {
   mu <- size * prob
   dev1 <- x * log(x/mu)
   dev2 <- (size - x) * log((size-x)/(size-mu))
-  dev1[x == 0] <- 0
+  dev1[!is.na(x) & x == 0] <- 0
   dev1 <- pmax(dev1, 0)
-  dev2[x == size] <- 0
+  dev2[!is.na(x) & x == size] <- 0
   dev2 <- pmax(dev2, 0)
   dev <- dev1 + dev2
   dev <- dev * 2
