@@ -59,5 +59,5 @@ kurtosis <- function(x, na_rm = FALSE) {
   if(length(x) < 2) return(NA_real_)
   n <- length(x)
   mu <- xtr_mean(x)
-  n * sum((x - mu)^4)/(sum((x - mu)^2)^2)
+  n * sum((x - mu)^4)/(sum((x - mu)^2)^2) - 3
 }
