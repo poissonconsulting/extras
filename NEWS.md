@@ -1,3 +1,19 @@
+# extras 0.1.0.9008
+
+- Soft-deprecated `as_list_unnamed()` for `as_list()`.
+- Soft-deprecated `pextreme()` and `sextreme()`.
+- Fixed bug in `ran_gamma_pois()`.
+- Added tests for `ran_dist()` functions.
+- Fixed bug in `res_lnorm()` for raw residuals.
+- Added tests for `resample = TRUE` argument in `res_dist()` functions.
+- Added random sample functions `ran_pois()`, `ran_norm()`, `ran_lnorm()`, `ran_binom()`, `ran_bern()`, `ran_gamma()` and `ran_pois_gamma()`.
+- Added `resample = FALSE` argument to `res_dist()` functions.
+- Set default values for all `dev_dist()` functions.
+- Added `xtr_median()`.
+- Added `na_rm = FALSE` argument to `lower()`, `upper()`, `pvalue()`, `svalue()` and `zscore()`.
+- Added `threshold = 0` argument to `pvalue()` and `svalue()`.
+
+
 # extras 0.1.0.9007
 
 - Added moments functions `xtr_mean()`, `variance()`, `skewness()`, `kurtosis()`.
