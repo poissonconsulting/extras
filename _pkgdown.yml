@@ -15,6 +15,12 @@ reference:
   - '`zscore`'
   - '`pvalue`'
   - '`svalue`'
+  - '`xtr_mean`'
+  - '`xtr_median`'
+  - '`variance`'
+  - '`skewness`'
+  - '`kurtosis`'
+  - '`zeros`'
 - title: Translations
   desc: Translations of BUGS/JAGS functions
   contents:
@@ -41,6 +47,7 @@ reference:
   - '`dev_lnorm`'
   - '`dev_norm`'
   - '`dev_pois`'
+  - '`dev_gamma_pois`'
 - title: Residual
   desc: Raw and Deviance Residuals
   contents:
@@ -49,6 +56,7 @@ reference:
   - '`res_lnorm`'
   - '`res_norm`'
   - '`res_pois`'
+  - '`res_gamma_pois`'
 - title: Log-Likelihood
   desc: Log-likelihood functions
   contents:
@@ -57,13 +65,26 @@ reference:
   - '`log_lik_lnorm`'
   - '`log_lik_norm`'
   - '`log_lik_pois`'
+- title: Random
+  desc: Random sample functions
+  contents:
+  - '`ran_bern`'
+  - '`ran_binom`'
+  - '`ran_gamma`'
+  - '`ran_gamma_pois`'
+  - '`ran_lnorm`'
+  - '`ran_norm`'
+  - '`ran_pois`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:
-  - '`pextreme`'
-  - '`sextreme`'
   - '`par_pattern`'
 - title: Generics
   desc: Generic Functions
   contents:
   - '`as_list_unnamed`'
+- title: Deprecated
+  desc: Deprecated functions
+  contents:
+  - '`pextreme`'
+  - '`sextreme`'
