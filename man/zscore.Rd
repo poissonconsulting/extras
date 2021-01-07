@@ -32,6 +32,7 @@ Other summary:
 \code{\link{variance}()},
 \code{\link{xtr_mean}()},
 \code{\link{xtr_median}()},
+\code{\link{xtr_sd}()},
 \code{\link{zeros}()}
 }
 \concept{summary}

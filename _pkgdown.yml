@@ -17,6 +17,7 @@ reference:
   - '`svalue`'
   - '`xtr_mean`'
   - '`xtr_median`'
+  - '`xtr_sd`'
   - '`variance`'
   - '`skewness`'
   - '`kurtosis`'

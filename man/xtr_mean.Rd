@@ -30,6 +30,7 @@ Other summary:
 \code{\link{upper}()},
 \code{\link{variance}()},
 \code{\link{xtr_median}()},
+\code{\link{xtr_sd}()},
 \code{\link{zeros}()},
 \code{\link{zscore}()}
 }
