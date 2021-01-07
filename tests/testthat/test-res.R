@@ -50,7 +50,12 @@ test_that("res_lnorm", {
                c(-1.4142135623731, -0.707106781186548, -0.471404520791032, -0.353553390593274,
                  -0.282842712474619))
   expect_equal(res_lnorm(1, type = "raw"), 0)
-  expect_equal(res_lnorm(exp(1), type = "raw"), 1)
+  expect_equal(res_lnorm(exp(1), type = "raw"), 1.71828182845905)
+  set.seed(101)
+  expect_equal(res_lnorm(1:2, 2, resample = TRUE, type = "raw"), c(-2.05579169361621, 5.44961576366372))
+  expect_equal(res_lnorm(1:2, 2, resample = TRUE), c(-0.954514737962565, 0.303150054202172))
+  set.seed(101)
+  expect_equal(res_lnorm(1:2, 2, resample = TRUE, type = "raw"), c(-2.05579169361621, 5.44961576366372))
 })
 
 test_that("res_binom", {
@@ -71,6 +76,11 @@ test_that("res_binom", {
                  0, 1.47914119729235, 2.17039427586256, 2.74227242773795, 3.25271578350125
                ))
   expect_equal(res_binom(0, 2, 0.5, type = "raw"), -1)
+  set.seed(101)
+  expect_equal(res_binom(1:2, resample = TRUE, type = "raw"), c(-0.5, -0.5))
+  expect_equal(res_lnorm(1:2, 2, resample = TRUE), c(0.781299048627549, -0.954514737962565))
+  set.seed(101)
+  expect_equal(res_binom(1:2, resample = TRUE, type = "raw"), c(-0.5, -0.5))
 })
 
 test_that("res_bern", {
@@ -92,6 +102,11 @@ test_that("res_bern", {
   expect_equal(res_bern(c(1,0), c(0.7, 0.5)),
                c(0.844600430900592,  -1.17741002251547))
   expect_equal(res_bern(c(0,1), c(1, 0), type = "raw"), c(-1, 1))
+  set.seed(101)
+  expect_equal(res_bern(1:2, resample = TRUE, type = "raw"), c(-0.5, -0.5))
+  expect_equal(res_bern(1:2, resample = TRUE), c(1.17741002251547, 1.17741002251547))
+  set.seed(101)
+  expect_equal(res_bern(1:2, resample = TRUE, type = "raw"), c(-0.5, -0.5))
 })
 
 test_that("res_gamma_pois", {
@@ -107,4 +122,9 @@ test_that("res_gamma_pois", {
   expect_equal(res_gamma_pois(1, 3, 2), dev_gamma_pois(1, 3, 2, res = TRUE))
   expect_equal(res_gamma_pois(c(1,3.5,4), 3, 10, type = "raw"),
                c(-2, 0.5, 1))
+  set.seed(101)
+  expect_equal(res_gamma_pois(1:2, 2, 2, resample = TRUE, type = "raw"), c(-1.43636828567917, 0.0386951894077274))
+  expect_equal(res_gamma_pois(1:2, 2, 2, resample = TRUE), c(-0.161069380366464, 0.962901374192958))
+  set.seed(101)
+  expect_equal(res_gamma_pois(1:2, 2, 2, resample = TRUE, type = "raw"), c(-1.43636828567917, 0.0386951894077274))
 })

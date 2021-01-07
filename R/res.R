@@ -54,8 +54,14 @@ res_norm <- function(x,  mean = 0, sd = 1, type = "dev", resample = FALSE) {
 #' @examples
 #' dev_norm(exp(c(-2:2)))
 res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", resample = FALSE) {
-  x <- pmax(x, 0)
-  res_norm(log(x), mean = meanlog, sd = sdlog, type = type, resample = resample)
+  chk_string(type)
+  if(!isFALSE(resample)) {
+    x <- ran_lnorm(length(x), meanlog = meanlog, sdlog = sdlog)
+  }
+  switch(type,
+         raw = x - exp(meanlog),
+         dev = dev_lnorm(x, meanlog = meanlog, sdlog = sdlog, res = TRUE),
+         chk_subset(x, c("raw", "dev")))
 }
 
 #' Binomial Residuals
