@@ -24,11 +24,13 @@ Depends:
     R (>= 3.4)
 Imports:
     chk,
-    stats
+    stats,
+    lifecycle
 Suggests: 
     covr,
     hms,
     knitr,
+    rlang,
     testthat,
     tibble
 Encoding: UTF-8

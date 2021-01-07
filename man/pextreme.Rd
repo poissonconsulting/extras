@@ -15,6 +15,7 @@ A numeric vector of values between 0 and 1.
 \description{
 Calculates the probability that a cumulative distribution function
 probability is at least that extreme.
+\ifelse{html}{\figure{lifecycle-deprecated.svg}{options: alt='Deprecated lifecycle'}}{\strong{Deprecated}}
 }
 \examples{
 pextreme(seq(0, 1, by = 0.1))

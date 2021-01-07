@@ -1,4 +1,5 @@
 test_that("sextreme", {
+  rlang::scoped_options(lifecycle_verbosity = "quiet")
   expect_identical(sextreme(numeric(0)), numeric(0))
   expect_identical(sextreme(NA_real_), NA_real_)
   expect_identical(sextreme(0.5), 0)

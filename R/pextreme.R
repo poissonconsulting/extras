@@ -2,6 +2,7 @@
 #'
 #' Calculates the probability that a cumulative distribution function
 #' probability is at least that extreme.
+#' `r lifecycle::badge('deprecated')`
 #'
 #' @param x A numeric vector of values between 0 and 1.
 #' @return A numeric vector of values between 0 and 1.
@@ -11,6 +12,7 @@
 #' @examples
 #' pextreme(seq(0, 1, by = 0.1))
 pextreme <- function(x) {
+  lifecycle::deprecate_soft("0.1.1", "pextreme()", id = "sextreme")
   chk_numeric(x)
   chk_range(x)
 
