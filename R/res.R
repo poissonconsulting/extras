@@ -11,7 +11,7 @@
 #' res_pois(c(1,3.5,4), 3)
 res_pois <- function(x, lambda = 1, type = "dev", resample = FALSE) {
   chk_string(type)
-  if(!isFALSE(resample)) {
+  if(!vld_false(resample)) {
     x <- ran_pois(length(x), lambda = lambda)
   }
   switch(type,
@@ -33,7 +33,7 @@ res_pois <- function(x, lambda = 1, type = "dev", resample = FALSE) {
 #' dev_norm(c(-2:2))
 res_norm <- function(x,  mean = 0, sd = 1, type = "dev", resample = FALSE) {
   chk_string(type)
-  if(!isFALSE(resample)) {
+  if(!vld_false(resample)) {
     x <- ran_norm(length(x), mean = mean, sd = sd)
   }
   switch(type,
@@ -55,7 +55,7 @@ res_norm <- function(x,  mean = 0, sd = 1, type = "dev", resample = FALSE) {
 #' dev_norm(exp(c(-2:2)))
 res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", resample = FALSE) {
   chk_string(type)
-  if(!isFALSE(resample)) {
+  if(!vld_false(resample)) {
     x <- ran_lnorm(length(x), meanlog = meanlog, sdlog = sdlog)
   }
   switch(type,
@@ -77,7 +77,7 @@ res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", resample = FALSE
 #' res_binom(c(0, 1, 2), 2, 0.3)
 res_binom <- function(x, size = 1, prob = 0.5, type = "dev", resample = FALSE) {
   chk_string(type)
-  if(!isFALSE(resample)) {
+  if(!vld_false(resample)) {
     x <- ran_binom(length(x), size = size, prob = prob)
   }
   switch(type,
@@ -99,7 +99,7 @@ res_binom <- function(x, size = 1, prob = 0.5, type = "dev", resample = FALSE) {
 #' res_bern(c(TRUE, FALSE), 0.7)
 res_bern <- function(x, prob = 0.5, type = "dev", resample = FALSE) {
   chk_string(type)
-  if(!isFALSE(resample)) {
+  if(!vld_false(resample)) {
     x <- ran_bern(length(x), prob = prob)
   }
   switch(type,
@@ -121,7 +121,7 @@ res_bern <- function(x, prob = 0.5, type = "dev", resample = FALSE) {
 #' res_gamma_pois(c(0, 1, 2), 1, 1)
 res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", resample = FALSE) {
   chk_string(type)
-  if(!isFALSE(resample)) {
+  if(!vld_false(resample)) {
     x <- ran_gamma_pois(length(x), lambda = lambda, theta = theta)
   }
   switch(type,

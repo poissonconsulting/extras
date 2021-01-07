@@ -21,7 +21,7 @@ pvalue <- function(x, threshold = 0, na_rm = FALSE) {
   chk_number(threshold)
 
   if(anyNA(x)) {
-    if(isFALSE(na_rm)) return(NA_real_)
+    if(vld_false(na_rm)) return(NA_real_)
     x <- as.vector(x)
     x <- x[!is.na(x)]
   }

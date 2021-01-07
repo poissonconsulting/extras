@@ -12,7 +12,7 @@
 zeros <- function(x, na_rm = FALSE) {
   chk_numeric(x)
   if(anyNA(x)) {
-    if(isFALSE(na_rm)) return(NA_integer_)
+    if(vld_false(na_rm)) return(NA_integer_)
     x <- as.vector(x)
     x <- x[!is.na(x)]
   }

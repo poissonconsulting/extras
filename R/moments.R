@@ -10,7 +10,7 @@
 variance <- function(x, na_rm = FALSE) {
   chk_numeric(x)
   if(anyNA(x)) {
-    if(isFALSE(na_rm)) return(NA_real_)
+    if(vld_false(na_rm)) return(NA_real_)
     x <- as.vector(x)
     x <- x[!is.na(x)]
   }
@@ -30,7 +30,7 @@ variance <- function(x, na_rm = FALSE) {
 skewness <- function(x, na_rm = FALSE) {
   chk_numeric(x)
   if(anyNA(x)) {
-    if(isFALSE(na_rm)) return(NA_real_)
+    if(vld_false(na_rm)) return(NA_real_)
     x <- as.vector(x)
     x <- x[!is.na(x)]
   }
@@ -52,7 +52,7 @@ skewness <- function(x, na_rm = FALSE) {
 kurtosis <- function(x, na_rm = FALSE) {
   chk_numeric(x)
   if(anyNA(x)) {
-    if(isFALSE(na_rm)) return(NA_real_)
+    if(vld_false(na_rm)) return(NA_real_)
     x <- as.vector(x)
     x <- x[!is.na(x)]
   }
