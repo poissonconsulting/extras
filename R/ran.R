@@ -96,5 +96,7 @@ ran_gamma <- function(n = 1, shape = 1, rate = 1) {
 #' @examples
 #' ran_gamma_pois(10, 1, 1)
 ran_gamma_pois <- function(n = 1, lambda = 1, theta = 0) {
-  ran_gamma(n, shape = theta, rate = theta) * ran_pois(n = n, lambda = lambda)
+  gamma <- ran_gamma(n, shape = theta, rate = theta)
+  gamma[theta == 0] <- 1
+  ran_pois(n = n, lambda = lambda * gamma)
 }

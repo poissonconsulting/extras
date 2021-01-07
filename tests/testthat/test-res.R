@@ -123,8 +123,8 @@ test_that("res_gamma_pois", {
   expect_equal(res_gamma_pois(c(1,3.5,4), 3, 10, type = "raw"),
                c(-2, 0.5, 1))
   set.seed(101)
-  expect_equal(res_gamma_pois(1:2, 2, 2, resample = TRUE, type = "raw"), c(-1.43636828567917, 0.0386951894077274))
-  expect_equal(res_gamma_pois(1:2, 2, 2, resample = TRUE), c(-0.161069380366464, 0.962901374192958))
+  expect_identical(res_gamma_pois(1:2, 2, 2, resample = TRUE, type = "raw"), c(-2, 0))
+  expect_equal(res_gamma_pois(1:2, 2, 2, resample = TRUE), c(0, 0.872753503952086))
   set.seed(101)
-  expect_equal(res_gamma_pois(1:2, 2, 2, resample = TRUE, type = "raw"), c(-1.43636828567917, 0.0386951894077274))
+  expect_identical(res_gamma_pois(1:2, 2, 2, resample = TRUE, type = "raw"), c(-2, 0))
 })
