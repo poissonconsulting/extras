@@ -4,7 +4,7 @@
 \alias{res_pois}
 \title{Poisson Residuals}
 \usage{
-res_pois(x, lambda, type = "dev")
+res_pois(x, lambda = 1, type = "dev", resample = FALSE)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
@@ -12,6 +12,8 @@ res_pois(x, lambda, type = "dev")
 \item{lambda}{A non-negative numeric vector of means.}
 
 \item{type}{A string of the residual type ('raw' or 'dev').}
+
+\item{resample}{A flag specifying whether to resample.}
 }
 \value{
 An numeric vector of the corresponding residuals.

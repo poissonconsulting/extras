@@ -4,7 +4,7 @@
 \alias{res_norm}
 \title{Normal Residuals}
 \usage{
-res_norm(x, mean = 0, sd = 1, type = "dev")
+res_norm(x, mean = 0, sd = 1, type = "dev", resample = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
@@ -14,6 +14,8 @@ res_norm(x, mean = 0, sd = 1, type = "dev")
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
 \item{type}{A string of the residual type ('raw' or 'dev').}
+
+\item{resample}{A flag specifying whether to resample.}
 }
 \value{
 An numeric vector of the corresponding residuals.

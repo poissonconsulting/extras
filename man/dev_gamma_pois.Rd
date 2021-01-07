@@ -4,14 +4,14 @@
 \alias{dev_gamma_pois}
 \title{Gamma-Poisson Deviances}
 \usage{
-dev_gamma_pois(x, lambda, theta, res = FALSE)
+dev_gamma_pois(x, lambda = 1, theta = 0, res = FALSE)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector.}
+\item{theta}{A non-negative numeric vector of the shape and rate.}
 
 \item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }

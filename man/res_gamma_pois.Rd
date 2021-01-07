@@ -4,16 +4,18 @@
 \alias{res_gamma_pois}
 \title{Gamma Poisson Residuals}
 \usage{
-res_gamma_pois(x, lambda, theta, type = "dev")
+res_gamma_pois(x, lambda = 1, theta = 0, type = "dev", resample = FALSE)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector.}
+\item{theta}{A non-negative numeric vector of the shape and rate.}
 
 \item{type}{A string of the residual type ('raw' or 'dev').}
+
+\item{resample}{A flag specifying whether to resample.}
 }
 \value{
 An numeric vector of the corresponding residuals.

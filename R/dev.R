@@ -67,7 +67,7 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, res = FALSE) {
 #'
 #' @examples
 #' dev_binom(c(0, 1, 2), 2, 0.3)
-dev_binom <- function(x, size, prob, res = FALSE) {
+dev_binom <- function(x, size = 1, prob = 0.5, res = FALSE) {
   mu <- size * prob
   dev1 <- x * log(x/mu)
   dev2 <- (size - x) * log((size-x)/(size-mu))
@@ -92,7 +92,7 @@ dev_binom <- function(x, size, prob, res = FALSE) {
 #'
 #' @examples
 #' dev_bern(c(TRUE, FALSE), 0.7)
-dev_bern <- function(x, prob, res = FALSE) {
+dev_bern <- function(x, prob = 0.5, res = FALSE) {
   dev <- ifelse(x == 1, -log(prob), -log(1-prob))
   dev <- dev * 2
   if(vld_false(res)) return(dev)
@@ -110,7 +110,7 @@ dev_bern <- function(x, prob, res = FALSE) {
 #'
 #' @examples
 #' dev_gamma_pois(c(1,3.5,4), 3, 2)
-dev_gamma_pois <- function(x, lambda, theta, res = FALSE) {
+dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
   dev1 <- 1/theta * log((1 + lambda * theta) / (1 + x * theta))
   dev2 <- x * log((lambda + x * lambda * theta) / (x + x * lambda * theta))
   dev <- dev1 - dev2

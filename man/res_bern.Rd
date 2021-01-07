@@ -4,7 +4,7 @@
 \alias{res_bern}
 \title{Bernoulli Residuals}
 \usage{
-res_bern(x, prob, type = "dev")
+res_bern(x, prob = 0.5, type = "dev", resample = FALSE)
 }
 \arguments{
 \item{x}{A vector of 0s and 1s.}
@@ -12,6 +12,8 @@ res_bern(x, prob, type = "dev")
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
 \item{type}{A string of the residual type ('raw' or 'dev').}
+
+\item{resample}{A flag specifying whether to resample.}
 }
 \value{
 An numeric vector of the corresponding residuals.

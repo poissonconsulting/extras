@@ -9,8 +9,11 @@
 #'
 #' @examples
 #' res_pois(c(1,3.5,4), 3)
-res_pois <- function(x, lambda, type = "dev") {
+res_pois <- function(x, lambda = 1, type = "dev", resample = FALSE) {
   chk_string(type)
+  if(!isFALSE(resample)) {
+    x <- ran_pois(length(x), lambda = lambda)
+  }
   switch(type,
          raw = x - lambda,
          dev = dev_pois(x, lambda, res = TRUE),
@@ -28,8 +31,11 @@ res_pois <- function(x, lambda, type = "dev") {
 #'
 #' @examples
 #' dev_norm(c(-2:2))
-res_norm <- function(x,  mean = 0, sd = 1, type = "dev") {
+res_norm <- function(x,  mean = 0, sd = 1, type = "dev", resample = FALSE) {
   chk_string(type)
+  if(!isFALSE(resample)) {
+    x <- ran_norm(length(x), mean = mean, sd = sd)
+  }
   switch(type,
          raw = x - mean,
          dev = dev_norm(x, mean = mean, sd = sd, res = TRUE),
@@ -47,9 +53,9 @@ res_norm <- function(x,  mean = 0, sd = 1, type = "dev") {
 #'
 #' @examples
 #' dev_norm(exp(c(-2:2)))
-res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev") {
+res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", resample = FALSE) {
   x <- pmax(x, 0)
-  res_norm(log(x), mean = meanlog, sd = sdlog, type = type)
+  res_norm(log(x), mean = meanlog, sd = sdlog, type = type, resample = resample)
 }
 
 #' Binomial Residuals
@@ -63,8 +69,11 @@ res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev") {
 #'
 #' @examples
 #' res_binom(c(0, 1, 2), 2, 0.3)
-res_binom <- function(x, size, prob, type = "dev") {
+res_binom <- function(x, size = 1, prob = 0.5, type = "dev", resample = FALSE) {
   chk_string(type)
+  if(!isFALSE(resample)) {
+    x <- ran_binom(length(x), size = size, prob = prob)
+  }
   switch(type,
          raw = x - size * prob,
          dev = dev_binom(x, size = size, prob = prob, res = TRUE),
@@ -82,8 +91,11 @@ res_binom <- function(x, size, prob, type = "dev") {
 #'
 #' @examples
 #' res_bern(c(TRUE, FALSE), 0.7)
-res_bern <- function(x, prob, type = "dev") {
+res_bern <- function(x, prob = 0.5, type = "dev", resample = FALSE) {
   chk_string(type)
+  if(!isFALSE(resample)) {
+    x <- ran_bern(length(x), prob = prob)
+  }
   switch(type,
          raw = x - prob,
          dev = dev_bern(x, prob = prob, res = TRUE),
@@ -101,8 +113,11 @@ res_bern <- function(x, prob, type = "dev") {
 #'
 #' @examples
 #' res_gamma_pois(c(0, 1, 2), 1, 1)
-res_gamma_pois <- function(x, lambda, theta, type = "dev") {
+res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", resample = FALSE) {
   chk_string(type)
+  if(!isFALSE(resample)) {
+    x <- ran_gamma_pois(length(x), lambda = lambda, theta = theta)
+  }
   switch(type,
          raw = x - lambda,
          dev = dev_gamma_pois(x, lambda = lambda, theta = theta, res = TRUE),

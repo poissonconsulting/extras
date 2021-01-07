@@ -4,7 +4,7 @@
 \alias{dev_binom}
 \title{Binomial Deviances}
 \usage{
-dev_binom(x, size, prob, res = FALSE)
+dev_binom(x, size = 1, prob = 0.5, res = FALSE)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}

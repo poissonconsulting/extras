@@ -9,8 +9,12 @@ test_that("res_pois", {
   expect_equal(res_pois(1, 3), dev_pois(1, 3, res = TRUE))
   expect_equal(res_pois(c(1,3.5,4), 3, type = "raw"),
                c(-2, 0.5, 1))
+  set.seed(101)
+  expect_equal(res_pois(1:2, 2, resample = TRUE, type = "raw"), c(-1L, -2L))
+  expect_equal(res_pois(1:2, 2, resample = TRUE), c(0.657868260861539, 0))
+  set.seed(101)
+  expect_equal(res_pois(1:2, 2, resample = TRUE, type = "raw"), c(-1L, -2L))
 })
-
 
 test_that("res_norm", {
   expect_identical(res_norm(integer(0), integer(0), integer(0)), numeric(0))
@@ -24,6 +28,11 @@ test_that("res_norm", {
   expect_equal(res_norm(-2:2, type = "raw"), -2:2)
   expect_equal(res_norm(-2:2, mean = 2, type = "raw"), -4:0)
   expect_equal(res_norm(-2:2, mean = -2:2, type = "raw"), rep(0,5))
+  set.seed(101)
+  expect_equal(res_norm(1:2, 2, resample = TRUE, type = "raw"), c(-0.326036490515386, 0.552461855419138))
+  expect_equal(res_norm(1:2, 2, resample = TRUE), c(-0.954514737962565, 0.303150054202172))
+  set.seed(101)
+  expect_equal(res_norm(1:2, 2, resample = TRUE, type = "raw"), c(-0.326036490515386, 0.552461855419138))
 })
 
 test_that("res_lnorm", {

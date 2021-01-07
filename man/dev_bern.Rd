@@ -4,7 +4,7 @@
 \alias{dev_bern}
 \title{Bernoulli Deviances}
 \usage{
-dev_bern(x, prob, res = FALSE)
+dev_bern(x, prob = 0.5, res = FALSE)
 }
 \arguments{
 \item{x}{A vector of 0s and 1s.}
