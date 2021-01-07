@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9008</span>
       </span>
     </div>
 
@@ -95,7 +95,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/poissonconsulting/extras/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -121,7 +121,7 @@
     <p>Log-Normal Residuals</p>
     </div>
 
-    <pre class="usage"><span class='fu'>res_lnorm</span><span class='op'>(</span><span class='va'>x</span>, meanlog <span class='op'>=</span> <span class='fl'>0</span>, sdlog <span class='op'>=</span> <span class='fl'>1</span>, type <span class='op'>=</span> <span class='st'>"dev"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>res_lnorm</span><span class='op'>(</span><span class='va'>x</span>, meanlog <span class='op'>=</span> <span class='fl'>0</span>, sdlog <span class='op'>=</span> <span class='fl'>1</span>, type <span class='op'>=</span> <span class='st'>"dev"</span>, resample <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,6 +142,10 @@
       <th>type</th>
       <td><p>A string of the residual type ('raw' or 'dev').</p></td>
     </tr>
+    <tr>
+      <th>resample</th>
+      <td><p>A flag specifying whether to resample.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -152,6 +156,7 @@
     <div class='dont-index'><p>Other res_dist: 
 <code><a href='res_bern.html'>res_bern</a>()</code>,
 <code><a href='res_binom.html'>res_binom</a>()</code>,
+<code><a href='res_gamma_pois.html'>res_gamma_pois</a>()</code>,
 <code><a href='res_norm.html'>res_norm</a>()</code>,
 <code><a href='res_pois.html'>res_pois</a>()</code></p></div>
 

@@ -49,8 +49,8 @@
 <meta property="og:title" content="Bayesian P-Value — pvalue" />
 <meta property="og:description" content="A Bayesian p-value (p) is here defined in terms of the quantile-based
 (1-p) * 100% credible interval (CRI) that
-just includes 0 (Kery and Schaub 2011).
-In other words a p-value of 0.05 indicates that the 95% CRI just includes 0." />
+just includes a threshold (Kery and Schaub 2011).
+By default a p-value of 0.05 indicates that the 95% CRI just includes 0." />
 
 
 
@@ -82,7 +82,7 @@ In other words a p-value of 0.05 indicates that the 95% CRI just includes 0." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9008</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@ In other words a p-value of 0.05 indicates that the 95% CRI just includes 0." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/poissonconsulting/extras/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -123,11 +123,11 @@ In other words a p-value of 0.05 indicates that the 95% CRI just includes 0." />
     <div class="ref-description">
     <p>A Bayesian p-value (p) is here defined in terms of the quantile-based
 (1-p) * 100% credible interval (CRI) that
-just includes 0 (Kery and Schaub 2011).
-In other words a p-value of 0.05 indicates that the 95% CRI just includes 0.</p>
+just includes a threshold (Kery and Schaub 2011).
+By default a p-value of 0.05 indicates that the 95% CRI just includes 0.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pvalue</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pvalue</span><span class='op'>(</span><span class='va'>x</span>, threshold <span class='op'>=</span> <span class='fl'>0</span>, na_rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,6 +135,14 @@ In other words a p-value of 0.05 indicates that the 95% CRI just includes 0.</p>
     <tr>
       <th>x</th>
       <td><p>A numeric vector of MCMC values.</p></td>
+    </tr>
+    <tr>
+      <th>threshold</th>
+      <td><p>A number of the threshold value.</p></td>
+    </tr>
+    <tr>
+      <th>na_rm</th>
+      <td><p>A flag specifying whether to remove missing values.</p></td>
     </tr>
     </table>
 
@@ -149,9 +157,15 @@ Academic Press, Boston. Available from <a href='https://www.vogelwarte.ch/de/pro
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other summary: 
+<code><a href='kurtosis.html'>kurtosis</a>()</code>,
 <code><a href='lower.html'>lower</a>()</code>,
+<code><a href='skewness.html'>skewness</a>()</code>,
 <code><a href='svalue.html'>svalue</a>()</code>,
 <code><a href='upper.html'>upper</a>()</code>,
+<code><a href='variance.html'>variance</a>()</code>,
+<code><a href='xtr_mean.html'>xtr_mean</a>()</code>,
+<code><a href='xtr_median.html'>xtr_median</a>()</code>,
+<code><a href='zeros.html'>zeros</a>()</code>,
 <code><a href='zscore.html'>zscore</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

@@ -48,7 +48,8 @@
 
 <meta property="og:title" content="Extreme Probability — pextreme" />
 <meta property="og:description" content="Calculates the probability that a cumulative distribution function
-probability is at least that extreme." />
+probability is at least that extreme.
+" />
 
 
 
@@ -80,7 +81,7 @@ probability is at least that extreme." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9008</span>
       </span>
     </div>
 
@@ -96,7 +97,7 @@ probability is at least that extreme." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/poissonconsulting/extras/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +121,8 @@ probability is at least that extreme." />
 
     <div class="ref-description">
     <p>Calculates the probability that a cumulative distribution function
-probability is at least that extreme.</p>
+probability is at least that extreme.
+<img src='figures/lifecycle-deprecated.svg' alt='Deprecated lifecycle' /></p>
     </div>
 
     <pre class="usage"><span class='fu'>pextreme</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
@@ -144,7 +146,9 @@ probability is at least that extreme.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>pextreme</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, by <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 0.0 0.2 0.4 0.6 0.8 1.0 0.8 0.6 0.4 0.2 0.0</div></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `pextreme()` is deprecated as of lifecycle 0.1.1.</span>
+#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
+#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='output co'>#&gt;  [1] 0.0 0.2 0.4 0.6 0.8 1.0 0.8 0.6 0.4 0.2 0.0</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
