@@ -1,3 +1,9 @@
+# extras 0.1.0.9009
+
+- Renamed resample argument to simulate.
+- Added `xtr_sd()`.
+
+
 # extras 0.1.0.9008
 
 - Soft-deprecated `as_list_unnamed()` for `as_list()`.
