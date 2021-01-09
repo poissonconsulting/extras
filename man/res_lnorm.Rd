@@ -4,7 +4,7 @@
 \alias{res_lnorm}
 \title{Log-Normal Residuals}
 \usage{
-res_lnorm(x, meanlog = 0, sdlog = 1, type = "dev", resample = FALSE)
+res_lnorm(x, meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
@@ -15,7 +15,7 @@ res_lnorm(x, meanlog = 0, sdlog = 1, type = "dev", resample = FALSE)
 
 \item{type}{A string of the residual type ('raw' or 'dev').}
 
-\item{resample}{A flag specifying whether to resample.}
+\item{simulate}{A flag specifying whether to simulate residuals.}
 }
 \value{
 An numeric vector of the corresponding residuals.

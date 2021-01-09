@@ -4,7 +4,7 @@
 \alias{res_binom}
 \title{Binomial Residuals}
 \usage{
-res_binom(x, size = 1, prob = 0.5, type = "dev", resample = FALSE)
+res_binom(x, size = 1, prob = 0.5, type = "dev", simulate = FALSE)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
@@ -15,7 +15,7 @@ res_binom(x, size = 1, prob = 0.5, type = "dev", resample = FALSE)
 
 \item{type}{A string of the residual type ('raw' or 'dev').}
 
-\item{resample}{A flag specifying whether to resample.}
+\item{simulate}{A flag specifying whether to simulate residuals.}
 }
 \value{
 An numeric vector of the corresponding residuals.

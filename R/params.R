@@ -24,6 +24,6 @@
 #' @param type A string of the residual type ('raw' or 'dev').
 #' @param na_rm A flag specifying whether to remove missing values.
 #' @param threshold A number of the threshold value.
-#' @param resample A flag specifying whether to resample.
+#' @param simulate A flag specifying whether to simulate residuals.
 #' @name params
 NULL

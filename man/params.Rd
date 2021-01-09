@@ -48,7 +48,7 @@ should be returned as negative values.}
 
 \item{threshold}{A number of the threshold value.}
 
-\item{resample}{A flag specifying whether to resample.}
+\item{simulate}{A flag specifying whether to simulate residuals.}
 }
 \description{
 Parameter Descriptions
