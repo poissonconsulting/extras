@@ -119,6 +119,7 @@ dev_bern <- function(x, prob = 0.5, res = FALSE) {
 dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
   dev1 <- 1/theta * log((1 + lambda * theta) / (1 + x * theta))
   dev2 <- x * log((lambda + x * lambda * theta) / (x + x * lambda * theta))
+  dev2[!is.na(x) & x == 0] <- 0
   dev <- dev1 - dev2
   dev <- pmax(dev, 0)
   dev <- dev * 2
