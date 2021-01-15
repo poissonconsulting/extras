@@ -11,12 +11,14 @@ test_that("translations", {
   logit(x) <- logit(0.75)
   expect_equal(x, 0.75)
   expect_equal(ilogit(logit(0.67)), 0.67)
+  expect_equal(invlogit(logit(0.67)), 0.67)
 })
 
 test_that("translations2", {
   x <- seq(0, 1, by = 0.25)
   expect_identical(logit(x), qlogis(x))
   expect_identical(ilogit(logit(x)), x)
+  expect_identical(invlogit(logit(x)), x)
 
   logit(x) <- c(0.5, 1)
   expect_identical(x, ilogit(c(0.5, 1)))

@@ -29,6 +29,7 @@ x
 \seealso{
 Other translations: 
 \code{\link{ilogit}()},
+\code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit}()},
 \code{\link{phi}()},

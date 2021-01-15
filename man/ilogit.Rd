@@ -23,6 +23,7 @@ ilogit(c(-1, 0, 5))
 }
 \seealso{
 Other translations: 
+\code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},

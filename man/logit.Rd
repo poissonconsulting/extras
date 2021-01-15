@@ -24,6 +24,7 @@ logit(c(0.25, 0.5, 0.75))
 \seealso{
 Other translations: 
 \code{\link{ilogit}()},
+\code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{phi}()},
