@@ -28,6 +28,7 @@ reference:
   - '`log<-`'
   - '`logit`'
   - '`ilogit`'
+  - '`invlogit`'
   - '`logit<-`'
   - '`phi`'
   - '`pow`'
