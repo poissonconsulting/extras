@@ -23,6 +23,7 @@ invlogit(c(-1, 0, 5))
 }
 \seealso{
 Other translations: 
+\code{\link{fabs}()},
 \code{\link{ilogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},

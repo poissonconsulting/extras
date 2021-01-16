@@ -25,10 +25,11 @@ reference:
 - title: Translations
   desc: Translations of BUGS/JAGS functions
   contents:
-  - '`log<-`'
-  - '`logit`'
+  - '`fabs`'
   - '`ilogit`'
   - '`invlogit`'
+  - '`log<-`'
+  - '`logit`'
   - '`logit<-`'
   - '`phi`'
   - '`pow`'
