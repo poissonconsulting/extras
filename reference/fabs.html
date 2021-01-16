@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Inverse Logistic Transformation — invlogit • extras</title>
+<title>Absolute — fabs • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Inverse Logistic Transformation — invlogit" />
-<meta property="og:description" content="Inverse logistically transforms a numeric atomic object." />
+<meta property="og:title" content="Absolute — fabs" />
+<meta property="og:description" content="Computes the absolute value of x.
+Used in TMB as replacement for abs() which is seemingly ambiguous." />
 
 
 
@@ -114,37 +115,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Inverse Logistic Transformation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/ilogit.R'><code>R/ilogit.R</code></a></small>
-    <div class="hidden name"><code>invlogit.Rd</code></div>
+    <h1>Absolute</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/fabs.R'><code>R/fabs.R</code></a></small>
+    <div class="hidden name"><code>fabs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Inverse logistically transforms a numeric atomic object.</p>
+    <p>Computes the absolute value of <code>x</code>.
+Used in TMB as replacement for <code><a href='https://rdrr.io/r/base/MathFun.html'>abs()</a></code> which is seemingly ambiguous.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>invlogit</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fabs</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A numeric atomic object.</p></td>
+      <td><p>An existing R object.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A numeric atomic object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A wrapper on <code><a href='https://rdrr.io/r/stats/Logistic.html'>stats::plogis()</a></code>.</p>
+    <p>A wrapper on <code><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></code><code>()</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other translations: 
-<code><a href='fabs.html'>fabs</a>()</code>,
 <code><a href='ilogit.html'>ilogit</a>()</code>,
+<code><a href='invlogit.html'>invlogit</a>()</code>,
 <code>log&lt;-()</code>,
 <code>logit&lt;-()</code>,
 <code><a href='logit.html'>logit</a>()</code>,
@@ -152,8 +151,8 @@
 <code><a href='pow.html'>pow</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>invlogit</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.2689414 0.5000000 0.9933071</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fabs</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0 1 2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
