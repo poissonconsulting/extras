@@ -129,3 +129,26 @@ res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FA
          dev = dev_gamma_pois(x, lambda = lambda, theta = theta, res = TRUE),
          chk_subset(x, c("raw", "dev")))
 }
+
+#' Negative Binomial Residuals
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_neg_bin(c(0, 1, 5), 2, 3)
+res_neg_bin <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    x <- res_neg_bin(length(x), lambda = lambda, theta = theta)
+  }
+  switch(type,
+         raw = x - lambda,
+         dev = dev_neg_bin(x, lambda = lambda, theta = theta, res = TRUE),
+         chk_subset(x, c("raw", "dev")))
+}
+
