@@ -140,16 +140,16 @@ res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FA
 #' @export
 #'
 #' @examples
-#' res_neg_bin(c(0, 1, 5), 2, 3)
-res_neg_bin <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE) {
+#' res_neg_binom(c(0, 1, 5), 2, 3)
+res_neg_binom <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE) {
   chk_string(type)
   if(!vld_false(simulate)) {
     .NotYetImplemented()
-#    x <- ran_neg_bin(length(x), lambda = lambda, theta = theta)
+#    x <- ran_neg_binom(length(x), lambda = lambda, theta = theta)
   }
   switch(type,
          raw = x - lambda,
-         dev = dev_neg_bin(x, lambda = lambda, theta = theta, res = TRUE),
+         dev = dev_neg_binom(x, lambda = lambda, theta = theta, res = TRUE),
          chk_subset(x, c("raw", "dev")))
 }
 

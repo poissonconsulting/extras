@@ -149,18 +149,18 @@ test_that("res_gamma_pois", {
   expect_identical(res_gamma_pois(1:2, 2, 2, simulate = TRUE, type = "raw"), c(-2, 0))
 })
 
-test_that("res_neg_bin", {
-  expect_identical(res_neg_bin(integer(0), integer(0), integer(0)), numeric(0))
-  expect_identical(res_neg_bin(1, 1, 0), 0)
-  expect_identical(res_neg_bin(0, 1, 0), 0)
-  expect_identical(res_neg_bin(1, 1, 1), 0)
-  expect_equal(res_neg_bin(0, 1, 1), -1.17741002251547)
-  expect_identical(res_neg_bin(NA, 1, 1), NA_real_)
-  expect_identical(res_neg_bin(1, NA, 1), NA_real_)
-  expect_identical(res_neg_bin(1, 1, NA), NA_real_)
-  expect_error(res_neg_bin(1, 3, 1, type = "unknown"))
-  expect_equal(res_neg_bin(1, 3, 1, type = "raw"), -2)
-  expect_equal(res_neg_bin(1, 2, 5), dev_neg_bin(1, 2, 5, res = TRUE))
-  expect_equal(res_neg_bin(c(1,3,4), 3, 5, type = "raw"),
+test_that("res_neg_binom(", {
+  expect_identical(res_neg_binom(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(res_neg_binom(1, 1, 0), 0)
+  expect_identical(res_neg_binom(0, 1, 0), 0)
+  expect_identical(res_neg_binom(1, 1, 1), 0)
+  expect_equal(res_neg_binom(0, 1, 1), -1.17741002251547)
+  expect_identical(res_neg_binom(NA, 1, 1), NA_real_)
+  expect_identical(res_neg_binom(1, NA, 1), NA_real_)
+  expect_identical(res_neg_binom(1, 1, NA), NA_real_)
+  expect_error(res_neg_binom(1, 3, 1, type = "unknown"))
+  expect_equal(res_neg_binom(1, 3, 1, type = "raw"), -2)
+  expect_equal(res_neg_binom(1, 2, 5), dev_neg_binom(1, 2, 5, res = TRUE))
+  expect_equal(res_neg_binom(c(1,3,4), 3, 5, type = "raw"),
                c(-2, 0, 1))
 })

@@ -138,8 +138,8 @@ dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_neg_bin(c(1, 2, 5), 2, 3)
-dev_neg_bin <- function(x, lambda = 1, theta = 0, res = FALSE) {
+#' dev_neg_binom(c(1, 2, 5), 2, 3)
+dev_neg_binom <- function(x, lambda = 1, theta = 0, res = FALSE) {
   dev1 <- x * log(pmax(1, x)/lambda)
   dev2 <- (x + theta) * log((x + theta)/(lambda + theta))
   dev2[!is.na(x) & x == 0 & theta == 0] <- 0
