@@ -127,3 +127,18 @@ dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
   if(vld_false(res)) return(dev)
   impl_dev(x, lambda, dev)
 }
+
+#' Negative Binomial Deviances
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_neg_binom(c(1, 2, 5), 2, 3)
+dev_neg_binom <- function(x, lambda = 1, theta = 0, res = FALSE) {
+  dev_gamma_pois(x, lambda = lambda, theta = theta, res = res)
+}

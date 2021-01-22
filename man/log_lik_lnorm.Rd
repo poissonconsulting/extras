@@ -26,6 +26,8 @@ dev_norm(exp(c(-2:2)))
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
 \code{\link{log_lik_binom}()},
+\code{\link{log_lik_gamma_pois}()},
+\code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
 \code{\link{log_lik_pois}()}
 }

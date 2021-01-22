@@ -4,7 +4,7 @@
 \alias{log_lik_pois}
 \title{Poisson Log-Likelihood}
 \usage{
-log_lik_pois(x, lambda)
+log_lik_pois(x, lambda = 1)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
@@ -24,7 +24,9 @@ log_lik_pois(c(1,3.5,4), 3)
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
 \code{\link{log_lik_binom}()},
+\code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_lnorm}()},
+\code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()}
 }
 \concept{log_lik_dist}

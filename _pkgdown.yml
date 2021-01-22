@@ -51,6 +51,7 @@ reference:
   - '`dev_norm`'
   - '`dev_pois`'
   - '`dev_gamma_pois`'
+  - '`dev_neg_binom`'
 - title: Residual
   desc: Raw and Deviance Residuals
   contents:
@@ -59,7 +60,7 @@ reference:
   - '`res_lnorm`'
   - '`res_norm`'
   - '`res_pois`'
-  - '`res_gamma_pois`'
+  - '`res_neg_binom`'
 - title: Log-Likelihood
   desc: Log-likelihood functions
   contents:
@@ -68,6 +69,8 @@ reference:
   - '`log_lik_lnorm`'
   - '`log_lik_norm`'
   - '`log_lik_pois`'
+  - '`log_lik_gamma_pois`'
+  - '`log_lik_neg_binom`'
 - title: Random
   desc: Random sample functions
   contents:
@@ -78,6 +81,7 @@ reference:
   - '`ran_lnorm`'
   - '`ran_norm`'
   - '`ran_pois`'
+  - '`ran_neg_binom`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:
