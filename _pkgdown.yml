@@ -51,6 +51,7 @@ reference:
   - '`dev_norm`'
   - '`dev_pois`'
   - '`dev_gamma_pois`'
+  - '`dev_neg_bin`'
 - title: Residual
   desc: Raw and Deviance Residuals
   contents:
@@ -59,7 +60,7 @@ reference:
   - '`res_lnorm`'
   - '`res_norm`'
   - '`res_pois`'
-  - '`res_gamma_pois`'
+  - '`res_neg_bin`'
 - title: Log-Likelihood
   desc: Log-likelihood functions
   contents:
