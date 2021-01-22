@@ -1,3 +1,9 @@
+# extras 0.1.0.9011
+
+- Added `fabs()`.
+- Added `invlogit()`.
+
+
 # extras 0.1.0.9010
 
 - Internal changes only.
