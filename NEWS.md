@@ -2,7 +2,9 @@
 
 - Added `fabs()`.
 - Added `invlogit()`.
-
+- Added 'dev_neg_binom()` and `res_neg_binom()`.
+- Added `log_lik_neg_binom()` and `log_lik_gamma_pois()`.
+- Added random sample functions `ran_gamma_pois()` and `ran_neg_binom()`.
 
 # extras 0.1.0.9010
 
