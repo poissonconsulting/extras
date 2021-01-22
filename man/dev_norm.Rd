@@ -30,6 +30,7 @@ Other dev_dist:
 \code{\link{dev_binom}()},
 \code{\link{dev_gamma_pois}()},
 \code{\link{dev_lnorm}()},
+\code{\link{dev_neg_bin}()},
 \code{\link{dev_pois}()}
 }
 \concept{dev_dist}

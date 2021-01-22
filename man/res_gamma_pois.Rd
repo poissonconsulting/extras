@@ -31,6 +31,7 @@ Other res_dist:
 \code{\link{res_bern}()},
 \code{\link{res_binom}()},
 \code{\link{res_lnorm}()},
+\code{\link{res_neg_bin}()},
 \code{\link{res_norm}()},
 \code{\link{res_pois}()}
 }
