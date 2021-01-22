@@ -144,8 +144,7 @@ res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FA
 res_neg_binom <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE) {
   chk_string(type)
   if(!vld_false(simulate)) {
-    .NotYetImplemented()
-#    x <- ran_neg_binom(length(x), lambda = lambda, theta = theta)
+    x <- ran_neg_binom(length(x), lambda = lambda, theta = theta)
   }
   switch(type,
          raw = x - lambda,

@@ -96,7 +96,20 @@ ran_gamma <- function(n = 1, shape = 1, rate = 1) {
 #' @examples
 #' ran_gamma_pois(10, 1, 1)
 ran_gamma_pois <- function(n = 1, lambda = 1, theta = 0) {
-  gamma <- ran_gamma(n, shape = theta, rate = theta)
-  gamma[theta == 0] <- 1
-  ran_pois(n = n, lambda = lambda * gamma)
+  ran_neg_binom(n = n, lambda = lambda, theta = theta)
+}
+
+#' Gamma-Poisson Random Samples
+#'
+#' @inheritParams params
+#' @return An numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_neg_binom(10, 1, 1)
+ran_neg_binom <- function(n = 1, lambda = 1, theta = 0) {
+  chk_whole_number(n)
+  chk_gte(n)
+  as.integer(stats::rnbinom(n = n, mu = lambda, size = 1/theta))
 }

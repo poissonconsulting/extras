@@ -11,6 +11,9 @@ Authors@R:
              family = "Müller",
              role = "ctb",
              comment = c(ORCID = "0000-0002-1416-3412")),
+      person(given = "Nadine",
+             family = "Hussein",
+             role = "ctb"),
       person(given = "Poisson Consulting",
              role = c("cph", "fnd")))
 Description: Functions to 'numericise' 'R' objects (coerce to numeric objects),
