@@ -79,6 +79,7 @@ reference:
   - '`ran_lnorm`'
   - '`ran_norm`'
   - '`ran_pois`'
+  - '`ran_neg_binom`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:
