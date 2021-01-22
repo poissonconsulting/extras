@@ -142,7 +142,7 @@ dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
 dev_neg_bin <- function(x, lambda = 1, theta = 0, res = FALSE) {
   dev1 <- x * log(pmax(1, x)/lambda)
   dev2 <- (x + theta) * log((x + theta)/(lambda + theta))
-  dev1[!is.na(x) & x == 0] <- 0
+  dev2[!is.na(x) & x == 0 & theta == 0] <- 0
   dev <- dev1 - dev2
   dev <- dev * 2
   if(vld_false(res)) return(dev)

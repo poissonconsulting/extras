@@ -107,3 +107,22 @@ test_that("dev_gamma_pois", {
   expect_equal(dev_gamma_pois(c(1,3,4), c(1, 3.5, 4), 0, res = TRUE),
                c(0, -0.274036349845144, 0))
 })
+
+test_that("dev_neg_bin", {
+  expect_identical(dev_neg_bin(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(dev_neg_bin(1, 1, 0), 0)
+  expect_identical(dev_neg_bin(1, 1, 1), 0)
+  expect_identical(dev_neg_bin(0, 1, 0), 0)
+  expect_equal(dev_neg_bin(0, 1, 0.5), 1.09861228866811)
+  expect_equal(dev_neg_bin(0, 1, 1), 1.386294361119891)
+
+  expect_identical(dev_neg_bin(NA, 1, 1), NA_real_)
+  expect_identical(dev_neg_bin(1, NA, 1), NA_real_)
+  expect_identical(dev_neg_bin(1, 1, NA), NA_real_)
+  expect_equal(dev_neg_bin(1, 3, 1), dev_neg_bin(1, 3, 1, res = TRUE)^2)
+
+  expect_equal(dev_neg_bin(c(1, 2, 5), 4, 2, res = TRUE),
+               c(-1.177410022515, -0.686390663271, 0.270787731555))
+  expect_equal(dev_neg_bin(c(1, 2, 5), c(1, 3, 5), 2, res = TRUE),
+               c(0, -0.404089071964, 0))
+})
