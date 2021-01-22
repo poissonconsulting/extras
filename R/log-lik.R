@@ -72,3 +72,33 @@ log_lik_binom <- function(x, size, prob) {
 log_lik_bern <- function(x, prob) {
   log_lik_binom(x, size = 1, prob = prob)
 }
+
+#' Negative Binomial Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A vector of 0s and 1s.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_neg_binom(c(0, 1, 2), 2, 1)
+log_lik_neg_binom <- function(x, lambda, theta) {
+  dnbinom(x, size = lambda, prob = theta, log = TRUE)
+}
+
+#' Gamma Poisson Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A vector of 0s and 1s.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_gamma_pois(c(0, 1, 2), 1, 1)
+log_lik_gamma_pois <- function(x, lambda, theta) {
+  log_lik_neg_binom(x, lambda = lambda, theta = theta)
+}
