@@ -61,6 +61,7 @@ reference:
   - '`res_norm`'
   - '`res_pois`'
   - '`res_neg_binom`'
+  - '`res_gamma_pois`'
 - title: Log-Likelihood
   desc: Log-likelihood functions
   contents:
