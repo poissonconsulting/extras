@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Inverse Logistic Transformation — invlogit • extras</title>
+<title>Gamma-Poisson Random Samples — ran_neg_binom • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Inverse Logistic Transformation — invlogit" />
-<meta property="og:description" content="Inverse logistically transforms a numeric atomic object." />
+<meta property="og:title" content="Gamma-Poisson Random Samples — ran_neg_binom" />
+<meta property="og:description" content="Gamma-Poisson Random Samples" />
 
 
 
@@ -114,46 +114,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Inverse Logistic Transformation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/ilogit.R'><code>R/ilogit.R</code></a></small>
-    <div class="hidden name"><code>invlogit.Rd</code></div>
+    <h1>Gamma-Poisson Random Samples</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/ran.R'><code>R/ran.R</code></a></small>
+    <div class="hidden name"><code>ran_neg_binom.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Inverse logistically transforms a numeric atomic object.</p>
+    <p>Gamma-Poisson Random Samples</p>
     </div>
 
-    <pre class="usage"><span class='fu'>invlogit</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>ran_neg_binom</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span>, lambda <span class='op'>=</span> <span class='fl'>1</span>, theta <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A numeric atomic object.</p></td>
+      <th>n</th>
+      <td><p>A non-negative whole number of the number of random samples to generate.</p></td>
+    </tr>
+    <tr>
+      <th>lambda</th>
+      <td><p>A non-negative numeric vector of means.</p></td>
+    </tr>
+    <tr>
+      <th>theta</th>
+      <td><p>A non-negative numeric vector of the shape and rate.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A numeric atomic object.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>A wrapper on <code><a href='https://rdrr.io/r/stats/Logistic.html'>stats::plogis()</a></code>.</p>
+    <p>An numeric vector of the random samples.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other translations: 
-<code><a href='fabs.html'>fabs</a>()</code>,
-<code><a href='ilogit.html'>ilogit</a>()</code>,
-<code>log&lt;-()</code>,
-<code>logit&lt;-()</code>,
-<code><a href='logit.html'>logit</a>()</code>,
-<code><a href='phi.html'>phi</a>()</code>,
-<code><a href='pow.html'>pow</a>()</code></p></div>
+    <div class='dont-index'><p>Other ran_dist: 
+<code><a href='ran_bern.html'>ran_bern</a>()</code>,
+<code><a href='ran_binom.html'>ran_binom</a>()</code>,
+<code><a href='ran_gamma_pois.html'>ran_gamma_pois</a>()</code>,
+<code><a href='ran_gamma.html'>ran_gamma</a>()</code>,
+<code><a href='ran_lnorm.html'>ran_lnorm</a>()</code>,
+<code><a href='ran_norm.html'>ran_norm</a>()</code>,
+<code><a href='ran_pois.html'>ran_pois</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>invlogit</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.2689414 0.5000000 0.9933071</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>ran_neg_binom</span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] 3 3 1 1 1 0 0 1 0 2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Inverse Logistic Transformation — invlogit • extras</title>
+<title>Negative Binomial Log-Likelihood — log_lik_neg_binom • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Inverse Logistic Transformation — invlogit" />
-<meta property="og:description" content="Inverse logistically transforms a numeric atomic object." />
+<meta property="og:title" content="Negative Binomial Log-Likelihood — log_lik_neg_binom" />
+<meta property="og:description" content="Negative Binomial Log-Likelihood" />
 
 
 
@@ -114,46 +114,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Inverse Logistic Transformation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/ilogit.R'><code>R/ilogit.R</code></a></small>
-    <div class="hidden name"><code>invlogit.Rd</code></div>
+    <h1>Negative Binomial Log-Likelihood</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/log-lik.R'><code>R/log-lik.R</code></a></small>
+    <div class="hidden name"><code>log_lik_neg_binom.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Inverse logistically transforms a numeric atomic object.</p>
+    <p>Negative Binomial Log-Likelihood</p>
     </div>
 
-    <pre class="usage"><span class='fu'>invlogit</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>log_lik_neg_binom</span><span class='op'>(</span><span class='va'>x</span>, lambda <span class='op'>=</span> <span class='fl'>1</span>, theta <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A numeric atomic object.</p></td>
+      <td><p>A vector of 0s and 1s.</p></td>
+    </tr>
+    <tr>
+      <th>lambda</th>
+      <td><p>A non-negative numeric vector of means.</p></td>
+    </tr>
+    <tr>
+      <th>theta</th>
+      <td><p>A non-negative numeric vector of the shape and rate.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A numeric atomic object.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>A wrapper on <code><a href='https://rdrr.io/r/stats/Logistic.html'>stats::plogis()</a></code>.</p>
+    <p>An numeric vector of the corresponding log-likelihoods.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other translations: 
-<code><a href='fabs.html'>fabs</a>()</code>,
-<code><a href='ilogit.html'>ilogit</a>()</code>,
-<code>log&lt;-()</code>,
-<code>logit&lt;-()</code>,
-<code><a href='logit.html'>logit</a>()</code>,
-<code><a href='phi.html'>phi</a>()</code>,
-<code><a href='pow.html'>pow</a>()</code></p></div>
+    <div class='dont-index'><p>Other log_lik_dist: 
+<code><a href='log_lik_bern.html'>log_lik_bern</a>()</code>,
+<code><a href='log_lik_binom.html'>log_lik_binom</a>()</code>,
+<code><a href='log_lik_gamma_pois.html'>log_lik_gamma_pois</a>()</code>,
+<code><a href='log_lik_lnorm.html'>log_lik_lnorm</a>()</code>,
+<code><a href='log_lik_norm.html'>log_lik_norm</a>()</code>,
+<code><a href='log_lik_pois.html'>log_lik_pois</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>invlogit</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.2689414 0.5000000 0.9933071</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>log_lik_neg_binom</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -1.098612 -1.504077 -1.909543</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
