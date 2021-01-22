@@ -4,7 +4,7 @@
 \alias{log_lik_bern}
 \title{Bernoulli Log-Likelihood}
 \usage{
-log_lik_bern(x, prob)
+log_lik_bern(x, prob = 0.5)
 }
 \arguments{
 \item{x}{A vector of 0s and 1s.}

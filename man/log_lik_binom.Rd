@@ -4,7 +4,7 @@
 \alias{log_lik_binom}
 \title{Binomial Log-Likelihood}
 \usage{
-log_lik_binom(x, size, prob)
+log_lik_binom(x, size = 1, prob = 0.5)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}

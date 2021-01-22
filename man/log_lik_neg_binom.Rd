@@ -4,7 +4,7 @@
 \alias{log_lik_neg_binom}
 \title{Negative Binomial Log-Likelihood}
 \usage{
-log_lik_neg_binom(x, lambda, theta)
+log_lik_neg_binom(x, lambda = 1, theta = 0)
 }
 \arguments{
 \item{x}{A vector of 0s and 1s.}

@@ -4,7 +4,7 @@
 \alias{log_lik_gamma_pois}
 \title{Gamma Poisson Log-Likelihood}
 \usage{
-log_lik_gamma_pois(x, lambda, theta)
+log_lik_gamma_pois(x, lambda = 1, theta = 0)
 }
 \arguments{
 \item{x}{A vector of 0s and 1s.}
