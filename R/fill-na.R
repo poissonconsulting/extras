@@ -1,6 +1,10 @@
 #' Fill Missing Values
 #'
-#' Fills an object's missing values while preserving the object's class.
+#' Fills all of an object's missing values
+#' while preserving the object's dimensionality and class.
+#'
+#' It should only be defined for objects with values of consistent class ie
+#' not standard data.frames.
 #'
 #' @inheritParams params
 #' @return The modified object.
