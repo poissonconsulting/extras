@@ -66,9 +66,15 @@ All attributes are removed except any names." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -149,10 +155,8 @@ All attributes are removed except any names.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>as_list_unnamed</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: `as_list_unnamed()` is deprecated as of lifecycle 0.1.1.</span>
-#&gt; <span class='warning'>Please use `as_list()` instead.</span>
-#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
-#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='output co'>#&gt; [[1]]
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `as_list_unnamed()` was deprecated in extras 0.1.1.</span>
+#&gt; <span class='warning'>Please use `as_list()` instead.</span></div><div class='output co'>#&gt; [[1]]
 #&gt; [1] 1
 #&gt; 
 #&gt; [[2]]
@@ -161,12 +165,13 @@ All attributes are removed except any names.</p>
 #&gt; [[3]]
 #&gt; [1] 3
 #&gt; </div><div class='input'><span class='fu'>as_list_unnamed</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span>, y <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $x
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `as_list_unnamed()` was deprecated in extras 0.1.1.</span>
+#&gt; <span class='warning'>Please use `as_list()` instead.</span></div><div class='output co'>#&gt; $x
 #&gt; [1] 1
 #&gt; 
 #&gt; $y
 #&gt; [1] 2
-#&gt; </div></span></pre>
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -178,11 +183,11 @@ All attributes are removed except any names.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Joe Thorley, Poisson Consulting.</p>
+  <p><p>Developed by Joe Thorley, Poisson Consulting.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -190,6 +195,8 @@ All attributes are removed except any names.</p>
 
   
 
+
+  
 
   </body>
 </html>
