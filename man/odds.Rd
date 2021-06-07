@@ -19,6 +19,8 @@ Calculates the odds for probabilities.
 odds(c(0, 0.5, 0.9, 1))
 }
 \seealso{
+\code{\link[=odds_ratio]{odds_ratio()}}
+
 Other translations: 
 \code{\link{fabs}()},
 \code{\link{ilogit}()},
