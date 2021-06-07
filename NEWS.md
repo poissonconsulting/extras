@@ -1,3 +1,12 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# extras 0.1.0.9012
+
+- Added `log_odds_ratio()`.
+- Added `odd_ratio()`.
+- Added `odds()` to calculate odds for probabilities.
+
+
 # extras 0.1.0.9011
 
 - Added `fabs()`.
