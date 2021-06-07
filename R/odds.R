@@ -23,11 +23,28 @@ odds <- function(x) {
 #' @param x2 A second numeric object of probabilities.
 #'
 #' @return A numeric object of the odds ratios.
-#' @seealso [odds()]
+#' @seealso [odds()] and [log_odds_ratio()]
 #' @export
 #'
 #' @examples
 #' odds_ratio(0.5, 0.75)
 odds_ratio <- function(x, x2) {
-  odds(x) / odds(x2)
+  exp(log_odds_ratio(x, x2))
+}
+
+#' Log-Odds Ratio
+#'
+#' Calculates the log odds ratio for two probabilities.
+#'
+#' @param x A numeric object (vector, matrix or array) of probabilities.
+#' @param x2 A second numeric object of probabilities.
+#'
+#' @return A numeric object of the log odds ratios.
+#' @seealso [odds_ratio()]
+#' @export
+#'
+#' @examples
+#' log_odds_ratio(0.5, 0.75)
+log_odds_ratio <- function(x, x2) {
+  log(odds(x)) - log(odds(x2))
 }
