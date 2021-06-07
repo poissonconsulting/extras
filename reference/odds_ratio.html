@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fill All Values — fill_all.logical • extras</title>
+<title>Odds Ratio — odds_ratio • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,10 @@
 
 
 
-<meta property="og:title" content="Fill All Values — fill_all.logical" />
-<meta property="og:description" content="Fills all of an object's (missing and non-missing) values
-while preserving the object's dimensionality and class." />
+<meta property="og:title" content="Odds Ratio — odds_ratio" />
+<meta property="og:description" content="Calculates the odds ratio for two probabilities." />
+
+
 
 
 
@@ -64,9 +65,15 @@ while preserving the object's dimensionality and class." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -80,19 +87,13 @@ while preserving the object's dimensionality and class." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9012</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -102,7 +103,7 @@ while preserving the object's dimensionality and class." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/poissonconsulting/extras/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -119,48 +120,43 @@ while preserving the object's dimensionality and class." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fill All Values</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/fill-all.R'><code>R/fill-all.R</code></a></small>
-    <div class="hidden name"><code>fill_all.logical.Rd</code></div>
+    <h1>Odds Ratio</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/odds.R'><code>R/odds.R</code></a></small>
+    <div class="hidden name"><code>odds_ratio.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Fills all of an object's (missing and non-missing) values
-while preserving the object's dimensionality and class.</p>
+    <p>Calculates the odds ratio for two probabilities.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for logical</span>
-<span class='fu'><a href='fill_all.html'>fill_all</a></span>(<span class='no'>x</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nas</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>odds_ratio</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>x2</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object.</p></td>
+      <td><p>A numeric object (vector, matrix or array) of probabilities.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>A scalar of the value to replace values with.</p></td>
-    </tr>
-    <tr>
-      <th>nas</th>
-      <td><p>A flag specifying whether to also fill missing values.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other arguments passed to methods.</p></td>
+      <th>x2</th>
+      <td><p>A second numeric object of probabilities.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The modified object.</p>
+    <p>A numeric object of the odds ratios.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other odds: 
+<code><a href='log_odds_ratio.html'>log_odds_ratio</a>()</code>,
+<code><a href='odds.html'>odds</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='fill_all.html'>fill_all</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>NA</span>, <span class='fl'>FALSE</span>))</div><div class='output co'>#&gt; [1] FALSE FALSE FALSE</div><div class='input'><span class='fu'><a href='fill_all.html'>fill_all</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>NA</span>, <span class='fl'>FALSE</span>, <span class='kw'>nas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))</div><div class='output co'>#&gt;                     nas 
-#&gt; FALSE FALSE FALSE FALSE </div><div class='input'><span class='fu'><a href='fill_all.html'>fill_all</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>NA</span>, <span class='fl'>FALSE</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>NA</span>))</div><div class='output co'>#&gt;                   value 
-#&gt; FALSE FALSE FALSE FALSE </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>odds_ratio</span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='fl'>0.75</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.3333333</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -172,11 +168,11 @@ while preserving the object's dimensionality and class.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Joe Thorley, Poisson Consulting.</p>
+  <p><p>Developed by Joe Thorley, Poisson Consulting.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -184,6 +180,8 @@ while preserving the object's dimensionality and class.</p>
 
   
 
+
+  
 
   </body>
 </html>
