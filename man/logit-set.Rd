@@ -33,7 +33,6 @@ Other translations:
 \code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit}()},
-\code{\link{odds}()},
 \code{\link{phi}()},
 \code{\link{pow}()}
 }

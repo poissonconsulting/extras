@@ -19,16 +19,8 @@ Calculates the odds for probabilities.
 odds(c(0, 0.5, 0.9, 1))
 }
 \seealso{
-\code{\link[=odds_ratio]{odds_ratio()}}
-
-Other translations: 
-\code{\link{fabs}()},
-\code{\link{ilogit}()},
-\code{\link{invlogit}()},
-\code{\link{log<-}()},
-\code{\link{logit<-}()},
-\code{\link{logit}()},
-\code{\link{phi}()},
-\code{\link{pow}()}
+Other odds: 
+\code{\link{log_odds_ratio}()},
+\code{\link{odds_ratio}()}
 }
-\concept{translations}
+\concept{odds}

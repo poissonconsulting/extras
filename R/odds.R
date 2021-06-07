@@ -4,8 +4,7 @@
 #'
 #' @param x A numeric object (vector, matrix or array) of probabilities.
 #' @return A numeric object of the the odds for each probability.
-#' @family translations
-#' @seealso [odds_ratio()]
+#' @family odds
 #' @export
 #' @examples
 #' odds(c(0, 0.5, 0.9, 1))
@@ -23,7 +22,7 @@ odds <- function(x) {
 #' @param x2 A second numeric object of probabilities.
 #'
 #' @return A numeric object of the odds ratios.
-#' @seealso [odds()] and [log_odds_ratio()]
+#' @family odds
 #' @export
 #'
 #' @examples
@@ -40,7 +39,7 @@ odds_ratio <- function(x, x2) {
 #' @param x2 A second numeric object of probabilities.
 #'
 #' @return A numeric object of the log odds ratios.
-#' @seealso [odds_ratio()]
+#' @family odds
 #' @export
 #'
 #' @examples

@@ -22,6 +22,22 @@ reference:
   - '`skewness`'
   - '`kurtosis`'
   - '`zeros`'
+- title: Conversion Functions
+  desc: Conversion functions
+  contents:
+  - '`odds`'
+  - '`fabs`'
+  - '`ilogit`'
+  - '`invlogit`'
+  - '`logit`'
+  - '`phi`'
+  - '`pow`'
+- title: Odds Functions
+  desc: Odds functions
+  contents:
+  - '`log_odds_ratio`'
+  - '`odds`'
+  - '`odds_ratio`'
 - title: Translations
   desc: Translations of BUGS/JAGS functions
   contents:

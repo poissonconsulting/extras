@@ -21,5 +21,8 @@ Calculates the log odds ratio for two probabilities.
 log_odds_ratio(0.5, 0.75)
 }
 \seealso{
-\code{\link[=odds_ratio]{odds_ratio()}}
+Other odds: 
+\code{\link{odds_ratio}()},
+\code{\link{odds}()}
 }
+\concept{odds}
