@@ -18,7 +18,7 @@ A numeric vector of surprisal values.
 \description{
 Calculates the surprisal (in bits) that a cumulative distribution function
 probability is at least that extreme.
-\ifelse{html}{\figure{lifecycle-deprecated.svg}{options: alt='Deprecated lifecycle'}}{\strong{Deprecated}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }
 \examples{
 sextreme(seq(0.1, 0.9, by = 0.1))
