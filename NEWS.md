@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# extras 0.2.0
+
+- Same as previous version.
+
+
 # extras 0.1.0.9012
 
 - Added `log_odds_ratio()`.
