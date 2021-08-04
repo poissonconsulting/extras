@@ -13,7 +13,7 @@
 #' Greenland, S. 2019. Valid P -Values Behave Exactly as They Should:
 #' Some Misleading Criticisms of P -Values and Their Resolution With S -Values.
 #' The American Statistician 73(sup1): 106–114.
-#' <https://doi.org/10.1080/00031305.2018.1529625>.
+#' \doi{10.1080/00031305.2018.1529625}.
 #' @export
 #' @examples
 #' svalue(as.numeric(0:100))

@@ -1,7 +1,12 @@
 ## Test environments
-* local R installation, R 4.0.2
-* ubuntu 16.04 (on travis-ci), R 4.0.2
-* win-builder (devel)
+
+release 4.1.0
+
+* OSX (local) - release
+* OSX (actions) - release
+* Ubuntu (actions) - 3.4 to 3.6, oldrel, release and devel
+* Windows (actions) - release
+* Windows (winbuilder) - devel
 
 ## R CMD check results
 

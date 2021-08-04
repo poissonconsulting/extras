@@ -2,91 +2,42 @@
 
 # extras 0.2.0
 
-- Same as previous version.
+## Added 
 
+### Functions
 
-# extras 0.1.0.9012
+- Added the following function families 
+  - `ran_xx()` (random samples)
+  - `log_lik_xx()` (log-likelihood) 
+  - `dev_xx()` (deviances)
+  - `res_xx()` (residuals) 
+  
+for the following distributions
+  - `_bern`, (Bernoulli), 
+  - `_binom` (binomial) 
+  - `_pois` (Poisson)
+  - `_norm` (normal)
+  - `_lnorm` (log-normal)
+  - `_gamma` (gamma)
+  - `_gamma_pois` (gamma-Poisson)
 
-- Added `log_odds_ratio()`.
-- Added `odd_ratio()`.
-- Added `odds()` to calculate odds for probabilities.
+- Added `odds()`, `odd_ratio()` and `log_odds_ratio()` to calculate odds, odds ratio and log odds ratio.
+- Added moments functions `xtr_mean()`, `xtr_sd()`, `variance()`, `skewness()` and `kurtosis()`.
+- Added `xtr_median()` to calculate the median.
+- Added `invlogit()` to calculate the inverse logistic transform.
+- Added `fabs()` to calculate the absolute value of x. Used in TMB
+as replacement for `abs()`.
+- Added `zeros()` function to sum number of 0 values in a numeric (or MCMC object).
 
+### Arguments
 
-# extras 0.1.0.9011
+- Added `threshold = 0` argument to `pvalue()` and `svalue()`.
+- Added `na_rm = FALSE` argument to `lower()`, `upper()`, `pvalue()`, `svalue()` and `zscore()`.
 
-- Added `fabs()`.
-- Added `invlogit()`.
-- Added `dev_neg_binom()` and `res_neg_binom()`.
-- Added `log_lik_neg_binom()` and `log_lik_gamma_pois()`.
-- Added random sample functions `ran_gamma_pois()` and `ran_neg_binom()`.
-
-# extras 0.1.0.9010
-
-- Internal changes only.
-
-
-# extras 0.1.0.9009
-
-- Renamed resample argument to simulate.
-- Added `xtr_sd()`.
-
-
-# extras 0.1.0.9008
+## Deprecated
 
 - Soft-deprecated `as_list_unnamed()` for `as_list()`.
 - Soft-deprecated `pextreme()` and `sextreme()`.
-- Fixed bug in `ran_gamma_pois()`.
-- Added tests for `ran_dist()` functions.
-- Fixed bug in `res_lnorm()` for raw residuals.
-- Added tests for `resample = TRUE` argument in `res_dist()` functions.
-- Added random sample functions `ran_pois()`, `ran_norm()`, `ran_lnorm()`, `ran_binom()`, `ran_bern()`, `ran_gamma()` and `ran_pois_gamma()`.
-- Added `resample = FALSE` argument to `res_dist()` functions.
-- Set default values for all `dev_dist()` functions.
-- Added `xtr_median()`.
-- Added `na_rm = FALSE` argument to `lower()`, `upper()`, `pvalue()`, `svalue()` and `zscore()`.
-- Added `threshold = 0` argument to `pvalue()` and `svalue()`.
-
-
-# extras 0.1.0.9007
-
-- Added moments functions `xtr_mean()`, `variance()`, `skewness()`, `kurtosis()`.
-- Added zeros() function to sum number of 0 values in a numeric or mcmc object.
-
-
-# extras 0.1.0.9006
-
-- Added `dev_gamma_pois()` and `res_gamma_pois()`.
-- Added `log_lik_bern()`, `log_lik_binom()`, `log_lik_pois()`, `log_lik_norm()` and `log_lik_lnorm()` to calculate log-likelihoods.
-
-
-# extras 0.1.0.9005
-
-- Renamed residual argument of dev_xx() functions to res.
-
-
-# extras 0.1.0.9004
-
-- Added `res_bern()`, `res_binom()`, `res_pois()`, `res_norm()` and `res_lnorm()` to calculate residuals.
-
-
-# extras 0.1.0.9003
-
-- Rename devxx() to dev_xx().
-
-
-# extras 0.1.0.9002
-
-- Added residual = FALSE argument to deviance functions.
-
-
-# extras 0.1.0.9001
-
-- Added `devbern()`, `devbinom()`, `devpois()`, `devnorm()` and `devlnorm()` to calculate deviance residuals.
-
-# extras 0.1.0.9000
-
-- Same as previous version.
-
 
 # extras 0.1.0
 
