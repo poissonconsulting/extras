@@ -13,7 +13,7 @@ res_gamma_pois(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE)
 
 \item{theta}{A non-negative numeric vector of the shape and rate.}
 
-\item{type}{A string of the residual type ('raw' or 'dev').}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }

@@ -13,7 +13,7 @@ res_lnorm(x, meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE)
 
 \item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
 
-\item{type}{A string of the residual type ('raw' or 'dev').}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }

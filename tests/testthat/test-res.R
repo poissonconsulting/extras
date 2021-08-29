@@ -14,6 +14,9 @@ test_that("res_pois", {
   expect_equal(res_pois(1:2, 2, simulate = TRUE), c(0.657868260861539, 0))
   set.seed(101)
   expect_equal(res_pois(1:2, 2, simulate = TRUE, type = "raw"), c(-1L, -2L))
+  expect_equal(res_pois(1:2, 2, type = "data"), 1:2)
+  set.seed(101)
+  expect_equal(res_pois(1:2, 2, simulate = TRUE, type = "data"), c(1L, 0L))
 })
 
 test_that("res_norm", {
@@ -33,6 +36,9 @@ test_that("res_norm", {
   expect_equal(res_norm(1:2, 2, simulate = TRUE), c(-0.954514737962565, 0.303150054202172))
   set.seed(101)
   expect_equal(res_norm(1:2, 2, simulate = TRUE, type = "raw"), c(-0.326036490515386, 0.552461855419138))
+  expect_equal(res_norm(1:2, 2, type = "data"), 1:2)
+  set.seed(101)
+  expect_equal(res_norm(1:2, 2, simulate = TRUE, type = "data"), c(1.67396350948461, 2.55246185541914))
 })
 
 test_that("res_lnorm", {
@@ -56,6 +62,9 @@ test_that("res_lnorm", {
   expect_equal(res_lnorm(1:2, 2, simulate = TRUE), c(-0.954514737962565, 0.303150054202172))
   set.seed(101)
   expect_equal(res_lnorm(1:2, 2, simulate = TRUE, type = "raw"), c(-2.05579169361621, 5.44961576366372))
+  expect_equal(res_lnorm(1:2, 2, type = "data"), 1:2)
+  set.seed(101)
+  expect_equal(res_lnorm(1:2, 2, simulate = TRUE, type = "data"), c(5.33326440531444, 12.8386718625944))
 })
 
 test_that("res_binom", {
@@ -81,6 +90,9 @@ test_that("res_binom", {
   expect_equal(res_lnorm(1:2, 2, simulate = TRUE), c(0.781299048627549, -0.954514737962565))
   set.seed(101)
   expect_equal(res_binom(1:2, simulate = TRUE, type = "raw"), c(-0.5, -0.5))
+  expect_equal(res_binom(1:2, 2, type = "data"), 1:2)
+  set.seed(101)
+  expect_equal(res_binom(1:2, 2, simulate = TRUE, type = "data"), 1:0)
 })
 
 test_that("res_bern", {
@@ -107,6 +119,9 @@ test_that("res_bern", {
   expect_equal(res_bern(1:2, simulate = TRUE), c(1.17741002251547, 1.17741002251547))
   set.seed(101)
   expect_equal(res_bern(1:2, simulate = TRUE, type = "raw"), c(-0.5, -0.5))
+  expect_equal(res_bern(1:2, type = "data"), 1:2)
+  set.seed(101)
+  expect_equal(res_bern(0:1, simulate = TRUE, type = "data"), c(0L, 0L))
 })
 
 test_that("res_gamma_pois", {
@@ -127,6 +142,9 @@ test_that("res_gamma_pois", {
   expect_equal(res_gamma_pois(1:2, 2, 2, simulate = TRUE), c(0.699911676381084, -0.382338214383655))
   set.seed(101)
   expect_identical(res_gamma_pois(1:2, 2, 2, simulate = TRUE, type = "raw"), c(-1, 2))
+  expect_equal(res_gamma_pois(1:2, 2, type = "data"), 1:2)
+  set.seed(101)
+  expect_equal(res_gamma_pois(1:2, 2, simulate = TRUE, type = "data"), 2:1)
 })
 
 test_that("res_neg_binom", {
@@ -147,4 +165,7 @@ test_that("res_neg_binom", {
   expect_equal(res_neg_binom(1:2, 2, 2, simulate = TRUE), c(0.699911676381084, -0.382338214383655))
   set.seed(101)
   expect_identical(res_neg_binom(1:2, 2, 2, simulate = TRUE, type = "raw"), c(-1, 2))
+  expect_equal(res_neg_binom(1:2, 2, type = "data"), 1:2)
+  set.seed(101)
+  expect_equal(res_neg_binom(1:2, 2, simulate = TRUE, type = "data"), 2:1)
 })

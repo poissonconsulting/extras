@@ -21,7 +21,7 @@
 #' @param theta A non-negative numeric vector of the shape and rate.
 #' @param shape A non-negative numeric vector of shape.
 #' @param rate A non-negative numeric vector of rate.
-#' @param type A string of the residual type ('raw' or 'dev').
+#' @param type A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.
 #' @param na_rm A flag specifying whether to remove missing values.
 #' @param threshold A number of the threshold value.
 #' @param simulate A flag specifying whether to simulate residuals.

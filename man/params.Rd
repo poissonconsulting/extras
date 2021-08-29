@@ -42,7 +42,7 @@ should be returned as negative values.}
 
 \item{rate}{A non-negative numeric vector of rate.}
 
-\item{type}{A string of the residual type ('raw' or 'dev').}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 

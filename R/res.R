@@ -15,9 +15,10 @@ res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
     x <- ran_pois(length(x), lambda = lambda)
   }
   switch(type,
+         data = x,
          raw = x - lambda,
          dev = dev_pois(x, lambda, res = TRUE),
-         chk_subset(x, c("raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev")))
 }
 
 #' Normal Residuals
@@ -37,9 +38,10 @@ res_norm <- function(x,  mean = 0, sd = 1, type = "dev", simulate = FALSE) {
     x <- ran_norm(length(x), mean = mean, sd = sd)
   }
   switch(type,
+         data = x,
          raw = x - mean,
          dev = dev_norm(x, mean = mean, sd = sd, res = TRUE),
-         chk_subset(x, c("raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev")))
 }
 
 #' Log-Normal Residuals
@@ -59,9 +61,10 @@ res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE
     x <- ran_lnorm(length(x), meanlog = meanlog, sdlog = sdlog)
   }
   switch(type,
+         data = x,
          raw = x - exp(meanlog),
          dev = dev_lnorm(x, meanlog = meanlog, sdlog = sdlog, res = TRUE),
-         chk_subset(x, c("raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev")))
 }
 
 #' Binomial Residuals
@@ -81,9 +84,10 @@ res_binom <- function(x, size = 1, prob = 0.5, type = "dev", simulate = FALSE) {
     x <- ran_binom(length(x), size = size, prob = prob)
   }
   switch(type,
+         data = x,
          raw = x - size * prob,
          dev = dev_binom(x, size = size, prob = prob, res = TRUE),
-         chk_subset(x, c("raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev")))
 }
 
 #' Bernoulli Residuals
@@ -103,9 +107,10 @@ res_bern <- function(x, prob = 0.5, type = "dev", simulate = FALSE) {
     x <- ran_bern(length(x), prob = prob)
   }
   switch(type,
+         data = x,
          raw = x - prob,
          dev = dev_bern(x, prob = prob, res = TRUE),
-         chk_subset(x, c("raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev")))
 }
 
 #' Gamma Poisson Residuals
@@ -125,9 +130,10 @@ res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FA
     x <- ran_gamma_pois(length(x), lambda = lambda, theta = theta)
   }
   switch(type,
+         data = x,
          raw = x - lambda,
          dev = dev_gamma_pois(x, lambda = lambda, theta = theta, res = TRUE),
-         chk_subset(x, c("raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev")))
 }
 
 #' Negative Binomial Residuals
@@ -147,8 +153,8 @@ res_neg_binom <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FAL
     x <- ran_neg_binom(length(x), lambda = lambda, theta = theta)
   }
   switch(type,
+         data = x,
          raw = x - lambda,
          dev = dev_neg_binom(x, lambda = lambda, theta = theta, res = TRUE),
-         chk_subset(x, c("raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev")))
 }
-
