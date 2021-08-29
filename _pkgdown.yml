@@ -77,6 +77,7 @@ reference:
   - '`res_lnorm`'
   - '`res_norm`'
   - '`res_pois`'
+  - '`res_pois_zi`'
   - '`res_neg_binom`'
   - '`res_gamma_pois`'
 - title: Log-Likelihood
@@ -99,6 +100,7 @@ reference:
   - '`ran_lnorm`'
   - '`ran_norm`'
   - '`ran_pois`'
+  - '`ran_pois_zi`'
   - '`ran_neg_binom`'
 - title: Miscellaneous
   desc: Miscellaneous functions
