@@ -10,6 +10,20 @@ test_that("ran_pois", {
   expect_identical(ran_pois(1, c(0.1,100)), 0L)
 })
 
+test_that("ran_pois_zi", {
+  expect_error(ran_pois_zi(NA_integer_))
+  expect_error(ran_pois_zi(integer(0)))
+  expect_identical(ran_pois_zi(0L), integer(0))
+  set.seed(101)
+  expect_identical(ran_pois_zi(), 1L)
+  expect_identical(ran_pois_zi(2), c(0L, 1L))
+  expect_identical(ran_pois_zi(2, 10), c(11L, 8L))
+  expect_identical(ran_pois_zi(2, c(0.1,100)), c(0L, 103L))
+  expect_identical(ran_pois_zi(1, c(0.1,100)), 0L)
+  set.seed(101)
+  expect_identical(ran_pois_zi(10, 10, 0.5), c(0L, 11L, 7L, 8L, 0L, 0L, 0L, 10L, 0L, 0L))
+})
+
 test_that("ran_norm", {
   expect_error(ran_norm(NA_integer_))
   expect_error(ran_norm(integer(0)))

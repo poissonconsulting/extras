@@ -28,6 +28,23 @@ dev_pois <- function(x, lambda, res = FALSE) {
   impl_dev(x, lambda, dev)
 }
 
+dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
+  .NotYetImplemented()
+  dev <- x * log(x/lambda) - (x - lambda) # fix here
+  zero <- !is.na(x) & x == 0
+  if(any(zero)) {
+    if(length(lambda) == 1) {
+      lambda <- rep(lambda, length(x))
+    }
+    dev[zero] <- lambda[zero] # fix here
+  }
+  dev <- pmax(dev, 0)
+  dev <- dev * 2
+  if(vld_false(res)) return(dev)
+  impl_dev(x, lambda * (1 - prob), dev)
+}
+
+
 #' Normal Deviances
 #'
 #' @inheritParams params

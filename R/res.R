@@ -158,3 +158,26 @@ res_neg_binom <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FAL
          dev = dev_neg_binom(x, lambda = lambda, theta = theta, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
+
+#' Poisson Residuals
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_pois_zi(c(1,3.5,4), 6, 0.5, type = "raw")
+res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    x <- ran_pois_zi(length(x), lambda = lambda, prob = prob)
+  }
+  switch(type,
+         data = x,
+         raw = x - lambda * (1 - prob),
+         dev = dev_pois_zi(x, lambda, prob = prob, res = TRUE),
+         chk_subset(x, c("data", "raw", "dev")))
+}

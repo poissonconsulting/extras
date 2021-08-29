@@ -13,6 +13,19 @@ ran_pois <- function(n = 1, lambda = 1) {
   stats::rpois(n, lambda = lambda)
 }
 
+#' Zero-Inflated Poisson Random Samples
+#'
+#' @inheritParams params
+#' @return An numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_pois_zi(10, prob = 0.5)
+ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
+  stats::rpois(n, lambda = lambda) * ran_bern(n, prob = 1 - prob)
+}
+
 #' Normal Random Samples
 #'
 #' @inheritParams params

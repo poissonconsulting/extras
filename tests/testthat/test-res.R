@@ -19,6 +19,30 @@ test_that("res_pois", {
   expect_equal(res_pois(1:2, 2, simulate = TRUE, type = "data"), c(1L, 0L))
 })
 
+test_that("res_pois_zi", {
+  # expect_identical(res_pois_zi(integer(0), integer(0)), numeric(0))
+  # expect_identical(res_pois_zi(1, 1), 0)
+  # expect_equal(res_pois_zi(0, 1), -1.4142135623731)
+  # expect_identical(res_pois_zi(NA, 1), NA_real_)
+  # expect_identical(res_pois_zi(1, NA), NA_real_)
+  expect_error(res_pois_zi(1, 3, type = "unknown"))
+  expect_equal(res_pois_zi(1, 3, type = "raw"), -2)
+#  expect_equal(res_pois_zi(1, 3), dev_pois(1, 3, res = TRUE))
+  expect_equal(res_pois_zi(c(1,3.5,4), 3, type = "raw"),
+               c(-2, 0.5, 1))
+  set.seed(101)
+  expect_equal(res_pois_zi(1:2, 2, simulate = TRUE, type = "raw"), c(-1L, -2L))
+#  expect_equal(res_pois_zi(1:2, 2, simulate = TRUE), c(0.657868260861539, 0))
+  set.seed(101)
+  expect_equal(res_pois_zi(1:2, 2, simulate = TRUE, type = "raw"), c(-1L, -2L))
+  expect_equal(res_pois_zi(1:2, 2, type = "data"), 1:2)
+  set.seed(101)
+  expect_equal(res_pois_zi(1:2, 2, simulate = TRUE, type = "data"), c(1L, 0L))
+  set.seed(101)
+  expect_equal(res_pois_zi(1:10, 10, 0.5, simulate = TRUE, type = "data"),
+               c(0L, 11L, 7L, 8L, 0L, 0L, 0L, 10L, 0L, 0L))
+})
+
 test_that("res_norm", {
   expect_identical(res_norm(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(res_norm(0), 0)

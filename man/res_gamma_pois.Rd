@@ -33,6 +33,7 @@ Other res_dist:
 \code{\link{res_lnorm}()},
 \code{\link{res_neg_binom}()},
 \code{\link{res_norm}()},
+\code{\link{res_pois_zi}()},
 \code{\link{res_pois}()}
 }
 \concept{res_dist}
