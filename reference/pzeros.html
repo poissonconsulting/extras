@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log Transformation — log&lt;- • extras</title>
+<title>Proportion of Zeros — pzeros • extras</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Log Transformation — log&lt;-" />
-<meta property="og:description" content="Replaces a object with the exponent of value." />
+<meta property="og:title" content="Proportion of Zeros — pzeros" />
+<meta property="og:description" content="The proportion of zeros in an numeric object." />
 
 
 
@@ -120,52 +120,52 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log Transformation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/log.R'><code>R/log.R</code></a></small>
-    <div class="hidden name"><code>log-set.Rd</code></div>
+    <h1>Proportion of Zeros</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poissonconsulting/extras/blob/master/R/pzeros.R'><code>R/pzeros.R</code></a></small>
+    <div class="hidden name"><code>pzeros.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Replaces a object with the exponent of value.</p>
+    <p>The proportion of zeros in an numeric object.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>pzeros</span><span class='op'>(</span><span class='va'>x</span>, na_rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An existing R object.</p></td>
+      <td><p>A numeric object of MCMC values.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>A numeric atomic object.</p></td>
+      <th>na_rm</th>
+      <td><p>A flag specifying whether to remove missing values.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Called for the side effect of updating <code>x</code>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>A wrapper on <code><a href='https://rdrr.io/r/base/Log.html'>exp</a></code><code>(value)</code>.</p>
+    <p>A number between 0 and 1.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other translations: 
-<code><a href='fabs.html'>fabs</a>()</code>,
-<code><a href='ilogit.html'>ilogit</a>()</code>,
-<code><a href='invlogit.html'>invlogit</a>()</code>,
-<code>logit&lt;-()</code>,
-<code><a href='logit.html'>logit</a>()</code>,
-<code><a href='phi.html'>phi</a>()</code>,
-<code><a href='pow.html'>pow</a>()</code></p></div>
+    <div class='dont-index'><p>Other summary: 
+<code><a href='kurtosis.html'>kurtosis</a>()</code>,
+<code><a href='lower.html'>lower</a>()</code>,
+<code><a href='pvalue.html'>pvalue</a>()</code>,
+<code><a href='skewness.html'>skewness</a>()</code>,
+<code><a href='svalue.html'>svalue</a>()</code>,
+<code><a href='upper.html'>upper</a>()</code>,
+<code><a href='variance.html'>variance</a>()</code>,
+<code><a href='xtr_mean.html'>xtr_mean</a>()</code>,
+<code><a href='xtr_median.html'>xtr_median</a>()</code>,
+<code><a href='xtr_sd.html'>xtr_sd</a>()</code>,
+<code><a href='zeros.html'>zeros</a>()</code>,
+<code><a href='zscore.html'>zscore</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fl'>0.5</span></span>
-<span class='r-in'><span class='va'>x</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 1.648721</span>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>pzeros</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.3333333</span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
