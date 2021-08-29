@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# extras 0.2.0.9001
+
+- res_xx() returns data if `type = 'data'`.
+
+
 # extras 0.2.0.9000
 
 - Same as previous version.
