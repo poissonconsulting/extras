@@ -13,6 +13,25 @@ log_lik_pois <- function(x, lambda = 1) {
   dpois(x, lambda, log = TRUE)
 }
 
+#' Zero-Inflated Poisson Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_pois_zi(c(1,3.5,4), 3, prob = 0.5)
+log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
+  lpois <- dpois(x, lambda = lambda)
+  lpois <- lpois * (1 - prob)
+  zero <- x == 0
+  lpois[zero] <- lpois[zero] + prob
+  log(lpois)
+}
+
 #' Normal Log-Likelihood
 #'
 #' @inheritParams params

@@ -2,6 +2,14 @@ test_that("log_lik_pois", {
   expect_identical(log_lik_pois(1, 2), dpois(1, 2, log = TRUE))
 })
 
+test_that("log_lik_pois_zi", {
+  expect_identical(log_lik_pois_zi(1, 2), dpois(1, 2, log = TRUE))
+  expect_identical(log_lik_pois_zi(0, 2), dpois(0, 2, log = TRUE))
+  expect_identical(log_lik_pois_zi(0, 2, 1), 0)
+  expect_identical(log_lik_pois_zi(1, 2, 1), -Inf)
+  expect_equal(log_lik_pois_zi(c(0, 2), 2, 0.5), c(-0.566219169516973, -2))
+})
+
 test_that("log_lik_norm", {
   expect_identical(log_lik_norm(1, 2), dnorm(1, 2, log = TRUE))
 })
