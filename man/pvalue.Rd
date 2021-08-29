@@ -34,6 +34,7 @@ Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/de/projekt
 Other summary: 
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
+\code{\link{pzeros}()},
 \code{\link{skewness}()},
 \code{\link{svalue}()},
 \code{\link{upper}()},

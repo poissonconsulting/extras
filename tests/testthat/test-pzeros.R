@@ -1,0 +1,10 @@
+test_that("pzeros", {
+  expect_identical(pzeros(NA_integer_), NA_real_)
+  expect_identical(pzeros(integer(0)), NaN)
+  expect_identical(pzeros(1), 0)
+  expect_identical(pzeros(c(1, 1)), 0)
+  expect_identical(pzeros(c(0, 0)), 1)
+  expect_identical(pzeros(c(0, 1)), 0.5)
+  expect_identical(pzeros(c(0, NA_real_)), NA_real_)
+  expect_identical(pzeros(c(0, NA_real_), na_rm = TRUE), 1)
+})

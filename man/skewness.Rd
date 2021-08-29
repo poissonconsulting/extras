@@ -25,6 +25,7 @@ Other summary:
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
 \code{\link{pvalue}()},
+\code{\link{pzeros}()},
 \code{\link{svalue}()},
 \code{\link{upper}()},
 \code{\link{variance}()},

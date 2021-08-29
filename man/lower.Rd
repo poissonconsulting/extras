@@ -31,6 +31,7 @@ lower(as.numeric(0:100))
 Other summary: 
 \code{\link{kurtosis}()},
 \code{\link{pvalue}()},
+\code{\link{pzeros}()},
 \code{\link{skewness}()},
 \code{\link{svalue}()},
 \code{\link{upper}()},

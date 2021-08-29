@@ -24,6 +24,7 @@ kurtosis(1:10)
 Other summary: 
 \code{\link{lower}()},
 \code{\link{pvalue}()},
+\code{\link{pzeros}()},
 \code{\link{skewness}()},
 \code{\link{svalue}()},
 \code{\link{upper}()},

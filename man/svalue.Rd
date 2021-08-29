@@ -35,6 +35,7 @@ Other summary:
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
 \code{\link{pvalue}()},
+\code{\link{pzeros}()},
 \code{\link{skewness}()},
 \code{\link{upper}()},
 \code{\link{variance}()},
