@@ -22,6 +22,7 @@ reference:
   - '`skewness`'
   - '`kurtosis`'
   - '`zeros`'
+  - '`pzeros`'
 - title: Conversion Functions
   desc: Conversion functions
   contents:
