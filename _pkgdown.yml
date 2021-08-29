@@ -64,32 +64,33 @@ reference:
   contents:
   - '`dev_bern`'
   - '`dev_binom`'
+  - '`dev_gamma_pois`'
   - '`dev_lnorm`'
+  - '`dev_neg_binom`'
   - '`dev_norm`'
   - '`dev_pois`'
-  - '`dev_gamma_pois`'
-  - '`dev_neg_binom`'
 - title: Residual
   desc: Raw and Deviance Residuals
   contents:
   - '`res_bern`'
   - '`res_binom`'
+  - '`res_gamma_pois`'
   - '`res_lnorm`'
+  - '`res_neg_binom`'
   - '`res_norm`'
   - '`res_pois`'
   - '`res_pois_zi`'
-  - '`res_neg_binom`'
-  - '`res_gamma_pois`'
 - title: Log-Likelihood
   desc: Log-likelihood functions
   contents:
   - '`log_lik_bern`'
   - '`log_lik_binom`'
+  - '`log_lik_gamma_pois`'
   - '`log_lik_lnorm`'
+  - '`log_lik_neg_binom`'
   - '`log_lik_norm`'
   - '`log_lik_pois`'
-  - '`log_lik_gamma_pois`'
-  - '`log_lik_neg_binom`'
+  - '`log_lik_pois_zi`'
 - title: Random
   desc: Random sample functions
   contents:
@@ -98,10 +99,10 @@ reference:
   - '`ran_gamma`'
   - '`ran_gamma_pois`'
   - '`ran_lnorm`'
+  - '`ran_neg_binom`'
   - '`ran_norm`'
   - '`ran_pois`'
   - '`ran_pois_zi`'
-  - '`ran_neg_binom`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:
