@@ -44,7 +44,6 @@ dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
   impl_dev(x, lambda * (1 - prob), dev)
 }
 
-
 #' Normal Deviances
 #'
 #' @inheritParams params
@@ -58,7 +57,6 @@ dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
 #' dev_norm(c(-2:2))
 dev_norm <- function(x, mean = 0, sd = 1, res = FALSE) {
   dev <- (x - mean)^2/sd^2
-  dev <- dev * 2
   if(vld_false(res)) return(dev)
   impl_dev(x, mean, dev)
 }

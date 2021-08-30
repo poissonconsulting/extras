@@ -1,4 +1,8 @@
 test_that("dev_pois", {
+  expect_identical(dev_pois(1,2),
+                   2 * (log_lik_pois(1, 1) - log_lik_pois(1, 2)))
+  expect_equal(dev_pois(3,2),
+                   2 * (log_lik_pois(3, 3) - log_lik_pois(3, 2)))
   expect_identical(dev_pois(integer(0), integer(0)), numeric(0))
   expect_identical(dev_pois(1, 1), 0)
   expect_identical(dev_pois(0, 0), 0)
@@ -13,23 +17,26 @@ test_that("dev_pois", {
 })
 
 test_that("dev_norm", {
+  expect_equal(dev_norm(3,4,5),
+                   2 * (log_lik_norm(3, 3, 5) - log_lik_norm(3, 4, 5)))
   expect_identical(dev_norm(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(dev_norm(0), 0)
   expect_identical(dev_norm(NA, 1, 1), NA_real_)
   expect_identical(dev_norm(1, NA, 1), NA_real_)
   expect_identical(dev_norm(1, 1, NA), NA_real_)
   expect_equal(dev_norm(-2), dev_norm(-2, res = TRUE)^2)
-  expect_equal(dev_norm(-2:2, res = TRUE), c(-2.82842712474619, -1.4142135623731, 0, 1.4142135623731, 2.82842712474619
-  ))
+  expect_equal(dev_norm(-2:2, res = TRUE), c(-2, -1, 0, 1, 2))
   expect_equal(dev_norm(-2:2, sd = 2, res = TRUE), dev_norm(-2:2, res = TRUE)/2)
   expect_equal(dev_norm(-2:2, sd = 1/2, res = TRUE), dev_norm(-2:2, res = TRUE) * 2)
   expect_equal(dev_norm(-2:2, mean = -2:2, res = TRUE), rep(0, 5))
   expect_equal(dev_norm(-2:2, mean = -1:3, sd = 1:5, res = TRUE),
-               c(-1.4142135623731, -0.707106781186548, -0.471404520791032, -0.353553390593274,
-                 -0.282842712474619))
+               c(-1, -0.5, -0.333333333333333, -0.25, -0.2))
 })
 
 test_that("dev_lnorm", {
+  expect_equal(dev_lnorm(3,4,5),
+               2 * (log_lik_lnorm(3, log(3), 5) - log_lik_lnorm(3, 4, 5)))
+
   expect_identical(dev_lnorm(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(dev_lnorm(exp(0)), 0)
   expect_identical(dev_lnorm(1), 0)
@@ -40,14 +47,12 @@ test_that("dev_lnorm", {
   expect_identical(dev_lnorm(1, NA, 1), NA_real_)
   expect_identical(dev_lnorm(1, 1, NA), NA_real_)
   expect_equal(dev_lnorm(-2), dev_lnorm(-2, res = TRUE)^2)
-  expect_equal(dev_lnorm(exp(-2:2), res = TRUE), c(-2.82842712474619, -1.4142135623731, 0, 1.4142135623731, 2.82842712474619
-  ))
+  expect_equal(dev_lnorm(exp(-2:2), res = TRUE), c(-2, -1, 0, 1, 2))
   expect_equal(dev_lnorm(exp(-2:2), sdlog = 2, res = TRUE), dev_norm(-2:2, res = TRUE)/2)
   expect_equal(dev_lnorm(exp(-2:2), sdlog = 1/2, res = TRUE), dev_norm(-2:2, res = TRUE) * 2)
   expect_equal(dev_lnorm(exp(-2:2), meanlog = -2:2), rep(0, 5))
   expect_equal(dev_lnorm(exp(-2:2), meanlog = -1:3, sdlog = 1:5, res = TRUE),
-               c(-1.4142135623731, -0.707106781186548, -0.471404520791032, -0.353553390593274,
-                 -0.282842712474619))
+               c(-1, -0.5, -0.333333333333333, -0.25, -0.2))
 })
 
 test_that("dev_binom", {
