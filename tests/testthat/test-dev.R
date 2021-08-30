@@ -29,6 +29,10 @@ test_that("dev_pois_zi", {
                2 * (log_lik_pois_zi(0, 0, 1) - log_lik_pois_zi(0, 2, 1)))
   expect_equal(dev_pois_zi(0,2,0.5),
                2 * (log_lik_pois_zi(0, 0, 0.5) - log_lik_pois_zi(0, 2, 0.5)))
+  expect_equal(dev_pois_zi(0,0),
+               2 * (log_lik_pois_zi(0, 0) - log_lik_pois_zi(0, 0)))
+  expect_equal(dev_pois_zi(1,0,1),
+               2 * (log_lik_pois_zi(0, 0, 1) - log_lik_pois_zi(1, 0, 1)))
   expect_identical(dev_pois_zi(integer(0), integer(0), numeric(0)), numeric(0))
   expect_identical(dev_pois_zi(1, 1), 0)
   expect_identical(dev_pois_zi(0, 0), 0)
