@@ -1,6 +1,6 @@
 Package: extras
 Title: Helper Functions for Bayesian Analyses
-Version: 0.2.0.9001
+Version: 0.2.0.9002
 Authors@R: 
     c(person(given = "Joe",
              family = "Thorley",

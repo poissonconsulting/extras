@@ -1,9 +1,15 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# extras 0.2.0.9002
+
+- Added `ran_pois_zi()`, `log_lik_pois_zi()`, `res_pois_zi()` and `dev_pois_zi()`.
+- Added `pzeros()` to calculate proportion of zeros in a numeric object.
+
+- Fixed normal and log-normal deviances which were out by a factor of 2 and 1.41 respectively.
+
 # extras 0.2.0.9001
 
-- res_xx() returns data if `type = 'data'`.
-
+- `res_xx()` functions return data (actual or simulated) if `type = 'data'`.
 
 # extras 0.2.0.9000
 
