@@ -69,6 +69,7 @@ reference:
   - '`dev_neg_binom`'
   - '`dev_norm`'
   - '`dev_pois`'
+  - '`dev_pois_zi`'
 - title: Residual
   desc: Raw and Deviance Residuals
   contents:

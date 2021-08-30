@@ -29,6 +29,7 @@ Other dev_dist:
 \code{\link{dev_lnorm}()},
 \code{\link{dev_neg_binom}()},
 \code{\link{dev_norm}()},
+\code{\link{dev_pois_zi}()},
 \code{\link{dev_pois}()}
 }
 \concept{dev_dist}
