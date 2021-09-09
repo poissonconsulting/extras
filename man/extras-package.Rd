@@ -6,6 +6,8 @@
 \alias{extras-package}
 \title{extras: Helper Functions for Bayesian Analyses}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Functions to 'numericise' 'R' objects (coerce to numeric
     objects), summarise 'MCMC' (Monte Carlo Markov Chain) samples and
     calculate deviance residuals as well as 'R' translations of 'BUGS'
