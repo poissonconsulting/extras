@@ -124,6 +124,9 @@
     <loc>/reference/log_odds_ratio.html</loc>
   </url>
   <url>
+    <loc>/reference/log_odds_ratio2.html</loc>
+  </url>
+  <url>
     <loc>/reference/logit-set.html</loc>
   </url>
   <url>
@@ -142,6 +145,9 @@
     <loc>/reference/odds_ratio.html</loc>
   </url>
   <url>
+    <loc>/reference/odds_ratio2.html</loc>
+  </url>
+  <url>
     <loc>/reference/par_pattern.html</loc>
   </url>
   <url>
@@ -155,6 +161,18 @@
   </url>
   <url>
     <loc>/reference/pow.html</loc>
+  </url>
+  <url>
+    <loc>/reference/proportional_change.html</loc>
+  </url>
+  <url>
+    <loc>/reference/proportional_change2.html</loc>
+  </url>
+  <url>
+    <loc>/reference/proportional_difference.html</loc>
+  </url>
+  <url>
+    <loc>/reference/proportional_difference2.html</loc>
   </url>
   <url>
     <loc>/reference/pvalue.html</loc>
