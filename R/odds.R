@@ -47,3 +47,39 @@ odds_ratio <- function(x, x2) {
 log_odds_ratio <- function(x, x2) {
   log(odds(x)) - log(odds(x2))
 }
+
+#' Odds Ratio2
+#'
+#' Calculates the odds ratio for a vector of two probabilities.
+#'
+#' @param x A numeric vector of length 2.
+#' @return A number.
+#' @family odds, fun2
+#' @export
+#' @examples
+#' odds_ratio2(c(0.5,0.9))
+#' odds_ratio2(c(0.9,0.5))
+odds_ratio2 <- function(x) {
+  chk_vector(x)
+  chk_length(x, 2L)
+
+  odds_ratio(x[1], x[2])
+}
+
+#' Log Odds Ratio2
+#'
+#' Calculates the log odds ratio for a vector of two probabilities.
+#'
+#' @param x A numeric vector of length 2.
+#' @return A number.
+#' @family odds, fun2
+#' @export
+#' @examples
+#' log_odds_ratio2(c(0.5,0.9))
+#' log_odds_ratio2(c(0.9,0.5))
+log_odds_ratio2 <- function(x) {
+  chk_vector(x)
+  chk_length(x, 2L)
+
+  log_odds_ratio(x[1], x[2])
+}
