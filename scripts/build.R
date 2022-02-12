@@ -6,6 +6,6 @@ devtools::test()
 devtools::document()
 
 rmarkdown::render("README.Rmd", output_format = "md_document")
-pkgdown::build_site()
+pkgdown::build_home()
 
 devtools::check()

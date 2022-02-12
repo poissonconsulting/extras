@@ -1,5 +1,5 @@
 test_that("pextreme", {
-  rlang::scoped_options(lifecycle_verbosity = "quiet")
+  rlang::local_options(lifecycle_verbosity = "quiet")
   expect_identical(pextreme(numeric(0)), numeric(0))
   expect_identical(pextreme(NA_real_), NA_real_)
   expect_identical(pextreme(0.5), 1)

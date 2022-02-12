@@ -36,9 +36,18 @@ reference:
 - title: Odds Functions
   desc: Odds functions
   contents:
-  - '`log_odds_ratio`'
   - '`odds`'
   - '`odds_ratio`'
+  - '`odds_ratio2`'
+  - '`log_odds_ratio`'
+  - '`log_odds_ratio2`'
+- title: Proportional Functions
+  desc: Proportional functions
+  contents:
+  - '`proportional_change`'
+  - '`proportional_change2`'
+  - '`proportional_difference`'
+  - '`proportional_difference2`'
 - title: Translations
   desc: Translations of BUGS/JAGS functions
   contents:
