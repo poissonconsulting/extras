@@ -17,7 +17,7 @@ Calculates the percent change for a vector of two non-negative numbers.
 }
 \examples{
 percent_change2(c(1, 2))
-percent_change(c(2, 1))
+percent_change2(c(2, 1))
 }
 \seealso{
 Other percent, fun2: 

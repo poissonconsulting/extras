@@ -13,13 +13,7 @@
 #' percent_change(1, 2)
 #' percent_change(2, 1)
 percent_change <- function(x, x2) {
-  chk_numeric(x)
-  chk_gte(x)
-
-  chk_numeric(x2)
-  chk_gte(x2)
-
-  (x - x2) / x
+  proportional_change(x, x2) * 100
 }
 
 #' Percent Difference
@@ -37,13 +31,7 @@ percent_change <- function(x, x2) {
 #' percent_difference(1, 2)
 #' percent_difference(2, 1)
 percent_difference <- function(x, x2) {
-  chk_numeric(x)
-  chk_gte(x)
-
-  chk_numeric(x2)
-  chk_gte(x2)
-
-  (x - x2) / (x + x2) * 0.5
+  proportional_difference(x, x2) * 100
 }
 
 #' Percent Change2
@@ -56,12 +44,9 @@ percent_difference <- function(x, x2) {
 #' @export
 #' @examples
 #' percent_change2(c(1, 2))
-#' percent_change(c(2, 1))
+#' percent_change2(c(2, 1))
 percent_change2 <- function(x) {
-  chk_vector(x)
-  chk_length(x, 2L)
-
-  percent_change(x[1], x[2])
+  proportional_change2(x) * 100
 }
 
 #' Percent Difference2
@@ -76,8 +61,5 @@ percent_change2 <- function(x) {
 #' percent_difference2(c(1, 2))
 #' percent_difference2(c(2, 1))
 percent_difference2 <- function(x) {
-  chk_vector(x)
-  chk_length(x, 2L)
-
-  percent_difference(x[1], x[2])
+  proportional_difference2(x) * 100
 }

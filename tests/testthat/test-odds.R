@@ -98,3 +98,13 @@ test_that("log_odds_ratio works matrix", {
 test_that("log_odds_ratio works array", {
   expect_equal(log_odds_ratio(array(0.9), array(0.9)), array(0))
 })
+
+test_that("odds_ratio2 works", {
+  expect_equal(odds_ratio2(c(0.1, 0.5)), 1/9)
+  expect_equal(odds_ratio2(c(0.5, 0.1)), 9)
+})
+
+test_that("log_odds_ratio2 works", {
+  expect_equal(log_odds_ratio2(c(0.1, 0.5)), log(1/9))
+  expect_equal(log_odds_ratio2(c(0.5, 0.1)), log(9))
+})
