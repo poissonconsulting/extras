@@ -16,3 +16,21 @@
 `log<-` <- function(x, value) {
   exp(value)
 }
+
+#' Log Transformation
+#'
+#' Inverse log transforms a numeric atomic object.
+#'
+#' @details A wrapper on [`exp`]`(value)`.
+#'
+#' @param x A numeric atomic object.
+#' @family translations
+#' @return A numeric atomic object.
+#' @export
+#' @examples
+#' x <- 1
+#' ilog(x)
+
+ilog <- function(x) {
+  exp(x)
+}
