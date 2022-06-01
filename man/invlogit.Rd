@@ -25,6 +25,7 @@ invlogit(c(-1, 0, 5))
 Other translations: 
 \code{\link{fabs}()},
 \code{\link{ilogit}()},
+\code{\link{ilog}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},

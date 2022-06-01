@@ -24,6 +24,7 @@ ilogit(c(-1, 0, 5))
 \seealso{
 Other translations: 
 \code{\link{fabs}()},
+\code{\link{ilog}()},
 \code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},

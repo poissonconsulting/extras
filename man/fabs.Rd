@@ -22,6 +22,7 @@ fabs(c(0, -1, 2))
 \seealso{
 Other translations: 
 \code{\link{ilogit}()},
+\code{\link{ilog}()},
 \code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},

@@ -29,6 +29,7 @@ x
 Other translations: 
 \code{\link{fabs}()},
 \code{\link{ilogit}()},
+\code{\link{ilog}()},
 \code{\link{invlogit}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},
