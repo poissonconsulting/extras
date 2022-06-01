@@ -83,3 +83,39 @@ log_odds_ratio2 <- function(x) {
 
   log_odds_ratio(x[1], x[2])
 }
+
+#' Inverse Odds
+#'
+#' Calculates the probabilities for odds.
+#'
+#' @param x A numeric object (vector, matrix or array) of odds.
+#' @return A numeric object of the the probabilities for each odd.
+#' @family odds
+#' @export
+#' @examples
+#' inv_odds(c(0, 1, 9, 9999))
+inv_odds <- function(x) {
+  chk_numeric(x)
+  chk_gte(x)
+  x / (1 + x)
+}
+
+#' Inverse Odds Transformation
+#'
+#' Replaces an object with the inverse odds of value.
+#'
+#' @param x An existing R object.
+#' @param value A numeric atomic object.
+#' @family odds
+#' @return Called for the side effect of updating `x`.
+#' @export
+#' @examples
+#' x <- NULL
+#' odds(x) <- 0.5
+#' x
+`odds<-` <- function(x, value) {
+  chk_numeric(value)
+  chk_gte(value)
+  value / (1 + value)
+}
+

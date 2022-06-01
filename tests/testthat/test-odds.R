@@ -108,3 +108,35 @@ test_that("log_odds_ratio2 works", {
   expect_equal(log_odds_ratio2(c(0.1, 0.5)), log(1/9))
   expect_equal(log_odds_ratio2(c(0.5, 0.1)), log(9))
 })
+
+test_that("odds errors incorrect inputs", {
+  chk::expect_chk_error(inv_odds(NA))
+  chk::expect_chk_error(inv_odds("1"))
+  chk::expect_chk_error(inv_odds(-0.1))
+})
+
+test_that("odds handles edge cases", {
+  expect_identical(inv_odds(numeric(0)), numeric(0))
+  expect_identical(inv_odds(NA_real_), NA_real_)
+})
+
+test_that("inv_odds works individual numbers", {
+  expect_equal(inv_odds(0), 0)
+  expect_equal(inv_odds(1/9), 0.1)
+  expect_equal(inv_odds(1/5), 1/6)
+  expect_equal(inv_odds(1), 0.5)
+  expect_equal(inv_odds(9), 0.9)
+  expect_equal(inv_odds(Inf), NaN)
+})
+
+test_that("inv_odds works vector", {
+  expect_equal(inv_odds(c(0, 1, 9)), c(0, 0.5, 0.9))
+})
+
+test_that("inv_odds works matrix", {
+  expect_equal(inv_odds(matrix(9)), matrix(0.9))
+})
+
+test_that("inv_odds works array", {
+  expect_equal(inv_odds(array(9)), array(0.9))
+})
