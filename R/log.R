@@ -17,7 +17,7 @@
   exp(value)
 }
 
-#' Log Transformation
+#' Inverse Log Transformation
 #'
 #' Inverse log transforms a numeric atomic object.
 #'
