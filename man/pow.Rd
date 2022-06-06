@@ -33,6 +33,7 @@ Other translations:
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},
-\code{\link{phi}()}
+\code{\link{phi}()},
+\code{\link{step}()}
 }
 \concept{translations}

@@ -1,6 +1,7 @@
 #' Step
 #'
 #' @param x A numeric atomic object.
+#' @family translations
 #' @return A logical value.
 #' @export
 #'
