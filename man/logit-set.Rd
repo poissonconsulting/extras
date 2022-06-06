@@ -30,6 +30,8 @@ x
 Other translations: 
 \code{\link{fabs}()},
 \code{\link{ilogit}()},
+\code{\link{ilog}()},
+\code{\link{inv_logit}()},
 \code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit}()},
