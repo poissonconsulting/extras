@@ -54,7 +54,7 @@ log_odds_ratio <- function(x, x2) {
 #'
 #' @param x A numeric vector of length 2.
 #' @return A number.
-#' @family odds, fun2
+#' @family odds fun2
 #' @export
 #' @examples
 #' odds_ratio2(c(0.5,0.9))
@@ -72,7 +72,7 @@ odds_ratio2 <- function(x) {
 #'
 #' @param x A numeric vector of length 2.
 #' @return A number.
-#' @family odds, fun2
+#' @family odds fun2
 #' @export
 #' @examples
 #' log_odds_ratio2(c(0.5,0.9))
