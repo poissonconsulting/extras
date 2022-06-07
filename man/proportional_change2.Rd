@@ -20,7 +20,7 @@ proportional_change2(c(1, 2))
 proportional_change2(c(2, 1))
 }
 \seealso{
-Other proportional, fun2: 
+Other proportional fun2: 
 \code{\link{proportional_difference2}()}
 }
-\concept{proportional, fun2}
+\concept{proportional fun2}

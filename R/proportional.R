@@ -52,7 +52,7 @@ proportional_difference <- function(x, x2) {
 #'
 #' @param x A numeric vector of length 2.
 #' @return A number.
-#' @family proportional, fun2
+#' @family proportional fun2
 #' @export
 #' @examples
 #' proportional_change2(c(1, 2))
@@ -70,7 +70,7 @@ proportional_change2 <- function(x) {
 #'
 #' @param x A numeric vector of length 2.
 #' @return A number.
-#' @family proportional, fun2
+#' @family proportional fun2
 #' @export
 #' @examples
 #' proportional_difference2(c(1, 2))

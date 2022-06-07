@@ -26,17 +26,21 @@ reference:
 - title: Conversion Functions
   desc: Conversion functions
   contents:
-  - '`odds`'
   - '`fabs`'
+  - '`ilog`'
   - '`ilogit`'
   - '`invlogit`'
+  - '`inv_odds`'
   - '`logit`'
+  - '`odds`'
   - '`phi`'
   - '`pow`'
 - title: Odds Functions
   desc: Odds functions
   contents:
+  - '`inv_odds`'
   - '`odds`'
+  - '`odds<-`'
   - '`odds_ratio`'
   - '`odds_ratio2`'
   - '`log_odds_ratio`'
@@ -52,13 +56,16 @@ reference:
   desc: Translations of BUGS/JAGS functions
   contents:
   - '`fabs`'
+  - '`ilog`'
   - '`ilogit`'
   - '`invlogit`'
+  - '`inv_logit`'
   - '`log<-`'
   - '`logit`'
   - '`logit<-`'
   - '`phi`'
   - '`pow`'
+  - '`step`'
 - title: Checks and Validation
   desc: Functions to check argument values
   contents:

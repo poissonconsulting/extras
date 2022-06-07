@@ -20,7 +20,7 @@ log_odds_ratio2(c(0.5,0.9))
 log_odds_ratio2(c(0.9,0.5))
 }
 \seealso{
-Other odds, fun2: 
+Other odds fun2: 
 \code{\link{odds_ratio2}()}
 }
-\concept{odds, fun2}
+\concept{odds fun2}
