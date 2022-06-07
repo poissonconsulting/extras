@@ -82,10 +82,19 @@
     <loc>/reference/fill_na.html</loc>
   </url>
   <url>
+    <loc>/reference/ilog.html</loc>
+  </url>
+  <url>
     <loc>/reference/ilogit.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/inv_logit.html</loc>
+  </url>
+  <url>
+    <loc>/reference/inv_odds.html</loc>
   </url>
   <url>
     <loc>/reference/invlogit.html</loc>
@@ -137,6 +146,9 @@
   </url>
   <url>
     <loc>/reference/numericise.html</loc>
+  </url>
+  <url>
+    <loc>/reference/odds-set.html</loc>
   </url>
   <url>
     <loc>/reference/odds.html</loc>
@@ -236,6 +248,9 @@
   </url>
   <url>
     <loc>/reference/skewness.html</loc>
+  </url>
+  <url>
+    <loc>/reference/step.html</loc>
   </url>
   <url>
     <loc>/reference/svalue.html</loc>
