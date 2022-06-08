@@ -9,13 +9,11 @@
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/poissonconsulting/extras/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/extras/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/extras?branch=master)
+coverage](https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/extras?branch=master)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/extras)](https://cran.r-project.org/package=extras)
-[![CRAN
-downloads](https://cranlogs.r-pkg.org/badges/extras)](https://cran.rstudio.com/web/packages/extras/index.html)
 
 <!-- badges: end -->
 
