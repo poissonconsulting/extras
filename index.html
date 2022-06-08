@@ -80,8 +80,8 @@
 <div class="page-header"><h1 id="extras-">extras <img src="reference/figures/logo.png" align="right"><a class="anchor" aria-label="anchor" href="#extras-"></a>
 </h1></div>
 <!-- badges: start -->
-<p><code>extras</code> provides helper functions for Bayesian analyses.</p>
-<p>In particular it provides functions to numericise R objects and summarise MCMC samples as well as R translations of <code>BUGS</code> (and <code>JAGS</code>) functions.</p>
+<!-- badges: end --><p><code>extras</code> provides helper functions for Bayesian analyses.</p>
+<p>In particular it provides functions to ‘numericise’ ‘R’ objects (coerce to numeric objects), summarise ‘MCMC’ (Monte Carlo Markov Chain) samples and calculate deviance residuals as well as ‘R’ translations of some ‘BUGS’ (Bayesian Using Gibbs Sampling), ‘JAGS’ (Just Another Gibbs Sampler), ‘STAN’ and ‘TMB’ (Template Model Builder) functions.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -99,6 +99,11 @@
 <p>Atomic vectors, matrices, arrays and data.frames of appropriate classes can be converted to numeric objects suitable for Bayesian analysis using the <code><a href="reference/numericise.html">numericise()</a></code> (and <code><a href="reference/numericise.html">numericize()</a></code>) function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://poissonconsulting.github.io/extras/" class="external-link">extras</a></span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'extras'</span>
+<span class="co">#&gt; The following object is masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     step</span>
 <span class="fu"><a href="reference/numericise.html">numericise</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>logical <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
              factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span>,
@@ -204,11 +209,12 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://github.com/poissonconsulting/extras/actions" class="external-link"><img src="https://github.com/poissonconsulting/extras/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://codecov.io/gh/poissonconsulting/extras?branch=master" class="external-link"><img src="https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a></li>
 <li><a href="https://cran.r-project.org/package=extras" class="external-link"><img src="https://www.r-pkg.org/badges/version/extras" alt="CRAN status"></a></li>
+<li><a href="https://cran.rstudio.com/web/packages/extras/index.html" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/extras" alt="CRAN downloads"></a></li>
 </ul>
 </div>
 
