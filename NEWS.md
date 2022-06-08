@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# extras 0.3.0
+
+- Added `inv_logit()`
+- Removed `percent_change()`, `percent_difference()`, `percent_change2()` and `percent_difference2()`.
+- Added `proportional_change()`, `proportional_difference()`,
+- Added `percent_change()`, `percent_difference()`, `percent_change2()`, `percent_difference2()`,
+
+
 # extras 0.2.0.9003
 
 - Added `inv_logit()`, `inv_odds()`, `odds<-`, `ilog()`, `step()`
