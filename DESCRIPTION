@@ -1,25 +1,18 @@
 Package: extras
 Title: Helper Functions for Bayesian Analyses
 Version: 0.2.0.9003
-Authors@R: 
-    c(person(given = "Joe",
-             family = "Thorley",
-             role = c("aut", "cre"),
-             email = "joe@poissonconsulting.ca",
-             comment = c(ORCID = "0000-0002-7683-4592")),
-      person(given = "Kirill",
-             family = "Müller",
-             role = "ctb",
-             comment = c(ORCID = "0000-0002-1416-3412")),
-      person(given = "Nadine",
-             family = "Hussein",
-             role = "ctb",
-             comment = c(ORCID = "0000-0003-4470-8361")),
-      person(given = "Poisson Consulting",
-             role = c("cph", "fnd")))
+Authors@R: c(
+    person("Joe", "Thorley", , "joe@poissonconsulting.ca", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7683-4592")),
+    person("Kirill", "Müller", role = "ctb",
+           comment = c(ORCID = "0000-0002-1416-3412")),
+    person("Nadine", "Hussein", role = "ctb",
+           comment = c(ORCID = "0000-0003-4470-8361")),
+    person("Poisson Consulting", role = c("cph", "fnd"))
+  )
 Description: Functions to 'numericise' 'R' objects (coerce to numeric
     objects), summarise 'MCMC' (Monte Carlo Markov Chain) samples and
-    calculate deviance residuals as well as 'R' translations of some 
+    calculate deviance residuals as well as 'R' translations of some
     'BUGS' (Bayesian Using Gibbs Sampling), 'JAGS' (Just Another Gibbs
     Sampler), 'STAN' and 'TMB' (Template Model Builder) functions.
 License: MIT + file LICENSE
@@ -39,8 +32,8 @@ Suggests:
     rlang,
     testthat (>= 3.0.0),
     tibble
+Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
-Config/testthat/edition: 3
