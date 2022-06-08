@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -48,26 +48,35 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.2.0.9003" id="extras-0209003">extras 0.2.0.9003<a class="anchor" aria-label="anchor" href="#extras-0209003"></a></h2>
-<ul><li>Added <code><a href="../reference/inv_logit.html">inv_logit()</a></code>, <code><a href="../reference/inv_odds.html">inv_odds()</a></code>, <code>odds&lt;-</code>, <code><a href="../reference/ilog.html">ilog()</a></code>, <code><a href="../reference/step.html">step()</a></code>
-</li>
-<li>Removed <code>percent_change()</code>, <code>percent_difference()</code>, <code>percent_change2()</code> and <code>percent_difference2()</code>.</li>
-<li>Added <code><a href="../reference/proportional_change.html">proportional_change()</a></code>, <code><a href="../reference/proportional_difference.html">proportional_difference()</a></code>,</li>
-<li>Added <code>percent_change()</code>, <code>percent_difference()</code>, <code>percent_change2()</code>, <code>percent_difference2()</code>,</li>
+<h2 class="page-header" data-toc-text="0.3.0" id="extras-030">extras 0.3.0<a class="anchor" aria-label="anchor" href="#extras-030"></a></h2>
+<div class="section level3">
+<h3 id="added-0-3-0">Added<a class="anchor" aria-label="anchor" href="#added-0-3-0"></a></h3>
+<ul><li>Added the following functions</li>
+<li>
+<code><a href="../reference/step.html">step()</a></code> R version of JAGS function.</li>
+<li>
+<code><a href="../reference/ilog.html">ilog()</a></code>.</li>
+<li>
+<code><a href="../reference/inv_logit.html">inv_logit()</a></code>.</li>
+<li>
+<code><a href="../reference/inv_odds.html">inv_odds()</a></code> and <code>odds()&lt;-</code>.</li>
+<li>
+<code><a href="../reference/odds_ratio2.html">odds_ratio2()</a></code> and <code><a href="../reference/log_odds_ratio2.html">log_odds_ratio2()</a></code>.</li>
+<li>
+<code><a href="../reference/proportional_change.html">proportional_change()</a></code>, <code><a href="../reference/proportional_difference.html">proportional_difference()</a></code>.</li>
+<li>
+<code><a href="../reference/ran_pois_zi.html">ran_pois_zi()</a></code>, <code><a href="../reference/log_lik_pois_zi.html">log_lik_pois_zi()</a></code>, <code><a href="../reference/res_pois_zi.html">res_pois_zi()</a></code> and <code><a href="../reference/dev_pois_zi.html">dev_pois_zi()</a></code>.</li>
+<li>
+<code><a href="../reference/pzeros.html">pzeros()</a></code> to calculate proportion of zeros in a numeric object.</li>
 </ul></div>
-    <div class="section level2">
-<h2 class="page-header" data-toc-text="0.2.0.9002" id="extras-0209002">extras 0.2.0.9002<a class="anchor" aria-label="anchor" href="#extras-0209002"></a></h2>
-<ul><li><p>Added <code><a href="../reference/ran_pois_zi.html">ran_pois_zi()</a></code>, <code><a href="../reference/log_lik_pois_zi.html">log_lik_pois_zi()</a></code>, <code><a href="../reference/res_pois_zi.html">res_pois_zi()</a></code> and <code><a href="../reference/dev_pois_zi.html">dev_pois_zi()</a></code>.</p></li>
-<li><p>Added <code><a href="../reference/pzeros.html">pzeros()</a></code> to calculate proportion of zeros in a numeric object.</p></li>
-<li><p>Fixed normal and log-normal deviances which were out by a factor of 2 and 1.41 respectively.</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="page-header" data-toc-text="0.2.0.9001" id="extras-0209001">extras 0.2.0.9001<a class="anchor" aria-label="anchor" href="#extras-0209001"></a></h2>
+<div class="section level3">
+<h3 id="modifications-0-3-0">Modifications<a class="anchor" aria-label="anchor" href="#modifications-0-3-0"></a></h3>
 <ul><li>
-<code>res_xx()</code> functions return data (actual or simulated) if <code>type = 'data'</code>.</li></ul></div>
-    <div class="section level2">
-<h2 class="page-header" data-toc-text="0.2.0.9000" id="extras-0209000">extras 0.2.0.9000<a class="anchor" aria-label="anchor" href="#extras-0209000"></a></h2>
-<ul><li>Same as previous version.</li></ul></div>
+<code>res_xx()</code> functions now return data (actual or simulated) if <code>type = 'data'</code>.</li></ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-0"></a></h3>
+<ul><li>Fixed normal and log-normal deviances which were out by a factor of 2 and 1.41 respectively.</li></ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.0" id="extras-020">extras 0.2.0<small>2021-08-05</small><a class="anchor" aria-label="anchor" href="#extras-020"></a></h2>
 <div class="section level3">
