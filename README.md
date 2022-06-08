@@ -21,11 +21,11 @@ downloads](https://cranlogs.r-pkg.org/badges/extras)](https://cran.rstudio.com/w
 
 `extras` provides helper functions for Bayesian analyses.
 
-In particular it provides functions to ‘numericise’ ‘R’ objects (coerce
-to numeric objects), summarise ‘MCMC’ (Monte Carlo Markov Chain) samples
-and calculate deviance residuals as well as ‘R’ translations of some
-‘BUGS’ (Bayesian Using Gibbs Sampling), ‘JAGS’ (Just Another Gibbs
-Sampler), ‘STAN’ and ‘TMB’ (Template Model Builder) functions.
+In particular it provides functions to numericise R objects (coerce to
+numeric objects), summarise MCMC (Monte Carlo Markov Chain) samples and
+calculate deviance residuals as well as R translations of some BUGS
+(Bayesian Using Gibbs Sampling), JAGS (Just Another Gibbs Sampler), STAN
+and TMB (Template Model Builder) functions.
 
 ## Installation
 
