@@ -2,35 +2,25 @@
 
 # extras 0.3.0
 
-- Added `inv_logit()`
-- Removed `percent_change()`, `percent_difference()`, `percent_change2()` and `percent_difference2()`.
-- Added `proportional_change()`, `proportional_difference()`,
-- Added `percent_change()`, `percent_difference()`, `percent_change2()`, `percent_difference2()`,
+## Added
 
+- Added the following functions
+- `step()` R version of JAGS function.
+- `ilog()`.
+- `inv_logit()`.
+- `inv_odds()` and `odds()<-`.
+- `odds_ratio2()` and `log_odds_ratio2()`.
+- `proportional_change()`, `proportional_difference()`.
+- `ran_pois_zi()`, `log_lik_pois_zi()`, `res_pois_zi()` and `dev_pois_zi()`.
+- `pzeros()` to calculate proportion of zeros in a numeric object.
 
-# extras 0.2.0.9003
+## Modifications
 
-- Added `inv_logit()`, `inv_odds()`, `odds<-`, `ilog()`, `step()`
-- Removed `percent_change()`, `percent_difference()`, `percent_change2()` and `percent_difference2()`.
-- Added `proportional_change()`, `proportional_difference()`,
-- Added `percent_change()`, `percent_difference()`, `percent_change2()`, `percent_difference2()`,
+- `res_xx()` functions now return data (actual or simulated) if `type = 'data'`.
 
-
-# extras 0.2.0.9002
-
-- Added `ran_pois_zi()`, `log_lik_pois_zi()`, `res_pois_zi()` and `dev_pois_zi()`.
-- Added `pzeros()` to calculate proportion of zeros in a numeric object.
+## Bug Fixes
 
 - Fixed normal and log-normal deviances which were out by a factor of 2 and 1.41 respectively.
-
-# extras 0.2.0.9001
-
-- `res_xx()` functions return data (actual or simulated) if `type = 'data'`.
-
-# extras 0.2.0.9000
-
-- Same as previous version.
-
 
 # extras 0.2.0
 
