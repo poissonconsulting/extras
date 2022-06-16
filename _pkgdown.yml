@@ -120,6 +120,13 @@ reference:
   - '`ran_norm`'
   - '`ran_pois`'
   - '`ran_pois_zi`'
+- title: Bernoulli
+  desc: Bernoulli distribution functions
+  contents:
+  - '`dbern`'
+  - '`pbern`'
+  - '`qbern`'
+  - '`rbern`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:

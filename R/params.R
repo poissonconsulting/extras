@@ -25,5 +25,9 @@
 #' @param na_rm A flag specifying whether to remove missing values.
 #' @param threshold A number of the threshold value.
 #' @param simulate A flag specifying whether to simulate residuals.
+#' @param log A flag specifying whether to return the log-transformed value.
+#' @param lower.tail A flag specifying whether to return the lower or upper tail of the distribution.
+#' @param q A vector of quantiles.
+#' @param p A vector of probabilities.
 #' @name params
 NULL

@@ -49,6 +49,14 @@ should be returned as negative values.}
 \item{threshold}{A number of the threshold value.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
+
+\item{log}{A flag specifying whether to return the log-transformed value.}
+
+\item{lower.tail}{A flag specifying whether to return the lower or upper tail of the distribution.}
+
+\item{q}{A vector of quantiles.}
+
+\item{p}{A vector of probabilities.}
 }
 \description{
 Parameter Descriptions
