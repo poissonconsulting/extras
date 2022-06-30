@@ -39,12 +39,14 @@ reference:
   desc: Odds functions
   contents:
   - '`inv_odds`'
+  - '`log_odds`'
+  - '`log_odds<-`'
+  - '`log_odds_ratio`'
+  - '`log_odds_ratio2`'
   - '`odds`'
   - '`odds<-`'
   - '`odds_ratio`'
   - '`odds_ratio2`'
-  - '`log_odds_ratio`'
-  - '`log_odds_ratio2`'
 - title: Proportional Functions
   desc: Proportional functions
   contents:

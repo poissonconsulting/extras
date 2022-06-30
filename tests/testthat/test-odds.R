@@ -140,3 +140,36 @@ test_that("inv_odds works matrix", {
 test_that("inv_odds works array", {
   expect_equal(inv_odds(array(9)), array(0.9))
 })
+
+test_that("log_odds errors incorrect inputs", {
+  chk::expect_chk_error(log_odds(NA))
+  chk::expect_chk_error(log_odds("1"))
+  chk::expect_chk_error(log_odds(-0.1))
+  chk::expect_chk_error(log_odds(1.1))
+})
+
+test_that("log_odds handles edge cases", {
+  expect_identical(log_odds(numeric(0)), numeric(0))
+  expect_identical(log_odds(NA_real_), NA_real_)
+})
+
+test_that("log_odds works individual numbers", {
+  expect_equal(log_odds(0), -Inf)
+  expect_equal(log_odds(0.1), -2.1972246)
+  expect_equal(log_odds(1/6), -1.60943791)
+  expect_equal(log_odds(0.5), 0)
+  expect_equal(log_odds(0.9), 2.1972246)
+  expect_equal(log_odds(1), Inf)
+})
+
+test_that("log_odds works vector", {
+  expect_equal(log_odds(c(0, 0.5, 1)), c(-Inf, 0, Inf))
+})
+
+test_that("log_odds works matrix", {
+  expect_equal(log_odds(matrix(0.5)), matrix(0))
+})
+
+test_that("log_odds works array", {
+  expect_equal(log_odds(array(0.5)), array(0))
+})
