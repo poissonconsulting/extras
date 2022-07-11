@@ -173,3 +173,52 @@ test_that("log_odds works matrix", {
 test_that("log_odds works array", {
   expect_equal(log_odds(array(0.5)), array(0))
 })
+
+test_that("log_odds<- errors incorrect inputs", {
+  x <- NULL
+  chk::expect_chk_error(log_odds(x) <- NULL)
+  chk::expect_chk_error(log_odds(x) <- -0.1)
+})
+
+test_that("log_odds<- handles edge cases", {
+  x <- NULL
+  log_odds(x) <- numeric(0)
+  expect_equal(x, numeric(0))
+  x <- NULL
+  log_odds(x) <- Inf
+  expect_equal(x, NaN)
+  x <- NULL
+  log_odds(x) <- NA_real_
+  expect_equal(x, NA_real_)
+})
+
+test_that("log_odds<- works individual numbers", {
+  x <- NULL
+  log_odds(x) <- 0
+  expect_equal(x, -Inf)
+  x <- NULL
+  log_odds(x) <- 0.75
+  expect_equal(x, -0.84729786)
+  x <- NULL
+  log_odds(x) <- 0.5
+  expect_equal(x, -1.0986123)
+})
+
+test_that("log_odds<- works vector", {
+  x <- NULL
+  log_odds(x) <- c(0, 0.5, 1)
+  expect_equal(x, c(-Inf, -1.09861229, -0.69314718))
+})
+
+test_that("log_odds<- works matrix", {
+  x <- NULL
+  log_odds(x) <- matrix(0.5)
+  expect_equal(x, matrix(-1.0986123))
+})
+
+test_that("log_odds<- works array", {
+  x <- NULL
+  log_odds(x) <- array(0.5)
+  expect_equal(x, array(-1.0986123))
+})
+
