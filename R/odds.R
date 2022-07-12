@@ -118,3 +118,38 @@ inv_odds <- function(x) {
   chk_gte(value)
   value / (1 + value)
 }
+
+#' Log Odds
+#'
+#' Calculates the log odds for probabilities.
+#'
+#' @param x A numeric object (vector, matrix or array) of probabilities.
+#' @return A numeric object of the the log odds for each probability.
+#' @family odds
+#' @export
+#' @examples
+#' log_odds(c(0, 0.5, 0.9, 1))
+log_odds <- function(x) {
+  chk_numeric(x)
+  chk_range(x)
+  log(x / (1 - x))
+}
+
+#' Inverse Log Odds Transformation
+#'
+#' Replaces an object with the inverse log odds of value.
+#'
+#' @param x An existing R object.
+#' @param value A numeric atomic object.
+#' @family odds
+#' @return Called for the side effect of updating `x`.
+#' @export
+#' @examples
+#' x <- NULL
+#' log_odds(x) <- 0.5
+#' x
+`log_odds<-` <- function(x, value) {
+  chk_numeric(value)
+  chk_gte(value)
+  log(value / (1 + value))
+}
