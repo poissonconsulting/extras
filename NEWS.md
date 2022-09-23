@@ -2,13 +2,8 @@
 
 # extras 0.4.0
 
-- Added `log_odds()` and `log_odds()<-`
-- Added `dbern()`, `pbern()`, `qbern()`, `rbern()`
-
-
-# extras 0.3.0.9000
-
-- Same as previous version.
+- Added `log_odds()` and `log_odds()<-`.
+- Added `dbern()`, `pbern()`, `qbern()`, `rbern()`.
 
 
 # extras 0.3.0
