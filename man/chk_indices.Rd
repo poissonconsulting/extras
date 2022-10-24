@@ -24,9 +24,9 @@ Checks if an object is a list of indices ie vectors of one or more positive inte
 }
 \section{Functions}{
 \itemize{
-\item \code{vld_indices}: Validate Indices
-}}
+\item \code{vld_indices()}: Validate Indices
 
+}}
 \examples{
 x <- list(c(2L, 1L))
 chk_indices(x)

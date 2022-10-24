@@ -24,9 +24,9 @@ Checks if an object is a vector of one or more positive integer values.
 }
 \section{Functions}{
 \itemize{
-\item \code{vld_index}: Validate Index
-}}
+\item \code{vld_index()}: Validate Index
 
+}}
 \examples{
 x <- c(2L, 1L)
 chk_index(x)

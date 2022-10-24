@@ -30,9 +30,9 @@ Missing values and duplicates are permitted.
 }
 \section{Functions}{
 \itemize{
-\item \code{vld_pars}: Validate Parameter Names
-}}
+\item \code{vld_pars()}: Validate Parameter Names
 
+}}
 \examples{
 x <- c("x", "a1._", "X")
 chk_pars(x)

@@ -57,27 +57,27 @@ If you want to implement a method for a class \code{"foo"}, implement
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{logical}: Numericise a logical Object
+\item \code{numericise(logical)}: Numericise a logical Object
 
-\item \code{integer}: Numericise an integer Object
+\item \code{numericise(integer)}: Numericise an integer Object
 
-\item \code{double}: Numericise an double Object
+\item \code{numericise(double)}: Numericise an double Object
 
-\item \code{factor}: Numericise a factor
+\item \code{numericise(factor)}: Numericise a factor
 
-\item \code{Date}: Numericise a Date vector
+\item \code{numericise(Date)}: Numericise a Date vector
 
-\item \code{POSIXct}: Numericise a POSIXct vector
+\item \code{numericise(POSIXct)}: Numericise a POSIXct vector
 
-\item \code{hms}: Numericise a hms vector
+\item \code{numericise(hms)}: Numericise a hms vector
 
-\item \code{matrix}: Numericise a matrix
+\item \code{numericise(matrix)}: Numericise a matrix
 
-\item \code{array}: Numericise an array
+\item \code{numericise(array)}: Numericise an array
 
-\item \code{data.frame}: Numericise a data.frame
+\item \code{numericise(data.frame)}: Numericise a data.frame
+
 }}
-
 \examples{
 
 # logical
