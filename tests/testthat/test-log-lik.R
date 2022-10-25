@@ -34,3 +34,9 @@ test_that("log_lik_neg_binom", {
 test_that("log_lik_gamma_pois", {
   expect_identical(log_lik_gamma_pois(0, 2, 2), dnbinom(0, mu = 2, size = 1/2, log = TRUE))
 })
+
+test_that("log_lik_gamma_pois_zi", {
+  expect_identical(log_lik_gamma_pois_zi(1, 2), log_lik_pois(1, 2))
+  expect_identical(log_lik_gamma_pois_zi(1, 2, 1), log_lik_gamma_pois(1, 2, 1))
+  expect_identical(log_lik_gamma_pois_zi(1, 2, 0, 0.5), log_lik_pois_zi(1, 2, 0.5))
+})

@@ -7,7 +7,7 @@
 log_lik_neg_binom(x, lambda = 1, theta = 0)
 }
 \arguments{
-\item{x}{A vector of 0s and 1s.}
+\item{x}{A non-negative whole numeric vector of values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 

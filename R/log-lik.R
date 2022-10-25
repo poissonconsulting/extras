@@ -95,7 +95,7 @@ log_lik_bern <- function(x, prob = 0.5) {
 #' Negative Binomial Log-Likelihood
 #'
 #' @inheritParams params
-#' @param x A vector of 0s and 1s.
+#' @param x A non-negative whole numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding log-likelihoods.
 #' @family log_lik_dist
@@ -110,7 +110,7 @@ log_lik_neg_binom <- function(x, lambda = 1, theta = 0) {
 #' Gamma Poisson Log-Likelihood
 #'
 #' @inheritParams params
-#' @param x A vector of 0s and 1s.
+#' @param x A non-negative whole numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding log-likelihoods.
 #' @family log_lik_dist
@@ -120,4 +120,23 @@ log_lik_neg_binom <- function(x, lambda = 1, theta = 0) {
 #' log_lik_gamma_pois(c(0, 1, 2), 1, 1)
 log_lik_gamma_pois <- function(x, lambda = 1, theta = 0) {
   log_lik_neg_binom(x, lambda = lambda, theta = theta)
+}
+
+#' Zero-Inflated Gamma Poisson Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+# @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_gamma_pois_zi(c(1,3.5,4), 3, 1, prob = 0.5)
+log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
+  lpois <- dnbinom(x, mu = lambda, size = 1/theta)
+  lpois <- lpois * (1 - prob)
+  zero <- x == 0
+  lpois[zero] <- lpois[zero] + prob
+  log(lpois)
 }
