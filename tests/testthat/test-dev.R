@@ -131,6 +131,8 @@ test_that("dev_gamma_pois", {
   expect_identical(dev_gamma_pois(1, 1, 0), 0)
   expect_identical(dev_gamma_pois(0, 1, 0), 2)
   expect_identical(dev_gamma_pois(1, 1, 1), 0)
+  expect_identical(dev_gamma_pois(0, 0, 0), 0)
+  expect_identical(dev_gamma_pois(0, 0, 1), 0)
   expect_equal(dev_gamma_pois(0, 1, 0), 2)
   expect_equal(dev_gamma_pois(0, 1, 1), 1.38629436111989)
 
@@ -181,6 +183,12 @@ test_that("dev_gamma_pois_zi", {
   expect_identical(dev_gamma_pois_zi(0, 1, 1, 1), 0)
   expect_equal(dev_gamma_pois_zi(0, 1, 0, 0), 2)
   expect_equal(dev_gamma_pois_zi(0, 1, 1, 0), 1.38629436111989)
+  expect_identical(dev_gamma_pois(0, 0, 0, 0), 0)
+  expect_identical(dev_gamma_pois(0, 0, 1, 0), 0)
+  expect_identical(dev_gamma_pois(0, 0, 0, 0.5), 0)
+  expect_identical(dev_gamma_pois(0, 0, 1, 0.5), 0)
+  expect_identical(dev_gamma_pois(0, 0, 0, 1), 0)
+  expect_identical(dev_gamma_pois(0, 0, 1, 1), 0)
 
   expect_identical(dev_gamma_pois_zi(NA, 1, 1, 0), NA_real_)
   expect_identical(dev_gamma_pois_zi(1, NA, 1, 0), NA_real_)
