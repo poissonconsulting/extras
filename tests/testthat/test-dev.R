@@ -46,6 +46,16 @@ test_that("dev_pois_zi", {
                c(0, -0.274036349845144, 0))
   expect_equal(dev_pois_zi(c(1,3,4), c(1, 3.5, 4), 0.5, res = TRUE),
                c(0, 0.274036349845144, 0))
+
+  expect_equal(dev_pois_zi(3, 3.5, 0, res = TRUE),
+               dev_pois(3, 3.5, res = TRUE))
+  expect_equal(dev_pois_zi(3, 3.5, 0, res = TRUE),
+               -0.274036349845144)
+  skip("why not changing and becoming positive??")
+  expect_equal(dev_pois_zi(3, 3.5, 0.1, res = TRUE),
+               -0.274036349845144)
+  expect_equal(dev_pois_zi(3, 3.5, 0.2, res = TRUE),
+               0.274036349845144)
 })
 
 test_that("dev_norm", {
@@ -167,7 +177,13 @@ test_that("dev_neg_bin", {
 })
 
 test_that("dev_gamma_pois_zi", {
-  expect_identical(dev_gamma_pois_zi(integer(0), integer(0), integer(0), integer(0)), numeric(0))
+  expect_equal(dev_gamma_pois_zi(1,2),
+                   2 * (log_lik_gamma_pois_zi(1, 1) - log_lik_pois(1, 2)))
+  expect_equal(dev_gamma_pois_zi(1,2,1),
+               2 * (log_lik_gamma_pois_zi(1, 1, 1) - log_lik_gamma_pois(1, 2, 1)))
+  expect_equal(dev_gamma_pois_zi(1,2,0,0.5),
+               2 * (log_lik_gamma_pois_zi(1, 1, 0, 0.5) - log_lik_pois_zi(1, 2, 0.5)))
+    expect_identical(dev_gamma_pois_zi(integer(0), integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(dev_gamma_pois_zi(1, 1, 0, 0), 0)
   expect_identical(dev_gamma_pois_zi(1, 1, 0, 0.5), 0)
   expect_identical(dev_gamma_pois_zi(0, 1, 0, 0), 2)
@@ -203,7 +219,11 @@ test_that("dev_gamma_pois_zi", {
                c(-1.13539405405014, -1.34267472705186, 0.281166781094084))
   expect_equal(dev_gamma_pois_zi(c(1,3,4), c(1, 3.5, 4), 0, 0, res = TRUE),
                c(0, -0.274036349845144, 0))
-  skip("why becoming positive??")
-  expect_equal(dev_gamma_pois_zi(c(1,3,4), c(1, 3.5, 4), 0, 0.5, res = TRUE),
-               c(0, 0.274036349845144, 0))
+
+  expect_equal(dev_gamma_pois_zi(3, 3.5, res = TRUE),
+               dev_pois(3, 3.5, res = TRUE))
+  expect_equal(dev_gamma_pois_zi(3, 3.5, 0, 0.1, res = TRUE),
+               dev_pois_zi(3, 3.5, 0.1, res = TRUE))
+  expect_equal(dev_gamma_pois_zi(3, 3.5, 0, 0.2, res = TRUE),
+               dev_pois_zi(3, 3.5, 0.2, res = TRUE))
 })
