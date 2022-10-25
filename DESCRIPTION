@@ -30,6 +30,7 @@ Suggests:
     hms,
     knitr,
     rlang,
+    rmarkdown,
     testthat (>= 3.0.0),
     tibble
 Config/testthat/edition: 3
@@ -37,3 +38,4 @@ Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
+VignetteBuilder: knitr
