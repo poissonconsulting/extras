@@ -19,6 +19,13 @@ test_that("res_pois", {
   expect_equal(res_pois(1:2, 2, simulate = TRUE, type = "data"), c(1L, 0L))
 })
 
+test_that("res_pois simulate", {
+  set.seed(101)
+  res <- res_pois(rep(2,10000), lambda = 10, simulate = TRUE, type = "dev")
+  expect_equal(mean(res), -0.0747938731623342)
+  expect_equal(sd(res), 1.00265783064155)
+})
+
 test_that("res_pois_zi", {
   expect_identical(res_pois_zi(integer(0), integer(0)), numeric(0))
   expect_identical(res_pois_zi(1, 1), 0)
@@ -48,6 +55,14 @@ test_that("res_pois_zi", {
                c(0L, 11L, 7L, 8L, 0L, 0L, 0L, 10L, 0L, 0L))
 })
 
+test_that("res_pois_zi simulate", {
+  set.seed(101)
+  skip("need to confirm pois_zi")
+  res <- res_pois_zi(rep(2,10000), lambda = 100, prob = 0.01, simulate = TRUE, type = "dev")
+  expect_equal(mean(res), -0.300748141872929)
+  expect_equal(sd(res), 1.02486233658642)
+})
+
 test_that("res_norm", {
   expect_identical(res_norm(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(res_norm(0), 0)
@@ -68,6 +83,13 @@ test_that("res_norm", {
   expect_equal(res_norm(1:2, 2, type = "data"), 1:2)
   set.seed(101)
   expect_equal(res_norm(1:2, 2, simulate = TRUE, type = "data"), c(1.67396350948461, 2.55246185541914))
+})
+
+test_that("res_norm simulate", {
+  set.seed(101)
+  res <- res_norm(rep(2,10000), simulate = TRUE, type = "dev")
+  expect_equal(mean(res), 0.00527789283092907)
+  expect_equal(sd(res), 0.993174129657874)
 })
 
 test_that("res_lnorm", {
@@ -122,6 +144,13 @@ test_that("res_binom", {
   expect_equal(res_binom(1:2, 2, simulate = TRUE, type = "data"), 1:0)
 })
 
+test_that("res_binom simulate", {
+  set.seed(101)
+  res <- res_binom(rep(2,10000), size = 10, simulate = TRUE, type = "dev")
+  expect_equal(mean(res), 0.00279535222236926)
+  expect_equal(sd(res), 1.70019305525003)
+})
+
 test_that("res_bern", {
   expect_identical(res_bern(logical(0), integer(0)), numeric(0))
   expect_identical(res_bern(NA, 1), NA_real_)
@@ -151,6 +180,13 @@ test_that("res_bern", {
   expect_equal(res_bern(0:1, simulate = TRUE, type = "data"), c(0L, 0L))
 })
 
+test_that("res_bern simulate", {
+  set.seed(101)
+  res <- res_bern(rep(2,10000), simulate = TRUE, type = "dev")
+  expect_equal(mean(res), -0.00659349612608666)
+  expect_equal(sd(res), 1.17745043457519)
+})
+
 test_that("res_gamma_pois", {
   expect_identical(res_gamma_pois(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(res_gamma_pois(1, 1, 0), 0)
@@ -172,6 +208,13 @@ test_that("res_gamma_pois", {
   expect_equal(res_gamma_pois(1:2, 2, type = "data"), 1:2)
   set.seed(101)
   expect_equal(res_gamma_pois(1:2, 2, simulate = TRUE, type = "data"), 2:1)
+})
+
+test_that("res_gamma_pois simulate", {
+  set.seed(101)
+  res <- res_gamma_pois(rep(2,10000), lambda = 100, theta = 0.5, simulate = TRUE, type = "dev")
+  expect_equal(mean(res),-0.250801462240149)
+  expect_equal(sd(res), 1.01494516351537)
 })
 
 test_that("res_neg_binom", {

@@ -18,6 +18,13 @@ test_that("dev_pois", {
                c(0, -0.274036349845144, 0))
 })
 
+test_that("dev_pois deviance", {
+  samples <- ran_pois(100)
+  mod <- glm(samples~1, family = poisson)
+  deviance <- sum(dev_pois(samples, exp(coef(mod)[1])))
+  expect_identical(deviance, deviance(mod))
+})
+
 test_that("dev_pois_zi", {
   expect_equal(dev_pois_zi(1,2),
                2 * (log_lik_pois_zi(1, 1) - log_lik_pois_zi(1, 2)))
@@ -90,6 +97,13 @@ test_that("dev_norm", {
                c(-1, -0.5, -0.333333333333333, -0.25, -0.2))
 })
 
+test_that("deviance norm", {
+  samples <- ran_norm(100)
+  mod <- lm(samples~1)
+  deviance <- sum(dev_norm(samples, coef(mod)[1]))
+  expect_equal(deviance, deviance(mod))
+})
+
 test_that("dev_lnorm", {
   expect_equal(dev_lnorm(3,4,5),
                2 * (log_lik_lnorm(3, log(3), 5) - log_lik_lnorm(3, 4, 5)))
@@ -131,6 +145,16 @@ test_that("dev_binom", {
                ))
 })
 
+test_that("deviance binom", {
+  samples <- ran_binom(100, 3)
+  mod <- glm(cbind(samples,3-samples)~1, family = binomial)
+  deviance <- sum(dev_binom(samples, size = 3, ilogit(coef(mod)[1])))
+  skip("why binom deviance different!")
+  expect_identical(deviance, deviance(mod))
+  res_mod <- unname(residuals(mod))
+  res <- res_binom(samples, size = 3, ilogit(coef(mod)[1]))
+})
+
 test_that("dev_bern", {
   expect_identical(dev_bern(logical(0), integer(0)), numeric(0))
   expect_identical(dev_bern(NA, 1), NA_real_)
@@ -149,6 +173,13 @@ test_that("dev_bern", {
                c(0.844600430900592, -1.55175565365552))
   expect_equal(dev_bern(c(1,0), c(0.7, 0.5), res = TRUE),
                c(0.844600430900592,  -1.17741002251547))
+})
+
+test_that("deviance bern", {
+  samples <- ran_bern(100)
+  mod <- glm(cbind(samples,1-samples)~1, family = binomial)
+  deviance <- sum(dev_bern(samples, ilogit(coef(mod)[1])))
+  expect_identical(deviance, deviance(mod))
 })
 
 test_that("dev_gamma_pois", {

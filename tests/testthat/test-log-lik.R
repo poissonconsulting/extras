@@ -19,9 +19,9 @@ test_that("log_lik_binom", {
   expect_identical(log_lik_binom(1, prob = NA), NA_real_)
   expect_identical(log_lik_binom(0, 0), 0)
   expect_identical(log_lik_binom(0L, 0), 0)
-  expect_identical(log_lik_binom(1, 1), 0)
+  expect_equal(log_lik_binom(1, 1), -0.693147180559945)
   expect_equal(log_lik_binom(0), -0.693147180559945)
-  expect_equal(log_lik_binom(1, 0.7), -0.356674943938732)
+  expect_equal(log_lik_binom(1, prob = 0.7), -0.356674943938732)
 
   expect_identical(log_lik_binom(1, 2, 0.7), dbinom(1, 2, 0.7, log = TRUE))
 })
