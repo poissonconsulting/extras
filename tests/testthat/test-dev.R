@@ -145,6 +145,12 @@ test_that("dev_binom", {
                ))
 })
 
+test_that("deviance binom log_lik", {
+  skip("why binom deviance seems to be different formally calculated")
+  expect_equal(dev_binom(0:3, 3, 0.5),
+               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_binom(0:3, 3, 0.5)))
+})
+
 test_that("deviance binom", {
   samples <- ran_binom(100, 3)
   mod <- glm(cbind(samples,3-samples)~1, family = binomial)
