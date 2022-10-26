@@ -69,6 +69,8 @@ test_that("dev_pois_zi", {
                -0.274036349845144)
   expect_equal(dev_pois_zi(3, 3.5, 0.2, res = TRUE),
                0.274036349845144)
+  expect_equal(dev_pois_zi(3, 3.5, 0.90, res = TRUE),
+               0.274036349845144)
 })
 
 test_that("dev_norm", {
