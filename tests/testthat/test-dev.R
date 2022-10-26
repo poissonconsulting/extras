@@ -232,7 +232,6 @@ test_that("deviance norm", {
   expect_equal(deviance, deviance(mod))
 })
 
-####
 test_that("pois missing values", {
   expect_identical(dev_pois(logical(0), integer(0)), numeric(0))
   expect_identical(dev_pois(NA, 1), NA_real_)
@@ -289,6 +288,69 @@ test_that("pois ran", {
   expect_equal(mean(res),-0.235540962010425)
   expect_equal(sd(res),1.05758754072283)
 })
+
+#####
+
+test_that("pois_zi missing values", {
+  expect_identical(dev_pois_zi(logical(0), integer(0), numeric(0)), numeric(0))
+  expect_identical(dev_pois_zi(NA, 1, 1), NA_real_)
+  expect_identical(dev_pois_zi(1, NA, 1), NA_real_)
+  expect_identical(dev_pois_zi(1, 1, NA), NA_real_)
+})
+
+test_that("pois_zi known values", {
+  expect_identical(dev_pois_zi(1, 1), 0)
+#  expect_identical(dev_pois_zi(1, 1, 0.5), 0) this seems wrong!
+  expect_identical(dev_pois_zi(0, 0), 0)
+  expect_identical(dev_pois_zi(1, 0), Inf)
+  expect_identical(dev_pois_zi(0, 1), 2)
+  expect_identical(dev_pois_zi(0, 2), 4)
+  expect_equal(dev_pois_zi(1, 2), 0.613705638880109)
+  expect_identical(dev_pois_zi(2, 2), 0)
+  expect_equal(dev_pois_zi(3, 2), 0.432790648648986)
+  expect_equal(dev_pois_zi(3, 2.5), 0.0939293407637276)
+})
+
+test_that("pois_zi vectorized", {
+  expect_equal(dev_pois_zi(0:3, 2), c(4, 0.613705638880109, 0, 0.432790648648986))
+  expect_equal(dev_pois_zi(0:3, 0:3), rep(0, 4))
+  expect_equal(dev_pois_zi(0:3, 3:0), c(6, 0.613705638880109, 0.772588722239781, Inf))
+})
+
+test_that("pois_zi vectorized missing values", {
+  expect_equal(dev_pois_zi(c(NA,1), 0:1), c(NA,0))
+  expect_equal(dev_pois_zi(c(0,NA), 0:1), c(0,NA))
+  expect_equal(dev_pois_zi(c(0:1), c(NA,1)), c(NA,0))
+  expect_equal(dev_pois_zi(c(0:1), c(0,NA)), c(0,NA))
+})
+
+test_that("pois_zi res", {
+  expect_equal(dev_pois_zi(0, 0.5), dev_pois_zi(0, 0.5, res = TRUE)^2)
+  expect_equal(dev_pois_zi(0:1, c(0.3,0.6)), dev_pois_zi(0:1, c(0.3,0.6), res = TRUE)^2)
+})
+
+test_that("pois_zi log_lik", {
+  expect_equal(dev_pois_zi(0:1, 0.5),
+               2 * (log_lik_pois_zi(0:1, 0:1) - log_lik_pois_zi(0:1, 0.5)))
+  expect_equal(dev_pois_zi(0:1, 0.7),
+               2 * (log_lik_pois_zi(0:1, 0:1) - log_lik_pois_zi(0:1, 0.7)))
+})
+
+test_that("pois_zi deviance", {
+  samples <- ran_pois_zi(1000)
+  mod <- glm(samples~1, family = poisson)
+  deviance <- sum(dev_pois_zi(samples, ilogit(coef(mod)[1])))
+})
+
+test_that("pois_zi ran", {
+  set.seed(101)
+  samples <- ran_pois_zi(1000)
+  res <- dev_pois_zi(samples, 1, res = TRUE)
+  expect_equal(mean(res),-0.235540962010425)
+  expect_equal(sd(res),1.05758754072283)
+})
+
+#####
 
 test_that("dev_pois_zi", {
   expect_equal(dev_pois_zi(1,2),
