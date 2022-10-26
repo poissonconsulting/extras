@@ -11,7 +11,7 @@ ran_neg_binom(n = 1, lambda = 1, theta = 0)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the shape and rate.}
+\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma distribution.}
 }
 \value{
 A numeric vector of the random samples.

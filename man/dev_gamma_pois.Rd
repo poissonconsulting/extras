@@ -11,7 +11,7 @@ dev_gamma_pois(x, lambda = 1, theta = 0, res = FALSE)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the shape and rate.}
+\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma distribution.}
 
 \item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }

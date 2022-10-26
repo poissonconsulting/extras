@@ -36,7 +36,7 @@ should be returned as negative values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the shape and rate.}
+\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma distribution.}
 
 \item{shape}{A non-negative numeric vector of shape.}
 

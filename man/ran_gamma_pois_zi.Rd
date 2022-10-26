@@ -11,7 +11,7 @@ ran_gamma_pois_zi(n = 1, lambda = 1, theta = 0, prob = 0)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the shape and rate.}
+\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma distribution.}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 }
