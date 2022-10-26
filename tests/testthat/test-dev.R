@@ -138,15 +138,14 @@ test_that("dev_binom", {
   expect_equal(dev_binom(1, 1, 0.7, res = TRUE), 0.844600430900592)
   expect_identical(dev_binom(1, 2, 0.5), 0)
   expect_identical(dev_binom(5, 10, 0.5), 0)
-  expect_equal(dev_binom(1, 10, 0.5, res = TRUE), -3.25271578350125)
+  expect_equal(dev_binom(1, 10, 0.5, res = TRUE), -2.71316865369073)
   expect_equal(dev_binom(1:9, 10, 0.5, res = TRUE),
-               c(-3.25271578350125, -2.74227242773795, -2.17039427586256, -1.47914119729235,
-                 0, 1.47914119729235, 2.17039427586256, 2.74227242773795, 3.25271578350125
+               c(-2.71316865369073, -1.96338868806845, -1.28283185573988, -0.634594572159089,
+                 0, 0.634594572159089, 1.28283185573988, 1.96338868806845, 2.71316865369073
                ))
 })
 
 test_that("deviance binom log_lik", {
-  skip("why binom deviance seems to be different formally calculated")
   expect_equal(dev_binom(0:3, 3, 0.5),
                2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_binom(0:3, 3, 0.5)))
 })
@@ -155,10 +154,7 @@ test_that("deviance binom", {
   samples <- ran_binom(100, 3)
   mod <- glm(cbind(samples,3-samples)~1, family = binomial)
   deviance <- sum(dev_binom(samples, size = 3, ilogit(coef(mod)[1])))
-  skip("why binom deviance different!")
-  expect_identical(deviance, deviance(mod))
-  res_mod <- unname(residuals(mod))
-  res <- res_binom(samples, size = 3, ilogit(coef(mod)[1]))
+  expect_equal(deviance, deviance(mod))
 })
 
 test_that("dev_bern", {

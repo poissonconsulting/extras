@@ -128,10 +128,10 @@ test_that("res_binom", {
   expect_equal(res_binom(1, 1, 0.7), 0.844600430900592)
   expect_identical(res_binom(1, 2, 0.5), 0)
   expect_identical(res_binom(5, 10, 0.5), 0)
-  expect_equal(res_binom(1, 10, 0.5), -3.25271578350125)
+  expect_equal(res_binom(1, 10, 0.5), -2.71316865369073)
   expect_equal(res_binom(1:9, 10, 0.5),
-               c(-3.25271578350125, -2.74227242773795, -2.17039427586256, -1.47914119729235,
-                 0, 1.47914119729235, 2.17039427586256, 2.74227242773795, 3.25271578350125
+               c(-2.71316865369073, -1.96338868806845, -1.28283185573988, -0.634594572159089,
+                 0, 0.634594572159089, 1.28283185573988, 1.96338868806845, 2.71316865369073
                ))
   expect_equal(res_binom(0, 2, 0.5, type = "raw"), -1)
   set.seed(101)
@@ -147,8 +147,8 @@ test_that("res_binom", {
 test_that("res_binom simulate", {
   set.seed(101)
   res <- res_binom(rep(2,10000), size = 10, simulate = TRUE, type = "dev")
-  expect_equal(mean(res), 0.00279535222236926)
-  expect_equal(sd(res), 1.70019305525003)
+  expect_equal(mean(res), 0.00262573802624805)
+  expect_equal(sd(res), 1.02781369459726)
 })
 
 test_that("res_bern", {
