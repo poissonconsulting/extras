@@ -126,3 +126,16 @@ ran_neg_binom <- function(n = 1, lambda = 1, theta = 0) {
   chk_gte(n)
   as.integer(stats::rnbinom(n = n, mu = lambda, size = 1/theta))
 }
+
+#' Zero-Inflated Gamma Poisson Random Samples
+#'
+#' @inheritParams params
+#' @return An numeric vector of the random samples.
+# @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_gamma_pois_zi(10, lambda = 3, theta = 1, prob = 0.5)
+ran_gamma_pois_zi <- function(n = 1, lambda = 1, theta = 0, prob = 0) {
+  ran_neg_binom(n = n, lambda = lambda, theta = theta) * ran_bern(n, prob = 1 - prob)
+}
