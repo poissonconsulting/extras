@@ -1,5 +1,34 @@
+test_that("log_lik_bern", {
+  expect_identical(log_lik_bern(numeric(0)), numeric(0))
+  expect_identical(log_lik_bern(1, prob = numeric(0)), numeric(0))
+  expect_identical(log_lik_bern(NA), NA_real_)
+  expect_identical(log_lik_bern(1, NA), NA_real_)
+  expect_identical(log_lik_bern(0, 0), 0)
+  expect_identical(log_lik_bern(0L, 0), 0)
+  expect_identical(log_lik_bern(1, 1), 0)
+  expect_equal(log_lik_bern(0), -0.693147180559945)
+  expect_equal(log_lik_bern(1, 0.7), -0.356674943938732)
+})
+
+test_that("log_lik_binom", {
+  expect_identical(log_lik_binom(numeric(0)), numeric(0))
+  expect_identical(log_lik_binom(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_binom(1, prob = numeric(0)), numeric(0))
+  expect_identical(log_lik_binom(NA), NA_real_)
+  expect_identical(log_lik_binom(1, NA), NA_real_)
+  expect_identical(log_lik_binom(1, prob = NA), NA_real_)
+  expect_identical(log_lik_binom(0, 0), 0)
+  expect_identical(log_lik_binom(0L, 0), 0)
+  expect_identical(log_lik_binom(1, 1), 0)
+  expect_equal(log_lik_binom(0), -0.693147180559945)
+  expect_equal(log_lik_binom(1, 0.7), -0.356674943938732)
+
+  expect_identical(log_lik_binom(1, 2, 0.7), dbinom(1, 2, 0.7, log = TRUE))
+})
+
+
 test_that("log_lik_pois", {
-  expect_identical(log_lik_pois(1, 2), dpois(1, 2, log = TRUE))
+  expect_equal(log_lik_pois(1, 2), -1.30685281944005)
 })
 
 test_that("log_lik_pois_zi", {
@@ -21,14 +50,6 @@ test_that("log_lik_norm", {
 
 test_that("log_lik_lnorm", {
   expect_identical(log_lik_lnorm(1, 2), dlnorm(1, 2, log = TRUE))
-})
-
-test_that("log_lik_binom", {
-  expect_identical(log_lik_binom(1, 2, 0.7), dbinom(1, 2, 0.7, log = TRUE))
-})
-
-test_that("log_lik_bern", {
-  expect_identical(log_lik_bern(1, 0.7), dbinom(1, 1, 0.7, log = TRUE))
 })
 
 test_that("log_lik_neg_binom", {
