@@ -159,7 +159,7 @@ res_neg_binom <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FAL
          chk_subset(x, c("data", "raw", "dev")))
 }
 
-#' Poisson Residuals
+#' Zero-Inflated Poisson Residuals
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
@@ -179,5 +179,28 @@ res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
          data = x,
          raw = x - lambda * (1 - prob),
          dev = dev_pois_zi(x, lambda, prob = prob, res = TRUE),
+         chk_subset(x, c("data", "raw", "dev")))
+}
+
+#' Zero-Inflated Gamma Poisson Residuals
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+# @family res_dist
+#' @export
+#'
+#' @examples
+#' res_gamma_pois_zi(c(0, 1, 2), 1, 1, 0.5)
+res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    x <- ran_gamma_pois_zi(length(x), lambda = lambda, theta = theta, prob = prob)
+  }
+  switch(type,
+         data = x,
+         raw = x - lambda * (1 - prob),
+         dev = dev_gamma_pois_zi(x, lambda, theta = theta, prob = prob, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
