@@ -13,7 +13,7 @@ dev_bern <- function(x, prob = 0.5, res = FALSE) {
   dev <- ifelse(x == 1, -log(prob), -log(1-prob))
   dev <- dev * 2
   if(vld_false(res)) return(dev)
-  impl_dev(x, prob, dev)
+  dev_res(x, prob, dev)
 }
 
 #' Binomial Deviances
@@ -38,7 +38,7 @@ dev_binom <- function(x, size = 1, prob = 0.5, res = FALSE) {
   dev <- dev1 + dev2
   dev <- dev * 2
   if(vld_false(res)) return(dev)
-  impl_dev(x, mu, dev)
+  dev_res(x, mu, dev)
 }
 
 #' Gamma-Poisson Deviances
@@ -61,7 +61,7 @@ dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
   dev <- dev * 2
   dev[theta == 0] <- dev_pois(x[theta == 0], lambda[theta == 0], res = FALSE)
   if(vld_false(res)) return(dev)
-  impl_dev(x, lambda, dev)
+  dev_res(x, lambda, dev)
 }
 
 #' Zero-Inflated Gamma-Poisson Deviances
@@ -92,7 +92,7 @@ dev_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, res = FALSE) {
   is.na(dev) <- is.na(prob)
   dev <- dev * 2
   if(vld_false(res)) return(dev)
-  impl_dev(x, lambda * (1 - prob), dev)
+  dev_res(x, lambda * (1 - prob), dev)
 }
 
 #' Log-Normal Deviances
@@ -138,9 +138,9 @@ dev_neg_binom <- function(x, lambda = 1, theta = 0, res = FALSE) {
 #' @examples
 #' dev_norm(c(-2:2))
 dev_norm <- function(x, mean = 0, sd = 1, res = FALSE) {
-  dev <- (x - mean)^2/sd^2
+  dev <- ((x - mean)/sd)^2
   if(vld_false(res)) return(dev)
-  impl_dev(x, mean, dev)
+  dev_res(x, mean, dev)
 }
 
 #' Poisson Deviances
@@ -166,7 +166,7 @@ dev_pois <- function(x, lambda, res = FALSE) {
   dev <- pmax(dev, 0)
   dev <- dev * 2
   if(vld_false(res)) return(dev)
-  impl_dev(x, lambda, dev)
+  dev_res(x, lambda, dev)
 }
 
 #' Zero-Inflated Poisson Deviances
@@ -197,5 +197,5 @@ dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
   is.na(dev) <- is.na(prob)
   dev <- dev * 2
   if(vld_false(res)) return(dev)
-  impl_dev(x, lambda * (1 - prob), dev)
+  dev_res(x, lambda * (1 - prob), dev)
 }

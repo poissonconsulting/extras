@@ -1,3 +1,3 @@
-impl_dev <- function(x, mu, dev) {
+dev_res <- function(x, mu, dev) {
   sign(x - mu) * sqrt(dev)
 }
