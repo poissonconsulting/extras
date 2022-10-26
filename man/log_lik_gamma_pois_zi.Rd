@@ -2,7 +2,7 @@
 % Please edit documentation in R/log-lik.R
 \name{log_lik_gamma_pois_zi}
 \alias{log_lik_gamma_pois_zi}
-\title{Zero-Inflated Gamma Poisson Log-Likelihood}
+\title{Zero-Inflated Gamma-Poisson Log-Likelihood}
 \usage{
 log_lik_gamma_pois_zi(x, lambda = 1, theta = 0, prob = 0)
 }
@@ -19,7 +19,7 @@ log_lik_gamma_pois_zi(x, lambda = 1, theta = 0, prob = 0)
 An numeric vector of the corresponding log-likelihoods.
 }
 \description{
-Zero-Inflated Gamma Poisson Log-Likelihood
+Zero-Inflated Gamma-Poisson Log-Likelihood
 }
 \examples{
 log_lik_gamma_pois_zi(c(1,3.5,4), 3, 1, prob = 0.5)

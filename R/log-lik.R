@@ -107,7 +107,7 @@ log_lik_neg_binom <- function(x, lambda = 1, theta = 0) {
   dnbinom(x, mu = lambda, size = 1/theta, log = TRUE)
 }
 
-#' Gamma Poisson Log-Likelihood
+#' Gamma-Poisson Log-Likelihood
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
@@ -122,7 +122,7 @@ log_lik_gamma_pois <- function(x, lambda = 1, theta = 0) {
   log_lik_neg_binom(x, lambda = lambda, theta = theta)
 }
 
-#' Zero-Inflated Gamma Poisson Log-Likelihood
+#' Zero-Inflated Gamma-Poisson Log-Likelihood
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.

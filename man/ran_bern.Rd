@@ -12,7 +12,7 @@ ran_bern(n = 1, prob = 0.5)
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 }
 \value{
-An numeric vector of the random samples.
+A numeric vector of the random samples.
 }
 \description{
 Bernoulli Random Samples

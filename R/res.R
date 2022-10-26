@@ -113,7 +113,7 @@ res_bern <- function(x, prob = 0.5, type = "dev", simulate = FALSE) {
          chk_subset(x, c("data", "raw", "dev")))
 }
 
-#' Gamma Poisson Residuals
+#' Gamma-Poisson Residuals
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
@@ -182,7 +182,7 @@ res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
          chk_subset(x, c("data", "raw", "dev")))
 }
 
-#' Zero-Inflated Gamma Poisson Residuals
+#' Zero-Inflated Gamma-Poisson Residuals
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.

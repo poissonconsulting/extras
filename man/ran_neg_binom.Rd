@@ -2,7 +2,7 @@
 % Please edit documentation in R/ran.R
 \name{ran_neg_binom}
 \alias{ran_neg_binom}
-\title{Gamma-Poisson Random Samples}
+\title{Negative Binomial Random Samples}
 \usage{
 ran_neg_binom(n = 1, lambda = 1, theta = 0)
 }
@@ -14,13 +14,13 @@ ran_neg_binom(n = 1, lambda = 1, theta = 0)
 \item{theta}{A non-negative numeric vector of the shape and rate.}
 }
 \value{
-An numeric vector of the random samples.
+A numeric vector of the random samples.
 }
 \description{
-Gamma-Poisson Random Samples
+Identical to Gamma-Poisson Random Samples.
 }
 \examples{
-ran_neg_binom(10, 1, 1)
+ran_neg_binom(10, theta = 1)
 }
 \seealso{
 Other ran_dist: 

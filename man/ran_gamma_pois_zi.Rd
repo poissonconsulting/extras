@@ -2,7 +2,7 @@
 % Please edit documentation in R/ran.R
 \name{ran_gamma_pois_zi}
 \alias{ran_gamma_pois_zi}
-\title{Zero-Inflated Gamma Poisson Random Samples}
+\title{Zero-Inflated Gamma-Poisson Random Samples}
 \usage{
 ran_gamma_pois_zi(n = 1, lambda = 1, theta = 0, prob = 0)
 }
@@ -16,10 +16,10 @@ ran_gamma_pois_zi(n = 1, lambda = 1, theta = 0, prob = 0)
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 }
 \value{
-An numeric vector of the random samples.
+A numeric vector of the random samples.
 }
 \description{
-Zero-Inflated Gamma Poisson Random Samples
+Zero-Inflated Gamma-Poisson Random Samples
 }
 \examples{
 ran_gamma_pois_zi(10, lambda = 3, theta = 1, prob = 0.5)

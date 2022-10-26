@@ -14,7 +14,7 @@ ran_norm(n = 1, mean = 0, sd = 1)
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 }
 \value{
-An numeric vector of the random samples.
+A numeric vector of the random samples.
 }
 \description{
 Normal Random Samples

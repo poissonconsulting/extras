@@ -12,7 +12,7 @@ ran_pois(n = 1, lambda = 1)
 \item{lambda}{A non-negative numeric vector of means.}
 }
 \value{
-An numeric vector of the random samples.
+A numeric vector of the random samples.
 }
 \description{
 Poisson Random Samples

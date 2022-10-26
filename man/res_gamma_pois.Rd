@@ -2,7 +2,7 @@
 % Please edit documentation in R/res.R
 \name{res_gamma_pois}
 \alias{res_gamma_pois}
-\title{Gamma Poisson Residuals}
+\title{Gamma-Poisson Residuals}
 \usage{
 res_gamma_pois(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE)
 }
@@ -21,7 +21,7 @@ res_gamma_pois(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE)
 An numeric vector of the corresponding residuals.
 }
 \description{
-Gamma Poisson Residuals
+Gamma-Poisson Residuals
 }
 \examples{
 res_gamma_pois(c(0, 1, 2), 1, 1)

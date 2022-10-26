@@ -2,7 +2,7 @@
 % Please edit documentation in R/log-lik.R
 \name{log_lik_gamma_pois}
 \alias{log_lik_gamma_pois}
-\title{Gamma Poisson Log-Likelihood}
+\title{Gamma-Poisson Log-Likelihood}
 \usage{
 log_lik_gamma_pois(x, lambda = 1, theta = 0)
 }
@@ -17,7 +17,7 @@ log_lik_gamma_pois(x, lambda = 1, theta = 0)
 An numeric vector of the corresponding log-likelihoods.
 }
 \description{
-Gamma Poisson Log-Likelihood
+Gamma-Poisson Log-Likelihood
 }
 \examples{
 log_lik_gamma_pois(c(0, 1, 2), 1, 1)

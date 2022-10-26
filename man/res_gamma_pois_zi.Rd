@@ -2,7 +2,7 @@
 % Please edit documentation in R/res.R
 \name{res_gamma_pois_zi}
 \alias{res_gamma_pois_zi}
-\title{Zero-Inflated Gamma Poisson Residuals}
+\title{Zero-Inflated Gamma-Poisson Residuals}
 \usage{
 res_gamma_pois_zi(
   x,
@@ -30,7 +30,7 @@ res_gamma_pois_zi(
 An numeric vector of the corresponding residuals.
 }
 \description{
-Zero-Inflated Gamma Poisson Residuals
+Zero-Inflated Gamma-Poisson Residuals
 }
 \examples{
 res_gamma_pois_zi(c(0, 1, 2), 1, 1, 0.5)

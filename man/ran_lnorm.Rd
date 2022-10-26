@@ -14,7 +14,7 @@ ran_lnorm(n = 1, meanlog = 0, sdlog = 1)
 \item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
 }
 \value{
-An numeric vector of the random samples.
+A numeric vector of the random samples.
 }
 \description{
 Log-Normal Random Samples
