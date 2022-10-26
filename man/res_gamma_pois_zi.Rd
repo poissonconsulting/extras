@@ -18,7 +18,7 @@ res_gamma_pois_zi(
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma distribution.}
+\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma mixing distribution. The variance for the resultant gamma-Poisson distribution is lambda + lambda^2 * theta.}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
