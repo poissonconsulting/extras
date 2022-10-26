@@ -30,6 +30,7 @@ dev_norm(exp(c(-2:2)))
 Other res_dist: 
 \code{\link{res_bern}()},
 \code{\link{res_binom}()},
+\code{\link{res_gamma_pois_zi}()},
 \code{\link{res_gamma_pois}()},
 \code{\link{res_neg_binom}()},
 \code{\link{res_norm}()},

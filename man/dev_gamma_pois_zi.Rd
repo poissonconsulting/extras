@@ -19,7 +19,6 @@ dev_gamma_pois_zi(x, lambda = 1, theta = 0, prob = 0, res = FALSE)
 }
 \value{
 An numeric vector of the corresponding deviances or deviance residuals.
-family dev_dist # make live when complete
 }
 \description{
 Zero-Inflated Gamma-Poisson Deviances
@@ -27,3 +26,4 @@ Zero-Inflated Gamma-Poisson Deviances
 \examples{
 dev_gamma_pois_zi(c(1,3.5,4), 3, 2)
 }
+\concept{dev_dist # make live when complete}

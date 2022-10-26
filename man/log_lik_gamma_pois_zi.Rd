@@ -24,3 +24,15 @@ Zero-Inflated Gamma Poisson Log-Likelihood
 \examples{
 log_lik_gamma_pois_zi(c(1,3.5,4), 3, 1, prob = 0.5)
 }
+\seealso{
+Other log_lik_dist: 
+\code{\link{log_lik_bern}()},
+\code{\link{log_lik_binom}()},
+\code{\link{log_lik_gamma_pois}()},
+\code{\link{log_lik_lnorm}()},
+\code{\link{log_lik_neg_binom}()},
+\code{\link{log_lik_norm}()},
+\code{\link{log_lik_pois_zi}()},
+\code{\link{log_lik_pois}()}
+}
+\concept{log_lik_dist}

@@ -131,7 +131,7 @@ ran_neg_binom <- function(n = 1, lambda = 1, theta = 0) {
 #'
 #' @inheritParams params
 #' @return An numeric vector of the random samples.
-# @family ran_dist
+#' @family ran_dist
 #' @export
 #'
 #' @examples

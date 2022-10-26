@@ -28,6 +28,7 @@ res_pois(c(1,3.5,4), 3)
 Other res_dist: 
 \code{\link{res_bern}()},
 \code{\link{res_binom}()},
+\code{\link{res_gamma_pois_zi}()},
 \code{\link{res_gamma_pois}()},
 \code{\link{res_lnorm}()},
 \code{\link{res_neg_binom}()},

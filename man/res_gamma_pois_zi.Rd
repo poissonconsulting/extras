@@ -35,3 +35,15 @@ Zero-Inflated Gamma Poisson Residuals
 \examples{
 res_gamma_pois_zi(c(0, 1, 2), 1, 1, 0.5)
 }
+\seealso{
+Other res_dist: 
+\code{\link{res_bern}()},
+\code{\link{res_binom}()},
+\code{\link{res_gamma_pois}()},
+\code{\link{res_lnorm}()},
+\code{\link{res_neg_binom}()},
+\code{\link{res_norm}()},
+\code{\link{res_pois_zi}()},
+\code{\link{res_pois}()}
+}
+\concept{res_dist}

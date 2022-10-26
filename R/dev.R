@@ -179,7 +179,7 @@ dev_neg_binom <- function(x, lambda = 1, theta = 0, res = FALSE) {
 #' @param x A non-negative whole numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
-#' family dev_dist # make live when complete
+#' @family dev_dist # make live when complete
 #' @export
 #'
 #' @examples

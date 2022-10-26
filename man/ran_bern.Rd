@@ -23,6 +23,7 @@ ran_bern(10)
 \seealso{
 Other ran_dist: 
 \code{\link{ran_binom}()},
+\code{\link{ran_gamma_pois_zi}()},
 \code{\link{ran_gamma_pois}()},
 \code{\link{ran_gamma}()},
 \code{\link{ran_lnorm}()},

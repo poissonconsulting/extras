@@ -26,6 +26,7 @@ ran_neg_binom(10, 1, 1)
 Other ran_dist: 
 \code{\link{ran_bern}()},
 \code{\link{ran_binom}()},
+\code{\link{ran_gamma_pois_zi}()},
 \code{\link{ran_gamma_pois}()},
 \code{\link{ran_gamma}()},
 \code{\link{ran_lnorm}()},

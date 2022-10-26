@@ -188,7 +188,7 @@ res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
 #' @param x A non-negative whole numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding residuals.
-# @family res_dist
+#' @family res_dist
 #' @export
 #'
 #' @examples

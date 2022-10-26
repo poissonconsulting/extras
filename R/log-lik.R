@@ -128,7 +128,7 @@ log_lik_gamma_pois <- function(x, lambda = 1, theta = 0) {
 #' @param x A non-negative whole numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding log-likelihoods.
-# @family log_lik_dist
+#' @family log_lik_dist
 #' @export
 #'
 #' @examples
