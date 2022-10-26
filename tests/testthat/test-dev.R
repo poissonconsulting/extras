@@ -53,8 +53,17 @@ test_that("dev_pois_zi", {
                2 * (log_lik_pois_zi(3,3,0.1) - log_lik_pois_zi(3,3.5,0.1)))
   expect_equal(dev_pois_zi(3,3.5,0.2),
                2 * (log_lik_pois_zi(3,3,0.2) - log_lik_pois_zi(3,3.5,0.2)))
+  expect_equal(dev_pois_zi(3, 3, 0, res = TRUE),
+               0)
+  expect_equal(dev_pois_zi(3, 3, 1, res = TRUE),
+               0)
+  expect_equal(dev_pois(3, 3.5, res = TRUE),
+               -0.274036349845144)
   expect_equal(dev_pois_zi(3, 3.5, 0, res = TRUE),
                -0.274036349845144)
+  expect_equal(sign(3-3.5)*sqrt(dev_pois(3, 3.5)),
+               -0.274036349845144)
+
   skip("why not changing and becoming positive??")
   expect_equal(dev_pois_zi(3, 3.5, 0.1, res = TRUE),
                -0.274036349845144)

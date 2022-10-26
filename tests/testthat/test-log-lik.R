@@ -8,6 +8,11 @@ test_that("log_lik_pois_zi", {
   expect_identical(log_lik_pois_zi(0, 2, 1), 0)
   expect_identical(log_lik_pois_zi(1, 2, 1), -Inf)
   expect_equal(log_lik_pois_zi(c(0, 2), 2, 0.5), c(-0.566219169516973, -2))
+  expect_equal(log_lik_pois_zi(3, 3.5, 0), log_lik_pois(3, 3.5))
+  expect_equal(log_lik_pois_zi(3, 3.5, 0), -1.53347056374195)
+  expect_equal(log_lik_pois_zi(3, 3.5, 0.1), -1.63883107939978)
+  expect_equal(log_lik_pois_zi(3, 3.5, 0.2), -1.75661411505616)
+  expect_equal(log_lik_pois_zi(3, 3.5, 1), -Inf)
 })
 
 test_that("log_lik_norm", {
