@@ -382,9 +382,10 @@ test_that("pois_zi log_lik", {
 })
 
 test_that("pois_zi deviance", {
-  samples <- ran_pois_zi(1000)
-  mod <- glm(samples~1, family = poisson)
-  deviance <- sum(dev_pois_zi(samples, ilogit(coef(mod)[1])))
+  set.seed(101)
+  samples <- ran_pois_zi(10000, 3, 0.5)
+  expect_equal(mean(samples), 1.4812)
+  expect_equal(sd(samples), 1.92406256698585)
 })
 
 test_that("pois_zi ran", {
