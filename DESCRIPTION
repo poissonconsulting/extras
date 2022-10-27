@@ -29,6 +29,7 @@ Suggests:
     covr,
     hms,
     knitr,
+    MASS,
     rlang,
     rmarkdown,
     testthat (>= 3.0.0),

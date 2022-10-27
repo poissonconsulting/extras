@@ -44,6 +44,7 @@ test_that("bern deviance", {
   samples <- ran_bern(1000)
   mod <- glm(cbind(samples,1-samples)~1, family = binomial)
   deviance <- sum(dev_bern(samples, ilogit(coef(mod)[1])))
+  expect_equal(deviance, deviance(mod))
 })
 
 test_that("bern ran", {
@@ -85,26 +86,69 @@ test_that("deviance binom", {
   expect_equal(deviance, deviance(mod))
 })
 
-
-test_that("dev_gamma_pois", {
-  expect_identical(dev_gamma_pois(integer(0), integer(0), integer(0)), numeric(0))
-  expect_identical(dev_gamma_pois(1, 1, 0), 0)
-  expect_identical(dev_gamma_pois(0, 1, 0), 2)
-  expect_identical(dev_gamma_pois(1, 1, 1), 0)
-  expect_identical(dev_gamma_pois(0, 0, 0), 0)
-  expect_identical(dev_gamma_pois(0, 0, 1), 0)
-  expect_equal(dev_gamma_pois(0, 1, 0), 2)
-  expect_equal(dev_gamma_pois(0, 1, 1), 1.38629436111989)
-
-  expect_identical(dev_gamma_pois(NA, 1, 1), NA_real_)
-  expect_identical(dev_gamma_pois(1, NA, 1), NA_real_)
+test_that("gamma_pois missing values", {
+  expect_identical(dev_gamma_pois(logical(0), integer(0), numeric(0)), numeric(0))
+  expect_identical(dev_gamma_pois(NA, 1), NA_real_)
+  expect_identical(dev_gamma_pois(1, NA), NA_real_)
   expect_identical(dev_gamma_pois(1, 1, NA), NA_real_)
-  expect_equal(dev_gamma_pois(1, 3, 1), dev_gamma_pois(1, 3, 1, res = TRUE)^2)
+})
 
-  expect_equal(dev_gamma_pois(c(1, 3.5 , 4), 3, 0, res = TRUE),
-               c(-1.34267472705186, 0.281166781094084, 0.549050616623137))
-  expect_equal(dev_gamma_pois(c(1,3,4), c(1, 3.5, 4), 0, res = TRUE),
-               c(0, -0.274036349845144, 0))
+test_that("gamma_pois known values", {
+  expect_identical(dev_gamma_pois(1, 1), 0)
+  expect_identical(dev_gamma_pois(1, 1, 1), 0)
+  expect_identical(dev_gamma_pois(0, 0), 0)
+  expect_identical(dev_gamma_pois(0, 0, 1), 0)
+  expect_identical(dev_gamma_pois(1, 0), Inf)
+  expect_identical(dev_gamma_pois(1, 0, 1), Inf)
+  expect_identical(dev_gamma_pois(0, 1), 2)
+  expect_equal(dev_gamma_pois(0, 1, 1), 1.38629436111989)
+  expect_identical(dev_gamma_pois(0, 2), 4)
+  expect_equal(dev_gamma_pois(0, 2, 1), 2.19722457733622)
+  expect_equal(dev_gamma_pois(0, 2, 2), 1.6094379124341)
+})
+
+test_that("gamma_pois vectorized", {
+  expect_equal(dev_gamma_pois(0:3, 2, 0), c(4, 0.613705638880109, 0, 0.432790648648986))
+  expect_equal(dev_gamma_pois(0:3, 0:3, rep(1, 4)), rep(0, 4))
+  expect_equal(dev_gamma_pois(0:3, 3:0, 0:3), c(6, 0.235566071312767, 0.218460603409828, Inf))
+})
+
+test_that("gamma_pois vectorized missing values", {
+  expect_equal(dev_gamma_pois(c(NA,1), 0:1, 0:1), c(NA,0))
+  expect_equal(dev_gamma_pois(c(0,NA), 0:1, 0:1), c(0,NA))
+  expect_equal(dev_gamma_pois(c(0:1), c(NA,1), 0:1), c(NA,0))
+  expect_equal(dev_gamma_pois(c(0:1), c(0,NA), 0:1), c(0,NA))
+  expect_equal(dev_gamma_pois(c(0:1), c(0:1), c(NA,0)), c(NA,0))
+  expect_equal(dev_gamma_pois(c(0:1), c(0:1), c(0,NA)), c(0,NA))
+})
+
+test_that("gamma_pois res", {
+  expect_equal(dev_gamma_pois(0, 0.5), dev_gamma_pois(0, 0.5, res = TRUE)^2)
+  expect_equal(dev_gamma_pois(0:1, c(0.3,0.6)), dev_gamma_pois(0:1, c(0.3,0.6), res = TRUE)^2)
+})
+
+test_that("gamma_pois log_lik", {
+  expect_equal(dev_gamma_pois(0:1, 0.5),
+               2 * (log_lik_gamma_pois(0:1, 0:1) - log_lik_gamma_pois(0:1, 0.5)))
+  expect_equal(dev_gamma_pois(0:1, 0.7),
+               2 * (log_lik_gamma_pois(0:1, 0:1) - log_lik_gamma_pois(0:1, 0.7)))
+})
+
+test_that("gamma_pois deviance", {
+  samples <- ran_gamma_pois(10000, 3, 0.5)
+  mod <- MASS::glm.nb(samples~1)
+  deviance <- sum(dev_gamma_pois(samples, exp(coef(mod)[1]), theta = 1/mod$theta))
+  expect_equal(deviance, deviance(mod))
+})
+
+test_that("gamma_pois ran", {
+  set.seed(100)
+  samples <- ran_gamma_pois(100000, 3, 0.5)
+  expect_equal(mean(samples), 3.00867)
+  expect_equal(var(samples), 7.50806991179912)
+  res <- dev_gamma_pois(samples, 3, 0.5, res = TRUE)
+  expect_equal(mean(res),-0.260848965857529)
+  expect_equal(sd(res), 1.0243876393499)
 })
 
 test_that("dev_gamma_pois_zi", {
@@ -278,18 +322,19 @@ test_that("pois log_lik", {
 test_that("pois deviance", {
   samples <- ran_pois(1000)
   mod <- glm(samples~1, family = poisson)
-  deviance <- sum(dev_pois(samples, ilogit(coef(mod)[1])))
+  deviance <- sum(dev_pois(samples, exp(coef(mod)[1])))
+  expect_equal(deviance, deviance(mod))
 })
 
 test_that("pois ran", {
   set.seed(101)
   samples <- ran_pois(1000)
+  expect_equal(mean(samples), 0.984)
+  expect_equal(var(samples), 1.02476876876877)
   res <- dev_pois(samples, 1, res = TRUE)
   expect_equal(mean(res),-0.235540962010425)
   expect_equal(sd(res),1.05758754072283)
 })
-
-#####
 
 test_that("pois_zi missing values", {
   expect_identical(dev_pois_zi(logical(0), integer(0), numeric(0)), numeric(0))
@@ -350,59 +395,57 @@ test_that("pois_zi ran", {
   expect_equal(sd(res),1.05758754072283)
 })
 
-#####
-
-test_that("dev_pois_zi", {
-  expect_equal(dev_pois_zi(1,2),
-               2 * (log_lik_pois_zi(1, 1) - log_lik_pois_zi(1, 2)))
-  expect_equal(dev_pois_zi(3,2),
-               2 * (log_lik_pois_zi(3, 3) - log_lik_pois_zi(3, 2)))
-  expect_equal(dev_pois_zi(0,2),
-               2 * (log_lik_pois_zi(0, 0) - log_lik_pois_zi(0, 2)))
-  expect_equal(dev_pois_zi(0,2,1),
-               2 * (log_lik_pois_zi(0, 0, 1) - log_lik_pois_zi(0, 2, 1)))
-  expect_equal(dev_pois_zi(0,2,0.5),
-               2 * (log_lik_pois_zi(0, 0, 0.5) - log_lik_pois_zi(0, 2, 0.5)))
-  expect_equal(dev_pois_zi(0,0),
-               2 * (log_lik_pois_zi(0, 0) - log_lik_pois_zi(0, 0)))
-  expect_equal(dev_pois_zi(1,0,1),
-               2 * (log_lik_pois_zi(0, 0, 1) - log_lik_pois_zi(1, 0, 1)))
-  expect_identical(dev_pois_zi(integer(0), integer(0), numeric(0)), numeric(0))
-  expect_identical(dev_pois_zi(1, 1), 0)
-  expect_identical(dev_pois_zi(0, 0), 0)
-  expect_identical(dev_pois_zi(0, 1), 2)
-  expect_identical(dev_pois_zi(NA, 1), NA_real_)
-  expect_identical(dev_pois_zi(1, NA), NA_real_)
-  expect_equal(dev_pois_zi(1, 3), dev_pois_zi(1, 3, res = TRUE)^2)
-  expect_equal(dev_pois_zi(c(1,3.5,4), 3, res = TRUE),
-               c(-1.34267472705186, 0.281166781094084, 0.549050616623137))
-  expect_equal(dev_pois_zi(c(1,3,4), c(1, 3.5, 4), res = TRUE),
-               c(0, -0.274036349845144, 0))
-  expect_equal(dev_pois_zi(c(1,3,4), c(1, 3.5, 4), 0.5, res = TRUE),
-               c(0, 0.274036349845144, 0))
-
-  expect_equal(dev_pois_zi(3, 3.5, 0, res = TRUE),
-               dev_pois(3, 3.5, res = TRUE))
-  expect_equal(dev_pois_zi(3,3.5,0.1),
-               2 * (log_lik_pois_zi(3,3,0.1) - log_lik_pois_zi(3,3.5,0.1)))
-  expect_equal(dev_pois_zi(3,3.5,0.2),
-               2 * (log_lik_pois_zi(3,3,0.2) - log_lik_pois_zi(3,3.5,0.2)))
-  expect_equal(dev_pois_zi(3, 3, 0, res = TRUE),
-               0)
-  expect_equal(dev_pois_zi(3, 3, 1, res = TRUE),
-               0)
-  expect_equal(dev_pois(3, 3.5, res = TRUE),
-               -0.274036349845144)
-  expect_equal(dev_pois_zi(3, 3.5, 0, res = TRUE),
-               -0.274036349845144)
-  expect_equal(sign(3-3.5)*sqrt(dev_pois(3, 3.5)),
-               -0.274036349845144)
-
-  skip("why not changing and becoming positive??")
-  expect_equal(dev_pois_zi(3, 3.5, 0.1, res = TRUE),
-               -0.274036349845144)
-  expect_equal(dev_pois_zi(3, 3.5, 0.2, res = TRUE),
-               0.274036349845144)
-  expect_equal(dev_pois_zi(3, 3.5, 0.90, res = TRUE),
-               0.274036349845144)
-})
+# test_that("dev_pois_zi", {
+#   expect_equal(dev_pois_zi(1,2),
+#                2 * (log_lik_pois_zi(1, 1) - log_lik_pois_zi(1, 2)))
+#   expect_equal(dev_pois_zi(3,2),
+#                2 * (log_lik_pois_zi(3, 3) - log_lik_pois_zi(3, 2)))
+#   expect_equal(dev_pois_zi(0,2),
+#                2 * (log_lik_pois_zi(0, 0) - log_lik_pois_zi(0, 2)))
+#   expect_equal(dev_pois_zi(0,2,1),
+#                2 * (log_lik_pois_zi(0, 0, 1) - log_lik_pois_zi(0, 2, 1)))
+#   expect_equal(dev_pois_zi(0,2,0.5),
+#                2 * (log_lik_pois_zi(0, 0, 0.5) - log_lik_pois_zi(0, 2, 0.5)))
+#   expect_equal(dev_pois_zi(0,0),
+#                2 * (log_lik_pois_zi(0, 0) - log_lik_pois_zi(0, 0)))
+#   expect_equal(dev_pois_zi(1,0,1),
+#                2 * (log_lik_pois_zi(0, 0, 1) - log_lik_pois_zi(1, 0, 1)))
+#   expect_identical(dev_pois_zi(integer(0), integer(0), numeric(0)), numeric(0))
+#   expect_identical(dev_pois_zi(1, 1), 0)
+#   expect_identical(dev_pois_zi(0, 0), 0)
+#   expect_identical(dev_pois_zi(0, 1), 2)
+#   expect_identical(dev_pois_zi(NA, 1), NA_real_)
+#   expect_identical(dev_pois_zi(1, NA), NA_real_)
+#   expect_equal(dev_pois_zi(1, 3), dev_pois_zi(1, 3, res = TRUE)^2)
+#   expect_equal(dev_pois_zi(c(1,3.5,4), 3, res = TRUE),
+#                c(-1.34267472705186, 0.281166781094084, 0.549050616623137))
+#   expect_equal(dev_pois_zi(c(1,3,4), c(1, 3.5, 4), res = TRUE),
+#                c(0, -0.274036349845144, 0))
+#   expect_equal(dev_pois_zi(c(1,3,4), c(1, 3.5, 4), 0.5, res = TRUE),
+#                c(0, 0.274036349845144, 0))
+#
+#   expect_equal(dev_pois_zi(3, 3.5, 0, res = TRUE),
+#                dev_pois(3, 3.5, res = TRUE))
+#   expect_equal(dev_pois_zi(3,3.5,0.1),
+#                2 * (log_lik_pois_zi(3,3,0.1) - log_lik_pois_zi(3,3.5,0.1)))
+#   expect_equal(dev_pois_zi(3,3.5,0.2),
+#                2 * (log_lik_pois_zi(3,3,0.2) - log_lik_pois_zi(3,3.5,0.2)))
+#   expect_equal(dev_pois_zi(3, 3, 0, res = TRUE),
+#                0)
+#   expect_equal(dev_pois_zi(3, 3, 1, res = TRUE),
+#                0)
+#   expect_equal(dev_pois(3, 3.5, res = TRUE),
+#                -0.274036349845144)
+#   expect_equal(dev_pois_zi(3, 3.5, 0, res = TRUE),
+#                -0.274036349845144)
+#   expect_equal(sign(3-3.5)*sqrt(dev_pois(3, 3.5)),
+#                -0.274036349845144)
+#
+#   skip("why not changing and becoming positive??")
+#   expect_equal(dev_pois_zi(3, 3.5, 0.1, res = TRUE),
+#                -0.274036349845144)
+#   expect_equal(dev_pois_zi(3, 3.5, 0.2, res = TRUE),
+#                0.274036349845144)
+#   expect_equal(dev_pois_zi(3, 3.5, 0.90, res = TRUE),
+#                0.274036349845144)
+# })
