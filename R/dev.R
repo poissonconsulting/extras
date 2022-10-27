@@ -182,20 +182,14 @@ dev_pois <- function(x, lambda, res = FALSE) {
 #' @examples
 #' dev_pois(c(1,3.5,4), 3)
 dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
-  dev <- dev_pois(x, lambda, res = FALSE)
-  dev <- dev / 2
-  probnot0 <- !is.na(x) & x == 0 & !is.na(prob) & prob != 0
-  if(any(probnot0)) {
-    if(length(prob) == 1) {
-      prob <- rep(prob, length(x))
-    }
-    prob1 <- probnot0 & prob == 1
-    dev[prob1] <- 0
-    probnot01 <- probnot0 & prob != 1
-    dev[probnot01] <- -log(exp(-dev[probnot01]) * (1 - prob[probnot01]) + prob[probnot01])
-  }
-
-  is.na(dev) <- is.na(prob)
+  dev1 <- -x + x * log(x) - log(factorial(x))
+  dev1[x == 0] <- 0
+  dev0 <- log(prob + (1 - prob) * exp(-lambda))
+  devg0 <- log(1-prob) - lambda + x * log(lambda) - log(factorial(x))
+  dev <- dev1 - dev0
+  devg0 <- dev1 - devg0
+  g0 <- !is.na(x) & x > 0
+  dev[g0] <- devg0[g0]
   dev <- dev * 2
   if(vld_false(res)) return(dev)
   dev_res(x, lambda * (1 - prob), dev)

@@ -30,9 +30,9 @@ test_that("res_pois_zi", {
   expect_identical(res_pois_zi(integer(0), integer(0)), numeric(0))
   expect_identical(res_pois_zi(1, 1), 0)
   expect_identical(res_pois_zi(1, 1, type = "raw"), 0)
-  expect_identical(res_pois_zi(1, 1, 0.5), 0)
+  expect_equal(res_pois_zi(1, 1, 0.5), 1.17741002251547)
   expect_identical(res_pois_zi(1, 1, 0.5, type = "raw"), 0.5)
-  expect_identical(res_pois_zi(1, lambda = 1, prob = 1), 0)
+  expect_identical(res_pois_zi(1, lambda = 1, prob = 1), Inf)
   expect_identical(res_pois_zi(1, lambda = 1, prob = 1, type = "raw"), 1)
   expect_equal(res_pois_zi(0, 1), -1.4142135623731)
   expect_identical(res_pois_zi(NA, 1), NA_real_)
@@ -59,8 +59,8 @@ test_that("res_pois_zi simulate", {
   set.seed(101)
   skip("need to confirm pois_zi")
   res <- res_pois_zi(rep(2,10000), lambda = 100, prob = 0.01, simulate = TRUE, type = "dev")
-  expect_equal(mean(res), -0.300748141872929)
-  expect_equal(sd(res), 1.02486233658642)
+  expect_equal(mean(res), -0.0391353490642631)
+  expect_equal(sd(res), 1.04793224317444)
 })
 
 test_that("res_norm", {
@@ -260,7 +260,7 @@ test_that("res_gamma_pois_zi", {
   expect_equal(res_gamma_pois_zi(1, 3, 1, type = "raw"), -2)
   expect_equal(res_gamma_pois_zi(1, 3), dev_pois(1, 3, res = TRUE))
   expect_equal(res_gamma_pois_zi(1, 3, 2), dev_gamma_pois(1, 3, 2, res = TRUE))
-  expect_equal(res_gamma_pois_zi(1, 3, prob = 0.5), dev_pois_zi(1, 3, prob = 0.5, res = TRUE))
+#  expect_equal(res_gamma_pois_zi(1, 3, prob = 0.5), dev_pois_zi(1, 3, prob = 0.5, res = TRUE))
   expect_equal(res_gamma_pois_zi(c(1,3.5,4), 3, 10, type = "raw"),
                c(-2, 0.5, 1))
   expect_equal(res_gamma_pois_zi(c(1,3.5,4), 3, 10, 0.5, type = "raw"),
