@@ -74,20 +74,8 @@ dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
 #' @examples
 #' dev_gamma_pois_zi(c(1,3.5,4), 3, 2)
 dev_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, res = FALSE) {
-  dev <- dev_gamma_pois(x, lambda = lambda, theta = theta, res = FALSE)
-  dev <- dev / 2
-  probnot0 <- !is.na(x) & x == 0 & !is.na(prob) & prob != 0
-  if(any(probnot0)) {
-    if(length(prob) == 1) {
-      prob <- rep(prob, length(x))
-    }
-    prob1 <- probnot0 & prob == 1
-    dev[prob1] <- 0
-    probnot01 <- probnot0 & prob != 1
-    dev[probnot01] <- -log(exp(-dev[probnot01]) * (1 - prob[probnot01]) + prob[probnot01])
-  }
-
-  is.na(dev) <- is.na(prob)
+  dev <- log_lik_gamma_pois_zi(x, lambda = x, theta = theta, prob = 0) -
+    log_lik_gamma_pois_zi(x, lambda = lambda, theta = theta, prob = prob)
   dev <- dev * 2
   if(vld_false(res)) return(dev)
   dev_res(x, lambda * (1 - prob), dev)

@@ -132,6 +132,8 @@ test_that("gamma_pois log_lik", {
                2 * (log_lik_gamma_pois(0:1, 0:1) - log_lik_gamma_pois(0:1, 0.5)))
   expect_equal(dev_gamma_pois(0:1, 0.7),
                2 * (log_lik_gamma_pois(0:1, 0:1) - log_lik_gamma_pois(0:1, 0.7)))
+  expect_equal(dev_gamma_pois(0:1, 0.7, 1),
+               2 * (log_lik_gamma_pois(0:1, 0:1, 1) - log_lik_gamma_pois(0:1, 0.7, 1)))
 })
 
 test_that("gamma_pois deviance", {
