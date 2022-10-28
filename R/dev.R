@@ -55,7 +55,6 @@ dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
   dev2 <- x * log((lambda + x * lambda * theta) / (x + x * lambda * theta))
   dev2[!is.na(x) & x == 0] <- 0
   dev <- dev1 - dev2
-  dev <- pmax(dev, 0)
   dev <- dev * 2
   theta0 <- !is.na(theta) & theta == 0
   if(any(theta0)) {
