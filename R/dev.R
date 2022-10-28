@@ -164,7 +164,6 @@ dev_pois <- function(x, lambda, res = FALSE) {
     }
     dev[zero] <- lambda[zero]
   }
-  dev <- pmax(dev, 0)
   dev <- dev * 2
   if(vld_false(res)) return(dev)
   dev_res(x, lambda, dev)
