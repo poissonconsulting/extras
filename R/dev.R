@@ -57,9 +57,7 @@ dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
   dev <- dev1 - dev2
   dev <- dev * 2
   theta0 <- !is.na(theta) & theta == 0
-  if(any(theta0)) {
-    dev[theta0] <- dev_pois(x[theta0], lambda[theta0], res = FALSE)
-  }
+  dev[theta0] <- dev_pois(x[theta0], lambda[theta0], res = FALSE)
   if(vld_false(res)) return(dev)
   dev_res(x, lambda, dev)
 }
