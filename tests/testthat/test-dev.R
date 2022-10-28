@@ -152,58 +152,81 @@ test_that("gamma_pois ran", {
   expect_equal(mean(res),-0.260848965857529)
   expect_equal(sd(res), 1.0243876393499)
 })
-#
-# test_that("dev_gamma_pois_zi", {
-#   expect_equal(dev_gamma_pois_zi(1,2),
-#                2 * (log_lik_gamma_pois_zi(1, 1) - log_lik_pois(1, 2)))
-#   expect_equal(dev_gamma_pois_zi(1,2,1),
-#                2 * (log_lik_gamma_pois_zi(1, 1, 1) - log_lik_gamma_pois(1, 2, 1)))
-#   expect_equal(dev_gamma_pois_zi(1,2,0,0.5),
-#                2 * (log_lik_gamma_pois_zi(1, 1, 0, 0.5) - log_lik_pois_zi(1, 2, 0.5)))
-#   expect_identical(dev_gamma_pois_zi(integer(0), integer(0), integer(0), integer(0)), numeric(0))
-#   expect_identical(dev_gamma_pois_zi(1, 1, 0, 0), 0)
-#   expect_identical(dev_gamma_pois_zi(1, 1, 0, 0.5), 0)
-#   expect_identical(dev_gamma_pois_zi(0, 1, 0, 0), 2)
-#   expect_equal(dev_gamma_pois_zi(0, 1, 0, 0.5), 0.759770986083445)
-#   expect_equal(dev_gamma_pois_zi(0, 1, 0, 0.99), 0.0126825380059972)
-#   expect_identical(dev_gamma_pois_zi(0, 1, 0, 1), 0)
-#   expect_identical(dev_gamma_pois_zi(1, 1, 1, 0), 0)
-#   expect_identical(dev_gamma_pois_zi(1, 1, 1, 0.5), 0)
-#   expect_identical(dev_gamma_pois_zi(1, 1, 1, 0.99), 0)
-#   expect_equal(dev_gamma_pois_zi(0, 1, 1, 0.99), 0.0100250836470886)
-#   expect_equal(dev_gamma_pois_zi(0, 1, 0.5, 0.99), 0.0111420900989107)
-#   expect_identical(dev_gamma_pois_zi(1, 1, 0, 1), 0)
-#   expect_identical(dev_gamma_pois_zi(0, 1, 1, 1), 0)
-#   expect_equal(dev_gamma_pois_zi(0, 1, 0, 0), 2)
-#   expect_equal(dev_gamma_pois_zi(0, 1, 1, 0), 1.38629436111989)
-#   expect_identical(dev_gamma_pois(0, 0, 0, 0), 0)
-#   expect_identical(dev_gamma_pois(0, 0, 1, 0), 0)
-#   expect_identical(dev_gamma_pois(0, 0, 0, 0.5), 0)
-#   expect_identical(dev_gamma_pois(0, 0, 1, 0.5), 0)
-#   expect_identical(dev_gamma_pois(0, 0, 0, 1), 0)
-#   expect_identical(dev_gamma_pois(0, 0, 1, 1), 0)
-#
-#   expect_identical(dev_gamma_pois_zi(NA, 1, 1, 0), NA_real_)
-#   expect_identical(dev_gamma_pois_zi(1, NA, 1, 0), NA_real_)
-#   expect_identical(dev_gamma_pois_zi(1, 1, NA, 0), NA_real_)
-#   expect_identical(dev_gamma_pois_zi(1, 1, 1, NA), NA_real_)
-#   expect_equal(dev_gamma_pois_zi(1, 3, 1, 0), dev_gamma_pois_zi(1, 3, 1, 0, res = TRUE)^2)
-#   expect_equal(dev_gamma_pois_zi(1, 3, 1, 0.5), dev_gamma_pois_zi(1, 3, 1, 0.5, res = TRUE)^2)
-#
-#   expect_equal(dev_gamma_pois_zi(c(0, 1, 3.5), 3, 0, 0, res = TRUE),
-#                c(-2.44948974278318, -1.34267472705186, 0.281166781094084))
-#   expect_equal(dev_gamma_pois_zi(c(0, 1, 3.5), 3, 0, 0.5, res = TRUE),
-#                c(-1.13539405405014, -1.34267472705186, 0.281166781094084))
-#   expect_equal(dev_gamma_pois_zi(c(1,3,4), c(1, 3.5, 4), 0, 0, res = TRUE),
-#                c(0, -0.274036349845144, 0))
-#
-#   expect_equal(dev_gamma_pois_zi(3, 3.5, res = TRUE),
-#                dev_pois(3, 3.5, res = TRUE))
-#   expect_equal(dev_gamma_pois_zi(3, 3.5, 0, 0.1, res = TRUE),
-#                dev_pois_zi(3, 3.5, 0.1, res = TRUE))
-#   expect_equal(dev_gamma_pois_zi(3, 3.5, 0, 0.2, res = TRUE),
-#                dev_pois_zi(3, 3.5, 0.2, res = TRUE))
-# })
+
+test_that("gamma_pois_zi missing values", {
+  expect_identical(dev_gamma_pois_zi(logical(0), integer(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(dev_gamma_pois_zi(NA, 1, 1, 1), NA_real_)
+  expect_identical(dev_gamma_pois_zi(1, NA, 1, 1), NA_real_)
+  expect_identical(dev_gamma_pois_zi(1, 1, NA, 1), NA_real_)
+  expect_identical(dev_gamma_pois_zi(1, 1, 1, NA), NA_real_)
+})
+
+test_that("gamma_pois_zi known values", {
+  expect_identical(dev_gamma_pois_zi(1, 1), 0)
+  expect_identical(dev_gamma_pois_zi(1, 1, 1), 0)
+  expect_identical(dev_gamma_pois_zi(1, 1, 1, 1), Inf)
+  expect_identical(dev_gamma_pois_zi(0, 0), 0)
+  expect_identical(dev_gamma_pois_zi(0, 0, 1), 0)
+  expect_identical(dev_gamma_pois_zi(0, 0, 1, 1), 0)
+  expect_identical(dev_gamma_pois_zi(1, 0), Inf)
+  expect_identical(dev_gamma_pois_zi(1, 0, 1), Inf)
+  expect_identical(dev_gamma_pois_zi(1, 0, 1, 1), Inf)
+  expect_identical(dev_gamma_pois_zi(0, 1), 2)
+  expect_equal(dev_gamma_pois_zi(0, 1, 1), 1.38629436111989)
+  expect_equal(dev_gamma_pois_zi(0, 1, 1, 0.5), 0.575364144903562)
+  expect_equal(dev_gamma_pois_zi(0, 1, 1, 1), 0)
+  expect_identical(dev_gamma_pois_zi(0, 2), 4)
+  expect_equal(dev_gamma_pois_zi(0, 2, 1), 2.19722457733622)
+  expect_equal(dev_gamma_pois_zi(0, 2, 1, 0.1), 1.83258146374831)
+  expect_equal(dev_gamma_pois_zi(0, 2, 1, 0.5), 0.810930216216329)
+  expect_equal(dev_gamma_pois_zi(0, 2, 2), 1.6094379124341)
+  expect_equal(dev_gamma_pois_zi(0, 2, 2, 0.1), 1.37635018002824)
+  expect_equal(dev_gamma_pois_zi(0, 2, 2, 0.5), 0.647014262314894)
+})
+
+test_that("gamma_pois_zi vectorized", {
+  expect_equal(dev_gamma_pois_zi(0:3, 2, 0, 0), c(4, 0.613705638880109, 0, 0.432790648648986))
+  expect_equal(dev_gamma_pois_zi(c(0, 1, 3, 0), 3, 0.5, 0.5), c(1.08945435088334, 2.25402352637961, 1.38629436111989, 1.08945435088334))
+    expect_equal(dev_gamma_pois_zi(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
+  expect_equal(dev_gamma_pois_zi(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(6, 1.0464962875291, 2.41568518074605, Inf))
+})
+
+test_that("gamma_pois_zi vectorized missing values", {
+  expect_equal(dev_gamma_pois_zi(c(NA,1), 0:1, 0:1, 0:1), c(NA,Inf))
+  expect_equal(dev_gamma_pois_zi(c(0,NA), 0:1, 0:1, 0:1), c(0,NA))
+  expect_equal(dev_gamma_pois_zi(c(0:1), c(NA,1), 0:1, 0:1), c(NA,Inf))
+  expect_equal(dev_gamma_pois_zi(c(0:1), c(0,NA), 0:1, 0:1), c(0,NA))
+  expect_equal(dev_gamma_pois_zi(c(0:1), c(0:1), c(NA,1), 0:1), c(NA,Inf))
+  expect_equal(dev_gamma_pois_zi(c(0:1), c(0:1), c(0,NA), 0:1), c(0,NA))
+  expect_equal(dev_gamma_pois_zi(c(0:1), c(0:1), 0:1, c(NA,1)), c(NA,Inf))
+  expect_equal(dev_gamma_pois_zi(c(0:1), c(0:1), 0:1, c(0,NA)), c(0,NA))
+})
+
+test_that("gamma_pois_zi res", {
+  expect_equal(dev_gamma_pois_zi(0, 0.5, 0.5), dev_gamma_pois_zi(0, 0.5, 0.5, res = TRUE)^2)
+  expect_equal(dev_gamma_pois_zi(0:1, c(0.3,0.6), 0.5), dev_gamma_pois_zi(0:1, c(0.3,0.6), 0.5, res = TRUE)^2)
+})
+
+test_that("gamma_pois_zi log_lik", {
+  expect_equal(dev_gamma_pois_zi(0:1, 0.5),
+               2 * (log_lik_gamma_pois_zi(0:1, 0:1) - log_lik_gamma_pois_zi(0:1, 0.5)))
+  expect_equal(dev_gamma_pois_zi(0:1, 0.7),
+               2 * (log_lik_gamma_pois_zi(0:1, 0:1) - log_lik_gamma_pois_zi(0:1, 0.7)))
+  expect_equal(dev_gamma_pois_zi(0:1, 0.7, 1),
+               2 * (log_lik_gamma_pois_zi(0:1, 0:1, 1) - log_lik_gamma_pois_zi(0:1, 0.7, 1)))
+  expect_equal(dev_gamma_pois_zi(0:1, 0.7, 1, 0.5),
+               2 * (log_lik_gamma_pois_zi(0:1, 0:1, 1) - log_lik_gamma_pois_zi(0:1, 0.7, 1, 0.5)))
+})
+
+test_that("gamma_pois_zi ran", {
+  set.seed(100)
+  samples <- ran_gamma_pois_zi(100000, 3, 0.5, 0.5)
+  expect_equal(mean(samples), 1.51352)
+  expect_equal(var(samples), 6.07855799517995)
+  res <- dev_gamma_pois_zi(samples, 3, 0.5, 0.5, res = TRUE)
+  expect_equal(mean(res),-0.299429507479032)
+  expect_equal(sd(res), 1.18261741535124)
+})
 
 test_that("dev_lnorm", {
   expect_equal(dev_lnorm(3,4,5),
@@ -363,6 +386,14 @@ test_that("pois_zi known values", {
   expect_equal(dev_pois_zi(0, 2, 0.5), 1.13243833903395)
   expect_equal(dev_pois_zi(1, 2), 0.613705638880109)
   expect_equal(dev_pois_zi(1, 2, 0.5), 2)
+  expect_equal(dev_pois_zi(3, 3.5,res = TRUE),
+               -0.274036349845144)
+  expect_equal(dev_pois_zi(3, 3.5, 0.1, res = TRUE),
+               -0.534618511045121)
+  expect_equal(dev_pois_zi(3, 3.5, 0.2, res = TRUE),
+               0.72206857268882)
+  expect_equal(dev_pois_zi(3, 3.5, 0.90, res = TRUE),
+               2.16339226841194)
 })
 
 test_that("pois_zi vectorized", {
@@ -405,59 +436,3 @@ test_that("pois_zi ran", {
   expect_equal(mean(res), -0.119914019357374)
   expect_equal(sd(res), 1.31269320210938)
 })
-
-
-# test_that("dev_pois_zi", {
-#   expect_equal(dev_pois_zi(1,2),
-#                2 * (log_lik_pois_zi(1, 1) - log_lik_pois_zi(1, 2)))
-#   expect_equal(dev_pois_zi(3,2),
-#                2 * (log_lik_pois_zi(3, 3) - log_lik_pois_zi(3, 2)))
-#   expect_equal(dev_pois_zi(0,2),
-#                2 * (log_lik_pois_zi(0, 0) - log_lik_pois_zi(0, 2)))
-#   expect_equal(dev_pois_zi(0,2,1),
-#                2 * (log_lik_pois_zi(0, 0, 1) - log_lik_pois_zi(0, 2, 1)))
-#   expect_equal(dev_pois_zi(0,2,0.5),
-#                2 * (log_lik_pois_zi(0, 0, 0.5) - log_lik_pois_zi(0, 2, 0.5)))
-#   expect_equal(dev_pois_zi(0,0),
-#                2 * (log_lik_pois_zi(0, 0) - log_lik_pois_zi(0, 0)))
-#   expect_equal(dev_pois_zi(1,0,1),
-#                2 * (log_lik_pois_zi(0, 0, 1) - log_lik_pois_zi(1, 0, 1)))
-#   expect_identical(dev_pois_zi(integer(0), integer(0), numeric(0)), numeric(0))
-#   expect_identical(dev_pois_zi(1, 1), 0)
-#   expect_identical(dev_pois_zi(0, 0), 0)
-#   expect_identical(dev_pois_zi(0, 1), 2)
-#   expect_identical(dev_pois_zi(NA, 1), NA_real_)
-#   expect_identical(dev_pois_zi(1, NA), NA_real_)
-#   expect_equal(dev_pois_zi(1, 3), dev_pois_zi(1, 3, res = TRUE)^2)
-#   expect_equal(dev_pois_zi(c(1,3.5,4), 3, res = TRUE),
-#                c(-1.34267472705186, 0.281166781094084, 0.549050616623137))
-#   expect_equal(dev_pois_zi(c(1,3,4), c(1, 3.5, 4), res = TRUE),
-#                c(0, -0.274036349845144, 0))
-#   expect_equal(dev_pois_zi(c(1,3,4), c(1, 3.5, 4), 0.5, res = TRUE),
-#                c(0, 0.274036349845144, 0))
-#
-#   expect_equal(dev_pois_zi(3, 3.5, 0, res = TRUE),
-#                dev_pois(3, 3.5, res = TRUE))
-#   expect_equal(dev_pois_zi(3,3.5,0.1),
-#                2 * (log_lik_pois_zi(3,3,0.1) - log_lik_pois_zi(3,3.5,0.1)))
-#   expect_equal(dev_pois_zi(3,3.5,0.2),
-#                2 * (log_lik_pois_zi(3,3,0.2) - log_lik_pois_zi(3,3.5,0.2)))
-#   expect_equal(dev_pois_zi(3, 3, 0, res = TRUE),
-#                0)
-#   expect_equal(dev_pois_zi(3, 3, 1, res = TRUE),
-#                0)
-#   expect_equal(dev_pois(3, 3.5, res = TRUE),
-#                -0.274036349845144)
-#   expect_equal(dev_pois_zi(3, 3.5, 0, res = TRUE),
-#                -0.274036349845144)
-#   expect_equal(sign(3-3.5)*sqrt(dev_pois(3, 3.5)),
-#                -0.274036349845144)
-#
-#   skip("why not changing and becoming positive??")
-#   expect_equal(dev_pois_zi(3, 3.5, 0.1, res = TRUE),
-#                -0.274036349845144)
-#   expect_equal(dev_pois_zi(3, 3.5, 0.2, res = TRUE),
-#                0.274036349845144)
-#   expect_equal(dev_pois_zi(3, 3.5, 0.90, res = TRUE),
-#                0.274036349845144)
-# })

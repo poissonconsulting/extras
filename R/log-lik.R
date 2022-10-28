@@ -57,8 +57,11 @@ log_lik_gamma_pois <- function(x, lambda = 1, theta = 0) {
 log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
   lpois <- dnbinom(x, mu = lambda, size = 1/theta)
   lpois <- lpois * (1 - prob)
-  zero <- x == 0
-  lpois[zero] <- lpois[zero] + prob
+  zero <- !is.na(x) & x == 0
+  if(length(prob) == 1) {
+    prob <- rep(prob, length(lpois))
+  }
+  lpois[zero] <- lpois[zero] + prob[zero]
   log(lpois)
 }
 
