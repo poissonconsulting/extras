@@ -2,23 +2,15 @@
 
 # extras 0.5.0
 
-- Same as previous version.
-
-
-# extras 0.4.0.9002
-
-- Same as previous version.
-
-
-# extras 0.4.0.9001
-
-- Added `log_lik_gamma_pois_zi()`, `ran_gamma_pois_zi()`, `dev_gamma_pois_zi()` and `res_gamma_pois_zi()`.
-- Fixed `dev_binom()` and `dev_pois_zi()`.
+- Added following zero-inflated gamma Poisson functions
+  - `log_lik_gamma_pois_zi()`
+  - `ran_gamma_pois_zi()`
+  - `dev_gamma_pois_zi()`
+  - `res_gamma_pois_zi()`
+Fixed bugs in 
+  - `dev_binom()`
+  - `dev_pois_zi()`
 - Set R >= 3.5
-
-# extras 0.4.0.9000
-
-- Same as previous version.
 
 
 # extras 0.4.0
