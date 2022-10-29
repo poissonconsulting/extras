@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# extras 0.5.0
+
+- Same as previous version.
+
+
 # extras 0.4.0.9002
 
 - Same as previous version.
