@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# extras 0.5.0.9000
+
+- Same as previous version.
+
+
 # extras 0.5.0
 
 - Added following zero-inflated gamma Poisson functions
