@@ -22,6 +22,12 @@
     <loc>/SUPPORT.html</loc>
   </url>
   <url>
+    <loc>/articles/deviance-residuals.html</loc>
+  </url>
+  <url>
+    <loc>/articles/index.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -59,6 +65,9 @@
   </url>
   <url>
     <loc>/reference/dev_gamma_pois.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dev_gamma_pois_zi.html</loc>
   </url>
   <url>
     <loc>/reference/dev_lnorm.html</loc>
@@ -119,6 +128,9 @@
   </url>
   <url>
     <loc>/reference/log_lik_gamma_pois.html</loc>
+  </url>
+  <url>
+    <loc>/reference/log_lik_gamma_pois_zi.html</loc>
   </url>
   <url>
     <loc>/reference/log_lik_lnorm.html</loc>
@@ -217,6 +229,9 @@
     <loc>/reference/ran_gamma_pois.html</loc>
   </url>
   <url>
+    <loc>/reference/ran_gamma_pois_zi.html</loc>
+  </url>
+  <url>
     <loc>/reference/ran_lnorm.html</loc>
   </url>
   <url>
@@ -239,6 +254,9 @@
   </url>
   <url>
     <loc>/reference/res_gamma_pois.html</loc>
+  </url>
+  <url>
+    <loc>/reference/res_gamma_pois_zi.html</loc>
   </url>
   <url>
     <loc>/reference/res_lnorm.html</loc>

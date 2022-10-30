@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">extras</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0</span>
       </span>
     </div>
 
@@ -25,6 +25,16 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/deviance-residuals.html">Deviance Residuals</a>
+    </li>
+  </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -48,8 +58,18 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.4.0.9000" id="extras-0409000">extras 0.4.0.9000<a class="anchor" aria-label="anchor" href="#extras-0409000"></a></h2>
-<ul><li>Same as previous version.</li></ul></div>
+<h2 class="page-header" data-toc-text="0.5.0" id="extras-050">extras 0.5.0<a class="anchor" aria-label="anchor" href="#extras-050"></a></h2>
+<ul><li>Added following zero-inflated gamma Poisson functions
+<ul><li><code><a href="../reference/log_lik_gamma_pois_zi.html">log_lik_gamma_pois_zi()</a></code></li>
+<li><code><a href="../reference/ran_gamma_pois_zi.html">ran_gamma_pois_zi()</a></code></li>
+<li><code><a href="../reference/dev_gamma_pois_zi.html">dev_gamma_pois_zi()</a></code></li>
+<li>
+<code><a href="../reference/res_gamma_pois_zi.html">res_gamma_pois_zi()</a></code> Fixed bugs in</li>
+<li><code><a href="../reference/dev_binom.html">dev_binom()</a></code></li>
+<li><code><a href="../reference/dev_pois_zi.html">dev_pois_zi()</a></code></li>
+</ul></li>
+<li>Set R &gt;= 3.5</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.0" id="extras-040">extras 0.4.0<small>2022-09-23</small><a class="anchor" aria-label="anchor" href="#extras-040"></a></h2>
 <ul><li>Added <code><a href="../reference/log_odds.html">log_odds()</a></code> and <code>log_odds()&lt;-</code>.</li>
@@ -80,10 +100,12 @@
 <div class="section level3">
 <h3 id="modifications-0-3-0">Modifications<a class="anchor" aria-label="anchor" href="#modifications-0-3-0"></a></h3>
 <ul><li>
-<code>res_xx()</code> functions now return data (actual or simulated) if <code>type = 'data'</code>.</li></ul></div>
+<code>res_xx()</code> functions now return data (actual or simulated) if <code>type = 'data'</code>.</li>
+</ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-0-3-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-0"></a></h3>
-<ul><li>Fixed normal and log-normal deviances which were out by a factor of 2 and 1.41 respectively.</li></ul></div>
+<ul><li>Fixed normal and log-normal deviances which were out by a factor of 2 and 1.41 respectively.</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.0" id="extras-020">extras 0.2.0<small>2021-08-05</small><a class="anchor" aria-label="anchor" href="#extras-020"></a></h2>
@@ -91,7 +113,8 @@
 <h3 id="added-0-2-0">Added<a class="anchor" aria-label="anchor" href="#added-0-2-0"></a></h3>
 <div class="section level4">
 <h4 id="functions-0-2-0">Functions<a class="anchor" aria-label="anchor" href="#functions-0-2-0"></a></h4>
-<ul><li>Added the following function families<ul><li>
+<ul><li>Added the following function families
+<ul><li>
 <code>ran_xx()</code> (random samples)</li>
 <li>
 <code>log_lik_xx()</code> (log-likelihood)</li>
@@ -99,7 +122,8 @@
 <code>dev_xx()</code> (deviances)</li>
 <li>
 <code>res_xx()</code> (residuals)</li>
-</ul></li></ul><p>for the following distributions - <code>_bern</code>, (Bernoulli), - <code>_binom</code> (binomial) - <code>_pois</code> (Poisson) - <code>_norm</code> (normal) - <code>_lnorm</code> (log-normal) - <code>_gamma</code> (gamma) - <code>_gamma_pois</code> (gamma-Poisson)</p>
+</ul></li>
+</ul><p>for the following distributions - <code>_bern</code>, (Bernoulli), - <code>_binom</code> (binomial) - <code>_pois</code> (Poisson) - <code>_norm</code> (normal) - <code>_lnorm</code> (log-normal) - <code>_gamma</code> (gamma) - <code>_gamma_pois</code> (gamma-Poisson)</p>
 <ul><li>Added <code><a href="../reference/odds.html">odds()</a></code>, <code>odd_ratio()</code> and <code><a href="../reference/log_odds_ratio.html">log_odds_ratio()</a></code> to calculate odds, odds ratio and log odds ratio.</li>
 <li>Added moments functions <code><a href="../reference/xtr_mean.html">xtr_mean()</a></code>, <code><a href="../reference/xtr_sd.html">xtr_sd()</a></code>, <code><a href="../reference/variance.html">variance()</a></code>, <code><a href="../reference/skewness.html">skewness()</a></code> and <code><a href="../reference/kurtosis.html">kurtosis()</a></code>.</li>
 <li>Added <code><a href="../reference/xtr_median.html">xtr_median()</a></code> to calculate the median.</li>
@@ -128,7 +152,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.1" id="extras-001">extras 0.0.1<small>2020-06-16</small><a class="anchor" aria-label="anchor" href="#extras-001"></a></h2>
-<ul><li>Initial submission to CRAN.</li></ul></div>
+<ul><li>Initial submission to CRAN.</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -143,7 +168,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
