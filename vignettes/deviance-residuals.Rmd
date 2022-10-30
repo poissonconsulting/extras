@@ -61,4 +61,3 @@ dev_norm(y, mu, sigma, res = TRUE)
 sign(y - mu) * sqrt(dev_norm(y, mu, sigma))
 sign(y - mu) * sqrt(2 * (log(dnorm(y, y, sigma)) - log(dnorm(y, mu, sigma))))
 ```
-For equations for deviance values for count data see Feng, C., Li, L., and Sadeghpour, A. 2020. A comparison of residual diagnosis tools for diagnosing regression models for count data. BMC Med Res Methodol 20(1): 175. doi:10.1186/s12874-020-01055-2.
