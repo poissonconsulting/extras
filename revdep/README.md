@@ -10,7 +10,7 @@
 |collate  |en_CA.UTF-8                                                                       |
 |ctype    |en_CA.UTF-8                                                                       |
 |tz       |America/Vancouver                                                                 |
-|date     |2022-09-23                                                                        |
+|date     |2022-10-29                                                                        |
 |rstudio  |2022.07.1+554 Spotted Wakerobin (desktop)                                         |
 |pandoc   |2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown) |
 
@@ -18,13 +18,7 @@
 
 |package |old   |new   |Δ  |
 |:-------|:-----|:-----|:--|
-|extras  |0.3.0 |0.4.0 |*  |
+|extras  |0.4.0 |0.5.0 |*  |
 
 # Revdeps
-
-## Failed to check (1)
-
-|package   |version |error |warning |note |
-|:---------|:-------|:-----|:-------|:----|
-|GPSeqClus |1.3.0   |1     |        |     |
 
