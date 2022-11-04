@@ -28,6 +28,21 @@ log_lik_binom <- function(x, size = 1, prob = 0.5) {
   dbinom(x, size = size, prob = prob, log = TRUE)
 }
 
+#' Gamma Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_gamma(c(0, 1, 2), 1, 2)
+log_lik_gamma <- function(x, shape = 1, rate = 1) {
+  dgamma(x, shape = shape, rate = rate, log = TRUE)
+}
+
 #' Gamma-Poisson Log-Likelihood
 #'
 #' @inheritParams params

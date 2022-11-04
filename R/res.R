@@ -44,6 +44,29 @@ res_binom <- function(x, size = 1, prob = 0.5, type = "dev", simulate = FALSE) {
          chk_subset(x, c("data", "raw", "dev")))
 }
 
+#' Gamma Residuals
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_gamma(c(0, 1, 2), 1, 2)
+res_gamma <- function(x, shape = 1, rate = 1, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    x <- ran_gamma(length(x), shape = shape, rate = rate)
+  }
+  switch(type,
+         data = x,
+         raw = x - shape / rate,
+         dev = dev_gamma(x, shape = shape, rate = rate, res = TRUE),
+         chk_subset(x, c("data", "raw", "dev")))
+}
+
 #' Gamma-Poisson Residuals
 #'
 #' @inheritParams params
