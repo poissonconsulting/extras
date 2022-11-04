@@ -86,3 +86,29 @@ test_that("gamma_pois_zi vectorized", {
   expect_equal(log_lik_gamma_pois_zi(0:3, 0:3, rep(1, 4), 0), c(0, -1.38629436111989, -1.90954250488444, -2.24934057847523))
   expect_equal(log_lik_gamma_pois_zi(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(-3, -1.90954250488444, -3.43967790223022, -Inf))
 })
+
+
+test_that("gamma missing values", {
+  expect_identical(log_lik_gamma(NA), NA_real_)
+  expect_identical(log_lik_gamma(1, NA), NA_real_)
+  expect_identical(log_lik_gamma(1, rate = NA), NA_real_)
+  expect_identical(log_lik_gamma(1, shape = NA, rate = NA), NA_real_)
+})
+
+test_that("gamma known values", {
+  expect_equal(log_lik_gamma(1, 1, 1), -1)
+  expect_equal(log_lik_gamma(0, 0, 0), Inf)
+  expect_equal(log_lik_gamma(1, 2, 2), -0.613705638880109)
+  expect_equal(log_lik_gamma(1, 2, 5), -1.7811241751318)
+  expect_equal(log_lik_gamma(5, 1, 2), -9.30685281944005)
+  expect_equal(log_lik_gamma(0.5, 0.5, 0.5), -0.8223649429247)
+  expect_equal(log_lik_gamma(-1, 1, 1), -Inf)
+  expect_identical(log_lik_gamma(1, 2, 5), dgamma(1, 2, 5, log = TRUE))
+})
+
+test_that("gamma vectorized", {
+  expect_equal(log_lik_gamma(4:6, 1:3, c(0.5, 1, 2)), c(-2.69314718055995, -3.3905620875659, -7.030186700424))
+  expect_equal(log_lik_gamma(1:3, c(0.5, 0.4, 0.3), 3:1), c(-3.02305879859065, -4.93530725381377, -4.86482659688575))
+  expect_equal(log_lik_gamma(seq(0, 1, length.out = 4), 1:4, seq(0, 2, length.out = 4)), c(-Inf, -2.13176472710666, -1.52992006830982, -1.01917074698827))
+})
+
