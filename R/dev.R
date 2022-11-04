@@ -39,6 +39,25 @@ dev_binom <- function(x, size = 1, prob = 0.5, res = FALSE) {
   dev_res(x, mu, dev)
 }
 
+#' Gamma Deviances
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_gamma(c(0, 1, 2), 1, 2)
+dev_gamma <- function(x, shape = 1, rate = 1, res = FALSE) {
+  mu <- shape / rate
+  dev <- -log(x / mu) + ((x - mu) / mu)
+  dev <- 2 * dev
+  if(vld_false(res)) return(dev)
+  dev_res(x, mu, dev)
+}
+
 #' Gamma-Poisson Deviances
 #'
 #' @inheritParams params
