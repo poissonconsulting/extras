@@ -513,3 +513,83 @@ test_that("gamma deviance", {
   deviance <- sum(dev_gamma(samples, coef(mod)))
   expect_equal(deviance, deviance(mod))
 })
+
+test_that("student missing values", {
+  expect_identical(dev_student(logical(0), integer(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(dev_student(NA, 1, 1, 1), NA_real_)
+  expect_identical(dev_student(1, NA, 1, 1), NA_real_)
+  expect_identical(dev_student(1, 1, NA, 1), NA_real_)
+  expect_identical(dev_student(1, 1, 1, NA), NA_real_)
+})
+
+test_that("student known values", {
+  expect_identical(dev_student(1, 1), 0)
+  expect_identical(dev_student(1, 1, 1), 0)
+  expect_identical(dev_student(1, 1, 1, 1), 0)
+  expect_identical(dev_student(0, 0), 0)
+  expect_identical(dev_student(0, 0, 1), 0)
+  expect_identical(dev_student(0, 0, 1, 1), 0)
+  expect_equal(dev_student(1, 0), 1)
+  expect_equal(dev_student(1, 0, 1), 1)
+  expect_equal(dev_student(1, 0, 1, 1), 1.38629436111989)
+  expect_equal(dev_student(0, 1), 1)
+  expect_equal(dev_student(0, 1, 1), 1)
+  expect_equal(dev_student(0, 1, 1, 0.5), 1.21639532432449)
+  expect_equal(dev_student(0, 1, 1, 1), 1.38629436111989)
+  expect_identical(dev_student(0, 2), 4)
+  expect_identical(dev_student(0, 2, 1), 4)
+  expect_equal(dev_student(0, 2, 1, 0.1), 3.70119460283334)
+  expect_equal(dev_student(0, 2, 1, 0.5), 3.29583686600433)
+  expect_equal(dev_student(0, 2, 2), 1)
+  expect_equal(dev_student(0, 2, 2, 0.1), 1.04841197784757)
+  expect_equal(dev_student(0, 2, 2, 0.5), 1.21639532432449)
+})
+
+test_that("student vectorized", {
+  expect_equal(dev_student(0:3, 2, 0.1, 0), c(400, 100, 0, 100))
+  expect_equal(dev_student(c(0, 1, 3, 0), 3, 0.5, 0.5), c(8.83331693749932, 6.59167373200866, 0, 8.83331693749932))
+  expect_equal(dev_student(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
+  expect_equal(dev_student(0:3, 3:0, 1:4, seq(0, 1, length.out = 4)), c(9, 0.320170830694146, 0.178647409955362, 0.892574205256839))
+})
+
+test_that("student vectorized missing values", {
+  expect_equal(dev_student(c(NA,1), 0:1, 0:1, 0:1), c(NA,0))
+  expect_equal(dev_student(c(0,NA), 0:1, 1:2, 0:1), c(0,NA))
+  expect_equal(dev_student(c(0:1), c(NA,1), 1:2, 0:1), c(NA,0))
+  expect_equal(dev_student(c(0:1), c(0,NA), 1:2, 0:1), c(0,NA))
+  expect_equal(dev_student(c(0:1), c(0:1), c(NA,1), 0:1), c(NA,0))
+  expect_equal(dev_student(c(0:1), c(0:1), c(1,NA), 0:1), c(0,NA))
+  expect_equal(dev_student(c(0:1), c(0:1), 0:1, c(NA,1)), c(NA,0))
+  expect_equal(dev_student(c(0:1), c(0:1), 1:2, c(0,NA)), c(0,NA))
+})
+
+test_that("student res", {
+  expect_equal(dev_student(10, 0.5, 0.5), dev_student(10, 0.5, 0.5, res = TRUE)^2)
+  expect_equal(dev_student(0:1, c(0.3,0.6), 0.5), dev_student(0:1, c(0.3,0.6), 0.5, res = TRUE)^2)
+})
+
+test_that("student log_lik", {
+  expect_equal(dev_student(0:1, 1:2, 2:3, theta = 0),
+               2 * (log_lik_student(0:1, 0:1, 2:3, theta = 0) - log_lik_student(0:1, 1:2, 2:3, theta = 0)))
+  expect_equal(dev_student(0:1, 1:2, 2:3, theta = 0.7),
+               2 * (log_lik_student(0:1, 0:1, 2:3, theta = 0.7) - log_lik_student(0:1, 1:2, 2:3, theta = 0.7)))
+  expect_equal(dev_student(1, 0.7, 1, 5),
+               2 * (log_lik_student(1, 1, 1, 5) - log_lik_student(1, 0.7, 1, 5)))
+})
+
+test_that("student ran", {
+  set.seed(101)
+  samples <- ran_student(100000, 3, 0.5, 0.5)
+  expect_equal(mean(samples), 3.00401173552349)
+  expect_equal(var(samples), 2.47432193782075)
+  res <- dev_student(samples, 3, 0.5, 0.5, res = TRUE)
+  expect_equal(mean(res), -0.00261197674374733)
+  expect_equal(sd(res), 1.35218891518458)
+})
+
+test_that("student deviance", {
+  samples <- ran_student(1000, 3, 0.5, 0)
+  mod <- glm(samples~1, family = gaussian)
+  deviance <- sum(dev_student(samples, coef(mod)[1]))
+  expect_equal(deviance, deviance(mod))
+})

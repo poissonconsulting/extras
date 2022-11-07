@@ -87,7 +87,6 @@ test_that("gamma_pois_zi vectorized", {
   expect_equal(log_lik_gamma_pois_zi(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(-3, -1.90954250488444, -3.43967790223022, -Inf))
 })
 
-
 test_that("gamma missing values", {
   expect_identical(log_lik_gamma(NA), NA_real_)
   expect_identical(log_lik_gamma(1, NA), NA_real_)
@@ -111,4 +110,34 @@ test_that("gamma vectorized", {
   expect_equal(log_lik_gamma(1:3, c(0.5, 0.4, 0.3), 3:1), c(-3.02305879859065, -4.93530725381377, -4.86482659688575))
   expect_equal(log_lik_gamma(seq(0, 1, length.out = 4), 1:4, seq(0, 2, length.out = 4)), c(-Inf, -2.13176472710666, -1.52992006830982, -1.01917074698827))
 })
+
+test_that("student missing values", {
+  expect_identical(log_lik_student(numeric(0), numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_student(NA, 1, 1, 0.5), NA_real_)
+  expect_identical(log_lik_student(1, NA, 1, 0.5), NA_real_)
+  expect_identical(log_lik_student(1, 1, NA, 0.5), NA_real_)
+  expect_identical(log_lik_student(1, 1, 1, NA), NA_real_)
+})
+
+test_that("student known values", {
+  expect_equal(log_lik_student(0, 3), -5.41893853320467)
+  expect_equal(log_lik_student(0, 3, 0), -Inf)
+  expect_equal(log_lik_student(0, 3, 0.5, 0.5), -4.76323205902963)
+  expect_equal(log_lik_student(1, 2), -1.41893853320467)
+  expect_equal(log_lik_student(2, 2), -0.918938533204673)
+  expect_equal(log_lik_student(1, 2, 0.5), -2.22579135264473)
+  expect_equal(log_lik_student(1, 2, 0.5), log_lik_norm(1, 2, 0.5))
+  expect_equal(log_lik_student(1, theta = 1/2), dt(1, df = 2, log = TRUE))
+  expect_lt(log_lik_norm(5), log_lik_student(5, theta = 1/5))
+})
+
+test_that("student vectorized", {
+  expect_equal(log_lik_student(0:3, 2, 0.5, 0), c(-8.22579135264473, -2.22579135264473, -0.225791352644727, -2.22579135264473))
+  expect_equal(log_lik_student(0:3, 2, 0.5, 0), log_lik_norm(0:3, 2, 0.5))
+  expect_equal(log_lik_student(c(0, 1, 3, 0), 3, 0.5, 0.5), c(-4.76323205902963, -3.6424104562843, -0.346573590279973, -4.76323205902963))
+  expect_equal(log_lik_student(0:3, 0:3, rep(1, 4), 0.5), c(-1.03972077083992, -1.03972077083992, -1.03972077083992, -1.03972077083992))
+  expect_equal(log_lik_student(0:3, 3:0, 1:4, seq(0, 1, length.out = 4)), c(-5.41893853320467, -1.85412144553053, -2.26458627847768, -2.97731134959771))
+})
+
+
 
