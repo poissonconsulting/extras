@@ -197,3 +197,23 @@ dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
   if(vld_false(res)) return(dev)
   dev_res(x, lambda * (1 - prob), dev)
 }
+
+#' Student's t Deviances
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_student(c(1,3.5,4), 3)
+dev_student <- function(x, mean = 0, sd = 1, theta = 0, res = FALSE) {
+  dev <- log_lik_student(x, mean = x, sd = sd, theta = theta) -
+    log_lik_student(x, mean = mean, sd = sd, theta = theta)
+  dev <- dev * 2
+  if(vld_false(res)) return(dev)
+  dev_res(x, mean, dev)
+}
+

@@ -227,3 +227,26 @@ res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
          dev = dev_pois_zi(x, lambda, prob = prob, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
+
+#' Student's t Residuals
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_student(c(1,3.5,4), mean = 6, sd = 0.5, theta = 1/3, type = "raw")
+res_student <- function(x, mean = 0, sd = 1, theta = 0, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    x <- ran_student(length(x), mean = mean, sd = sd, theta = theta)
+  }
+  switch(type,
+         data = x,
+         raw = x - mean,
+         dev = dev_student(x, mean = mean, sd = sd, theta = theta, res = TRUE),
+         chk_subset(x, c("data", "raw", "dev")))
+}

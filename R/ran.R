@@ -141,3 +141,22 @@ ran_pois <- function(n = 1, lambda = 1) {
 ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
   stats::rpois(n, lambda = lambda) * ran_bern(n, prob = 1 - prob)
 }
+
+#' Student's t Random Samples
+#'
+#' @inheritParams params
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_t(10, theta = 1/2)
+ran_student <- function(n = 1, mean = 0, sd = 1, theta = 0) {
+  chk_whole_number(n)
+  if (length(mean) > n) {mean = mean[1:n]}
+  if (length(sd) > n) {sd = sd[1:n]}
+  df <- 1 / theta
+  x <- stats::rt(n, df)
+  r <- x * sd + mean
+  r
+}

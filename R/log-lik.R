@@ -158,3 +158,27 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
   lpois[zero] <- lpois[zero] + prob
   log(lpois)
 }
+
+#' Student's t Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_student(c(1,3.5,4), mean = 1, sd = 2, theta = 1/3)
+log_lik_student <- function(x, mean = 0, sd = 1, theta = 0) {
+  df <- 1 / theta
+  lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
+  lstudent <- (lgamma((df + 1)/2) - lgamma(df/2) - 0.5 * log(pi * df) - log(sd)) -
+    ((df + 1)/2 * log(1 + (1/df) * ((x - mean)/sd)^2))
+  if (length(theta) == 1) {
+    theta <- rep(theta, length(lnorm))
+  }
+  use_norm <- !is.na(theta) & theta == 0
+  lstudent[use_norm] <- lnorm[use_norm]
+  lstudent
+}
