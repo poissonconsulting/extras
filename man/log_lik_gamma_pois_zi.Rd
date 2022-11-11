@@ -11,7 +11,7 @@ log_lik_gamma_pois_zi(x, lambda = 1, theta = 0, prob = 0)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma mixing distribution. The variance for the resultant gamma-Poisson distribution is lambda + lambda^2 * theta.}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 }
@@ -27,12 +27,15 @@ log_lik_gamma_pois_zi(c(1,3.5,4), 3, 1, prob = 0.5)
 \seealso{
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
+\code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
 \code{\link{log_lik_gamma_pois}()},
+\code{\link{log_lik_gamma}()},
 \code{\link{log_lik_lnorm}()},
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
 \code{\link{log_lik_pois_zi}()},
-\code{\link{log_lik_pois}()}
+\code{\link{log_lik_pois}()},
+\code{\link{log_lik_student}()}
 }
 \concept{log_lik_dist}

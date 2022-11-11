@@ -11,7 +11,7 @@ dev_gamma_pois(x, lambda = 1, theta = 0, res = FALSE)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma mixing distribution. The variance for the resultant gamma-Poisson distribution is lambda + lambda^2 * theta.}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
 
 \item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
@@ -27,11 +27,14 @@ dev_gamma_pois(c(1,3.5,4), 3, 2)
 \seealso{
 Other dev_dist: 
 \code{\link{dev_bern}()},
+\code{\link{dev_beta_binom}()},
 \code{\link{dev_binom}()},
+\code{\link{dev_gamma}()},
 \code{\link{dev_lnorm}()},
 \code{\link{dev_neg_binom}()},
 \code{\link{dev_norm}()},
 \code{\link{dev_pois_zi}()},
-\code{\link{dev_pois}()}
+\code{\link{dev_pois}()},
+\code{\link{dev_student}()}
 }
 \concept{dev_dist}

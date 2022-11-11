@@ -25,6 +25,7 @@ ran_pois_zi(10, prob = 0.5)
 \seealso{
 Other ran_dist: 
 \code{\link{ran_bern}()},
+\code{\link{ran_beta_binom}()},
 \code{\link{ran_binom}()},
 \code{\link{ran_gamma_pois_zi}()},
 \code{\link{ran_gamma_pois}()},
@@ -32,6 +33,7 @@ Other ran_dist:
 \code{\link{ran_lnorm}()},
 \code{\link{ran_neg_binom}()},
 \code{\link{ran_norm}()},
-\code{\link{ran_pois}()}
+\code{\link{ran_pois}()},
+\code{\link{ran_student}()}
 }
 \concept{ran_dist}
