@@ -1,3 +1,25 @@
+#' Beta-Binomial Random Samples
+#'
+#' This parameterization of the beta-binomial distribution uses an expected probability parameter, `prob`, and a dispersion parameter, `theta`. The parameters of the underlying beta mixture are `alpha = (2 * prob) / theta` and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is unconventional, but has useful properties when modelling. When `theta = 0`, the beta-binomial reverts to the binomial distribution. When `theta = 1` and `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and `beta = 1`, which correspond to a uniform distribution for the beta-binomial probability parameter.
+#'
+#' @inheritParams params
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_beta_binom(10, 1, 0.5, 0)
+ran_beta_binom <- function(n = 1, size = 1, prob = 0.5, theta = 0) {
+  chk_whole_number(n)
+  chk_gte(n)
+  alpha <- prob * 2 * (1 / theta)
+  beta <- (1 - prob) * 2 * (1 / theta)
+  p <- stats::rbeta(n, shape1 = alpha, shape2 = beta)
+  use_binom <- !is.na(theta) & theta == 0
+  p[use_binom] <- prob
+  stats::rbinom(n, size = size, prob = p)
+}
+
 #' Bernoulli Random Samples
 #'
 #' @inheritParams params
