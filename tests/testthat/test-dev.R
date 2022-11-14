@@ -529,6 +529,8 @@ test_that("student known values", {
   expect_identical(dev_student(0, 0), 0)
   expect_identical(dev_student(0, 0, 1), 0)
   expect_identical(dev_student(0, 0, 1, 1), 0)
+  expect_identical(dev_student(0, 0, 0), dev_norm(0, 0, 0))
+  expect_identical(dev_student(0, 0, 0, 10), dev_norm(0, 0, 0))
   expect_equal(dev_student(1, 0), 1)
   expect_equal(dev_student(1, 0, 1), 1)
   expect_equal(dev_student(1, 0, 1, 1), 1.38629436111989)
@@ -549,7 +551,7 @@ test_that("student vectorized", {
   expect_equal(dev_student(0:3, 2, 0.1, 0), c(400, 100, 0, 100))
   expect_equal(dev_student(c(0, 1, 3, 0), 3, 0.5, 0.5), c(8.83331693749932, 6.59167373200866, 0, 8.83331693749932))
   expect_equal(dev_student(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
-  expect_equal(dev_student(0:3, 3:0, 1:4, seq(0, 1, length.out = 4)), c(9, 0.320170830694146, 0.178647409955362, 0.892574205256839))
+  expect_equal(dev_student(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(Inf, 1.15072828980712, 0.385376699568146, 1.38629436111989))
 })
 
 test_that("student vectorized missing values", {

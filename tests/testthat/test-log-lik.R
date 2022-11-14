@@ -122,7 +122,9 @@ test_that("student missing values", {
 test_that("student known values", {
   expect_equal(log_lik_student(0, 3), -5.41893853320467)
   expect_equal(log_lik_student(0, 3, 0), -Inf)
+  expect_equal(log_lik_student(0, 3, 0, 1), -Inf)
   expect_equal(log_lik_student(0, 3, 0.5, 0.5), -4.76323205902963)
+  expect_equal(log_lik_student(0, 3, 0.5, 1), -4.06250061793368)
   expect_equal(log_lik_student(1, 2), -1.41893853320467)
   expect_equal(log_lik_student(2, 2), -0.918938533204673)
   expect_equal(log_lik_student(1, 2, 0.5), -2.22579135264473)
@@ -136,7 +138,7 @@ test_that("student vectorized", {
   expect_equal(log_lik_student(0:3, 2, 0.5, 0), log_lik_norm(0:3, 2, 0.5))
   expect_equal(log_lik_student(c(0, 1, 3, 0), 3, 0.5, 0.5), c(-4.76323205902963, -3.6424104562843, -0.346573590279973, -4.76323205902963))
   expect_equal(log_lik_student(0:3, 0:3, rep(1, 4), 0.5), c(-1.03972077083992, -1.03972077083992, -1.03972077083992, -1.03972077083992))
-  expect_equal(log_lik_student(0:3, 3:0, 1:4, seq(0, 1, length.out = 4)), c(-5.41893853320467, -1.85412144553053, -2.26458627847768, -2.97731134959771))
+  expect_equal(log_lik_student(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(-Inf, -1.57625299452707, -1.96248581517591, -2.93648935507746))
 })
 
 

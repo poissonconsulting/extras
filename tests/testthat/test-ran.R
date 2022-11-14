@@ -179,8 +179,10 @@ test_that("ran_student", {
   expect_equal(ran_student(2, mean = c(0.1,100)), c(1.2739662875627, 100.618789855626))
   expect_equal(ran_student(2, sd = 10), c(-1.12734314754215, 9.17028289512712))
   expect_equal(ran_student(1, sd = c(0.1, 100)), -0.0223259364627263)
-  expect_equal(ran_student(2, mean = c(5, 10), sd = c(0.1, 1)), c(5.05264480988736, 9.20515556458495))
-  expect_equal(ran_student(1, mean = c(5, 10), sd = c(0.1, 1)), 5.1427755544683)
+  expect_equal(ran_student(1, 5, 0), 5L)
+  expect_equal(ran_student(1, 5, 0, 1), 5L)
+  expect_equal(ran_student(2, mean = c(5, 10), sd = c(0.1, 1)), c(4.85331803058365, 9.7633166213971))
+  expect_equal(ran_student(1, mean = c(5, 10), sd = c(0.1, 1)), 4.98066620350025)
   set.seed(101)
   expect_equal(ran_student(theta = 0.5), -0.33156105737203)
   expect_equal(ran_student(2, theta = 0.5), c(-0.828877594163717, 0.240144994036107))
@@ -202,3 +204,4 @@ test_that("ran_student", {
   expect_equal(ran_student(2, c(0.1,100), 10, theta = 0.1), c(-6.27604275569631, 83.3203568426077))
   expect_equal(ran_student(2, c(0.1,100), c(0.1, 100), theta = 0.1), c(0.0828946276667616, -31.2764527374883))
 })
+

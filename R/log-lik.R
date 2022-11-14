@@ -178,7 +178,7 @@ log_lik_student <- function(x, mean = 0, sd = 1, theta = 0) {
   if (length(theta) == 1) {
     theta <- rep(theta, length(lnorm))
   }
-  use_norm <- !is.na(theta) & theta == 0
+  use_norm <- (!is.na(theta) & theta == 0) | (!is.na(sd) & sd == 0)
   lstudent[use_norm] <- lnorm[use_norm]
   lstudent
 }

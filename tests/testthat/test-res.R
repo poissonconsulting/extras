@@ -350,5 +350,8 @@ test_that("res_student", {
   expect_equal(res_student(1:2, 2, simulate = TRUE, type = "data"), c(1.67396350948461, 2.55246185541914))
   set.seed(101)
   expect_equal(res_student(1:2, 2, theta = 0.7, simulate = TRUE, type = "data"), c(1.38213662305365, 2.14557389211128))
+  set.seed(101)
+  expect_equal(res_student(1:2, 0, 0), res_norm(1:2, 0, 0))
+  expect_equal(res_student(1:2, 0, 0, 10), res_norm(1:2, 0, 0))
 })
 
