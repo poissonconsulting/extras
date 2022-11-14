@@ -73,7 +73,7 @@ log_lik_binom <- function(x, size = 1, prob = 0.5) {
 #' @examples
 #' log_lik_gamma(c(0, 1, 2), 1, 2)
 log_lik_gamma <- function(x, shape = 1, rate = 1) {
-  dgamma(x, shape = shape, rate = rate, log = TRUE)
+  stats::dgamma(x, shape = shape, rate = rate, log = TRUE)
 }
 
 #' Gamma-Poisson Log-Likelihood
@@ -211,7 +211,7 @@ log_lik_student <- function(x, mean = 0, sd = 1, theta = 0) {
   if (length(theta) == 1) {
     theta <- rep(theta, length(lnorm))
   }
-  use_norm <- !is.na(theta) & theta == 0
+  use_norm <- (!is.na(theta) & theta == 0) | (!is.na(sd) & sd == 0)
   lstudent[use_norm] <- lnorm[use_norm]
   lstudent
 }

@@ -172,7 +172,7 @@ ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
 #' @export
 #'
 #' @examples
-#' ran_t(10, theta = 1/2)
+#' ran_student(10, theta = 1/2)
 ran_student <- function(n = 1, mean = 0, sd = 1, theta = 0) {
   chk_whole_number(n)
   if (length(mean) > n) {mean = mean[1:n]}

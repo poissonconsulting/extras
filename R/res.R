@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' res_binom(c(0, 1, 2), 1, 0.5, 0)
+#' res_beta_binom(c(0, 1, 2), 4, 0.5, 0.1)
 res_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, type = "dev", simulate = FALSE) {
   chk_string(type)
   if(!vld_false(simulate)) {

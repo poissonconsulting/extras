@@ -28,6 +28,7 @@ Imports:
     lifecycle,
     stats
 Suggests: 
+    aods3,
     covr,
     hms,
     knitr,
