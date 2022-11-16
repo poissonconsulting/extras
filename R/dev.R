@@ -12,7 +12,7 @@
 #' @examples
 #' dev_beta_binom(c(0, 1, 2), 1, 0.5, 0)
 dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
-  dev1 <- log_lik_binom(x = x, size = size, prob = x / size)
+  dev1 <- log_lik_beta_binom(x = x, size = size, prob = x / size, theta = theta)
   dev2 <- log_lik_beta_binom(x = x, size = size, prob = prob, theta = theta)
   dev <- dev1 - dev2
   dev <- dev * 2
@@ -22,6 +22,7 @@ dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
   use_binom <- (!is.na(theta) & theta == 0) | (!is.na(x) & !is.na(size) & x == 0 & size == 0)
   dev_binom <- dev_binom(x = x, size = size, prob = prob, res = FALSE)
   dev[use_binom] <- dev_binom[use_binom]
+  dev <- abs(dev)
   if(vld_false(res)) return(dev)
   dev_res(x, size * prob, dev)
 }
