@@ -15,11 +15,11 @@ test_that("beta_binom known values", {
   expect_equal(dev_beta_binom(1, 1, 0.5, 1), 1.38629436111989)
   expect_equal(dev_beta_binom(1, 1, 0.5, 0.5), 1.38629436111989)
   expect_equal(dev_beta_binom(1, 2, 0.2, 0), 0.892574205256839)
-  expect_equal(dev_beta_binom(1, 2, 0.2, 1), 1.70350442147317)
-  expect_equal(dev_beta_binom(1, 2, 0.2, 0.5), 1.33886130788526)
+  expect_equal(dev_beta_binom(1, 2, 0.2, 1), 0.892574205256839)
+  expect_equal(dev_beta_binom(1, 2, 0.2, 0.5), 0.892574205256839)
   expect_equal(dev_beta_binom(1, 5, 0.3, 0), 0.257320924779852)
-  expect_equal(dev_beta_binom(1, 5, 0.3, 1), 1.34148754312742)
-  expect_equal(dev_beta_binom(1, 5, 0.3, 0.5), 0.87483087930517)
+  expect_equal(dev_beta_binom(1, 5, 0.3, 1), 0.180561662798649) # negative without abs hack
+  expect_equal(dev_beta_binom(1, 5, 0.3, 0.5), 0.0502323495088999) # negative without abs hack
   expect_identical(dev_beta_binom(1, 1, 1, 0.5), 0)
   expect_identical(dev_beta_binom(1, 1, 1), 0)
   expect_identical(dev_beta_binom(1, 1, 1, 1), 0)
@@ -49,9 +49,9 @@ test_that("beta_binom known values", {
 
 test_that("beta_binom vectorized", {
   expect_equal(dev_beta_binom(0:3, 5, 0, 0), dev_binom(0:3, 5, 0))
-  expect_equal(dev_beta_binom(c(0, 1, 3, 0), 3, 0.5, 0.5), c(3.2188758248682, 0.786085176219215, 3.2188758248682, 3.2188758248682))
+  expect_equal(dev_beta_binom(c(0, 1, 3, 0), 3, 0.5, 0.5), c(3.2188758248682, 0.165775319611535, 3.2188758248682, 3.2188758248682))
   expect_equal(dev_beta_binom(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
-  expect_equal(dev_beta_binom(0:3, 1:4, seq(0, 1, length.out = 4), 0:3), c(0, 1.0464962875291, 1.7509374747078, Inf))
+  expect_equal(dev_beta_binom(0:3, 1:4, seq(0, 1, length.out = 4), 0:3), c(0, 0.235566071312767, 0, Inf))
 })
 
 test_that("beta_binom vectorized missing values", {
@@ -71,28 +71,28 @@ test_that("beta_binom res", {
 })
 
 test_that("deviance beta_binom log_lik", {
-  expect_equal(dev_beta_binom(0:3, 3, 0.5, 0.1),
-               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, 0.1)))
+ expect_equal(dev_beta_binom(0:3, 3, 0.5, 0.1),
+               2 * abs(log_lik_beta_binom(0:3, 3, 0:3/3, 0.1) - log_lik_beta_binom(0:3, 3, 0.5, 0.1)))
   expect_equal(dev_beta_binom(0:3, 3, 0.5, 0),
-               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, 0)))
+               2 * abs(log_lik_beta_binom(0:3, 3, 0:3/3, 0) - log_lik_beta_binom(0:3, 3, 0.5, 0)))
   expect_equal(dev_beta_binom(0:3, 3, 0.5, 1),
-               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, 1)))
+               2 * abs(log_lik_beta_binom(0:3, 3, 0:3/3, 1) - log_lik_beta_binom(0:3, 3, 0.5, 1)))
   expect_equal(dev_beta_binom(0:3, 3, 0.5, 10),
-               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, 10)))
+               2 * abs(log_lik_beta_binom(0:3, 3, 0:3/3, 10) - log_lik_beta_binom(0:3, 3, 0.5, 10)))
   expect_equal(dev_beta_binom(0:3, 3, 0, 1),
-               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0, 1)))
+               2 * abs(log_lik_beta_binom(0:3, 3, 0:3/3, 1) - log_lik_beta_binom(0:3, 3, 0, 1)))
   expect_equal(dev_beta_binom(0:3, 3, 0.5, c(0.2, 0.3, 0.4, 0.5)),
-               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, c(0.2, 0.3, 0.4, 0.5))))
+               2 * abs(log_lik_beta_binom(0:3, 3, 0:3/3, c(0.2, 0.3, 0.4, 0.5)) - log_lik_beta_binom(0:3, 3, 0.5, c(0.2, 0.3, 0.4, 0.5))))
 })
 
 test_that("beta_binom ran", {
   set.seed(101)
-  samples <- ran_beta_binom(100000, 3, 0.5, 0.5)
-  expect_equal(mean(samples), 1.50024)
-  expect_equal(var(samples), 1.05339047630476)
-  res <- dev_beta_binom(samples, 3, 0.5, 0.5, res = TRUE)
-  expect_equal(mean(res), 0.00183669977398991)
-  expect_equal(sd(res), 1.32790327647765)
+  samples <- ran_beta_binom(100000, 100, 0.5, 0.01)
+  expect_equal(mean(samples), 49.99347)
+  expect_equal(var(samples), 37.4491218503185)
+  res <- dev_beta_binom(samples, 100, 0.5, 0.01, res = TRUE)
+  expect_equal(mean(res), -0.00107460361190113)
+  expect_equal(sd(res), 1.00399215148479)
 })
 
 test_that("deviance beta_binom", {
