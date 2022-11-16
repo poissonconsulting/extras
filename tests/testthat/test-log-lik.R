@@ -158,6 +158,7 @@ test_that("beta_binom known values", {
   expect_equal(log_lik_beta_binom(0, 3, 0), 0)
   expect_equal(log_lik_beta_binom(0, 3, 1), -Inf)
   expect_equal(log_lik_beta_binom(1, 3, 1), -Inf)
+  expect_equal(log_lik_beta_binom(1, 3, 0.3), -0.818710403535291)
   expect_identical(log_lik_beta_binom(3, 3, 1), 0)
   expect_identical(log_lik_beta_binom(0, 0), 0)
   expect_equal(log_lik_beta_binom(0, 3, 0.5, 0.5), -1.6094379124341)
@@ -172,6 +173,18 @@ test_that("beta_binom vectorized", {
   expect_equal(log_lik_beta_binom(0:3, 2, 0.5, 0), c(-1.38629436111989, -0.693147180559945, -1.38629436111989, -Inf))
   expect_equal(log_lik_beta_binom(0:3, 2, 0.5, 0), log_lik_binom(0:3, 2, 0.5))
   expect_equal(log_lik_beta_binom(c(0, 1, 3, 4, 5), 3, 0.5, 0.5), c(-1.6094379124341, -1.20397280432594, -1.6094379124341, -Inf, -Inf))
-  expect_equal(log_lik_beta_binom(0:3, 5:8, seq(0, 1, length.out = 4), 0.5), c(0, -1.47834815081045, -2.50875218945204, 0))
+  expect_equal(log_lik_beta_binom(0:3, 5:8, seq(0, 1, length.out = 4), 0.5), c(0, -1.47834815081045, -2.50875218945204, -Inf))
   expect_equal(log_lik_beta_binom(0:3, 3:0, seq(0, 1, length.out = 4), 0.5), c(0, -1.03407376753054, -Inf, -Inf))
+})
+
+test_that("beta_binom log_lik", {
+  samples2 <- ran_beta_binom(100, size = 50, prob = 0.1, theta = 1)
+  data <- data.frame(samples2 = samples2,
+                     mod_prob2 = 50 - samples2)
+  mod2 <- aods3::aodml(cbind(samples2, mod_prob2)~1, data = data,
+                       family = "bb", method = "Nelder-Mead")
+  est_prob <- ilogit(mod2$b)
+  est_theta <- 2 / (1 / mod2$phi - 1)
+  expect_equal(mod2$logL, sum(log_lik_beta_binom(samples2, size = 50,
+                                                 prob = est_prob, theta = est_theta)))
 })

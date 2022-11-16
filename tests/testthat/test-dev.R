@@ -9,18 +9,18 @@ test_that("beta_binom missing values", {
 test_that("beta_binom known values", {
   expect_equal(dev_beta_binom(1), 1.38629436111989)
   expect_equal(dev_beta_binom(1, 1, 0), Inf)
-  expect_equal(dev_beta_binom(1, 1, 0, 0.5), 0)
+  expect_equal(dev_beta_binom(1, 1, 0, 0.5), Inf)
   expect_equal(dev_beta_binom(1, 1, 0.5, 0), 1.38629436111989)
   expect_identical(dev_beta_binom(1, 1, 0.5, 0), dev_binom(1, 1, 0.5))
   expect_equal(dev_beta_binom(1, 1, 0.5, 1), 1.38629436111989)
   expect_equal(dev_beta_binom(1, 1, 0.5, 0.5), 1.38629436111989)
   expect_equal(dev_beta_binom(1, 2, 0.2, 0), 0.892574205256839)
-  expect_equal(dev_beta_binom(1, 2, 0.2, 1), 0.892574205256839)
-  expect_equal(dev_beta_binom(1, 2, 0.2, 0.5), 0.892574205256838)
+  expect_equal(dev_beta_binom(1, 2, 0.2, 1), 1.70350442147317)
+  expect_equal(dev_beta_binom(1, 2, 0.2, 0.5), 1.33886130788526)
   expect_equal(dev_beta_binom(1, 5, 0.3, 0), 0.257320924779852)
-  expect_equal(dev_beta_binom(1, 5, 0.3, 1), -0.180561662798649) # negative
-  expect_equal(dev_beta_binom(1, 5, 0.3, 0.5), -0.0502323495088999) # negative
-  expect_identical(dev_beta_binom(1, 1, prob = 1, theta = 0.5), 0)
+  expect_equal(dev_beta_binom(1, 5, 0.3, 1), 1.34148754312742)
+  expect_equal(dev_beta_binom(1, 5, 0.3, 0.5), 0.87483087930517)
+  expect_identical(dev_beta_binom(1, 1, 1, 0.5), 0)
   expect_identical(dev_beta_binom(1, 1, 1), 0)
   expect_identical(dev_beta_binom(1, 1, 1, 1), 0)
   expect_identical(dev_beta_binom(0, 0), 0)
@@ -28,11 +28,11 @@ test_that("beta_binom known values", {
   expect_identical(dev_beta_binom(0, 0, 1, 1), 0)
   expect_identical(dev_beta_binom(1, 2), 0)
   expect_identical(dev_beta_binom(1, 2, 1), Inf)
-  expect_equal(dev_beta_binom(1, 2, 0, 1), -2.19722457733622) # negative
+  expect_equal(dev_beta_binom(1, 2, 0, 1), Inf)
   expect_equal(dev_beta_binom(0, 1), 1.38629436111989)
   expect_equal(dev_beta_binom(0, 1, 1), Inf)
-  expect_equal(dev_beta_binom(0, 1, 1, 0.5), 0)
-  expect_equal(dev_beta_binom(0, 1, 1, 1), 0)
+  expect_equal(dev_beta_binom(0, 1, 1, 0.5), Inf)
+  expect_equal(dev_beta_binom(0, 1, 1, 1), Inf)
   expect_equal(dev_beta_binom(0, 2), 2.77258872223978)
   expect_equal(dev_beta_binom(0, 2, 1), Inf)
   expect_equal(dev_beta_binom(0, 2, 0.5), 2.77258872223978)
@@ -41,14 +41,17 @@ test_that("beta_binom known values", {
   expect_equal(dev_beta_binom(0, 2, 0.1), 0.421442062631305)
   expect_equal(dev_beta_binom(0, 2, 0.1, 0.1), 0.410887948429604)
   expect_equal(dev_beta_binom(0, 2, 0.1, 0.5), 0.377484249193758)
+  expect_equal(dev_beta_binom(1, 2, 1, 10), Inf)
+  expect_equal(dev_beta_binom(2, 2, 1, 10), 0)
+  expect_equal(dev_beta_binom(0, 2, 0.5, 10), 1.56031711509915)
+  expect_equal(dev_beta_binom(0, 2, 0, 10), 0)
 })
 
 test_that("beta_binom vectorized", {
   expect_equal(dev_beta_binom(0:3, 5, 0, 0), dev_binom(0:3, 5, 0))
-  expect_equal(dev_beta_binom(c(0, 1, 3, 0), 3, 0.5, 0.5),
-               c(3.2188758248682, 0.165775319611535, 3.2188758248682, 3.2188758248682))
+  expect_equal(dev_beta_binom(c(0, 1, 3, 0), 3, 0.5, 0.5), c(3.2188758248682, 0.786085176219215, 3.2188758248682, 3.2188758248682))
   expect_equal(dev_beta_binom(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
-  expect_equal(dev_beta_binom(0:3, 1:4, seq(0, 1, length.out = 4), 0:3), c(0, 0.235566071312767, 0, -4.32465840297121))
+  expect_equal(dev_beta_binom(0:3, 1:4, seq(0, 1, length.out = 4), 0:3), c(0, 1.0464962875291, 1.7509374747078, Inf))
 })
 
 test_that("beta_binom vectorized missing values", {
@@ -63,23 +66,23 @@ test_that("beta_binom vectorized missing values", {
 })
 
 test_that("beta_binom res", {
-  expect_equal(dev_beta_binom(1, 2, 0.5, 0.5), dev_beta_binom(1, 2, 0.5, 0.5, res = TRUE)^2)
-  # expect_equal(dev_beta_binom(0:1, c(2, 4), 0.5, 5), dev_beta_binom(0:1, c(2, 4), 0.5, 5, res = TRUE)^2) # not working: computes negative deviances; can't sqrt negatives. Waiting on answer from aods3 authors.
+  expect_equal(dev_beta_binom(1, 3, 0.5, 0.5), dev_beta_binom(1, 3, 0.5, 0.5, res = TRUE)^2)
+  expect_equal(dev_beta_binom(0:1, c(2, 4), 0.5, 5), dev_beta_binom(0:1, c(2, 4), 0.5, 5, res = TRUE)^2)
 })
 
 test_that("deviance beta_binom log_lik", {
   expect_equal(dev_beta_binom(0:3, 3, 0.5, 0.1),
-               2 * (log_lik_beta_binom(0:3, 3, 0:3/3, 0.1) - log_lik_beta_binom(0:3, 3, 0.5, 0.1)))
+               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, 0.1)))
   expect_equal(dev_beta_binom(0:3, 3, 0.5, 0),
-               2 * (log_lik_beta_binom(0:3, 3, 0:3/3, 0) - log_lik_beta_binom(0:3, 3, 0.5, 0)))
+               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, 0)))
   expect_equal(dev_beta_binom(0:3, 3, 0.5, 1),
-               2 * (log_lik_beta_binom(0:3, 3, 0:3/3, 1) - log_lik_beta_binom(0:3, 3, 0.5, 1)))
+               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, 1)))
   expect_equal(dev_beta_binom(0:3, 3, 0.5, 10),
-               2 * (log_lik_beta_binom(0:3, 3, 0:3/3, 10) - log_lik_beta_binom(0:3, 3, 0.5, 10)))
+               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, 10)))
   expect_equal(dev_beta_binom(0:3, 3, 0, 1),
-               2 * (log_lik_beta_binom(0:3, 3, 0:3/3, 1) - log_lik_beta_binom(0:3, 3, 0, 1)))
+               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0, 1)))
   expect_equal(dev_beta_binom(0:3, 3, 0.5, c(0.2, 0.3, 0.4, 0.5)),
-               2 * (log_lik_beta_binom(0:3, 3, 0:3/3, c(0.2, 0.3, 0.4, 0.5)) - log_lik_beta_binom(0:3, 3, 0.5, c(0.2, 0.3, 0.4, 0.5))))
+               2 * (log_lik_binom(0:3, 3, 0:3/3) - log_lik_beta_binom(0:3, 3, 0.5, c(0.2, 0.3, 0.4, 0.5))))
 })
 
 test_that("beta_binom ran", {
@@ -88,41 +91,17 @@ test_that("beta_binom ran", {
   expect_equal(mean(samples), 1.50024)
   expect_equal(var(samples), 1.05339047630476)
   res <- dev_beta_binom(samples, 3, 0.5, 0.5, res = TRUE)
-  expect_equal(mean(res), -0.000737996623945424)
-  expect_equal(sd(res), 1.17991043677707)
+  expect_equal(mean(res), 0.00183669977398991)
+  expect_equal(sd(res), 1.32790327647765)
 })
 
 test_that("deviance beta_binom", {
-  set.seed(101)
-  samples <- ran_beta_binom(100, size = 3, prob = 0.5, theta = 0.1)
-  data <- data.frame(samples = samples,
-                     mod_prob = 3 - samples)
-  mod <- aods3::aodml(cbind(samples,mod_prob)~1, data = data, family = "bb",
-                      link = "logit", phi.formula = ~1, method = "Nelder-Mead",
-                      hessian = FALSE)
-  est_prob <- ilogit(mod$b)
-  est_theta <- 2 / (1 / mod$phi - 1)
-  deviance <- sum(dev_beta_binom(samples, size = 3, prob = est_prob, theta = est_theta))
+  samples <- ran_beta_binom(100, size = 3, prob = 0.5, theta = 0) # binomial case.
+  mod <- glm(cbind(samples,3-samples)~1, family = binomial)
+  deviance <- sum(dev_beta_binom(samples, size = 3, ilogit(coef(mod)[1])), theta = 0)
   expect_equal(deviance, deviance(mod))
-
-  samples2 <- ran_beta_binom(100, size = 3, prob = 0.5, theta = 0)
-  mod2 <- glm(cbind(samples2,3-samples2)~1, family = binomial)
-  deviance2 <- sum(dev_beta_binom(samples2, size = 3, ilogit(coef(mod2)[1])), theta = 0)
-  expect_equal(deviance2, deviance(mod2))
-
-  set.seed(102)
-  samples <- ran_beta_binom(100, size = 5, prob = 0.2, theta = 2)
-  data <- data.frame(samples = samples,
-                     mod_prob = 5 - samples)
-  mod <- aods3::aodml(cbind(samples,mod_prob)~1, data = data, family = "bb",
-                      link = "logit", phi.formula = ~1, method = "Nelder-Mead",
-                      hessian = FALSE)
-  est_prob <- ilogit(mod$b)
-  est_theta <- 2 / (1 / mod$phi - 1)
-  deviance <- sum(dev_beta_binom(samples, size = 5, prob = est_prob, theta = est_theta))
-  expect_equal(deviance, deviance(mod))
+  # no packages that calculate deviance using binomial saturated model.
 })
-
 
 test_that("bern missing values", {
   expect_identical(dev_bern(logical(0), integer(0)), numeric(0))
@@ -196,8 +175,7 @@ test_that("dev_binom", {
   expect_equal(dev_binom(1, 10, 0.5, res = TRUE), -2.71316865369073)
   expect_equal(dev_binom(1:9, 10, 0.5, res = TRUE),
                c(-2.71316865369073, -1.96338868806845, -1.28283185573988, -0.634594572159089,
-                 0, 0.634594572159089, 1.28283185573988, 1.96338868806845, 2.71316865369073
-               ))
+                 0, 0.634594572159089, 1.28283185573988, 1.96338868806845, 2.71316865369073))
 })
 
 test_that("deviance binom log_lik", {
