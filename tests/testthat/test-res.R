@@ -369,19 +369,19 @@ test_that("res_beta_binom", {
   expect_equal(res_beta_binom(0, 2, 0.5, 0.5), -1.55175565365552)
   expect_equal(res_beta_binom(1, 2, 0.5, 0.5), 0)
   expect_equal(res_beta_binom(0, 2, 0.7, 0.5), -2.01243800222306)
-  expect_equal(res_beta_binom(1, 2, 0.7, 0.5), -0.590513991612015)
+  expect_equal(res_beta_binom(1, 2, 0.7, 0.5), -0.891624291345842)
   expect_identical(res_beta_binom(1, 2, 0.5), 0)
   expect_identical(res_beta_binom(5, 10, 0.5), 0)
   expect_identical(res_beta_binom(1, 2, 0.5, 2), 0)
   expect_identical(res_beta_binom(5, 10, 0.5, 2), 0)
   expect_equal(res_beta_binom(1, 10, 0.5), -2.71316865369073)
-  expect_equal(res_beta_binom(1, 10, 0.5, 0.5), -1.38311861998663)
+  expect_equal(res_beta_binom(1, 10, 0.5, 0.5), -1.85041341129241)
   expect_equal(res_beta_binom(1:9, 10, 0.5),
                c(-2.71316865369073, -1.96338868806845, -1.28283185573988, -0.634594572159089,
                  0, 0.634594572159089, 1.28283185573988, 1.96338868806845, 2.71316865369073))
   expect_equal(res_beta_binom(1:9, 10, 0.5, 0.1),
-               c(-2.25989940947796, -1.61208568111601, -1.04416868944979, -0.51406577841771,
-                 0, 0.514065778417724, 1.04416868944979, 1.612085681116, 2.25989940947796))
+               c(-2.35377238708775, -1.73747184652804, -1.22726697815915, -0.823720623845925,
+                 0, 0.823720623845934, 1.22726697815915, 1.73747184652804, 2.35377238708775))
   expect_equal(res_beta_binom(0, 2, 0.5, type = "raw"), -1)
   expect_equal(res_beta_binom(0, 2, 0.5, 10, type = "raw"), -1)
   set.seed(101)
@@ -400,3 +400,4 @@ test_that("res_beta_binom", {
   expect_equal(res_beta_binom(1:2, 2, simulate = TRUE, type = "data"), 1:0)
   expect_equal(res_beta_binom(1:2, 2, theta = 2, simulate = TRUE, type = "data"), c(0, 2))
 })
+
