@@ -22,7 +22,9 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
     lgamma(x + alpha) + lgamma(size - x + beta) - lgamma(size + alpha + beta) +
     lgamma(alpha + beta) - lgamma(alpha) - lgamma(beta)
   bol <- !is.na(x) & !is.na(size) & !is.na(prob) & !is.na(theta)
-  lbeta_binom[bol & (prob == 0 | prob == 1)] <- 0
+  lbeta_binom[bol & ((x == 0 & prob == 0) | (x == size & prob == 1))] <- 0
+  lbeta_binom[bol & x != 0 & prob == 0] <- -Inf
+  lbeta_binom[bol & x != size & prob == 1] <- -Inf
   lbeta_binom[bol & x > size] <- -Inf
   bol_theta <- !is.na(theta)
   lbeta_binom[bol_theta & theta < 0] <- NaN
