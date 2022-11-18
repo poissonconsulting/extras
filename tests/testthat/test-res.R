@@ -362,26 +362,27 @@ test_that("res_beta_binom", {
   expect_identical(res_beta_binom(1, 1, NA, 1), NA_real_)
   expect_identical(res_beta_binom(1, 1, 1, NA), NA_real_)
   expect_equal(res_beta_binom(1, 3, 0.5), dev_beta_binom(1, 3, 0.5, res = TRUE))
+  expect_equal(res_beta_binom(1, 3, 0.5, 1.0), dev_beta_binom(1, 3, 0.5, 1.0, res = TRUE))
   expect_equal(res_beta_binom(0, 1, 0.5), -1.17741002251547)
   expect_equal(res_beta_binom(1, 1, 0.5), 1.17741002251547)
   expect_equal(res_beta_binom(0, 1, 0.7), -1.55175565365552)
   expect_equal(res_beta_binom(1, 1, 0.7), 0.844600430900592)
-  expect_equal(res_beta_binom(0, 2, 0.5, 0.5), -1.55175565365552)
-  expect_equal(res_beta_binom(1, 2, 0.5, 0.5), 0)
+  expect_equal(res_beta_binom(0, 2, 0.5, 0.5), -1.55175564931989)
+  expect_equal(res_beta_binom(1, 2, 0.5, 0.5), 2.1073424255447e-08)
   expect_equal(res_beta_binom(0, 2, 0.7, 0.5), -2.01243800222306)
-  expect_equal(res_beta_binom(1, 2, 0.7, 0.5), -0.590513991612015)
+  expect_equal(res_beta_binom(1, 2, 0.7, 0.5), 0.590513991612015)
   expect_identical(res_beta_binom(1, 2, 0.5), 0)
   expect_identical(res_beta_binom(5, 10, 0.5), 0)
   expect_identical(res_beta_binom(1, 2, 0.5, 2), 0)
   expect_identical(res_beta_binom(5, 10, 0.5, 2), 0)
   expect_equal(res_beta_binom(1, 10, 0.5), -2.71316865369073)
-  expect_equal(res_beta_binom(1, 10, 0.5, 0.5), -1.38311861998663)
+  expect_equal(res_beta_binom(1, 10, 0.5, 0.5), -1.48165822226217)
   expect_equal(res_beta_binom(1:9, 10, 0.5),
                c(-2.71316865369073, -1.96338868806845, -1.28283185573988, -0.634594572159089,
                  0, 0.634594572159089, 1.28283185573988, 1.96338868806845, 2.71316865369073))
   expect_equal(res_beta_binom(1:9, 10, 0.5, 0.1),
-               c(-2.25989940947796, -1.61208568111601, -1.04416868944979, -0.51406577841771,
-                 0, 0.514065778417724, 1.04416868944979, 1.612085681116, 2.25989940947796))
+               c(-2.26648244134579, -1.61504974877637, -1.04572341572075, -0.51475735786997,
+                 0, 0.514757357869973, 1.04572341572074, 1.61504974877637, 2.26648244134578))
   expect_equal(res_beta_binom(0, 2, 0.5, type = "raw"), -1)
   expect_equal(res_beta_binom(0, 2, 0.5, 10, type = "raw"), -1)
   set.seed(101)

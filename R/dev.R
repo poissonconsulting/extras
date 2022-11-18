@@ -12,19 +12,29 @@
 #' @examples
 #' dev_beta_binom(c(0, 1, 2), 1, 0.5, 0)
 dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
-  dev1 <- log_lik_beta_binom(x = x, size = size, prob = x / size, theta = theta)
+  opt_beta_binom <- function(prob, x, size = 1, theta = 0) {
+    -log_lik_beta_binom(x = x, size = size, prob = prob, theta = theta)
+  }
+  if (length(size) == 1) {size <- rep(size, length(x))}
+  if (length(theta) == 1) {theta <- rep(theta, length(x))}
+  opt_p <- rep(NA, length(x))
+  bol <- !is.na(x) & !is.na(size) & !is.na(theta)
+  for (i in seq_along(x)) {
+    if (bol[i] & !is.na(bol[i])) {
+    opt_p[i] <- stats::optimize(opt_beta_binom, interval = c(0, 1), x = x[i],
+                                size = size[i], theta = theta[i], tol = 1e-8)$minimum
+    }
+  }
+  dev1 <- log_lik_beta_binom(x = x, size = size, prob = opt_p, theta = theta)
   dev2 <- log_lik_beta_binom(x = x, size = size, prob = prob, theta = theta)
   dev <- dev1 - dev2
+  dev[dev < 0 & dev > -1e-7] <- 0
   dev <- dev * 2
-  if (length(theta) == 1) {
-    theta <- rep(theta, length(x))
-  }
   use_binom <- (!is.na(theta) & theta == 0) | (!is.na(x) & !is.na(size) & x == 0 & size == 0)
   dev_binom <- dev_binom(x = x, size = size, prob = prob, res = FALSE)
   dev[use_binom] <- dev_binom[use_binom]
-  dev <- abs(dev)
   if(vld_false(res)) return(dev)
-  dev_res(x, size * prob, dev)
+  dev_res(x, ifelse(use_binom, size * prob, size * opt_p), dev)
 }
 
 #' Bernoulli Deviances
