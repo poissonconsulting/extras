@@ -1,0 +1,186 @@
+---
+title: "Beta-binomial Deviance Residuals"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Beta-binomial Deviance Residuals}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(extras)
+library(tidyr)
+library(ggplot2)
+library(viridis)
+```
+
+
+### Beta-binomial distribution
+
+The beta-binomial distribution is useful when we wish to incorporate additional variation into the probability parameter of the binomial distribution, $p$. It accomplishes this by drawing $p$ from a beta distribution. The parameters of the beta-binomial are the number of trials, $n$, and the shape parameters of the beta distribution, $\alpha$ and $\beta$.   
+
+The likelihood of the beta-binomial can be described as follows:  
+
+$$P(x | n, \alpha, \beta) = \frac{\Gamma(n + 1)}{\Gamma(x + 1)\Gamma(n - x + 1)} 
+\frac{\Gamma(x + \alpha) \Gamma(n - x + \beta)}{\Gamma(n + \alpha + \beta)} 
+\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)},$$
+
+where $x$ is an integer $≤ n$, $\alpha$ and $\beta$ are $>0$, and where $\Gamma()$ represents the gamma function. The log-likelihood is:  
+
+$$\log(P(x | n, \alpha, \beta)) = \log(\Gamma(n + 1)) - \log(\Gamma(x + 1)) - \log(\Gamma(n - x + 1)) +
+   \ log(\Gamma(x + \alpha)) + \\ \log(\Gamma(n - x + \beta)) - \log(\Gamma(n + \alpha + \beta)) +
+    \log(\Gamma(\alpha + \beta)) - \log(\Gamma(\alpha)) - \log(\Gamma(\beta)).$$
+
+The expected value of the beta-binomial distribution is $\frac{n \alpha}{\alpha + \beta}$. This is the same as the expected value of the binomial distribution ($n p$), with the $p$ replaced by the expected value of the beta distribution, $\frac{\alpha}{\alpha + \beta}$.  
+
+A parameterization frequently used for the beta-binomial distribution uses this expected probability as a parameter, with a dispersion parameter that regulates the variance in the probability We will refer to these parameters as $p$ and $\theta$, respectively. They are both related to $\alpha$ and $\beta$, and are defined as follows:  
+
+$$p = \frac{\alpha}{\alpha + \beta}$$
+$$\theta = \frac{2}{\alpha + \beta}.$$
+
+Accordingly, the parameters of the beta distribution can be described by the following equations:  
+
+$$\alpha = \frac{2 (p)}{\theta}$$
+$$\beta = \frac{2 (1 - p)}{\theta}.$$
+
+Our parameterization of $\theta$ is slightly unconventional, but has useful properties when modelling. When $\theta = 0$, the beta-binomial reverts to the binomial distribution. When $\theta = 1$ and $p = 0.5$, the parameters of the beta distribution become $\alpha = 1$ and $\beta = 1$, which correspond to a uniform distribution for the beta-binomial probability parameter.  
+
+### Deviance:  
+
+Recall that the likelihood of a model is the probability of the data set given the model ($P(data|model)$).  
+
+The *deviance* of a model, $D$, is defined by:  
+
+$$D(model, data) = 2(\log(P(data|saturated \, model)) - \log(P(data|fitted \, model))),$$
+
+where the saturated model is the model that perfectly fits the data. The deviance should always be positive, because the saturated model should always fit the data as well or better than the fitted model. The saturated model usually uses the value of $x$ in place of the mean parameter, thereby fitting through the data points. For example, calculating the saturated log-likelihood of the normal distribution involves using the $x$ value(s) in place of the mean parameter $\mu$ in the log-likelihood. Recall from above that the expected value of the binomial distribution is $n p$. Since $n$ is in this distribution is typically known or constant, we use $p = \frac{x}{n}$ to calculate the saturated log-likelihood of the binomial distribution.  
+
+For the beta-binomial distribution, there is not a consensus on what should be used as the saturated model. The first option is to use the saturated log-likelihood of the binomial distribution, as described above, ignoring the $\theta$ dispersion term. The second option is to use the same method as described for the binomial distribution (i.e., replacing $p$ with $\frac{x}{n}$), and holding the $\theta$ value constant.   
+
+Both of these options have issues. The problem with the first option is that the comparison is always to the binomial model, whose likelihood profile has a higher peak than the beta-binomial likelihood profile (Fig. 1). With increases in $\theta$, the density of the likelihood profile is pulled over to the right (Fig. 1). Because the saturated log-likelihood does not take $\theta$ into account, this results in larger deviances than expected.  
+
+```{r, echo = FALSE, fig.width = 6, fig.height = 4, fig.cap = "Fig. 1: Beta-binomial likelihood profile for $x = 1$ and $n = 5$, for different values of $\\theta$. $\\theta = 0$ corresponds to the binomial case."}
+
+n_samp <- 1000
+x <- 1
+size <- 5
+prob <- 0.3
+theta <- c(0, 0.1, 0.5, 1)
+
+prob_seq <- seq(0, 1, length.out = n_samp)
+
+lik <- data.frame(prob_seq = prob_seq,
+                  lik_0.0 = exp(log_lik_beta_binom(x, size, prob_seq, theta[1])),
+                  lik_0.1 = exp(log_lik_beta_binom(x, size, prob_seq, theta[2])),
+                  lik_0.5 = exp(log_lik_beta_binom(x, size, prob_seq, theta[3])),
+                  lik_1.0 = exp(log_lik_beta_binom(x, size, prob_seq, theta[4])))
+
+tb <- as_tibble(lik) |>
+  pivot_longer(cols = c(lik_0.0, lik_0.1, lik_0.5, lik_1.0),
+               names_to = "theta", names_prefix = "lik_",
+               values_to = "lik")
+
+ggplot(tb, aes(x = prob_seq, y = lik, colour = theta)) +
+  geom_line() +
+  scale_colour_viridis(discrete = TRUE) +
+  xlab("p") +
+  ylab("likelihood")
+```
+
+The problem with the second option is that for some combinations of $p$ and $\theta$, deviances are computed to be negative. This both does not make sense, as the saturated model should be the best possible fit to the data, and is unacceptable, because calculating deviance residuals, as we will do in the next section, involves taking the square root of the deviance, which is not possible for a negative number. Here is an example of a case where the deviance is negative. Using $x = 1$, $n = 5$, $p = 0.3$, and $\theta = 0.5$, we calculate the saturated log-likelihood:  
+
+$$\alpha_{sat} = \frac{2 (\frac{x}{n})}{\theta} = \frac{2(0.3)}{0.5} = 0.8$$
+$$\beta_{sat} = \frac{2 (1 - \frac{x}{n})}{\theta} = \frac{2 (1 - 0.3)}{0.5} = 3.2$$
+
+$$ \log(P(x|n, p_{sat}, \theta_{sat}) = -1.355106,$$  
+
+the fitted log-likelihood:  
+
+$$\alpha_{fit} = \frac{2 (p)}{\theta} = \frac{2(0.3)}{0.5} = 1.2$$
+$$\beta_{fit} = \frac{2 (1 - p)}{\theta} = \frac{2 (1 - 0.3}{0.5} = 2.8$$
+
+$$\log(P(x|n, p_{fit}, \theta_{fit})) = -1.32999,$$  
+
+and finally, the deviance:  
+
+\begin{aligned}
+D(n, p, \theta, x) &= 2(\log(P(x|n, p_{sat}, \theta_{sat})) - \log(P(x|n, p_{fit}, \theta_{fit}))) \\
+&= 2(-1.355106 - -1.32999) \\
+&= -0.050232.
+\end{aligned}
+
+The deviance in this case is smaller than expected. This is because the likelihood at the expected value, $p = \frac{x}{n}$ does not match the peak of the likelihood profile (Fig. 2). So what value of the $p$ parameter maximizes the likelihood? The beta-binomial distribution has closed-form solutions only for certain values of $\alpha$ and $\beta$. Thus, we cannot generalize a solution, and must instead search for value of $p$ that maximizes the likelihood for each data point in order to calculate the saturated log-likelihood. We will refer to the optimized $p$ value as $p^*$.  We use this $p^*$ to calculate the saturated log-likelihood, which produces deviances that are (a) strictly positive, and (b) relative to the value of $\theta$. The value of $p^*$ for the example case with $x = 1$, $n = 5$, and $\theta = 0.5$ is shown in Figure 2.  
+
+```{r, echo = FALSE, fig.width = 6, fig.height = 4, fig.cap = "Fig. 2: Beta-binomial likelihood profile for $x = 1$, $n = 5$, and $\\theta = 0.5$. The dashed vertical line shows the likelihood at the expected value of the beta-binomial distribution, where $p = \\frac{x}{n} = \\frac{1}{5} = 0.2$. As you can see, this is not the $p$ for which the likelihood is maximized. The solid vertical line shows the likelihood at its maximum point. In this case, $p^* = 0.26$."}
+
+n_samp <- 1000
+x <- 1
+size <- 5
+prob <- 0.3
+theta <- 0.5
+
+opt_beta_binom <- function(prob, x, size, theta) {
+  -log_lik_beta_binom(x = x, size = size, prob = prob, theta = theta)
+}
+
+opt_p <- stats::optimize(opt_beta_binom, interval = c(0, 1), x = x,
+                         size = size, theta = theta)$minimum
+
+prob_seq <- seq(0, 1, length.out = n_samp)
+
+lik <- data.frame(prob_seq = prob_seq,
+                  lik = exp(log_lik_beta_binom(x, size, prob_seq, theta)))
+
+
+ggplot(lik, aes(x = prob_seq, y = lik)) +
+  geom_line(colour = viridis(1, begin = 0.66)) +
+  geom_vline(xintercept = x / size, linetype = "dashed") + 
+  geom_vline(xintercept = opt_p) + 
+  xlab("p") +
+  ylab("likelihood")
+```
+
+### Deviance residuals
+
+The unit deviance, $d_i$ refers to the deviance for the $i^{th}$ data point, $x_i$:  
+
+$$d_i =  2(\log(P(x_i|n, p^*, \theta)) - \log(P(x_i|n, p, \theta))).$$
+
+The *deviance residual* is the signed squared root of the unit deviance,  
+
+$$r_i = \text{sign}(x_i - (n p^*)) \sqrt{d_i}.$$
+
+
+```{r, echo = FALSE, fig.height = 4, fig.width = 6}
+n_samp <- 10000
+size <- 50
+prob <- 0.3
+theta <- c(0, 0.1, 0.5, 1)
+
+x <- matrix(NA, nrow = n_samp, ncol = length(theta))
+
+for (i in 1:length(theta)) {
+  x[, i] <- ran_beta_binom(n_samp, size, prob, theta[i])
+}
+
+df <- data.frame(res_0.0 = res_beta_binom(x[, 1], size, prob, theta[1]),
+                 res_0.1 = res_beta_binom(x[, 2], size, prob, theta[2]),
+                 res_0.5 = res_beta_binom(x[, 3], size, prob, theta[3]),
+                 res_1.0 = res_beta_binom(x[, 4], size, prob, theta[4]))
+df <- df |>
+  pivot_longer(cols = c(res_0.0, res_0.1, res_0.5, res_1.0),
+               names_to = "theta", names_prefix = "res_",
+               values_to = "res")
+
+ggplot(df, aes(x=res))+
+  geom_histogram(color="black", fill="white", bins = 50)+
+  facet_grid(~theta) +
+  xlab("Deviance residuals")
+```
+
+
