@@ -30,7 +30,7 @@ $$P(x | n, \alpha, \beta) = \frac{\Gamma(n + 1)}{\Gamma(x + 1)\Gamma(n - x + 1)}
 \frac{\Gamma(x + \alpha) \Gamma(n - x + \beta)}{\Gamma(n + \alpha + \beta)} 
 \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)},$$
 
-where $x$ is an integer $≤ n$, $\alpha$ and $\beta$ are $>0$, and where $\Gamma()$ represents the gamma function. The log-likelihood is:  
+where $x$ is a natural number $≤ n$, $\alpha$ and $\beta$ are $>0$, and where $\Gamma()$ represents the gamma function. The log-likelihood is:  
 
 $$\log(P(x | n, \alpha, \beta)) = \log(\Gamma(n + 1)) - \log(\Gamma(x + 1)) - \log(\Gamma(n - x + 1)) +
    \ log(\Gamma(x + \alpha)) + \\ \log(\Gamma(n - x + \beta)) - \log(\Gamma(n + \alpha + \beta)) +
