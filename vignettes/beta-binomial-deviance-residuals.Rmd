@@ -281,7 +281,7 @@ Two main differences exist between $\theta = 0$ and $\theta > 0$ for cases when 
 1. Negative deviance residuals become more common.
 2. Gaps occur in the histogram of deviance residuals. 
 
-The reasons behind these differences are linked, and have to do with our choice of the expected value used to calculate the sign of the residual and the distribution of data points.  
+The reasons behind these differences are linked, and have to do with our choice of the expected value used to calculate the sign of the residual.
 
 The expected value used to calculate the sign of the residual ($np^*$) tends to be greater than the true expected value, $np$, due to the shape of the likelihood function shown in Figure 1; this difference increases with $\theta$.  
 
