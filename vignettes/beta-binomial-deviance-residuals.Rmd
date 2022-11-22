@@ -39,7 +39,7 @@ where $x$ is a natural number $≤ n$, $\alpha$ and $\beta$ are $>0$, and where 
 The log-likelihood is:  
 
 $$\log(P(x | n, \alpha, \beta)) = \log(\Gamma(n + 1)) - \log(\Gamma(x + 1)) - \log(\Gamma(n - x + 1)) +
-   \ log(\Gamma(x + \alpha)) + \\ \log(\Gamma(n - x + \beta)) - \log(\Gamma(n + \alpha + \beta)) +
+   \log(\Gamma(x + \alpha)) + \\ \log(\Gamma(n - x + \beta)) - \log(\Gamma(n + \alpha + \beta)) +
     \log(\Gamma(\alpha + \beta)) - \log(\Gamma(\alpha)) - \log(\Gamma(\beta)).$$
 
 The expected value of the beta-binomial distribution is $\frac{n \alpha}{\alpha + \beta}$.  
