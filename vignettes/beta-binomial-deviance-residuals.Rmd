@@ -40,7 +40,7 @@ $$\log(P(x | n, \alpha, \beta)) = \log(\Gamma(n + 1)) - \log(\Gamma(x + 1)) - \l
 The expected value of the beta-binomial distribution is $\frac{n \alpha}{\alpha + \beta}$.
 This is the same as the expected value of the binomial distribution ($n p$), with the $p$ replaced by the expected value of the beta distribution, $\frac{\alpha}{\alpha + \beta}$.  
 
-A parameterization frequently used for the beta-binomial distribution uses this expected probability ($p$) as a parameter, with a dispersion parameter ($\theta$) that regulates the variance in the probability. 
+A parameterization frequently used for the beta-binomial distribution uses this expected probability ($p$) as a parameter, with a dispersion parameter ($\theta$) that specifies the variance in the probability. 
 Our particular parameterization of $\theta$ is slightly unconventional, but has useful properties when modelling.
 When $\theta = 0$, the beta-binomial reverts to the binomial distribution.
 When $\theta = 1$ and $p = 0.5$, the parameters of the beta distribution become $\alpha = 1$ and $\beta = 1$, which correspond to a uniform distribution for the beta-binomial probability parameter.
@@ -64,14 +64,14 @@ For example, calculating the saturated log-likelihood of the normal distribution
 Recall from above that the expected value of the binomial distribution is $n \cdot p$.
 Since $n$ in this distribution is fixed, $p = \frac{x}{n}$ is used to calculate the saturated log-likelihood of the binomial distribution.
 
-However, for the beta-binomial distribution, there is some confusion about what should be used as the saturated model.
-One suggested option is to use the saturated log-likelihood of the binomial distribution, as described above, effectively setting the $\theta$ dispersion term to 0.
-A second suggested option is to use the same method as described for the binomial distribution (i.e., replacing $p$ with $\frac{x}{n}$), and holding the $\theta$ value constant.
-Both of these options have issues.
+In the case of the beta-binomial distribution, there is some confusion about what should be used as the saturated model.
+One suggested approach is to use the saturated log-likelihood of the binomial distribution, as described above, effectively setting the $\theta$ dispersion term to 0.
+A second suggested approach is to use the same method as described for the binomial distribution (i.e., replacing $p$ with $\frac{x}{n}$), and holding the $\theta$ value constant.
+Both of these approach have issues.
 
-The problem with the first option is that the comparison is always to the binomial model, whose likelihood profile has a higher peak than the beta-binomial likelihood profile (Fig. 1). 
-With increases in $\theta$, the density of the likelihood profile is pulled over to the right (Fig. 1). 
-Because the saturated log-likelihood does not take $\theta$ into account, this results in larger deviances than expected. 
+The problem with the first approach is that the comparison is always to the binomial model, whose likelihood profile has a higher peak than the beta-binomial likelihood profile (Fig. 1). 
+With increases in $\theta$, the density of the likelihood profile is more dispersed (Fig. 1). 
+This approach can result in large deviances even when the expected value of the fitted model is close to the saturated binomial model. 
 
 ```{r, echo = FALSE, fig.width = 6, fig.height = 4, fig.cap = "Fig. 1: Beta-binomial likelihood profile for $x = 1$ and $n = 5$, for different values of $\\theta$. $\\theta = 0$ corresponds to the binomial case."}
 
@@ -101,8 +101,10 @@ ggplot(tb, aes(x = prob_seq, y = lik, colour = theta)) +
   ylab("likelihood")
 ```
 
-The problem with the second option is that for some combinations of $p$ and $\theta$, the resultant deviance values are negative.
-This both does not make sense, as the saturated model should be the best possible fit to the data, and is unacceptable, because calculating deviance residuals, as we will do in the next section, involves taking the square root of the deviance, which is not possible for a negative number.
+The problem with the second approach is that for some combinations of $p$ and $\theta$, the resultant deviance values are negative.
+This is an issue for two reasons.
+Firstly, it is nonsensical because by definition the saturated model should be the best possible fit to the data. 
+And secondly, it is also computationally problematic, because calculating deviance residuals, as we will do in the next section, involves taking the square root of the deviance, which is not possible for a negative number.
 Here is an example of a case where the deviance is negative.
 Using $x = 1$, $n = 5$, $p = 0.3$, and $\theta = 0.5$, we calculate the saturated log-likelihood:
 
@@ -203,7 +205,7 @@ ggplot(df, aes(x=res))+
   xlab("Deviance residuals")
 ```
 
-When $p$ deviates from $0.5$ and $\theta > 0$, the distribution of the deviance residuals becomes increasingly wonky.
+When $p$ deviates from $0.5$ and $\theta > 0$, the distribution of the deviance residuals becomes increasingly skewed and discontinuous.
 This phenomenon is shown in Figure 4, where data points were simulated with $p = 0.3$ and $\theta = \{ 0, 0.1, 0.5, 1 \}$.
 
 ```{r, echo = FALSE, fig.height = 4, fig.width = 6, fig.cap = "Fig. 4: Histograms of deviance residuals for beta-binomial data simulated with $n = 50$, $p = 0.3$, and $\\theta = \\{0.0, 0.1, 0.5, 1.0 \\}$. Each of the four plots used a different $\\theta$ value, which is shown at the top of each respective plot."}
@@ -238,9 +240,7 @@ Two main differences exist between $\theta = 0$ and $\theta > 0$ for cases when 
 1. Negative deviance residuals become more common.  
 2. Gaps occur in the histogram of deviance residuals.
 
-The reasons behind these differences are linked, and have to do with our choice of the expected value used to calculate the sign of the residual.
-The expected value used to calculate the sign of the residual ($n \cdot p^*$) tends to be greater than the true expected value ($n \cdot p$) due to the shape of the likelihood function shown in Figure 1; this difference increases with $\theta$. The simulated $x$ values still have a mean of $n \cdot p$.
-Thus, the value of $x_i$ is likely to be smaller than its associated expected value $n \cdot p_i^*$, which explains the higher density of deviance residuals $< 0$ in Figure 4 for $\theta > 0$.
+The reasons behind these differences are linked, and are because the expected value for the saturated model which is used to calculate the sign of the residual ($n \cdot p^*$) becomes increasingly divergent from the actual expected value ($n \cdot p$) with increasing $\theta$. 
 
 The gaps in the distributions where $\theta > 0$ result from a change in the sign of the residual once a certain value of $x$ is reached.
 At this point, the x-value is greater than the expected value, and the sign of the residual turns positive.
@@ -265,4 +265,4 @@ ggplot(df, aes(x = x, y = res)) +
   ylab("Deviance Residual")
 ```
 
-The goodness of fit of the model cannot be determined by the distribution of deviance residuals alone; posterior predictive checking is necessary to determine if the model is a good fit to the data. 
+Due to the skewed and discontinuous nature of distribution of the deviance residuals the goodness of fit of a beta binomial model cannot be assessed from the deviance residuals alone but must be evaluated using posterior predictive checking. 
