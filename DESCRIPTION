@@ -36,6 +36,7 @@ Suggests:
     MASS,
     rlang,
     rmarkdown,
+    scales,
     testthat (>= 3.0.0),
     tibble,
     tidyr,
