@@ -73,7 +73,7 @@ The problem with the first approach is that the comparison is always to the bino
 With increases in $\theta$, the density of the likelihood profile is more dispersed (Fig. 1). 
 This approach can result in large deviances even when the expected value of the fitted model is close to the saturated binomial model. 
 
-```{r, echo = FALSE, fig.width = 6, fig.height = 4, fig.cap = "Fig. 1: Beta-binomial likelihood profile for $x = 1$ and $n = 5$, for different values of $\\theta$. $\\theta = 0$ corresponds to the binomial case."}
+```{r, echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 1: Beta-binomial likelihood profile for $x = 1$ and $n = 5$, for different values of $\\theta$. $\\theta = 0$ corresponds to the binomial case."}
 
 n_samp <- 1000
 x <- 1
@@ -137,7 +137,7 @@ We will refer to the optimized $p$ value for the $i^{th}$ data point as $p_i^*$,
 We use $p^*$ to calculate the saturated log-likelihood that produces deviances that are (a) strictly positive, and (b) relative to the value of $\theta$.
 The value of $p_i^*$ for the example case with $x = 1$, $n = 5$, and $\theta = 0.5$ is shown in Figure 2.
 
-```{r, echo = FALSE, fig.width = 6, fig.height = 4, fig.cap = "Fig. 2: Beta-binomial likelihood profile for $x = 1$, $n = 5$, and $\\theta = 0.5$. The dashed vertical line shows the likelihood at the expected value of the beta-binomial distribution (n \\cdot p) where $p = \\frac{x}{n} = \\frac{1}{5} = 0.2$. As you can see, this is not the $p$ for which the likelihood is maximized. The solid vertical line shows the likelihood at its maximum point. In this case, $p^* = 0.26$."}
+```{r, echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 2: Beta-binomial likelihood profile for $x = 1$, $n = 5$, and $\\theta = 0.5$. The dashed vertical line shows the likelihood at the expected value of the beta-binomial distribution ($n \\cdot p$) where $p = \\frac{x}{n} = \\frac{1}{5} = 0.2$. As you can see, this is not the $p$ for which the likelihood is maximized. The solid vertical line shows the likelihood at its maximum point. In this case, $p^* = 0.26$."}
 
 n_samp <- 1000
 x <- 1
@@ -156,12 +156,12 @@ prob_seq <- seq(0, 1, length.out = n_samp)
 
 lik <- data.frame(prob_seq = prob_seq,
                   lik = exp(log_lik_beta_binom(x, size, prob_seq, theta)))
-
+p_df <- data.frame(val = c(x / size, opt_p),
+                   probability = c("Expected value (x / n) = 0.20", "Optimized value (p*) = 0.26"))
 
 ggplot(lik, aes(x = prob_seq, y = lik)) +
   geom_line(colour = viridis(1, begin = 0.66)) +
-  geom_vline(xintercept = x / size, linetype = "dashed") + 
-  geom_vline(xintercept = opt_p) + 
+  geom_vline(data = p_df, mapping = aes(linetype = probability, xintercept = val)) +
   xlab("p") +
   ylab("likelihood")
 ```
@@ -172,80 +172,59 @@ The unit deviance, $d_i$ refers to the deviance for the $i^{th}$ data point, $x_
 $$d_i =  2(\log(P(x_i|n, p_i^*, \theta)) - \log(P(x_i|n, p, \theta))).$$
 The *deviance residual* is the signed squared root of the unit deviance,  
 $$r_i = \text{sign}(x_i - (n p_i^*)) \sqrt{d_i}.$$
-The following two plots show histograms of deviance residuals for 10,000 randomly generated data points with $n = 50$ and various values of $p$ and $\theta$.
-Figure 3 shows deviance residuals when $p = 0.5$ for $\theta = \{ 0, 0.1, 0.5, 1 \}$ (recall that $\theta = 0$ refers to the binomial case).
-When $\theta > 0$, deviance residuals close to 0 become less common; as $\theta$ increases, the distribution of deviance residuals appears to become less continuous.
+The following plot shows histograms of deviance residuals for 10,000 randomly generated data points with $n = 50$ and various values of $p$ and $\theta$.
 
-```{r, echo = FALSE, fig.height = 4, fig.width = 6, fig.cap = "Fig. 3: Histograms of deviance residuals for beta-binomial data simulated with $n = 50$, $p = 0.5$, and $\\theta = \\{0.0, 0.1, 0.5, 1.0 \\}$. Each of the four plots used a different $\\theta$ value, which is shown at the top of each respective plot."}
+```{r, echo = FALSE, fig.height = 8, fig.width = 7, fig.cap = "Fig. 4: Histograms of deviance residuals for beta-binomial data simulated with $n = 50$, $p = \\{0.3, 0.5, 0.9 \\}$, and $\\theta = \\{0.0, 0.1, 0.5, 1.0 \\}$. The percentages within each histogram (i.e., each combination of $p$ and $\\theta$) sum to 100%."}
+
 n_samp <- 10000
 size <- 50
-prob <- 0.5
+prob <- c(0.3, 0.5, 0.9)
 theta <- c(0, 0.1, 0.5, 1)
 
-x <- matrix(NA, nrow = n_samp, ncol = length(theta))
+res_mat <- matrix(NA, nrow = n_samp * length(theta), ncol = length(prob))
 
 set.seed(101)
-for (i in 1:length(theta)) {
-  x[, i] <- ran_beta_binom(n_samp, size, prob, theta[i])
+for (i in 1:length(prob)) {
+  res <- NULL
+  for (j in 1:length(theta)) {
+    x <- ran_beta_binom(n_samp, size, prob[i], theta[j]) 
+    res <- c(res, res_beta_binom(x, size, prob[i], theta[j]))
+  }
+  res_mat[, i] <- res
 }
 
-df <- data.frame(res_0.0 = res_beta_binom(x[, 1], size, prob, theta[1]),
-                 res_0.1 = res_beta_binom(x[, 2], size, prob, theta[2]),
-                 res_0.5 = res_beta_binom(x[, 3], size, prob, theta[3]),
-                 res_1.0 = res_beta_binom(x[, 4], size, prob, theta[4]))
-df <- df |>
-  pivot_longer(cols = c(res_0.0, res_0.1, res_0.5, res_1.0),
-               names_to = "theta", names_prefix = "res_",
-               values_to = "res")
+df <- as.data.frame(res_mat)
+colnames(df) <- c("prob_0.3", "prob_0.5", "prob_0.9")
+df$theta <- rep(theta, each = n_samp)
 
-ggplot(df, aes(x=res))+
-  geom_histogram(color="black", fill="white", bins = 50)+
-  facet_grid(~theta) +
-  xlab("Deviance residuals")
+df <- df |> 
+  pivot_longer(cols = c(prob_0.3, prob_0.5, prob_0.9), names_to = "prob", 
+               names_prefix = "prob_", values_to = "res")
+
+ggplot(df, aes(x = res)) +  
+  geom_histogram(aes(y = stat(density) * 0.1), binwidth = 0.1) +
+  scale_y_continuous(labels = scales::percent) +
+  facet_grid(~prob ~theta, labeller = label_bquote(cols = theta: .(theta), rows = p: .(prob))) +
+  xlab("Deviance residuals") + 
+  ylab("Percent (%)")
 ```
 
-When $p$ deviates from $0.5$ and $\theta > 0$, the distribution of the deviance residuals becomes increasingly skewed and discontinuous.
-This phenomenon is shown in Figure 4, where data points were simulated with $p = 0.3$ and $\theta = \{ 0, 0.1, 0.5, 1 \}$.
+Recall that $\theta = 0$ refers to the binomial case.
+When $p = 0.5$ and $\theta > 0$, deviance residuals close to 0 become less common; as $\theta$ increases, the distribution of deviance residuals appears to become less continuous (Fig. 4).
+When $p$ deviates from $0.5$ and $\theta > 0$, the distribution of the deviance residuals becomes increasingly skewed and discontinuous (Fig. 4).
 
-```{r, echo = FALSE, fig.height = 4, fig.width = 6, fig.cap = "Fig. 4: Histograms of deviance residuals for beta-binomial data simulated with $n = 50$, $p = 0.3$, and $\\theta = \\{0.0, 0.1, 0.5, 1.0 \\}$. Each of the four plots used a different $\\theta$ value, which is shown at the top of each respective plot."}
-n_samp <- 10000
-size <- 50
-prob <- 0.3
-theta <- c(0, 0.1, 0.5, 1)
+Three main differences exist between $\theta = 0$ and $\theta > 0$ for cases when $p ≠ 0.5$:  
+1. The majority of the density of the deviance residuals shifts to one side (the positive side for $p > 0.5$ and the negative side for $p < 0.5$).  
+2. Gaps occur in the histogram of deviance residuals.  
+3. Certain deviance residuals become more common, especially when $p$ is close to 0 or 1, and when $\theta$ is high.
 
-x <- matrix(NA, nrow = n_samp, ncol = length(theta))
-
-set.seed(101)
-for (i in 1:length(theta)) {
-  x[, i] <- ran_beta_binom(n_samp, size, prob, theta[i])
-}
-
-df <- data.frame(res_0.0 = res_beta_binom(x[, 1], size, prob, theta[1]),
-                 res_0.1 = res_beta_binom(x[, 2], size, prob, theta[2]),
-                 res_0.5 = res_beta_binom(x[, 3], size, prob, theta[3]),
-                 res_1.0 = res_beta_binom(x[, 4], size, prob, theta[4]))
-df <- df |>
-  pivot_longer(cols = c(res_0.0, res_0.1, res_0.5, res_1.0),
-               names_to = "theta", names_prefix = "res_",
-               values_to = "res")
-
-ggplot(df, aes(x=res))+
-  geom_histogram(color="black", fill="white", bins = 51)+
-  facet_grid(~theta) +
-  xlab("Deviance residuals")
-```
-
-Two main differences exist between $\theta = 0$ and $\theta > 0$ for cases when $p ≠ 0.5$:  
-1. Negative deviance residuals become more common.  
-2. Gaps occur in the histogram of deviance residuals.
-
-The reasons behind these differences are linked, and are because the expected value for the saturated model which is used to calculate the sign of the residual ($n \cdot p^*$) becomes increasingly divergent from the actual expected value ($n \cdot p$) with increasing $\theta$. 
+The shift in the density of the deviance residuals is because the expected value for the saturated model which is used to calculate the sign of the residual ($n \cdot p^*$) becomes increasingly divergent from the actual expected value ($n \cdot p$) with increasing $\theta$.
 
 The gaps in the distributions where $\theta > 0$ result from a change in the sign of the residual once a certain value of $x$ is reached.
 At this point, the x-value is greater than the expected value, and the sign of the residual turns positive.
 Figure 5 shows a plot of deviance residuals against $x$ values for the case where $n = 50$, $p = 0.3$, and $\theta = 0.1$; notice the jump into the positive domain when $x = 26$.
 
-```{r, echo = FALSE, fig.height = 4, fig.width = 6, fig.cap = "Fig. 5: Deviance residuals plotted against the associated value of $x$. The $x$ values were simulated with $n = 50$, $p = 0.3$, and $\\theta = 0.1$."}
+```{r, echo = FALSE, fig.height = 4, fig.width = 7, fig.cap = "Fig. 5: Deviance residuals plotted against the associated value of $x$. The $x$ values were simulated with $n = 50$, $p = 0.3$, and $\\theta = 0.1$."}
 n_samp <- 10000
 size <- 50
 prob <- 0.3
@@ -262,6 +241,27 @@ ggplot(df, aes(x = x, y = res)) +
   geom_point() +
   xlab("x") +
   ylab("Deviance Residual")
+```
+
+The residuals with huge peaks in density result from an increasingly skewed distribution of simulated data as $\theta$ gets bigger than 0.
+When $p < 0.5$ the distribution of simulated data skews right, and when $p > 0.5$ the distribution of simulated data skews left.
+For example, the peak in the bottom-right histogram in Figure 4 (where $p = 0.9$ and $\theta = 1.0$) is the deviance residual for $x = 50$.
+The reason for the peak is that $x = 50$ is by far the most common value in the simulated data with these parameters (Fig. 6).
+
+```{r, echo = FALSE, fig.height = 4, fig.width = 7, fig.cap = "Fig. 6: Histogram of 10,000 simulated data points ($x$) with $n = 50$, $p = 0.9$, and $\\theta = 1.0$."}
+n_samp <- 10000
+size <- 50
+prob <- 0.9
+theta <- 1.0
+
+set.seed(101)
+x <- ran_beta_binom(n_samp, size, prob, theta)
+x <- as.data.frame(x)
+
+ggplot(x, aes(x = x)) +
+  geom_histogram(aes(y = (..count..)/sum(..count..)), binwidth = 0.1) +
+  scale_y_continuous(labels = scales::percent) +
+  ylab("Percent (%)")
 ```
 
 Due to the skewed and discontinuous nature of distribution of the deviance residuals the goodness of fit of a beta binomial model cannot be assessed from the deviance residuals alone but must be evaluated using posterior predictive checking. 
