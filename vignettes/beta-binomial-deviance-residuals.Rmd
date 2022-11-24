@@ -38,8 +38,8 @@ $$\log(P(x | n, \alpha, \beta)) = \log(\Gamma(n + 1)) - \log(\Gamma(x + 1)) - \l
    \log(\Gamma(x + \alpha)) + \\ \log(\Gamma(n - x + \beta)) - \log(\Gamma(n + \alpha + \beta)) +
     \log(\Gamma(\alpha + \beta)) - \log(\Gamma(\alpha)) - \log(\Gamma(\beta)).$$
 
-The expected value of the beta-binomial distribution is $\frac{n \alpha}{\alpha + \beta}$.
-This is the same as the expected value of the binomial distribution ($n p$), with the $p$ replaced by the expected value of the beta distribution, $\frac{\alpha}{\alpha + \beta}$.  
+The expected value of the beta-binomial distribution is $n \cdot \frac{\alpha}{\alpha + \beta}$.
+This is the same as the expected value of the binomial distribution ($n \cdot p$), with the $p$ replaced by the expected value of the beta distribution, $\frac{\alpha}{\alpha + \beta}$.  
 
 A parameterization frequently used for the beta-binomial distribution uses this expected probability ($p$) as a parameter, with a dispersion parameter ($\theta$) that specifies the variance in the probability. 
 Our particular parameterization of $\theta$ is slightly unconventional, but has useful properties when modelling.
@@ -63,15 +63,15 @@ where the saturated model is the model that perfectly fits the data.
 The saturated model usually uses the value of $x$ in place of the mean parameter, thereby fitting through the data points.
 For example, calculating the saturated log-likelihood of the normal distribution involves using the $x$ value(s) in place of the mean parameter $\mu$ in the log-likelihood.
 Recall from above that the expected value of the binomial distribution is $n \cdot p$.
-Since $n$ in this distribution is fixed, $p = \frac{x}{n}$ is used to calculate the saturated log-likelihood of the binomial distribution.
+Since $n$ is fixed in the binomial distribution, $p = \frac{x}{n}$ is used to calculate the saturated log-likelihood.
 
 In the case of the beta-binomial distribution, there is some confusion about what should be used as the saturated model.
 One suggested approach is to use the saturated log-likelihood of the binomial distribution, as described above, effectively setting the $\theta$ dispersion term to 0.
 A second suggested approach is to use the same method as described for the binomial distribution (i.e., replacing $p$ with $\frac{x}{n}$), and holding the $\theta$ value constant.
 Both of these approaches have issues.
 
-The problem with the first approach is that likelihood profile of the beta-binomial becomes increasing dispersed relative to the binomial as $\theta$ increases (Fig. 1). 
-Consequently increasing $\theta$ increases the deviance even if the expected value of the fitted model is the same as the saturated binomial model. 
+The problem with the first approach is that likelihood profile of the beta-binomial becomes increasingly dispersed relative to the binomial as $\theta$ increases (Fig. 1). 
+Consequently, increasing $\theta$ increases the deviance even if the expected value of the fitted model is the same as the saturated binomial model. 
 
 ```{r, echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 1: Beta-binomial likelihood profile for $x = 1$ and $n = 5$, for different values of $\\theta$. $\\theta = 0$ corresponds to the binomial case."}
 
@@ -104,7 +104,8 @@ ggplot(tb, aes(x = prob_seq, y = lik, colour = theta)) +
 The problem with the second approach is that for some combinations of $p$ and $\theta$, the resultant deviance values are negative.
 This is an issue for two reasons.
 Firstly, it is nonsensical because by definition the saturated model should be the best possible fit to the data. 
-And secondly, it is also computationally problematic, because calculating deviance residuals, as we will do in the next section, involves taking the square root of the deviance.
+Secondly, it is computationally problematic, because calculating deviance residuals, as we will do in the next section, involves taking the square root of the deviance.
+
 Here is an example of a case where the deviance is negative.
 Using $x = 1$, $n = 5$, $p = 0.3$, and $\theta = 0.5$, we calculate the saturated log-likelihood:
 
@@ -132,7 +133,7 @@ In summary, the deviance is negative because the likelihood at the expected valu
 
 The solution to the problem appears to be to choose the value of $p$ that maximizes the likelihood.
 However, the beta-binomial distribution has closed-form solutions only for certain values of $\alpha$ and $\beta$.
-Thus, we must in general search for the value of $p$ that maximizes the likelihood for each data point in order to calculate the saturated log-likelihood.
+Thus, we must generally search for the value of $p$ that maximizes the likelihood for each data point in order to calculate the saturated log-likelihood.
 We will refer to the optimized $p$ value for the $i^{th}$ data point as $p_i^*$, and generally as $p^*$.
 We use $p^*$ to calculate the saturated log-likelihood that produces deviances that are (a) strictly positive, and (b) relative to the value of $\theta$.
 The value of $p_i^*$ for the example case with $x = 1$, $n = 5$, and $\theta = 0.5$ is shown in Figure 2.
@@ -213,4 +214,4 @@ Recall that $\theta = 0$ refers to the binomial case.
 When $p = 0.5$ and $\theta > 0$, deviance residuals close to 0 become less common; as $\theta$ increases, the distribution of deviance residuals becomes less continuous (Fig. 4).
 When $p$ deviates from $0.5$ and $\theta > 0$, the distribution of the deviance residuals becomes increasingly skewed and discontinuous (Fig. 4).
 
-Due to the skewed and discontinuous nature of distribution of the deviance residuals the goodness of fit of a beta binomial model cannot be assessed from the deviance residuals alone but must be evaluated using posterior predictive checking. 
+Due to the skewed and discontinuous nature of the distribution of the deviance residuals, the goodness of fit of a beta-binomial model cannot be assessed from the deviance residuals alone but must be evaluated using posterior predictive checking. 
