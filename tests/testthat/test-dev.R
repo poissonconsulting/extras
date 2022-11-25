@@ -1,3 +1,93 @@
+test_that("beta_binom missing values", {
+  expect_identical(dev_beta_binom(logical(0), integer(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(dev_beta_binom(NA, 1, 1, 1), NA_real_)
+  expect_identical(dev_beta_binom(1, NA, 1, 1), NA_real_)
+  expect_identical(dev_beta_binom(1, 1, NA, 1), NA_real_)
+  expect_identical(dev_beta_binom(1, 1, 1, NA), NA_real_)
+})
+
+test_that("beta_binom known values", {
+  expect_equal(dev_beta_binom(1), 1.38629436111989)
+  expect_equal(dev_beta_binom(1, 1, 0), Inf)
+  expect_equal(dev_beta_binom(1, 1, 0, 0.5), Inf)
+  expect_equal(dev_beta_binom(1, 1, 0.5, 0), 1.38629436111989)
+  expect_identical(dev_beta_binom(1, 1, 0.5, 0), dev_binom(1, 1, 0.5))
+  expect_equal(dev_beta_binom(1, 1, 0.5, 1), 1.38629430121326)
+  expect_equal(dev_beta_binom(1, 1, 0.5, 0.5), 1.38629430121326)
+  expect_equal(dev_beta_binom(1, 2, 0.2, 0), 0.892574205256839)
+  expect_equal(dev_beta_binom(1, 2, 0.2, 1), 0.892574205256839)
+  expect_equal(dev_beta_binom(1, 2, 0.2, 0.5), 0.892574205256839)
+  expect_equal(dev_beta_binom(1, 5, 0.3, 0), 0.257320924779852)
+  expect_equal(dev_beta_binom(1, 5, 0.3, 1), 5.7171585443605e-05) # was negative with naive sat. model
+  expect_equal(dev_beta_binom(1, 5, 0.3, 0.5), 0.0274314034251604) # was negative with naive sat. model
+  expect_identical(dev_beta_binom(1, 1, 1, 0.5), 0)
+  expect_identical(dev_beta_binom(1, 1, 1), 0)
+  expect_identical(dev_beta_binom(1, 1, 1, 1), 0)
+  expect_identical(dev_beta_binom(0, 0), 0)
+  expect_identical(dev_beta_binom(0, 0, 1), 0)
+  expect_identical(dev_beta_binom(0, 0, 1, 1), 0)
+  expect_identical(dev_beta_binom(1, 2), 0)
+  expect_identical(dev_beta_binom(1, 2, 1), Inf)
+  expect_equal(dev_beta_binom(1, 2, 0, 1), Inf)
+  expect_equal(dev_beta_binom(0, 1), 1.38629436111989)
+  expect_equal(dev_beta_binom(0, 1, 1), Inf)
+  expect_equal(dev_beta_binom(0, 1, 1, 0.5), Inf)
+  expect_equal(dev_beta_binom(0, 1, 1, 1), Inf)
+  expect_equal(dev_beta_binom(0, 2), 2.77258872223978)
+  expect_equal(dev_beta_binom(0, 2, 1), Inf)
+  expect_equal(dev_beta_binom(0, 2, 0.5), 2.77258872223978)
+  expect_equal(dev_beta_binom(0, 2, 0.5, 0.1), 2.67954869096997)
+  expect_equal(dev_beta_binom(0, 2, 0.5, 0.5), 2.40794560865187)
+  expect_equal(dev_beta_binom(0, 2, 0.1), 0.421442062631305)
+  expect_equal(dev_beta_binom(0, 2, 0.1, 0.1), 0.410887933834857)
+  expect_equal(dev_beta_binom(0, 2, 0.1, 0.5), 0.377484235738089)
+  expect_equal(dev_beta_binom(1, 2, 1, 10), Inf)
+  expect_equal(dev_beta_binom(2, 2, 1, 10), 0)
+  expect_equal(dev_beta_binom(0, 2, 0.5, 10), 1.56031711509915)
+  expect_equal(dev_beta_binom(0, 2, 0, 10), 0)
+})
+
+test_that("beta_binom vectorized", {
+  expect_equal(dev_beta_binom(0:3, 5, 0, 0), dev_binom(0:3, 5, 0))
+  expect_equal(dev_beta_binom(c(0, 1, 3, 0), 3, 0.5, 0.5), c(3.21887580642895, 0.179750127270295, 3.2188756770985, 3.21887580642895))
+  expect_equal(dev_beta_binom(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
+  expect_equal(dev_beta_binom(0:3, 1:4, seq(0, 1, length.out = 4), 0:3),c(0, 0.235566071312767, 0.076961041136129, Inf))
+})
+
+test_that("beta_binom vectorized missing values", {
+  expect_equal(dev_beta_binom(c(NA,1), 0:1, 0:1, 0:1), c(NA,0))
+  expect_equal(dev_beta_binom(c(0,NA), 0:1, 0:1, 0:1), c(0,NA))
+  expect_equal(dev_beta_binom(c(0:1), c(NA,1), 0:1, 0:1), c(NA,0))
+  expect_equal(dev_beta_binom(c(0:1), c(0,NA), 0:1, 0:1), c(0,NA))
+  expect_equal(dev_beta_binom(c(0:1), c(0:1), c(NA,1), 0:1), c(0,0))
+  expect_equal(dev_beta_binom(c(0:1), c(0:1), c(0,NA), 0:1), c(0,NA))
+  expect_equal(dev_beta_binom(c(0:1), c(0:1), 0:1, c(NA,1)), c(0,0))
+  expect_equal(dev_beta_binom(c(0:1), c(0:1), 0:1, c(0,NA)), c(0,NA))
+})
+
+test_that("beta_binom res", {
+  expect_equal(dev_beta_binom(1, 3, 0.5, 0.5), dev_beta_binom(1, 3, 0.5, 0.5, res = TRUE)^2)
+  expect_equal(dev_beta_binom(0:1, c(2, 4), 0.5, 5), dev_beta_binom(0:1, c(2, 4), 0.5, 5, res = TRUE)^2)
+})
+
+test_that("beta_binom ran", {
+  set.seed(101)
+  samples <- ran_beta_binom(100000, 100, 0.5, 0.01)
+  expect_equal(mean(samples), 49.99347)
+  expect_equal(var(samples), 37.4491218503185)
+  res <- dev_beta_binom(samples, 100, 0.5, 0.01, res = TRUE)
+  expect_equal(mean(res), -0.00107466576791911)
+  expect_equal(sd(res), 1.0040052194768)
+})
+
+test_that("deviance beta_binom", {
+  samples <- ran_beta_binom(100, size = 3, prob = 0.5, theta = 0) # binomial case.
+  mod <- glm(cbind(samples,3-samples)~1, family = binomial)
+  deviance <- sum(dev_beta_binom(samples, size = 3, ilogit(coef(mod)[1])), theta = 0)
+  expect_equal(deviance, deviance(mod))
+  # no packages that calculate deviance using binomial saturated model.
+})
+
 test_that("bern missing values", {
   expect_identical(dev_bern(logical(0), integer(0)), numeric(0))
   expect_identical(dev_bern(NA, 1), NA_real_)
@@ -70,8 +160,7 @@ test_that("dev_binom", {
   expect_equal(dev_binom(1, 10, 0.5, res = TRUE), -2.71316865369073)
   expect_equal(dev_binom(1:9, 10, 0.5, res = TRUE),
                c(-2.71316865369073, -1.96338868806845, -1.28283185573988, -0.634594572159089,
-                 0, 0.634594572159089, 1.28283185573988, 1.96338868806845, 2.71316865369073
-               ))
+                 0, 0.634594572159089, 1.28283185573988, 1.96338868806845, 2.71316865369073))
 })
 
 test_that("deviance binom log_lik", {
@@ -529,6 +618,8 @@ test_that("student known values", {
   expect_identical(dev_student(0, 0), 0)
   expect_identical(dev_student(0, 0, 1), 0)
   expect_identical(dev_student(0, 0, 1, 1), 0)
+  expect_identical(dev_student(0, 0, 0), dev_norm(0, 0, 0))
+  expect_identical(dev_student(0, 0, 0, 10), dev_norm(0, 0, 0))
   expect_equal(dev_student(1, 0), 1)
   expect_equal(dev_student(1, 0, 1), 1)
   expect_equal(dev_student(1, 0, 1, 1), 1.38629436111989)
@@ -549,7 +640,7 @@ test_that("student vectorized", {
   expect_equal(dev_student(0:3, 2, 0.1, 0), c(400, 100, 0, 100))
   expect_equal(dev_student(c(0, 1, 3, 0), 3, 0.5, 0.5), c(8.83331693749932, 6.59167373200866, 0, 8.83331693749932))
   expect_equal(dev_student(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
-  expect_equal(dev_student(0:3, 3:0, 1:4, seq(0, 1, length.out = 4)), c(9, 0.320170830694146, 0.178647409955362, 0.892574205256839))
+  expect_equal(dev_student(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(Inf, 1.15072828980712, 0.385376699568146, 1.38629436111989))
 })
 
 test_that("student vectorized missing values", {

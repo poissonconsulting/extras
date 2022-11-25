@@ -122,10 +122,13 @@ test_that("student missing values", {
 test_that("student known values", {
   expect_equal(log_lik_student(0, 3), -5.41893853320467)
   expect_equal(log_lik_student(0, 3, 0), -Inf)
+  expect_equal(log_lik_student(0, 3, 0, 1), -Inf)
   expect_equal(log_lik_student(0, 3, 0.5, 0.5), -4.76323205902963)
+  expect_equal(log_lik_student(0, 3, 0.5, 1), -4.06250061793368)
   expect_equal(log_lik_student(1, 2), -1.41893853320467)
   expect_equal(log_lik_student(2, 2), -0.918938533204673)
   expect_equal(log_lik_student(1, 2, 0.5), -2.22579135264473)
+  expect_equal(log_lik_student(1, 0, 0, 0.5), -Inf)
   expect_equal(log_lik_student(1, 2, 0.5), log_lik_norm(1, 2, 0.5))
   expect_equal(log_lik_student(1, theta = 1/2), dt(1, df = 2, log = TRUE))
   expect_lt(log_lik_norm(5), log_lik_student(5, theta = 1/5))
@@ -136,8 +139,52 @@ test_that("student vectorized", {
   expect_equal(log_lik_student(0:3, 2, 0.5, 0), log_lik_norm(0:3, 2, 0.5))
   expect_equal(log_lik_student(c(0, 1, 3, 0), 3, 0.5, 0.5), c(-4.76323205902963, -3.6424104562843, -0.346573590279973, -4.76323205902963))
   expect_equal(log_lik_student(0:3, 0:3, rep(1, 4), 0.5), c(-1.03972077083992, -1.03972077083992, -1.03972077083992, -1.03972077083992))
-  expect_equal(log_lik_student(0:3, 3:0, 1:4, seq(0, 1, length.out = 4)), c(-5.41893853320467, -1.85412144553053, -2.26458627847768, -2.97731134959771))
+  expect_equal(log_lik_student(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(-Inf, -1.57625299452707, -1.96248581517591, -2.93648935507746))
 })
 
+test_that("beta_binom missing values", {
+  expect_identical(log_lik_beta_binom(numeric(0), numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_beta_binom(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_beta_binom(1, 1, prob = numeric(0)), numeric(0))
+  expect_identical(log_lik_beta_binom(1, 1, theta = numeric(0)), numeric(0))
+  expect_identical(log_lik_beta_binom(NA, 1, 1, 0.5), NA_real_)
+  expect_identical(log_lik_beta_binom(1, NA, 1, 0.5), NA_real_)
+  expect_identical(log_lik_beta_binom(1, 1, NA, 0.5), NA_real_)
+  expect_identical(log_lik_beta_binom(1, 1, 1, NA), NA_real_)
+})
 
+test_that("beta_binom known values", {
+  expect_equal(log_lik_beta_binom(0, 3), -2.07944154167984)
+  expect_equal(log_lik_beta_binom(0, 3, 0), 0)
+  expect_equal(log_lik_beta_binom(0, 3, 1), -Inf)
+  expect_equal(log_lik_beta_binom(1, 3, 1), -Inf)
+  expect_equal(log_lik_beta_binom(1, 3, 0.3), -0.818710403535291)
+  expect_identical(log_lik_beta_binom(3, 3, 1), 0)
+  expect_identical(log_lik_beta_binom(0, 0), 0)
+  expect_equal(log_lik_beta_binom(0, 3, 0.5, 0.5), -1.6094379124341)
+  expect_equal(log_lik_beta_binom(1, 2, 0.2, 1), -1.54489939129653)
+  expect_equal(log_lik_beta_binom(2, 2, 0.2, 10), -1.75253875607477)
+  expect_equal(log_lik_beta_binom(1, 2, 0.5), -0.693147180559945)
+  expect_equal(log_lik_beta_binom(1, 2, 0.5), log_lik_binom(1, 2, 0.5))
+  expect_equal(log_lik_beta_binom(1, 2, 0.2), dbinom(1, 2, 0.2, log = TRUE))
+})
 
+test_that("beta_binom vectorized", {
+  expect_equal(log_lik_beta_binom(0:3, 2, 0.5, 0), c(-1.38629436111989, -0.693147180559945, -1.38629436111989, -Inf))
+  expect_equal(log_lik_beta_binom(0:3, 2, 0.5, 0), log_lik_binom(0:3, 2, 0.5))
+  expect_equal(log_lik_beta_binom(c(0, 1, 3, 4, 5), 3, 0.5, 0.5), c(-1.6094379124341, -1.20397280432594, -1.6094379124341, -Inf, -Inf))
+  expect_equal(log_lik_beta_binom(0:3, 5:8, seq(0, 1, length.out = 4), 0.5), c(0, -1.47834815081045, -2.50875218945204, -Inf))
+  expect_equal(log_lik_beta_binom(0:3, 3:0, seq(0, 1, length.out = 4), 0.5), c(0, -1.03407376753054, -Inf, -Inf))
+})
+
+test_that("beta_binom log_lik", {
+  samples2 <- ran_beta_binom(100, size = 50, prob = 0.1, theta = 1)
+  data <- data.frame(samples2 = samples2,
+                     mod_prob2 = 50 - samples2)
+  mod2 <- aods3::aodml(cbind(samples2, mod_prob2)~1, data = data,
+                       family = "bb", method = "Nelder-Mead")
+  est_prob <- ilogit(mod2$b)
+  est_theta <- 2 / (1 / mod2$phi - 1)
+  expect_equal(mod2$logL, sum(log_lik_beta_binom(samples2, size = 50,
+                                                 prob = est_prob, theta = est_theta)))
+})
