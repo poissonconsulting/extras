@@ -1,3 +1,15 @@
+res_beta_binom_standardized <- function(x, size, prob, theta) {
+  res <- (x - size * prob) / sqrt(size * prob * (1 - prob))
+  if (length(theta) == 1) {theta <- rep(theta, length(x))}
+  bol <- is.na(theta)
+  res[bol] <- NA_real_
+  use_beta_binom <- !bol & theta > 0
+  res[use_beta_binom] <- (x - size * prob) /
+    sqrt((size * (4 * prob * (1 - prob) / theta) * (2 / theta + size)) /
+           ((2 / theta)^2 * (2  / theta + 1)))
+  return(res)
+}
+
 #' Beta-Binomial Residuals
 #'
 #' This parameterization of the beta-binomial distribution uses an expected probability parameter, `prob`, and a dispersion parameter, `theta`. The parameters of the underlying beta mixture are `alpha = (2 * prob) / theta` and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is unconventional, but has useful properties when modelling. When `theta = 0`, the beta-binomial reverts to the binomial distribution. When `theta = 1` and `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and `beta = 1`, which correspond to a uniform distribution for the beta-binomial probability parameter.
@@ -19,6 +31,7 @@ res_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, type = "dev", sim
   switch(type,
          data = x,
          raw = x - size * prob,
+         standardized = res_beta_binom_standardized(x = x, size = size, prob = prob, theta = theta),
          dev = dev_beta_binom(x, size = size, prob = prob, theta = theta, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -42,6 +55,7 @@ res_bern <- function(x, prob = 0.5, type = "dev", simulate = FALSE) {
   switch(type,
          data = x,
          raw = x - prob,
+         standardized = (x - prob) / sqrt(prob * (1 - prob)),
          dev = dev_bern(x, prob = prob, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -65,6 +79,7 @@ res_binom <- function(x, size = 1, prob = 0.5, type = "dev", simulate = FALSE) {
   switch(type,
          data = x,
          raw = x - size * prob,
+         standardized = (x - size * prob) / sqrt(size * prob * (1 - prob)),
          dev = dev_binom(x, size = size, prob = prob, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -88,6 +103,7 @@ res_gamma <- function(x, shape = 1, rate = 1, type = "dev", simulate = FALSE) {
   switch(type,
          data = x,
          raw = x - shape / rate,
+         standardized = (x - shape / rate) / sqrt(shape / rate^2),
          dev = dev_gamma(x, shape = shape, rate = rate, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -111,6 +127,7 @@ res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FA
   switch(type,
          data = x,
          raw = x - lambda,
+         standardized = (x - lambda) / sqrt(lambda + theta * lambda^2),
          dev = dev_gamma_pois(x, lambda = lambda, theta = theta, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -134,6 +151,7 @@ res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", 
   switch(type,
          data = x,
          raw = x - lambda * (1 - prob),
+         standardized = (x - lambda * (1 - prob)) / sqrt(lambda * (1 + lambda * theta)),
          dev = dev_gamma_pois_zi(x, lambda, theta = theta, prob = prob, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -156,7 +174,9 @@ res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE
   }
   switch(type,
          data = x,
-         raw = x - exp(meanlog),
+         raw = x - exp(meanlog), # isn't this the median?
+         standardized = (x - exp(meanlog + (sdlog^2 / 2))) /
+           sqrt(exp(2 * meanlog + sdlog^2) * (exp(sdlog^2) - 1)),
          dev = dev_lnorm(x, meanlog = meanlog, sdlog = sdlog, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -180,6 +200,7 @@ res_neg_binom <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FAL
   switch(type,
          data = x,
          raw = x - lambda,
+         standardized = (x - lambda) / sqrt(lambda + theta * lambda^2),
          dev = dev_neg_binom(x, lambda = lambda, theta = theta, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -203,6 +224,7 @@ res_norm <- function(x,  mean = 0, sd = 1, type = "dev", simulate = FALSE) {
   switch(type,
          data = x,
          raw = x - mean,
+         standardized = (x - mean) / sd,
          dev = dev_norm(x, mean = mean, sd = sd, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -226,6 +248,7 @@ res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
   switch(type,
          data = x,
          raw = x - lambda,
+         standardized = (x - lambda) / sqrt(lambda),
          dev = dev_pois(x, lambda, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
@@ -249,8 +272,28 @@ res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
   switch(type,
          data = x,
          raw = x - lambda * (1 - prob),
+         standardized = (x - lambda * (1 - prob)) / sqrt((1 - prob) * lambda * (1 + lambda * prob)),
          dev = dev_pois_zi(x, lambda, prob = prob, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
+}
+
+res_student_standardized <- function(x, mean, sd, theta) {
+  res <- rep(NA, length(x))
+  if (length(mean) == 1) {mean <- rep(mean, length(x))}
+  if (length(sd) == 1) {sd <- rep(sd, length(x))}
+  if (length(theta) == 1) {theta <- rep(theta, length(x))}
+  bol <- !is.na(theta)
+  use_norm <- bol & theta == 0
+  res[use_norm] <- ((x - mean) / sd)
+  df <- 1 / theta
+  df_var_undef <- bol & df <= 1
+  res[df_var_undef] <- NaN
+  df_var_inf <- bol & 1 < df & df <= 2
+  res[df_var_inf] <- 0
+  df_var_def <- bol & df > 2 & df < Inf
+  res[df_var_def] <- ((x[df_var_def] - mean[df_var_def]) / (sd[df_var_def] *
+                                sqrt((1 / theta[df_var_def]) / (1 / theta[df_var_def] - 2))))
+  return(res)
 }
 
 #' Student's t Residuals
@@ -272,6 +315,7 @@ res_student <- function(x, mean = 0, sd = 1, theta = 0, type = "dev", simulate =
   switch(type,
          data = x,
          raw = x - mean,
+         standardized = res_student_standardized(x = x, mean = mean, sd = sd, theta = theta),
          dev = dev_student(x, mean = mean, sd = sd, theta = theta, res = TRUE),
          chk_subset(x, c("data", "raw", "dev")))
 }
