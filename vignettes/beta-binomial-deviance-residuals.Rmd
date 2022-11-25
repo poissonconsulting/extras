@@ -89,8 +89,8 @@ lik <- data.frame(prob_seq = prob_seq,
                   lik_0.5 = exp(log_lik_beta_binom(x, size, prob_seq, theta[3])),
                   lik_1.0 = exp(log_lik_beta_binom(x, size, prob_seq, theta[4])))
 
-tb <- as_tibble(lik) |>
-  pivot_longer(cols = c(lik_0.0, lik_0.1, lik_0.5, lik_1.0),
+tb <- as_tibble(lik)
+tb <- pivot_longer(tb, cols = c(lik_0.0, lik_0.1, lik_0.5, lik_1.0),
                names_to = "theta", names_prefix = "lik_",
                values_to = "lik")
 

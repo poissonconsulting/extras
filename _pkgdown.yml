@@ -81,7 +81,9 @@ reference:
   desc: Deviances and Deviance Residuals
   contents:
   - '`dev_bern`'
+  - '`dev_beta_binom`'
   - '`dev_binom`'
+  - '`dev_gamma`'
   - '`dev_gamma_pois`'
   - '`dev_gamma_pois_zi`'
   - '`dev_lnorm`'
@@ -89,11 +91,14 @@ reference:
   - '`dev_norm`'
   - '`dev_pois`'
   - '`dev_pois_zi`'
+  - '`dev_student`'
 - title: Residual
   desc: Raw and Deviance Residuals
   contents:
   - '`res_bern`'
+  - '`res_beta_binom`'
   - '`res_binom`'
+  - '`res_gamma`'
   - '`res_gamma_pois`'
   - '`res_gamma_pois_zi`'
   - '`res_lnorm`'
@@ -101,11 +106,14 @@ reference:
   - '`res_norm`'
   - '`res_pois`'
   - '`res_pois_zi`'
+  - '`res_student`'
 - title: Log-Likelihood
   desc: Log-likelihood functions
   contents:
   - '`log_lik_bern`'
+  - '`log_lik_beta_binom`'
   - '`log_lik_binom`'
+  - '`log_lik_gamma`'
   - '`log_lik_gamma_pois`'
   - '`log_lik_gamma_pois_zi`'
   - '`log_lik_lnorm`'
@@ -113,10 +121,12 @@ reference:
   - '`log_lik_norm`'
   - '`log_lik_pois`'
   - '`log_lik_pois_zi`'
+  - '`log_lik_student`'
 - title: Random
   desc: Random sample functions
   contents:
   - '`ran_bern`'
+  - '`ran_beta_binom`'
   - '`ran_binom`'
   - '`ran_gamma`'
   - '`ran_gamma_pois`'
@@ -126,6 +136,7 @@ reference:
   - '`ran_norm`'
   - '`ran_pois`'
   - '`ran_pois_zi`'
+  - '`ran_student`'
 - title: Bernoulli
   desc: Bernoulli distribution functions
   contents:
