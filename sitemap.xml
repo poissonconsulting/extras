@@ -22,6 +22,9 @@
     <loc>/SUPPORT.html</loc>
   </url>
   <url>
+    <loc>/articles/beta-binomial-deviance-residuals.html</loc>
+  </url>
+  <url>
     <loc>/articles/deviance-residuals.html</loc>
   </url>
   <url>
@@ -61,7 +64,13 @@
     <loc>/reference/dev_bern.html</loc>
   </url>
   <url>
+    <loc>/reference/dev_beta_binom.html</loc>
+  </url>
+  <url>
     <loc>/reference/dev_binom.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dev_gamma.html</loc>
   </url>
   <url>
     <loc>/reference/dev_gamma_pois.html</loc>
@@ -83,6 +92,9 @@
   </url>
   <url>
     <loc>/reference/dev_pois_zi.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dev_student.html</loc>
   </url>
   <url>
     <loc>/reference/extras-package.html</loc>
@@ -124,7 +136,13 @@
     <loc>/reference/log_lik_bern.html</loc>
   </url>
   <url>
+    <loc>/reference/log_lik_beta_binom.html</loc>
+  </url>
+  <url>
     <loc>/reference/log_lik_binom.html</loc>
+  </url>
+  <url>
+    <loc>/reference/log_lik_gamma.html</loc>
   </url>
   <url>
     <loc>/reference/log_lik_gamma_pois.html</loc>
@@ -146,6 +164,9 @@
   </url>
   <url>
     <loc>/reference/log_lik_pois_zi.html</loc>
+  </url>
+  <url>
+    <loc>/reference/log_lik_student.html</loc>
   </url>
   <url>
     <loc>/reference/log_odds-set.html</loc>
@@ -220,6 +241,9 @@
     <loc>/reference/ran_bern.html</loc>
   </url>
   <url>
+    <loc>/reference/ran_beta_binom.html</loc>
+  </url>
+  <url>
     <loc>/reference/ran_binom.html</loc>
   </url>
   <url>
@@ -247,10 +271,19 @@
     <loc>/reference/ran_pois_zi.html</loc>
   </url>
   <url>
+    <loc>/reference/ran_student.html</loc>
+  </url>
+  <url>
     <loc>/reference/res_bern.html</loc>
   </url>
   <url>
+    <loc>/reference/res_beta_binom.html</loc>
+  </url>
+  <url>
     <loc>/reference/res_binom.html</loc>
+  </url>
+  <url>
+    <loc>/reference/res_gamma.html</loc>
   </url>
   <url>
     <loc>/reference/res_gamma_pois.html</loc>
@@ -272,6 +305,9 @@
   </url>
   <url>
     <loc>/reference/res_pois_zi.html</loc>
+  </url>
+  <url>
+    <loc>/reference/res_student.html</loc>
   </url>
   <url>
     <loc>/reference/sextreme.html</loc>
