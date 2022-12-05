@@ -33,7 +33,7 @@ res_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, type = "dev", sim
          raw = x - size * prob,
          standardized = res_beta_binom_standardized(x = x, size = size, prob = prob, theta = theta),
          dev = dev_beta_binom(x, size = size, prob = prob, theta = theta, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Bernoulli Residuals
@@ -57,7 +57,7 @@ res_bern <- function(x, prob = 0.5, type = "dev", simulate = FALSE) {
          raw = x - prob,
          standardized = (x - prob) / sqrt(prob * (1 - prob)),
          dev = dev_bern(x, prob = prob, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Binomial Residuals
@@ -81,7 +81,7 @@ res_binom <- function(x, size = 1, prob = 0.5, type = "dev", simulate = FALSE) {
          raw = x - size * prob,
          standardized = (x - size * prob) / sqrt(size * prob * (1 - prob)),
          dev = dev_binom(x, size = size, prob = prob, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Gamma Residuals
@@ -105,7 +105,7 @@ res_gamma <- function(x, shape = 1, rate = 1, type = "dev", simulate = FALSE) {
          raw = x - shape / rate,
          standardized = (x - shape / rate) / sqrt(shape / rate^2),
          dev = dev_gamma(x, shape = shape, rate = rate, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Gamma-Poisson Residuals
@@ -129,7 +129,7 @@ res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FA
          raw = x - lambda,
          standardized = (x - lambda) / sqrt(lambda + theta * lambda^2),
          dev = dev_gamma_pois(x, lambda = lambda, theta = theta, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Zero-Inflated Gamma-Poisson Residuals
@@ -153,7 +153,7 @@ res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", 
          raw = x - lambda * (1 - prob),
          standardized = (x - lambda * (1 - prob)) / sqrt(lambda * (1 + lambda * theta)),
          dev = dev_gamma_pois_zi(x, lambda, theta = theta, prob = prob, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Log-Normal Residuals
@@ -178,7 +178,7 @@ res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE
          standardized = (x - exp(meanlog + (sdlog^2 / 2))) /
            sqrt(exp(2 * meanlog + sdlog^2) * (exp(sdlog^2) - 1)),
          dev = dev_lnorm(x, meanlog = meanlog, sdlog = sdlog, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Negative Binomial Residuals
@@ -202,7 +202,7 @@ res_neg_binom <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FAL
          raw = x - lambda,
          standardized = (x - lambda) / sqrt(lambda + theta * lambda^2),
          dev = dev_neg_binom(x, lambda = lambda, theta = theta, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Normal Residuals
@@ -226,7 +226,7 @@ res_norm <- function(x,  mean = 0, sd = 1, type = "dev", simulate = FALSE) {
          raw = x - mean,
          standardized = (x - mean) / sd,
          dev = dev_norm(x, mean = mean, sd = sd, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Poisson Residuals
@@ -250,7 +250,7 @@ res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
          raw = x - lambda,
          standardized = (x - lambda) / sqrt(lambda),
          dev = dev_pois(x, lambda, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Zero-Inflated Poisson Residuals
@@ -274,7 +274,7 @@ res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
          raw = x - lambda * (1 - prob),
          standardized = (x - lambda * (1 - prob)) / sqrt((1 - prob) * lambda * (1 + lambda * prob)),
          dev = dev_pois_zi(x, lambda, prob = prob, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 res_student_standardized <- function(x, mean, sd, theta) {
@@ -317,5 +317,5 @@ res_student <- function(x, mean = 0, sd = 1, theta = 0, type = "dev", simulate =
          raw = x - mean,
          standardized = res_student_standardized(x = x, mean = mean, sd = sd, theta = theta),
          dev = dev_student(x, mean = mean, sd = sd, theta = theta, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev")))
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
