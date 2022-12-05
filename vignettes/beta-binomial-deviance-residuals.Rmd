@@ -198,7 +198,7 @@ df <- as.data.frame(res_mat)
 colnames(df) <- c("prob_0.3", "prob_0.5", "prob_0.9")
 df$theta <- rep(theta, each = n_samp)
 
-df <- pivot_longer(df, cols = c(prob_0.3, prob_0.5, prob_0.9), names_to = "prob",
+df <- pivot_longer(df, cols = c(prob_0.3, prob_0.5, prob_0.9), names_to = "prob", 
                names_prefix = "prob_", values_to = "res")
 
 ggplot(df, aes(x = res)) +  
