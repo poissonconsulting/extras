@@ -91,8 +91,8 @@ lik <- data.frame(prob_seq = prob_seq,
 
 tb <- as_tibble(lik)
 tb <- pivot_longer(tb, cols = c(lik_0.0, lik_0.1, lik_0.5, lik_1.0),
-                   names_to = "theta", names_prefix = "lik_",
-                   values_to = "lik")
+               names_to = "theta", names_prefix = "lik_",
+               values_to = "lik")
 
 ggplot(tb, aes(x = prob_seq, y = lik, colour = theta)) +
   geom_line() +
@@ -199,7 +199,7 @@ colnames(df) <- c("prob_0.3", "prob_0.5", "prob_0.9")
 df$theta <- rep(theta, each = n_samp)
 
 df <- pivot_longer(df, cols = c(prob_0.3, prob_0.5, prob_0.9), names_to = "prob",
-                   names_prefix = "prob_", values_to = "res")
+               names_prefix = "prob_", values_to = "res")
 
 ggplot(df, aes(x = res)) +  
   geom_histogram(aes(y = after_stat(density) * 0.1), binwidth = 0.1) +
