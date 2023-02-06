@@ -156,8 +156,37 @@ log_lik_neg_binom <- function(x, lambda = 1, theta = 0) {
 #'
 #' @examples
 #' dev_norm(c(-2:2))
-log_lik_norm <- function(x,  mean = 0, sd = 1) {
-  dnorm(x, mean = mean, sd = sd, log = TRUE)
+log_lik_norm <- function(x, mean = 0, sd = 1, tlower = -Inf, tupper = Inf) {
+  chk_number(tlower)
+  chk_number(tupper)
+  chk_lt(tlower, tupper)
+
+  # Initial approach
+  log_lik <- dnorm(x, mean = mean, sd = sd, log = TRUE)
+  if(tlower == -Inf && tupper == Inf) {return(log_lik)}
+  log_lik[!is.na(x) & (x < tlower | x > tupper)] <- NA_real_
+  log_lik
+
+  ### This is from msm::dtnorm()
+  # function (x, mean = 0, sd = 1, lower = -Inf, upper = Inf, log = FALSE)
+  # {
+  #   ret <- numeric(length(x))
+  #   ret[x < lower | x > upper] <- if (log)
+  #     -Inf
+  #   else 0
+  #   ret[upper < lower] <- NaN
+  #   ind <- x >= lower & x <= upper
+  #   if (any(ind)) {
+  #     denom <- pnorm(upper, mean, sd) - pnorm(lower, mean,
+  #                                             sd)
+  #     xtmp <- dnorm(x, mean, sd, log)
+  #     if (log)
+  #       xtmp <- xtmp - log(denom)
+  #     else xtmp <- xtmp/denom
+  #     ret[x >= lower & x <= upper] <- xtmp[ind]
+  #   }
+  #   ret
+  # }
 }
 
 #' Poisson Log-Likelihood
