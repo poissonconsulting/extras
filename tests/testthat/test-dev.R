@@ -650,7 +650,7 @@ test_that("student vectorized missing values", {
   expect_equal(dev_student(c(0:1), c(0,NA), 1:2, 0:1), c(0,NA))
   expect_equal(dev_student(c(0:1), c(0:1), c(NA,1), 0:1), c(NA,0))
   expect_equal(dev_student(c(0:1), c(0:1), c(1,NA), 0:1), c(0,NA))
-  expect_equal(dev_student(c(0:1), c(0:1), 0:1, c(NA,1)), c(NA,0))
+  expect_equal(dev_student(c(0:1), c(0:1), 0:1, c(NA,1)), c(NaN,0))
   expect_equal(dev_student(c(0:1), c(0:1), 1:2, c(0,NA)), c(0,NA))
 })
 
