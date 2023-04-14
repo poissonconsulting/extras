@@ -44,5 +44,5 @@ test_that("rbern", {
   expect_identical(rbern(0, 0), integer(0))
   expect_identical(rbern(1, 0.5), 1L)
   expect_equal(rbern(4, 0.5), c(0, 1L, 1L, 1L))
-  expect_error(rbern(NA, 1), NA_real_)
+  expect_error(rbern(NA, 1))
 })

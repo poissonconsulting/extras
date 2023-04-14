@@ -18,14 +18,14 @@ dbern <- function(x, prob, log = FALSE)  {
 #' @export
 pbern <- function(q, prob, lower.tail = TRUE, log = FALSE)  {
   stats::pbinom(q, size = 1, prob = prob, lower.tail = lower.tail,
-         log = log)
+         log.p = log)
 }
 
 #' @rdname bern
 #' @export
 qbern <- function(p, prob, lower.tail = TRUE, log = FALSE)  {
   stats::qbinom(p, size = 1, prob = prob, lower.tail = lower.tail,
-         log = log)
+         log.p = log)
 }
 
 #' @rdname bern
