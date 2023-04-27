@@ -2,39 +2,24 @@
 
 # extras 0.5.1
 
-- Same as previous version.
+## New Features
 
+- Added family of functions for the following distributions
 
-# extras 0.5.0.9001
+  - `xx_gamma()`
+  - `xx_student()`
+  - `xx_beta_binomial()`
 
-- Merge pull request #49 from hadley/dev-testthat.
+- Added standardized residuals to residual functions for all distributions
 
-Fix for dev testthat
+## Bug Fixes
 
-- Merge pull request #47 from hadley/dev-waldo.
+- Exported `pbern()`, `qbern()` and `rbern()`.
 
-Fix tests for dev waldo
+## Internal
 
-- Merge pull request #42 from poissonconsulting/standardized.
-
-Added standardized residuals to residual functions for all distributions
-
-- Merge pull request #41 from poissonconsulting/beta-binomial.
-
-Beta-binomial
-
-- Merge pull request #37 from poissonconsulting/t.
-
-Student's t
-
-- Merge pull request #36 from poissonconsulting/gamma.
-
-Gamma
-
-
-# extras 0.5.0.9000
-
-- Same as previous version.
+- Fix for dev testthat
+- Fix tests for dev waldo
 
 
 # extras 0.5.0
