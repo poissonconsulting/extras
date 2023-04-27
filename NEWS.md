@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.5.1
+
+- Same as previous version.
+
+
 # extras 0.5.0.9001
 
 - Merge pull request #49 from hadley/dev-testthat.
