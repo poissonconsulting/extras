@@ -1,4 +1,31 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# extras 0.5.0.9001
+
+- Merge pull request #49 from hadley/dev-testthat.
+
+Fix for dev testthat
+
+- Merge pull request #47 from hadley/dev-waldo.
+
+Fix tests for dev waldo
+
+- Merge pull request #42 from poissonconsulting/standardized.
+
+Added standardized residuals to residual functions for all distributions
+
+- Merge pull request #41 from poissonconsulting/beta-binomial.
+
+Beta-binomial
+
+- Merge pull request #37 from poissonconsulting/t.
+
+Student's t
+
+- Merge pull request #36 from poissonconsulting/gamma.
+
+Gamma
+
 
 # extras 0.5.0.9000
 
