@@ -11,7 +11,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![Codecov test
 coverage](https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/extras?branch=master)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/license/mit/)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/extras)](https://cran.r-project.org/package=extras)
 ![CRAN downloads](https://cranlogs.r-pkg.org/badges/extras)
@@ -19,11 +19,11 @@ status](https://www.r-pkg.org/badges/version/extras)](https://cran.r-project.org
 
 `extras` provides helper functions for Bayesian analyses.
 
-In particular it provides functions to numericise R objects (coerce to
-numeric objects), summarise MCMC (Monte Carlo Markov Chain) samples and
-calculate deviance residuals as well as R translations of some BUGS
-(Bayesian Using Gibbs Sampling), JAGS (Just Another Gibbs Sampler), STAN
-and TMB (Template Model Builder) functions.
+In particular it provides functions to summarise vectors of MCMC (Monte
+Carlo Markov Chain) samples, draw random samples from various
+distributions and calculate deviance residuals as well as R translations
+of some BUGS (Bayesian Using Gibbs Sampling), JAGS (Just Another Gibbs
+Sampler), STAN and TMB (Template Model Builder) functions.
 
 ## Installation
 
@@ -39,11 +39,10 @@ remotes::install_github("poissonconsulting/extras")
 
 ## Demonstration
 
-### Numericise R Objects
+### Summarise MCMC Samples
 
-Atomic vectors, matrices, arrays and data.frames of appropriate classes
-can be converted to numeric objects suitable for Bayesian analysis using
-the `numericise()` (and `numericize()`) function.
+The `extras` package provides functions to summarise MCMC samples like
+`svalue()` which gives the *surprisal value* (Greenland, 2019)
 
 ``` r
 library(extras)
@@ -52,24 +51,7 @@ library(extras)
 #> The following object is masked from 'package:stats':
 #> 
 #>     step
-numericise(
-  data.frame(logical = c(TRUE, FALSE),
-             factor = factor(c("blue", "green")),
-             Date = as.Date(c("2000-01-01", "2000-01-02")),
-             hms = hms::as_hms(c("00:00:02", "00:01:01"))
-  )
-)
-#>      logical factor  Date hms
-#> [1,]       1      1 10957   2
-#> [2,]       0      2 10958  61
-```
 
-### Summarise MCMC Samples
-
-The `extras` package provides functions to summarise MCMC samples like
-`svalue()` which gives the *surprisal value* (Greenland, 2019)
-
-``` r
 set.seed(1)
 x <- rnorm(100)
 svalue(rnorm(100))
@@ -82,7 +64,13 @@ svalue(rnorm(100, mean = 3))
 #> [1] 5.073249
 ```
 
-## R translations
+### Distributions
+
+Implemented distributions include
+
+- 
+
+### R translations
 
 The package also provides R translations of `BUGS` (and `JAGS`)
 functions such as `pow()` and `log<-`.
@@ -95,6 +83,25 @@ mu <- NULL
 log(mu) <- 1
 mu
 #> [1] 2.718282
+```
+
+### Numericise R Objects
+
+Atomic vectors, matrices, arrays and data.frames of appropriate classes
+can be converted to numeric objects suitable for Bayesian analysis using
+the `numericise()` (and `numericize()`) function.
+
+``` r
+numericise(
+  data.frame(logical = c(TRUE, FALSE),
+             factor = factor(c("blue", "green")),
+             Date = as.Date(c("2000-01-01", "2000-01-02")),
+             hms = hms::as_hms(c("00:00:02", "00:01:01"))
+  )
+)
+#>      logical factor  Date hms
+#> [1,]       1      1 10957   2
+#> [2,]       0      2 10958  61
 ```
 
 ## References
