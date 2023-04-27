@@ -1,24 +1,24 @@
 # Platform
 
-|field    |value                                                                             |
-|:--------|:---------------------------------------------------------------------------------|
-|version  |R version 4.2.1 (2022-06-23)                                                      |
-|os       |macOS Monterey 12.6                                                               |
-|system   |x86_64, darwin17.0                                                                |
-|ui       |RStudio                                                                           |
-|language |(EN)                                                                              |
-|collate  |en_CA.UTF-8                                                                       |
-|ctype    |en_CA.UTF-8                                                                       |
-|tz       |America/Vancouver                                                                 |
-|date     |2022-10-29                                                                        |
-|rstudio  |2022.07.1+554 Spotted Wakerobin (desktop)                                         |
-|pandoc   |2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown) |
+|field    |value                                                                                       |
+|:--------|:-------------------------------------------------------------------------------------------|
+|version  |R version 4.3.0 (2023-04-21)                                                                |
+|os       |macOS Ventura 13.2.1                                                                        |
+|system   |aarch64, darwin20                                                                           |
+|ui       |RStudio                                                                                     |
+|language |(EN)                                                                                        |
+|collate  |en_US.UTF-8                                                                                 |
+|ctype    |en_US.UTF-8                                                                                 |
+|tz       |America/Vancouver                                                                           |
+|date     |2023-04-27                                                                                  |
+|rstudio  |2023.03.0+386 Cherry Blossom (desktop)                                                      |
+|pandoc   |2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown) |
 
 # Dependencies
 
 |package |old   |new   |Δ  |
 |:-------|:-----|:-----|:--|
-|extras  |0.4.0 |0.5.0 |*  |
+|extras  |0.5.0 |0.6.0 |*  |
 
 # Revdeps
 
