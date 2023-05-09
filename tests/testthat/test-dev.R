@@ -76,7 +76,13 @@ test_that("beta_binom ran", {
   expect_equal(mean(samples), 49.99347)
   expect_equal(var(samples), 37.4491218503185)
   res <- dev_beta_binom(samples, 100, 0.5, 0.01, res = TRUE)
-  expect_equal(mean(res), -0.00107466576791911)
+  expect_equal(mean(res), -0.00107466576791911, tolerance = 1e-04) # for M1
+  # ══ Failed tests ════════════════════════════════════════════════════════════════
+  # ── Failure ('test-dev.R:79:3'): beta_binom ran ─────────────────────────────────
+  # mean(res) (`actual`) not equal to -0.00107466576791911 (`expected`).
+  #
+  # `actual`: -0.00107458
+  # `expected`: -0.00107467
   expect_equal(sd(res), 1.0040052194768)
 })
 

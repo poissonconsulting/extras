@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                                                                                 |
 |ctype    |en_US.UTF-8                                                                                 |
 |tz       |America/Vancouver                                                                           |
-|date     |2023-04-27                                                                                  |
+|date     |2023-05-09                                                                                  |
 |rstudio  |2023.03.0+386 Cherry Blossom (desktop)                                                      |
 |pandoc   |2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown) |
 
@@ -18,7 +18,7 @@
 
 |package |old   |new   |Δ  |
 |:-------|:-----|:-----|:--|
-|extras  |0.5.0 |0.6.0 |*  |
+|extras  |0.6.0 |0.6.1 |*  |
 
 # Revdeps
 

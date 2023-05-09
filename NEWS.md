@@ -2,8 +2,7 @@
 
 # extras 0.6.1
 
-- Same as previous version.
-
+- Fixed M1mac test
 
 # extras 0.6.0
 
