@@ -346,6 +346,39 @@ test_that("deviance lnorm", {
   expect_equal(deviance, deviance(mod))
 })
 
+test_that("dev_lnorm_hurdle", { ### Continue this section.
+  expect_equal(dev_lnorm_hurdle(3, 4, 5, 0.5),
+               2 * (log_lik_lnorm_hurdle(3, 3, 5, 0.5) - log_lik_lnorm_hurdle(3, 4, 5, 0.5)))
+  expect_identical(dev_lnorm_hurdle(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(dev_lnorm_hurdle(exp(0)), 0)
+  expect_identical(dev_lnorm_hurdle(1), 0)
+  expect_identical(dev_lnorm_hurdle(0, res = TRUE), -Inf)
+  expect_identical(dev_lnorm_hurdle(0), Inf) #
+  expect_identical(dev_lnorm_hurdle(-1, res = TRUE), -Inf) #
+  expect_identical(dev_lnorm_hurdle(NA, 1, 1), NA_real_)
+  expect_identical(dev_lnorm_hurdle(1, NA, 1), NA_real_)
+  expect_identical(dev_lnorm_hurdle(1, 1, NA), NA_real_)
+  expect_equal(dev_lnorm_hurdle(-2), dev_lnorm_hurdle(-2, res = TRUE)^2)
+  expect_equal(dev_lnorm_hurdle(exp(-2:2), res = TRUE), c(-2, -1, 0, 1, 2))
+  expect_equal(dev_lnorm_hurdle(exp(-2:2), sdlog = 2, res = TRUE), dev_norm(-2:2, res = TRUE)/2) #
+  expect_equal(dev_lnorm_hurdle(exp(-2:2), sdlog = 1/2, res = TRUE), dev_norm(-2:2, res = TRUE) * 2) #
+  expect_equal(dev_lnorm_hurdle(exp(-2:2), meanlog = -2:2), rep(0, 5))
+  expect_equal(dev_lnorm_hurdle(exp(-2:2), meanlog = -1:3, sdlog = 1:5, res = TRUE), #
+               c(-1, -0.5, -0.333333333333333, -0.25, -0.2))
+})
+
+test_that("deviance lnorm hurdle", {
+  samples <- ran_lnorm_hurdle(100) # prob = 0 -> log-normal case
+  mod <- lm(log(samples)~1)
+  deviance <- sum(dev_lnorm(samples, coef(mod)[1]))
+  expect_equal(deviance, deviance(mod))
+  samples <- ran_lnorm_hurdle(100, prob = 0.5)
+  # brms - didn't work (no deviance)
+  dat <- data.frame(samples = samples)
+  mod <- brms::brm(brms::bf(samples ~ 1, hu ~ 1), data = dat, family = hurdle_lognormal)
+  deviance <- sum(dev_lnorm_hurdle(samples, coef(mod)[1]))
+})
+
 test_that("dev_neg_bin", {
   expect_identical(dev_neg_binom(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(dev_neg_binom(1, 1, 0), 0)

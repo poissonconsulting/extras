@@ -125,10 +125,34 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
 #' @export
 #'
 #' @examples
-#' dev_norm(exp(c(-2:2)))
+#' log_lik_lnorm(exp(c(-2:2)))
 log_lik_lnorm <- function(x,  meanlog = 0, sdlog = 1) {
   dlnorm(x, meanlog = meanlog, sdlog = sdlog, log = TRUE)
 }
+
+#' Log-Normal Hurdle Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_lnorm_hurdle(exp(c(-2:2)))
+log_lik_lnorm_hurdle <- function(x, meanlog = 0, sdlog = 1, prob = 0) {
+  # prob is the probability of a zero.
+  chk_lte(prob, 1)
+  chk_gte(prob, 0)
+  log_lik <- log(1 - prob) + dlnorm(x, meanlog = meanlog, sdlog = sdlog, log = TRUE) -
+    log(1 - dlnorm(x = 0, meanlog = meanlog, sdlog = sdlog, log = FALSE))
+  use_log_prob <- !is.na(x) & x == 0 & !is.na(prob)
+  log_prob <- rep(log(prob), length(x))
+  log_lik[use_log_prob] <- log_prob[use_log_prob]
+  log_lik
+}
+
 
 #' Negative Binomial Log-Likelihood
 #'
@@ -155,8 +179,8 @@ log_lik_neg_binom <- function(x, lambda = 1, theta = 0) {
 #' @export
 #'
 #' @examples
-#' dev_norm(c(-2:2))
-log_lik_norm <- function(x,  mean = 0, sd = 1) {
+#' log_lik_norm(c(-2:2))
+log_lik_norm <- function(x, mean = 0, sd = 1) {
   dnorm(x, mean = mean, sd = sd, log = TRUE)
 }
 

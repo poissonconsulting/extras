@@ -52,6 +52,73 @@ test_that("log_lik_lnorm", {
   expect_identical(log_lik_lnorm(1, 2), dlnorm(1, 2, log = TRUE))
 })
 
+test_that("log_lik_lnorm_hurdle missing values", {
+  expect_identical(log_lik_lnorm_hurdle(numeric(0), numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_lnorm_hurdle(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_lnorm_hurdle(1, 1, numeric(0)), numeric(0))
+  expect_identical(log_lik_lnorm_hurdle(1, 1, 1, prob = numeric(0)), numeric(0))
+  expect_identical(log_lik_lnorm_hurdle(NA, 1, 1, 0.5), NA_real_)
+  expect_identical(log_lik_lnorm_hurdle(1, NA, 1, 0.5), NA_real_)
+  expect_identical(log_lik_lnorm_hurdle(1, 1, NA, 0.5), NA_real_)
+  expect_identical(log_lik_lnorm_hurdle(1, 1, 1, NA), NA_real_)
+})
+
+test_that("log_lik_lnorm_hurdle known values", {
+  expect_equal(log_lik_lnorm_hurdle(0, 0, 1, 0.9), -0.105360515657826)
+  expect_equal(log_lik_lnorm_hurdle(0, 0, 1, 0.5), -0.693147180559945)
+  expect_equal(log_lik_lnorm_hurdle(0, 0, 1, 1), 0)
+  expect_equal(log_lik_lnorm_hurdle(0, 0, 1, 0), -Inf)
+  expect_identical(log_lik_lnorm_hurdle(0, 0, 1, 0), log_lik_lnorm(0, 0, 1))
+  expect_identical(log_lik_lnorm_hurdle(0, 0, 1, 0), dlnorm(0, 0, 1, log = TRUE))
+  expect_equal(log_lik_lnorm_hurdle(1, 0, 1, 0.9), -3.22152362619872)
+  expect_equal(log_lik_lnorm_hurdle(1, 0, 1, 0.5), -1.61208571376462)
+  expect_equal(log_lik_lnorm_hurdle(1, 0, 1, 1), -Inf)
+  expect_equal(log_lik_lnorm_hurdle(1, 0, 1, 0), -0.918938533204673)
+  expect_identical(log_lik_lnorm_hurdle(1, 0, 1, 0), log_lik_lnorm(1, 0, 1))
+  expect_identical(log_lik_lnorm_hurdle(1, 0, 1, 0), dlnorm(1, 0, 1, log = TRUE))
+  expect_equal(log_lik_lnorm_hurdle(2, 0, 1, 0.9), -4.15489731371776)
+  expect_equal(log_lik_lnorm_hurdle(2, 0, 1, 0.5), -2.54545940128366)
+  expect_equal(log_lik_lnorm_hurdle(2, 0, 1, 1), -Inf)
+  expect_equal(log_lik_lnorm_hurdle(2, 0, 1, 0), -1.85231222072372)
+  expect_identical(log_lik_lnorm_hurdle(2, 0, 1, 0), log_lik_lnorm(2, 0, 1))
+  expect_identical(log_lik_lnorm_hurdle(2, 0, 1, 0), dlnorm(2, 0, 1, log = TRUE))
+  expect_equal(log_lik_lnorm_hurdle(-1, 0, 1, 0.9), -Inf)
+  expect_equal(log_lik_lnorm_hurdle(-1, 0, 1, 0.5), -Inf)
+  expect_equal(log_lik_lnorm_hurdle(-1, 0, 1, 1), -Inf)
+  expect_equal(log_lik_lnorm_hurdle(-1, 0, 1, 0), -Inf)
+  expect_identical(log_lik_lnorm_hurdle(-1, 0, 1, 0), log_lik_lnorm(-1, 0, 1))
+  expect_identical(log_lik_lnorm_hurdle(-1, 0, 1, 0), dlnorm(-1, 0, 1, log = TRUE))
+  expect_error(log_lik_lnorm_hurdle(1, 0, 1, -0.5))
+  expect_error(log_lik_lnorm_hurdle(1, 0, 1, 1.5))
+  expect_identical(log_lik_lnorm_hurdle(1, 0, 1, 0.5),
+                brms::dhurdle_lognormal(1, 0, 1, 0.5, log = TRUE))
+  expect_identical(log_lik_lnorm_hurdle(2, 4, 2, 0.7),
+                brms::dhurdle_lognormal(2, 4, 2, 0.7, log = TRUE))
+  expect_identical(log_lik_lnorm_hurdle(5, 0, 1, 0.1),
+                brms::dhurdle_lognormal(5, 0, 1, 0.1, log = TRUE))
+  expect_identical(log_lik_lnorm_hurdle(100, 0, 50, 0.6),
+                brms::dhurdle_lognormal(100, 0, 50, 0.6, log = TRUE))
+})
+
+test_that("log_lik_lnorm_hurdle vectorized", {
+  expect_equal(log_lik_lnorm_hurdle(1:3, 0, 1, 0),
+               c(-0.918938533204673, -1.85231222072372, -2.62102530227907))
+  expect_equal(log_lik_lnorm_hurdle(1:3, 0, 1, 0.5),
+               c(-1.61208571376462, -2.54545940128366, -3.31417248283902))
+  expect_equal(log_lik_lnorm_hurdle(1:3, 0, 1, 0.9),
+               c(-3.22152362619872, -4.15489731371776, -4.92361039527312))
+  expect_equal(log_lik_lnorm_hurdle(1:3, 0, 1, 1), c(-Inf, -Inf, -Inf))
+  expect_equal(log_lik_lnorm_hurdle(0:3, 2, 0.5, 0),
+               c(-Inf, -8.22579135264473, -4.33466711656151, -2.94940325359312))
+  expect_equal(log_lik_lnorm_hurdle(c(0, 1, 3, 4, 5), 3, 0.5, 0.5),
+               c(-0.693147180559945, -18.9189385332047, -9.24810127948063,
+                 -7.51332467223149, -6.39570228439004))
+  expect_equal(log_lik_lnorm_hurdle(0:3, 5:8, seq(0, 1, length.out = 4), 0.5),
+               c(-0.693147180559945, -162.513473425097, -46.6482093330552, -26.5252741734941))
+  expect_equal(log_lik_lnorm_hurdle(0:3, 3:0, 0.5, seq(0, 1, length.out = 4)),
+               c(-Inf, -8.63125646075289, -2.2058681274694, -Inf))
+})
+
 test_that("log_lik_neg_binom", {
   expect_identical(log_lik_neg_binom(0, 2, 1), dnbinom(0, mu = 2, size = 1, log = TRUE))
   expect_identical(log_lik_neg_binom(0, 2, 2), dnbinom(0, size = 1/2, mu = 2, log = TRUE))

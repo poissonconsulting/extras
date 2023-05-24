@@ -104,6 +104,24 @@ ran_lnorm <- function(n = 1, meanlog = 0, sdlog = 1) {
   stats::rlnorm(n, meanlog = meanlog, sdlog = sdlog)
 }
 
+#' Log-Normal Hurdle Random Samples
+#'
+#' @inheritParams params
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_lnorm_hurdle(10)
+ran_lnorm_hurdle <- function(n = 1, meanlog = 0, sdlog = 1, prob = 0) {
+  chk_whole_number(n)
+  chk_gte(n)
+  zeros <- ran_bern(n, prob = prob)
+  ran <- stats::rlnorm(n, meanlog = meanlog, sdlog = sdlog)
+  ran[zeros == 1L] <- 0L
+  ran
+}
+
 #' Negative Binomial Random Samples
 #'
 #' Identical to Gamma-Poisson Random Samples.

@@ -166,7 +166,7 @@ res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", 
 #' @export
 #'
 #' @examples
-#' dev_norm(exp(c(-2:2)))
+#' res_lnorm(exp(c(-2:2)))
 res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE) {
   chk_string(type)
   if(!vld_false(simulate)) {
@@ -174,10 +174,39 @@ res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE
   }
   switch(type,
          data = x,
-         raw = x - exp(meanlog), # isn't this the median?
+         raw = x - exp(meanlog),
          standardized = (x - exp(meanlog + (sdlog^2 / 2))) /
            sqrt(exp(2 * meanlog + sdlog^2) * (exp(sdlog^2) - 1)),
          dev = dev_lnorm(x, meanlog = meanlog, sdlog = sdlog, res = TRUE),
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
+}
+
+#' Log-Normal Hurdle Residuals
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_lnorm_hurdle(exp(c(-2:2)))
+res_lnorm_hurdle <- function(x, meanlog = 0, sdlog = 1, prob = 0, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    x <- ran_lnorm_hurdle(length(x), meanlog = meanlog, sdlog = sdlog, prob = prob)
+  }
+  switch(type,
+         data = x,
+         raw = x - ((1 - prob) * exp(meanlog)), #??
+         # standardized = (x - exp(meanlog + (sdlog^2 / 2))) /
+         #   sqrt(exp(2 * meanlog + sdlog^2) * (exp(sdlog^2) - 1)),
+         # Standardized = obs - expected / sd ??
+         standardized = (1 - prob) * exp(meanlog + (sdlog^2 / 2)) /
+          sqrt((1 - prob) * exp(2 * meanlog + sdlog^2) * (exp(sdlog^2) - 1) +
+                 prob * (1 - prob) * (exp(meanlog + (sdlog^2 / 2)))^2),
+         dev = dev_lnorm_hurdle(x, meanlog = meanlog, sdlog = sdlog, prob = prob, res = TRUE),
          chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 

@@ -155,6 +155,94 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, res = FALSE) {
   dev_norm(log(x), mean = meanlog, sd = sdlog, res = res)
 }
 
+#' Log-Normal Hurdle Deviances
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_lnorm_hurdle(exp(-2:2))
+dev_lnorm_hurdle <- function(x, meanlog = 0, sdlog = 1, prob = 0, res = FALSE) {
+  x <- pmax(x, 0)
+  dev <- log_lik_lnorm_hurdle(x, meanlog = x, sd = sdlog, prob = prob) -
+    log_lik_lnorm_hurdle(x, meanlog = meanlog, sd = sdlog, prob = prob) # deviance shouldn't be negative - not sure if this should be on the exp(meanlog) or log(x) scale, or neither.
+  # $$D(model, data) = 2(\log(P(data|saturated \, model)) - \log(P(data|fitted \, model)))$$,
+
+  # dev currently NaN for x = 0
+  # and negative for anything > 0
+
+  #compare to dev_lnorm
+  dev_lnorm(x, meanlog, sdlog)
+
+  ### Not sure if saturated is right.
+  x <- -5:5
+  all(brms::dhurdle_lognormal(x, meanlog, sdlog, prob, log = TRUE) ==
+    log_lik_lnorm_hurdle(x, meanlog, sdlog, prob))
+
+  ### TODO: need log_lik_lnorm_hurdle to take -Inf if x == 0 (when vectorized)
+
+  prob <- 0.1
+  meanlog <- 0
+  sdlog <- 1
+  x <- ran_lnorm_hurdle(1000, meanlog, sdlog, prob = 0.1)
+
+  plot(x, brms::dhurdle_lognormal(x, x, sdlog, prob, log = TRUE))
+  points(x, brms::dhurdle_lognormal(x, meanlog, sdlog, prob, log = TRUE), col = "red")
+
+
+  # naive
+  fitted <- brms::dhurdle_lognormal(x, meanlog, sdlog, prob, log = TRUE)
+  sat <- brms::dhurdle_lognormal(x, x, sdlog, prob, log = TRUE)
+
+  # update using mle's from paper http://homepages.math.uic.edu/~jyang06/publications/AY2021_arXiv.pdf
+  fitted <- brms::dhurdle_lognormal(x, meanlog, sdlog, prob, log = TRUE)
+  sat <- brms::dhurdle_lognormal(x, x, sdlog, 1 - (length(x[x != 0]) / length(x)), log = TRUE)
+
+  sat - fitted
+
+  df <- tibble::tibble(sat = sat, fitted = fitted) |>
+    dplyr::mutate(
+      diff = sat - fitted,
+      pos = ifelse(diff >= 0, TRUE, FALSE)
+    )
+
+  plot(x, log_lik_lnorm_hurdle(x, x, sdlog, prob), type = "l")
+  lines(x, log_lik_lnorm_hurdle(x, meanlog, sdlog, prob), type = "l", col = "red")
+
+  brms::dhurdle_lognormal(x, x, sdlog, prob, log = TRUE) >
+    brms::dhurdle_lognormal(x, meanlog, sdlog, prob, log = TRUE)
+
+  # grid search
+  set.seed(101)
+  x <- ran_lnorm_hurdle(100, 0, 1, 0.5)
+  meanlog <- seq(-100, 100, length.out = 101)
+  sdlog <- seq(-100, 100, length.out = 101)
+  prob <- seq(0, 1, length.out = 50)
+
+  grid <- expand.grid(meanlog = meanlog, sdlog = sdlog, prob = prob)
+
+  log_lik <- matrix(NA, nrow = nrow(grid), ncol = length(x))
+  for (i in 1:nrow(grid)) {
+    log_lik[i, ] <- brms::dhurdle_lognormal(x, grid$meanlog[i], grid$sdlog[i], grid$prob[i], log = TRUE)
+  }
+
+
+  max_ll <- which(log_lik == max(log_lik, na.rm = TRUE))
+  grid[max_ll, ]
+
+  brms::dhurdle_lognormal(x, 0, 1, 0.5, log = TRUE)
+  log_lik_lnorm_hurdle(x, 0, 1, 0.5)
+
+
+  dev <- dev * 2
+  if(vld_false(res)) return(dev)
+  dev_res(x, meanlog, dev)
+}
+
 #' Negative Binomial Deviances
 #'
 #' @inheritParams params

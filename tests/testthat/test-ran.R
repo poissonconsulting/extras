@@ -48,6 +48,28 @@ test_that("ran_lnorm", {
   expect_equal(ran_lnorm(1, c(0.1,100)), 0.987346423552865)
 })
 
+test_that("ran_lnorm_hurdle", {
+  expect_error(ran_lnorm_hurdle(NA_integer_))
+  expect_error(ran_lnorm_hurdle(integer(0)))
+  expect_identical(ran_lnorm_hurdle(0L), numeric(0))
+  set.seed(101)
+  expect_equal(ran_lnorm_hurdle(), 0.721778848868975)
+  expect_equal(ran_lnorm_hurdle(2), c(1.73752529290614, 0.509185013620822))
+  expect_equal(ran_lnorm_hurdle(2, 10), c(27292.2882352846, 30054.546228237))
+  expect_equal(ran_lnorm_hurdle(2, c(0.1,100)), c(3.57500397331701, 4.99097288094876e+43))
+  expect_equal(ran_lnorm_hurdle(1, c(0.1,100)), 0.987346423552865)
+  expect_equal(ran_lnorm_hurdle(prob = 0.5), 0)
+  expect_equal(ran_lnorm_hurdle(2, prob = 0.5), c(5.55728633234696, 0))
+  expect_equal(ran_lnorm_hurdle(2, 10, prob = 0.5), c(0, 33213.2328930566))
+  expect_equal(ran_lnorm_hurdle(2, c(0.1,100), prob = 0.5), c(0.414156125992116, 1.04995553418408e+44))
+  expect_equal(ran_lnorm_hurdle(1, c(0.1), prob = 0.5), 0)
+  expect_equal(ran_lnorm_hurdle(prob = 1), 0)
+  expect_equal(ran_lnorm_hurdle(2, prob = 1), c(0, 0))
+  expect_equal(ran_lnorm_hurdle(2, 10, prob = 1), c(0, 0))
+  expect_equal(ran_lnorm_hurdle(2, c(0.1,100), prob = 1), c(0, 0))
+  expect_equal(ran_lnorm_hurdle(1, c(0.1), prob = 1), 0)
+})
+
 test_that("ran_binom", {
   expect_error(ran_binom(NA_integer_))
   expect_error(ran_binom(integer(0)))
