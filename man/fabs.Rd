@@ -21,6 +21,8 @@ fabs(c(0, -1, 2))
 }
 \seealso{
 Other translations: 
+\code{\link{exp10}()},
+\code{\link{exp2}()},
 \code{\link{ilogit}()},
 \code{\link{ilog}()},
 \code{\link{inv_logit}()},

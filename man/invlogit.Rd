@@ -23,6 +23,8 @@ invlogit(c(-1, 0, 5))
 }
 \seealso{
 Other translations: 
+\code{\link{exp10}()},
+\code{\link{exp2}()},
 \code{\link{fabs}()},
 \code{\link{ilogit}()},
 \code{\link{ilog}()},
