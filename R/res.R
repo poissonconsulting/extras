@@ -201,6 +201,7 @@ res_lnorm_hurdle <- function(x, meanlog = 0, sdlog = 1, prob = 0, type = "dev", 
          data = x,
          ### TODO: really need to check what raw and standardized should be.
          raw = x - ((1 - prob) * exp(meanlog)), #??
+         raw = x - ((1 - prob) * exp(meanlog + (sdlog^2/2))) ##??
          # standardized = (x - exp(meanlog + (sdlog^2 / 2))) /
          #   sqrt(exp(2 * meanlog + sdlog^2) * (exp(sdlog^2) - 1)),
          # Standardized = obs - expected / sd ??
@@ -210,6 +211,13 @@ res_lnorm_hurdle <- function(x, meanlog = 0, sdlog = 1, prob = 0, type = "dev", 
          dev = dev_lnorm_hurdle(x, meanlog = meanlog, sdlog = sdlog, prob = prob, res = TRUE),
          chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
+
+# check mean is the mean
+
+x <- ran_lnorm_hurdle(1000000, meanlog = 0, sdlog = 2, prob = 0.2)
+mean(x)
+exp(meanlog)
+(1 - prob) * exp(meanlog)
 
 #' Negative Binomial Residuals
 #'
