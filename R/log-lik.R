@@ -143,8 +143,8 @@ log_lik_lnorm <- function(x,  meanlog = 0, sdlog = 1) {
 #' log_lik_lnorm_hurdle(exp(c(-2:2)))
 log_lik_lnorm_hurdle <- function(x, meanlog = 0, sdlog = 1, prob = 0) {
   # prob is the probability of a zero.
-  chk_lte(prob, 1)
-  chk_gte(prob, 0)
+  chk::chk_lte(prob, 1)
+  chk::chk_gte(prob, 0)
   log_lik <- log(1 - prob) + dlnorm(x, meanlog = meanlog, sdlog = sdlog, log = TRUE) -
     log(1 - dlnorm(x = 0, meanlog = meanlog, sdlog = sdlog, log = FALSE))
   use_log_prob <- !is.na(x) & x == 0 & !is.na(prob)
