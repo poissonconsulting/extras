@@ -199,6 +199,7 @@ res_lnorm_hurdle <- function(x, meanlog = 0, sdlog = 1, prob = 0, type = "dev", 
   }
   switch(type,
          data = x,
+         ### TODO: really need to check what raw and standardized should be.
          raw = x - ((1 - prob) * exp(meanlog)), #??
          # standardized = (x - exp(meanlog + (sdlog^2 / 2))) /
          #   sqrt(exp(2 * meanlog + sdlog^2) * (exp(sdlog^2) - 1)),
