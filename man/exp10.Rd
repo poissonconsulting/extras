@@ -2,7 +2,7 @@
 % Please edit documentation in R/exp.R
 \name{exp10}
 \alias{exp10}
-\title{Exponential transformation of 10^x}
+\title{Exponential transformation of base 10}
 \usage{
 exp10(x)
 }
@@ -13,15 +13,11 @@ exp10(x)
 A numeric atomic object.
 }
 \description{
-Inverse of log10(x)
-}
-\details{
-Returns the value of 10^x
+Returns the transformation of 10^x.
 }
 \examples{
-x <- 5
-exp10(x) # 1e+05
-10^x # 1e+05
+x <- c(5, 10.5)
+exp10(x)
 }
 \seealso{
 Other translations: 
