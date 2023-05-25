@@ -13,7 +13,9 @@
 #' exp2(x) # 32
 #' 2^x # 32
 exp2 <- function(x) {
-  if (is.null(x) | any(!is.numeric(x) & !is.na(x))) stop("non-numeric argument to mathematical function")
+  bol <- !is.na(x)
+  if (is.null(x)) bol[is.null(x)] <- TRUE
+  if (any(bol)) chk::chk_numeric(x[bol])
   2^x
 }
 
@@ -32,6 +34,8 @@ exp2 <- function(x) {
 #' exp10(x) # 1e+05
 #' 10^x # 1e+05
 exp10 <- function(x) {
-  if (is.null(x) | any(!is.numeric(x) & !is.na(x))) stop("non-numeric argument to mathematical function")
+  bol <- !is.na(x)
+  if (is.null(x)) bol[is.null(x)] <- TRUE
+  if (any(bol)) chk::chk_numeric(x[bol])
   10^x
 }
