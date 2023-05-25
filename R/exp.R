@@ -10,8 +10,8 @@
 #' @export
 #' @examples
 #' x <- 5
-#' exp2(x)
-#' 2^x
+#' exp2(x) # 32
+#' 2^x # 32
 exp2 <- function(x) {
   if (is.null(x) | any(!is.numeric(x) & !is.na(x))) stop("non-numeric argument to mathematical function")
   2^x
@@ -29,8 +29,8 @@ exp2 <- function(x) {
 #' @export
 #' @examples
 #' x <- 5
-#' exp10(x)
-#' 10^x
+#' exp10(x) # 1e+05
+#' 10^x # 1e+05
 exp10 <- function(x) {
   if (is.null(x) | any(!is.numeric(x) & !is.na(x))) stop("non-numeric argument to mathematical function")
   10^x
