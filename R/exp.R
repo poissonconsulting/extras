@@ -10,9 +10,7 @@
 #' x <- c(5, 10.5)
 #' exp2(x)
 exp2 <- function(x) {
-  bol <- !is.na(x)
-  if (is.null(x)) bol[is.null(x)] <- TRUE
-  if (any(bol)) chk::chk_numeric(x[bol])
+  chk::chk_numeric(x)
   2^x
 }
 
@@ -28,8 +26,6 @@ exp2 <- function(x) {
 #' x <- c(5, 10.5)
 #' exp10(x)
 exp10 <- function(x) {
-  bol <- !is.na(x)
-  if (is.null(x)) bol[is.null(x)] <- TRUE
-  if (any(bol)) chk::chk_numeric(x[bol])
+  chk::chk_numeric(x)
   10^x
 }
