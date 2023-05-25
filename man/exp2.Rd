@@ -20,8 +20,8 @@ Returns the value of 2^x
 }
 \examples{
 x <- 5
-exp2(x)
-2^x
+exp2(x) # 32
+2^x # 32
 }
 \seealso{
 Other translations: 

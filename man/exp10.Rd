@@ -20,8 +20,8 @@ Returns the value of 10^x
 }
 \examples{
 x <- 5
-exp10(x)
-10^x
+exp10(x) # 1e+05
+10^x # 1e+05
 }
 \seealso{
 Other translations: 
