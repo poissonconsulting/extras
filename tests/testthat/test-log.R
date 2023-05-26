@@ -1,7 +1,10 @@
 test_that("log2<- errors incorrect inputs", {
   x <- NULL
   expect_error(log2(x) <- NULL, "`x` must be numeric\\.")
+  x <- NULL
   expect_error(log2(x) <- "5", "`x` must be numeric\\.")
+  x <- NULL
+  expect_error(log2(x) <- TRUE, "`x` must be numeric\\.")
 })
 
 test_that("log2<- edge cases", {
@@ -88,7 +91,10 @@ test_that("log2<- array", {
 test_that("log10<- errors incorrect inputs", {
   x <- NULL
   expect_error(log10(x) <- NULL, "`x` must be numeric\\.")
+  x <- NULL
   expect_error(log10(x) <- "5", "`x` must be numeric\\.")
+  x <- NULL
+  expect_error(log10(x) <- TRUE, "`x` must be numeric\\.")
 })
 
 test_that("log10<- edge cases", {
