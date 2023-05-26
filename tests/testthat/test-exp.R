@@ -1,5 +1,6 @@
-test_that("exp2 test NULL behaviour", {
+test_that("exp2 test edge cases", {
   expect_error(exp2(NULL), regexp = "`x` must be numeric.")
+  expect_equal(exp2(numeric(0)), numeric(0))
 })
 
 test_that("exp2 test missing values", {
@@ -55,8 +56,9 @@ test_that("exp2 test multiple types", {
 })
 
 
-test_that("exp10 test NULL behaviour", {
+test_that("exp10 test edge cases", {
   expect_error(exp10(NULL), regexp = "`x` must be numeric.")
+  expect_equal(exp10(numeric(0)), numeric(0))
 })
 
 test_that("exp10 test missing values", {
