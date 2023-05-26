@@ -1,37 +1,31 @@
-#' Exponential transformation of 2^x
+#' Exponential transformation of base 2
 #'
-#' Inverse of log2(x)
-#'
-#' @details Returns the value of 2^x
+#' Returns the transformation of 2^x.
 #'
 #' @param x An numeric atomic object.
 #' @family translations
-#' @return A numeric atomic object.
+#' @return A numeric atomic object with the value of 2^x.
 #' @export
 #' @examples
-#' x <- 5
-#' exp2(x) # 32
-#' 2^x # 32
+#' x <- c(5, 10.5)
+#' exp2(x)
 exp2 <- function(x) {
-  if (is.null(x) | any(!is.numeric(x) & !is.na(x))) stop("non-numeric argument to mathematical function")
+  chk::chk_numeric(x)
   2^x
 }
 
-#' Exponential transformation of 10^x
+#' Exponential transformation of base 10
 #'
-#' Inverse of log10(x)
-#'
-#' @details Returns the value of 10^x
+#' Returns the transformation of 10^x.
 #'
 #' @param x An numeric atomic object.
 #' @family translations
 #' @return A numeric atomic object.
 #' @export
 #' @examples
-#' x <- 5
-#' exp10(x) # 1e+05
-#' 10^x # 1e+05
+#' x <- c(5, 10.5)
+#' exp10(x)
 exp10 <- function(x) {
-  if (is.null(x) | any(!is.numeric(x) & !is.na(x))) stop("non-numeric argument to mathematical function")
+  chk::chk_numeric(x)
   10^x
 }

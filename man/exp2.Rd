@@ -2,7 +2,7 @@
 % Please edit documentation in R/exp.R
 \name{exp2}
 \alias{exp2}
-\title{Exponential transformation of 2^x}
+\title{Exponential transformation of base 2}
 \usage{
 exp2(x)
 }
@@ -10,18 +10,14 @@ exp2(x)
 \item{x}{An numeric atomic object.}
 }
 \value{
-A numeric atomic object.
+A numeric atomic object with the value of 2^x.
 }
 \description{
-Inverse of log2(x)
-}
-\details{
-Returns the value of 2^x
+Returns the transformation of 2^x.
 }
 \examples{
-x <- 5
-exp2(x) # 32
-2^x # 32
+x <- c(5, 10.5)
+exp2(x)
 }
 \seealso{
 Other translations: 
