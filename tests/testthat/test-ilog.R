@@ -4,18 +4,22 @@ test_that("ilog", {
 })
 
 test_that("ilog2 incorrect inputs", {
-  expect_error(ilog2("6"), "`x` must be numeric\\.")
-  expect_error(ilog2(TRUE), "`x` must be numeric\\.")
-  expect_error(ilog2(NA), "`x` must be numeric\\.")
+  expect_error(ilog2("6"), "non-numeric argument to binary operator")
 })
 
 test_that("ilog2 edge cases", {
-  expect_error(ilog2(NULL), "`x` must be numeric\\.")
+  expect_equal(ilog2(NULL), numeric(0))
   expect_equal(ilog2(numeric(0)), numeric(0))
   expect_equal(ilog2(NA_real_), NA_real_)
   expect_equal(ilog2(rep(NA_real_, 2)), rep(NA_real_, 2))
   expect_equal(ilog2(Inf), Inf)
   expect_equal(ilog2(-Inf), 0)
+})
+
+test_that("ilog2 logicals", {
+  expect_error(ilog2(TRUE, 2))
+  expect_error(ilog2(FALSE, 1))
+  expect_error(ilog2(NA, NA_real_))
 })
 
 test_that("ilog2 numeric", {
@@ -60,19 +64,29 @@ test_that("ilog2 array", {
                            2.58187839589481, 2.98751792330897, 3.45688757312642, 4), dim = c(2L, 5L, 2L)))
 })
 
+test_that("ilog2 dataframe", {
+  expect_equal(ilog2(data.frame(y = -5:5)),
+               structure(list(y = c(0.03125, 0.0625, 0.125, 0.25, 0.5, 1, 2,
+                                    4, 8, 16, 32)), class = "data.frame", row.names = c(NA, -11L)))
+})
+
 test_that("ilog10 incorrect inputs", {
-  expect_error(ilog10("6"), "`x` must be numeric\\.")
-  expect_error(ilog10(TRUE), "`x` must be numeric\\.")
-  expect_error(ilog10(NA), "`x` must be numeric\\.")
+  expect_error(ilog10("6"), "non-numeric argument to binary operator")
 })
 
 test_that("ilog10 edge cases", {
-  expect_error(ilog10(NULL), "`x` must be numeric\\.")
+  expect_equal(ilog10(NULL), numeric(0))
   expect_equal(ilog10(numeric(0)), numeric(0))
   expect_equal(ilog10(NA_real_), NA_real_)
   expect_equal(ilog10(rep(NA_real_, 2)), rep(NA_real_, 2))
   expect_equal(ilog10(Inf), Inf)
   expect_equal(ilog10(-Inf), 0)
+})
+
+test_that("ilog10 logicals", {
+  expect_error(ilog10(TRUE, 10))
+  expect_error(ilog10(FALSE, 1))
+  expect_error(ilog10(NA, NA_real_))
 })
 
 test_that("ilog10 numeric", {
@@ -116,4 +130,10 @@ test_that("ilog10 array", {
                            0.483293023857175, 0.784759970351461, 1.27427498570313, 2.06913808111479,
                            3.35981828628378, 5.45559478116851, 8.85866790410082, 14.3844988828766,
                            23.3572146909012, 37.9269019073225, 61.5848211066026, 100), dim = c(2L, 5L, 2L)))
+})
+
+test_that("ilog10 dataframe", {
+  expect_equal(ilog10(data.frame(y = -5:5)),
+               structure(list(y = c(1e-05, 1e-04, 0.001, 0.01, 0.1, 1, 10, 100,
+                                    1000, 10000, 1e+05)), class = "data.frame", row.names = c(NA, -11L)))
 })

@@ -1,15 +1,12 @@
 test_that("log2<- errors incorrect inputs", {
   x <- NULL
-  expect_error(log2(x) <- NULL, "`x` must be numeric\\.")
-  x <- NULL
-  expect_error(log2(x) <- "5", "`x` must be numeric\\.")
-  x <- NULL
-  expect_error(log2(x) <- TRUE, "`x` must be numeric\\.")
+  expect_error(log2(x) <- "5", "non-numeric argument to binary operator")
 })
 
 test_that("log2<- edge cases", {
   x <- NULL
-  expect_error(log2(x) <- NULL, "`x` must be numeric\\.")
+  log2(x) <- NULL
+  expect_equal(x, numeric(0))
   x <- NULL
   log2(x) <- numeric(0)
   expect_equal(x, numeric(0))
@@ -25,6 +22,21 @@ test_that("log2<- edge cases", {
   x <- NULL
   log2(x) <- rep(NA_real_, 3)
   expect_equal(x, rep(NA_real_, 3))
+})
+
+test_that("log2<- logicals", {
+  x <- NULL
+  log2(x) <- TRUE
+  expect_equal(x, 2)
+  x <- NULL
+  log2(x) <- FALSE
+  expect_equal(x, 1)
+  x <- NULL
+  log2(x) <- NA
+  expect_equal(x, NA_real_)
+  x <- NULL
+  log2(x) <- c(TRUE, FALSE, NA)
+  expect_equal(x, c(2, 1, NA_real_))
 })
 
 test_that("log2<- numeric", {
@@ -88,18 +100,21 @@ test_that("log2<- array", {
 
 })
 
+test_that("log2<- dataframe", {
+  x <- NULL
+  log2(x) <- data.frame(y = 10:15)
+  expect_equal(x, data.frame(y = c(1024, 2048, 4096, 8192, 16384, 32768)))
+})
+
 test_that("log10<- errors incorrect inputs", {
   x <- NULL
-  expect_error(log10(x) <- NULL, "`x` must be numeric\\.")
-  x <- NULL
-  expect_error(log10(x) <- "5", "`x` must be numeric\\.")
-  x <- NULL
-  expect_error(log10(x) <- TRUE, "`x` must be numeric\\.")
+  expect_error(log10(x) <- "5", "non-numeric argument to binary operator")
 })
 
 test_that("log10<- edge cases", {
   x <- NULL
-  expect_error(log10(x) <- NULL, "`x` must be numeric\\.")
+  log10(x) <- NULL
+  expect_equal(x, numeric(0))
   x <- NULL
   log10(x) <- numeric(0)
   expect_equal(x, numeric(0))
@@ -115,6 +130,21 @@ test_that("log10<- edge cases", {
   x <- NULL
   log10(x) <- rep(NA_real_, 3)
   expect_equal(x, rep(NA_real_, 3))
+})
+
+test_that("log10<- logicals", {
+  x <- NULL
+  log10(x) <- TRUE
+  expect_equal(x, 10)
+  x <- NULL
+  log10(x) <- FALSE
+  expect_equal(x, 1)
+  x <- NULL
+  log10(x) <- NA
+  expect_equal(x, NA_real_)
+  x <- NULL
+  log10(x) <- c(TRUE, FALSE, NA)
+  expect_equal(x, c(10, 1, NA_real_))
 })
 
 test_that("log10<- numeric", {
@@ -176,4 +206,10 @@ test_that("log10<- array", {
                               1.83298071083244, 2.33572146909012, 2.97635144163132, 3.79269019073225,
                               4.83293023857175, 6.15848211066026, 7.84759970351461, 10), dim = c(2L, 2L, 5L)))
 
+})
+
+test_that("log10<- dataframe", {
+  x <- NULL
+  log10(x) <- data.frame(y = 10:15)
+  expect_equal(x, data.frame(y = c(1e+10, 1e+11, 1e+12, 1e+13, 1e+14, 1e+15)))
 })
