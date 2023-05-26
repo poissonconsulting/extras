@@ -30,7 +30,7 @@
 #' @export
 #' @examples
 #' x <- NULL
-#' log2(x) <- 0.5
+#' log2(x) <- c(0.5, 5)
 #' x
 `log2<-` <- function(x, value) {
   exp2(value)
@@ -49,7 +49,7 @@
 #' @export
 #' @examples
 #' x <- NULL
-#' log10(x) <- 0.5
+#' log10(x) <- c(0.5, 5)
 #' x
 `log10<-` <- function(x, value) {
   exp10(value)
@@ -77,14 +77,14 @@ ilog <- function(x) {
 #'
 #' Inverse log transforms a numeric atomic object with base 2.
 #'
-#' @details A wrapper on [`exp`]`(value)`.
+#' @details A wrapper on [`exp2`]`(value)`.
 #'
 #' @param x A numeric atomic object.
 #' @family translations
 #' @return A numeric atomic object.
 #' @export
 #' @examples
-#' x <- 1
+#' x <- c(2, 4.5)
 #' ilog2(x)
 
 ilog2 <- function(x) {
@@ -95,14 +95,14 @@ ilog2 <- function(x) {
 #'
 #' Inverse log transforms a numeric atomic object with base 10.
 #'
-#' @details A wrapper on [`exp`]`(value)`.
+#' @details A wrapper on [`exp10`]`(value)`.
 #'
 #' @param x A numeric atomic object.
 #' @family translations
 #' @return A numeric atomic object.
 #' @export
 #' @examples
-#' x <- 1
+#' x <- c(2, 4.5)
 #' ilog10(x)
 
 ilog10 <- function(x) {
