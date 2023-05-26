@@ -2,7 +2,7 @@
 % Please edit documentation in R/exp.R
 \name{exp10}
 \alias{exp10}
-\title{Exponential transformation of base 10}
+\title{Exponential Transformation of Base 10}
 \usage{
 exp10(x)
 }
@@ -10,7 +10,7 @@ exp10(x)
 \item{x}{An numeric atomic object.}
 }
 \value{
-A numeric atomic object.
+A numeric atomic object with the value of 10^x.
 }
 \description{
 Returns the transformation of 10^x.

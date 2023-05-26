@@ -2,7 +2,7 @@
 % Please edit documentation in R/exp.R
 \name{exp2}
 \alias{exp2}
-\title{Exponential transformation of base 2}
+\title{Exponential Transformation of Base 2}
 \usage{
 exp2(x)
 }
