@@ -10,7 +10,6 @@
 #' x <- c(5, 10.5)
 #' exp2(x)
 exp2 <- function(x) {
-  chk::chk_numeric(x)
   2^x
 }
 
@@ -26,6 +25,5 @@ exp2 <- function(x) {
 #' x <- c(5, 10.5)
 #' exp10(x)
 exp10 <- function(x) {
-  chk::chk_numeric(x)
   10^x
 }

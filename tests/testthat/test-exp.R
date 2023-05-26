@@ -1,23 +1,23 @@
 test_that("exp2 test edge cases", {
-  expect_error(exp2(NULL), regexp = "`x` must be numeric.")
+  expect_equal(exp2(NULL), numeric(0))
   expect_equal(exp2(numeric(0)), numeric(0))
 })
 
 test_that("exp2 test missing values", {
   expect_equal(exp2(NA_real_), NA_real_)
   expect_equal(exp2(rep(NA_real_, 2)), rep(NA_real_, 2))
+  expect_equal(exp2(NA), NA_real_)
 })
 
 test_that("exp2 test strings", {
-  expect_error(exp2("4"), regexp = "`x` must be numeric.")
-  expect_error(exp2(c("4", "10")), regexp = "`x` must be numeric.")
+  expect_error(exp2("4"), regexp = "non-numeric argument to binary operator")
+  expect_error(exp2(c("4", "10")), regexp = "non-numeric argument to binary operator")
 })
 
 test_that("exp2 test logicals", {
-  expect_error(exp2(TRUE), regexp = "`x` must be numeric.")
-  expect_error(exp2(FALSE), regexp = "`x` must be numeric.")
-  expect_error(exp2(NA))
-  expect_error(exp2(c(TRUE, FALSE, NA)), regexp = "`x` must be numeric.")
+  expect_equal(exp2(TRUE), 2)
+  expect_equal(exp2(FALSE), 1)
+  expect_equal(exp2(c(TRUE, FALSE, NA)), c(2, 1, NA_real_))
 })
 
 test_that("exp2 test integers", {
@@ -44,38 +44,40 @@ test_that("exp2 test dataframes and matrices", {
   expect_equal(exp2(matrix(1:100, nrow = 25, ncol = 4)),
                2^(matrix(1:100, nrow = 25, ncol = 4)))
   df <- data.frame(x = -100:100, y = seq(-10, 10, by = 0.1))
-  expect_error(exp2(df), regexp = "`x` must be numeric.")
+  expect_equal(exp2(df), 2^df)
   expect_equal(exp2(df$y), 2^df$y)
   expect_equal(exp2(df$x), 2^df$x)
 })
 
 test_that("exp2 test multiple types", {
-  expect_error(exp2(c(5, "5")), regexp = "`x` must be numeric.")
+  expect_error(exp2(c(5, "5")), regexp = "non-numeric argument to binary operator")
   expect_equal(exp2(c(5, 5L)), c(32, 32))
   expect_equal(exp2(c(NA_real_, 5)), c(NA_real_, 32))
+  expect_equal(exp2(c(NA, 4, TRUE)), c(NA_real_, 16, 2))
 })
 
 
 test_that("exp10 test edge cases", {
-  expect_error(exp10(NULL), regexp = "`x` must be numeric.")
+  expect_equal(exp10(NULL), numeric(0))
   expect_equal(exp10(numeric(0)), numeric(0))
 })
 
 test_that("exp10 test missing values", {
   expect_equal(exp10(NA_real_), NA_real_)
   expect_equal(exp10(rep(NA_real_, 2)), rep(NA_real_, 2))
+  expect_equal(exp10(NA), NA_real_)
 })
 
 test_that("exp10 test strings", {
-  expect_error(exp10("4"), regexp = "`x` must be numeric.")
-  expect_error(exp10(c("4", "10")), regexp = "`x` must be numeric.")
+  expect_error(exp10("4"), regexp = "non-numeric argument to binary operator")
+  expect_error(exp10(c("4", "10")), regexp = "non-numeric argument to binary operator")
 })
 
 test_that("exp10 test logicals", {
-  expect_error(exp10(TRUE), regexp = "`x` must be numeric.")
-  expect_error(exp10(FALSE), regexp = "`x` must be numeric.")
-  expect_error(exp10(NA), regexp = "`x` must be numeric.")
-  expect_error(exp10(c(TRUE, FALSE, NA)), regexp = "`x` must be numeric.")
+  expect_equal(exp10(TRUE), 10)
+  expect_equal(exp10(FALSE), 1)
+  expect_equal(exp10(NA), NA_real_)
+  expect_equal(exp10(c(TRUE, FALSE, NA)), c(10, 1, NA_real_))
 })
 
 test_that("exp10 test integers", {
@@ -102,13 +104,13 @@ test_that("exp10 test dataframes and matrices", {
   expect_equal(exp10(matrix(1:100, nrow = 25, ncol = 4)),
                10^(matrix(1:100, nrow = 25, ncol = 4)))
   df <- data.frame(x = -100:100, y = seq(-10, 10, by = 0.1))
-  expect_error(exp10(df), regexp = "`x` must be numeric.")
+  expect_equal(exp10(df), 10^df)
   expect_equal(exp10(df$y), 10^df$y)
   expect_equal(exp10(df$x), 10^df$x)
 })
 
 test_that("exp10 test multiple types", {
-  expect_error(exp10(c(5, "5")), regexp = "`x` must be numeric.")
+  expect_error(exp10(c(5, "5")), regexp = "non-numeric argument to binary operator")
   expect_equal(exp10(c(5, 5L)), c(1e+05, 1e+05))
   expect_equal(exp10(c(NA_real_, 5)), c(NA_real_, 1e+05))
 })
