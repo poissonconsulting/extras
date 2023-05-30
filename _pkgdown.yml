@@ -27,6 +27,8 @@ reference:
   desc: Conversion functions
   contents:
   - '`fabs`'
+  - '`exp2`'
+  - '`exp10`'
   - '`ilog`'
   - '`ilogit`'
   - '`invlogit`'
