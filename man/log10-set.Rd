@@ -7,7 +7,7 @@
 log10(x) <- value
 }
 \arguments{
-\item{x}{An existing R object.}
+\item{x}{An object.}
 
 \item{value}{A numeric atomic object.}
 }

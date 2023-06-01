@@ -4,7 +4,7 @@
 #'
 #' @details A wrapper on [`exp`]`(value)`.
 #'
-#' @param x An existing R object.
+#' @inheritParams params
 #' @param value A numeric atomic object.
 #' @family translations
 #' @return Called for the side effect of updating `x`.
@@ -23,7 +23,7 @@
 #'
 #' @details A wrapper on [`exp2`]`(value)`.
 #'
-#' @param x An existing R object.
+#' @inheritParams params
 #' @param value A numeric atomic object.
 #' @family translations
 #' @return Called for the side effect of updating `x`.
@@ -42,7 +42,7 @@
 #'
 #' @details A wrapper on [`exp10`]`(value)`.
 #'
-#' @param x An existing R object.
+#' @inheritParams params
 #' @param value A numeric atomic object.
 #' @family translations
 #' @return Called for the side effect of updating `x`.
@@ -61,7 +61,7 @@
 #'
 #' @details A wrapper on [`exp`]`(value)`.
 #'
-#' @param x A numeric atomic object.
+#' @inheritParams params
 #' @family translations
 #' @return A numeric atomic object.
 #' @export
@@ -79,7 +79,7 @@ ilog <- function(x) {
 #'
 #' @details A wrapper on [`exp2`]`(value)`.
 #'
-#' @param x A numeric atomic object.
+#' @inheritParams params
 #' @family translations
 #' @return A numeric atomic object.
 #' @export
@@ -97,7 +97,7 @@ ilog2 <- function(x) {
 #'
 #' @details A wrapper on [`exp10`]`(value)`.
 #'
-#' @param x A numeric atomic object.
+#' @inheritParams params
 #' @family translations
 #' @return A numeric atomic object.
 #' @export

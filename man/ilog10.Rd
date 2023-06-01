@@ -7,7 +7,7 @@
 ilog10(x)
 }
 \arguments{
-\item{x}{A numeric atomic object.}
+\item{x}{An object.}
 }
 \value{
 A numeric atomic object.
