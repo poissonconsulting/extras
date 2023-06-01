@@ -3,19 +3,28 @@ test_that("log2<- errors incorrect inputs", {
   expect_error(log2(x) <- "5", "non-numeric argument to binary operator")
 })
 
-test_that("log2<- edge cases", {
+test_that("log2<- NULL", {
   x <- NULL
   log2(x) <- NULL
   expect_equal(x, numeric(0))
+})
+
+test_that("log2<- numeric(0)", {
   x <- NULL
   log2(x) <- numeric(0)
   expect_equal(x, numeric(0))
+})
+
+test_that("log2<- Inf", {
   x <- NULL
   log2(x) <- -Inf
   expect_equal(x, 0)
   x <- NULL
   log2(x) <- Inf
   expect_equal(x, Inf)
+})
+
+test_that("log2<- NA_real_", {
   x <- NULL
   log2(x) <- NA_real_
   expect_equal(x, NA_real_)
@@ -111,19 +120,28 @@ test_that("log10<- errors incorrect inputs", {
   expect_error(log10(x) <- "5", "non-numeric argument to binary operator")
 })
 
-test_that("log10<- edge cases", {
+test_that("log10<- NULL", {
   x <- NULL
   log10(x) <- NULL
   expect_equal(x, numeric(0))
+})
+
+test_that("log10<- numeric(0)", {
   x <- NULL
   log10(x) <- numeric(0)
   expect_equal(x, numeric(0))
+})
+
+test_that("log10<- Inf", {
   x <- NULL
   log10(x) <- -Inf
   expect_equal(x, 0)
   x <- NULL
   log10(x) <- Inf
   expect_equal(x, Inf)
+})
+
+test_that("log10<- NA_real_", {
   x <- NULL
   log10(x) <- NA_real_
   expect_equal(x, NA_real_)
