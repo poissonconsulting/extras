@@ -1,39 +1,45 @@
-test_that("log2<- errors incorrect inputs", {
+test_that("log2<- errors character value", {
   x <- NULL
   expect_error(log2(x) <- "5", "non-numeric argument to binary operator")
 })
 
-test_that("log2<- NULL", {
+test_that("log2<- sets x to numeric(0) with NULL value", {
   x <- NULL
   log2(x) <- NULL
   expect_equal(x, numeric(0))
 })
 
-test_that("log2<- numeric(0)", {
+test_that("log2<- sets x to numeric(0) with numeric(0) value", {
   x <- NULL
   log2(x) <- numeric(0)
   expect_equal(x, numeric(0))
 })
 
-test_that("log2<- Inf", {
+test_that("log2<- sets x to 0 with -Inf value", {
   x <- NULL
   log2(x) <- -Inf
   expect_equal(x, 0)
+})
+
+test_that("log2<- sets x to Inf with Inf value", {
   x <- NULL
   log2(x) <- Inf
   expect_equal(x, Inf)
 })
 
-test_that("log2<- NA_real_", {
+test_that("log2<- sets x to NA_real_ with NA_real_ value", {
   x <- NULL
   log2(x) <- NA_real_
   expect_equal(x, NA_real_)
+})
+
+test_that("log2<- sets x to NA_real_ with NA_real_ value vectorized", {
   x <- NULL
   log2(x) <- rep(NA_real_, 3)
   expect_equal(x, rep(NA_real_, 3))
 })
 
-test_that("log2<- logicals", {
+test_that("log2<- logical values coerced to numeric", {
   x <- NULL
   log2(x) <- TRUE
   expect_equal(x, 2)
@@ -48,7 +54,7 @@ test_that("log2<- logicals", {
   expect_equal(x, c(2, 1, NA_real_))
 })
 
-test_that("log2<- numeric", {
+test_that("log2<- numeric values set x as expected", {
   x <- NULL
   log2(x) <- -5L
   expect_equal(x, 0.03125)
@@ -66,7 +72,7 @@ test_that("log2<- numeric", {
   expect_equal(x, 2.00277451142267)
 })
 
-test_that("log2<- vectors", {
+test_that("log2<- vectorized numeric values set x as expected", {
   x <- NULL
   log2(x) <- c(-10L, -5L, -1L, 0L, 1L, 5L, 10L)
   expect_equal(x, c(0.0009765625, 0.03125, 0.5, 1, 2, 32, 1024))
@@ -78,7 +84,7 @@ test_that("log2<- vectors", {
                     8, 11.3137084989848, 16, 22.6274169979695, 32))
 })
 
-test_that("log2<- matrix", {
+test_that("log2<- matrix of numeric values set x as expected", {
   x <- NULL
   log2(x) <- matrix(-10:9, nrow = 4, ncol = 5)
   expect_equal(x, structure(c(0.0009765625, 0.001953125, 0.00390625, 0.0078125,
@@ -93,7 +99,7 @@ test_that("log2<- matrix", {
                               1.60682245313376, 1.72844378656321, 1.85927071001681, 2), dim = 4:5))
 })
 
-test_that("log2<- array", {
+test_that("log2<- array of numeric values set x as expected", {
   x <- NULL
   log2(x) <- array(-10:9, dim = c(2, 2, 5))
   expect_equal(x, structure(c(0.0009765625, 0.001953125, 0.00390625, 0.0078125,
@@ -109,39 +115,42 @@ test_that("log2<- array", {
 
 })
 
-test_that("log2<- dataframe", {
+test_that("log2<- dataframe numeric values set x as expected", {
   x <- NULL
   log2(x) <- data.frame(y = 10:15)
   expect_equal(x, data.frame(y = c(1024, 2048, 4096, 8192, 16384, 32768)))
 })
 
-test_that("log10<- errors incorrect inputs", {
+test_that("log10<- errors character value", {
   x <- NULL
   expect_error(log10(x) <- "5", "non-numeric argument to binary operator")
 })
 
-test_that("log10<- NULL", {
+test_that("log10<- sets x to numeric(0) with NULL value", {
   x <- NULL
   log10(x) <- NULL
   expect_equal(x, numeric(0))
 })
 
-test_that("log10<- numeric(0)", {
+test_that("log10<- sets x to numeric(0) with numeric(0) value", {
   x <- NULL
   log10(x) <- numeric(0)
   expect_equal(x, numeric(0))
 })
 
-test_that("log10<- Inf", {
+test_that("log10<- sets x to 0 with -Inf value", {
   x <- NULL
   log10(x) <- -Inf
   expect_equal(x, 0)
+})
+
+test_that("log10<- sets x to Inf with Inf value", {
   x <- NULL
   log10(x) <- Inf
   expect_equal(x, Inf)
 })
 
-test_that("log10<- NA_real_", {
+test_that("log10<- sets x to NA_real_ with NA_real_ value", {
   x <- NULL
   log10(x) <- NA_real_
   expect_equal(x, NA_real_)
@@ -150,7 +159,7 @@ test_that("log10<- NA_real_", {
   expect_equal(x, rep(NA_real_, 3))
 })
 
-test_that("log10<- logicals", {
+test_that("log10<- logical values coerced to numeric", {
   x <- NULL
   log10(x) <- TRUE
   expect_equal(x, 10)
@@ -165,7 +174,7 @@ test_that("log10<- logicals", {
   expect_equal(x, c(10, 1, NA_real_))
 })
 
-test_that("log10<- numeric", {
+test_that("log10<- numeric values set x as expected", {
   x <- NULL
   log10(x) <- -5L
   expect_equal(x, 1e-05)
@@ -183,7 +192,7 @@ test_that("log10<- numeric", {
   expect_equal(x, 10.046157902784)
 })
 
-test_that("log10<- vectors", {
+test_that("log10<- vectorized numeric values set x as expected", {
   x <- NULL
   log10(x) <- c(-10L, -5L, -1L, 0L, 1L, 5L, 10L)
   expect_equal(x, c(1e-10, 1e-05, 0.1, 1, 10, 1e+05, 1e+10))
@@ -195,7 +204,7 @@ test_that("log10<- vectors", {
                     1000, 3162.27766016838, 10000, 31622.7766016838, 1e+05))
 })
 
-test_that("log10<- matrix", {
+test_that("log10<- matrix of numeric values set x as expected", {
   x <- NULL
   log10(x) <- matrix(-10:9, nrow = 4, ncol = 5)
   expect_equal(x, structure(c(1e-10, 1e-09, 1e-08, 1e-07, 1e-06, 1e-05, 1e-04,
@@ -210,7 +219,7 @@ test_that("log10<- matrix", {
                               4.83293023857175, 6.15848211066026, 7.84759970351461, 10), dim = 4:5))
 })
 
-test_that("log10<- array", {
+test_that("log10<- array of numeric values set x as expected", {
   x <- NULL
   log10(x) <- array(-10:9, dim = c(2, 2, 5))
   expect_equal(x, structure(c(1e-10, 1e-09, 1e-08, 1e-07, 1e-06, 1e-05, 1e-04,
@@ -226,7 +235,7 @@ test_that("log10<- array", {
 
 })
 
-test_that("log10<- dataframe", {
+test_that("log10<- dataframe of numeric values set x as expected", {
   x <- NULL
   log10(x) <- data.frame(y = 10:15)
   expect_equal(x, data.frame(y = c(1e+10, 1e+11, 1e+12, 1e+13, 1e+14, 1e+15)))
