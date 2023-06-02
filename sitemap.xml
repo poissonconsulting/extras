@@ -118,6 +118,12 @@
     <loc>/reference/ilog.html</loc>
   </url>
   <url>
+    <loc>/reference/ilog10.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ilog2.html</loc>
+  </url>
+  <url>
     <loc>/reference/ilogit.html</loc>
   </url>
   <url>
@@ -137,6 +143,12 @@
   </url>
   <url>
     <loc>/reference/log-set.html</loc>
+  </url>
+  <url>
+    <loc>/reference/log10-set.html</loc>
+  </url>
+  <url>
+    <loc>/reference/log2-set.html</loc>
   </url>
   <url>
     <loc>/reference/log_lik_bern.html</loc>
