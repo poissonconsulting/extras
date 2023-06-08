@@ -20,7 +20,7 @@ An numeric vector of the corresponding log-likelihoods.
 Normal Log-Likelihood
 }
 \examples{
-dev_norm(c(-2:2))
+log_lik_norm(c(-2:2))
 }
 \seealso{
 Other log_lik_dist: 
@@ -32,6 +32,7 @@ Other log_lik_dist:
 \code{\link{log_lik_gamma}()},
 \code{\link{log_lik_lnorm}()},
 \code{\link{log_lik_neg_binom}()},
+\code{\link{log_lik_norm_skew}()},
 \code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_pois}()},
 \code{\link{log_lik_student}()}

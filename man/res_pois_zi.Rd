@@ -36,6 +36,7 @@ Other res_dist:
 \code{\link{res_gamma}()},
 \code{\link{res_lnorm}()},
 \code{\link{res_neg_binom}()},
+\code{\link{res_norm_skew}()},
 \code{\link{res_norm}()},
 \code{\link{res_pois}()},
 \code{\link{res_student}()}
