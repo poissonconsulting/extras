@@ -136,6 +136,33 @@ ran_norm <- function(n = 1, mean = 0, sd = 1) {
   stats::rnorm(n, mean = mean, sd = sd)
 }
 
+#' Skew Normal Random Samples
+#'
+#' @inheritParams params
+#' @param shape A numeric vector of shape.
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_norm_skew(10, shape = -1)
+#' ran_norm_skew(10, shape = 0)
+#' ran_norm_skew(10, shape = 1)
+ran_norm_skew <- function(n = 1, mean = 0, sd = 1, shape = 0) {
+  chk_whole_number(n)
+  chk_gte(n)
+  chk_gte(sd)
+  delta <- shape / sqrt(1 + shape^2)
+  tn <- matrix(stats::rnorm(2 * n), 2, n, byrow = FALSE)
+  chi <- c(abs(tn[1,]))
+  nrv <- c(tn[2,])
+  z <- delta * chi + sqrt(1 - delta^2) * nrv
+  y <- as.vector(mean + sd * z)
+  bol <- length(y) > n
+  if (bol) y <- y[1:n]
+  y
+}
+
 #' Poisson Random Samples
 #'
 #' @inheritParams params
