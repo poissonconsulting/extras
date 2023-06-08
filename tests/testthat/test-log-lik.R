@@ -188,3 +188,39 @@ test_that("beta_binom log_lik", {
   expect_equal(mod2$logL, sum(log_lik_beta_binom(samples2, size = 50,
                                                  prob = est_prob, theta = est_theta)))
 })
+
+test_that("norm_skew missing values", {
+  expect_identical(log_lik_norm_skew(numeric(0), numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_norm_skew(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_norm_skew(1, 1, sd = numeric(0)), numeric(0))
+  expect_identical(log_lik_norm_skew(1, 1, shape = numeric(0)), numeric(0))
+  expect_identical(log_lik_norm_skew(NA, 1, 1, 0.5), NA_real_)
+  expect_identical(log_lik_norm_skew(1, NA, 1, 0.5), NA_real_)
+  expect_identical(log_lik_norm_skew(1, 1, NA, 0.5), NA_real_)
+  expect_identical(log_lik_norm_skew(1, 1, 1, NA), NA_real_)
+})
+
+test_that("norm_skew known values", {
+  expect_equal(log_lik_norm_skew(0.5, 3), -4.04393853320467)
+  expect_equal(log_lik_norm_skew(0.5, 3, 0), -Inf)
+  expect_equal(log_lik_norm_skew(0.5, 3, 1, -4), -3.35079135264473)
+  expect_equal(log_lik_norm_skew(-100, 3, 1, -10), -5304.72579135264)
+  expect_equal(log_lik_norm_skew(-100, 3, 0.3, Inf), -Inf)
+  expect_equal(log_lik_norm_skew(100, 3, 1), -4705.4189385332)
+  expect_equal(log_lik_norm_skew(0, 0), -0.918938533204673)
+  expect_equal(log_lik_norm_skew(0, 3, 0.5, 0.5), -24.1403703935951)
+  expect_equal(log_lik_norm_skew(1, 2, 0.2, -1), -11.1163537268622)
+  expect_equal(log_lik_norm_skew(2, 2, 0.2, 10), 0.690499379229428)
+  expect_equal(log_lik_norm_skew(1, 2, 0.5, -10), -1.53264417208478)
+  expect_equal(log_lik_norm_skew(1, 2, 0.5, 0), log_lik_norm(1, 2, 0.5))
+  expect_equal(log_lik_norm_skew(1, 2, 0.2), dnorm(1, 2, 0.2, log = TRUE))
+})
+
+test_that("norm_skew vectorized", {
+  expect_equal(log_lik_norm_skew(0:3, 2, 0.5, 0), c(-8.22579135264473, -2.22579135264473, -0.225791352644727, -2.22579135264473))
+  expect_equal(log_lik_norm_skew(0:3, 2, 0.5, 0), log_lik_norm(0:3, 2, 0.5))
+  expect_equal(log_lik_norm_skew(c(0, 1, 3, 4, 5), 3, 0.5, 0.5), c(-24.1403703935951, -11.3158285057668, -0.225791352644727, -1.70539795110823,
+                                                                   -7.55565708141375))
+  expect_equal(log_lik_norm_skew(0:3, 5:8, seq(0, 1, length.out = 4), -2), c(NaN, -111.627179063977, -27.9453262445366, -12.7257913526447))
+  expect_equal(log_lik_norm_skew(0:3, 3:0, seq(0, 1, length.out = 4), 0.5), c(NaN, -6.33312346480051, -1.20232051137493, -4.79493480825696))
+})

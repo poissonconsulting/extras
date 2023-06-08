@@ -690,3 +690,81 @@ test_that("student deviance", {
   deviance <- sum(dev_student(samples, coef(mod)[1]))
   expect_equal(deviance, deviance(mod))
 })
+
+test_that("norm_skew missing values", {
+  expect_identical(dev_norm_skew(logical(0), integer(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(dev_norm_skew(NA, 1, 1, 1), NA_real_)
+  expect_identical(dev_norm_skew(1, NA, 1, 1), NA_real_)
+  expect_identical(dev_norm_skew(1, 1, NA, 1), NA_real_)
+  expect_identical(dev_norm_skew(1, 1, 1, NA), NA_real_)
+})
+
+test_that("norm_skew known values", {
+  expect_identical(dev_norm_skew(1, 1), 0)
+  expect_identical(dev_norm_skew(1, 1, 1), 0)
+  expect_equal(dev_norm_skew(1, 1, 1, 1), 0.398456311678723)
+  expect_equal(dev_norm_skew(0, 0), 0)
+  expect_equal(dev_norm_skew(0, 0, 1), 0)
+  expect_equal(dev_norm_skew(0, 0, 1, 1), 0.398456311678723)
+  expect_identical(dev_norm_skew(0, 0, 0), dev_norm(0, 0, 0))
+  expect_equal(dev_norm_skew(0, 1, 10, 0), dev_norm(0, 1, 10))
+  expect_equal(dev_norm_skew(1, 0), 1)
+  expect_equal(dev_norm_skew(1, 0, 1), 1)
+  expect_equal(dev_norm_skew(1, 0, 1, 10), 0.925959042346759)
+  expect_equal(dev_norm_skew(0, 1, 5, -10), 0.0119848610046867)
+  expect_equal(dev_norm_skew(0, 1, 1, 100), 10012.0431099887)
+  expect_equal(dev_norm_skew(20, 1, 1, 0), 361)
+  expect_equal(dev_norm_skew(10, 1, 5, 15), 3.20046804194821)
+  expect_equal(dev_norm_skew(0, 2, 5, -10), 0.0860223858335147)
+  expect_equal(dev_norm_skew(0, 2, 1, -0.3), 3.30902744735532)
+  expect_equal(dev_norm_skew(3, 2, 1, 0.1), 0.853041620995908)
+  expect_equal(dev_norm_skew(13, 2, 1, 0.5), 119.751389326937)
+  expect_equal(dev_norm_skew(0, 2, 2, 10), 107.388529343372)
+  expect_equal(dev_norm_skew(0, 2, 2, -2), 0.452806719152662)
+  expect_equal(dev_norm_skew(0, 2, 2, 13), 176.930038215879)
+})
+
+test_that("norm_skew vectorized", {
+  expect_equal(dev_norm_skew(0:3, 2, 0.1, 0), c(400, 100, 0, 100))
+  expect_equal(dev_norm_skew(c(0, 1, 3, 0), 3, 0.5, 0.5), c(47.9668417319782, 22.3177579563216, 0.137683650077409, 47.9668417319782))
+  expect_equal(dev_norm_skew(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
+  expect_equal(dev_norm_skew(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(Inf, 1.67133656780082, 0.00816257443560442, 0.357669508605733))
+})
+
+test_that("norm_skew vectorized missing values", {
+  expect_equal(dev_norm_skew(c(NA,1), 0:1, 0:1, 0:1), c(NA,0.398456311678723))
+  expect_equal(dev_norm_skew(c(0,NA), 0:1, 1:2, 0:1), c(0,NA))
+  expect_equal(dev_norm_skew(c(0:1), c(NA,1), 1:2, 0:1), c(NA, 0.398456311678724))
+  expect_equal(dev_norm_skew(c(0:1), c(0,NA), 1:2, 0:1), c(0,NA))
+  expect_equal(dev_norm_skew(c(0:1), c(0:1), c(NA,1), 0:1), c(NA, 0.398456311678723))
+  expect_equal(dev_norm_skew(c(0:1), c(0:1), c(1,NA), 0:1), c(0,NA))
+  expect_equal(dev_norm_skew(c(0:1), c(0:1), 0:1, c(NA,1)), c(NA, 0.398456311678723))
+  expect_equal(dev_norm_skew(c(0:1), c(0:1), 1:2, c(0,NA)), c(0,NA))
+})
+
+test_that("norm_skew res", {
+  expect_equal(dev_norm_skew(10, 0.5, 0.5), dev_norm_skew(10, 0.5, 0.5, res = TRUE)^2)
+  expect_equal(dev_norm_skew(0:1, c(0.3,0.6), 0.5), dev_norm_skew(0:1, c(0.3,0.6), 0.5, res = TRUE)^2)
+})
+
+test_that("norm_skew log_lik", {
+  expect_equal(dev_norm_skew(0:1, 1:2, 2:3, shape = 0),
+               2 * (log_lik_norm_skew(0:1, 0:1, 2:3, shape = 0) - log_lik_norm_skew(0:1, 1:2, 2:3, shape = 0)))
+})
+
+test_that("norm_skew ran", {
+  set.seed(101)
+  samples <- ran_norm_skew(100000, 3, 0.5, 0.5)
+  expect_equal(mean(samples), 3.17851201086154)
+  expect_equal(var(samples), 0.215894351753986)
+  res <- dev_norm_skew(samples, 3, 0.5, 0.5, res = TRUE)
+  expect_equal(mean(res), 0.00818696278884169)
+  expect_equal(sd(res), 0.995441552601596)
+})
+
+test_that("norm_skew deviance", {
+  samples <- ran_norm_skew(1000, 3, 0.5, 0)
+  mod <- glm(samples~1, family = gaussian)
+  deviance <- sum(dev_norm_skew(samples, coef(mod)[1]))
+  expect_equal(deviance, deviance(mod))
+})
