@@ -152,6 +152,7 @@ reference:
   - '`rbern`'
 - title: Skew Normal
   desc: Skew Normal distribution functions
+  contents:
   - '`dskewnorm`'
   - '`pskewnorm`'
   - '`qskewnorm`'
