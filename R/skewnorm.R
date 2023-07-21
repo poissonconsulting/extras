@@ -4,6 +4,7 @@
 #' @param x A vector of values.
 #'
 #' @return `dskewnorm` gives the density, `pskewnorm` gives the distribution function, `qskewnorm` gives the quantile function, and `rskewnorm` generates random deviates.
+#' `pskewnorm` and `qskewnorm` use the lower tail probability.
 #' @family skewnorm
 #' @rdname skewnorm
 #' @export
@@ -17,72 +18,117 @@
 #' qskewnorm(p = c(0.1, 0.4), mean = 0, sd = 1, shape = -1)
 #' pskewnorm(q = -3:3, mean = 0, sd = 1, shape = 0.1)
 #' pskewnorm(q = -3:3, mean = 0, sd = 1, shape = -1)
-dskewnorm <- function(x, mean = 0, sd = 1, shape = 0, log = FALSE)  {
-  log_lik <- log(2) - log(sd) + stats::dnorm((x - mean) / sd, 0, 1, log = TRUE) +
-    stats::pnorm(shape * (x - mean) / sd, 0, 1, log.p = TRUE)
-  lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
-  if (length(shape) == 1) {
-    shape <- rep(shape, length(lnorm))
+dskewnorm <- function(x, mean = 0, sd = 1, shape = 0, log = FALSE) {
+  if (!requireNamespace("sn", quietly = TRUE)) {
+    stop(
+      "Package \"sn\" must be installed to use this function.",
+      call. = FALSE
+    )
   }
-  use_norm <- !is.na(shape) & shape == 0
-  log_lik[use_norm] <- lnorm[use_norm]
-  out <- if(log) log_lik
-    else exp(log_lik)
-  out
+  chk_gte(sd)
+  lengths <- as.logical(length(x)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
+  if (lengths >= 4) {
+    nas <- any(is.na(x), is.na(mean), is.na(sd), is.na(shape))
+    if (!nas) chk_compatible_lengths(x, mean, sd, shape)
+  }
+  character <- any(is.character(x), is.character(mean), is.character(sd), is.character(shape))
+  if (lengths < 4 & !character) {
+    return(vector(mode = "numeric"))
+  }
+  chk_false(character)
+  na_shape <- is.na(shape)
+  shape[na_shape] <- 0
+  lik <- sn::dsn(x = x, xi = mean, omega = sd, alpha = shape, log = log)
+  lik[na_shape] <- NA_real_
+  lik
 }
 
 #' @rdname skewnorm
 #' @export
-pskewnorm <- function(q, mean = 0, sd = 1, shape = 0, lower.tail = TRUE, log = FALSE)  {
+pskewnorm <- function(q, mean = 0, sd = 1, shape = 0) {
+  if (!requireNamespace("sn", quietly = TRUE)) {
+    stop(
+      "Package \"sn\" must be installed to use this function.",
+      call. = FALSE
+    )
+  }
   chk_gte(sd)
-  chk_length(shape)
-  h <- (q - mean) / sd
-  int_t <- function(x, h) {
-    (exp(-0.5 * h^2 * (1 + x^2))) / (1 + x^2)
+  lengths <- as.logical(length(q)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
+  if (lengths >= 4) {
+    nas <- any(is.na(q), is.na(mean), is.na(sd), is.na(shape))
+    if (!nas) chk_compatible_lengths(q, mean, sd, shape)
   }
-  owen_t <- function(h, shape) {
-    ot <- 1 / (2 * pi) * integrate(int_t, h = h, lower = 0, upper = shape, abs.tol = 1e-20)$value
-    ot
+  character <- any(is.character(q), is.character(mean), is.character(sd), is.character(shape))
+  if (lengths < 4 & !character) {
+    return(vector(mode = "numeric"))
   }
-  vot <- sapply(h, owen_t, shape = shape)
-  # ot2 <- sn::T.Owen(h, a = shape)
-  p <- stats::pnorm(h) - 2 * vot
-  # p2 <- sn::psn(q, alpha = shape)
-  p[p < 0] <- 0
-  if (!lower.tail) p <- (1 - p)
-  if (log) p <- log(p)
-  ### Unsure about having log.p argument... with shape != 0, get -Inf quite easily.
-  use_norm <- !is.na(shape) & shape == 0
-  p[use_norm] <- stats::pnorm(q = q, mean = mean, sd = sd, lower.tail = lower.tail, log.p = log)
+  chk_false(character)
+  na_shape <- is.na(shape)
+  shape[na_shape] <- 0
+  p <- mapply(sn::psn, x = q, xi = mean, omega = sd, alpha = shape)
+  p[na_shape] <- NA_real_
   p
 }
 
 #' @rdname skewnorm
 #' @export
-qskewnorm <- function(p, mean = 0, sd = 1, shape = 0, lower.tail = TRUE, log = FALSE) {
+qskewnorm <- function(p, mean = 0, sd = 1, shape = 0) {
+  if (!requireNamespace("sn", quietly = TRUE)) {
+    stop(
+      "Package \"sn\" must be installed to use this function.",
+      call. = FALSE
+    )
+  }
   chk_gte(sd)
   chk_gte(p)
   chk_lte(p, 1)
-
-  # ???
-
+  lengths <- as.logical(length(p)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
+  if (lengths >= 4) {
+    nas <- any(is.na(p), is.na(mean), is.na(sd), is.na(shape))
+    if (!nas) chk_compatible_lengths(p, mean, sd, shape)
+  }
+  character <- any(is.character(p), is.character(mean), is.character(sd), is.character(shape))
+  if (lengths < 4 & !character) {
+    return(vector(mode = "numeric"))
+  }
+  chk_false(character)
+  na_shape <- is.na(shape)
+  shape[na_shape] <- 0
+  na_sd <- is.na(sd)
+  sd[na_sd] <- 0.1
+  q <- mapply(sn::qsn, p = p, xi = mean, omega = sd, alpha = shape)
+  q[na_shape] <- NA_real_
+  q[na_sd] <- NA_real_
+  q
 }
-
-
 
 #' @rdname skewnorm
 #' @export
-rskewnorm <- function(n, mean = 0, sd = 1, shape = 0)  {
-  chk_whole_number(n)
+rskewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
+  if (!requireNamespace("sn", quietly = TRUE)) {
+    stop(
+      "Package \"sn\" must be installed to use this function.",
+      call. = FALSE
+    )
+  }
   chk_gte(n)
+  chk_lt(n, Inf)
+  chk_not_any_na(n)
   chk_gte(sd)
-  delta <- shape / sqrt(1 + shape^2)
-  tn <- matrix(stats::rnorm(2 * n), 2, n, byrow = FALSE)
-  chi <- c(abs(tn[1,]))
-  nrv <- c(tn[2,])
-  z <- delta * chi + sqrt(1 - delta^2) * nrv
-  y <- as.vector(mean + sd * z)
-  bol <- length(y) > n
-  if (bol) y <- y[1:n]
-  y
+  lengths <- as.logical(length(n)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
+  character <- any(is.character(n), is.character(mean), is.character(sd), is.character(shape))
+  if (lengths < 4 & !character) {
+    return(vector(mode = "numeric"))
+  }
+  chk_whole_number(n)
+  if (lengths >= 4) {
+    nas <- any(is.na(n), is.na(mean), is.na(sd), is.na(shape))
+    if (!nas) {
+      chk_compatible_lengths(rep(1, n), mean, sd, shape)
+    }
+  }
+  chk_false(character)
+  ran <- sn::rsn(n, xi = mean, omega = sd, alpha = shape)
+  attributes(ran) <- NULL
+  ran[1:n]
 }
