@@ -1,7 +1,8 @@
 #' Skew-Normal Distribution
 #'
 #' @inheritParams params
-#' @param x A vector of values.
+#' @param x A numeric vector of values.
+#' @param shape A numeric vector of values.
 #'
 #' @return `dskewnorm` gives the density, `pskewnorm` gives the distribution function, `qskewnorm` gives the quantile function, and `rskewnorm` generates random deviates.
 #' `pskewnorm` and `qskewnorm` use the lower tail probability.
@@ -10,14 +11,14 @@
 #' @export
 #'
 #' @examples
-#' dskewnorm(x = -3:3, mean = 0, sd = 1, shape = 0.1)
-#' dskewnorm(x = -3:3, mean = 0, sd = 1, shape = -1)
-#' rskewnorm(n = 3, mean = 0, sd = 1, shape = 0.1)
-#' rskewnorm(n = 3, mean = 0, sd = 1, shape = -1)
+#' dskewnorm(x = -2:2, mean = 0, sd = 1, shape = 0.1)
+#' dskewnorm(x = -2:2, mean = 0, sd = 1, shape = -1)
 #' qskewnorm(p = c(0.1, 0.4), mean = 0, sd = 1, shape = 0.1)
 #' qskewnorm(p = c(0.1, 0.4), mean = 0, sd = 1, shape = -1)
-#' pskewnorm(q = -3:3, mean = 0, sd = 1, shape = 0.1)
-#' pskewnorm(q = -3:3, mean = 0, sd = 1, shape = -1)
+#' pskewnorm(q = -2:2, mean = 0, sd = 1, shape = 0.1)
+#' pskewnorm(q = -2:2, mean = 0, sd = 1, shape = -1)
+#' rskewnorm(n = 3, mean = 0, sd = 1, shape = 0.1)
+#' rskewnorm(n = 3, mean = 0, sd = 1, shape = -1)
 dskewnorm <- function(x, mean = 0, sd = 1, shape = 0, log = FALSE) {
   if (!requireNamespace("sn", quietly = TRUE)) {
     stop(
