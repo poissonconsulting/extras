@@ -27,6 +27,8 @@ dskewnorm <- function(x, mean = 0, sd = 1, shape = 0, log = FALSE) {
     )
   }
   chk_gte(sd)
+  nulls <- any(is.null(x), is.null(mean), is.null(sd), is.null(shape))
+  if (nulls) stop("invalid arguments")
   lengths <- as.logical(length(x)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
   if (lengths >= 4) {
     nas <- any(is.na(x), is.na(mean), is.na(sd), is.na(shape))
@@ -54,6 +56,8 @@ pskewnorm <- function(q, mean = 0, sd = 1, shape = 0) {
     )
   }
   chk_gte(sd)
+  nulls <- any(is.null(q), is.null(mean), is.null(sd), is.null(shape))
+  if (nulls) stop("invalid arguments")
   lengths <- as.logical(length(q)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
   if (lengths >= 4) {
     nas <- any(is.na(q), is.na(mean), is.na(sd), is.na(shape))
@@ -83,6 +87,8 @@ qskewnorm <- function(p, mean = 0, sd = 1, shape = 0) {
   chk_gte(sd)
   chk_gte(p)
   chk_lte(p, 1)
+  nulls <- any(is.null(p), is.null(mean), is.null(sd), is.null(shape))
+  if (nulls) stop("invalid arguments")
   lengths <- as.logical(length(p)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
   if (lengths >= 4) {
     nas <- any(is.na(p), is.na(mean), is.na(sd), is.na(shape))
@@ -116,13 +122,15 @@ rskewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
   chk_lt(n, Inf)
   chk_not_any_na(n)
   chk_gte(sd)
+  nulls <- any(is.null(n), is.null(mean), is.null(sd), is.null(shape))
+  if (nulls) stop("invalid arguments")
   lengths <- as.logical(length(n)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
   character <- any(is.character(n), is.character(mean), is.character(sd), is.character(shape))
   if (lengths < 4 & !character) {
     return(vector(mode = "numeric"))
   }
   chk_whole_number(n)
-  if (lengths >= 4) {
+  if (lengths >= 4 & n != 0L) {
     nas <- any(is.na(n), is.na(mean), is.na(sd), is.na(shape))
     if (!nas) {
       chk_compatible_lengths(rep(1, n), mean, sd, shape)
@@ -131,5 +139,6 @@ rskewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
   chk_false(character)
   ran <- sn::rsn(n, xi = mean, omega = sd, alpha = shape)
   attributes(ran) <- NULL
+  if (n == 0L) return(ran)
   ran[1:n]
 }

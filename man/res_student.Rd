@@ -40,6 +40,7 @@ Other res_dist:
 \code{\link{res_neg_binom}()},
 \code{\link{res_norm}()},
 \code{\link{res_pois_zi}()},
-\code{\link{res_pois}()}
+\code{\link{res_pois}()},
+\code{\link{res_skewnorm}()}
 }
 \concept{res_dist}

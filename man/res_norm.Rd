@@ -24,7 +24,7 @@ An numeric vector of the corresponding residuals.
 Normal Residuals
 }
 \examples{
-dev_norm(c(-2:2))
+res_norm(c(-2:2))
 }
 \seealso{
 Other res_dist: 
@@ -38,6 +38,7 @@ Other res_dist:
 \code{\link{res_neg_binom}()},
 \code{\link{res_pois_zi}()},
 \code{\link{res_pois}()},
+\code{\link{res_skewnorm}()},
 \code{\link{res_student}()}
 }
 \concept{res_dist}

@@ -237,6 +237,37 @@ dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
   dev_res(x, lambda * (1 - prob), dev)
 }
 
+
+#' Skew Normal Deviances
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#' @param shape A numeric vector of shape.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_skewnorm(c(-2:2))
+#' dev_skewnorm(-2:2, 0, 1, 5)
+#' dev_skewnorm(-2:2, 0, 1, 5, res = TRUE)
+dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
+  delta <- shape / sqrt(1 + shape^2)
+  mu_z <- sqrt(2 / pi) * delta
+  sig_z <- sqrt(1 - mu_z^2)
+  gam_1 <- ((4 - pi) / 2) * ((delta * sqrt(2 / pi))^3 / (1 - (2 * delta^2) / pi)^(3/2))
+  m_o <- mu_z - (gam_1 * sig_z / 2) - (sign(shape) / 2) * exp(-2 * pi / abs(shape))
+  mode_sat <- mean + sd * m_o
+  dev <- log_lik_skewnorm(mode_sat, mean = mean, sd = sd, shape = shape) -
+    log_lik_skewnorm(x, mean = mean, sd = sd, shape = shape)
+  neg <- dev < 0
+  dev[neg] <- 0
+  dev <- dev * 2
+  if(vld_false(res)) return(dev)
+  dev_res(x, mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi), dev)
+}
+
 #' Student's t Deviances
 #'
 #' @inheritParams params

@@ -215,7 +215,7 @@ res_neg_binom <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FAL
 #' @export
 #'
 #' @examples
-#' dev_norm(c(-2:2))
+#' res_norm(c(-2:2))
 res_norm <- function(x,  mean = 0, sd = 1, type = "dev", simulate = FALSE) {
   chk_string(type)
   if(!vld_false(simulate)) {
@@ -294,6 +294,32 @@ res_student_standardized <- function(x, mean, sd, theta) {
   res[df_var_def] <- ((x[df_var_def] - mean[df_var_def]) / (sd[df_var_def] *
                                 sqrt((1 / theta[df_var_def]) / (1 / theta[df_var_def] - 2))))
   return(res)
+}
+
+#' Skew Normal Residuals
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#' @param shape A numeric vector of shape.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_skewnorm(c(-2:2))
+res_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    x <- ran_skewnorm(length(x), mean = mean, sd = sd, shape = shape)
+  }
+  switch(type,
+         data = x,
+         raw = x - mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi),
+         standardized = (x - (mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi))) /
+           (sd^2 * (1 - ((2 * (shape / sqrt(1 + shape^2))^2) / pi))),
+         dev = dev_skewnorm(x, mean = mean, sd = sd, shape = shape, res = TRUE),
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
 #' Student's t Residuals

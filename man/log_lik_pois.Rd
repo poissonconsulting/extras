@@ -32,6 +32,7 @@ Other log_lik_dist:
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
 \code{\link{log_lik_pois_zi}()},
+\code{\link{log_lik_skewnorm}()},
 \code{\link{log_lik_student}()}
 }
 \concept{log_lik_dist}

@@ -155,8 +155,8 @@ log_lik_neg_binom <- function(x, lambda = 1, theta = 0) {
 #' @export
 #'
 #' @examples
-#' dev_norm(c(-2:2))
-log_lik_norm <- function(x,  mean = 0, sd = 1) {
+#' log_lik_norm(c(-2:2))
+log_lik_norm <- function(x, mean = 0, sd = 1) {
   dnorm(x, mean = mean, sd = sd, log = TRUE)
 }
 
@@ -192,6 +192,29 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
   zero <- x == 0
   lpois[zero] <- lpois[zero] + prob
   log(lpois)
+}
+
+#' Skew Normal Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#' @param shape A numeric vector of shape.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_skewnorm(c(-2:2))
+#' log_lik_skewnorm(c(-2:2), shape = -2)
+#' log_lik_skewnorm(c(-2:2), shape = 2)
+log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
+  log_lik <- dskewnorm(x = x, mean = mean, sd = sd, shape = shape, log = TRUE)
+  use_norm <- !is.na(shape) & shape == 0
+  lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
+  lengths <- as.logical(length(x)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
+  if (lengths >= 4)  log_lik[use_norm] <- lnorm[use_norm]
+  log_lik
 }
 
 #' Student's t Log-Likelihood

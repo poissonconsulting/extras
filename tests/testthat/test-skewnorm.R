@@ -9,6 +9,13 @@ test_that("dskewnorm passes through numeric(0) with zero-length arguments", {
   expect_identical(dskewnorm(1, numeric(0), 2, 3), numeric(0))
 })
 
+test_that("dskewnorm errors with arguments = NULL", {
+  expect_error(dskewnorm(NULL), "invalid arguments")
+  expect_error(dskewnorm(1, NULL), "invalid arguments")
+  expect_error(dskewnorm(1, 2, NULL), "invalid arguments")
+  expect_error(dskewnorm(1, 2, 3, NULL), "invalid arguments")
+})
+
 test_that("dskewnorm errors with character arguments", {
   expect_chk_error(dskewnorm(character(0)), "`character` must be FALSE.")
   expect_chk_error(dskewnorm(character(0), 1:5, 1:5, 1:5), "`character` must be FALSE.")
@@ -148,6 +155,13 @@ test_that("pskewnorm passes through numeric(0) with zero-length arguments", {
   expect_identical(pskewnorm(0.1, numeric(0), 2, 3), numeric(0))
 })
 
+test_that("pskewnorm errors with arguments = NULL", {
+  expect_error(pskewnorm(NULL), "invalid arguments")
+  expect_error(pskewnorm(1, NULL), "invalid arguments")
+  expect_error(pskewnorm(1, 2, NULL), "invalid arguments")
+  expect_error(pskewnorm(1, 2, 3, NULL), "invalid arguments")
+})
+
 test_that("pskewnorm errors with character arguments", {
   expect_chk_error(pskewnorm(character(0)), "`character` must be FALSE.")
   expect_chk_error(pskewnorm("1", 1:5, 1:5, 1:5), "`character` must be FALSE.")
@@ -279,6 +293,13 @@ test_that("qskewnorm passes through numeric(0) with zero-length arguments", {
   expect_identical(qskewnorm(0.1, numeric(0), 2, 3), numeric(0))
 })
 
+test_that("qskewnorm errors with arguments = NULL", {
+  expect_error(qskewnorm(NULL), "invalid arguments")
+  expect_error(qskewnorm(1, NULL), "invalid arguments")
+  expect_error(qskewnorm(1, 2, NULL), "invalid arguments")
+  expect_error(qskewnorm(1, 2, 3, NULL), "invalid arguments")
+})
+
 test_that("qskewnorm errors with character arguments", {
   expect_chk_error(qskewnorm(character(0)), "`character` must be FALSE.")
   expect_chk_error(qskewnorm("1", 1:5, 1:5, 1:5), "`character` must be FALSE.")
@@ -408,6 +429,13 @@ test_that("rskewnorm passes through numeric(0) with zero-length arguments", {
   expect_identical(rskewnorm(2, numeric(0), 2, 3), numeric(0))
 })
 
+test_that("rskewnorm errors with arguments = NULL", {
+  expect_error(rskewnorm(NULL), "invalid arguments")
+  expect_error(rskewnorm(1, NULL), "invalid arguments")
+  expect_error(rskewnorm(1, 2, NULL), "invalid arguments")
+  expect_error(rskewnorm(1, 2, 3, NULL), "invalid arguments")
+})
+
 test_that("rskewnorm errors with character arguments", {
   expect_chk_error(rskewnorm(character(0)), "`n` must be a whole number")
   expect_chk_error(rskewnorm("1", 1:5, 1:5, 1:5), "`n` must be a whole number.")
@@ -427,6 +455,10 @@ test_that("rskewnorm errors with n = NA", {
 test_that("rskewnorm errors with n not a whole number", {
   expect_chk_error(rskewnorm(0.1), "`n` must be a whole number")
   expect_chk_error(rskewnorm(c(NA, 1)), "n` must not have any missing values.")
+})
+
+test_that("rskewnorm returns numeric(0) with n = 0L", {
+  expect_identical(rskewnorm(0L), numeric(0))
 })
 
 test_that("rskewnorm returns NA with NA arguments", {

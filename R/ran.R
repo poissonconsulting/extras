@@ -164,6 +164,24 @@ ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
   stats::rpois(n, lambda = lambda) * ran_bern(n, prob = 1 - prob)
 }
 
+#' Skew Normal Random Samples
+#'
+#' @inheritParams params
+#' @param shape A numeric vector of shape.
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_skewnorm(10, shape = -1)
+#' ran_skewnorm(10, shape = 0)
+#' ran_skewnorm(10, shape = 1)
+ran_skewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
+  chk_whole_number(n)
+  chk_gte(n)
+  rskewnorm(n = n, mean = mean, sd = sd, shape = shape)
+}
+
 #' Student's t Random Samples
 #'
 #' @inheritParams params
