@@ -94,6 +94,9 @@
     <loc>/reference/dev_pois_zi.html</loc>
   </url>
   <url>
+    <loc>/reference/dev_skewnorm.html</loc>
+  </url>
+  <url>
     <loc>/reference/dev_student.html</loc>
   </url>
   <url>
@@ -182,6 +185,9 @@
   </url>
   <url>
     <loc>/reference/log_lik_pois_zi.html</loc>
+  </url>
+  <url>
+    <loc>/reference/log_lik_skewnorm.html</loc>
   </url>
   <url>
     <loc>/reference/log_lik_student.html</loc>
@@ -289,6 +295,9 @@
     <loc>/reference/ran_pois_zi.html</loc>
   </url>
   <url>
+    <loc>/reference/ran_skewnorm.html</loc>
+  </url>
+  <url>
     <loc>/reference/ran_student.html</loc>
   </url>
   <url>
@@ -323,6 +332,9 @@
   </url>
   <url>
     <loc>/reference/res_pois_zi.html</loc>
+  </url>
+  <url>
+    <loc>/reference/res_skewnorm.html</loc>
   </url>
   <url>
     <loc>/reference/res_student.html</loc>
