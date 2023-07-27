@@ -145,10 +145,10 @@ ran_norm <- function(n = 1, mean = 0, sd = 1) {
 #' @export
 #'
 #' @examples
-#' ran_norm_skew(10, shape = -1)
-#' ran_norm_skew(10, shape = 0)
-#' ran_norm_skew(10, shape = 1)
-ran_norm_skew <- function(n = 1, mean = 0, sd = 1, shape = 0) {
+#' ran_skewnorm(10, shape = -1)
+#' ran_skewnorm(10, shape = 0)
+#' ran_skewnorm(10, shape = 1)
+ran_skewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
   chk_whole_number(n)
   chk_gte(n)
   chk_gte(sd)

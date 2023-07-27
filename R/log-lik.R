@@ -171,10 +171,10 @@ log_lik_norm <- function(x, mean = 0, sd = 1) {
 #' @export
 #'
 #' @examples
-#' log_lik_norm_skew(c(-2:2))
-#' log_lik_norm_skew(c(-2:2), shape = -2)
-#' log_lik_norm_skew(c(-2:2), shape = 2)
-log_lik_norm_skew <- function(x, mean = 0, sd = 1, shape = 0) {
+#' log_lik_skewnorm(c(-2:2))
+#' log_lik_skewnorm(c(-2:2), shape = -2)
+#' log_lik_skewnorm(c(-2:2), shape = 2)
+log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
   log_lik <- log(2) - log(sd) + stats::dnorm((x - mean) / sd, 0, 1, log = TRUE) +
     stats::pnorm(shape * (x - mean) / sd, 0, 1, log.p = TRUE)
   lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
