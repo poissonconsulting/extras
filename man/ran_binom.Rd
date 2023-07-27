@@ -31,10 +31,10 @@ Other ran_dist:
 \code{\link{ran_gamma}()},
 \code{\link{ran_lnorm}()},
 \code{\link{ran_neg_binom}()},
-\code{\link{ran_norm_skew}()},
 \code{\link{ran_norm}()},
 \code{\link{ran_pois_zi}()},
 \code{\link{ran_pois}()},
+\code{\link{ran_skewnorm}()},
 \code{\link{ran_student}()}
 }
 \concept{ran_dist}
