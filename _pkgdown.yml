@@ -150,6 +150,13 @@ reference:
   - '`pbern`'
   - '`qbern`'
   - '`rbern`'
+- title: Skew Normal
+  desc: Skew Normal distribution functions
+  contents:
+  - '`dskewnorm`'
+  - '`pskewnorm`'
+  - '`qskewnorm`'
+  - '`rskewnorm`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents:
