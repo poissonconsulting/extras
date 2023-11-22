@@ -11,6 +11,8 @@ res_gamma_count(x, lambda = 1, alpha = 1, type = "dev", simulate = FALSE)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
+\item{alpha}{A non-negative numeric vector of the dispersion parameter for the gamma-count distribution.}
+
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}

@@ -10,6 +10,8 @@ ran_gamma_count(n = 1, lambda = 1, alpha = 1)
 \item{n}{A non-negative whole number of the number of random samples to generate.}
 
 \item{lambda}{A non-negative numeric vector of means.}
+
+\item{alpha}{A non-negative numeric vector of the dispersion parameter for the gamma-count distribution.}
 }
 \value{
 A numeric vector of the random samples.

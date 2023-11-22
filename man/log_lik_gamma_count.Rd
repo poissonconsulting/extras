@@ -10,6 +10,8 @@ log_lik_gamma_count(x, lambda = 1, alpha = 1)
 \item{x}{A non-negative whole numeric vector of values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
+
+\item{alpha}{A non-negative numeric vector of the dispersion parameter for the gamma-count distribution.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

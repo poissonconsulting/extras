@@ -11,6 +11,8 @@ dev_gamma_count(x, lambda = 1, alpha = 1, res = FALSE)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
+\item{alpha}{A non-negative numeric vector of the dispersion parameter for the gamma-count distribution.}
+
 \item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
 \value{

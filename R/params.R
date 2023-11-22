@@ -29,5 +29,6 @@
 #' @param lower.tail A flag specifying whether to return the lower or upper tail of the distribution.
 #' @param q A vector of quantiles.
 #' @param p A vector of probabilities.
+#' @param alpha A non-negative numeric vector of the dispersion parameter for the gamma-count distribution.
 #' @name params
 NULL
