@@ -30,6 +30,7 @@ dev_beta_binom(c(0, 1, 2), 1, 0.5, 0)
 Other dev_dist: 
 \code{\link{dev_bern}()},
 \code{\link{dev_binom}()},
+\code{\link{dev_gamma_count}()},
 \code{\link{dev_gamma_pois}()},
 \code{\link{dev_gamma}()},
 \code{\link{dev_lnorm}()},

@@ -26,6 +26,7 @@ ran_binom(10)
 Other ran_dist: 
 \code{\link{ran_bern}()},
 \code{\link{ran_beta_binom}()},
+\code{\link{ran_gamma_count}()},
 \code{\link{ran_gamma_pois_zi}()},
 \code{\link{ran_gamma_pois}()},
 \code{\link{ran_gamma}()},

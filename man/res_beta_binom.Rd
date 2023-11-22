@@ -39,6 +39,7 @@ res_beta_binom(c(0, 1, 2), 4, 0.5, 0.1)
 Other res_dist: 
 \code{\link{res_bern}()},
 \code{\link{res_binom}()},
+\code{\link{res_gamma_count}()},
 \code{\link{res_gamma_pois_zi}()},
 \code{\link{res_gamma_pois}()},
 \code{\link{res_gamma}()},
