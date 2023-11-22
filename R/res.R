@@ -114,7 +114,7 @@ res_gamma_count_standardized <- function(x, lambda, alpha) {
   iter <- 1
   i <- 1
   while (iter > 1e-12) {
-    iter <- pgamma(q = 1, shape = alpha * i, rate = lambda * alpha)
+    iter <- stats::pgamma(q = 1, shape = alpha * i, rate = lambda * alpha)
     mean <- mean + iter
     var_1 <- var_1 + ((2 * i - 1) * iter)
     i <- i + 1
@@ -128,7 +128,7 @@ mean_gamma_count <- function(lambda, alpha) {
   iter <- 1
   i <- 1
   while (iter > 1e-12) {
-    iter <- pgamma(q = 1, shape = alpha * i, rate = lambda * alpha)
+    iter <- stats::pgamma(q = 1, shape = alpha * i, rate = lambda * alpha)
     mean <- mean + iter
     i <- i + 1
   }
