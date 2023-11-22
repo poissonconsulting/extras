@@ -116,7 +116,7 @@ dev_gamma_count <- function(x, lambda = 1, alpha = 1, res = FALSE) {
   # if(vld_false(res)) return(dev)
   # dev_res(x, lambda, dev)
 
-  opt_gamma_count <- function(pars = c(log_lambda, log_alpha), x) {
+  opt_gamma_count <- function(pars, x) {
     -log_lik_gamma_count(x = x, lambda = exp(pars[1]), alpha = exp(pars[2]))
   }
   if (length(lambda) == 1) {lambda <- rep(lambda, length(x))}
