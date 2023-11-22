@@ -108,6 +108,63 @@ res_gamma <- function(x, shape = 1, rate = 1, type = "dev", simulate = FALSE) {
          chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
+res_gamma_count_standardized <- function(x, lambda, alpha) {
+  mean <- 0
+  var_1 <- 0
+  iter <- 1
+  i <- 1
+  while (iter > 1e-12) {
+    iter <- pgamma(q = 1, shape = alpha * i, rate = lambda * alpha)
+    mean <- mean + iter
+    var_1 <- var_1 + ((2 * i - 1) * iter)
+    i <- i + 1
+  }
+  var <- var_1 - mean^2
+  x - mean / sqrt(var)
+}
+
+mean_gamma_count <- function(lambda, alpha) {
+  mean <- 0
+  iter <- 1
+  i <- 1
+  while (iter > 1e-12) {
+    iter <- pgamma(q = 1, shape = alpha * i, rate = lambda * alpha)
+    mean <- mean + iter
+    i <- i + 1
+  }
+  mean
+}
+
+#' Gamma-Count Residuals
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_gamma_count(c(0, 1, 2), 1, 1)
+res_gamma_count <- function(x, lambda = 1, alpha = 1, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    x <- ran_gamma_count(length(x), lambda = lambda, alpha = alpha)
+  }
+  if (length(lambda) == 1) {
+    lambda <- rep(lambda, length(x))
+  }
+  if (length(alpha) == 1) {
+    alpha <- rep(alpha, length(x))
+  }
+  switch(type,
+         data = x,
+         raw = x - Vectorize(mean_gamma_count)(lambda = lambda, alpha = alpha),
+         standardized = Vectorize(res_gamma_count_standardized)(x = x, lambda = lambda, alpha = alpha),
+         dev = dev_gamma_count(x, lambda = lambda, alpha = alpha, res = TRUE),
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
+}
+
 #' Gamma-Poisson Residuals
 #'
 #' @inheritParams params

@@ -63,6 +63,25 @@ ran_gamma <- function(n = 1, shape = 1, rate = 1) {
   stats::rgamma(n, shape = shape, rate = rate)
 }
 
+#' Gamma-Count Random Samples
+#'
+#' @inheritParams params
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_gamma_count(n = 10, lambda = 1, alpha = 1)
+ran_gamma_count <- function(n = 1, lambda = 1, alpha = 1) {
+  chk_whole_number(n)
+  chk_all(c(n, lambda), chk_fun = "chk_gte", value = 0)
+  chk_gt(alpha, value = 0)
+  if (alpha == 1) {
+    return(stats::rpois(n, lambda = lambda))
+  }
+  gammacount::rgc(n = n, lambda = lambda, alpha = alpha)
+}
+
 #' Gamma-Poisson Random Samples
 #'
 #' @inheritParams params
