@@ -31,7 +31,6 @@ Other res_dist:
 \code{\link{res_bern}()},
 \code{\link{res_beta_binom}()},
 \code{\link{res_binom}()},
-\code{\link{res_gamma_count}()},
 \code{\link{res_gamma_pois_zi}()},
 \code{\link{res_gamma}()},
 \code{\link{res_lnorm}()},
@@ -40,6 +39,7 @@ Other res_dist:
 \code{\link{res_pois_zi}()},
 \code{\link{res_pois}()},
 \code{\link{res_skewnorm}()},
-\code{\link{res_student}()}
+\code{\link{res_student}()},
+\code{\link{res_upois}()}
 }
 \concept{res_dist}

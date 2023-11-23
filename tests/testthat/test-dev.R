@@ -768,3 +768,77 @@ test_that("skewnorm deviance", {
   deviance <- sum(dev_skewnorm(samples, coef(mod)[1]))
   expect_equal(deviance, deviance(mod))
 })
+
+test_that("upois known values", {
+  expect_identical(dev_upois(1, 1), 0)
+  expect_equal(dev_upois(1, 1, 1), 0.424635855096438)
+  expect_identical(dev_upois(0, 0), 0)
+  expect_identical(dev_upois(0, 0, 1), 0)
+  expect_identical(dev_upois(0, 0, 0), dev_pois(0, 0))
+  expect_equal(dev_upois(0, 1, 0), dev_pois(0, 1))
+  expect_equal(dev_upois(1, 0), Inf)
+  expect_equal(dev_upois(1, 0, 1), 0)
+  expect_equal(dev_upois(1, 0, 5), 0)
+  expect_equal(dev_upois(0, 1, 5), 2)
+  expect_equal(dev_upois(0, 1, 1), 2)
+  expect_equal(dev_upois(20, 1, 1), 77.139306160016)
+  expect_equal(dev_upois(10, 1, 5), 23.8440589297922)
+  expect_equal(dev_upois(0, 2, 5), 4)
+  expect_equal(dev_upois(0, 2, 1), 4)
+  expect_equal(dev_upois(3, 2, 1), 0.0831945648654893)
+  expect_equal(dev_upois(13, 2, 1), 24.0432116320838)
+  expect_equal(dev_upois(1, 2, 2), 2.25534033186796)
+  expect_equal(dev_upois(10, 2, 2), 13.6367082152856)
+  expect_equal(dev_upois(100, 2, 2), 579.376048918714)
+  expect_equal(dev_upois(10, 2, 0), dev_pois(10, 2))
+  expect_equal(dev_upois(100, 2, 0), dev_pois(100, 2))
+})
+
+test_that("upois vectorized", {
+  expect_equal(dev_upois(0:3, 2, 0.1),
+               c(4, 0.716043163399263, 0.00437744156764275, 0.346749115995378))
+  expect_equal(dev_upois(c(0, 1, 3, 0), 3, 0.5),
+               c(6, 2.46944208933045, 0.0416124417688755, 6))
+  expect_equal(dev_upois(0:3, 0:3, rep(1, 4)),
+               c(0, 0.424635855096438, 0.157573069847393, 0.0966910188449219
+  ))
+  expect_equal(dev_upois(0:3, 3:0, 0:3), c(6, 1.61370563888011, 0.0377745205120377, Inf))
+})
+
+test_that("upois vectorized missing values", {
+  expect_equal(dev_upois(c(NA,1), 0:1, 0:1), c(NA,0.424635855096438))
+  expect_equal(dev_upois(c(0,NA), 0:1, 1:2), c(0,NA))
+  expect_equal(dev_upois(c(0:1), c(NA,1), 1:2), c(NA, 0.830704476771521))
+  expect_equal(dev_upois(c(0:1), c(0,NA), 1:2), c(0,NA))
+  expect_equal(dev_upois(c(0:1), c(0:1), c(NA,1)), c(NA, 0.424635855096438))
+  expect_equal(dev_upois(c(0:1), c(0:1), c(1,NA)), c(0,NA))
+})
+
+test_that("upois res", {
+  expect_equal(dev_upois(10, 0.5, 0.5), dev_upois(10, 0.5, 0.5, res = TRUE)^2)
+  expect_equal(dev_upois(0:1, c(0.3,0.6), 0.5), dev_upois(0:1, c(0.3,0.6), 0.5, res = TRUE)^2)
+})
+
+test_that("upois log_lik", {
+  expect_equal(dev_upois(5:6, 1:2, 2:3),
+               2 * (log_lik_upois(5:6, 5:6 - (2:3 / (1 + 2:3)), 2:3) -
+                      log_lik_upois(5:6, 1:2, 2:3)))
+})
+
+test_that("upois ran", {
+  set.seed(101)
+  samples <- ran_upois(100000, 3, 0.5)
+  expect_equal(mean(samples), 3.33127)
+  expect_equal(var(samples), 3.18490203611947)
+  res <- dev_upois(samples, 3, 0.5, res = TRUE)
+  expect_equal(mean(res), -0.113602120823609)
+  expect_equal(sd(res), 1.02371893617533)
+})
+
+test_that("upois deviance", {
+  # Poisson case
+  samples <- ran_upois(1000, 3, 0)
+  mod <- glm(samples~1, family = poisson)
+  deviance <- sum(dev_upois(samples, exp(coef(mod)[1])))
+  expect_equal(deviance, deviance(mod))
+})

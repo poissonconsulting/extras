@@ -243,3 +243,43 @@ test_that("skewnorm vectorized", {
     c(-111.116353440211, -11.8095006207706, -11.1163537268622, -111.116353440211)
   )
 })
+
+test_that("upois missing values", {
+  expect_identical(log_lik_upois(numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_upois(1, lambda = numeric(0)), numeric(0))
+  expect_identical(log_lik_upois(1, 1, theta = numeric(0)), numeric(0))
+  expect_identical(log_lik_upois(NA, 1, 1), NA_real_)
+  expect_identical(log_lik_upois(1, NA, 1), NA_real_)
+  expect_identical(log_lik_upois(1, 1, NA), NA_real_)
+})
+
+test_that("upois known values", {
+  expect_identical(log_lik_upois(1, 2), dpois(1, 2, log = TRUE))
+  expect_identical(log_lik_upois(0, 2), dpois(0, 2, log = TRUE))
+  expect_equal(log_lik_upois(0, 2, 1), -2.69314718055995)
+  expect_identical(log_lik_upois(1, 0, 0), -Inf)
+  expect_identical(log_lik_upois(0, 0, 0), 0)
+  expect_identical(log_lik_upois(1, 0, 10), log(10 / (1 + 10)))
+  expect_identical(log_lik_upois(0, 0, 10), log(1 / (1 + 10)))
+  expect_identical(log_lik_upois(100, 1000, 0), dpois(100, 1000, log = TRUE))
+  expect_equal(log_lik_upois(3, 3.5, 0), log_lik_pois(3, 3.5))
+  expect_equal(log_lik_upois(3, 3.5, 0), -1.53347056374195)
+  expect_equal(log_lik_upois(3, 3.5, 0.1), -1.5465426453093)
+  expect_equal(log_lik_upois(3, 3.5, 0.2), -1.55756811532101)
+  expect_equal(log_lik_upois(3, 3.5, 1), -1.60757853589567)
+})
+
+test_that("upois vectorized", {
+  expect_identical(log_lik_upois(0:1, 0:1, 0:1), c(0, -1))
+  expect_equal(log_lik_upois(0:1, 0:1, 1:2), c(-0.693147180559945, -1))
+  expect_identical(log_lik_upois(0:1, 0:1, 0), dpois(0:1, 0:1, log = TRUE))
+  expect_identical(log_lik_upois(0:1, 1000, 0), dpois(0:1, 1000, log = TRUE))
+  expect_equal(log_lik_upois(c(0, 2), 2, 0.5), c(-2.40546510810816, -1.30685281944005))
+  expect_equal(log_lik_upois(c(0, 1, 3), c(0, 0, 1), 1),
+                   c(-0.693147180559945, -0.693147180559945, -2.09861228866811))
+  expect_equal(log_lik_upois(c(0, 1, 3), c(0, 0, 1), 2),
+                   c(-1.09861228866811, -0.405465108108164, -1.94446160884085))
+  expect_equal(log_lik_upois(c(19, 1000, 21), c(10, 2000, 10), c(0, 1, 10)),
+               c(-5.59076742031263, -311.513401018534, -6.33270476504199))
+})
+

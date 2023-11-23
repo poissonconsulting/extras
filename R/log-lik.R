@@ -78,7 +78,7 @@ log_lik_gamma <- function(x, shape = 1, rate = 1) {
   stats::dgamma(x, shape = shape, rate = rate, log = TRUE)
 }
 
-#' Gamma-Count Log-Likelihood
+#' Underdispersed Poisson Log-Likelihood
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
@@ -88,35 +88,47 @@ log_lik_gamma <- function(x, shape = 1, rate = 1) {
 #' @export
 #'
 #' @examples
-#' log_lik_gamma_count(c(0, 1, 2), 1, 0)
-log_lik_gamma_count <- function(x, lambda = 1, alpha = 1) {
-  chk::chk_compatible_lengths(x, lambda, alpha)
-  chk::chk_gt(alpha, value = 0)
-  chk::chk_gte(lambda, value = 0)
+#' log_lik_upois(c(0, 1, 2), 1, 0)
+log_lik_upois <- function(x, lambda = 1, theta = 0) {
+  chk_gte(lambda)
+  chk_gte(theta)
 
-  # gammacount::dgc(x = x, lambda = lambda, alpha = alpha, log = TRUE)
-  # rmutil::dgammacount(y = x, m = lambda, s = alpha, log = TRUE)
-  x_zero <- x == 0
-  x_pos <- x > 0
-  x_neg <- x < 0
-  lik <- rep(NaN, max(length(x), length(lambda), length(alpha)))
-  if (length(x) == 1) {
-    x <- rep(x, length(lik))
+  if (length(theta) == 1) {
+    theta <- rep(theta, length(x))
   }
-  if (length(alpha) == 1) {
-    alpha <- rep(alpha, length(lik))
-  }
+
   if (length(lambda) == 1) {
-    lambda <- rep(lambda, length(lik))
+    lambda <- rep(lambda, length(x))
   }
-  # lik[x_zero] <- stats::pgamma(alpha[x_zero] * lambda[x_zero], (x[x_zero] + 1) * alpha[x_zero], lower.tail = FALSE)
-  lik[x_zero] <- stats::pgamma(q = 1, shape = alpha[x_zero], rate = alpha[x_zero] * lambda[x_zero], lower.tail = FALSE)
-  lik[x_pos] <- stats::pgamma(q = 1, shape = x[x_pos] * alpha[x_pos], rate = alpha[x_pos] * lambda[x_pos]) -
-    stats::pgamma(q = 1, shape = (x[x_pos] + 1) * alpha[x_pos], rate = alpha[x_pos] * lambda[x_pos])
-  # lik[x_pos] <- pgamma(alpha[x_pos] * lambda[x_pos], x[x_pos] * alpha[x_pos]) -
-  #   pgamma(alpha[x_pos] * lambda[x_pos], (x[x_pos] + 1) * alpha[x_pos])
-  lik[x_neg] <- 0
-  log(lik)
+
+  log_lik <-
+    (-lambda + (x - 1) * log(lambda) + log(lambda + theta * x)) -
+    (log(1 + theta) + lfactorial(x))
+
+  # log_lik <- rep(NaN, max(length(x), length(lambda), length(theta)))
+
+  x_lambda_zero <- x == 0 & lambda == 0 & !is.na(x) & !is.na(lambda)
+  if (any(x_lambda_zero)) {
+    log_lik[x_lambda_zero] <- log(1 / (1 + theta[x_lambda_zero]))
+  }
+
+  x_one_lambda_zero <- x == 1 & lambda == 0 & !is.na(x) & !is.na(lambda)
+  if (any(x_one_lambda_zero)) {
+    log_lik[x_one_lambda_zero] <- log(theta[x_one_lambda_zero] / (1 + theta[x_one_lambda_zero]))
+  }
+
+  zero <- theta == 0 & !is.na(theta) & !is.na(lambda) & !is.na(x)
+  if (any(zero)) {
+    log_lik[zero] <- log_lik_pois(x[zero], lambda[zero])
+  }
+
+  # others <- !zero & !x_lambda_zero & !x_one_lambda_zero
+
+  # log_lik[others] <-
+  #   (-lambda[others] + (x[others] - 1) * log(lambda[others]) + log(lambda[others] + theta[others] * x[others])) -
+  #   (log(1 + theta[others]) + lfactorial(x[others]))
+
+  log_lik
 }
 
 #' Gamma-Poisson Log-Likelihood

@@ -24,7 +24,6 @@ log_lik_bern(c(TRUE, FALSE), 0.7)
 Other log_lik_dist: 
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
-\code{\link{log_lik_gamma_count}()},
 \code{\link{log_lik_gamma_pois_zi}()},
 \code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_gamma}()},
@@ -34,6 +33,7 @@ Other log_lik_dist:
 \code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_pois}()},
 \code{\link{log_lik_skewnorm}()},
-\code{\link{log_lik_student}()}
+\code{\link{log_lik_student}()},
+\code{\link{log_lik_upois}()}
 }
 \concept{log_lik_dist}
