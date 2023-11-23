@@ -74,9 +74,17 @@ ran_gamma <- function(n = 1, shape = 1, rate = 1) {
 #' ran_gamma_count(n = 10, lambda = 1, alpha = 1)
 ran_gamma_count <- function(n = 1, lambda = 1, alpha = 1) {
   chk_whole_number(n)
-  chk_all(c(n, lambda), chk_fun = "chk_gte", value = 0)
+  chk_gte(n, value = 0)
+  chk_gt(lambda, value = 0)
   chk_gt(alpha, value = 0)
-  if (alpha == 1) {
+  if (length(lambda) == 1) {
+    lambda <- rep(lambda, n)
+  }
+  if (length(alpha) == 1) {
+    alpha <- rep(alpha, n)
+  }
+  bol_alpha <- alpha == 1
+  if (all(bol_alpha) & all(!is.na(alpha))) {
     return(stats::rpois(n, lambda = lambda))
   }
   gammacount::rgc(n = n, lambda = lambda, alpha = alpha)

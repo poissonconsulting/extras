@@ -116,6 +116,12 @@ dev_gamma_count <- function(x, lambda = 1, alpha = 1, res = FALSE) {
   # if(vld_false(res)) return(dev)
   # dev_res(x, lambda, dev)
 
+  n <- 1000
+  lambda <- 6.21
+  alpha <- 4.8421053
+  set.seed(101)
+  x <- ran_gamma_count(n, lambda, alpha)
+
   opt_gamma_count <- function(pars, x) {
     -log_lik_gamma_count(x = x, lambda = exp(pars[1]), alpha = exp(pars[2]))
   }
@@ -137,31 +143,59 @@ dev_gamma_count <- function(x, lambda = 1, alpha = 1, res = FALSE) {
     }
   }
 
-  # opt_gamma_count <- function(alpha, x, lambda) {
-  #   -log_lik_gamma_count(x = x, lambda = lambda, alpha = alpha)
-  # }
-  # if (length(lambda) == 1) {lambda <- rep(lambda, length(x))}
-  # if (length(alpha) == 1) {alpha <- rep(alpha, length(x))}
-  # opt_alpha <- rep(NA, length(x))
-  # bol <- !is.na(x) & !is.na(lambda) & !is.na(alpha)
-  # for (i in seq_along(x)) {
-  #   if (bol[i] & !is.na(bol[i])) {
-  #     opt_alpha[i] <- stats::optimize(
-  #       opt_gamma_count,
-  #       interval = c(0, 100),
-  #       x = x[i],
-  #       lambda = lambda[i]
-  #     )$minimum
-  #   }
-  # }
+  opt_gamma_count <- function(pars, x) {
+    ll <- log_lik_gamma_count(x = x, lambda = exp(pars[1]), alpha = exp(pars[2]))
+    -sum(ll)
+  }
+  if (length(lambda) == 1) {lambda <- rep(lambda, length(x))}
+  if (length(alpha) == 1) {alpha <- rep(alpha, length(x))}
+  opt_lambda <- rep(NA, length(x))
+  opt_alpha <- rep(NA, length(x))
+  bol <- !is.na(x) & !is.na(lambda) & !is.na(alpha)
+  if (all(bol & !is.na(bol))) {
+      opt <- stats::optim(
+        par = c(log(mean(x)), log(1)),
+        fn = opt_gamma_count,
+        x = x,
+        method = "Nelder-Mead"
+      )$par
+      opt_lambda <- exp(opt[1])
+      opt_alpha <- exp(opt[2])
+    }
 
-  dev1 <- log_lik_gamma_count(x = x, lambda = opt_lambda, alpha = opt_alpha)
+  opt_lambda
+  opt_alpha
+  # Returns the correct parameter values when fitted to the whole set of (lots of) data
+  # Means log-likelihood is correct.
+
+
+
+  opt_gamma_count <- function(alpha, x, lambda) {
+    -log_lik_gamma_count(x = x, lambda = lambda, alpha = alpha)
+  }
+  if (length(lambda) == 1) {lambda <- rep(lambda, length(x))}
+  if (length(alpha) == 1) {alpha <- rep(alpha, length(x))}
+  opt_alpha <- rep(NA, length(x))
+  bol <- !is.na(x) & !is.na(lambda) & !is.na(alpha)
+  for (i in seq_along(x)) {
+    if (bol[i] & !is.na(bol[i])) {
+      opt_alpha[i] <- stats::optimize(
+        opt_gamma_count,
+        interval = c(0, 1e10),
+        x = x[i],
+        lambda = lambda[i]
+      )$minimum
+    }
+  }
+
+  # dev1 <- log_lik_gamma_count(x = x, lambda = x, alpha = opt_alpha)
+  dev1 <- log_lik_gamma_count(x = x, lambda = x, alpha = opt_alpha)
   dev2 <- log_lik_gamma_count(x = x, lambda = lambda, alpha = alpha)
 
-  # dev <- tibble(x = rep(x, 2), dev = c(dev1, dev2), lik = c(rep("sat", length(dev1)), rep("reg", length(dev2))))
-  #
-  # ggplot() +
-  #   geom_line(data = dev, aes(x = x, y = dev, colour = lik))
+  dev <- tibble(x = rep(x, 2), ll = c(dev1, dev2), lik = c(rep("sat", length(dev1)), rep("reg", length(dev2))))
+
+  ggplot() +
+    geom_line(data = dev, aes(x = x, y = ll, colour = lik))
 
 
   # # normal example
@@ -169,8 +203,8 @@ dev_gamma_count <- function(x, lambda = 1, alpha = 1, res = FALSE) {
   # sd <- 0.5
   # set.seed(101)
   # x_norm <- rnorm(100, mean, sd)
-  # sat_norm <- log_lik_norm(x, mean = x, sd = sd)
-  # ll_norm <- log_lik_norm(x, mean = mean, sd = sd)
+  # sat_norm <- log_lik_norm(x_norm, mean = x_norm, sd = sd)
+  # ll_norm <- log_lik_norm(x_norm, mean = mean, sd = sd)
   # dev_norm <- tibble(
   #   x = rep(x_norm, 2),
   #   dev = c(ll_norm, sat_norm),
@@ -178,6 +212,7 @@ dev_gamma_count <- function(x, lambda = 1, alpha = 1, res = FALSE) {
   # )
   # ggplot(dev_norm) +
   #   geom_line(aes(x = x, y = dev, colour = lik))
+
   dev <- dev1 - dev2
   dev <- 2 * dev
   use_pois <- (!is.na(alpha) & alpha == 1)

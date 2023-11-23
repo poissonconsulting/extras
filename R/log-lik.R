@@ -91,7 +91,9 @@ log_lik_gamma <- function(x, shape = 1, rate = 1) {
 #' log_lik_gamma_count(c(0, 1, 2), 1, 0)
 log_lik_gamma_count <- function(x, lambda = 1, alpha = 1) {
   chk::chk_compatible_lengths(x, lambda, alpha)
-  chk::chk_all(c(lambda, alpha), chk_fun = "chk_gte", value = 0)
+  chk::chk_gt(alpha, value = 0)
+  chk::chk_gte(lambda, value = 0)
+
   # gammacount::dgc(x = x, lambda = lambda, alpha = alpha, log = TRUE)
   # rmutil::dgammacount(y = x, m = lambda, s = alpha, log = TRUE)
   x_zero <- x == 0
@@ -107,10 +109,10 @@ log_lik_gamma_count <- function(x, lambda = 1, alpha = 1) {
   if (length(lambda) == 1) {
     lambda <- rep(lambda, length(lik))
   }
+  # lik[x_zero] <- stats::pgamma(alpha[x_zero] * lambda[x_zero], (x[x_zero] + 1) * alpha[x_zero], lower.tail = FALSE)
   lik[x_zero] <- stats::pgamma(q = 1, shape = alpha[x_zero], rate = alpha[x_zero] * lambda[x_zero], lower.tail = FALSE)
   lik[x_pos] <- stats::pgamma(q = 1, shape = x[x_pos] * alpha[x_pos], rate = alpha[x_pos] * lambda[x_pos]) -
     stats::pgamma(q = 1, shape = (x[x_pos] + 1) * alpha[x_pos], rate = alpha[x_pos] * lambda[x_pos])
-  # lik[x_zero] <- pgamma(alpha[x_zero] * lambda[x_zero], (x[x_zero] + 1) * alpha[x_zero], lower.tail = FALSE)
   # lik[x_pos] <- pgamma(alpha[x_pos] * lambda[x_pos], x[x_pos] * alpha[x_pos]) -
   #   pgamma(alpha[x_pos] * lambda[x_pos], (x[x_pos] + 1) * alpha[x_pos])
   lik[x_neg] <- 0
