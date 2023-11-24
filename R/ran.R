@@ -66,14 +66,6 @@ ran_gamma <- function(n = 1, shape = 1, rate = 1) {
 # Cumulative distribution function for underdispersed poisson distribution
 pupois <- function(q, lambda, theta) {
   sapply(q, \(x) {sum(exp(log_lik_upois(0:x, lambda, theta)))})
-  # mapply(
-  #   \(q, lambda, theta) {
-  #     sum(exp(log_lik_upois(0:q, lambda, theta)))
-  #     },
-  #   q = q,
-  #   lambda = lambda,
-  #   theta = theta
-  # )
 }
 
 #' Underdispersed Poisson Random Samples
