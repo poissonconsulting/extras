@@ -203,7 +203,7 @@ ran_student <- function(n = 1, mean = 0, sd = 1, theta = 0) {
 
 # Cumulative distribution function for underdispersed poisson distribution
 pupois <- function(q, lambda, theta) {
-  sapply(q, \(x) {sum(exp(log_lik_upois(0:x, lambda, theta)))})
+  sapply(q, function(x) {sum(exp(log_lik_upois(0:x, lambda, theta)))})
 }
 
 #' Underdispersed Poisson Random Samples
