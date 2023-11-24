@@ -31,7 +31,6 @@ Suggests:
     aods3,
     covr,
     hms,
-    gammacount,
     ggplot2,
     knitr,
     MASS,
