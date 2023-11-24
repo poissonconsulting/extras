@@ -63,59 +63,6 @@ ran_gamma <- function(n = 1, shape = 1, rate = 1) {
   stats::rgamma(n, shape = shape, rate = rate)
 }
 
-# Cumulative distribution function for underdispersed poisson distribution
-pupois <- function(q, lambda, theta) {
-  sapply(q, \(x) {sum(exp(log_lik_upois(0:x, lambda, theta)))})
-}
-
-#' Underdispersed Poisson Random Samples
-#'
-#' @inheritParams params
-#' @return A numeric vector of the random samples.
-#' @family ran_dist
-#' @export
-#'
-#' @examples
-#' ran_upois(n = 10, lambda = 1, theta = 1)
-ran_upois <- function(n = 1, lambda = 1, theta = 0) {
-  chk_whole_number(n)
-  chk_gte(n)
-  chk_gte(lambda)
-  chk_gte(theta)
-
-  use_pois <- all(theta == 0 & !is.na(theta))
-  if (use_pois) {
-    stats::rpois(n, lambda = lambda)
-  }
-
-  fun <- function(n, lambda, theta) {
-    u = stats::runif(n)
-    cmf <- pupois(0:max((ceiling(lambda) * 3), 50), lambda = lambda, theta = theta)
-    ix <- min(which(abs(cmf - 1) < 1e-8))
-    first = min(which(cmf > 0))
-    cmf = unique(c(0, cmf[first:ix]))
-    cmfTbl = table(cut(u, breaks = cmf, include.lowest = TRUE))
-    X = rep(1:length(cmfTbl), as.numeric(cmfTbl)) - 1 + ifelse(first > 1, first, 0)
-    X <- as.integer(X)
-    samp <- sample(1:n, size = n)
-    X[samp]
-  }
-
-  lambda_vec <- length(lambda) > 1L & length(unique(lambda)) != 1
-  theta_vec <- length(theta) > 1L & length(unique(theta)) != 1
-  if (lambda_vec | theta_vec) {
-    n_rep <- rep(1, n)
-    mapply(
-      fun,
-      n = n_rep,
-      lambda = lambda,
-      theta = theta
-    )
-  } else {
-    fun(n, lambda[1], theta[1])
-  }
-}
-
 #' Gamma-Poisson Random Samples
 #'
 #' @inheritParams params
@@ -252,4 +199,57 @@ ran_student <- function(n = 1, mean = 0, sd = 1, theta = 0) {
   x <- stats::rt(n, df)
   r <- x * sd + mean
   r
+}
+
+# Cumulative distribution function for underdispersed poisson distribution
+pupois <- function(q, lambda, theta) {
+  sapply(q, \(x) {sum(exp(log_lik_upois(0:x, lambda, theta)))})
+}
+
+#' Underdispersed Poisson Random Samples
+#'
+#' @inheritParams params
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_upois(n = 10, lambda = 1, theta = 1)
+ran_upois <- function(n = 1, lambda = 1, theta = 0) {
+  chk_whole_number(n)
+  chk_gte(n)
+  chk_gte(lambda)
+  chk_gte(theta)
+
+  use_pois <- all(theta == 0 & !is.na(theta))
+  if (use_pois) {
+    stats::rpois(n, lambda = lambda)
+  }
+
+  fun <- function(n, lambda, theta) {
+    u = stats::runif(n)
+    cmf <- pupois(0:max((ceiling(lambda) * 3), 50), lambda = lambda, theta = theta)
+    last <- min(which(abs(cmf - 1) < 1e-8))
+    first = min(which(cmf > 0))
+    cmf = unique(c(0, cmf[first:last]))
+    cmf_tbl = table(cut(u, breaks = cmf, include.lowest = TRUE))
+    x = rep(1:length(cmf_tbl), as.numeric(cmf_tbl)) - 1 + ifelse(first > 1, first, 0)
+    x <- as.integer(x)
+    samp <- sample(1:n, size = n)
+    x[samp]
+  }
+
+  lambda_vec <- length(lambda) > 1L & length(unique(lambda)) != 1
+  theta_vec <- length(theta) > 1L & length(unique(theta)) != 1
+  if (lambda_vec | theta_vec) {
+    n_rep <- rep(1, n)
+    mapply(
+      fun,
+      n = n_rep,
+      lambda = lambda,
+      theta = theta
+    )
+  } else {
+    fun(n, lambda[1], theta[1])
+  }
 }

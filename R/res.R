@@ -108,37 +108,6 @@ res_gamma <- function(x, shape = 1, rate = 1, type = "dev", simulate = FALSE) {
          chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 
-
-#' Underdispersed Poisson Residuals
-#'
-#' @inheritParams params
-#' @param x A non-negative whole numeric vector of values.
-#'
-#' @return An numeric vector of the corresponding residuals.
-#' @family res_dist
-#' @export
-#'
-#' @examples
-#' res_upois(c(0, 1, 2), 1, 1)
-res_upois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE) {
-  chk_string(type)
-  if(!vld_false(simulate)) {
-    x <- ran_upois(length(x), lambda = lambda, theta = theta)
-  }
-  if (length(lambda) == 1) {
-    lambda <- rep(lambda, length(x))
-  }
-  if (length(theta) == 1) {
-    theta <- rep(theta, length(x))
-  }
-  switch(type,
-         data = x,
-         raw = x - (lambda + (theta / (1 + theta))),
-         standardized = (x - (lambda + (theta / (1 + theta)))) / sqrt(lambda + (theta / (1 + theta)^2)),
-         dev = dev_upois(x, lambda = lambda, theta = theta, res = TRUE),
-         chk_subset(x, c("data", "raw", "dev", "standardized")))
-}
-
 #' Gamma-Poisson Residuals
 #'
 #' @inheritParams params
@@ -374,5 +343,35 @@ res_student <- function(x, mean = 0, sd = 1, theta = 0, type = "dev", simulate =
          raw = x - mean,
          standardized = res_student_standardized(x = x, mean = mean, sd = sd, theta = theta),
          dev = dev_student(x, mean = mean, sd = sd, theta = theta, res = TRUE),
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
+}
+
+#' Underdispersed Poisson Residuals
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_upois(c(0, 1, 2), 1, 1)
+res_upois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    x <- ran_upois(length(x), lambda = lambda, theta = theta)
+  }
+  if (length(lambda) == 1) {
+    lambda <- rep(lambda, length(x))
+  }
+  if (length(theta) == 1) {
+    theta <- rep(theta, length(x))
+  }
+  switch(type,
+         data = x,
+         raw = x - (lambda + (theta / (1 + theta))),
+         standardized = (x - (lambda + (theta / (1 + theta)))) / sqrt(lambda + (theta / (1 + theta)^2)),
+         dev = dev_upois(x, lambda = lambda, theta = theta, res = TRUE),
          chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
