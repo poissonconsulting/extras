@@ -2,7 +2,7 @@
 % Please edit documentation in R/res.R
 \name{res_upois}
 \alias{res_upois}
-\title{Gamma-Count Residuals}
+\title{Underdispersed Poisson Residuals}
 \usage{
 res_upois(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE)
 }
@@ -11,7 +11,7 @@ res_upois(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
 
@@ -21,7 +21,7 @@ res_upois(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE)
 An numeric vector of the corresponding residuals.
 }
 \description{
-Gamma-Count Residuals
+Underdispersed Poisson Residuals
 }
 \examples{
 res_upois(c(0, 1, 2), 1, 1)

@@ -11,7 +11,7 @@ dev_gamma_pois(x, lambda = 1, theta = 0, res = FALSE)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 
 \item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }

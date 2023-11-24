@@ -11,7 +11,7 @@ log_lik_neg_binom(x, lambda = 1, theta = 0)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

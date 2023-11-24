@@ -13,7 +13,7 @@ log_lik_student(x, mean = 0, sd = 1, theta = 0)
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

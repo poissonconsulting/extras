@@ -13,7 +13,7 @@ dev_beta_binom(x, size = 1, prob = 0.5, theta = 0, res = FALSE)
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 
 \item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
