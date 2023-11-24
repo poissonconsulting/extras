@@ -109,7 +109,7 @@ res_gamma <- function(x, shape = 1, rate = 1, type = "dev", simulate = FALSE) {
 }
 
 
-#' Gamma-Count Residuals
+#' Underdispersed Poisson Residuals
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.

@@ -105,8 +105,6 @@ log_lik_upois <- function(x, lambda = 1, theta = 0) {
     (-lambda + (x - 1) * log(lambda) + log(lambda + theta * x)) -
     (log(1 + theta) + lfactorial(x))
 
-  # log_lik <- rep(NaN, max(length(x), length(lambda), length(theta)))
-
   x_lambda_zero <- x == 0 & lambda == 0 & !is.na(x) & !is.na(lambda)
   if (any(x_lambda_zero)) {
     log_lik[x_lambda_zero] <- log(1 / (1 + theta[x_lambda_zero]))
@@ -121,12 +119,6 @@ log_lik_upois <- function(x, lambda = 1, theta = 0) {
   if (any(zero)) {
     log_lik[zero] <- log_lik_pois(x[zero], lambda[zero])
   }
-
-  # others <- !zero & !x_lambda_zero & !x_one_lambda_zero
-
-  # log_lik[others] <-
-  #   (-lambda[others] + (x[others] - 1) * log(lambda[others]) + log(lambda[others] + theta[others] * x[others])) -
-  #   (log(1 + theta[others]) + lfactorial(x[others]))
 
   log_lik
 }

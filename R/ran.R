@@ -90,8 +90,6 @@ ran_upois <- function(n = 1, lambda = 1, theta = 0) {
   chk_gte(n)
   chk_gte(lambda)
   chk_gte(theta)
-  # chk_compatible_lengths(rep(1, n), lambda, theta)
-  ### Figure out how to get this to work for a lambda/theta vector
 
   use_pois <- all(theta == 0 & !is.na(theta))
   if (use_pois) {
@@ -102,7 +100,6 @@ ran_upois <- function(n = 1, lambda = 1, theta = 0) {
     u = stats::runif(n)
     cmf <- pupois(0:max((ceiling(lambda) * 3), 50), lambda = lambda, theta = theta)
     ix <- min(which(abs(cmf - 1) < 1e-8))
-    # ix <- min(which(cmf == 1))
     first = min(which(cmf > 0))
     cmf = unique(c(0, cmf[first:ix]))
     cmfTbl = table(cut(u, breaks = cmf, include.lowest = TRUE))

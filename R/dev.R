@@ -109,42 +109,11 @@ dev_gamma <- function(x, shape = 1, rate = 1, res = FALSE) {
 #' @examples
 #' dev_upois(c(1,3.5,4), 3, 2)
 dev_upois <- function(x, lambda = 1, theta = 0, res = FALSE) {
-  # n <- 1000
-  # lambda <- rlnorm(1, 8, 1)
-  # print(lambda)
-  # theta <- 1
-  # x <- ran_upois(n, lambda, theta)
-
   sat <- log_lik_upois(x = x, lambda = pmax(x - (theta / (1 + theta)), 0), theta = theta)
   ll <- log_lik_upois(x = x, lambda = lambda, theta = theta)
-#
-#   ll_pois <- log_lik_pois(x = x, lambda = lambda)
-#   sat_pois <- log_lik_pois(x = x, lambda = x)
-#
-#   test = tibble(
-#     x = rep(x, 4),
-#     ll = c(ll, sat, ll_pois, sat_pois),
-#     lik = c(rep(c(rep("ll", n), rep("sat", n)), 2)),
-#     type = c(rep("upois", n * 2), rep("pois", n * 2))
-#   )
-#
-#   # dev <- tibble(x = rep(x, 2), ll = c(dev1, dev2), lik = c(rep("sat", length(dev1)), rep("reg", length(dev2))))
-#
-#   ggplot(test) +
-#     geom_line(aes(x = x, y = ll, colour = lik), alpha = 0.5) +
-#     facet_wrap(~type)
-#
-#   check_dev <- sat - ll
-#   unique(check_dev[check_dev < 0])
-#   chk_true(all(check_dev >= 0))
-
-  # Failing for lambda = 0.2492107, theta = 1
-  # lambda = 5.488455, theta = 1
-  # lambda = 0.4531443, theta = 1
-
   dev <- sat - ll
   dev <- 2 * dev
-  # Some cases where dev < 0, but all are very small diff (largest diff = 0.001)
+  # Some cases where dev < 0, but all are very small diff (largest 1e-3)
   neg <- dev < 0
   dev[neg] <- 0
   use_pois <- !is.na(theta) & theta == 0
