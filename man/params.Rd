@@ -57,8 +57,6 @@ should be returned as negative values.}
 \item{q}{A vector of quantiles.}
 
 \item{p}{A vector of probabilities.}
-
-\item{alpha}{A non-negative numeric vector of the dispersion parameter for the gamma-count distribution.}
 }
 \description{
 Parameter Descriptions
