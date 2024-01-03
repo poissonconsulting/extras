@@ -13,7 +13,7 @@ ran_student(n = 1, mean = 0, sd = 1, theta = 0)
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 }
 \value{
 A numeric vector of the random samples.
@@ -37,6 +37,7 @@ Other ran_dist:
 \code{\link{ran_norm}()},
 \code{\link{ran_pois_zi}()},
 \code{\link{ran_pois}()},
-\code{\link{ran_skewnorm}()}
+\code{\link{ran_skewnorm}()},
+\code{\link{ran_upois}()}
 }
 \concept{ran_dist}

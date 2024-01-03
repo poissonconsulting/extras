@@ -240,3 +240,48 @@ log_lik_student <- function(x, mean = 0, sd = 1, theta = 0) {
   lstudent[use_norm] <- lnorm[use_norm]
   lstudent
 }
+
+#' Underdispersed Poisson Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_upois(c(0, 1, 2), 1, 0)
+log_lik_upois <- function(x, lambda = 1, theta = 0) {
+  chk_gte(lambda)
+  chk_gte(theta)
+
+  if (length(theta) == 1) {
+    theta <- rep(theta, length(x))
+  }
+
+  if (length(lambda) == 1) {
+    lambda <- rep(lambda, length(x))
+  }
+
+  log_lik <-
+    (-lambda + (x - 1) * log(lambda) + log(lambda + theta * x)) -
+    (log(1 + theta) + lfactorial(x))
+
+  x_lambda_zero <- x == 0 & lambda == 0 & !is.na(x) & !is.na(lambda)
+  if (any(x_lambda_zero)) {
+    log_lik[x_lambda_zero] <- log(1 / (1 + theta[x_lambda_zero]))
+  }
+
+  x_one_lambda_zero <- x == 1 & lambda == 0 & !is.na(x) & !is.na(lambda)
+  if (any(x_one_lambda_zero)) {
+    log_lik[x_one_lambda_zero] <- log(theta[x_one_lambda_zero] / (1 + theta[x_one_lambda_zero]))
+  }
+
+  zero <- theta == 0 & !is.na(theta) & !is.na(lambda) & !is.na(x)
+  if (any(zero)) {
+    log_lik[zero] <- log_lik_pois(x[zero], lambda[zero])
+  }
+
+  log_lik
+}

@@ -13,7 +13,7 @@ ran_beta_binom(n = 1, size = 1, prob = 0.5, theta = 0)
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 }
 \value{
 A numeric vector of the random samples.
@@ -37,6 +37,7 @@ Other ran_dist:
 \code{\link{ran_pois_zi}()},
 \code{\link{ran_pois}()},
 \code{\link{ran_skewnorm}()},
-\code{\link{ran_student}()}
+\code{\link{ran_student}()},
+\code{\link{ran_upois}()}
 }
 \concept{ran_dist}

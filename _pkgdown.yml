@@ -99,6 +99,7 @@ reference:
   - '`dev_pois_zi`'
   - '`dev_skewnorm`'
   - '`dev_student`'
+  - '`dev_upois`'
 - title: Residual
   desc: Raw and Deviance Residuals
   contents:
@@ -115,6 +116,7 @@ reference:
   - '`res_pois_zi`'
   - '`res_skewnorm`'
   - '`res_student`'
+  - '`res_upois`'
 - title: Log-Likelihood
   desc: Log-likelihood functions
   contents:
@@ -131,6 +133,7 @@ reference:
   - '`log_lik_pois_zi`'
   - '`log_lik_skewnorm`'
   - '`log_lik_student`'
+  - '`log_lik_upois`'
 - title: Random
   desc: Random sample functions
   contents:
@@ -147,6 +150,7 @@ reference:
   - '`ran_pois_zi`'
   - '`ran_skewnorm`'
   - '`ran_student`'
+  - '`ran_upois`'
 - title: Bernoulli
   desc: Bernoulli distribution functions
   contents:
