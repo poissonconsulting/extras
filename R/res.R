@@ -136,6 +136,7 @@ res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FA
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
+#' @param prob A numeric vector of values between 0 and 1 of the probability of zero-inflation.
 #'
 #' @return An numeric vector of the corresponding residuals.
 #' @family res_dist
@@ -257,6 +258,7 @@ res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
+#' @param prob A numeric vector of values between 0 and 1 of the probability of zero-inflation.
 #'
 #' @return An numeric vector of the corresponding residuals.
 #' @family res_dist
