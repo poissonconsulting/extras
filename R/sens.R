@@ -4,7 +4,7 @@
 #' @param sd
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -27,7 +27,7 @@ sens_norm <- function(mean, sd, sd_mult = 2) {
 #' @param theta
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -52,7 +52,7 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
 #' @param shape
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -75,7 +75,7 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
 #' @param sdlog
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -104,7 +104,7 @@ sens_lnorm <- function(meanlog, sdlog, sd_mult = 2) {
 #' @param rate
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -129,7 +129,7 @@ sens_exp <- function(rate, sd_mult = 2) {
 #' @param beta
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -169,7 +169,7 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
 #' @param lambda
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -188,7 +188,7 @@ sens_pois <- function(lambda, sd_mult = 2) {
 #' @param theta
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -221,7 +221,7 @@ sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
 #' @param theta
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -236,7 +236,7 @@ sens_gamma_pois <- function(lambda, theta, sd_mult = 2) {
 #' @param prob
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
@@ -269,7 +269,7 @@ sens_pois_zi <- function(lambda, prob, sd_mult = 2) {
 #' @param prob
 #' @param sd_mult
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
 #' @export
 #'
 #' @examples
