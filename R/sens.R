@@ -8,6 +8,8 @@
 #' @export
 #'
 #' @examples
+#' sens_norm(10, 3, 2)
+#' sens_norm(10, 3, 0.8)
 sens_norm <- function(mean, sd, sd_mult = 2) {
   chk::chk_number(mean)
   chk::chk_number(sd)
@@ -29,6 +31,8 @@ sens_norm <- function(mean, sd, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_student(10, 3, 0.1, 2)
+#' sens_student(10, 3, 0.1, 0.8)
 sens_student <- function(mean, sd, theta, sd_mult = 2) {
   chk::chk_number(mean)
   chk::chk_number(sd)
@@ -41,7 +45,7 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
   return(c(mean = mean, sd = new_sd, theta = theta))
 }
 
-#' Skew Normal Distribution Parameters for Sensitivity Analyses
+#' Adjust Skew Normal Distribution Parameters for Sensitivity Analyses
 #'
 #' @param mean
 #' @param sd
@@ -52,6 +56,8 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_skewnorm(10, 3, -1, 2)
+#' sens_skewnorm(10, 3, 3, 0.8)
 sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
   chk::chk_number(mean)
   chk::chk_number(sd)
@@ -63,7 +69,7 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
   return(c(mean = mean, sd = new_sd, theta = theta))
 }
 
-#' Log Normal Distribution Parameters for Sensitivity Analysis
+#' Adjust Log Normal Distribution Parameters for Sensitivity Analysis
 #'
 #' @param meanlog
 #' @param sdlog
@@ -73,10 +79,12 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_lnorm(0, 1, 2)
+#' sens_lnorm(0, 1, 0.8)
 sens_lnorm <- function(meanlog, sdlog, sd_mult = 2) {
   chk::chk_number(meanlog)
   chk::chk_number(sdlog)
-  # No chk::chk_gte(sdlog, value = 0) right?
+  chk::chk_gte(sdlog, value = 0)
   chk::chk_number(sd_mult)
   chk::chk_gt(sd_mult, value = 0)
 
@@ -91,7 +99,7 @@ sens_lnorm <- function(meanlog, sdlog, sd_mult = 2) {
   return(c(meanlog = new_meanlog, sdlog = new_sdlog))
 }
 
-#' Exponential Distribution Parameters for Sensitivity Analyses
+#' Adjust Exponential Distribution Parameters for Sensitivity Analyses
 #'
 #' @param rate
 #' @param sd_mult
@@ -100,6 +108,8 @@ sens_lnorm <- function(meanlog, sdlog, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_exp(10, 2)
+#' sens_exp(10, 0.8)
 sens_exp <- function(rate, sd_mult = 2) {
   chk::chk_number(rate)
   chk::chk_gte(rate, value = 0)
@@ -113,7 +123,7 @@ sens_exp <- function(rate, sd_mult = 2) {
   return(rate = new_rate)
 }
 
-#' Beta Distribution Parameters for Sensitivity Analyses
+#' Adjust Beta Distribution Parameters for Sensitivity Analyses
 #'
 #' @param alpha
 #' @param beta
@@ -123,6 +133,8 @@ sens_exp <- function(rate, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_beta(10, 10, 2)
+#' sens_beta(10, 10, 0.8)
 sens_beta <- function(alpha, beta, sd_mult = 2) {
   chk::chk_number(alpha)
   chk::chk_gt(alpha, value = 0)
@@ -152,7 +164,7 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
   return(c(alpha = new_alpha, beta = new_beta))
 }
 
-#' Poisson Distribution Parameters for Sensitivity Analysis
+#' Adjust Poisson Distribution Parameters for Sensitivity Analysis
 #'
 #' @param lambda
 #' @param sd_mult
@@ -161,6 +173,8 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_pois(10, 2)
+#' sens_pois(10, 0.8)
 sens_pois <- function(lambda, sd_mult = 2) {
   chk::chk_number(lambda)
   chk::chk_gte(lambda, value = 0)
@@ -168,7 +182,7 @@ sens_pois <- function(lambda, sd_mult = 2) {
   return(lambda = new_lambda)
 }
 
-#' Negative Binomial Distribution Parameters for Sensitivity Analyses
+#' Adjust Negative Binomial Distribution Parameters for Sensitivity Analyses
 #'
 #' @param lambda
 #' @param theta
@@ -178,6 +192,7 @@ sens_pois <- function(lambda, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_neg_binom(10, 0.1, 2)
 sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
   chk::chk_number(lambda)
   chk::chk_gte(lambda, value = 0)
@@ -200,7 +215,7 @@ sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
   return(c(lambda = lambda, theta = new_theta))
 }
 
-#' Gamma-Poisson Distribution Parameters for Sensitivity Analyses
+#' Adjust Gamma-Poisson Distribution Parameters for Sensitivity Analyses
 #'
 #' @param lambda
 #' @param theta
@@ -210,11 +225,12 @@ sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_gamma_pois(10, 0.1, 2)
 sens_gamma_pois <- function(lambda, theta, sd_mult = 2) {
   sens_neg_binom(lambda = lambda, theta = theta, sd_mult = sd_mult)
 }
 
-#' Zero-Inflated Poisson Distribution Parameters for Sensitivity Analyses
+#' Adjust Zero-Inflated Poisson Distribution Parameters for Sensitivity Analyses
 #'
 #' @param lambda
 #' @param prob
@@ -224,6 +240,8 @@ sens_gamma_pois <- function(lambda, theta, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_pois_zi(10, 0.1, 2)
+#' sens_pois_zi(10, 0.1, 0.8)
 sens_pois_zi <- function(lambda, prob, sd_mult = 2) {
   chk::chk_number(lambda)
   chk::chk_gte(lambda, value = 0)
@@ -244,7 +262,7 @@ sens_pois_zi <- function(lambda, prob, sd_mult = 2) {
   return(c(lambda = new_lambda, prob = prob))
 }
 
-#' Zero-Inflated Gamma-Poisson Distribution Parameters for Sensitivity Analyses
+#' Adjust Zero-Inflated Gamma-Poisson Distribution Parameters for Sensitivity Analyses
 #'
 #' @param lambda
 #' @param theta
@@ -255,6 +273,7 @@ sens_pois_zi <- function(lambda, prob, sd_mult = 2) {
 #' @export
 #'
 #' @examples
+#' sens_gamma_pois_zi(10, 0.1, 0.3, 2)
 sens_gamma_pois_zi <- function(lambda, theta, prob, sd_mult = 2) {
   chk::chk_number(lambda)
   chk::chk_gte(lambda, value = 0)
