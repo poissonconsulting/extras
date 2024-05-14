@@ -29,5 +29,6 @@
 #' @param lower.tail A flag specifying whether to return the lower or upper tail of the distribution.
 #' @param q A vector of quantiles.
 #' @param p A vector of probabilities.
+#' @param sd_mult A non-negative multiplier on the standard deviation of the distribution.
 #' @name params
 NULL
