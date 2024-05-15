@@ -1,4 +1,74 @@
 # Normal ----
+test_that("sens_norm returns a numeric vector of length 2 with correct names", {
+  new_pars <- sens_norm(mean = 2, sd = 10, sd_mult = 2)
+  expect_equal(length(new_pars), 2L)
+  expect_identical(names(new_pars), c("mean", "sd"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_norm errors with NULL input for mean", {
+  expect_chk_error(
+    sens_norm(mean = NULL, sd = 10, sd_mult = 2),
+    "`mean` must be a number"
+  )
+})
+
+test_that("sens_norm errors with NULL input for sd", {
+  expect_chk_error(
+    sens_norm(mean = 0, sd = NULL, sd_mult = 2),
+    "`sd` must be a number"
+  )
+})
+
+test_that("sens_norm errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_norm(mean = 10, sd = 10, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_norm errors with empty numeric input for mean", {
+  expect_chk_error(
+    sens_norm(mean = numeric(0), sd = 10, sd_mult = 2),
+    "`mean` must be a number"
+  )
+})
+
+test_that("sens_norm errors with empty numeric input for sd", {
+  expect_chk_error(
+    sens_norm(mean = 0, sd = numeric(0), sd_mult = 2),
+    "`sd` must be a number"
+  )
+})
+
+test_that("sens_norm errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_norm(mean = 10, sd = 10, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_norm errors when provided with a vector of values for mean", {
+  expect_chk_error(
+    sens_norm(mean = 10:13, sd = 10, sd_mult = 2),
+    "`mean` must be a number"
+  )
+})
+
+test_that("sens_norm errors when provided with a vector of values for sd", {
+  expect_chk_error(
+    sens_norm(mean = 10, sd = 10:13, sd_mult = 2),
+    "`sd` must be a number"
+  )
+})
+
+test_that("sens_norm errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_norm(mean = 10, sd = 10, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("normal sensitivity expands sd by multiplier", {
   mean <- 10
   sd <- 18
@@ -100,6 +170,97 @@ test_that("normal random deviates have the expected sd", {
 })
 
 # Student's t ----
+test_that("sens_student returns a numeric vector of length 3 with correct names", {
+  new_pars <- sens_student(mean = 2, sd = 10, theta = 0.1, sd_mult = 2)
+  expect_equal(length(new_pars), 3L)
+  expect_identical(names(new_pars), c("mean", "sd", "theta"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_student errors with NULL input for mean", {
+  expect_chk_error(
+    sens_student(mean = NULL, sd = 10, theta = 0.1, sd_mult = 2),
+    "`mean` must be a number"
+  )
+})
+
+test_that("sens_student errors with NULL input for sd", {
+  expect_chk_error(
+    sens_student(mean = 0, sd = NULL, theta = 0.1, sd_mult = 2),
+    "`sd` must be a number"
+  )
+})
+
+test_that("sens_student errors with NULL input for theta", {
+  expect_chk_error(
+    sens_student(mean = 0, sd = 0.3, theta = NULL, sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_student errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_student(mean = 10, sd = 10, theta = 0.1, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_student errors with empty numeric input for mean", {
+  expect_chk_error(
+    sens_student(mean = numeric(0), sd = 10, theta = 0.1, sd_mult = 2),
+    "`mean` must be a number"
+  )
+})
+
+test_that("sens_student errors with empty numeric input for sd", {
+  expect_chk_error(
+    sens_student(mean = 0, sd = numeric(0), theta = 0.1, sd_mult = 2),
+    "`sd` must be a number"
+  )
+})
+
+test_that("sens_student errors with empty numeric input for theta", {
+  expect_chk_error(
+    sens_student(mean = 0, sd = 12, theta = numeric(0), sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_student errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_student(mean = 10, sd = 10, theta = 0.1, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_student errors when provided with a vector of values for mean", {
+  expect_chk_error(
+    sens_student(mean = 10:13, sd = 10, theta = 0.1, sd_mult = 2),
+    "`mean` must be a number"
+  )
+})
+
+test_that("sens_student errors when provided with a vector of values for sd", {
+  expect_chk_error(
+    sens_student(mean = 10, sd = 10:13, theta = 0.1, sd_mult = 2),
+    "`sd` must be a number"
+  )
+})
+
+test_that("sens_student errors when provided with a vector of values for theta", {
+  expect_chk_error(
+    sens_student(mean = 10, sd = 10, theta = 1:2, sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_student errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_student(mean = 10, sd = 10, theta = 0.1, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("student's sensitivity expands the sd by the multiplier", {
   mean <- 10
   sd <- 5
@@ -265,6 +426,55 @@ test_that("student's random deviates have the expected sd", {
 })
 
 # Exponential ----
+test_that("sens_exp returns a numeric vector of length 1 with correct names", {
+  new_pars <- sens_exp(rate = 10, sd_mult = 2)
+  expect_equal(length(new_pars), 1L)
+  expect_identical(names(new_pars), c("rate"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_exp errors with NULL input for rate", {
+  expect_chk_error(
+    sens_exp(rate = NULL, sd_mult = 2),
+    "`rate` must be a number"
+  )
+})
+
+test_that("sens_exp errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_exp(rate = 10, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_exp errors with empty numeric input for rate", {
+  expect_chk_error(
+    sens_exp(rate = numeric(0), sd_mult = 2),
+    "`rate` must be a number"
+  )
+})
+
+test_that("sens_exp errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_exp(rate = 10, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_exp errors when provided with a vector of values for rate", {
+  expect_chk_error(
+    sens_exp(rate = 10:13, sd_mult = 2),
+    "`rate` must be a number"
+  )
+})
+
+test_that("sens_exp errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_exp(rate = 10, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("sd of exponential deviates expands as expected", {
   rate <- 10
   sd_mult <- 5
@@ -341,6 +551,97 @@ test_that("sens_exp errors with negative sd_mult", {
 })
 
 # skew normal ----
+test_that("sens_skewnorm returns a numeric vector of length 2 with correct names", {
+  new_pars <- sens_skewnorm(mean = 2, sd = 10, shape = -1, sd_mult = 2)
+  expect_equal(length(new_pars), 3L)
+  expect_identical(names(new_pars), c("mean", "sd", "shape"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_skewnorm errors with NULL input for mean", {
+  expect_chk_error(
+    sens_skewnorm(mean = NULL, sd = 10, shape = 0.1, sd_mult = 2),
+    "`mean` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors with NULL input for sd", {
+  expect_chk_error(
+    sens_skewnorm(mean = 0, sd = NULL, shape = 0.1, sd_mult = 2),
+    "`sd` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors with NULL input for shape", {
+  expect_chk_error(
+    sens_skewnorm(mean = 0, sd = 0.3, shape = NULL, sd_mult = 2),
+    "`shape` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_skewnorm(mean = 10, sd = 10, shape = 0.1, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors with empty numeric input for mean", {
+  expect_chk_error(
+    sens_skewnorm(mean = numeric(0), sd = 10, shape = 0.1, sd_mult = 2),
+    "`mean` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors with empty numeric input for sd", {
+  expect_chk_error(
+    sens_skewnorm(mean = 0, sd = numeric(0), shape = 0.1, sd_mult = 2),
+    "`sd` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors with empty numeric input for shape", {
+  expect_chk_error(
+    sens_skewnorm(mean = 0, sd = 12, shape = numeric(0), sd_mult = 2),
+    "`shape` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_skewnorm(mean = 10, sd = 10, shape = 0.1, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors when provided with a vector of values for mean", {
+  expect_chk_error(
+    sens_skewnorm(mean = 10:13, sd = 10, shape = 0.1, sd_mult = 2),
+    "`mean` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors when provided with a vector of values for sd", {
+  expect_chk_error(
+    sens_skewnorm(mean = 10, sd = 10:13, shape = 0.1, sd_mult = 2),
+    "`sd` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors when provided with a vector of values for shape", {
+  expect_chk_error(
+    sens_skewnorm(mean = 10, sd = 10, shape = 1:2, sd_mult = 2),
+    "`shape` must be a number"
+  )
+})
+
+test_that("sens_skewnorm errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_skewnorm(mean = 10, sd = 10, shape = 0.1, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("sd of skewnorm deviates expands as expected", {
   mean <- 10
   sd <- 20
@@ -479,6 +780,76 @@ test_that("sens_skewnorm has same behaviour as normal when shape = 0", {
 })
 
 # Log-normal ----
+test_that("sens_lnorm returns a numeric vector of length 2 with correct names", {
+  new_pars <- sens_lnorm(meanlog = 2, sdlog = 10, sd_mult = 2)
+  expect_equal(length(new_pars), 2L)
+  expect_identical(names(new_pars), c("meanlog", "sdlog"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_lnorm errors with NULL input for meanlog", {
+  expect_chk_error(
+    sens_lnorm(meanlog = NULL, sdlog = 10, sd_mult = 2),
+    "`meanlog` must be a number"
+  )
+})
+
+test_that("sens_lnorm errors with NULL input for sdlog", {
+  expect_chk_error(
+    sens_lnorm(meanlog = 0, sdlog = NULL, sd_mult = 2),
+    "`sdlog` must be a number"
+  )
+})
+
+test_that("sens_lnorm errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_lnorm(meanlog = 10, sdlog = 10, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_lnorm errors with empty numeric input for meanlog", {
+  expect_chk_error(
+    sens_lnorm(meanlog = numeric(0), sdlog = 10, sd_mult = 2),
+    "`meanlog` must be a number"
+  )
+})
+
+test_that("sens_lnorm errors with empty numeric input for sdlog", {
+  expect_chk_error(
+    sens_lnorm(meanlog = 0, sdlog = numeric(0), sd_mult = 2),
+    "`sdlog` must be a number"
+  )
+})
+
+test_that("sens_lnorm errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_lnorm(meanlog = 10, sdlog = 10, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_lnorm errors when provided with a vector of values for meanlog", {
+  expect_chk_error(
+    sens_lnorm(meanlog = 10:13, sdlog = 10, sd_mult = 2),
+    "`meanlog` must be a number"
+  )
+})
+
+test_that("sens_lnorm errors when provided with a vector of values for sdlog", {
+  expect_chk_error(
+    sens_lnorm(meanlog = 10, sdlog = 10:13, sd_mult = 2),
+    "`sdlog` must be a number"
+  )
+})
+
+test_that("sens_lnorm errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_lnorm(meanlog = 10, sdlog = 10, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("sd of log-normal deviates expands as expected", {
   meanlog <- 0
   sdlog <- 1
@@ -587,6 +958,76 @@ test_that("sens_lnorm errors with sd_mult = 0", {
 })
 
 # Beta ----
+test_that("sens_beta returns a numeric vector of length 2 with correct names", {
+  new_pars <- sens_beta(alpha = 2, beta = 10, sd_mult = 2)
+  expect_equal(length(new_pars), 2L)
+  expect_identical(names(new_pars), c("alpha", "beta"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_beta errors with NULL input for alpha", {
+  expect_chk_error(
+    sens_beta(alpha = NULL, beta = 10, sd_mult = 2),
+    "`alpha` must be a number"
+  )
+})
+
+test_that("sens_beta errors with NULL input for beta", {
+  expect_chk_error(
+    sens_beta(alpha = 1, beta = NULL, sd_mult = 2),
+    "`beta` must be a number"
+  )
+})
+
+test_that("sens_beta errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_beta(alpha = 10, beta = 10, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_beta errors with empty numeric input for alpha", {
+  expect_chk_error(
+    sens_beta(alpha = numeric(0), beta = 10, sd_mult = 2),
+    "`alpha` must be a number"
+  )
+})
+
+test_that("sens_beta errors with empty numeric input for beta", {
+  expect_chk_error(
+    sens_beta(alpha = 0.1, beta = numeric(0), sd_mult = 2),
+    "`beta` must be a number"
+  )
+})
+
+test_that("sens_beta errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_beta(alpha = 10, beta = 10, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_beta errors when provided with a vector of values for alpha", {
+  expect_chk_error(
+    sens_beta(alpha = 10:13, beta = 10, sd_mult = 2),
+    "`alpha` must be a number"
+  )
+})
+
+test_that("sens_beta errors when provided with a vector of values for beta", {
+  expect_chk_error(
+    sens_beta(alpha = 10, beta = 10:13, sd_mult = 2),
+    "`beta` must be a number"
+  )
+})
+
+test_that("sens_beta errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_beta(alpha = 10, beta = 10, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("sd of beta deviates expands as expected (works for large alpha and beta)", {
   alpha <- 50
   beta <- 50
@@ -685,6 +1126,55 @@ test_that("sens_beta errors with sd_mult < 0", {
 })
 
 # Poisson ----
+test_that("sens_pois returns a numeric vector of length 1 with correct names", {
+  new_pars <- sens_pois(lambda = 10, sd_mult = 2)
+  expect_equal(length(new_pars), 1L)
+  expect_identical(names(new_pars), c("lambda"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_pois errors with NULL input for lambda", {
+  expect_chk_error(
+    sens_pois(lambda = NULL, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_pois errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_pois(lambda = 10, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_pois errors with empty numeric input for lambda", {
+  expect_chk_error(
+    sens_pois(lambda = numeric(0), sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_pois errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_pois(lambda = 10, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_pois errors when provided with a vector of values for lambda", {
+  expect_chk_error(
+    sens_pois(lambda = 10:13, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_pois errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_pois(lambda = 10, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("sd of poisson random deviates expands with sd_mult > 1", {
   lambda <- 10
   sd_mult <- 2
@@ -774,6 +1264,76 @@ test_that("sens_pois errors with sd_mult < 0", {
 })
 
 # Gamma ----
+test_that("sens_gamma returns a numeric vector of length 2 with correct names", {
+  new_pars <- sens_gamma(shape = 2, rate = 10, sd_mult = 2)
+  expect_equal(length(new_pars), 2L)
+  expect_identical(names(new_pars), c("shape", "rate"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_gamma errors with NULL input for shape", {
+  expect_chk_error(
+    sens_gamma(shape = NULL, rate = 10, sd_mult = 2),
+    "`shape` must be a number"
+  )
+})
+
+test_that("sens_gamma errors with NULL input for rate", {
+  expect_chk_error(
+    sens_gamma(shape = 1, rate = NULL, sd_mult = 2),
+    "`rate` must be a number"
+  )
+})
+
+test_that("sens_gamma errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_gamma(shape = 10, rate = 10, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_gamma errors with empty numeric input for shape", {
+  expect_chk_error(
+    sens_gamma(shape = numeric(0), rate = 10, sd_mult = 2),
+    "`shape` must be a number"
+  )
+})
+
+test_that("sens_gamma errors with empty numeric input for rate", {
+  expect_chk_error(
+    sens_gamma(shape = 0.1, rate = numeric(0), sd_mult = 2),
+    "`rate` must be a number"
+  )
+})
+
+test_that("sens_gamma errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_gamma(shape = 10, rate = 10, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_gamma errors when provided with a vector of values for shape", {
+  expect_chk_error(
+    sens_gamma(shape = 10:13, rate = 10, sd_mult = 2),
+    "`shape` must be a number"
+  )
+})
+
+test_that("sens_gamma errors when provided with a vector of values for rate", {
+  expect_chk_error(
+    sens_gamma(shape = 10, rate = 10:13, sd_mult = 2),
+    "`rate` must be a number"
+  )
+})
+
+test_that("sens_gamma errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_gamma(shape = 10, rate = 10, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("sd of gamma random deviates expands with sd_mult > 1", {
   shape <- 10
   rate <- 2
@@ -891,6 +1451,76 @@ test_that("sens_gamma errors with sd_mult < 0", {
 })
 
 # Gamma-Poisson ----
+test_that("sens_gamma_pois returns a numeric vector of length 2 with correct names", {
+  new_pars <- sens_gamma_pois(lambda = 2, theta = 0.1, sd_mult = 2)
+  expect_equal(length(new_pars), 2L)
+  expect_identical(names(new_pars), c("lambda", "theta"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_gamma_pois errors with NULL input for lambda", {
+  expect_chk_error(
+    sens_gamma_pois(lambda = NULL, theta = 10, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois errors with NULL input for theta", {
+  expect_chk_error(
+    sens_gamma_pois(lambda = 1, theta = NULL, sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_gamma_pois(lambda = 10, theta = 10, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois errors with empty numeric input for lambda", {
+  expect_chk_error(
+    sens_gamma_pois(lambda = numeric(0), theta = 10, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois errors with empty numeric input for theta", {
+  expect_chk_error(
+    sens_gamma_pois(lambda = 0.1, theta = numeric(0), sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_gamma_pois(lambda = 10, theta = 10, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois errors when provided with a vector of values for lambda", {
+  expect_chk_error(
+    sens_gamma_pois(lambda = 10:13, theta = 10, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois errors when provided with a vector of values for theta", {
+  expect_chk_error(
+    sens_gamma_pois(lambda = 10, theta = 10:13, sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_gamma_pois(lambda = 10, theta = 10, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("sd of gamma-poisson random deviates expands with sd_mult > 1", {
   lambda <- 10
   theta <- 0.1
@@ -990,6 +1620,76 @@ test_that("sens_gamma_pois errors with sd_mult < 0", {
 })
 
 # Negative Binomial ----
+test_that("sens_neg_binom returns a numeric vector of length 2 with correct names", {
+  new_pars <- sens_neg_binom(lambda = 2, theta = 0.3, sd_mult = 2)
+  expect_equal(length(new_pars), 2L)
+  expect_identical(names(new_pars), c("lambda", "theta"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_neg_binom errors with NULL input for lambda", {
+  expect_chk_error(
+    sens_neg_binom(lambda = NULL, theta = 10, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_neg_binom errors with NULL input for theta", {
+  expect_chk_error(
+    sens_neg_binom(lambda = 1, theta = NULL, sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_neg_binom errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_neg_binom(lambda = 10, theta = 10, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_neg_binom errors with empty numeric input for lambda", {
+  expect_chk_error(
+    sens_neg_binom(lambda = numeric(0), theta = 10, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_neg_binom errors with empty numeric input for theta", {
+  expect_chk_error(
+    sens_neg_binom(lambda = 0.1, theta = numeric(0), sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_neg_binom errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_neg_binom(lambda = 10, theta = 10, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_neg_binom errors when provided with a vector of values for lambda", {
+  expect_chk_error(
+    sens_neg_binom(lambda = 10:13, theta = 10, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_neg_binom errors when provided with a vector of values for theta", {
+  expect_chk_error(
+    sens_neg_binom(lambda = 10, theta = 10:13, sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_neg_binom errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_neg_binom(lambda = 10, theta = 10, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("sd of negative binomial random deviates expands with sd_mult > 1", {
   lambda <- 10
   theta <- 0.1
@@ -1089,6 +1789,97 @@ test_that("sens_neg_binom errors with sd_mult < 0", {
 })
 
 # Zero-inflated Gamma-Poisson ----
+test_that("sens_gamma_pois_zi returns a numeric vector of length 3 with correct names", {
+  new_pars <- sens_gamma_pois_zi(lambda = 2, theta = 0.2, prob = 0.4, sd_mult = 2)
+  expect_equal(length(new_pars), 3L)
+  expect_identical(names(new_pars), c("lambda", "theta", "prob"))
+  expect_identical(class(new_pars), "numeric")
+})
+
+test_that("sens_gamma_pois_zi errors with NULL input for lambda", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = NULL, theta = 10, prob = 0.1, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors with NULL input for theta", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 1, theta = NULL, prob = 0.1, sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors with NULL input for prob", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 1, theta = 0.1, prob = NULL, sd_mult = 2),
+    "`prob` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors with NULL input for sd_mult", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 10, theta = 10, prob = 0.1, sd_mult = NULL),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors with empty numeric input for lambda", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = numeric(0), theta = 10, prob = 0.1, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors with empty numeric input for theta", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 0.1, theta = numeric(0), prob = 0.1, sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors with empty numeric input for prob", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 0.1, theta = 0.2, prob = numeric(0), sd_mult = 2),
+    "`prob` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors with empty numeric input for sd_mult", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 10, theta = 10, prob = 0.1, sd_mult = numeric(0)),
+    "`sd_mult` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors when provided with a vector of values for lambda", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 10:13, theta = 10, prob = 0.1, sd_mult = 2),
+    "`lambda` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors when provided with a vector of values for theta", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 10, theta = 10:13, prob = 0.1, sd_mult = 2),
+    "`theta` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors when provided with a vector of values for prob", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 10, theta = 10, prob = seq(0.1, 0.3, 0.1), sd_mult = 2),
+    "`prob` must be a number"
+  )
+})
+
+test_that("sens_gamma_pois_zi errors when provided with a vector of values for sd_mult", {
+  expect_chk_error(
+    sens_gamma_pois_zi(lambda = 10, theta = 10, prob = 0.1, sd_mult = 2:3),
+    "`sd_mult` must be a number"
+  )
+})
+
 test_that("sd of gamma-poisson random deviates expands with sd_mult > 1", {
   lambda <- 100
   theta <- 0.1
