@@ -280,13 +280,12 @@ sens_gamma_pois_zi <- function(lambda, theta, prob, sd_mult = 2) {
   chk::chk_number(theta)
   chk::chk_gte(theta, value = 0)
   chk::chk_number(prob)
-  chk::chk_gte(prob, value = 0)
   chk::chk_range(prob, range = c(0, 1), inclusive = TRUE)
   chk::chk_number(sd_mult)
   chk::chk_gt(sd_mult, value = 0)
 
   if (sd_mult < 1) {
-    stop("This function does not currently have the ability to reduce the standard deviation.")
+    stop("This function does not currently have the option to reduce the standard deviation.")
   }
 
   original_mean <- lambda * (1 - prob)
