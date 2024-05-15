@@ -7,7 +7,11 @@
 sens_lnorm(meanlog, sdlog, sd_mult = 2)
 }
 \arguments{
-\item{sd_mult}{}
+\item{meanlog}{A numeric vector of the means on the log scale.}
+
+\item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
+
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
 }
 \value{
 A named vector of the adjusted distribution's parameters.
@@ -19,3 +23,18 @@ Adjust Log Normal Distribution Parameters for Sensitivity Analysis
 sens_lnorm(0, 1, 2)
 sens_lnorm(0, 1, 0.8)
 }
+\seealso{
+Other sens_dist: 
+\code{\link{sens_beta}()},
+\code{\link{sens_exp}()},
+\code{\link{sens_gamma}()},
+\code{\link{sens_gamma_pois}()},
+\code{\link{sens_gamma_pois_zi}()},
+\code{\link{sens_neg_binom}()},
+\code{\link{sens_norm}()},
+\code{\link{sens_pois}()},
+\code{\link{sens_pois_zi}()},
+\code{\link{sens_skewnorm}()},
+\code{\link{sens_student}()}
+}
+\concept{sens_dist}

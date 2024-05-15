@@ -7,7 +7,9 @@
 sens_exp(rate, sd_mult = 2)
 }
 \arguments{
-\item{sd_mult}{}
+\item{rate}{A non-negative numeric vector of rate.}
+
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
 }
 \value{
 A named vector of the adjusted distribution's parameters.
@@ -19,3 +21,18 @@ Adjust Exponential Distribution Parameters for Sensitivity Analyses
 sens_exp(10, 2)
 sens_exp(10, 0.8)
 }
+\seealso{
+Other sens_dist: 
+\code{\link{sens_beta}()},
+\code{\link{sens_gamma}()},
+\code{\link{sens_gamma_pois}()},
+\code{\link{sens_gamma_pois_zi}()},
+\code{\link{sens_lnorm}()},
+\code{\link{sens_neg_binom}()},
+\code{\link{sens_norm}()},
+\code{\link{sens_pois}()},
+\code{\link{sens_pois_zi}()},
+\code{\link{sens_skewnorm}()},
+\code{\link{sens_student}()}
+}
+\concept{sens_dist}

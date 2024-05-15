@@ -1,10 +1,9 @@
 #' Adjust Normal Distribution Parameters for Sensitivity Analyses
 #'
-#' @param mean
-#' @param sd
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -22,12 +21,10 @@ sens_norm <- function(mean, sd, sd_mult = 2) {
 
 #' Adjust Student's t Distribution Parameters for Sensitivity Analyses
 #'
-#' @param mean
-#' @param sd
-#' @param theta
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -47,12 +44,10 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
 
 #' Adjust Skew Normal Distribution Parameters for Sensitivity Analyses
 #'
-#' @param mean
-#' @param sd
-#' @param shape
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -71,11 +66,10 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
 
 #' Adjust Log Normal Distribution Parameters for Sensitivity Analysis
 #'
-#' @param meanlog
-#' @param sdlog
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -101,10 +95,10 @@ sens_lnorm <- function(meanlog, sdlog, sd_mult = 2) {
 
 #' Adjust Exponential Distribution Parameters for Sensitivity Analyses
 #'
-#' @param rate
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -125,11 +119,10 @@ sens_exp <- function(rate, sd_mult = 2) {
 
 #' Adjust Beta Distribution Parameters for Sensitivity Analyses
 #'
-#' @param alpha
-#' @param beta
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -166,10 +159,10 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
 
 #' Adjust Poisson Distribution Parameters for Sensitivity Analyses
 #'
-#' @param lambda
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -186,14 +179,15 @@ sens_pois <- function(lambda, sd_mult = 2) {
 
 #' Adjust Gamma Distribution Parameters for Sensitivity Analyses
 #'
-#' @param shape
-#' @param rate
-#' @param sd_mult
+#' @inheritParams params
 #'
-#' @return
+#' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
+#' sens_gamma(10, 2, 2)
+#' sens_gamma(10, 2, 0.2)
 sens_gamma <- function(shape, rate, sd_mult = 2) {
   chk::chk_number(shape)
   chk::chk_gt(shape, value = 0)
@@ -213,11 +207,10 @@ sens_gamma <- function(shape, rate, sd_mult = 2) {
 
 #' Adjust Negative Binomial Distribution Parameters for Sensitivity Analyses
 #'
-#' @param lambda
-#' @param theta
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -246,11 +239,10 @@ sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
 
 #' Adjust Gamma-Poisson Distribution Parameters for Sensitivity Analyses
 #'
-#' @param lambda
-#' @param theta
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -261,11 +253,10 @@ sens_gamma_pois <- function(lambda, theta, sd_mult = 2) {
 
 #' Adjust Zero-Inflated Poisson Distribution Parameters for Sensitivity Analyses
 #'
-#' @param lambda
-#' @param prob
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples
@@ -293,12 +284,10 @@ sens_pois_zi <- function(lambda, prob, sd_mult = 2) {
 
 #' Adjust Zero-Inflated Gamma-Poisson Distribution Parameters for Sensitivity Analyses
 #'
-#' @param lambda
-#' @param theta
-#' @param prob
-#' @param sd_mult
+#' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
+#' @family sens_dist
 #' @export
 #'
 #' @examples

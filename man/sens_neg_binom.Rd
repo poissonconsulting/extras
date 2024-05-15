@@ -7,7 +7,11 @@
 sens_neg_binom(lambda, theta, sd_mult = 2)
 }
 \arguments{
-\item{sd_mult}{}
+\item{lambda}{A non-negative numeric vector of means.}
+
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
 }
 \value{
 A named vector of the adjusted distribution's parameters.
@@ -18,3 +22,18 @@ Adjust Negative Binomial Distribution Parameters for Sensitivity Analyses
 \examples{
 sens_neg_binom(10, 0.1, 2)
 }
+\seealso{
+Other sens_dist: 
+\code{\link{sens_beta}()},
+\code{\link{sens_exp}()},
+\code{\link{sens_gamma}()},
+\code{\link{sens_gamma_pois}()},
+\code{\link{sens_gamma_pois_zi}()},
+\code{\link{sens_lnorm}()},
+\code{\link{sens_norm}()},
+\code{\link{sens_pois}()},
+\code{\link{sens_pois_zi}()},
+\code{\link{sens_skewnorm}()},
+\code{\link{sens_student}()}
+}
+\concept{sens_dist}

@@ -7,7 +7,13 @@
 sens_skewnorm(mean, sd, shape, sd_mult = 2)
 }
 \arguments{
-\item{sd_mult}{}
+\item{mean}{A numeric vector of the means.}
+
+\item{sd}{A non-negative numeric vector of the standard deviations.}
+
+\item{shape}{A non-negative numeric vector of shape.}
+
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
 }
 \value{
 A named vector of the adjusted distribution's parameters.
@@ -19,3 +25,18 @@ Adjust Skew Normal Distribution Parameters for Sensitivity Analyses
 sens_skewnorm(10, 3, -1, 2)
 sens_skewnorm(10, 3, 3, 0.8)
 }
+\seealso{
+Other sens_dist: 
+\code{\link{sens_beta}()},
+\code{\link{sens_exp}()},
+\code{\link{sens_gamma}()},
+\code{\link{sens_gamma_pois}()},
+\code{\link{sens_gamma_pois_zi}()},
+\code{\link{sens_lnorm}()},
+\code{\link{sens_neg_binom}()},
+\code{\link{sens_norm}()},
+\code{\link{sens_pois}()},
+\code{\link{sens_pois_zi}()},
+\code{\link{sens_student}()}
+}
+\concept{sens_dist}

@@ -7,8 +7,34 @@
 sens_gamma(shape, rate, sd_mult = 2)
 }
 \arguments{
-\item{sd_mult}{}
+\item{shape}{A non-negative numeric vector of shape.}
+
+\item{rate}{A non-negative numeric vector of rate.}
+
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
+}
+\value{
+A named vector of the adjusted distribution's parameters.
 }
 \description{
 Adjust Gamma Distribution Parameters for Sensitivity Analyses
 }
+\examples{
+sens_gamma(10, 2, 2)
+sens_gamma(10, 2, 0.2)
+}
+\seealso{
+Other sens_dist: 
+\code{\link{sens_beta}()},
+\code{\link{sens_exp}()},
+\code{\link{sens_gamma_pois}()},
+\code{\link{sens_gamma_pois_zi}()},
+\code{\link{sens_lnorm}()},
+\code{\link{sens_neg_binom}()},
+\code{\link{sens_norm}()},
+\code{\link{sens_pois}()},
+\code{\link{sens_pois_zi}()},
+\code{\link{sens_skewnorm}()},
+\code{\link{sens_student}()}
+}
+\concept{sens_dist}

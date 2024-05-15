@@ -7,7 +7,11 @@
 sens_pois_zi(lambda, prob, sd_mult = 2)
 }
 \arguments{
-\item{sd_mult}{}
+\item{lambda}{A non-negative numeric vector of means.}
+
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
 }
 \value{
 A named vector of the adjusted distribution's parameters.
@@ -19,3 +23,18 @@ Adjust Zero-Inflated Poisson Distribution Parameters for Sensitivity Analyses
 sens_pois_zi(10, 0.1, 2)
 sens_pois_zi(10, 0.1, 0.8)
 }
+\seealso{
+Other sens_dist: 
+\code{\link{sens_beta}()},
+\code{\link{sens_exp}()},
+\code{\link{sens_gamma}()},
+\code{\link{sens_gamma_pois}()},
+\code{\link{sens_gamma_pois_zi}()},
+\code{\link{sens_lnorm}()},
+\code{\link{sens_neg_binom}()},
+\code{\link{sens_norm}()},
+\code{\link{sens_pois}()},
+\code{\link{sens_skewnorm}()},
+\code{\link{sens_student}()}
+}
+\concept{sens_dist}

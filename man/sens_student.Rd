@@ -7,7 +7,13 @@
 sens_student(mean, sd, theta, sd_mult = 2)
 }
 \arguments{
-\item{sd_mult}{}
+\item{mean}{A numeric vector of the means.}
+
+\item{sd}{A non-negative numeric vector of the standard deviations.}
+
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
 }
 \value{
 A named vector of the adjusted distribution's parameters.
@@ -19,3 +25,18 @@ Adjust Student's t Distribution Parameters for Sensitivity Analyses
 sens_student(10, 3, 0.1, 2)
 sens_student(10, 3, 0.1, 0.8)
 }
+\seealso{
+Other sens_dist: 
+\code{\link{sens_beta}()},
+\code{\link{sens_exp}()},
+\code{\link{sens_gamma}()},
+\code{\link{sens_gamma_pois}()},
+\code{\link{sens_gamma_pois_zi}()},
+\code{\link{sens_lnorm}()},
+\code{\link{sens_neg_binom}()},
+\code{\link{sens_norm}()},
+\code{\link{sens_pois}()},
+\code{\link{sens_pois_zi}()},
+\code{\link{sens_skewnorm}()}
+}
+\concept{sens_dist}
