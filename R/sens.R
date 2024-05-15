@@ -149,7 +149,7 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
   # If new variance is > max variance
   # Or new_alpha and/or new_beta are < 1 (results in u-shaped dist if both < 1 and exponential-type dist if one < 1)
   # Set both new shape parameters to 1 (results in uniform distribution)
-  if (new_var_x >= (mean_x * (1 - mean_x)) | new_alpha < 1 | new_beta < 1) {
+  if (new_var_x >= (mean_x * (1 - mean_x)) || new_alpha < 1 || new_beta < 1) {
     new_alpha <- 1
     new_beta <- 1
   }
@@ -228,7 +228,6 @@ sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
   }
 
   size <- 1 / theta
-  original_mean <- lambda
   original_sd <- sqrt(lambda + lambda^2 / size)
   desired_sd <- original_sd * sd_mult
   new_size <- lambda^2 / (desired_sd^2 - lambda)
@@ -305,9 +304,6 @@ sens_gamma_pois_zi <- function(lambda, theta, prob, sd_mult = 2) {
   if (sd_mult < 1) {
     stop("This function does not currently have the option to reduce the standard deviation.")
   }
-
-  original_mean <- lambda * (1 - prob)
-  original_sd <- sqrt(lambda * (1 - prob) * (1 + lambda * (prob + theta)))
 
   new_theta <- (sd_mult^2 * (1 + lambda * (prob + theta)) - (lambda * prob) - 1) / lambda
   return(c(lambda = lambda, theta = new_theta, prob = prob))
