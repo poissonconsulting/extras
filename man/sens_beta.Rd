@@ -7,6 +7,10 @@
 sens_beta(alpha, beta, sd_mult = 2)
 }
 \arguments{
+\item{alpha}{The first shape parameter of the Beta distribution.}
+
+\item{beta}{The second shape parameter of the Beta distribution.}
+
 \item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
 }
 \value{
