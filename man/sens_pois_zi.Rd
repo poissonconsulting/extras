@@ -17,7 +17,9 @@ sens_pois_zi(lambda, prob, sd_mult = 2)
 A named vector of the adjusted distribution's parameters.
 }
 \description{
-Adjust Zero-Inflated Poisson Distribution Parameters for Sensitivity Analyses
+Expands (\code{sd_mult > 1}) the standard deviation of the Negative Binomial
+distribution. This function does not currently have the option to reduce the
+standard deviation.
 }
 \examples{
 sens_pois_zi(10, 0.1, 2)

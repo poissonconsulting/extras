@@ -19,7 +19,8 @@ sens_gamma_pois_zi(lambda, theta, prob, sd_mult = 2)
 A named vector of the adjusted distribution's parameters.
 }
 \description{
-Adjust Zero-Inflated Gamma-Poisson Distribution Parameters for Sensitivity Analyses
+Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
+of the Zero-Inflated Gamma-Poisson distribution.
 }
 \examples{
 sens_gamma_pois_zi(10, 0.1, 0.3, 2)

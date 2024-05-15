@@ -2,7 +2,7 @@
 % Please edit documentation in R/sens.R
 \name{sens_lnorm}
 \alias{sens_lnorm}
-\title{Adjust Log Normal Distribution Parameters for Sensitivity Analysis}
+\title{Adjust Log-Normal Distribution Parameters for Sensitivity Analysis}
 \usage{
 sens_lnorm(meanlog, sdlog, sd_mult = 2)
 }
@@ -17,7 +17,11 @@ sens_lnorm(meanlog, sdlog, sd_mult = 2)
 A named vector of the adjusted distribution's parameters.
 }
 \description{
-Adjust Log Normal Distribution Parameters for Sensitivity Analysis
+Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
+of the Log-Normal distribution. With high values of \code{sdlog} (i.e., \verb{> 9}),
+and \code{sd_mult > 1}, the mean of the adjusted distribution can be expected to
+have a mean value that is very different from the original mean, however,
+the proportional difference in these values should not be very different.
 }
 \examples{
 sens_lnorm(0, 1, 2)

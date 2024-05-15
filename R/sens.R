@@ -1,5 +1,8 @@
 #' Adjust Normal Distribution Parameters for Sensitivity Analyses
 #'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the Normal distribution without changing the mean.
+#'
 #' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
@@ -20,6 +23,12 @@ sens_norm <- function(mean, sd, sd_mult = 2) {
 }
 
 #' Adjust Student's t Distribution Parameters for Sensitivity Analyses
+#'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the Student's t distribution. Because the variance of this distribution
+#' is not defined for every degree of freedom, the adjustment to the standard
+#' deviation is approximate, and the mean of the adjusted distribution can
+#' be expected to have shifted.
 #'
 #' @inheritParams params
 #'
@@ -44,6 +53,10 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
 
 #' Adjust Skew Normal Distribution Parameters for Sensitivity Analyses
 #'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the Skew Normal distribution. Due to numerical issues when `sd_mult < 1`,
+#' the mean of the adjusted distribution can be expected to have shifted.
+#'
 #' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
@@ -64,7 +77,13 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
   return(c(mean = mean, sd = new_sd, shape = shape))
 }
 
-#' Adjust Log Normal Distribution Parameters for Sensitivity Analysis
+#' Adjust Log-Normal Distribution Parameters for Sensitivity Analysis
+#'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the Log-Normal distribution. With high values of `sdlog` (i.e., `> 9`),
+#' and `sd_mult > 1`, the mean of the adjusted distribution can be expected to
+#' have a mean value that is very different from the original mean, however,
+#' the proportional difference in these values should not be very different.
 #'
 #' @inheritParams params
 #'
@@ -95,6 +114,11 @@ sens_lnorm <- function(meanlog, sdlog, sd_mult = 2) {
 
 #' Adjust Exponential Distribution Parameters for Sensitivity Analyses
 #'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the exponential distribution. Due to the parameterization of this
+#' distribution, adjusting the standard deviation necessarily changes the mean
+#' value.
+#'
 #' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
@@ -119,6 +143,14 @@ sens_exp <- function(rate, sd_mult = 2) {
 
 #' Adjust Beta Distribution Parameters for Sensitivity Analyses
 #'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the Beta distribution. The Beta distribution has a maximum variance of
+#' `mean(x) * (1 - mean(x)`, where `mean(x) = alpha / (alpha + beta)`. If the
+#' inputs produce a desired variance that is greater than the maximum possible
+#' variance, or provides alpha and/or beta parameters that are `< 1` and thus
+#' push more probability weight towards extreme probability values, this
+#' function returns `alpha = 1` and `beta = 1` (the uniform distribution).
+#'
 #' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
@@ -139,16 +171,12 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
   mean_x <- alpha / (alpha + beta)
   var_x <- (alpha * beta) / ((alpha + beta)^2 * (alpha + beta + 1))
 
-  # Keep same mean and change variance
   new_var_x <- (sqrt(var_x) * sd_mult)^2
   alpha_plus_beta <- mean_x * (1 - mean_x) / new_var_x - 1
 
   new_alpha <- mean_x * alpha_plus_beta
   new_beta <- (1 - mean_x) * alpha_plus_beta
 
-  # If new variance is > max variance
-  # Or new_alpha and/or new_beta are < 1 (results in u-shaped dist if both < 1 and exponential-type dist if one < 1)
-  # Set both new shape parameters to 1 (results in uniform distribution)
   if (new_var_x >= (mean_x * (1 - mean_x)) || new_alpha < 1 || new_beta < 1) {
     new_alpha <- 1
     new_beta <- 1
@@ -158,6 +186,11 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
 }
 
 #' Adjust Poisson Distribution Parameters for Sensitivity Analyses
+#'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the Poisson distribution. Due to the parameterization of this
+#' distribution, adjusting the standard deviation necessarily changes the mean
+#' value.
 #'
 #' @inheritParams params
 #'
@@ -178,6 +211,9 @@ sens_pois <- function(lambda, sd_mult = 2) {
 }
 
 #' Adjust Gamma Distribution Parameters for Sensitivity Analyses
+#'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the Gamma distribution.
 #'
 #' @inheritParams params
 #'
@@ -206,6 +242,10 @@ sens_gamma <- function(shape, rate, sd_mult = 2) {
 }
 
 #' Adjust Negative Binomial Distribution Parameters for Sensitivity Analyses
+#'
+#' Expands (`sd_mult > 1`) the standard deviation of the Negative Binomial
+#' distribution. This function does not currently have the option to reduce the
+#' standard deviation.
 #'
 #' @inheritParams params
 #'
@@ -238,6 +278,10 @@ sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
 
 #' Adjust Gamma-Poisson Distribution Parameters for Sensitivity Analyses
 #'
+#' Expands (`sd_mult > 1`) the standard deviation of the Negative Binomial
+#' distribution. This function does not currently have the option to reduce the
+#' standard deviation.
+#'
 #' @inheritParams params
 #'
 #' @return A named vector of the adjusted distribution's parameters.
@@ -251,6 +295,10 @@ sens_gamma_pois <- function(lambda, theta, sd_mult = 2) {
 }
 
 #' Adjust Zero-Inflated Poisson Distribution Parameters for Sensitivity Analyses
+#'
+#' Expands (`sd_mult > 1`) the standard deviation of the Negative Binomial
+#' distribution. This function does not currently have the option to reduce the
+#' standard deviation.
 #'
 #' @inheritParams params
 #'
@@ -275,13 +323,15 @@ sens_pois_zi <- function(lambda, prob, sd_mult = 2) {
     return(c(lambda = new_lambda, prob = prob))
   }
 
-  # Solution to quadratic equation
   new_lambda <- (sqrt(4 * sd_mult^2 * lambda * prob * (lambda * prob + 1) + 1) + 1) / (2 * prob)
 
   return(c(lambda = new_lambda, prob = prob))
 }
 
 #' Adjust Zero-Inflated Gamma-Poisson Distribution Parameters for Sensitivity Analyses
+#'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the Zero-Inflated Gamma-Poisson distribution.
 #'
 #' @inheritParams params
 #'

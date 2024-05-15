@@ -17,7 +17,9 @@ sens_neg_binom(lambda, theta, sd_mult = 2)
 A named vector of the adjusted distribution's parameters.
 }
 \description{
-Adjust Negative Binomial Distribution Parameters for Sensitivity Analyses
+Expands (\code{sd_mult > 1}) the standard deviation of the Negative Binomial
+distribution. This function does not currently have the option to reduce the
+standard deviation.
 }
 \examples{
 sens_neg_binom(10, 0.1, 2)

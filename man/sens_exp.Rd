@@ -15,7 +15,10 @@ sens_exp(rate, sd_mult = 2)
 A named vector of the adjusted distribution's parameters.
 }
 \description{
-Adjust Exponential Distribution Parameters for Sensitivity Analyses
+Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
+of the exponential distribution. Due to the parameterization of this
+distribution, adjusting the standard deviation necessarily changes the mean
+value.
 }
 \examples{
 sens_exp(10, 2)

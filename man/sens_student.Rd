@@ -19,7 +19,11 @@ sens_student(mean, sd, theta, sd_mult = 2)
 A named vector of the adjusted distribution's parameters.
 }
 \description{
-Adjust Student's t Distribution Parameters for Sensitivity Analyses
+Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
+of the Student's t distribution. Because the variance of this distribution
+is not defined for every degree of freedom, the adjustment to the standard
+deviation is approximate, and the mean of the adjusted distribution can
+be expected to have shifted.
 }
 \examples{
 sens_student(10, 3, 0.1, 2)

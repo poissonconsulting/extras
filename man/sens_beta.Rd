@@ -17,7 +17,13 @@ sens_beta(alpha, beta, sd_mult = 2)
 A named vector of the adjusted distribution's parameters.
 }
 \description{
-Adjust Beta Distribution Parameters for Sensitivity Analyses
+Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
+of the Beta distribution. The Beta distribution has a maximum variance of
+\verb{mean(x) * (1 - mean(x)}, where \code{mean(x) = alpha / (alpha + beta)}. If the
+inputs produce a desired variance that is greater than the maximum possible
+variance, or provides alpha and/or beta parameters that are \verb{< 1} and thus
+push more probability weight towards extreme probability values, this
+function returns \code{alpha = 1} and \code{beta = 1} (the uniform distribution).
 }
 \examples{
 sens_beta(10, 10, 2)

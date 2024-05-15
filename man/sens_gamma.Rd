@@ -17,7 +17,8 @@ sens_gamma(shape, rate, sd_mult = 2)
 A named vector of the adjusted distribution's parameters.
 }
 \description{
-Adjust Gamma Distribution Parameters for Sensitivity Analyses
+Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
+of the Gamma distribution.
 }
 \examples{
 sens_gamma(10, 2, 2)

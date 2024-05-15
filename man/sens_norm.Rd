@@ -17,7 +17,8 @@ sens_norm(mean, sd, sd_mult = 2)
 A named vector of the adjusted distribution's parameters.
 }
 \description{
-Adjust Normal Distribution Parameters for Sensitivity Analyses
+Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
+of the Normal distribution without changing the mean.
 }
 \examples{
 sens_norm(10, 3, 2)
