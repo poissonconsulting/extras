@@ -66,7 +66,7 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
   chk::chk_number(sd_mult)
   chk::chk_gt(sd_mult, value = 0)
   new_sd <- sd * sd_mult
-  return(c(mean = mean, sd = new_sd, theta = theta))
+  return(c(mean = mean, sd = new_sd, shape = shape))
 }
 
 #' Adjust Log Normal Distribution Parameters for Sensitivity Analysis
