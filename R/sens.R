@@ -112,7 +112,7 @@ sens_lnorm <- function(meanlog, sdlog, sd_mult = 2) {
 #' sens_exp(10, 0.8)
 sens_exp <- function(rate, sd_mult = 2) {
   chk::chk_number(rate)
-  chk::chk_gte(rate, value = 0)
+  chk::chk_gt(rate, value = 0)
   chk::chk_number(sd_mult)
   chk::chk_gt(sd_mult, value = 0)
 
