@@ -120,7 +120,7 @@ sens_exp <- function(rate, sd_mult = 2) {
   new_sd <- sd * sd_mult
   new_rate <- 1 / new_sd
 
-  return(rate = new_rate)
+  return(c(rate = new_rate))
 }
 
 #' Adjust Beta Distribution Parameters for Sensitivity Analyses
