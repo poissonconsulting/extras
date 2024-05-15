@@ -164,7 +164,7 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
   return(c(alpha = new_alpha, beta = new_beta))
 }
 
-#' Adjust Poisson Distribution Parameters for Sensitivity Analysis
+#' Adjust Poisson Distribution Parameters for Sensitivity Analyses
 #'
 #' @param lambda
 #' @param sd_mult
@@ -178,8 +178,37 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
 sens_pois <- function(lambda, sd_mult = 2) {
   chk::chk_number(lambda)
   chk::chk_gte(lambda, value = 0)
+  chk::chk_number(sd_mult)
+  chk::chk_gt(sd_mult, value = 0)
   new_lambda <- lambda * sd_mult^2
-  return(lambda = new_lambda)
+  return(c(lambda = new_lambda))
+}
+
+#' Adjust Gamma Distribution Parameters for Sensitivity Analyses
+#'
+#' @param shape
+#' @param rate
+#' @param sd_mult
+#'
+#' @return
+#' @export
+#'
+#' @examples
+sens_gamma <- function(shape, rate, sd_mult = 2) {
+  chk::chk_number(shape)
+  chk::chk_gt(shape, value = 0)
+  chk::chk_number(rate)
+  chk::chk_gt(rate, value = 0)
+  chk::chk_number(sd_mult)
+  chk::chk_gt(sd_mult, value = 0)
+
+  var <- shape / rate^2
+  new_var <- var * sd_mult^2
+
+  new_rate <- shape / (rate * new_var)
+  new_shape <- (shape * new_rate) / rate
+
+  return(c(shape = new_shape, rate = new_rate))
 }
 
 #' Adjust Negative Binomial Distribution Parameters for Sensitivity Analyses
