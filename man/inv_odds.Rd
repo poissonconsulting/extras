@@ -20,11 +20,11 @@ inv_odds(c(0, 1, 9, 9999))
 }
 \seealso{
 Other odds: 
+\code{\link{log_odds}()},
 \code{\link{log_odds<-}()},
 \code{\link{log_odds_ratio}()},
-\code{\link{log_odds}()},
+\code{\link{odds}()},
 \code{\link{odds<-}()},
-\code{\link{odds_ratio}()},
-\code{\link{odds}()}
+\code{\link{odds_ratio}()}
 }
 \concept{odds}

@@ -23,10 +23,10 @@ odds_ratio(0.5, 0.75)
 \seealso{
 Other odds: 
 \code{\link{inv_odds}()},
+\code{\link{log_odds}()},
 \code{\link{log_odds<-}()},
 \code{\link{log_odds_ratio}()},
-\code{\link{log_odds}()},
-\code{\link{odds<-}()},
-\code{\link{odds}()}
+\code{\link{odds}()},
+\code{\link{odds<-}()}
 }
 \concept{odds}

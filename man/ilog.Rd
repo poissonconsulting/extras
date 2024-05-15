@@ -35,8 +35,8 @@ Other translations:
 \code{\link{log10<-}()},
 \code{\link{log2<-}()},
 \code{\link{log<-}()},
-\code{\link{logit<-}()},
 \code{\link{logit}()},
+\code{\link{logit<-}()},
 \code{\link{phi}()},
 \code{\link{pow}()},
 \code{\link{step}()}

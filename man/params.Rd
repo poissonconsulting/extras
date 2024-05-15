@@ -57,6 +57,8 @@ should be returned as negative values.}
 \item{q}{A vector of quantiles.}
 
 \item{p}{A vector of probabilities.}
+
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
 }
 \description{
 Parameter Descriptions

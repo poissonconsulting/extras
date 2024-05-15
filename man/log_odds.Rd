@@ -23,8 +23,8 @@ Other odds:
 \code{\link{inv_odds}()},
 \code{\link{log_odds<-}()},
 \code{\link{log_odds_ratio}()},
+\code{\link{odds}()},
 \code{\link{odds<-}()},
-\code{\link{odds_ratio}()},
-\code{\link{odds}()}
+\code{\link{odds_ratio}()}
 }
 \concept{odds}
