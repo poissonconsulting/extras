@@ -20,8 +20,7 @@ A named vector of the adjusted distribution's parameters.
 }
 \description{
 Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
-of the Skew Normal distribution. Due to numerical issues when \code{sd_mult < 1},
-the mean of the adjusted distribution can be expected to have shifted.
+of the Skew Normal distribution without changing the mean.
 }
 \examples{
 sens_skewnorm(10, 3, -1, 2)
