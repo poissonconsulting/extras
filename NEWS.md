@@ -1,9 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
-# extras 0.6.1.9000
+# extras 0.7.0
 
-- Same as previous version.
-
+  - Added sensitivity functions to produce list of new parameters that vary standard deviations (`sens_xxx()`).
+  - Added Skew Normal residual functions (`ran_skewnorm()`, `log_lik_skewnorm()`, `res_skewnorm()`, `dev_skewnorm()`).
+  - Added Skew Normal distribution functions (`rskewnorm()`, `dskewnorm()`, `pskewnorm()`, `qskewnorm()`).
+  - Added `log2()<-`, `log10()<-`, `ilog2()`, and `ilog10()` functions
+  - Added `exp2()` and `exp10()` functions
 
 # extras 0.6.1
 
