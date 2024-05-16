@@ -20,7 +20,7 @@ dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
   opt_p <- rep(NA, length(x))
   bol <- !is.na(x) & !is.na(size) & !is.na(theta)
   for (i in seq_along(x)) {
-    if (bol[i] & !is.na(bol[i])) {
+    if (bol[i] && !is.na(bol[i])) {
     opt_p[i] <- stats::optimize(opt_beta_binom, interval = c(0, 1), x = x[i],
                                 size = size[i], theta = theta[i], tol = 1e-8)$minimum
     }

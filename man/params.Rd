@@ -57,6 +57,12 @@ should be returned as negative values.}
 \item{q}{A vector of quantiles.}
 
 \item{p}{A vector of probabilities.}
+
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
+
+\item{alpha}{The first shape parameter of the Beta distribution.}
+
+\item{beta}{The second shape parameter of the Beta distribution.}
 }
 \description{
 Parameter Descriptions

@@ -185,9 +185,9 @@ theta <- c(0, 0.1, 0.5, 1)
 res_mat <- matrix(NA, nrow = n_samp * length(theta), ncol = length(prob))
 
 set.seed(101)
-for (i in 1:length(prob)) {
+for (i in seq_along(prob)) {
   res <- NULL
-  for (j in 1:length(theta)) {
+  for (j in seq_along(theta)) {
     x <- ran_beta_binom(n_samp, size, prob[i], theta[j]) 
     res <- c(res, res_beta_binom(x, size, prob[i], theta[j]))
   }

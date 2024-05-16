@@ -29,12 +29,12 @@ Other dev_dist:
 \code{\link{dev_bern}()},
 \code{\link{dev_beta_binom}()},
 \code{\link{dev_binom}()},
-\code{\link{dev_gamma_pois}()},
 \code{\link{dev_gamma}()},
+\code{\link{dev_gamma_pois}()},
 \code{\link{dev_neg_binom}()},
 \code{\link{dev_norm}()},
-\code{\link{dev_pois_zi}()},
 \code{\link{dev_pois}()},
+\code{\link{dev_pois_zi}()},
 \code{\link{dev_skewnorm}()},
 \code{\link{dev_student}()}
 }

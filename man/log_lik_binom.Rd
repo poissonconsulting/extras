@@ -26,14 +26,14 @@ log_lik_binom(c(0, 1, 2), 2, 0.3)
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
 \code{\link{log_lik_beta_binom}()},
-\code{\link{log_lik_gamma_pois_zi}()},
-\code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_gamma}()},
+\code{\link{log_lik_gamma_pois}()},
+\code{\link{log_lik_gamma_pois_zi}()},
 \code{\link{log_lik_lnorm}()},
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
-\code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_pois}()},
+\code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_skewnorm}()},
 \code{\link{log_lik_student}()}
 }
