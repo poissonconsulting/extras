@@ -14,7 +14,7 @@ sens_neg_binom(lambda, theta, sd_mult = 2)
 \item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
 }
 \value{
-A named vector of the adjusted distribution's parameters.
+A named list of the adjusted distribution's parameters.
 }
 \description{
 Expands (\code{sd_mult > 1}) the standard deviation of the Negative Binomial

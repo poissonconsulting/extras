@@ -5,7 +5,7 @@
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -32,7 +32,7 @@ sens_norm <- function(mean, sd, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -58,7 +58,7 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -90,7 +90,7 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -124,7 +124,7 @@ sens_lnorm <- function(meanlog, sdlog, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -156,7 +156,7 @@ sens_exp <- function(rate, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -197,7 +197,7 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -220,7 +220,7 @@ sens_pois <- function(lambda, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -252,7 +252,7 @@ sens_gamma <- function(shape, rate, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -287,7 +287,7 @@ sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
@@ -304,7 +304,7 @@ sens_gamma_pois <- function(lambda, theta, sd_mult = 2) {
 #'
 #' @inheritParams params
 #'
-#' @return A named vector of the adjusted distribution's parameters.
+#' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
 #' @export
 #'
