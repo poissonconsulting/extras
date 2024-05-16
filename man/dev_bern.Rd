@@ -34,6 +34,7 @@ Other dev_dist:
 \code{\link{dev_pois_zi}()},
 \code{\link{dev_pois}()},
 \code{\link{dev_skewnorm}()},
-\code{\link{dev_student}()}
+\code{\link{dev_student}()},
+\code{\link{dev_upois}()}
 }
 \concept{dev_dist}

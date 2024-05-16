@@ -18,7 +18,7 @@ res_gamma_pois_zi(
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of zero-inflation.}
 
@@ -48,6 +48,7 @@ Other res_dist:
 \code{\link{res_pois_zi}()},
 \code{\link{res_pois}()},
 \code{\link{res_skewnorm}()},
-\code{\link{res_student}()}
+\code{\link{res_student}()},
+\code{\link{res_upois}()}
 }
 \concept{res_dist}

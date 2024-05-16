@@ -33,6 +33,7 @@ Other ran_dist:
 \code{\link{ran_pois_zi}()},
 \code{\link{ran_pois}()},
 \code{\link{ran_skewnorm}()},
-\code{\link{ran_student}()}
+\code{\link{ran_student}()},
+\code{\link{ran_upois}()}
 }
 \concept{ran_dist}

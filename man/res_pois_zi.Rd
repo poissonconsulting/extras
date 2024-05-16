@@ -39,6 +39,7 @@ Other res_dist:
 \code{\link{res_norm}()},
 \code{\link{res_pois}()},
 \code{\link{res_skewnorm}()},
-\code{\link{res_student}()}
+\code{\link{res_student}()},
+\code{\link{res_upois}()}
 }
 \concept{res_dist}

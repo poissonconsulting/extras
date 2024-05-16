@@ -13,7 +13,7 @@ dev_student(x, mean = 0, sd = 1, theta = 0, res = FALSE)
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 
 \item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
 }
@@ -38,6 +38,7 @@ Other dev_dist:
 \code{\link{dev_norm}()},
 \code{\link{dev_pois_zi}()},
 \code{\link{dev_pois}()},
-\code{\link{dev_skewnorm}()}
+\code{\link{dev_skewnorm}()},
+\code{\link{dev_upois}()}
 }
 \concept{dev_dist}

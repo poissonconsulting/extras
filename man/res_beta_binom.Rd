@@ -20,7 +20,7 @@ res_beta_binom(
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
 
@@ -48,6 +48,7 @@ Other res_dist:
 \code{\link{res_pois_zi}()},
 \code{\link{res_pois}()},
 \code{\link{res_skewnorm}()},
-\code{\link{res_student}()}
+\code{\link{res_student}()},
+\code{\link{res_upois}()}
 }
 \concept{res_dist}

@@ -287,3 +287,28 @@ dev_student <- function(x, mean = 0, sd = 1, theta = 0, res = FALSE) {
   dev_res(x, mean, dev)
 }
 
+#' Underdispersed Poisson Deviances
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_upois(c(1,3.5,4), 3, 2)
+dev_upois <- function(x, lambda = 1, theta = 0, res = FALSE) {
+  sat <- log_lik_upois(x = x, lambda = pmax(x - (theta / (1 + theta)), 0), theta = theta)
+  ll <- log_lik_upois(x = x, lambda = lambda, theta = theta)
+  dev <- sat - ll
+  dev <- 2 * dev
+  # Some cases where dev < 0, but all are very small diff (largest 1e-3)
+  neg <- dev < 0
+  dev[neg] <- 0
+  use_pois <- !is.na(theta) & theta == 0
+  dev_pois <- dev_pois(x = x, lambda = lambda, res = FALSE)
+  dev[use_pois] <- dev_pois[use_pois]
+  if(vld_false(res)) return(dev)
+  dev_res(x, lambda + (theta / (1 + theta)), dev)
+}

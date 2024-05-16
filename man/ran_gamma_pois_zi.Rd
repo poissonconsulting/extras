@@ -11,7 +11,7 @@ ran_gamma_pois_zi(n = 1, lambda = 1, theta = 0, prob = 0)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson, beta-binomial, and underdispersed Poisson).}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 }
@@ -37,6 +37,7 @@ Other ran_dist:
 \code{\link{ran_pois_zi}()},
 \code{\link{ran_pois}()},
 \code{\link{ran_skewnorm}()},
-\code{\link{ran_student}()}
+\code{\link{ran_student}()},
+\code{\link{ran_upois}()}
 }
 \concept{ran_dist}
