@@ -19,7 +19,7 @@ sens_norm <- function(mean, sd, sd_mult = 2) {
   chk::chk_number(sd_mult)
   chk::chk_gt(sd_mult, value = 0)
   new_sd <- sd * sd_mult
-  return(c(mean = mean, sd = new_sd))
+  return(list(mean = mean, sd = new_sd))
 }
 
 #' Adjust Student's t Distribution Parameters for Sensitivity Analyses
@@ -48,14 +48,13 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
   chk::chk_number(sd_mult)
   chk::chk_gt(sd_mult, value = 0)
   new_sd <- sd * sd_mult
-  return(c(mean = mean, sd = new_sd, theta = theta))
+  return(list(mean = mean, sd = new_sd, theta = theta))
 }
 
 #' Adjust Skew Normal Distribution Parameters for Sensitivity Analyses
 #'
 #' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
-#' of the Skew Normal distribution. Due to numerical issues when `sd_mult < 1`,
-#' the mean of the adjusted distribution can be expected to have shifted.
+#' of the Skew Normal distribution without changing the mean.
 #'
 #' @inheritParams params
 #'
@@ -74,7 +73,11 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
   chk::chk_number(sd_mult)
   chk::chk_gt(sd_mult, value = 0)
   new_sd <- sd * sd_mult
-  return(c(mean = mean, sd = new_sd, shape = shape))
+  original_mean <- mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi)
+  new_mean <- mean + new_sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi)
+  diff_means <- new_mean - original_mean
+  adjusted_mean <- mean - diff_means
+  return(list(mean = adjusted_mean, sd = new_sd, shape = shape))
 }
 
 #' Adjust Log-Normal Distribution Parameters for Sensitivity Analysis
@@ -109,7 +112,7 @@ sens_lnorm <- function(meanlog, sdlog, sd_mult = 2) {
   new_meanlog <- log(desired_mean^2 / sqrt(desired_mean^2 + desired_sd^2))
   new_sdlog <- sqrt(log(1 + desired_sd^2 / desired_mean^2))
 
-  return(c(meanlog = new_meanlog, sdlog = new_sdlog))
+  return(list(meanlog = new_meanlog, sdlog = new_sdlog))
 }
 
 #' Adjust Exponential Distribution Parameters for Sensitivity Analyses
@@ -138,7 +141,7 @@ sens_exp <- function(rate, sd_mult = 2) {
   new_sd <- sd * sd_mult
   new_rate <- 1 / new_sd
 
-  return(c(rate = new_rate))
+  return(list(rate = new_rate))
 }
 
 #' Adjust Beta Distribution Parameters for Sensitivity Analyses
@@ -182,7 +185,7 @@ sens_beta <- function(alpha, beta, sd_mult = 2) {
     new_beta <- 1
   }
 
-  return(c(alpha = new_alpha, beta = new_beta))
+  return(list(alpha = new_alpha, beta = new_beta))
 }
 
 #' Adjust Poisson Distribution Parameters for Sensitivity Analyses
@@ -207,7 +210,7 @@ sens_pois <- function(lambda, sd_mult = 2) {
   chk::chk_number(sd_mult)
   chk::chk_gt(sd_mult, value = 0)
   new_lambda <- lambda * sd_mult^2
-  return(c(lambda = new_lambda))
+  return(list(lambda = new_lambda))
 }
 
 #' Adjust Gamma Distribution Parameters for Sensitivity Analyses
@@ -238,7 +241,7 @@ sens_gamma <- function(shape, rate, sd_mult = 2) {
   new_rate <- shape / (rate * new_var)
   new_shape <- (shape * new_rate) / rate
 
-  return(c(shape = new_shape, rate = new_rate))
+  return(list(shape = new_shape, rate = new_rate))
 }
 
 #' Adjust Negative Binomial Distribution Parameters for Sensitivity Analyses
@@ -273,7 +276,7 @@ sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
   new_size <- lambda^2 / (desired_sd^2 - lambda)
   new_theta <- 1 / new_size
 
-  return(c(lambda = lambda, theta = new_theta))
+  return(list(lambda = lambda, theta = new_theta))
 }
 
 #' Adjust Gamma-Poisson Distribution Parameters for Sensitivity Analyses
@@ -322,5 +325,5 @@ sens_gamma_pois_zi <- function(lambda, theta, prob, sd_mult = 2) {
   }
 
   new_theta <- (sd_mult^2 * (1 + lambda * (prob + theta)) - (lambda * prob) - 1) / lambda
-  return(c(lambda = lambda, theta = new_theta, prob = prob))
+  return(list(lambda = lambda, theta = new_theta, prob = prob))
 }
