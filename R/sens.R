@@ -294,40 +294,6 @@ sens_gamma_pois <- function(lambda, theta, sd_mult = 2) {
   sens_neg_binom(lambda = lambda, theta = theta, sd_mult = sd_mult)
 }
 
-#' Adjust Zero-Inflated Poisson Distribution Parameters for Sensitivity Analyses
-#'
-#' Expands (`sd_mult > 1`) the standard deviation of the Negative Binomial
-#' distribution. This function does not currently have the option to reduce the
-#' standard deviation.
-#'
-#' @inheritParams params
-#'
-#' @return A named vector of the adjusted distribution's parameters.
-#' @family sens_dist
-#' @export
-#'
-#' @examples
-#' sens_pois_zi(10, 0.1, 2)
-#' sens_pois_zi(10, 0.1, 0.8)
-sens_pois_zi <- function(lambda, prob, sd_mult = 2) {
-  chk::chk_number(lambda)
-  chk::chk_gte(lambda, value = 0)
-  chk::chk_number(prob)
-  chk::chk_gte(prob, value = 0)
-  chk::chk_range(prob, range = c(0, 1), inclusive = TRUE)
-  chk::chk_number(sd_mult)
-  chk::chk_gt(sd_mult, value = 0)
-
-  if (prob == 0) {
-    new_lambda <- lambda * sd_mult^2
-    return(c(lambda = new_lambda, prob = prob))
-  }
-
-  new_lambda <- (sqrt(4 * sd_mult^2 * lambda * prob * (lambda * prob + 1) + 1) + 1) / (2 * prob)
-
-  return(c(lambda = new_lambda, prob = prob))
-}
-
 #' Adjust Zero-Inflated Gamma-Poisson Distribution Parameters for Sensitivity Analyses
 #'
 #' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation

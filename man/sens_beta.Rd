@@ -39,7 +39,6 @@ Other sens_dist:
 \code{\link{sens_neg_binom}()},
 \code{\link{sens_norm}()},
 \code{\link{sens_pois}()},
-\code{\link{sens_pois_zi}()},
 \code{\link{sens_skewnorm}()},
 \code{\link{sens_student}()}
 }
