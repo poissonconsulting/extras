@@ -40,9 +40,6 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/pull_request_template.html</loc>
-  </url>
-  <url>
     <loc>/reference/as_list.html</loc>
   </url>
   <url>
@@ -338,6 +335,39 @@
   </url>
   <url>
     <loc>/reference/res_student.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_beta.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_exp.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_gamma.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_gamma_pois.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_gamma_pois_zi.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_lnorm.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_neg_binom.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_norm.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_pois.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_skewnorm.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sens_student.html</loc>
   </url>
   <url>
     <loc>/reference/sextreme.html</loc>
