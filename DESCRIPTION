@@ -22,7 +22,7 @@ URL: https://poissonconsulting.github.io/extras/,
     https://github.com/poissonconsulting/extras
 BugReports: https://github.com/poissonconsulting/extras/issues
 Depends: 
-    R (>= 4.3.3)
+    R (>= 4.3.0)
 Imports:
     chk,
     lifecycle,
