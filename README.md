@@ -49,15 +49,27 @@ library(extras)
 #> The following object is masked from 'package:stats':
 #> 
 #>     step
+```
+
+``` r
 
 set.seed(1)
 x <- rnorm(100)
 svalue(rnorm(100))
 #> [1] 0.3183615
+```
+
+``` r
 svalue(rnorm(100, mean = 1))
 #> [1] 1.704015
+```
+
+``` r
 svalue(rnorm(100, mean = 2))
 #> [1] 3.850857
+```
+
+``` r
 svalue(rnorm(100, mean = 3))
 #> [1] 5.073249
 ```
@@ -76,6 +88,9 @@ functions such as `pow()` and `log<-`.
 ``` r
 pow(10, 2)
 #> [1] 100
+```
+
+``` r
 
 mu <- NULL
 log(mu) <- 1
