@@ -77,12 +77,6 @@ test_that("beta_binom ran", {
   expect_equal(var(samples), 37.4491218503185)
   res <- dev_beta_binom(samples, 100, 0.5, 0.01, res = TRUE)
   expect_equal(mean(res), -0.00107466576791911, tolerance = 1e-04) # for M1
-  # ══ Failed tests ════════════════════════════════════════════════════════════════
-  # ── Failure ('test-dev.R:79:3'): beta_binom ran ─────────────────────────────────
-  # mean(res) (`actual`) not equal to -0.00107466576791911 (`expected`).
-  #
-  # `actual`: -0.00107458
-  # `expected`: -0.00107467
   expect_equal(sd(res), 1.0040052194768)
 })
 
@@ -91,7 +85,7 @@ test_that("deviance beta_binom", {
   mod <- glm(cbind(samples,3-samples)~1, family = binomial)
   deviance <- sum(dev_beta_binom(samples, size = 3, ilogit(coef(mod)[1])), theta = 0)
   expect_equal(deviance, deviance(mod))
-  # no packages that calculate deviance using binomial saturated model.
+  # no packages that calculate deviance using beta-binomial saturated model.
 })
 
 test_that("bern missing values", {
@@ -609,6 +603,83 @@ test_that("gamma deviance", {
   expect_equal(deviance, deviance(mod))
 })
 
+test_that("gamma missing values", {
+  expect_identical(dev_gamma(logical(0), integer(0), numeric(0)), numeric(0))
+  expect_identical(dev_gamma(NA, 1, 1), NA_real_)
+  expect_identical(dev_gamma(1, NA, 1), NA_real_)
+  expect_identical(dev_gamma(1, 1, NA), NA_real_)
+})
+
+test_that("gamma known values", {
+  expect_identical(dev_gamma(1, 1), 0)
+  expect_equal(dev_gamma(1, 1, 0.5), 0.386294361119891)
+  expect_identical(dev_gamma(1, 1, 1), 0)
+  expect_identical(dev_gamma(0, 1), Inf)
+  expect_identical(dev_gamma(0, 1, 0.5), Inf)
+  expect_equal(dev_gamma(1, 1, 0.5), 0.386294361119891)
+  expect_equal(dev_gamma(1, 1000, 1), 11.8175105579643)
+  expect_equal(dev_gamma(0, 2, 0.5), Inf)
+  expect_equal(dev_gamma(1, 2), 0.386294361119891)
+  expect_equal(dev_gamma(1, 2, 0.5), 1.27258872223978)
+  expect_equal(dev_gamma(3, 3.5, res = TRUE),
+               -0.150289966199447)
+  expect_equal(dev_gamma(3, 3.5, 0.1, res = TRUE),
+               -1.75638837307447)
+  expect_equal(dev_gamma(3, 3.5, 0.2, res = TRUE),
+               -1.36749198439328)
+  expect_equal(dev_gamma(3, 3.5, 0.90, res = TRUE),
+               -0.248755972445511)
+})
+
+test_that("gamma vectorized", {
+  expect_equal(dev_gamma(0:3, 2, 1), c(Inf, 0.386294361119891, 0, 0.189069783783671))
+  expect_equal(dev_gamma(0:3, 1:4, c(0.1, 0.5, 1, 2)),
+               c(Inf, 1.27258872223978, 0.144263549549662, 0.189069783783671))
+  expect_equal(dev_gamma(0:3, 4:1, c(0.1, 0.5, 1, 2)),
+               c(Inf, 1.91685227178944, 0, 6.41648106154389))
+})
+
+test_that("gamma vectorized missing values", {
+  expect_equal(dev_gamma(c(NA,1), 1:2, 1:2), c(NA, 0))
+  expect_equal(dev_gamma(c(0,NA), 1:2, 1:2), c(Inf, NA))
+  expect_equal(dev_gamma(c(1:2), c(NA,1), 1:2), c(NA, 3.22741127776022))
+  expect_equal(dev_gamma(c(1:2), c(1,NA), 1:2), c(0,NA))
+  expect_equal(dev_gamma(c(1:2), 1:2, c(NA,1)), c(NA,0))
+  expect_equal(dev_gamma(c(1:2), 1:2, c(1,NA)), c(0,NA))
+})
+
+test_that("gamma res", {
+  expect_equal(dev_gamma(0, 0.5, 0.5), dev_gamma(0, 0.5, 0.5, res = TRUE)^2)
+  expect_equal(dev_gamma(1:2, c(0.3,0.6), 0.5), dev_gamma(1:2, c(0.3,0.6), 0.5, res = TRUE)^2)
+})
+
+test_that("gamma log_lik", { # couldn't determine exact parameter values for saturated log likelihood
+  expect_equal(dev_gamma(1, 1, 1),
+               2 * (log_lik_gamma(1, 1, 1) - log_lik_gamma(1, 1, 1)))
+  expect_equal(dev_gamma(2, 1, 1),
+               2 * (log_lik_gamma(2, 1, 0.5) - log_lik_gamma(2, 1, 1)))
+  # hack to divide multiply by 1 / shape
+  expect_equal(dev_gamma(5, 3, 2),
+               2 * (1/3) * (log_lik_gamma(5, 3, 3/5) - log_lik_gamma(5, 3, 2)))
+})
+
+test_that("gamma ran", {
+  set.seed(101)
+  samples <- ran_gamma(10000, 3, 1)
+  expect_equal(mean(samples), 2.98927441565774)
+  expect_equal(sd(samples), 1.71676055992005)
+  res <- dev_gamma(samples, 3, 1, res = TRUE)
+  expect_equal(mean(res), -0.115132947326996)
+  expect_equal(sd(res), 0.579070230993174)
+})
+
+test_that("gamma deviance", {
+  samples <- ran_gamma(1000, 3, 1/2)
+  mod <- glm(samples~1, family = Gamma(link = "identity"))
+  deviance <- sum(dev_gamma(samples, coef(mod)))
+  expect_equal(deviance, deviance(mod))
+})
+
 test_that("student missing values", {
   expect_identical(dev_student(logical(0), integer(0), numeric(0), numeric(0)), numeric(0))
   expect_identical(dev_student(NA, 1, 1, 1), NA_real_)
@@ -768,3 +839,78 @@ test_that("skewnorm deviance", {
   deviance <- sum(dev_skewnorm(samples, coef(mod)[1]))
   expect_equal(deviance, deviance(mod))
 })
+
+test_that("multinomial missing values", {
+  expect_identical(dev_multinomial(integer(0), integer(0), numeric(0)), numeric(0))
+  expect_identical(dev_multinomial(NA, 1, 1), NA_real_)
+  expect_identical(dev_multinomial(1, NA, 1), NA_real_)
+  expect_identical(dev_multinomial(1, 1, NA), NA_real_)
+})
+
+test_that("multinomial known values", {
+  expect_identical(dev_multinomial(1, 1), 0)
+  expect_equal(dev_multinomial(1, 1, 0.5), 0)
+  expect_equal(dev_multinomial(c(9, 1), 10, c(0.1, 0.9)), 35.1555932373795)
+  expect_equal(dev_multinomial(c(9, 1), 10, c(0.9, 0.1)), 0)
+  expect_equal(dev_multinomial(c(9, 1), 10, c(0.1, 0.9), res = TRUE), 0)
+  expect_equal(dev_multinomial(c(1, 9), 10, c(0.1, 0.9), res = TRUE), 0)
+
+})
+
+test_that("multinomial vectorized", {
+  expect_equal(dev_multinomial(matrix(c(9, 1, 1, 9), nrow = 2), 10, c(0.1, 0.9)), c(35.1555932373795, 0))
+  expect_equal(dev_multinomial(matrix(c(0, 0, 10, 10), nrow = 2), 10, c(0.1, 0.9)), c(2.10721031315652, 2.10721031315652))
+  expect_equal(dev_multinomial(matrix(c(0, 0, 10, 9), nrow = 2), c(10, 9), c(0.1, 0.9)), c(2.10721031315652, 1.89648928184087))
+  expect_equal(dev_multinomial(matrix(c(9, 1, 1, 9), nrow = 2), 10, c(0.1, 0.9), res = TRUE), c(5.92921522947004, 0))
+  expect_equal(dev_multinomial(matrix(c(0, 0, 10, 10), nrow = 2), 10, c(0.1, 0.9), res = TRUE), c(0, 0))
+  expect_equal(dev_multinomial(matrix(c(0, 0, 10, 9), nrow = 2), c(10, 9), c(0.5, 0.5), res = TRUE), c(0, 0))
+})
+
+if (FALSE) { # still to do!
+
+test_that("multinomial vectorized missing values", {
+  expect_equal(dev_multinomial(matrix(c(NA,NA,1,1), nrow = 2), c(1, 1), c(0.5, 0.4)), c(NA))
+  expect_equal(dev_multinomial(c(0,NA), 1:2, 1:2), c(Inf, NA))
+  expect_equal(dev_multinomial(c(1:2), c(NA,1), 1:2), c(NA, 3.22741127776022))
+  expect_equal(dev_multinomial(c(1:2), c(1,NA), 1:2), c(0,NA))
+  expect_equal(dev_multinomial(c(1:2), 1:2, c(NA,1)), c(NA,0))
+  expect_equal(dev_multinomial(c(1:2), 1:2, c(1,NA)), c(0,NA))
+})
+
+test_that("multinomial res", {
+  expect_equal(dev_multinomial(0, 0.5, 0.5), dev_multinomial(0, 0.5, 0.5, res = TRUE)^2)
+  expect_equal(dev_multinomial(1:2, c(0.3,0.6), 0.5), dev_multinomial(1:2, c(0.3,0.6), 0.5, res = TRUE)^2)
+})
+
+test_that("multinomial log_lik", {
+  expect_equal(dev_multinomial(1, 1, 1),
+               2 * (log_lik_multinomial(1, 1, 1) - log_lik_multinomial(1, 1, 1)))
+  expect_equal(dev_multinomial(2, 1, 1),
+               2 * (log_lik_multinomial(2, 1, 0.5) - log_lik_multinomial(2, 1, 1)))
+  expect_equal(dev_multinomial(5, 3, 2),
+               2 * (1/3) * (log_lik_multinomial(5, 3, 3/5) - log_lik_multinomial(5, 3, 2)))
+})
+
+}
+
+# done from here!
+test_that("multinomial ran", {
+  set.seed(101)
+  samples <- ran_multinomial(10000, 5, c(0.33, 0.33, 0.33))
+  expect_equal(mean(samples), 1.66666666666667)
+  expect_equal(sd(samples), 1.05390982208435)
+  res <- dev_multinomial(samples, 5, c(0.33, 0.33, 0.33), res = TRUE)
+  expect_equal(mean(res), 0.0978999053891464)
+  expect_equal(sd(res), 1.56155369039353)
+})
+
+test_that("multinomial deviance", {
+  size <- 10
+  prob <- c(0.2, 0.3, 0.5)
+  samples <- ran_multinomial(n = 10000, size = size, prob = prob)
+  mod <- VGAM::vglm(samples ~ 1, family = "multinomial")
+  est_prob <- predict(mod, type = "response")[1, ]
+  deviance <- sum(dev_multinomial(samples, size = size, prob = est_prob))
+  expect_equal(deviance, deviance(mod))
+})
+

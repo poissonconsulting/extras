@@ -278,3 +278,32 @@ test_that("ran_skewnorm", {
   expect_equal(ran_skewnorm(2, c(10,100), sd = 0, shape = -1), c(10, 100))
   expect_equal(ran_skewnorm(1, c(10,100), sd = 10, shape = -1), c(-2.24639864962439))
 })
+
+test_that("ran_multinomial", {
+  expect_error(ran_multinomial(NA_integer_))
+  expect_error(ran_multinomial(integer(0)))
+  expect_error(ran_multinomial(-1))
+  expect_error(ran_multinomial(1, size = -1))
+  expect_error(
+    ran_multinomial(1, c(1, 2), c(0.1, 0.9)),
+    "If using a vector of sizes with more than one value, its length must equal n."
+  )
+  expect_error(ran_multinomial(2, 10, c(NA, NA)))
+  expect_error(ran_multinomial(2, 10, c(0, 0)))
+  expect_identical(ran_multinomial(0L), matrix(integer(0)))
+  set.seed(101)
+  expect_equal(ran_multinomial(), matrix(1))
+  expect_equal(ran_multinomial(n = 2), matrix(c(1, 1), nrow = 2))
+  set.seed(101)
+  expect_equal(ran_multinomial(size = 2), matrix(2))
+  expect_equal(ran_multinomial(prob = c(0.1, 0.3, 0.8)), matrix(c(0, 0, 1), nrow = 1))
+  expect_equal(ran_multinomial(prob = c(0.1, 0.1, 0.1)), matrix(c(1, 0, 0), nrow = 1))
+  expect_equal(ran_multinomial(size = 10, prob = c(0.4, 0.3, 0.3)), matrix(c(5, 2, 3), nrow = 1))
+  expect_equal(ran_multinomial(size = 10, prob = c(0.1, 0.3, 0.6)), matrix(c(0, 4, 6), nrow = 1))
+  expect_equal(ran_multinomial(n = 2, size = 10, prob = c(0.3, 0.7)), matrix(c(2, 3, 8, 7), nrow = 2))
+  expect_equal(ran_multinomial(n = 2, size = 1, prob = c(1, 2)), matrix(c(0, 1, 1, 0), nrow = 2))
+  set.seed(101)
+  expect_equal(ran_multinomial(2, size = c(1, 2), prob = c(0.3, 0.7)), matrix(c(0, 0, 1, 1), nrow = 2))
+  expect_equal(ran_multinomial(2, size = c(1, 2), prob = c(0.1, 0.9)), matrix(c(0, 0, 1, 1), nrow = 2))
+  expect_equal(ran_multinomial(2, size = c(5, 6), prob = c(0.5, 0.5)), matrix(c(2, 2, 3, 3), nrow = 2))
+})

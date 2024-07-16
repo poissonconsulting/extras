@@ -311,7 +311,7 @@ test_that("res_gamma_pois_zi", {
   expect_equal(res_gamma_pois_zi(1, 3, 1, type = "raw"), -2)
   expect_equal(res_gamma_pois_zi(1, 3), dev_pois(1, 3, res = TRUE))
   expect_equal(res_gamma_pois_zi(1, 3, 2), dev_gamma_pois(1, 3, 2, res = TRUE))
-#  expect_equal(res_gamma_pois_zi(1, 3, prob = 0.5), dev_pois_zi(1, 3, prob = 0.5, res = TRUE))
+  expect_equal(res_gamma_pois_zi(1, 3, prob = 0.5), dev_pois_zi(1, 3, prob = 0.5, res = TRUE))
   expect_equal(res_gamma_pois_zi(c(1,3.5,4), 3, 10, type = "raw"),
                c(-2, 0.5, 1))
   expect_equal(res_gamma_pois_zi(c(1,3.5,4), 3, 10, 0.5, type = "raw"),
@@ -569,4 +569,41 @@ test_that("res_skewnorm", {
   res <- res_skewnorm(rep(2, 10000), mean = 10, sd = 0.3, shape = 0.2, simulate = TRUE, type = "standardized")
   expect_equal(mean(res), 0.0236707225149864)
   expect_equal(sd(res), 3.34458775450197)
+})
+
+test_that("res_multinomial", {
+  expect_identical(res_multinomial(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(res_multinomial(1, 1, 1), 0)
+  expect_identical(res_multinomial(1, 1, 1, type = "raw"), 0)
+  expect_equal(res_multinomial(1, 1, 0.5, type = "raw"), 0.5)
+  expect_equal(res_multinomial(c(10, 8), 18, c(0.2, 0.7), type = "raw"), c(6.4, -4.6))
+  expect_equal(res_multinomial(c(10, 9, 10), 29, c(0.2, 0.7, 0.1)), 4.5837645087917)
+  expect_identical(res_multinomial(2, 2, 2, type = "raw"), 1)
+
+# to do:
+  expect_equal(res_multinomial(0, 1, 0, type = "raw"), -Inf)
+  expect_identical(res_multinomial(NA, 1, 1), NA_real_)
+  expect_identical(res_multinomial(1, NA, 1), NA_real_)
+  expect_identical(res_multinomial(1, 1, NA), NA_real_)
+  expect_error(res_multinomial(1, 3, 1, type = "unknown"))
+  expect_equal(res_multinomial(1, 3, 1, type = "raw"), -2)
+
+  expect_equal(res_multinomial(c(1,3.5,4), 3, 10, type = "raw"),
+               c(0.7, 3.2, 3.7))
+  expect_equal(res_multinomial(c(1,3.5,4), 3, 5, type = "raw"),
+               c(0.4, 2.9, 3.4))
+  set.seed(101)
+  expect_equal(res_multinomial(1:2, 2, 2, simulate = TRUE, type = "raw"), c(-0.436368285679167, 0.0193475947038637))
+  expect_equal(res_multinomial(1:2, 2, 2, simulate = TRUE), c(-0.682136415630992, -0.0483989592818978))
+  set.seed(101)
+  expect_equal(res_multinomial(1:2, 2, 0.5, simulate = TRUE, type = "raw"), c(-1.74547314271667, 0.0773903788154549))
+  expect_equal(res_multinomial(1:2, 2, 0.5, simulate = TRUE), c(-0.682136415630992, -0.0483989592818978))
+  set.seed(101)
+  expect_equal(res_multinomial(1:2, 2, 1, simulate = TRUE, type = "data"), c(1.12726342864167, 2.03869518940773))
+  set.seed(101)
+  expect_equal(res_multinomial(1:2, 2, 1, simulate = TRUE, type = "standardized"), c(-0.617117947796975, 0.0273616308295019))
+  set.seed(101)
+  res <- res_multinomial(rep(2, 10000), 2, 1, simulate = TRUE, type = "standardized")
+  expect_equal(mean(res), 0.00754439840612374)
+  expect_equal(sd(res), 1.00440120529188)
 })

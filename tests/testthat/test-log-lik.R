@@ -243,3 +243,79 @@ test_that("skewnorm vectorized", {
     c(-111.116353440211, -11.8095006207706, -11.1163537268622, -111.116353440211)
   )
 })
+
+test_that("multinomial missing values", {
+  expect_identical(log_lik_multinomial(NA), NA_integer_)
+  expect_identical(log_lik_multinomial(1, NA), NA_integer_)
+  expect_identical(log_lik_multinomial(1, size = NA), NA_integer_)
+  expect_identical(log_lik_multinomial(1, size = NA, prob = NA), NA_integer_)
+  expect_identical(log_lik_multinomial(numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_multinomial(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_multinomial(1, 1, prob = numeric(0)), numeric(0))
+})
+
+test_that("multinomial known values", {
+  expect_equal(log_lik_multinomial(c(9, 1), 10, c(0.1, 0.9)), -18.5260412596102)
+  expect_equal(log_lik_multinomial(c(9, 1), 10, c(0.9, 0.1)), -0.948244640920434)
+  expect_equal(log_lik_multinomial(matrix(c(9, 1, 1, 9), nrow = 2), 10, c(0.1, 0.9)), c(-18.5260412596102, -0.948244640920434))
+  expect_equal(log_lik_multinomial(matrix(c(0, 0, 10, 10), nrow = 2), 10, c(0.1, 0.9)), c(-1.05360515657826, -1.05360515657826))
+  expect_equal(log_lik_multinomial(matrix(c(0, 0, 10, 9), nrow = 2), c(10, 9), c(0.1, 0.9)), c(-1.05360515657826, -0.948244640920437))
+  expect_error(
+    log_lik_multinomial(c(9, 1), 10, c(0, 0)),
+    "probabilities must be finite, non-negative and not all 0"
+  )
+  expect_error(
+    log_lik_multinomial(0, 10, c(0.5)),
+    "size must equal the row sums of x"
+  )
+  expect_error(
+    log_lik_multinomial(-1, 10, c(0.5)),
+    "size must equal the row sums of x"
+  )
+  expect_error(
+    log_lik_multinomial(10, -10, c(0.5)),
+    "size must equal the row sums of x"
+  )
+  expect_error(
+    log_lik_multinomial(c(0, 1, 4, 5), 10, c(0.5, 0.3)),
+    "prob must have the same length as the number of columns in x"
+  )
+  expect_equal(log_lik_multinomial(c(1, 0), 1, c(0.5, 0.5))[1], log_lik_bern(1, 0.5))
+  expect_identical(log_lik_multinomial(2, 2, 0.9), dmultinom(2, 2, 0.9, log = TRUE))
+})
+
+test_that("multinomial vectorized", {
+  expect_equal(
+    log_lik_multinomial(
+      x = matrix(c(2, 3, 2, 4, 3, 3, 4, 4, 5), nrow = 3),
+      size = 10,
+      prob = c(0.2, 0.3, 0.5)
+    ),
+    c(-2.75219803259204, -2.86998106824843, -2.46451596014026)
+  )
+  expect_equal(
+    log_lik_multinomial(
+      x = matrix(c(2, 3, 2, 4, 3, 3, 4, 4, 5), nrow = 3),
+      size = 10,
+      prob = c(0.2, 0.3, 0.5)
+    ),
+    c(-2.75219803259204, -2.86998106824843, -2.46451596014026)
+  )
+  expect_equal(
+    log_lik_multinomial(
+      x = matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3),
+      size = c(12, 15, 18),
+      prob = c(0.1, 0.1, 0.1)
+    ),
+    c(-4.8993481597688, -4.665154772268, -4.55241414931255)
+  )
+  expect_equal(
+    log_lik_multinomial(
+      x = matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3),
+      size = c(12, 15, 18),
+      prob = matrix(c(0.2, 0.3, 0.5, 0.3, 0.1, 0.5, 0.2, 0.4, 0.7), nrow = 3)
+    ),
+    c(-5.12729588526323, -6.09001410114854, -3.77710059289374)
+  )
+})
+
