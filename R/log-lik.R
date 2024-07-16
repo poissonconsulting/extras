@@ -125,9 +125,68 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
 #' @export
 #'
 #' @examples
-#' dev_norm(exp(c(-2:2)))
-log_lik_lnorm <- function(x,  meanlog = 0, sdlog = 1) {
+#' log_lik_norm(exp(c(-2:2)))
+log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1) {
   dlnorm(x, meanlog = meanlog, sdlog = sdlog, log = TRUE)
+}
+
+#' Multinomial Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A matrix of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' x <- ran_multinomial(10, 5, c(0.2, 0.3, 0.5))
+#' log_lik_multinomial(x, size = 5, prob = c(0.33, 0.33, 0.33))
+log_lik_multinomial <- function(x, size = 1, prob = 0.5) {
+  na_x <- any(is.na(x))
+  na_size <- any(is.na(size))
+  na_prob <- any(is.na(prob))
+
+  if (any(na_x, na_size, na_prob)) {
+    return(NA_integer_)
+  }
+  if (any(c(length(x) == 0, length(size) == 0, length(prob) == 0))) {
+    return(numeric(0))
+  }
+
+  if (!na_x) {
+    if (!is.matrix(x) & length(x) != 0) {
+      x <- matrix(x, nrow = 1)
+    }
+    n <- nrow(x)
+    k <- ncol(x)
+  }
+
+  if (!na_x & !na_size) {
+    if (any(size != rowSums(x))) stop("size must equal the row sums of x")
+    size <- rep(size, n)
+  }
+
+  if (!na_x & !na_prob) {
+    prob_vec <- is.null(dim(prob))
+    prob_mat <- is.matrix(prob)
+    if (prob_vec) {
+      if (length(prob) != k) {
+        stop("prob must have the same length as the number of columns in x")
+      }
+      prob <- matrix(rep(prob, n), nrow = n, ncol = k, byrow = TRUE)
+    } else if (prob_mat) {
+      if (ncol(prob) != k) {
+        stop ("prob must have the same number of columns as x")
+      }
+    }
+  }
+  sapply(
+    X = 1:n,
+    FUN = function(y) {
+      dmultinom(x = x[y, ], size = size[y], prob = prob[y, ], log = TRUE)
+    }
+  )
 }
 
 #' Negative Binomial Log-Likelihood

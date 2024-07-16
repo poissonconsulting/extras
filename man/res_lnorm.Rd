@@ -24,7 +24,7 @@ An numeric vector of the corresponding residuals.
 Log-Normal Residuals
 }
 \examples{
-dev_norm(exp(c(-2:2)))
+res_norm(exp(c(-2:2)))
 }
 \seealso{
 Other res_dist: 
@@ -34,6 +34,7 @@ Other res_dist:
 \code{\link{res_gamma}()},
 \code{\link{res_gamma_pois}()},
 \code{\link{res_gamma_pois_zi}()},
+\code{\link{res_multinomial}()},
 \code{\link{res_neg_binom}()},
 \code{\link{res_norm}()},
 \code{\link{res_pois}()},

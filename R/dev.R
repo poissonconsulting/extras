@@ -155,6 +155,25 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, res = FALSE) {
   dev_norm(log(x), mean = meanlog, sd = sdlog, res = res)
 }
 
+#' Multinomial Deviances
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_multinomial(x, size = 10, prob = c(0.2, 0.3, 0.5))
+dev_multinomial <- function(x, size = 1, prob = 0.5, res = FALSE) {
+  dev <- log_lik_multinomial(x, size = size, prob = x / size) -
+    log_lik_multinomial(x, size = size, prob = prob)
+  dev <- 2 * dev
+  if(vld_false(res)) return(dev)
+  dev_res_extended(x, size * prob, dev)
+}
+
 #' Negative Binomial Deviances
 #'
 #' @inheritParams params

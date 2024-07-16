@@ -167,7 +167,7 @@ res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", 
 #' @export
 #'
 #' @examples
-#' dev_norm(exp(c(-2:2)))
+#' res_norm(exp(c(-2:2)))
 res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE) {
   chk_string(type)
   if(!vld_false(simulate)) {
@@ -175,10 +175,38 @@ res_lnorm <- function(x,  meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE
   }
   switch(type,
          data = x,
-         raw = x - exp(meanlog), # isn't this the median?
+         raw = x - exp(meanlog),
          standardized = (x - exp(meanlog + (sdlog^2 / 2))) /
            sqrt(exp(2 * meanlog + sdlog^2) * (exp(sdlog^2) - 1)),
          dev = dev_lnorm(x, meanlog = meanlog, sdlog = sdlog, res = TRUE),
+         chk_subset(x, c("data", "raw", "dev", "standardized")))
+}
+
+#' Multinomial Residuals
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_multinomial(exp(c(-2:2)))
+res_multinomial <- function(x, size = 1, prob = NULL, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if(!vld_false(simulate)) {
+    if (!is.matrix(x) & length(x) != 0) {
+      x <- matrix(x, nrow = 1)
+    }
+    x <- ran_multinomial(nrow(x), size = size, prob = prob)
+  }
+  switch(type,
+         data = x,
+         # TODO: figure out what raw and standardized should be for whole row!
+         raw = x - (size * prob), # do these dimensions work?
+         standardized = (x - (size * prob)) / sqrt(size * prob * (1 - prob)), # same here?
+         dev = dev_multinomial(x, size = size, prob = prob, res = TRUE),
          chk_subset(x, c("data", "raw", "dev", "standardized")))
 }
 

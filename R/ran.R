@@ -104,6 +104,33 @@ ran_lnorm <- function(n = 1, meanlog = 0, sdlog = 1) {
   stats::rlnorm(n, meanlog = meanlog, sdlog = sdlog)
 }
 
+#' Multinomial Random Samples
+#'
+#' @inheritParams params
+#' @param prob A vector of probabilities
+#' @param size An integer
+#' @return A numeric matrix of the random samples, where each row represents a
+#' draw from the multinomial distribution.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_multinomial(10)
+ran_multinomial <- function(n = 1, size = 1, prob = 0.5) {
+  chk_whole_number(n)
+  chk_gte(n)
+  vec_size <- is.vector(size) & length(size) > 1
+  na_size <- any(is.na(size))
+  if (!na_size & vec_size) {
+    if (n != length(size)) {
+      stop("If using a vector of sizes with more than one value, its length must equal n.")
+    }
+  }
+  x <- stats::rmultinom(n = n, size = size, prob = prob)
+  t(x)
+}
+
+
 #' Negative Binomial Random Samples
 #'
 #' Identical to Gamma-Poisson Random Samples.
