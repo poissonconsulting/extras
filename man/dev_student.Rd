@@ -24,7 +24,7 @@ An numeric vector of the corresponding deviances or deviance residuals.
 Student's t Deviances
 }
 \examples{
-dev_student(c(1,3.5,4), 3)
+dev_student(c(1, 3.5, 4), 3)
 }
 \seealso{
 Other dev_dist: 

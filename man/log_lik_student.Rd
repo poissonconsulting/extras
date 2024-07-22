@@ -22,7 +22,7 @@ An numeric vector of the corresponding log-likelihoods.
 Student's t Log-Likelihood
 }
 \examples{
-log_lik_student(c(1,3.5,4), mean = 1, sd = 2, theta = 1/3)
+log_lik_student(c(1, 3.5, 4), mean = 1, sd = 2, theta = 1 / 3)
 }
 \seealso{
 Other log_lik_dist: 

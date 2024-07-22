@@ -22,7 +22,7 @@ An numeric vector of the corresponding deviances or deviance residuals.
 Zero-Inflated Poisson Deviances
 }
 \examples{
-dev_pois(c(1,3.5,4), 3)
+dev_pois(c(1, 3.5, 4), 3)
 }
 \seealso{
 Other dev_dist: 
