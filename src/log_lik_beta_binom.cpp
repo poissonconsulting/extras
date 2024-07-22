@@ -6,9 +6,9 @@ using namespace Rcpp;
 double log_lik_beta_binom2(int x, int size, double prob, double theta) {
   double alpha = prob * 2 * (1 / theta);
   double beta = (1 - prob) * 2 * (1 / theta);
-  double lbeta_binom = lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1) +
-    lgamma(x + alpha) + lgamma(size - x + beta) - lgamma(size + alpha + beta) +
-    lgamma(alpha + beta) - lgamma(alpha) - lgamma(beta);
+  double lbeta_binom = R::lgammafn(size + 1) - R::lgammafn(x + 1) - R::lgammafn(size - x + 1) +
+    R::lgammafn(x + alpha) + R::lgammafn(size - x + beta) - R::lgammafn(size + alpha + beta) +
+    R::lgammafn(alpha + beta) - R::lgammafn(alpha) - R::lgammafn(beta);
 
   bool use_binom = theta == 0;
 
