@@ -12,16 +12,12 @@
 #' @examples
 #' log_lik_beta_binom(c(0, 1, 2), 1, 0.5, 0)
 log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
-  lbinom <- log_lik_binom(x, size = size, prob = prob)
-  if (length(theta) == 1) {
-    theta <- rep(theta, length(lbinom))
-  }
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
   lbeta_binom <- lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1) +
     lgamma(x + alpha) + lgamma(size - x + beta) - lgamma(size + alpha + beta) +
     lgamma(alpha + beta) - lgamma(alpha) - lgamma(beta)
-  bol <- !is.na(x) & !is.na(size) & !is.na(prob) & !is.na(theta)
+  bol <- !is.na(x + size + prob + theta)
   lbeta_binom[bol & ((x == 0 & prob == 0) | (x == size & prob == 1))] <- 0
   lbeta_binom[bol & x != 0 & prob == 0] <- -Inf
   lbeta_binom[bol & x != size & prob == 1] <- -Inf
@@ -29,7 +25,13 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
   bol_theta <- !is.na(theta)
   lbeta_binom[bol_theta & theta < 0] <- NaN
   use_binom <- bol_theta & theta == 0
-  lbeta_binom[use_binom] <- lbinom[use_binom]
+  if (any(use_binom)) {
+    lbinom <- log_lik_binom(x, size = size, prob = prob)
+    lbeta_binom[use_binom] <- lbinom[use_binom]
+  }
+  if (length(bol) == 0) {
+    lbeta_binom <- numeric(0)
+  }
   lbeta_binom
 }
 
