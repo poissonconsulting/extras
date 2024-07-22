@@ -15,7 +15,7 @@ double log_lik_beta_binom2(int x, int size, double prob, double theta) {
   if (use_binom) {
     return(R::dbinom(x, size, prob, 1));
   }
-  if (((x == 0 & prob == 0) | (x == size & prob == 1))) {
+  if ((((x == 0) & (prob == 0)) | ((x == size) & (prob == 1)))) {
     return(0.0);
   }
   if ((x != 0) & (prob == 0)) {
