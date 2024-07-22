@@ -10,6 +10,7 @@ test_that("vld_index", {
 test_that("chk_index", {
   expect_null(chk_index(1L))
   expect_error(chk_index(0L),
-               "^`0L` must be greater than 0, not 0[.]$",
-               class = "chk_error")
+    "^`0L` must be greater than 0, not 0[.]$",
+    class = "chk_error"
+  )
 })

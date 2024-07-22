@@ -86,10 +86,11 @@ Atomic vectors, matrices, arrays and data.frames of appropriate classes can be c
 
 ```{r}
 numericise(
-  data.frame(logical = c(TRUE, FALSE),
-             factor = factor(c("blue", "green")),
-             Date = as.Date(c("2000-01-01", "2000-01-02")),
-             hms = hms::as_hms(c("00:00:02", "00:01:01"))
+  data.frame(
+    logical = c(TRUE, FALSE),
+    factor = factor(c("blue", "green")),
+    Date = as.Date(c("2000-01-01", "2000-01-02")),
+    hms = hms::as_hms(c("00:00:02", "00:01:01"))
   )
 )
 ```

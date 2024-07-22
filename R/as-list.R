@@ -20,8 +20,9 @@ as_list_unnamed.default <- function(x, ...) {
   x <- as.list(x)
   names <- names(x)
   attributes(x) <- NULL
-  if(!is.null(names))
+  if (!is.null(names)) {
     names(x) <- names
+  }
   x
 }
 
@@ -46,8 +47,8 @@ as_list.default <- function(x, ...) {
   x <- as.list(x)
   names <- names(x)
   attributes(x) <- NULL
-  if(!is.null(names))
+  if (!is.null(names)) {
     names(x) <- names
+  }
   x
 }
-

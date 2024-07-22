@@ -17,8 +17,10 @@ upper <- function(x, conf_level = 0.95, na_rm = FALSE) {
   chk_number(conf_level)
   chk_range(conf_level)
 
-  if(anyNA(x)) {
-    if(vld_false(na_rm)) return(NA_real_)
+  if (anyNA(x)) {
+    if (vld_false(na_rm)) {
+      return(NA_real_)
+    }
     x <- as.vector(x)
     x <- x[!is.na(x)]
   }
