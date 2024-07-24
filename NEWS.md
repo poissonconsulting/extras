@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.7.1
+
+- Refactored `log_lik_beta_binom()` to speed up optimization required in `dev_beta_binom()`.
+- Used styler on package.
+
 # extras 0.7.0
 
   - Added sensitivity functions to produce list of new parameters that vary standard deviations (`sens_xxx()`).
