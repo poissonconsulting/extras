@@ -19,7 +19,7 @@ test_that("proportional_change works scalars", {
 })
 
 test_that("proportional_change works vector", {
-  expect_equal(proportional_change(c(0.1, 0.5), c(0.5, 0.1)), c(4,-0.8))
+  expect_equal(proportional_change(c(0.1, 0.5), c(0.5, 0.1)), c(4, -0.8))
 })
 
 test_that("proportional_change works matrix", {
@@ -45,12 +45,12 @@ test_that("proportional_difference handles edge cases", {
 test_that("proportional_difference works scalars", {
   expect_equal(proportional_difference(0, 0.5), 2)
   expect_equal(proportional_difference(0.1, 0.1), 0)
-  expect_equal(proportional_difference(1, 0.5), -2/3)
-  expect_equal(proportional_difference(0.5, 1), 2/3)
+  expect_equal(proportional_difference(1, 0.5), -2 / 3)
+  expect_equal(proportional_difference(0.5, 1), 2 / 3)
 })
 
 test_that("proportional_difference works vector", {
-  expect_equal(proportional_difference(c(1, 0.5), c(0.5, 1)), c(-2/3,2/3))
+  expect_equal(proportional_difference(c(1, 0.5), c(0.5, 1)), c(-2 / 3, 2 / 3))
 })
 
 test_that("proportional_difference works matrix", {
@@ -67,6 +67,6 @@ test_that("proportional_change2 works", {
 })
 
 test_that("proportional_difference2 works", {
-  expect_equal(proportional_difference2(c(0.1, 0.5)), 4/3)
-  expect_equal(proportional_difference2(c(0.5, 0.1)), -4/3)
+  expect_equal(proportional_difference2(c(0.1, 0.5)), 4 / 3)
+  expect_equal(proportional_difference2(c(0.5, 0.1)), -4 / 3)
 })

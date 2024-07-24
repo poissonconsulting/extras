@@ -26,7 +26,7 @@ An numeric vector of the corresponding residuals.
 Student's t Residuals
 }
 \examples{
-res_student(c(1,3.5,4), mean = 6, sd = 0.5, theta = 1/3, type = "raw")
+res_student(c(1, 3.5, 4), mean = 6, sd = 0.5, theta = 1 / 3, type = "raw")
 }
 \seealso{
 Other res_dist: 

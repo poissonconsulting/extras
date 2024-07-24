@@ -20,7 +20,7 @@ An numeric vector of the corresponding log-likelihoods.
 Zero-Inflated Poisson Log-Likelihood
 }
 \examples{
-log_lik_pois_zi(c(1,3.5,4), 3, prob = 0.5)
+log_lik_pois_zi(c(1, 3.5, 4), 3, prob = 0.5)
 }
 \seealso{
 Other log_lik_dist: 

@@ -64,7 +64,8 @@ test_that("normal sensitivity expands sd by multiplier", {
   sd_mult <- 2
   new_pars <- sens_norm(mean = mean, sd = sd, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_norm(10000, mean, sd)
       ran_new <- ran_norm(10000, new_pars$mean, new_pars$sd)
       expect_equal(sd(ran_new) / sd(ran_original), 1.9998362953948)
@@ -78,7 +79,8 @@ test_that("normal sensitivity reduces sd by multiplier", {
   sd_mult <- 0.6
   new_pars <- sens_norm(mean = mean, sd = sd, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_norm(10000, mean, sd)
       ran_new <- ran_norm(10000, new_pars$mean, new_pars$sd)
       expect_equal(sd(ran_new) / sd(ran_original), 0.59995088861844)
@@ -92,7 +94,8 @@ test_that("normal sensitivity keeps the same mean", {
   sd_mult <- 0.6
   new_pars <- sens_norm(mean = mean, sd = sd, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_norm(10000, mean, sd)
       ran_new <- ran_norm(10000, new_pars$mean, new_pars$sd)
       expect_equal(mean(ran_new) - mean(ran_original), -0.0516658531583953)
@@ -151,7 +154,8 @@ test_that("normal random deviates have the expected mean", {
   sd_mult <- 2
   new_pars <- sens_norm(mean = mean, sd = sd, sd_mult = sd_mult)
   withr::with_seed(
-    seed = 101, {
+    seed = 101,
+    {
       ran <- ran_norm(10000, mean = new_pars$mean, sd = new_pars$sd)
       expect_equal(mean(ran), 10.2111157132372)
     }
@@ -164,7 +168,8 @@ test_that("normal random deviates have the expected sd", {
   sd_mult <- 2
   new_pars <- sens_norm(mean = mean, sd = sd, sd_mult = sd_mult)
   withr::with_seed(
-    seed = 101, {
+    seed = 101,
+    {
       ran <- ran_norm(10000, mean = new_pars$mean, sd = new_pars$sd)
       expect_equal(sd(ran), 39.726965186315)
     }
@@ -343,7 +348,8 @@ test_that("student's sensitivity expands sd by multiplier", {
   sd_mult <- 2
   new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_student(10000, mean, sd, theta)
       ran_new <- ran_student(10000, new_pars$mean, new_pars$sd, new_pars$theta)
       expect_equal(sd(ran_new) / sd(ran_original), 1.96503686143518)
@@ -358,7 +364,8 @@ test_that("student's sensitivity expands sd by multiplier", {
   sd_mult <- 0.6
   new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_student(10000, mean, sd, theta)
       ran_new <- ran_student(10000, new_pars$mean, new_pars$sd, new_pars$theta)
       expect_equal(sd(ran_new) / sd(ran_original), 0.589511058430551)
@@ -373,7 +380,8 @@ test_that("student's sensitivity keeps the same mean", {
   sd_mult <- 2
   new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_student(10000, mean, sd, theta)
       ran_new <- ran_student(10000, new_pars$mean, new_pars$sd, new_pars$theta)
       expect_equal(mean(ran_new) - mean(ran_original), -0.182266562671183)
@@ -469,7 +477,8 @@ test_that("sd of exponential deviates expands as expected", {
   sd_mult <- 5
   new_pars <- sens_exp(rate = rate, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rexp(10000, rate)
       ran_new <- rexp(10000, new_pars$rate)
       expect_equal(sd(ran_new) / sd(ran_original), 4.95814995228506)
@@ -482,7 +491,8 @@ test_that("sd of exponential deviates decreases as expected", {
   sd_mult <- 0.5
   new_pars <- sens_exp(rate = rate, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rexp(10000, rate)
       ran_new <- rexp(10000, new_pars$rate)
       expect_equal(sd(ran_new) / sd(ran_original), 0.495814995228506)
@@ -495,7 +505,8 @@ test_that("mean of exponential deviates shifts as expected", {
   sd_mult <- 0.5
   new_pars <- sens_exp(rate = rate, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rexp(10000, rate)
       ran_new <- rexp(10000, new_pars$rate)
       expect_equal(mean(ran_new) - mean(ran_original), -0.506655908545402)
@@ -619,7 +630,8 @@ test_that("sd of skewnorm deviates expands as expected", {
   sd_mult <- 5
   new_pars <- sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_skewnorm(10000, mean, sd, shape)
       ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$sd, new_pars$shape)
       expect_equal(sd(ran_new) / sd(ran_original), 4.98784228891484)
@@ -634,7 +646,8 @@ test_that("sd of skewnorm deviates decreases as expected", {
   sd_mult <- 0.4
   new_pars <- sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_skewnorm(10000, mean, sd, shape)
       ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$sd, new_pars$shape)
       expect_equal(sd(ran_new) / sd(ran_original), 0.399731342111579)
@@ -649,7 +662,8 @@ test_that("mean of skewnorm deviates changes expectedly with expanding sd", {
   sd_mult <- 2
   new_pars <- sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_skewnorm(10000, mean, sd, shape)
       ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$sd, new_pars$shape)
       expect_equal(mean(ran_new) - mean(ran_original), -0.169525559258474)
@@ -664,7 +678,8 @@ test_that("mean of skewnorm deviates changes expectedly with reducing sd", {
   sd_mult <- 0.4
   new_pars <- sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_skewnorm(10000, mean, sd, shape)
       ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$sd, new_pars$shape)
       expect_equal(mean(ran_new) - mean(ran_original), -0.0428204928375919)
@@ -810,7 +825,8 @@ test_that("sd of log-normal deviates expands as expected", {
   sd_mult <- 2
   new_pars <- sens_lnorm(meanlog = meanlog, sdlog = sdlog, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_lnorm(10000, meanlog, sdlog)
       ran_new <- ran_lnorm(10000, new_pars$meanlog, new_pars$sdlog)
       expect_equal(sd(ran_new) / sd(ran_original), 2.48484604109396)
@@ -825,7 +841,8 @@ test_that("sd of log-normal deviates decreases as expected", {
   sd_mult <- 0.4
   new_pars <- sens_lnorm(meanlog = meanlog, sdlog = sdlog, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_lnorm(10000, meanlog, sdlog)
       ran_new <- ran_lnorm(10000, new_pars$meanlog, new_pars$sdlog)
       expect_equal(sd(ran_new) / sd(ran_original), 0.413093471380755)
@@ -839,7 +856,8 @@ test_that("mean of log-normal deviates stays approximately the same with expandi
   sd_mult <- 2
   new_pars <- sens_lnorm(meanlog = meanlog, sdlog = sdlog, sd_mult = sd_mult)
   withr::with_seed(
-    103, {
+    103,
+    {
       ran_original <- ran_lnorm(10000, meanlog, sdlog)
       ran_new <- ran_lnorm(10000, new_pars$meanlog, new_pars$sdlog)
       expect_equal(mean(ran_new) - mean(ran_original), 0.0742085317541252)
@@ -853,7 +871,8 @@ test_that("mean of log-normal deviates stays approximately the same with reducin
   sd_mult <- 0.2
   new_pars <- sens_lnorm(meanlog = meanlog, sdlog = sdlog, sd_mult = sd_mult)
   withr::with_seed(
-    103, {
+    103,
+    {
       ran_original <- ran_lnorm(10000, meanlog, sdlog)
       ran_new <- ran_lnorm(10000, new_pars$meanlog, new_pars$sdlog)
       expect_equal(mean(ran_new) - mean(ran_original), 0.0347894804650233)
@@ -971,7 +990,8 @@ test_that("sd of beta deviates expands as expected (works for large alpha and be
   sd_mult <- 2
   new_pars <- sens_beta(alpha = alpha, beta = beta, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rbeta(10000, alpha, beta)
       ran_new <- rbeta(10000, new_pars$alpha, new_pars$beta)
       expect_equal(sd(ran_new) / sd(ran_original), 1.99408427740544)
@@ -994,7 +1014,8 @@ test_that("sd of beta deviates decreases as expected", {
   sd_mult <- 0.5
   new_pars <- sens_beta(alpha = alpha, beta = beta, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rbeta(10000, alpha, beta)
       ran_new <- rbeta(10000, new_pars$alpha, new_pars$beta)
       expect_equal(sd(ran_new) / sd(ran_original), 0.500171061858751)
@@ -1102,7 +1123,8 @@ test_that("sd of poisson random deviates expands with sd_mult > 1", {
   sd_mult <- 2
   new_pars <- sens_pois(lambda = lambda, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rpois(10000, lambda)
       ran_new <- rpois(10000, new_pars$lambda)
       expect_equal(sd(ran_new) / sd(ran_original), 2.01596189810105)
@@ -1115,7 +1137,8 @@ test_that("sd of poisson random deviates decreases with sd_mult < 1", {
   sd_mult <- 0.5
   new_pars <- sens_pois(lambda = lambda, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rpois(10000, lambda)
       ran_new <- rpois(10000, new_pars$lambda)
       expect_equal(sd(ran_new) / sd(ran_original), 0.501606529117708)
@@ -1128,7 +1151,8 @@ test_that("mean of poisson random deviates also expands with sd_mult", {
   sd_mult <- 5
   new_pars <- sens_pois(lambda = lambda, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rpois(10000, lambda)
       ran_new <- rpois(10000, new_pars$lambda)
       expect_equal(mean(ran_new) - mean(ran_original), 239.8269)
@@ -1141,7 +1165,8 @@ test_that("mean of poisson random deviates also decreases with sd_mult", {
   sd_mult <- 0.5
   new_pars <- sens_pois(lambda = lambda, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rpois(10000, lambda)
       ran_new <- rpois(10000, new_pars$lambda)
       expect_equal(mean(ran_new) - mean(ran_original), -7.4308)
@@ -1246,7 +1271,8 @@ test_that("sd of gamma random deviates expands with sd_mult > 1", {
   sd_mult <- 2
   new_pars <- sens_gamma(shape = shape, rate = rate, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rgamma(10000, shape, rate)
       ran_new <- rgamma(10000, new_pars$shape, new_pars$rate)
       expect_equal(sd(ran_new) / sd(ran_original), 1.96694615990638)
@@ -1260,7 +1286,8 @@ test_that("sd of gamma random deviates reduces with sd_mult < 1", {
   sd_mult <- 0.4
   new_pars <- sens_gamma(shape = shape, rate = rate, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rgamma(10000, shape, rate)
       ran_new <- rgamma(10000, new_pars$shape, new_pars$rate)
       expect_equal(sd(ran_new) / sd(ran_original), 0.397632673370798)
@@ -1274,7 +1301,8 @@ test_that("mean of gamma random deviates stays the same with expanding sd", {
   sd_mult <- 5
   new_pars <- sens_gamma(shape = shape, rate = rate, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rgamma(10000, shape, rate)
       ran_new <- rgamma(10000, new_pars$shape, new_pars$rate)
       expect_equal(mean(ran_new) - mean(ran_original), -0.0573524039088076)
@@ -1288,7 +1316,8 @@ test_that("mean of gamma random deviates stays the same with reducing sd", {
   sd_mult <- 0.4
   new_pars <- sens_gamma(shape = shape, rate = rate, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- rgamma(10000, shape, rate)
       ran_new <- rgamma(10000, new_pars$shape, new_pars$rate)
       expect_equal(mean(ran_new) - mean(ran_original), -0.0152565649421614)
@@ -1415,7 +1444,8 @@ test_that("sd of gamma-poisson random deviates expands with sd_mult > 1", {
   sd_mult <- 2
   new_pars <- sens_gamma_pois(lambda = lambda, theta = theta, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_gamma_pois(10000, lambda, theta)
       ran_new <- ran_gamma_pois(10000, new_pars$lambda, new_pars$theta)
       expect_equal(sd(ran_new) / sd(ran_original), 2.00033360241786)
@@ -1439,7 +1469,8 @@ test_that("mean of gamma-poisson random deviates stays the same when expanding s
   sd_mult <- 2
   new_pars <- sens_gamma_pois(lambda = lambda, theta = theta, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_gamma_pois(10000, lambda, theta)
       ran_new <- ran_gamma_pois(10000, new_pars$lambda, new_pars$theta)
       expect_equal(mean(ran_new) - mean(ran_original), 0.0875000000000004)
@@ -1566,7 +1597,8 @@ test_that("sd of negative binomial random deviates expands with sd_mult > 1", {
   sd_mult <- 2
   new_pars <- sens_neg_binom(lambda = lambda, theta = theta, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_neg_binom(10000, lambda, theta)
       ran_new <- ran_neg_binom(10000, new_pars$lambda, new_pars$theta)
       expect_equal(sd(ran_new) / sd(ran_original), 2.00033360241786)
@@ -1590,7 +1622,8 @@ test_that("mean of negative binomial random deviates stays the same when expandi
   sd_mult <- 2
   new_pars <- sens_neg_binom(lambda = lambda, theta = theta, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_neg_binom(10000, lambda, theta)
       ran_new <- ran_neg_binom(10000, new_pars$lambda, new_pars$theta)
       expect_equal(mean(ran_new) - mean(ran_original), 0.0875000000000004)
@@ -1736,7 +1769,8 @@ test_that("sd of gamma-poisson random deviates expands with sd_mult > 1", {
   sd_mult <- 2
   new_pars <- sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_gamma_pois_zi(10000, lambda, theta, prob)
       ran_new <- ran_gamma_pois_zi(10000, new_pars$lambda, new_pars$theta, new_pars$prob)
       expect_equal(sd(ran_new) / sd(ran_original), 2.01617303374106)
@@ -1762,7 +1796,8 @@ test_that("mean of gamma-poisson random deviates stays the same when expanding s
   sd_mult <- 2
   new_pars <- sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
   withr::with_seed(
-    101, {
+    101,
+    {
       ran_original <- ran_gamma_pois_zi(10000, lambda, theta, prob)
       ran_new <- ran_gamma_pois_zi(10000, new_pars$lambda, new_pars$theta, new_pars$prob)
       expect_equal(mean(ran_new) - mean(ran_original), -0.0522999999999998)

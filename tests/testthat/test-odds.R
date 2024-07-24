@@ -12,8 +12,8 @@ test_that("odds handles edge cases", {
 
 test_that("odds works individual numbers", {
   expect_equal(odds(0), 0)
-  expect_equal(odds(0.1), 1/9)
-  expect_equal(odds(1/6), 1/5)
+  expect_equal(odds(0.1), 1 / 9)
+  expect_equal(odds(1 / 6), 1 / 5)
   expect_equal(odds(0.5), 1)
   expect_equal(odds(0.9), 9)
   expect_equal(odds(1), Inf)
@@ -47,14 +47,14 @@ test_that("odds_ratio handles edge cases", {
 test_that("odds_ratio works scalars", {
   expect_equal(odds_ratio(0, 0.5), 0)
   expect_equal(odds_ratio(0.1, 0.1), 1)
-  expect_equal(odds_ratio(0.5, 0.9), 1/9)
+  expect_equal(odds_ratio(0.5, 0.9), 1 / 9)
   expect_equal(odds_ratio(0.9, 0.5), 9)
   expect_equal(odds_ratio(1, 0.5), Inf)
   expect_equal(odds_ratio(0.5, 1), 0)
 })
 
 test_that("odds_ratio works vector", {
-  expect_equal(odds_ratio(c(0.1, 0.5), c(0.5, 0.1)), c(1/9,9))
+  expect_equal(odds_ratio(c(0.1, 0.5), c(0.5, 0.1)), c(1 / 9, 9))
 })
 
 test_that("odds_ratio works matrix", {
@@ -81,14 +81,14 @@ test_that("log_odds_ratio handles edge cases", {
 test_that("log_odds_ratio works scalars", {
   expect_equal(log_odds_ratio(0, 0.5), -Inf)
   expect_equal(log_odds_ratio(0.1, 0.1), 0)
-  expect_equal(log_odds_ratio(0.5, 0.9), log(1/9))
+  expect_equal(log_odds_ratio(0.5, 0.9), log(1 / 9))
   expect_equal(log_odds_ratio(0.9, 0.5), log(9))
   expect_equal(log_odds_ratio(1, 0.5), Inf)
   expect_equal(log_odds_ratio(0.5, 1), -Inf)
 })
 
 test_that("log_odds_ratio works vector", {
-  expect_equal(log_odds_ratio(c(0.1, 0.5), c(0.5, 0.1)), log(c(1/9,9)))
+  expect_equal(log_odds_ratio(c(0.1, 0.5), c(0.5, 0.1)), log(c(1 / 9, 9)))
 })
 
 test_that("log_odds_ratio works matrix", {
@@ -100,12 +100,12 @@ test_that("log_odds_ratio works array", {
 })
 
 test_that("odds_ratio2 works", {
-  expect_equal(odds_ratio2(c(0.1, 0.5)), 1/9)
+  expect_equal(odds_ratio2(c(0.1, 0.5)), 1 / 9)
   expect_equal(odds_ratio2(c(0.5, 0.1)), 9)
 })
 
 test_that("log_odds_ratio2 works", {
-  expect_equal(log_odds_ratio2(c(0.1, 0.5)), log(1/9))
+  expect_equal(log_odds_ratio2(c(0.1, 0.5)), log(1 / 9))
   expect_equal(log_odds_ratio2(c(0.5, 0.1)), log(9))
 })
 
@@ -122,8 +122,8 @@ test_that("odds handles edge cases", {
 
 test_that("inv_odds works individual numbers", {
   expect_equal(inv_odds(0), 0)
-  expect_equal(inv_odds(1/9), 0.1)
-  expect_equal(inv_odds(1/5), 1/6)
+  expect_equal(inv_odds(1 / 9), 0.1)
+  expect_equal(inv_odds(1 / 5), 1 / 6)
   expect_equal(inv_odds(1), 0.5)
   expect_equal(inv_odds(9), 0.9)
   expect_equal(inv_odds(Inf), NaN)
@@ -156,7 +156,7 @@ test_that("log_odds handles edge cases", {
 test_that("log_odds works individual numbers", {
   expect_equal(log_odds(0), -Inf)
   expect_equal(log_odds(0.1), -2.1972246)
-  expect_equal(log_odds(1/6), -1.60943791)
+  expect_equal(log_odds(1 / 6), -1.60943791)
   expect_equal(log_odds(0.5), 0)
   expect_equal(log_odds(0.9), 2.1972246)
   expect_equal(log_odds(1), Inf)
@@ -221,4 +221,3 @@ test_that("log_odds<- works array", {
   log_odds(x) <- array(0.5)
   expect_equal(x, array(-1.0986123))
 })
-

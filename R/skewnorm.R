@@ -139,6 +139,8 @@ rskewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
   chk_false(character)
   ran <- sn::rsn(n, xi = mean, omega = sd, alpha = shape)
   attributes(ran) <- NULL
-  if (n == 0L) return(ran)
+  if (n == 0L) {
+    return(ran)
+  }
   ran[1:n]
 }

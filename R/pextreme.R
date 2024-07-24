@@ -16,7 +16,9 @@ pextreme <- function(x) {
   chk_numeric(x)
   chk_range(x)
 
-  if(!length(x)) return(numeric(0))
+  if (!length(x)) {
+    return(numeric(0))
+  }
   gt <- !is.na(x) & x > 0.5
   x[gt] <- 1 - x[gt]
   x[!is.na(x)] <- x[!is.na(x)] * 2

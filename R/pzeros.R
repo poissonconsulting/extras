@@ -11,11 +11,15 @@
 #' pzeros(c(0:2))
 pzeros <- function(x, na_rm = FALSE) {
   chk_numeric(x)
-  if(anyNA(x)) {
-    if(vld_false(na_rm)) return(NA_real_)
+  if (anyNA(x)) {
+    if (vld_false(na_rm)) {
+      return(NA_real_)
+    }
     x <- as.vector(x)
     x <- x[!is.na(x)]
   }
-  if(!length(x)) return(NaN)
+  if (!length(x)) {
+    return(NaN)
+  }
   sum(x == 0) / length(x)
 }

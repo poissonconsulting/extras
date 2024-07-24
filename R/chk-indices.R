@@ -31,5 +31,5 @@ chk_indices <- function(x, x_name = NULL) {
 #' vld_indices(list(c(3L, 1L)))
 vld_indices <- function(x) {
   vld_list(x) &&
-  vld_all(x, vld_index)
+    vld_all(x, vld_index)
 }

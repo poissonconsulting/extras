@@ -22,7 +22,7 @@ A numeric vector of the random samples.
 Student's t Random Samples
 }
 \examples{
-ran_student(10, theta = 1/2)
+ran_student(10, theta = 1 / 2)
 }
 \seealso{
 Other ran_dist: 

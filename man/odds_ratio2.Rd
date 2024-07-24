@@ -16,8 +16,8 @@ A number.
 Calculates the odds ratio for a vector of two probabilities.
 }
 \examples{
-odds_ratio2(c(0.5,0.9))
-odds_ratio2(c(0.9,0.5))
+odds_ratio2(c(0.5, 0.9))
+odds_ratio2(c(0.9, 0.5))
 }
 \seealso{
 Other odds fun2: 
