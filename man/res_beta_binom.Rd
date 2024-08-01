@@ -30,7 +30,15 @@ res_beta_binom(
 An numeric vector of the corresponding residuals.
 }
 \description{
-This parameterization of the beta-binomial distribution uses an expected probability parameter, \code{prob}, and a dispersion parameter, \code{theta}. The parameters of the underlying beta mixture are \code{alpha = (2 * prob) / theta} and \code{beta = (2 * (1 - prob)) / theta}. This parameterization of \code{theta} is unconventional, but has useful properties when modelling. When \code{theta = 0}, the beta-binomial reverts to the binomial distribution. When \code{theta = 1} and \code{prob = 0.5}, the parameters of the beta distribution become \code{alpha = 1} and \code{beta = 1}, which correspond to a uniform distribution for the beta-binomial probability parameter.
+This parameterization of the beta-binomial distribution uses an expected
+probability parameter, \code{prob}, and a dispersion parameter, \code{theta}. The
+parameters of the underlying beta mixture are \code{alpha = (2 * prob) / theta}
+and \code{beta = (2 * (1 - prob)) / theta}. This parameterization of \code{theta} is
+unconventional, but has useful properties when modelling. When \code{theta = 0},
+the beta-binomial reverts to the binomial distribution. When \code{theta = 1} and
+\code{prob = 0.5}, the parameters of the beta distribution become \code{alpha = 1} and
+\code{beta = 1}, which correspond to a uniform distribution for the beta-binomial
+probability parameter.
 }
 \examples{
 res_beta_binom(c(0, 1, 2), 4, 0.5, 0.1)

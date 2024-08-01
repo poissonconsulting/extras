@@ -14,7 +14,15 @@ res_beta_binom_standardized <- function(x, size, prob, theta) {
 
 #' Beta-Binomial Residuals
 #'
-#' This parameterization of the beta-binomial distribution uses an expected probability parameter, `prob`, and a dispersion parameter, `theta`. The parameters of the underlying beta mixture are `alpha = (2 * prob) / theta` and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is unconventional, but has useful properties when modelling. When `theta = 0`, the beta-binomial reverts to the binomial distribution. When `theta = 1` and `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and `beta = 1`, which correspond to a uniform distribution for the beta-binomial probability parameter.
+#' This parameterization of the beta-binomial distribution uses an expected
+#' probability parameter, `prob`, and a dispersion parameter, `theta`. The
+#' parameters of the underlying beta mixture are `alpha = (2 * prob) / theta`
+#' and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is
+#' unconventional, but has useful properties when modelling. When `theta = 0`,
+#' the beta-binomial reverts to the binomial distribution. When `theta = 1` and
+#' `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and
+#' `beta = 1`, which correspond to a uniform distribution for the beta-binomial
+#' probability parameter.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.

@@ -1,11 +1,20 @@
 #' Beta-Binomial Deviances
 #'
-#' This parameterization of the beta-binomial distribution uses an expected probability parameter, `prob`, and a dispersion parameter, `theta`. The parameters of the underlying beta mixture are `alpha = (2 * prob) / theta` and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is unconventional, but has useful properties when modelling. When `theta = 0`, the beta-binomial reverts to the binomial distribution. When `theta = 1` and `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and `beta = 1`, which correspond to a uniform distribution for the beta-binomial probability parameter.
+#' This parameterization of the beta-binomial distribution uses an expected
+#' probability parameter, `prob`, and a dispersion parameter, `theta`. The
+#' parameters of the underlying beta mixture are `alpha = (2 * prob) / theta`
+#' and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is
+#' unconventional, but has useful properties when modelling. When `theta = 0`,
+#' the beta-binomial reverts to the binomial distribution. When `theta = 1` and
+#' `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and
+#' `beta = 1`, which correspond to a uniform distribution for the beta-binomial
+#' probability parameter.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
 #'
-#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @return An numeric vector of the corresponding deviances or deviance
+#'   residuals.
 #' @family dev_dist
 #' @export
 #'
@@ -40,7 +49,8 @@ dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
   dev <- dev1 - dev2
   dev[dev < 0 & dev > -1e-7] <- 0
   dev <- dev * 2
-  use_binom <- (!is.na(theta) & theta == 0) | (!is.na(x) & !is.na(size) & x == 0 & size == 0)
+  use_binom <- (!is.na(theta) & theta == 0) |
+    (!is.na(x) & !is.na(size) & x == 0 & size == 0)
   dev_binom <- dev_binom(x = x, size = size, prob = prob, res = FALSE)
   dev[use_binom] <- dev_binom[use_binom]
   if (vld_false(res)) {
@@ -284,8 +294,10 @@ dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
   delta <- shape / sqrt(1 + shape^2)
   mu_z <- sqrt(2 / pi) * delta
   sig_z <- sqrt(1 - mu_z^2)
-  gam_1 <- ((4 - pi) / 2) * ((delta * sqrt(2 / pi))^3 / (1 - (2 * delta^2) / pi)^(3 / 2))
-  m_o <- mu_z - (gam_1 * sig_z / 2) - (sign(shape) / 2) * exp(-2 * pi / abs(shape))
+  gam_1 <- ((4 - pi) / 2) *
+    ((delta * sqrt(2 / pi))^3 / (1 - (2 * delta^2) / pi)^(3 / 2))
+  m_o <- mu_z - (gam_1 * sig_z / 2) - (base::sign(shape) / 2) *
+    base::exp(-2 * pi / base::abs(shape))
   mode_sat <- mean + sd * m_o
   dev <- log_lik_skewnorm(mode_sat, mean = mean, sd = sd, shape = shape) -
     log_lik_skewnorm(x, mean = mean, sd = sd, shape = shape)
