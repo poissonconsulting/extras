@@ -16,8 +16,8 @@ A number.
 Calculates the log odds ratio for a vector of two probabilities.
 }
 \examples{
-log_odds_ratio2(c(0.5,0.9))
-log_odds_ratio2(c(0.9,0.5))
+log_odds_ratio2(c(0.5, 0.9))
+log_odds_ratio2(c(0.9, 0.5))
 }
 \seealso{
 Other odds fun2: 

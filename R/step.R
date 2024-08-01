@@ -7,7 +7,6 @@
 #'
 #' @examples
 #' step(1)
-
 step <- function(x) {
   chk_numeric(x)
   x >= 0

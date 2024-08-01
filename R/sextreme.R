@@ -16,9 +16,13 @@
 sextreme <- function(x, directional = FALSE) {
   lifecycle::deprecate_soft("0.1.1", "sextreme()", id = "sextreme")
   chk_flag(directional)
-  if(!length(x)) return(numeric(0))
+  if (!length(x)) {
+    return(numeric(0))
+  }
   s <- -log(pextreme(x), 2)
-  if(!directional) return(s)
+  if (!directional) {
+    return(s)
+  }
   gt <- !is.na(x) & x > 0.5
   s[!gt] <- s[!gt] * -1
   s

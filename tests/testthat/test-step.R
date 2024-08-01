@@ -24,4 +24,3 @@ test_that("step works array", {
   expect_equal(step(array(0)), array(TRUE))
   expect_identical(step(array(-2)), array(FALSE))
 })
-

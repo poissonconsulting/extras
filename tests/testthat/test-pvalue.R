@@ -19,5 +19,5 @@ test_that("pvalue", {
   expect_equal(pvalue(-9:10), 0.952380952380952)
   expect_equal(pvalue(-9:10 + 1, threshold = 1), 0.952380952380952)
   expect_equal(pvalue(c(-1, 1, 1, 1, NA)), NA_real_)
-  expect_equal(pvalue(c(-1, 1, 1, 1, NA), na_rm = TRUE), 3/5)
+  expect_equal(pvalue(c(-1, 1, 1, 1, NA), na_rm = TRUE), 3 / 5)
 })

@@ -68,7 +68,6 @@
 #' @examples
 #' x <- 1
 #' ilog(x)
-
 ilog <- function(x) {
   exp(x)
 }
@@ -86,7 +85,6 @@ ilog <- function(x) {
 #' @examples
 #' x <- c(2, 4.5)
 #' ilog2(x)
-
 ilog2 <- function(x) {
   exp2(x)
 }
@@ -104,7 +102,6 @@ ilog2 <- function(x) {
 #' @examples
 #' x <- c(2, 4.5)
 #' ilog10(x)
-
 ilog10 <- function(x) {
   exp10(x)
 }

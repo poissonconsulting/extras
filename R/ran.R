@@ -118,7 +118,7 @@ ran_lnorm <- function(n = 1, meanlog = 0, sdlog = 1) {
 ran_neg_binom <- function(n = 1, lambda = 1, theta = 0) {
   chk_whole_number(n)
   chk_gte(n)
-  as.integer(stats::rnbinom(n = n, mu = lambda, size = 1/theta))
+  as.integer(stats::rnbinom(n = n, mu = lambda, size = 1 / theta))
 }
 
 #' Normal Random Samples
@@ -190,11 +190,15 @@ ran_skewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
 #' @export
 #'
 #' @examples
-#' ran_student(10, theta = 1/2)
+#' ran_student(10, theta = 1 / 2)
 ran_student <- function(n = 1, mean = 0, sd = 1, theta = 0) {
   chk_whole_number(n)
-  if (length(mean) > n) {mean = mean[1:n]}
-  if (length(sd) > n) {sd = sd[1:n]}
+  if (length(mean) > n) {
+    mean <- mean[1:n]
+  }
+  if (length(sd) > n) {
+    sd <- sd[1:n]
+  }
   df <- 1 / theta
   x <- stats::rt(n, df)
   r <- x * sd + mean

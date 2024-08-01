@@ -4,7 +4,7 @@ test_that("dskewnorm passes through numeric(0) with zero-length arguments", {
   expect_identical(dskewnorm(logical(0)), numeric(0))
   expect_identical(dskewnorm(numeric(0)), numeric(0))
   expect_identical(dskewnorm(1, numeric(0)), numeric(0))
-  expect_identical(dskewnorm(1, 2,numeric(0)), numeric(0))
+  expect_identical(dskewnorm(1, 2, numeric(0)), numeric(0))
   expect_identical(dskewnorm(1, 2, 3, numeric(0)), numeric(0))
   expect_identical(dskewnorm(1, numeric(0), 2, 3), numeric(0))
 })
@@ -101,13 +101,17 @@ test_that("dskewnorm returns expected output scalar", {
 test_that("dskewnorm returns expected output vector", {
   expect_equal(
     dskewnorm(1:5, 4, 3, 2),
-    c(0.00366991060693802, 0.0194248281484597, 0.0635242991919014,
-      0.132980760133811, 0.188064519270094)
+    c(
+      0.00366991060693802, 0.0194248281484597, 0.0635242991919014,
+      0.132980760133811, 0.188064519270094
+    )
   )
   expect_equal(
     dskewnorm(1:5, 4, 3, -2),
-    c(0.157643905739158, 0.193540508866442, 0.188064519270094,
-      0.132980760133811, 0.0635242991919014)
+    c(
+      0.157643905739158, 0.193540508866442, 0.188064519270094,
+      0.132980760133811, 0.0635242991919014
+    )
   )
   expect_equal(
     dskewnorm(10, -1:1, 3, 2),
@@ -243,13 +247,17 @@ test_that("pskewnorm returns expected output scalar", {
 test_that("pskewnorm returns expected output vector", {
   expect_equal(
     pskewnorm(1:5, 4, 3, 2),
-    c(0.00171887994528883, 0.0115549756735866, 0.0502195406616784,
-      0.147583617650433, 0.311336860298151)
+    c(
+      0.00171887994528883, 0.0115549756735866, 0.0502195406616784,
+      0.147583617650433, 0.311336860298151
+    )
   )
   expect_equal(
     pskewnorm(1:5, 4, 3, -2),
-    c(0.315591627917625, 0.493430099420259, 0.688663139701849, 0.852416382349567,
-      0.949780459338321)
+    c(
+      0.315591627917625, 0.493430099420259, 0.688663139701849, 0.852416382349567,
+      0.949780459338321
+    )
   )
   expect_equal(
     pskewnorm(10, -1:1, 3, 2),
@@ -377,13 +385,17 @@ test_that("qskewnorm returns expected output scalar", {
 test_that("qskewnorm returns expected output vector", {
   expect_equal(
     qskewnorm(seq(0, 1, 0.2), 4, 3, 2),
-    c(-Inf, 4.36071631784007, 5.457936823313, 6.49966344782408, 7.84260238010865,
-      Inf)
+    c(
+      -Inf, 4.36071631784007, 5.457936823313, 6.49966344782408, 7.84260238010865,
+      Inf
+    )
   )
   expect_equal(
     qskewnorm(seq(0, 1, 0.2), 4, 3, -2),
-    c(-Inf, 0.157397619891355, 1.50033655217592, 2.542063176687,
-      3.63928368215993, Inf)
+    c(
+      -Inf, 0.157397619891355, 1.50033655217592, 2.542063176687,
+      3.63928368215993, Inf
+    )
   )
   expect_equal(
     qskewnorm(0.1, -1:1, 3, 2),
@@ -538,8 +550,10 @@ test_that("rskewnorm returns expected output vector", {
   set.seed(101)
   expect_equal(
     rskewnorm(5, 1:5, 3, 2),
-    c(2.61605306534115, 4.09865777252101, 5.4089223676431, 5.50913846244797,
-      7.16111124161696)
+    c(
+      2.61605306534115, 4.09865777252101, 5.4089223676431, 5.50913846244797,
+      7.16111124161696
+    )
   )
   expect_equal(
     rskewnorm(4, 1:4, 3, -2),
