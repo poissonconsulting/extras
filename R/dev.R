@@ -298,8 +298,7 @@ dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
   sig_z <- sqrt(1 - mu_z^2)
   gam_1 <- ((4 - pi) / 2) *
     ((delta * sqrt(2 / pi))^3 / (1 - (2 * delta^2) / pi)^(3 / 2))
-  m_o <- mu_z - (gam_1 * sig_z / 2) - (base::sign(shape) / 2) *
-    base::exp(-2 * pi / base::abs(shape))
+  m_o <- mu_z - (gam_1 * sig_z / 2) - (sign(shape) / 2) * exp(-2 * pi / abs(shape))
   mode_sat <- mean + sd * m_o
   dev <- log_lik_skewnorm(mode_sat, mean = mean, sd = sd, shape = shape) -
     log_lik_skewnorm(x, mean = mean, sd = sd, shape = shape)
