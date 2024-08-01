@@ -132,9 +132,21 @@
 <div class="section level3">
 <h3 id="distributions">Distributions<a class="anchor" aria-label="anchor" href="#distributions"></a>
 </h3>
-<p>Implemented distributions include</p>
-<ul><li>
-</li></ul>
+<p>Implemented distributions with functions to draw random samples, calculate log-likelihoods, and calculate deviance residuals for include:</p>
+<ul>
+<li>Bernoulli</li>
+<li>Beta-binomial</li>
+<li>Gamma</li>
+<li>Gamma-Poisson</li>
+<li>Zero-inflated gamma-Poisson</li>
+<li>Log-Normal</li>
+<li>Negative Binomial</li>
+<li>Normal</li>
+<li>Poisson</li>
+<li>Zero-inflated Poisson</li>
+<li>Skew Normal</li>
+<li>Student’s t</li>
+</ul>
 </div>
 <div class="section level3">
 <h3 id="r-translations">R translations<a class="anchor" aria-label="anchor" href="#r-translations"></a>
@@ -155,10 +167,11 @@
 <p>Atomic vectors, matrices, arrays and data.frames of appropriate classes can be converted to numeric objects suitable for Bayesian analysis using the <code><a href="reference/numericise.html">numericise()</a></code> (and <code><a href="reference/numericise.html">numericize()</a></code>) function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/numericise.html">numericise</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>logical <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>,</span>
-<span>             factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>             Date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2000-01-01"</span>, <span class="st">"2000-01-02"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>             hms <span class="op">=</span> <span class="fu">hms</span><span class="fu">::</span><span class="fu"><a href="https://hms.tidyverse.org/reference/hms.html" class="external-link">as_hms</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"00:00:02"</span>, <span class="st">"00:01:01"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>    logical <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>    factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    Date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2000-01-01"</span>, <span class="st">"2000-01-02"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    hms <span class="op">=</span> <span class="fu">hms</span><span class="fu">::</span><span class="fu"><a href="https://hms.tidyverse.org/reference/hms.html" class="external-link">as_hms</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"00:00:02"</span>, <span class="st">"00:01:01"</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;      logical factor  Date hms</span></span>
@@ -169,7 +182,7 @@
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>Greenland, S. 2019. Valid P -Values Behave Exactly as They Should: Some Misleading Criticisms of P -Values and Their Resolution With S -Values. The American Statistician 73(sup1): 106–114. <a href="https://doi.org/10.1080/00031305.2018.1529625" class="external-link uri">https://doi.org/10.1080/00031305.2018.1529625</a>.</p>
+<p>Greenland, S. 2019. Valid P-Values Behave Exactly as They Should: Some Misleading Criticisms of P-Values and Their Resolution With S-Values. The American Statistician 73(sup1): 106–114.</p>
 </div>
 <div class="section level2">
 <h2 id="contribution">Contribution<a class="anchor" aria-label="anchor" href="#contribution"></a>
