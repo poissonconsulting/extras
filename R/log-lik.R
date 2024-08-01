@@ -127,7 +127,7 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
 #' @export
 #'
 #' @examples
-#' dev_norm(exp(c(-2:2)))
+#' log_lik_lnorm(10, 0, 2)
 log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1) {
   dlnorm(x, meanlog = meanlog, sdlog = sdlog, log = TRUE)
 }
