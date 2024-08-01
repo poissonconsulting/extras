@@ -1,30 +1,21 @@
 ## Test environments
 
-release 4.3.0
+release 4.4.1
 
 * OSX (local) - release
 * OSX (actions) - release
-* Ubuntu (actions) - 4.0 to 4.1, oldrel, release and devel
+* Ubuntu (actions) - oldrel-1, release, and devel 
 * Windows (actions) - release
 * Windows (winbuilder) - devel
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
 
-## CRAN Issues
-
-Fixed the following issue on M1mac
-
-  ══ Failed tests ════════════════════════════════════════════════════════════════
-  ── Failure ('test-dev.R:79:3'): beta_binom ran ─────────────────────────────────
-  mean(res) (`actual`) not equal to -0.00107466576791911 (`expected`).
-  
-    `actual`: -0.00107458
-  `expected`: -0.00107467
-  
-  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 1429 ]
-  
+New maintainer:
+  Nicole Hill <nicole@poissonconsulting.ca>
+Old maintainer(s):
+  Joe Thorley <joe@poissonconsulting.ca>
 
 ## revdepcheck results
 
