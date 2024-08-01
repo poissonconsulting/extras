@@ -64,9 +64,20 @@ svalue(rnorm(100, mean = 3))
 
 ### Distributions
 
-Implemented distributions include 
+Implemented distributions with functions to draw random samples, calculate log-likelihoods, and calculate deviance residuals for include:
 
-- 
+- Bernoulli
+- Beta-binomial
+- Gamma
+- Gamma-Poisson
+- Zero-inflated gamma-Poisson
+- Log-Normal
+- Negative Binomial
+- Normal
+- Poisson
+- Zero-inflated Poisson
+- Skew Normal
+- Student's t
 
 ### R translations
 
