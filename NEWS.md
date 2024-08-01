@@ -3,15 +3,15 @@
 # extras 0.7.1
 
 - Refactored `log_lik_beta_binom()` to speed up optimization required in `dev_beta_binom()`.
-- Used styler on package.
+- Styled all code in package.
 
 # extras 0.7.0
 
   - Added sensitivity functions to produce list of new parameters that vary standard deviations (`sens_xxx()`).
-  - Added Skew Normal residual functions (`ran_skewnorm()`, `log_lik_skewnorm()`, `res_skewnorm()`, `dev_skewnorm()`).
+  - Added Skew Normal family of functions (`ran_skewnorm()`, `log_lik_skewnorm()`, `res_skewnorm()`, `dev_skewnorm()`).
   - Added Skew Normal distribution functions (`rskewnorm()`, `dskewnorm()`, `pskewnorm()`, `qskewnorm()`).
-  - Added `log2()<-`, `log10()<-`, `ilog2()`, and `ilog10()` functions
-  - Added `exp2()` and `exp10()` functions
+  - Added `log2()<-`, `log10()<-`, `ilog2()`, and `ilog10()` functions.
+  - Added `exp2()` and `exp10()` functions.
 
 # extras 0.6.1
 
