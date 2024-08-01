@@ -31,6 +31,32 @@ test_that("odds works array", {
   expect_equal(odds(array(0.9)), array(9))
 })
 
+test_that("`odds<-` works", {
+  x <- NULL
+  odds(x) <- 0.5
+  expect_equal(x, 0.5 / (1 + 0.5))
+})
+
+test_that("`odds<-` errors if x is not numeric", {
+  expect_snapshot(
+    error = TRUE,
+    x = {
+      x <- NULL
+      odds(x) <- "2"
+    }
+  )
+})
+
+test_that("`odds<-` errors if x is negative", {
+  expect_snapshot(
+    error = TRUE,
+    x = {
+      x <- NULL
+      odds(x) <- -1
+    }
+  )
+})
+
 test_that("odds_ratio errors incorrect inputs", {
   chk::expect_chk_error(odds_ratio(NA, 0.5))
   chk::expect_chk_error(odds_ratio("1", 0.5))
