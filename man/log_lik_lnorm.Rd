@@ -20,7 +20,7 @@ An numeric vector of the corresponding log-likelihoods.
 Log-Normal Log-Likelihood
 }
 \examples{
-dev_norm(exp(c(-2:2)))
+log_lik_lnorm(10, 0, 2)
 }
 \seealso{
 Other log_lik_dist: 

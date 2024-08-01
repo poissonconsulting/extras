@@ -24,7 +24,7 @@ An numeric vector of the corresponding residuals.
 Log-Normal Residuals
 }
 \examples{
-dev_norm(exp(c(-2:2)))
+res_lnorm(10)
 }
 \seealso{
 Other res_dist: 
