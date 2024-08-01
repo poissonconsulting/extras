@@ -49,36 +49,36 @@ library(extras)
 #> The following object is masked from 'package:stats':
 #> 
 #>     step
-```
-
-``` r
 
 set.seed(1)
 x <- rnorm(100)
 svalue(rnorm(100))
 #> [1] 0.3183615
-```
-
-``` r
 svalue(rnorm(100, mean = 1))
 #> [1] 1.704015
-```
-
-``` r
 svalue(rnorm(100, mean = 2))
 #> [1] 3.850857
-```
-
-``` r
 svalue(rnorm(100, mean = 3))
 #> [1] 5.073249
 ```
 
 ### Distributions
 
-Implemented distributions include
+Implemented distributions with functions to draw random samples,
+calculate log-likelihoods, and calculate deviance residuals for include:
 
-- 
+- Bernoulli
+- Beta-binomial
+- Gamma
+- Gamma-Poisson
+- Zero-inflated gamma-Poisson
+- Log-Normal
+- Negative Binomial
+- Normal
+- Poisson
+- Zero-inflated Poisson
+- Skew Normal
+- Student’s t
 
 ### R translations
 
@@ -88,9 +88,6 @@ functions such as `pow()` and `log<-`.
 ``` r
 pow(10, 2)
 #> [1] 100
-```
-
-``` r
 
 mu <- NULL
 log(mu) <- 1
@@ -106,10 +103,11 @@ the `numericise()` (and `numericize()`) function.
 
 ``` r
 numericise(
-  data.frame(logical = c(TRUE, FALSE),
-             factor = factor(c("blue", "green")),
-             Date = as.Date(c("2000-01-01", "2000-01-02")),
-             hms = hms::as_hms(c("00:00:02", "00:01:01"))
+  data.frame(
+    logical = c(TRUE, FALSE),
+    factor = factor(c("blue", "green")),
+    Date = as.Date(c("2000-01-01", "2000-01-02")),
+    hms = hms::as_hms(c("00:00:02", "00:01:01"))
   )
 )
 #>      logical factor  Date hms
@@ -119,10 +117,10 @@ numericise(
 
 ## References
 
-Greenland, S. 2019. Valid P -Values Behave Exactly as They Should: Some
-Misleading Criticisms of P -Values and Their Resolution With S -Values.
+Greenland, S. 2019. Valid P-Values Behave Exactly as They Should: Some
+Misleading Criticisms of P-Values and Their Resolution With S-Values.
 The American Statistician 73(sup1): 106–114.
-<https://doi.org/10.1080/00031305.2018.1529625>.
+<https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1529625>.
 
 ## Contribution
 
