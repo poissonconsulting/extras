@@ -175,7 +175,7 @@ res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", 
 #' @export
 #'
 #' @examples
-#' dev_norm(exp(c(-2:2)))
+#' res_lnorm(10)
 res_lnorm <- function(x, meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE) {
   chk_string(type)
   if (!vld_false(simulate)) {
