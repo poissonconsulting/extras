@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.7.2
+
+- Merge pull request #67 from poissonconsulting/cran-submission.
+
+  Fix behaviour of `dev_beta_binom()` when size \< x, and update tests and documentation for cran submission
+
+
 # extras 0.7.1
 
 - Refactored `log_lik_beta_binom()` to speed up optimization required in `dev_beta_binom()`.
