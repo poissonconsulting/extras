@@ -259,7 +259,7 @@ res_norm <- function(x, mean = 0, sd = 1, type = "dev", simulate = FALSE) {
 #' @export
 #'
 #' @examples
-#' res_pois(c(1, 3.5, 4), 3)
+#' res_pois(c(1, 3, 4), 3)
 res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
   chk_string(type)
   if (!vld_false(simulate)) {
@@ -285,7 +285,7 @@ res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
 #' @export
 #'
 #' @examples
-#' res_pois_zi(c(1, 3.5, 4), 6, 0.5, type = "raw")
+#' res_pois_zi(c(1, 3, 4), 6, 0.5, type = "raw")
 res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE) {
   chk_string(type)
   if (!vld_false(simulate)) {

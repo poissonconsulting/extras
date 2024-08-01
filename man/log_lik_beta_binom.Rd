@@ -30,7 +30,7 @@ the beta-binomial reverts to the binomial distribution. When \code{theta = 1} an
 probability parameter.
 }
 \examples{
-log_lik_beta_binom(c(0, 1, 2), 1, 0.5, 0)
+log_lik_beta_binom(c(0, 1, 2), 3, 0.5, 0)
 }
 \seealso{
 Other log_lik_dist: 

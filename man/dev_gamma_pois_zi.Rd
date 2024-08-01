@@ -24,6 +24,6 @@ An numeric vector of the corresponding deviances or deviance residuals.
 Zero-Inflated Gamma-Poisson Deviances
 }
 \examples{
-dev_gamma_pois_zi(c(1, 3.5, 4), 3, 2)
+dev_gamma_pois_zi(c(1, 3, 4), 3, 2)
 }
 \concept{dev_dist # make live when complete}

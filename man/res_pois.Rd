@@ -22,7 +22,7 @@ An numeric vector of the corresponding residuals.
 Poisson Residuals
 }
 \examples{
-res_pois(c(1, 3.5, 4), 3)
+res_pois(c(1, 3, 4), 3)
 }
 \seealso{
 Other res_dist: 

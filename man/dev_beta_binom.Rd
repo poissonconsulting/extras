@@ -33,7 +33,7 @@ the beta-binomial reverts to the binomial distribution. When \code{theta = 1} an
 probability parameter.
 }
 \examples{
-dev_beta_binom(c(0, 1, 2), 1, 0.5, 0)
+dev_beta_binom(c(0, 1, 2), 10, 0.5, 0.1)
 }
 \seealso{
 Other dev_dist: 

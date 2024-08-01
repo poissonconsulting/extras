@@ -18,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' log_lik_beta_binom(c(0, 1, 2), 1, 0.5, 0)
+#' log_lik_beta_binom(c(0, 1, 2), 3, 0.5, 0)
 log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
@@ -113,7 +113,7 @@ log_lik_gamma_pois <- function(x, lambda = 1, theta = 0) {
 #' @export
 #'
 #' @examples
-#' log_lik_gamma_pois_zi(c(1, 3.5, 4), 3, 1, prob = 0.5)
+#' log_lik_gamma_pois_zi(c(1, 3, 4), 3, 1, prob = 0.5)
 log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
   lpois <- dnbinom(x, mu = lambda, size = 1 / theta)
   lpois <- lpois * (1 - prob)
@@ -180,7 +180,7 @@ log_lik_norm <- function(x, mean = 0, sd = 1) {
 #' @export
 #'
 #' @examples
-#' log_lik_pois(c(1, 3.5, 4), 3)
+#' log_lik_pois(c(1, 3, 4), 3)
 log_lik_pois <- function(x, lambda = 1) {
   dpois(x, lambda, log = TRUE)
 }
@@ -195,7 +195,7 @@ log_lik_pois <- function(x, lambda = 1) {
 #' @export
 #'
 #' @examples
-#' log_lik_pois_zi(c(1, 3.5, 4), 3, prob = 0.5)
+#' log_lik_pois_zi(c(1, 3, 4), 3, prob = 0.5)
 log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
   lpois <- dpois(x, lambda = lambda)
   lpois <- lpois * (1 - prob)

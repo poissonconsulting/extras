@@ -19,7 +19,7 @@
 #' @export
 #'
 #' @examples
-#' dev_beta_binom(c(0, 1, 2), 1, 0.5, 0)
+#' dev_beta_binom(c(0, 1, 2), 10, 0.5, 0.1)
 dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
   opt_beta_binom <- function(prob, x, size = size, theta = theta) {
     -log_lik_beta_binom(x = x, size = size, prob = prob, theta = theta)
@@ -135,7 +135,7 @@ dev_gamma <- function(x, shape = 1, rate = 1, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_gamma_pois(c(1, 3.5, 4), 3, 2)
+#' dev_gamma_pois(c(1, 3, 4), 3, 2)
 dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
   dev1 <- 1 / theta * log((1 + lambda * theta) / (1 + x * theta))
   dev2 <- x * log((lambda + x * lambda * theta) / (x + x * lambda * theta))
@@ -160,7 +160,7 @@ dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_gamma_pois_zi(c(1, 3.5, 4), 3, 2)
+#' dev_gamma_pois_zi(c(1, 3, 4), 3, 2)
 dev_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, res = FALSE) {
   dev <- log_lik_gamma_pois_zi(x, lambda = x, theta = theta, prob = 0) -
     log_lik_gamma_pois_zi(x, lambda = lambda, theta = theta, prob = prob)
@@ -231,7 +231,7 @@ dev_norm <- function(x, mean = 0, sd = 1, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_pois(c(1, 3.5, 4), 3)
+#' dev_pois(c(1, 3, 4), 3)
 dev_pois <- function(x, lambda, res = FALSE) {
   dev <- x * log(x / lambda) - (x - lambda)
   zero <- !is.na(x) & x == 0
@@ -258,7 +258,7 @@ dev_pois <- function(x, lambda, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_pois(c(1, 3.5, 4), 3)
+#' dev_pois_zi(c(1, 3, 4), 3)
 dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
   dev1 <- -x + x * log(x) - log(factorial(x))
   dev1[x == 0] <- 0

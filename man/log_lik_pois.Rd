@@ -18,7 +18,7 @@ An numeric vector of the corresponding log-likelihoods.
 Poisson Log-Likelihood
 }
 \examples{
-log_lik_pois(c(1, 3.5, 4), 3)
+log_lik_pois(c(1, 3, 4), 3)
 }
 \seealso{
 Other log_lik_dist: 

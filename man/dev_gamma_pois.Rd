@@ -22,7 +22,7 @@ An numeric vector of the corresponding deviances or deviance residuals.
 Gamma-Poisson Deviances
 }
 \examples{
-dev_gamma_pois(c(1, 3.5, 4), 3, 2)
+dev_gamma_pois(c(1, 3, 4), 3, 2)
 }
 \seealso{
 Other dev_dist: 
