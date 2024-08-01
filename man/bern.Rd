@@ -38,5 +38,8 @@ Bernoulli Distribution
 }
 \examples{
 dbern(1, 0.5)
+pbern(0.75, 0.5)
+qbern(0.1, 0.5)
+rbern(1, 0.5)
 }
 \concept{bern}

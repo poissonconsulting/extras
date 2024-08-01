@@ -1,16 +1,25 @@
 #' Beta-Binomial Deviances
 #'
-#' This parameterization of the beta-binomial distribution uses an expected probability parameter, `prob`, and a dispersion parameter, `theta`. The parameters of the underlying beta mixture are `alpha = (2 * prob) / theta` and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is unconventional, but has useful properties when modelling. When `theta = 0`, the beta-binomial reverts to the binomial distribution. When `theta = 1` and `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and `beta = 1`, which correspond to a uniform distribution for the beta-binomial probability parameter.
+#' This parameterization of the beta-binomial distribution uses an expected
+#' probability parameter, `prob`, and a dispersion parameter, `theta`. The
+#' parameters of the underlying beta mixture are `alpha = (2 * prob) / theta`
+#' and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is
+#' unconventional, but has useful properties when modelling. When `theta = 0`,
+#' the beta-binomial reverts to the binomial distribution. When `theta = 1` and
+#' `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and
+#' `beta = 1`, which correspond to a uniform distribution for the beta-binomial
+#' probability parameter.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
 #'
-#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @return An numeric vector of the corresponding deviances or deviance
+#'   residuals.
 #' @family dev_dist
 #' @export
 #'
 #' @examples
-#' dev_beta_binom(c(0, 1, 2), 1, 0.5, 0)
+#' dev_beta_binom(c(0, 1, 2), 10, 0.5, 0.1)
 dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
   opt_beta_binom <- function(prob, x, size = size, theta = theta) {
     -log_lik_beta_binom(x = x, size = size, prob = prob, theta = theta)
@@ -24,7 +33,9 @@ dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
   opt_p <- rep(NA, length(x))
   bol <- !is.na(x) & !is.na(size) & !is.na(theta)
   for (i in seq_along(x)) {
-    if (bol[i] && !is.na(bol[i])) {
+    if (bol[i] && size[i] < x[i]) {
+      opt_p[i] <- 1
+    } else if (bol[i] && !is.na(bol[i])) {
       opt_p[i] <- stats::optimize(
         opt_beta_binom,
         interval = c(0, 1),
@@ -40,7 +51,8 @@ dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
   dev <- dev1 - dev2
   dev[dev < 0 & dev > -1e-7] <- 0
   dev <- dev * 2
-  use_binom <- (!is.na(theta) & theta == 0) | (!is.na(x) & !is.na(size) & x == 0 & size == 0)
+  use_binom <- (!is.na(theta) & theta == 0) |
+    (!is.na(x) & !is.na(size) & x == 0 & size == 0)
   dev_binom <- dev_binom(x = x, size = size, prob = prob, res = FALSE)
   dev[use_binom] <- dev_binom[use_binom]
   if (vld_false(res)) {
@@ -125,7 +137,7 @@ dev_gamma <- function(x, shape = 1, rate = 1, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_gamma_pois(c(1, 3.5, 4), 3, 2)
+#' dev_gamma_pois(c(1, 3, 4), 3, 2)
 dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
   dev1 <- 1 / theta * log((1 + lambda * theta) / (1 + x * theta))
   dev2 <- x * log((lambda + x * lambda * theta) / (x + x * lambda * theta))
@@ -150,7 +162,7 @@ dev_gamma_pois <- function(x, lambda = 1, theta = 0, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_gamma_pois_zi(c(1, 3.5, 4), 3, 2)
+#' dev_gamma_pois_zi(c(1, 3, 4), 3, 2)
 dev_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, res = FALSE) {
   dev <- log_lik_gamma_pois_zi(x, lambda = x, theta = theta, prob = 0) -
     log_lik_gamma_pois_zi(x, lambda = lambda, theta = theta, prob = prob)
@@ -221,7 +233,7 @@ dev_norm <- function(x, mean = 0, sd = 1, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_pois(c(1, 3.5, 4), 3)
+#' dev_pois(c(1, 3, 4), 3)
 dev_pois <- function(x, lambda, res = FALSE) {
   dev <- x * log(x / lambda) - (x - lambda)
   zero <- !is.na(x) & x == 0
@@ -248,7 +260,7 @@ dev_pois <- function(x, lambda, res = FALSE) {
 #' @export
 #'
 #' @examples
-#' dev_pois(c(1, 3.5, 4), 3)
+#' dev_pois_zi(c(1, 3, 4), 3)
 dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
   dev1 <- -x + x * log(x) - log(factorial(x))
   dev1[x == 0] <- 0
@@ -284,7 +296,8 @@ dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
   delta <- shape / sqrt(1 + shape^2)
   mu_z <- sqrt(2 / pi) * delta
   sig_z <- sqrt(1 - mu_z^2)
-  gam_1 <- ((4 - pi) / 2) * ((delta * sqrt(2 / pi))^3 / (1 - (2 * delta^2) / pi)^(3 / 2))
+  gam_1 <- ((4 - pi) / 2) *
+    ((delta * sqrt(2 / pi))^3 / (1 - (2 * delta^2) / pi)^(3 / 2))
   m_o <- mu_z - (gam_1 * sig_z / 2) - (sign(shape) / 2) * exp(-2 * pi / abs(shape))
   mode_sat <- mean + sd * m_o
   dev <- log_lik_skewnorm(mode_sat, mean = mean, sd = sd, shape = shape) -

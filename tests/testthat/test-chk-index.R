@@ -14,3 +14,17 @@ test_that("chk_index", {
     class = "chk_error"
   )
 })
+
+test_that("chk_index errors with x = NA",{
+  expect_snapshot(
+    error = TRUE,
+    chk_index(NA)
+  )
+})
+
+test_that("chk_index errors with empty x",{
+  expect_snapshot(
+    error = TRUE,
+    chk_index(integer(0))
+  )
+})

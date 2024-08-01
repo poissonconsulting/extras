@@ -10,6 +10,9 @@
 #'
 #' @examples
 #' dbern(1, 0.5)
+#' pbern(0.75, 0.5)
+#' qbern(0.1, 0.5)
+#' rbern(1, 0.5)
 dbern <- function(x, prob, log = FALSE) {
   stats::dbinom(x, size = 1, prob = prob, log = log)
 }

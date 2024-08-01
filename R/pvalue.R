@@ -12,7 +12,7 @@
 #' @references
 #' Kery, M., and Schaub, M. 2011.
 #' Bayesian population analysis using WinBUGS: a hierarchical perspective.
-#' Academic Press, Boston. Available from <https://www.vogelwarte.ch/de/projekte/publikationen/bpa/>.
+#' Academic Press, Boston. Available from <https://www.vogelwarte.ch/en/research/population-biology/book-bpa/>.
 #' @export
 #' @examples
 #' pvalue(as.numeric(0:100))

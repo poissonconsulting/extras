@@ -112,6 +112,7 @@ test_that("res_norm", {
   expect_equal(res_norm(1:2, 2, simulate = TRUE, type = "data"), c(1.67396350948461, 2.55246185541914))
   set.seed(101)
   expect_equal(res_norm(1:2, 2, simulate = TRUE, type = "standardized"), c(-0.326036490515386, 0.552461855419138))
+  expect_error(res_norm(10, type = "unknown"))
 })
 
 test_that("res_norm simulate", {
@@ -155,6 +156,7 @@ test_that("res_lnorm", {
   res <- res_lnorm(rep(2, 10000), simulate = TRUE, type = "standardized")
   expect_equal(mean(res), -0.000972725402704599)
   expect_equal(sd(res), 0.96810060574941)
+  expect_error(res_lnorm(10, type = "unknown"))
 })
 
 test_that("res_binom", {
@@ -188,6 +190,7 @@ test_that("res_binom", {
   expect_equal(res_binom(1:2, 2, simulate = TRUE, type = "data"), 1:0)
   set.seed(101)
   expect_equal(res_binom(1:2, 2, simulate = TRUE, type = "standardized"), c(0, -1.4142135623731))
+  expect_error(res_binom(10, type = "unknown"))
 })
 
 test_that("res_binom simulate", {
@@ -238,6 +241,7 @@ test_that("res_bern", {
   expect_equal(res_bern(0:1, simulate = TRUE, type = "data"), c(0L, 0L))
   set.seed(101)
   expect_equal(res_bern(0:1, simulate = TRUE, type = "standardized"), c(-1L, -1L))
+  expect_error(res_bern(0, type = "unknown"))
 })
 
 test_that("res_bern simulate", {
@@ -528,6 +532,8 @@ test_that("res_beta_binom", {
       0, 0.514757357869973, 1.04572341572074, 1.61504974877637, 2.26648244134578
     )
   )
+  expect_equal(res_beta_binom(0, 2, 0.5, type = "dev"), -1.6651092223154)
+  expect_equal(res_beta_binom(0, 2, 0.5, 10, type = "dev"), -1.24912653737637)
   expect_equal(res_beta_binom(0, 2, 0.5, type = "raw"), -1)
   expect_equal(res_beta_binom(0, 2, 0.5, 10, type = "raw"), -1)
   set.seed(101)
@@ -565,6 +571,7 @@ test_that("res_beta_binom", {
   res <- res_beta_binom(rep(2, 10000), size = 10, prob = 0.3, theta = 0.2, simulate = TRUE, type = "standardized")
   expect_equal(mean(res), 0.0345591969703882)
   expect_equal(sd(res), 2.24030672587351)
+  expect_error(res_beta_binom(10, type = "unknown"))
 })
 
 test_that("res_skewnorm", {
@@ -642,4 +649,5 @@ test_that("res_skewnorm", {
   res <- res_skewnorm(rep(2, 10000), mean = 10, sd = 0.3, shape = 0.2, simulate = TRUE, type = "standardized")
   expect_equal(mean(res), 0.0236707225149864)
   expect_equal(sd(res), 3.34458775450197)
+  expect_error(res_skewnorm(10, type = "unknown"))
 })

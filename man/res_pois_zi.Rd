@@ -24,7 +24,7 @@ An numeric vector of the corresponding residuals.
 Zero-Inflated Poisson Residuals
 }
 \examples{
-res_pois_zi(c(1, 3.5, 4), 6, 0.5, type = "raw")
+res_pois_zi(c(1, 3, 4), 6, 0.5, type = "raw")
 }
 \seealso{
 Other res_dist: 

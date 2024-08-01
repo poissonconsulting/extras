@@ -14,7 +14,15 @@ res_beta_binom_standardized <- function(x, size, prob, theta) {
 
 #' Beta-Binomial Residuals
 #'
-#' This parameterization of the beta-binomial distribution uses an expected probability parameter, `prob`, and a dispersion parameter, `theta`. The parameters of the underlying beta mixture are `alpha = (2 * prob) / theta` and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is unconventional, but has useful properties when modelling. When `theta = 0`, the beta-binomial reverts to the binomial distribution. When `theta = 1` and `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and `beta = 1`, which correspond to a uniform distribution for the beta-binomial probability parameter.
+#' This parameterization of the beta-binomial distribution uses an expected
+#' probability parameter, `prob`, and a dispersion parameter, `theta`. The
+#' parameters of the underlying beta mixture are `alpha = (2 * prob) / theta`
+#' and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is
+#' unconventional, but has useful properties when modelling. When `theta = 0`,
+#' the beta-binomial reverts to the binomial distribution. When `theta = 1` and
+#' `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and
+#' `beta = 1`, which correspond to a uniform distribution for the beta-binomial
+#' probability parameter.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
@@ -175,7 +183,7 @@ res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", 
 #' @export
 #'
 #' @examples
-#' dev_norm(exp(c(-2:2)))
+#' res_lnorm(10)
 res_lnorm <- function(x, meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE) {
   chk_string(type)
   if (!vld_false(simulate)) {
@@ -251,7 +259,7 @@ res_norm <- function(x, mean = 0, sd = 1, type = "dev", simulate = FALSE) {
 #' @export
 #'
 #' @examples
-#' res_pois(c(1, 3.5, 4), 3)
+#' res_pois(c(1, 3, 4), 3)
 res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
   chk_string(type)
   if (!vld_false(simulate)) {
@@ -277,7 +285,7 @@ res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
 #' @export
 #'
 #' @examples
-#' res_pois_zi(c(1, 3.5, 4), 6, 0.5, type = "raw")
+#' res_pois_zi(c(1, 3, 4), 6, 0.5, type = "raw")
 res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE) {
   chk_string(type)
   if (!vld_false(simulate)) {

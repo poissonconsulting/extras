@@ -1,6 +1,14 @@
 #' Beta-Binomial Log-Likelihood
 #'
-#' This parameterization of the beta-binomial distribution uses an expected probability parameter, `prob`, and a dispersion parameter, `theta`. The parameters of the underlying beta mixture are `alpha = (2 * prob) / theta` and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is unconventional, but has useful properties when modelling. When `theta = 0`, the beta-binomial reverts to the binomial distribution. When `theta = 1` and `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and `beta = 1`, which correspond to a uniform distribution for the beta-binomial probability parameter.
+#' This parameterization of the beta-binomial distribution uses an expected
+#' probability parameter, `prob`, and a dispersion parameter, `theta`. The
+#' parameters of the underlying beta mixture are `alpha = (2 * prob) / theta`
+#' and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is
+#' unconventional, but has useful properties when modelling. When `theta = 0`,
+#' the beta-binomial reverts to the binomial distribution. When `theta = 1` and
+#' `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and
+#' `beta = 1`, which correspond to a uniform distribution for the beta-binomial
+#' probability parameter.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
@@ -10,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' log_lik_beta_binom(c(0, 1, 2), 1, 0.5, 0)
+#' log_lik_beta_binom(c(0, 1, 2), 3, 0.5, 0)
 log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
@@ -105,7 +113,7 @@ log_lik_gamma_pois <- function(x, lambda = 1, theta = 0) {
 #' @export
 #'
 #' @examples
-#' log_lik_gamma_pois_zi(c(1, 3.5, 4), 3, 1, prob = 0.5)
+#' log_lik_gamma_pois_zi(c(1, 3, 4), 3, 1, prob = 0.5)
 log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
   lpois <- dnbinom(x, mu = lambda, size = 1 / theta)
   lpois <- lpois * (1 - prob)
@@ -127,7 +135,7 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
 #' @export
 #'
 #' @examples
-#' dev_norm(exp(c(-2:2)))
+#' log_lik_lnorm(10, 0, 2)
 log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1) {
   dlnorm(x, meanlog = meanlog, sdlog = sdlog, log = TRUE)
 }
@@ -172,7 +180,7 @@ log_lik_norm <- function(x, mean = 0, sd = 1) {
 #' @export
 #'
 #' @examples
-#' log_lik_pois(c(1, 3.5, 4), 3)
+#' log_lik_pois(c(1, 3, 4), 3)
 log_lik_pois <- function(x, lambda = 1) {
   dpois(x, lambda, log = TRUE)
 }
@@ -187,7 +195,7 @@ log_lik_pois <- function(x, lambda = 1) {
 #' @export
 #'
 #' @examples
-#' log_lik_pois_zi(c(1, 3.5, 4), 3, prob = 0.5)
+#' log_lik_pois_zi(c(1, 3, 4), 3, prob = 0.5)
 log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
   lpois <- dpois(x, lambda = lambda)
   lpois <- lpois * (1 - prob)
