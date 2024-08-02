@@ -22,7 +22,7 @@
 #' dev_beta_binom(c(0, 1, 2), 10, 0.5, 0.1)
 dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
   opt_beta_binom <- function(prob, x, size = size, theta = theta) {
-    -log_lik_beta_binom(x = x, size = size, prob = prob, theta = theta)
+    -log_lik_beta_binom2(x = x, size = size, prob = prob, theta = theta)
   }
   if (length(size) == 1) {
     size <- rep(size, length(x))
