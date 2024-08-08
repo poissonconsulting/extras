@@ -25,22 +25,52 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
   lbeta_binom <- lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1) +
     lgamma(x + alpha) + lgamma(size - x + beta) - lgamma(size + alpha + beta) +
     lgamma(alpha + beta) - lgamma(alpha) - lgamma(beta)
-  bol <- !is.na(x + size + prob + theta)
-  lbeta_binom[bol & ((x == 0 & prob == 0) | (x == size & prob == 1))] <- 0
-  lbeta_binom[bol & x != 0 & prob == 0] <- -Inf
-  lbeta_binom[bol & x != size & prob == 1] <- -Inf
-  lbeta_binom[bol & x > size] <- -Inf
-  bol_theta <- !is.na(theta)
-  lbeta_binom[bol_theta & theta < 0] <- NaN
-  use_binom <- bol_theta & theta == 0
-  if (any(use_binom)) {
-    lbinom <- log_lik_binom(x, size = size, prob = prob)
-    lbeta_binom[use_binom] <- lbinom[use_binom]
+
+  args_na <- is.na(x + size + prob + theta)
+  length_args_na <- length(args_na)
+  if (length_args_na == 1) {
+    if (args_na) {
+      return(NA_real_)
+    }
+    if (prob == 0) {
+      if (x == 0) {
+        lbeta_binom <- 0
+      } else {
+        lbeta_binom <- -Inf
+      }
+    } else if (prob == 1) {
+      if (x == size) {
+        lbeta_binom <- 0
+      } else {
+        lbeta_binom <- -Inf
+      }
+    }
+    if (x > size) {
+      lbeta_binom <- -Inf
+    }
+    if (theta == 0) {
+      lbeta_binom <- log_lik_binom(x = x, size = size, prob = prob)
+    } else if (theta < 0) {
+      lbeta_binom <- NaN
+    }
+    lbeta_binom
+  } else if (length_args_na == 0) {
+    numeric(0)
+  } else {
+    args_not_na <- !args_na
+    lbeta_binom[args_not_na & ((x == 0 & prob == 0) | (x == size & prob == 1))] <- 0
+    lbeta_binom[args_not_na & x != 0 & prob == 0] <- -Inf
+    lbeta_binom[args_not_na & x != size & prob == 1] <- -Inf
+    lbeta_binom[args_not_na & x > size] <- -Inf
+    theta_not_na <- !is.na(theta)
+    lbeta_binom[theta_not_na & theta < 0] <- NaN
+    use_binom <- theta_not_na & theta == 0
+    if (any(use_binom)) {
+      lbinom <- log_lik_binom(x, size = size, prob = prob)
+      lbeta_binom[use_binom] <- lbinom[use_binom]
+    }
+    lbeta_binom
   }
-  if (length(bol) == 0) {
-    lbeta_binom <- numeric(0)
-  }
-  lbeta_binom
 }
 
 #' Bernoulli Log-Likelihood
