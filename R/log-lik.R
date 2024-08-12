@@ -12,6 +12,7 @@
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
+#' @param memoize Whether or not to memoize the function.
 #'
 #' @return An numeric vector of the corresponding log-likelihoods.
 #' @family log_lik_dist
@@ -19,10 +20,22 @@
 #'
 #' @examples
 #' log_lik_beta_binom(c(0, 1, 2), 3, 0.5, 0)
-log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
+log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, memoize = FALSE) {
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
-  lbeta_binom <- lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1) +
+
+  # Memoise use case:
+  # Posterior_predictive_check calls this function repeatedly with
+  # x and size unchanged; memoize it to reduce repeated calls
+  # when length(x) is large enough to outweigh the overhead required by memoize.
+  # For length(x) < 800, memoize is slower
+  # https://poissonconsulting.slack.com/archives/C07FC57Q346/p1723248220478269
+  if (memoize && length(x) >= 800) {
+    lgamma_size_x <- lgamma_size_x(size, x)
+  } else {
+    lgamma_size_x <- lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1)
+  }
+  lbeta_binom <- lgamma_size_x +
     lgamma(x + alpha) + lgamma(size - x + beta) - lgamma(size + alpha + beta) +
     lgamma(alpha + beta) - lgamma(alpha) - lgamma(beta)
 
@@ -71,6 +84,11 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
     }
     lbeta_binom
   }
+}
+
+# Function to memoize (called repeatedly for non-changing values of size and x)
+lgamma_size_x <- function(size, x) {
+  lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1)
 }
 
 #' Bernoulli Log-Likelihood
