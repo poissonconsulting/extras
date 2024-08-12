@@ -1,3 +1,100 @@
+# Define a custom optimize function in R
+optimize_R <-
+  custom_optimize <- function(f, interval, tol = .Machine$double.eps^0.25, maximum = FALSE) {
+    lower <- interval[1]
+    upper <- interval[2]
+
+    # Golden ratio
+    gr <- (sqrt(5) - 1) / 2
+
+    # Initial points
+    x1 <- lower + (1 - gr) * (upper - lower)
+    x2 <- lower + gr * (upper - lower)
+    f1 <- f(x1)
+    f2 <- f(x2)
+
+    # Iteratively narrow the search interval
+    while (abs(upper - lower) > tol * (abs(x1) + abs(x2))) {
+      if ((f1 < f2) != maximum) {
+        upper <- x2
+        x2 <- x1
+        f2 <- f1
+        x1 <- lower + (1 - gr) * (upper - lower)
+        f1 <- f(x1)
+      } else {
+        lower <- x1
+        x1 <- x2
+        f1 <- f2
+        x2 <- lower + gr * (upper - lower)
+        f2 <- f(x2)
+      }
+    }
+
+    # Return the minimum (or maximum) point and the function value at that point
+    if (f1 < f2) {
+      return(list(minimum = x1, objective = f1))
+    } else {
+      return(list(minimum = x2, objective = f2))
+    }
+  }
+
+# Function to optimize a vector of parameter values at the same time
+# Modified from `optimize_R()` above.
+parallel_optimize <- function(f, interval, N, tol = .Machine$double.eps^0.5) {
+  if (N == 0) {
+    return(numeric(0))
+  }
+
+  lower <- rep(interval[1], N)
+  upper <- rep(interval[2], N)
+  threshold <- (upper - lower) * tol
+
+  # Golden ratio
+  gr <- (sqrt(5) - 1) / 2
+
+  # Initial points
+  x1 <- lower + (1 - gr) * (upper - lower)
+  x2 <- lower + gr * (upper - lower)
+  f1 <- f(x1)
+  f2 <- f(x2)
+  stopifnot(!anyNA(f1), !anyNA(f2))
+
+  # Iteratively narrow the search interval
+  while (all((abs(upper - lower) > threshold) | (abs(f2 - f1) > pmax(abs(f1) * tol, 1e-150)))) {
+    pos_smaller <- f1 < f2
+    idx_smaller <- which(pos_smaller)
+    idx_larger <- which(!pos_smaller)
+
+    upper[idx_smaller] <- x2[idx_smaller]
+    x2[idx_smaller] <- x1[idx_smaller]
+    f2[idx_smaller] <- f1[idx_smaller]
+    x1[idx_smaller] <- lower[idx_smaller] + (1 - gr) * (upper[idx_smaller] - lower[idx_smaller])
+
+    lower[idx_larger] <- x1[idx_larger]
+    x1[idx_larger] <- x2[idx_larger]
+    f1[idx_larger] <- f2[idx_larger]
+    x2[idx_larger] <- lower[idx_larger] + gr * (upper[idx_larger] - lower[idx_larger])
+
+    x_new <- ifelse(pos_smaller, x1, x2)
+    f_new <- f(x_new)
+    f1[idx_smaller] <- f_new[idx_smaller]
+    f2[idx_larger] <- f_new[idx_larger]
+  }
+
+  x_inside <- x1
+  x_inside[idx_larger] <- x2[idx_larger]
+  f_inside <- f1
+  f_inside[idx_larger] <- f2[idx_larger]
+
+  x_inside <- ifelse(pos_smaller, x1, x2)
+  f_inside <- ifelse(pos_smaller, f1, f2)
+
+  x_outside <- ifelse(pos_smaller, lower, upper)
+  f_outside <- f(x_outside)
+
+  return(ifelse(f_inside < f_outside, x_inside, x_outside))
+}
+
 #' Beta-Binomial Deviances
 #'
 #' This parameterization of the beta-binomial distribution uses an expected
@@ -21,44 +118,59 @@
 #' @examples
 #' dev_beta_binom(c(0, 1, 2), 10, 0.5, 0.1)
 dev_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, res = FALSE) {
-  opt_beta_binom <- function(prob, x, size = size, theta = theta) {
-    -log_lik_beta_binom(x = x, size = size, prob = prob, theta = theta)
-  }
+  force(x)
+  args_not_na <- !is.na(x + size + theta)
   if (length(size) == 1) {
-    size <- rep(size, length(x))
+    size_vec <- size
+    size_rep <- rep(size, length(x))
+  } else {
+    size_vec <- size[args_not_na]
+    size_rep <- size
   }
   if (length(theta) == 1) {
-    theta <- rep(theta, length(x))
+    theta_vec <- theta
+    theta_rep <- rep(theta, length(x))
+  } else {
+    theta_vec <- theta[args_not_na]
+    theta_rep <- theta
   }
-  opt_p <- rep(NA, length(x))
-  bol <- !is.na(x) & !is.na(size) & !is.na(theta)
-  for (i in seq_along(x)) {
-    if (bol[i] && size[i] < x[i]) {
-      opt_p[i] <- 1
-    } else if (bol[i] && !is.na(bol[i])) {
-      opt_p[i] <- stats::optimize(
-        opt_beta_binom,
-        interval = c(0, 1),
-        x = x[i],
-        size = size[i],
-        theta = theta[i],
-        tol = 1e-8
-      )$minimum
-    }
-  }
+  opt_p <- rep(NA, length(args_not_na))
+  opt_p[args_not_na] <- parallel_optimize(
+    f = make_opt_beta_binom(x[args_not_na], size_vec, theta_vec),
+    interval = c(0, 1),
+    N = sum(args_not_na)
+  )
   dev1 <- log_lik_beta_binom(x = x, size = size, prob = opt_p, theta = theta)
   dev2 <- log_lik_beta_binom(x = x, size = size, prob = prob, theta = theta)
   dev <- dev1 - dev2
   dev[dev < 0 & dev > -1e-7] <- 0
   dev <- dev * 2
-  use_binom <- (!is.na(theta) & theta == 0) |
-    (!is.na(x) & !is.na(size) & x == 0 & size == 0)
+  use_binom <- (!is.na(theta_rep) & theta_rep == 0) |
+    (!is.na(x) & !is.na(size_rep) & x == 0 & size_rep == 0)
   dev_binom <- dev_binom(x = x, size = size, prob = prob, res = FALSE)
   dev[use_binom] <- dev_binom[use_binom]
   if (vld_false(res)) {
     return(dev)
   }
-  dev_res(x, ifelse(use_binom, size * prob, size * opt_p), dev)
+  dev_res(x, size_rep * prob, dev)
+}
+
+# Objective function for optimization.
+make_opt_beta_binom <- function(x, size, theta) {
+  force(x)
+  force(size)
+  force(theta)
+  function(prob) {
+    out <- -log_lik_beta_binom(
+      x = x,
+      prob = prob,
+      size = size,
+      theta = theta,
+      memoize = TRUE
+    )
+    out[is.nan(out)] <- Inf
+    out
+  }
 }
 
 #' Bernoulli Deviances
