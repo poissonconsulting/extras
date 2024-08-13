@@ -1,42 +1,42 @@
-# Define a custom optimize function in R
-optimize_R <-
-  custom_optimize <- function(f, interval, tol = .Machine$double.eps^0.25, maximum = FALSE) {
-    lower <- interval[1]
-    upper <- interval[2]
-
-    # Golden ratio
-    gr <- (sqrt(5) - 1) / 2
-
-    # Initial points
-    x1 <- lower + (1 - gr) * (upper - lower)
-    x2 <- lower + gr * (upper - lower)
-    f1 <- f(x1)
-    f2 <- f(x2)
-
-    # Iteratively narrow the search interval
-    while (abs(upper - lower) > tol * (abs(x1) + abs(x2))) {
-      if ((f1 < f2) != maximum) {
-        upper <- x2
-        x2 <- x1
-        f2 <- f1
-        x1 <- lower + (1 - gr) * (upper - lower)
-        f1 <- f(x1)
-      } else {
-        lower <- x1
-        x1 <- x2
-        f1 <- f2
-        x2 <- lower + gr * (upper - lower)
-        f2 <- f(x2)
-      }
-    }
-
-    # Return the minimum (or maximum) point and the function value at that point
-    if (f1 < f2) {
-      return(list(minimum = x1, objective = f1))
-    } else {
-      return(list(minimum = x2, objective = f2))
-    }
-  }
+# # Define a custom optimize function in R
+# optimize_R <-
+#   custom_optimize <- function(f, interval, tol = .Machine$double.eps^0.25, maximum = FALSE) {
+#     lower <- interval[1]
+#     upper <- interval[2]
+#
+#     # Golden ratio
+#     gr <- (sqrt(5) - 1) / 2
+#
+#     # Initial points
+#     x1 <- lower + (1 - gr) * (upper - lower)
+#     x2 <- lower + gr * (upper - lower)
+#     f1 <- f(x1)
+#     f2 <- f(x2)
+#
+#     # Iteratively narrow the search interval
+#     while (abs(upper - lower) > tol * (abs(x1) + abs(x2))) {
+#       if ((f1 < f2) != maximum) {
+#         upper <- x2
+#         x2 <- x1
+#         f2 <- f1
+#         x1 <- lower + (1 - gr) * (upper - lower)
+#         f1 <- f(x1)
+#       } else {
+#         lower <- x1
+#         x1 <- x2
+#         f1 <- f2
+#         x2 <- lower + gr * (upper - lower)
+#         f2 <- f(x2)
+#       }
+#     }
+#
+#     # Return the minimum (or maximum) point and the function value at that point
+#     if (f1 < f2) {
+#       return(list(minimum = x1, objective = f1))
+#     } else {
+#       return(list(minimum = x2, objective = f2))
+#     }
+#   }
 
 # Function to optimize a vector of parameter values at the same time
 # Modified from `optimize_R()` above.
