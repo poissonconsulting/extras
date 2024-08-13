@@ -29,7 +29,7 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, memoize = FAL
   # x and size unchanged; memoize it to reduce repeated calls
   # when length(x) is large enough to outweigh the overhead required by memoize.
   # For length(x) < 800, memoize is slower
-  # https://poissonconsulting.slack.com/archives/C07FC57Q346/p1723248220478269
+  # See detail here https://github.com/poissonconsulting/extras/issues/63
   if (memoize && length(x) >= 800) {
     lgamma_size_x <- lgamma_size_x(size, x)
   } else {
