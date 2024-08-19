@@ -178,21 +178,31 @@ test_that("beta_binom vectorized", {
 })
 
 test_that("beta_binom log_lik", {
+  skip_if_not_installed("aods3")
   samples2 <- ran_beta_binom(100, size = 50, prob = 0.1, theta = 1)
   data <- data.frame(
     samples2 = samples2,
     mod_prob2 = 50 - samples2
   )
-  mod2 <- aods3::aodml(cbind(samples2, mod_prob2) ~ 1,
+  mod2 <- aods3::aodml(
+    cbind(samples2, mod_prob2) ~ 1,
     data = data,
-    family = "bb", method = "Nelder-Mead"
+    family = "bb",
+    method = "Nelder-Mead"
   )
   est_prob <- ilogit(mod2$b)
   est_theta <- 2 / (1 / mod2$phi - 1)
-  expect_equal(mod2$logL, sum(log_lik_beta_binom(samples2,
-    size = 50,
-    prob = est_prob, theta = est_theta
-  )))
+  expect_equal(
+    mod2$logL,
+    sum(
+      log_lik_beta_binom(
+        samples2,
+        size = 50,
+        prob = est_prob,
+        theta = est_theta
+      )
+    )
+  )
 })
 
 test_that("skewnorm missing values", {
