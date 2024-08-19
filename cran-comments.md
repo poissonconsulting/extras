@@ -20,6 +20,15 @@ New maintainer:
   Nicole Hill <nicole@poissonconsulting.ca>
 Old maintainer(s):
   Joe Thorley <joe@poissonconsulting.ca>
+  
+## CRAN Issues
+
+Fixed the following error by conditionally skipping tests that rely on packages listed in suggests, if those packages are not installed.
+
+══ Failed tests ════════════════════════════════════════════════════════════════
+── Error ('test-log-lik.R:184:3'): beta_binom log_lik ──────────────────────────
+<packageNotFoundError/error/condition>
+Error in `loadNamespace(x)`: there is no package called 'aods3'
 
 ## revdepcheck results
 
