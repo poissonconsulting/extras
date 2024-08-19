@@ -92,6 +92,7 @@ test_that("numericise.data.frame", {
 })
 
 test_that("numericise.hms", {
+  skip_if_not_installed("hms")
   x <- structure(10.9, class = c("hms", "difftime"), units = "secs")
   expect_identical(numericise(x), 10.9)
 })
