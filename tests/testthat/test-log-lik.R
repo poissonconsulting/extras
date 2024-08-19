@@ -179,7 +179,6 @@ test_that("beta_binom vectorized", {
 
 test_that("beta_binom log_lik", {
   skip_if_not_installed("aods3")
-
   samples2 <- ran_beta_binom(100, size = 50, prob = 0.1, theta = 1)
   data <- data.frame(
     samples2 = samples2,
