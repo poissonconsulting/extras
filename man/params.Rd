@@ -2,6 +2,9 @@
 % Please edit documentation in R/params.R
 \name{params}
 \alias{params}
+\alias{parameters}
+\alias{arguments}
+\alias{args}
 \title{Parameter Descriptions}
 \arguments{
 \item{...}{Other arguments passed to methods.}
@@ -73,6 +76,12 @@ deviance residuals and 'data' for the data.}
 \item{x}{An object.}
 }
 \description{
-Parameter Descriptions
+Default parameter descriptions which may be overridden in individual
+functions.
+}
+\details{
+A flag is a non-missing logical scalar.
+
+A string is a non-missing character scalar.
 }
 \keyword{internal}

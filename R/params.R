@@ -1,5 +1,12 @@
 #' Parameter Descriptions
 #'
+#' Default parameter descriptions which may be overridden in individual
+#' functions.
+#'
+#' A flag is a non-missing logical scalar.
+#'
+#' A string is a non-missing character scalar.
+#'
 #' @keywords internal
 #' @name params
 #' @param ... Other arguments passed to methods.
@@ -41,4 +48,8 @@
 #'   deviance residuals and 'data' for the data.
 #' @param value A scalar of the value to replace values with.
 #' @param x An object.
-NULL
+#' @aliases parameters arguments args
+#' @usage NULL
+# nocov start
+params <- function(...) NULL
+# nocov end
