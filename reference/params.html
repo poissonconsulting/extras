@@ -76,6 +76,10 @@ functions.</p>
 <dd><p>Other arguments passed to methods.</p></dd>
 
 
+<dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
+<dd><p>The first shape parameter of the Beta distribution.</p></dd>
+
+
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>An object.</p></dd>
 
@@ -88,13 +92,13 @@ functions.</p>
 <dd><p>A non-negative whole number of the number of random samples to generate.</p></dd>
 
 
+<dt id="arg-beta">beta<a class="anchor" aria-label="anchor" href="#arg-beta"></a></dt>
+<dd><p>The second shape parameter of the Beta distribution.</p></dd>
+
+
 <dt id="arg-conf-level">conf_level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
-<dd><p>A numeric scalar between 0 and 1
-specifying the confidence level.</p></dd>
-
-
-<dt id="arg-value">value<a class="anchor" aria-label="anchor" href="#arg-value"></a></dt>
-<dd><p>A scalar of the value to replace values with.</p></dd>
+<dd><p>A numeric scalar between 0 and 1 specifying the confidence
+level.</p></dd>
 
 
 <dt id="arg-directional">directional<a class="anchor" aria-label="anchor" href="#arg-directional"></a></dt>
@@ -102,64 +106,8 @@ specifying the confidence level.</p></dd>
 should be returned as negative values.</p></dd>
 
 
-<dt id="arg-res">res<a class="anchor" aria-label="anchor" href="#arg-res"></a></dt>
-<dd><p>A flag specifying whether to return the deviance residual as opposed to the deviance.</p></dd>
-
-
-<dt id="arg-mean">mean<a class="anchor" aria-label="anchor" href="#arg-mean"></a></dt>
-<dd><p>A numeric vector of the means.</p></dd>
-
-
-<dt id="arg-sd">sd<a class="anchor" aria-label="anchor" href="#arg-sd"></a></dt>
-<dd><p>A non-negative numeric vector of the standard deviations.</p></dd>
-
-
-<dt id="arg-meanlog">meanlog<a class="anchor" aria-label="anchor" href="#arg-meanlog"></a></dt>
-<dd><p>A numeric vector of the means on the log scale.</p></dd>
-
-
-<dt id="arg-sdlog">sdlog<a class="anchor" aria-label="anchor" href="#arg-sdlog"></a></dt>
-<dd><p>A non-negative numeric vector of the standard deviations on the log scale.</p></dd>
-
-
-<dt id="arg-size">size<a class="anchor" aria-label="anchor" href="#arg-size"></a></dt>
-<dd><p>A non-negative whole numeric vector of the number of trials.</p></dd>
-
-
-<dt id="arg-prob">prob<a class="anchor" aria-label="anchor" href="#arg-prob"></a></dt>
-<dd><p>A numeric vector of values between 0 and 1 of the probability of success.</p></dd>
-
-
 <dt id="arg-lambda">lambda<a class="anchor" aria-label="anchor" href="#arg-lambda"></a></dt>
 <dd><p>A non-negative numeric vector of means.</p></dd>
-
-
-<dt id="arg-theta">theta<a class="anchor" aria-label="anchor" href="#arg-theta"></a></dt>
-<dd><p>A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).</p></dd>
-
-
-<dt id="arg-shape">shape<a class="anchor" aria-label="anchor" href="#arg-shape"></a></dt>
-<dd><p>A non-negative numeric vector of shape.</p></dd>
-
-
-<dt id="arg-rate">rate<a class="anchor" aria-label="anchor" href="#arg-rate"></a></dt>
-<dd><p>A non-negative numeric vector of rate.</p></dd>
-
-
-<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.</p></dd>
-
-
-<dt id="arg-na-rm">na_rm<a class="anchor" aria-label="anchor" href="#arg-na-rm"></a></dt>
-<dd><p>A flag specifying whether to remove missing values.</p></dd>
-
-
-<dt id="arg-threshold">threshold<a class="anchor" aria-label="anchor" href="#arg-threshold"></a></dt>
-<dd><p>A number of the threshold value.</p></dd>
-
-
-<dt id="arg-simulate">simulate<a class="anchor" aria-label="anchor" href="#arg-simulate"></a></dt>
-<dd><p>A flag specifying whether to simulate residuals.</p></dd>
 
 
 <dt id="arg-log">log<a class="anchor" aria-label="anchor" href="#arg-log"></a></dt>
@@ -167,27 +115,99 @@ should be returned as negative values.</p></dd>
 
 
 <dt id="arg-lower-tail">lower.tail<a class="anchor" aria-label="anchor" href="#arg-lower-tail"></a></dt>
-<dd><p>A flag specifying whether to return the lower or upper tail of the distribution.</p></dd>
+<dd><p>A flag specifying whether to return the lower or upper tail
+of the distribution.</p></dd>
 
 
-<dt id="arg-q">q<a class="anchor" aria-label="anchor" href="#arg-q"></a></dt>
-<dd><p>A vector of quantiles.</p></dd>
+<dt id="arg-mean">mean<a class="anchor" aria-label="anchor" href="#arg-mean"></a></dt>
+<dd><p>A numeric vector of the means.</p></dd>
+
+
+<dt id="arg-meanlog">meanlog<a class="anchor" aria-label="anchor" href="#arg-meanlog"></a></dt>
+<dd><p>A numeric vector of the means on the log scale.</p></dd>
+
+
+<dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
+<dd><p>A non-negative whole number of the number of random samples to
+generate.</p></dd>
+
+
+<dt id="arg-na-rm">na_rm<a class="anchor" aria-label="anchor" href="#arg-na-rm"></a></dt>
+<dd><p>A flag specifying whether to remove missing values.</p></dd>
+
+
+<dt id="arg-nas">nas<a class="anchor" aria-label="anchor" href="#arg-nas"></a></dt>
+<dd><p>A flag specifying whether to also fill missing values.</p></dd>
 
 
 <dt id="arg-p">p<a class="anchor" aria-label="anchor" href="#arg-p"></a></dt>
 <dd><p>A vector of probabilities.</p></dd>
 
 
+<dt id="arg-prob">prob<a class="anchor" aria-label="anchor" href="#arg-prob"></a></dt>
+<dd><p>A numeric vector of values between 0 and 1 of the probability of
+success.</p></dd>
+
+
+<dt id="arg-q">q<a class="anchor" aria-label="anchor" href="#arg-q"></a></dt>
+<dd><p>A vector of quantiles.</p></dd>
+
+
+<dt id="arg-rate">rate<a class="anchor" aria-label="anchor" href="#arg-rate"></a></dt>
+<dd><p>A non-negative numeric vector of rate.</p></dd>
+
+
+<dt id="arg-res">res<a class="anchor" aria-label="anchor" href="#arg-res"></a></dt>
+<dd><p>A flag specifying whether to return the deviance residual as
+opposed to the deviance.</p></dd>
+
+
+<dt id="arg-sd">sd<a class="anchor" aria-label="anchor" href="#arg-sd"></a></dt>
+<dd><p>A non-negative numeric vector of the standard deviations.</p></dd>
+
+
 <dt id="arg-sd-mult">sd_mult<a class="anchor" aria-label="anchor" href="#arg-sd-mult"></a></dt>
-<dd><p>A non-negative multiplier on the standard deviation of the distribution.</p></dd>
+<dd><p>A non-negative multiplier on the standard deviation of the
+distribution.</p></dd>
 
 
-<dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
-<dd><p>The first shape parameter of the Beta distribution.</p></dd>
+<dt id="arg-sdlog">sdlog<a class="anchor" aria-label="anchor" href="#arg-sdlog"></a></dt>
+<dd><p>A non-negative numeric vector of the standard deviations on the
+log scale.</p></dd>
 
 
-<dt id="arg-beta">beta<a class="anchor" aria-label="anchor" href="#arg-beta"></a></dt>
-<dd><p>The second shape parameter of the Beta distribution.</p></dd>
+<dt id="arg-shape">shape<a class="anchor" aria-label="anchor" href="#arg-shape"></a></dt>
+<dd><p>A non-negative numeric vector of shape.</p></dd>
+
+
+<dt id="arg-simulate">simulate<a class="anchor" aria-label="anchor" href="#arg-simulate"></a></dt>
+<dd><p>A flag specifying whether to simulate residuals.</p></dd>
+
+
+<dt id="arg-size">size<a class="anchor" aria-label="anchor" href="#arg-size"></a></dt>
+<dd><p>A non-negative whole numeric vector of the number of trials.</p></dd>
+
+
+<dt id="arg-theta">theta<a class="anchor" aria-label="anchor" href="#arg-theta"></a></dt>
+<dd><p>A non-negative numeric vector of the dispersion for the mixture
+models (student, gamma-Poisson and beta-binomial).</p></dd>
+
+
+<dt id="arg-threshold">threshold<a class="anchor" aria-label="anchor" href="#arg-threshold"></a></dt>
+<dd><p>A number of the threshold value.</p></dd>
+
+
+<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
+<dd><p>A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.</p></dd>
+
+
+<dt id="arg-value">value<a class="anchor" aria-label="anchor" href="#arg-value"></a></dt>
+<dd><p>A scalar of the value to replace values with.</p></dd>
+
+
+<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
+<dd><p>An object.</p></dd>
 
 </dl></div>
     <div id="details">
