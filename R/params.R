@@ -1,5 +1,12 @@
 #' Parameter Descriptions
 #'
+#' Default parameter descriptions which may be overridden in individual
+#' functions.
+#'
+#' A flag is a non-missing logical scalar.
+#'
+#' A string is a non-missing character scalar.
+#'
 #' @keywords internal
 #' @param x An object.
 #' @param ... Other arguments passed to methods.
@@ -32,5 +39,9 @@
 #' @param sd_mult A non-negative multiplier on the standard deviation of the distribution.
 #' @param alpha The first shape parameter of the Beta distribution.
 #' @param beta The second shape parameter of the Beta distribution.
-#' @name params
-NULL
+#' @keywords internal
+#' @aliases parameters arguments args
+#' @usage NULL
+# nocov start
+params <- function(...) NULL
+# nocov end
