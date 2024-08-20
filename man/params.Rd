@@ -11,6 +11,12 @@
 
 \item{alpha}{The first shape parameter of the Beta distribution.}
 
+\item{x}{An object.}
+
+\item{nas}{A flag specifying whether to also fill missing values.}
+
+\item{n}{A non-negative whole number of the number of random samples to generate.}
+
 \item{beta}{The second shape parameter of the Beta distribution.}
 
 \item{conf_level}{A numeric scalar between 0 and 1 specifying the confidence
