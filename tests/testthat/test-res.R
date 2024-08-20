@@ -575,6 +575,7 @@ test_that("res_beta_binom", {
 })
 
 test_that("res_skewnorm", {
+  skip_if_not_installed("sn")
   expect_identical(res_skewnorm(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(res_skewnorm(NA, 1, 1, 1), NA_real_)
   expect_identical(res_skewnorm(1, NA, 1, 1), NA_real_)

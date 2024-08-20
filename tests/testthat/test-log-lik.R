@@ -193,6 +193,7 @@ test_that("beta_binom log_lik", {
 })
 
 test_that("skewnorm missing values", {
+  skip_if_not_installed("sn")
   expect_identical(log_lik_skewnorm(numeric(0), numeric(0), numeric(0), numeric(0)), numeric(0))
   expect_identical(log_lik_skewnorm(1, numeric(0)), numeric(0))
   expect_identical(log_lik_skewnorm(1, 1, sd = numeric(0)), numeric(0))
@@ -204,6 +205,7 @@ test_that("skewnorm missing values", {
 })
 
 test_that("skewnorm known values", {
+  skip_if_not_installed("sn")
   expect_equal(log_lik_skewnorm(0.5, 3), -4.04393853320467)
   expect_equal(log_lik_skewnorm(0.5, 3, 0), -Inf)
   expect_equal(log_lik_skewnorm(0.5, 3, 1, -4), -3.35079135264473)
@@ -220,6 +222,7 @@ test_that("skewnorm known values", {
 })
 
 test_that("skewnorm vectorized", {
+  skip_if_not_installed("sn")
   expect_equal(
     log_lik_skewnorm(0:3, 2, 0.5, 0),
     c(-8.22579135264473, -2.22579135264473, -0.225791352644727, -2.22579135264473)
