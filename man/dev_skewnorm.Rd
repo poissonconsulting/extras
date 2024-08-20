@@ -15,7 +15,8 @@ dev_skewnorm(x, mean = 0, sd = 1, shape = 0, res = FALSE)
 
 \item{shape}{A numeric vector of shape.}
 
-\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as
+opposed to the deviance.}
 }
 \value{
 An numeric vector of the corresponding deviances or deviance residuals.

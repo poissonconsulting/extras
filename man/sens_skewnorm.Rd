@@ -13,7 +13,8 @@ sens_skewnorm(mean, sd, shape, sd_mult = 2)
 
 \item{shape}{A non-negative numeric vector of shape.}
 
-\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the
+distribution.}
 }
 \value{
 A named list of the adjusted distribution's parameters.

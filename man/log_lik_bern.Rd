@@ -9,7 +9,8 @@ log_lik_bern(x, prob = 0.5)
 \arguments{
 \item{x}{A vector of 0s and 1s.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

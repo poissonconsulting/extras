@@ -7,11 +7,13 @@
 ran_neg_binom(n = 1, lambda = 1, theta = 0)
 }
 \arguments{
-\item{n}{A non-negative whole number of the number of random samples to generate.}
+\item{n}{A non-negative whole number of the number of random samples to
+generate.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture
+models (student, gamma-Poisson and beta-binomial).}
 }
 \value{
 A numeric vector of the random samples.

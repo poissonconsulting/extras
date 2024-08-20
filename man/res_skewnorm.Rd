@@ -15,7 +15,8 @@ res_skewnorm(x, mean = 0, sd = 1, shape = 0, type = "dev", simulate = FALSE)
 
 \item{shape}{A numeric vector of shape.}
 
-\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }

@@ -11,7 +11,8 @@ sens_norm(mean, sd, sd_mult = 2)
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
-\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the
+distribution.}
 }
 \value{
 A named list of the adjusted distribution's parameters.
