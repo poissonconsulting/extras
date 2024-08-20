@@ -624,6 +624,7 @@ test_that("sens_skewnorm errors when provided with a vector of values for sd_mul
 })
 
 test_that("sd of skewnorm deviates expands as expected", {
+  skip_if_not_installed("sn")
   mean <- 10
   sd <- 20
   shape <- -1
@@ -640,6 +641,7 @@ test_that("sd of skewnorm deviates expands as expected", {
 })
 
 test_that("sd of skewnorm deviates decreases as expected", {
+  skip_if_not_installed("sn")
   mean <- 10
   sd <- 20
   shape <- 2
@@ -656,6 +658,7 @@ test_that("sd of skewnorm deviates decreases as expected", {
 })
 
 test_that("mean of skewnorm deviates changes expectedly with expanding sd", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- 20
   shape <- 2
@@ -672,6 +675,7 @@ test_that("mean of skewnorm deviates changes expectedly with expanding sd", {
 })
 
 test_that("mean of skewnorm deviates changes expectedly with reducing sd", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- 20
   shape <- 2
