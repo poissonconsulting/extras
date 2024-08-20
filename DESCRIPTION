@@ -28,7 +28,6 @@ Imports:
     lifecycle,
     stats
 Suggests: 
-    aods3,
     covr,
     hms,
     ggplot2,
