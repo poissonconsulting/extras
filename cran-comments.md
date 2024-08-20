@@ -24,6 +24,7 @@ Old maintainer(s):
 ## CRAN Issues
 
 Fixed the following error by conditionally skipping tests that rely on packages listed in suggests, if those packages are not installed.
+After review, also decided to remove the dependency to the 'aods3' package.
 
 ══ Failed tests ════════════════════════════════════════════════════════════════
 ── Error ('test-log-lik.R:184:3'): beta_binom log_lik ──────────────────────────
