@@ -11,7 +11,8 @@ log_lik_binom(x, size = 1, prob = 0.5)
 
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

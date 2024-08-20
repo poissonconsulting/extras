@@ -13,7 +13,8 @@ res_gamma(x, shape = 1, rate = 1, type = "dev", simulate = FALSE)
 
 \item{rate}{A non-negative numeric vector of rate.}
 
-\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }

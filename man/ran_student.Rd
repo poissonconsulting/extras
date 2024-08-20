@@ -7,13 +7,15 @@
 ran_student(n = 1, mean = 0, sd = 1, theta = 0)
 }
 \arguments{
-\item{n}{A non-negative whole number of the number of random samples to generate.}
+\item{n}{A non-negative whole number of the number of random samples to
+generate.}
 
 \item{mean}{A numeric vector of the means.}
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture
+models (student, gamma-Poisson and beta-binomial).}
 }
 \value{
 A numeric vector of the random samples.

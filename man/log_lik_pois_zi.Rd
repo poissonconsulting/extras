@@ -11,7 +11,8 @@ log_lik_pois_zi(x, lambda = 1, prob = 0)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

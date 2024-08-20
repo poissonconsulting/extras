@@ -13,7 +13,8 @@ dev_gamma(x, shape = 1, rate = 1, res = FALSE)
 
 \item{rate}{A non-negative numeric vector of rate.}
 
-\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as
+opposed to the deviance.}
 }
 \value{
 An numeric vector of the corresponding deviances or deviance residuals.
