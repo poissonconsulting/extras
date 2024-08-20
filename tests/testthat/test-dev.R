@@ -242,6 +242,7 @@ test_that("gamma_pois log_lik", {
 })
 
 test_that("gamma_pois deviance", {
+  skip_if_not_installed("MASS")
   samples <- ran_gamma_pois(10000, 3, 0.5)
   mod <- MASS::glm.nb(samples ~ 1)
   deviance <- sum(dev_gamma_pois(samples, exp(coef(mod)[1]), theta = 1 / mod$theta))
