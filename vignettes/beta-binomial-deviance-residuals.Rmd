@@ -73,7 +73,7 @@ Both of these approaches have issues.
 The problem with the first approach is that likelihood profile of the beta-binomial becomes increasingly dispersed relative to the binomial as $\theta$ increases (Fig. 1). 
 Consequently, increasing $\theta$ increases the deviance even if the expected value of the fitted model is the same as the saturated binomial model. 
 
-```{r, echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 1: Beta-binomial likelihood profile for $x = 1$ and $n = 5$, for different values of $\\theta$. $\\theta = 0$ corresponds to the binomial case."}
+```{r, echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 1: Beta-binomial likelihood profile for $x = 1$ and $n = 5$, for different values of $\\theta$. $\\theta = 0$ corresponds to the binomial case.", fig.alt = "Likelihood profiles (likelihood on the x-axis and p on the y-axis) for four different values of  theta, showing that the likelihood profile has a lower peak and more extended tail as theta increases."}
 n_samp <- 1000
 x <- 1
 size <- 5
@@ -141,7 +141,7 @@ We will refer to the optimized $p$ value for the $i^{th}$ data point as $p_i^*$,
 We use $p^*$ to calculate the saturated log-likelihood that produces deviances that are (a) strictly positive, and (b) relative to the value of $\theta$.
 The value of $p_i^*$ for the example case with $x = 1$, $n = 5$, and $\theta = 0.5$ is shown in Figure 2.
 
-```{r, echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 2: Beta-binomial likelihood profile for $x = 1$, $n = 5$, and $\\theta = 0.5$. The dashed vertical line shows the likelihood at the expected value of the beta-binomial distribution ($n \\cdot p$) where $p = \\frac{x}{n} = \\frac{1}{5} = 0.2$. As you can see, this is not the $p$ for which the likelihood is maximized. The solid vertical line shows the likelihood at its maximum point. In this case, $p^* = 0.26$."}
+```{r, echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 2: Beta-binomial likelihood profile for $x = 1$, $n = 5$, and $\\theta = 0.5$. The dashed vertical line shows the likelihood at the expected value of the beta-binomial distribution ($n \\cdot p$) where $p = \\frac{x}{n} = \\frac{1}{5} = 0.2$. As you can see, this is not the $p$ for which the likelihood is maximized. The solid vertical line shows the likelihood at its maximum point. In this case, $p^* = 0.26$.", fig.alt = "A graph of the beta-binomial likelihood profile for x = 1, n = 5, and theta = 0.5. There are two vertical lines, one at value of p that matches the expected value of the beta-binomial distribution, which does not match the peak of the likelihood profile, and one using the optimized value of p, which does match the maximum of the likelihood profile."}
 n_samp <- 1000
 x <- 1
 size <- 5
@@ -183,7 +183,7 @@ The *deviance residual* is the signed squared root of the unit deviance,
 $$r_i = \text{sign}(x_i - (n p_i^*)) \sqrt{d_i}.$$
 The following plot shows histograms of deviance residuals for 10,000 randomly generated data points with $n = 50$ and various values of $p$ and $\theta$.
 
-```{r, echo = FALSE, fig.height = 8, fig.width = 7, fig.cap = "Fig. 4: Histograms of deviance residuals for 10,000 beta-binomial data points simulated with $n = 50$, $p = \\{0.3, 0.5, 0.9 \\}$, and $\\theta = \\{0.0, 0.1, 0.5, 1.0 \\}$. The percentages within each panel (i.e., each combination of $p$ and $\\theta$) sum to 100%."}
+```{r, echo = FALSE, fig.height = 8, fig.width = 7, fig.cap = "Fig. 4: Histograms of deviance residuals for 10,000 beta-binomial data points simulated with $n = 50$, $p = \\{0.3, 0.5, 0.9 \\}$, and $\\theta = \\{0.0, 0.1, 0.5, 1.0 \\}$. The percentages within each panel (i.e., each combination of $p$ and $\\theta$) sum to 100%.", fig.alt = "A grid of histogram plots of deviance residuals for the beta-binomial distribution with different values of theta and p. As theta increases from 0, the histograms become less bell-shaped, for each of the three values of p."}
 n_samp <- 10000
 size <- 50
 prob <- c(0.3, 0.5, 0.9)
