@@ -31,8 +31,8 @@ To install the developmental version from
 [GitHub](https://github.com/poissonconsulting/extras)
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("poissonconsulting/extras")
+# install.packages("pak")
+pak::pak("poissonconsulting/extras")
 ```
 
 ## Demonstration
