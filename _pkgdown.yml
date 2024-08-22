@@ -1,5 +1,5 @@
+url: https://poissonconsulting.github.io/extras/
 destination: docs
-
 reference:
 - title: Manipulate Objects
   desc: Functions to numericise and fill objects
@@ -150,17 +150,17 @@ reference:
 - title: Sensitivity
   desc: Sensitivity functions
   contents:
-  - "`sens_beta`"
-  - "`sens_exp`"
-  - "`sens_gamma`"
-  - "`sens_gamma_pois`"
-  - "`sens_gamma_pois_zi`"
-  - "`sens_lnorm`"
-  - "`sens_neg_binom`"
-  - "`sens_norm`"
-  - "`sens_pois`"
-  - "`sens_skewnorm`"
-  - "`sens_student`"
+  - '`sens_beta`'
+  - '`sens_exp`'
+  - '`sens_gamma`'
+  - '`sens_gamma_pois`'
+  - '`sens_gamma_pois_zi`'
+  - '`sens_lnorm`'
+  - '`sens_neg_binom`'
+  - '`sens_norm`'
+  - '`sens_pois`'
+  - '`sens_skewnorm`'
+  - '`sens_student`'
 - title: Bernoulli
   desc: Bernoulli distribution functions
   contents:
@@ -177,15 +177,14 @@ reference:
   - '`rskewnorm`'
 - title: Miscellaneous
   desc: Miscellaneous functions
-  contents:
-  - '`par_pattern`'
+  contents: '`par_pattern`'
 - title: Generics
   desc: Generic Functions
-  contents:
-  - '`as_list`'
+  contents: '`as_list`'
 - title: Deprecated
   desc: Deprecated functions
   contents:
   - '`pextreme`'
   - '`sextreme`'
   - '`as_list_unnamed`'
+
