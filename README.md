@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# extras <img src="man/figures/logo.png" align="right" />
+# extras <a href="https://poissonconsulting.github.io/extras/"><img src="man/figures/logo.png" align="right" height="138" alt="extras website" /></a>
 
 <!-- badges: start -->
 
