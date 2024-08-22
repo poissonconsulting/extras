@@ -1,3 +1,11 @@
+test_that("log gives expected values", {
+  x <- NA
+  log(x) <- log(5)
+  expect_equal(x, 5)
+  log(x) <- c(0.5, 1)
+  expect_identical(x, exp(c(0.5, 1)))
+})
+
 test_that("log2<- errors character value", {
   x <- NULL
   expect_error(log2(x) <- "5", "non-numeric argument to binary operator")
