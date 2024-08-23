@@ -100,7 +100,9 @@ numericise(as.Date("1972-01-01"))
 numericise(as.POSIXct("1972-01-01", tz = "UTC"))
 
 # hms
+\dontshow{if (requireNamespace("hms")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 numericise(hms::as_hms("00:01:03"))
+\dontshow{\}) # examplesIf}
 
 # matrix
 numericise(matrix(TRUE))

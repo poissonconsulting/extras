@@ -77,6 +77,7 @@ numericise.POSIXct <- function(x, ...) {
 #' @examples
 #'
 #' # hms
+#' @examplesIf requireNamespace("hms")
 #' numericise(hms::as_hms("00:01:03"))
 numericise.hms <- function(x, ...) {
   # I'm not sure if this test is needed since S3 function
