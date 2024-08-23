@@ -26,6 +26,7 @@ Depends:
 Imports:
     chk,
     lifecycle,
+    sn,
     stats
 Suggests: 
     covr,
@@ -36,7 +37,6 @@ Suggests:
     rlang,
     rmarkdown,
     scales,
-    sn,
     testthat (>= 3.0.0),
     tibble,
     tidyr,
