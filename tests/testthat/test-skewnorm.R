@@ -1,7 +1,5 @@
 # dskewnorm ----
-
 test_that("dskewnorm passes through numeric(0) with zero-length arguments", {
-  skip_if_not_installed("sn")
   expect_identical(dskewnorm(logical(0)), numeric(0))
   expect_identical(dskewnorm(numeric(0)), numeric(0))
   expect_identical(dskewnorm(1, numeric(0)), numeric(0))
@@ -11,7 +9,6 @@ test_that("dskewnorm passes through numeric(0) with zero-length arguments", {
 })
 
 test_that("dskewnorm errors with arguments = NULL", {
-  skip_if_not_installed("sn")
   expect_error(dskewnorm(NULL), "invalid arguments")
   expect_error(dskewnorm(1, NULL), "invalid arguments")
   expect_error(dskewnorm(1, 2, NULL), "invalid arguments")
@@ -19,20 +16,17 @@ test_that("dskewnorm errors with arguments = NULL", {
 })
 
 test_that("dskewnorm errors with character arguments", {
-  skip_if_not_installed("sn")
   expect_chk_error(dskewnorm(character(0)), "`character` must be FALSE.")
   expect_chk_error(dskewnorm(character(0), 1:5, 1:5, 1:5), "`character` must be FALSE.")
   expect_chk_error(dskewnorm("1"), "`character` must be FALSE.")
 })
 
 test_that("dskewnorm does not allow negative sd argument", {
-  skip_if_not_installed("sn")
   expect_chk_error(dskewnorm(1, 0, -5, 0), "`sd` must be greater than or equal to 0, not -5.")
   expect_chk_error(dskewnorm(1, 0, -1, -10), "`sd` must be greater than or equal to 0, not -1.")
 })
 
 test_that("dskewnorm returns NA with NA arguments", {
-  skip_if_not_installed("sn")
   expect_identical(dskewnorm(NA), NA_real_)
   expect_identical(dskewnorm(1, NA), NA_real_)
   expect_identical(dskewnorm(1, 2, NA), NA_real_)
@@ -40,7 +34,6 @@ test_that("dskewnorm returns NA with NA arguments", {
 })
 
 test_that("dskewnorm returns NA with NA arguments vectorized", {
-  skip_if_not_installed("sn")
   expect_equal(dskewnorm(c(NA, 1)), c(NA_real_, 0.241970724519143))
   expect_equal(dskewnorm(0.1, c(NA, 1)), c(NA_real_, 0.266085249898755))
   expect_equal(dskewnorm(0.1, 2, c(NA, 1)), c(NA_real_, 0.0656158147746766))
@@ -48,66 +41,56 @@ test_that("dskewnorm returns NA with NA arguments vectorized", {
 })
 
 test_that("dskewnorm returns 0 with x = Inf", {
-  skip_if_not_installed("sn")
   expect_identical(dskewnorm(Inf), 0)
   expect_identical(dskewnorm(Inf, 4, 2, -1), 0)
   expect_identical(dskewnorm(Inf, 4, 2, -10), 0)
 })
 
 test_that("dskewnorm returns 0 with x = -Inf", {
-  skip_if_not_installed("sn")
   expect_identical(dskewnorm(-Inf), 0)
   expect_identical(dskewnorm(-Inf, 4, 2, -1), 0)
   expect_identical(dskewnorm(-Inf, 4, 2, -10), 0)
 })
 
 test_that("dskewnorm returns 0 with mean = Inf", {
-  skip_if_not_installed("sn")
   expect_identical(dskewnorm(1, Inf, 1, 3), 0)
   expect_identical(dskewnorm(1, Inf, 2, -1), 0)
   expect_identical(dskewnorm(1, Inf, 2, -10), 0)
 })
 
 test_that("dskewnorm returns 0 with mean = -Inf", {
-  skip_if_not_installed("sn")
   expect_identical(dskewnorm(1, -Inf, 1, 3), 0)
   expect_identical(dskewnorm(1, -Inf, 2, -1), 0)
   expect_identical(dskewnorm(1, -Inf, 2, -10), 0)
 })
 
 test_that("dskewnorm returns 0 with sd = Inf", {
-  skip_if_not_installed("sn")
   expect_identical(dskewnorm(1, 0, Inf, 3), 0)
   expect_identical(dskewnorm(1, 0, Inf, -1), 0)
   expect_identical(dskewnorm(1, 0, Inf, -10), 0)
 })
 
 test_that("dskewnorm returns expected value with shape = Inf", {
-  skip_if_not_installed("sn")
   expect_equal(dskewnorm(1, 0, 2, Inf), 0.3520653267643)
   expect_equal(dskewnorm(5, 2, 3, Inf), 0.161313816346096)
 })
 
 test_that("dskewnorm returns expected value with shape = -Inf", {
-  skip_if_not_installed("sn")
   expect_equal(dskewnorm(-2, 0, 2, -Inf), 0.241970724519143)
   expect_equal(dskewnorm(0, 2, 3, -Inf), 0.212965337014902)
 })
 
 test_that("dskewnorm equal to dnorm when shape = 0", {
-  skip_if_not_installed("sn")
   expect_equal(dskewnorm(1:4, 3, 1, 0), stats::dnorm(1:4, 3, 1))
   expect_equal(dskewnorm(15:20, 13, 3, 0), stats::dnorm(15:20, 13, 3))
 })
 
 test_that("dskewnorm equal to dnorm when shape = 0 with log = TRUE", {
-  skip_if_not_installed("sn")
   expect_equal(dskewnorm(1:4, 3, 1, 0, log = TRUE), stats::dnorm(1:4, 3, 1, log = TRUE))
   expect_equal(dskewnorm(15:20, 13, 3, 0, log = TRUE), stats::dnorm(15:20, 13, 3, log = TRUE))
 })
 
 test_that("dskewnorm returns expected output scalar", {
-  skip_if_not_installed("sn")
   expect_equal(dskewnorm(1, 4, 3, 2), 0.00366991060693802)
   expect_equal(dskewnorm(1, 4, 3, -2), 0.157643905739158)
   expect_equal(dskewnorm(10, 4, 3, 2), 0.0359928377014872)
@@ -115,7 +98,6 @@ test_that("dskewnorm returns expected output scalar", {
 })
 
 test_that("dskewnorm returns expected output vector", {
-  skip_if_not_installed("sn")
   expect_equal(
     dskewnorm(1:5, 4, 3, 2),
     c(
@@ -157,20 +139,17 @@ test_that("dskewnorm returns expected output vector", {
 })
 
 test_that("dskewnorm errors if argument lengths are incompatible", {
-  skip_if_not_installed("sn")
   expect_chk_error(dskewnorm(1:3, 0, 3, 1:5), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 3 and 5.")
   expect_chk_error(dskewnorm(1:3, 0:3, 3, 1), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 3 and 4.")
   expect_chk_error(dskewnorm(1, 0:10, 3, 1:5), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 5 and 11.")
 })
 
 test_that("dskewnorm setting log = TRUE returns same value as log(call with log = FALSE)", {
-  skip_if_not_installed("sn")
   expect_identical(dskewnorm(1, 4, 2, -10, log = TRUE), log(dskewnorm(1, 4, 2, -10)))
 })
 
 # pskewnorm ----
 test_that("pskewnorm passes through numeric(0) with zero-length arguments", {
-  skip_if_not_installed("sn")
   expect_identical(pskewnorm(logical(0)), numeric(0))
   expect_identical(pskewnorm(numeric(0)), numeric(0))
   expect_identical(pskewnorm(0.1, numeric(0)), numeric(0))
@@ -180,7 +159,6 @@ test_that("pskewnorm passes through numeric(0) with zero-length arguments", {
 })
 
 test_that("pskewnorm errors with arguments = NULL", {
-  skip_if_not_installed("sn")
   expect_error(pskewnorm(NULL), "invalid arguments")
   expect_error(pskewnorm(1, NULL), "invalid arguments")
   expect_error(pskewnorm(1, 2, NULL), "invalid arguments")
@@ -188,20 +166,17 @@ test_that("pskewnorm errors with arguments = NULL", {
 })
 
 test_that("pskewnorm errors with character arguments", {
-  skip_if_not_installed("sn")
   expect_chk_error(pskewnorm(character(0)), "`character` must be FALSE.")
   expect_chk_error(pskewnorm("1", 1:5, 1:5, 1:5), "`character` must be FALSE.")
   expect_chk_error(pskewnorm("1"), "`character` must be FALSE.")
 })
 
 test_that("pskewnorm does not allow negative sd argument", {
-  skip_if_not_installed("sn")
   expect_chk_error(pskewnorm(1, 0, -5, 0), "`sd` must be greater than or equal to 0, not -5.")
   expect_chk_error(pskewnorm(1, 0, -1, -10), "`sd` must be greater than or equal to 0, not -1.")
 })
 
 test_that("pskewnorm returns NA with NA arguments", {
-  skip_if_not_installed("sn")
   expect_identical(pskewnorm(NA), NA_real_)
   expect_identical(pskewnorm(0.1, NA), NA_real_)
   expect_identical(pskewnorm(0.1, 2, NA), NA_real_)
@@ -209,7 +184,6 @@ test_that("pskewnorm returns NA with NA arguments", {
 })
 
 test_that("pskewnorm returns NA with NA arguments vectorized", {
-  skip_if_not_installed("sn")
   expect_equal(pskewnorm(c(NA, 1)), c(NA, 0.841344746068543))
   expect_equal(pskewnorm(0.1, c(NA, 1)), c(NA, 0.18406012534676))
   expect_equal(pskewnorm(0.1, 2, c(NA, 1)), c(NA, 0.0287165598160018))
@@ -217,60 +191,51 @@ test_that("pskewnorm returns NA with NA arguments vectorized", {
 })
 
 test_that("pskewnorm returns 1 with q = Inf", {
-  skip_if_not_installed("sn")
   expect_identical(pskewnorm(Inf), 1)
   expect_identical(pskewnorm(Inf, 4, 2, -1), 1)
   expect_identical(pskewnorm(Inf, 4, 2, -10), 1)
 })
 
 test_that("pskewnorm returns 0 with q = -Inf", {
-  skip_if_not_installed("sn")
   expect_identical(pskewnorm(-Inf), 0)
   expect_identical(pskewnorm(-Inf, 4, 2, -1), 0)
   expect_identical(pskewnorm(-Inf, 4, 2, -10), 0)
 })
 
 test_that("pskewnorm returns 0 with mean = Inf", {
-  skip_if_not_installed("sn")
   expect_identical(pskewnorm(1, Inf, 1, 3), 0)
   expect_identical(pskewnorm(1, Inf, 2, -1), 0)
   expect_identical(pskewnorm(1, Inf, 2, -10), 0)
 })
 
 test_that("pskewnorm returns 0 with mean = -Inf", {
-  skip_if_not_installed("sn")
   expect_identical(pskewnorm(1, -Inf, 1, 3), 1)
   expect_identical(pskewnorm(1, -Inf, 2, -1), 1)
   expect_identical(pskewnorm(1, -Inf, 2, -10), 1)
 })
 
 test_that("pskewnorm returns expected value with sd = Inf", {
-  skip_if_not_installed("sn")
   expect_equal(pskewnorm(1, 0, Inf, 3), 0.102416382349567)
   expect_equal(pskewnorm(1, 0, Inf, -1), 0.75)
   expect_equal(pskewnorm(1, 0, Inf, -10), 0.968274482569446)
 })
 
 test_that("dskewnorm returns expected value with shape = Inf", {
-  skip_if_not_installed("sn")
   expect_equal(pskewnorm(1, 0, 2, Inf), 0.382924922548026)
   expect_equal(pskewnorm(5, 2, 3, Inf), 0.682689492137086)
 })
 
 test_that("pskewnorm returns expected value with shape = -Inf", {
-  skip_if_not_installed("sn")
   expect_equal(pskewnorm(-2, 0, 2, -Inf), 0.317310507862914)
   expect_equal(pskewnorm(0, 2, 3, -Inf), 0.504985075093846)
 })
 
 test_that("pskewnorm equal to pnorm when shape = 0", {
-  skip_if_not_installed("sn")
   expect_equal(pskewnorm(1:4, 3, 1, 0), stats::pnorm(1:4, 3, 1))
   expect_equal(pskewnorm(15:20, 13, 3, 0), stats::pnorm(15:20, 13, 3))
 })
 
 test_that("pskewnorm returns expected output scalar", {
-  skip_if_not_installed("sn")
   expect_equal(pskewnorm(-1, 1, 0.3, 1), 8.72211872736017e-22)
   expect_equal(pskewnorm(-5, 1, 0.3, 1), 3.45994463144963e-93)
   expect_equal(pskewnorm(5, 1, 0.3, 1), 1)
@@ -279,7 +244,6 @@ test_that("pskewnorm returns expected output scalar", {
 })
 
 test_that("pskewnorm returns expected output vector", {
-  skip_if_not_installed("sn")
   expect_equal(
     pskewnorm(1:5, 4, 3, 2),
     c(
@@ -321,7 +285,6 @@ test_that("pskewnorm returns expected output vector", {
 })
 
 test_that("pskewnorm errors if argument lengths are incompatible", {
-  skip_if_not_installed("sn")
   expect_chk_error(pskewnorm(1:3, 0, 3, 1:5), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 3 and 5.")
   expect_chk_error(pskewnorm(1:3, 0:3, 3, 1), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 3 and 4.")
   expect_chk_error(pskewnorm(1, 0:10, 3, 1:5), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 5 and 11.")
@@ -329,7 +292,6 @@ test_that("pskewnorm errors if argument lengths are incompatible", {
 
 # qskewnorm
 test_that("qskewnorm passes through numeric(0) with zero-length arguments", {
-  skip_if_not_installed("sn")
   expect_identical(qskewnorm(logical(0)), numeric(0))
   expect_identical(qskewnorm(numeric(0)), numeric(0))
   expect_identical(qskewnorm(0.1, numeric(0)), numeric(0))
@@ -339,7 +301,6 @@ test_that("qskewnorm passes through numeric(0) with zero-length arguments", {
 })
 
 test_that("qskewnorm errors with arguments = NULL", {
-  skip_if_not_installed("sn")
   expect_error(qskewnorm(NULL), "invalid arguments")
   expect_error(qskewnorm(1, NULL), "invalid arguments")
   expect_error(qskewnorm(1, 2, NULL), "invalid arguments")
@@ -347,20 +308,17 @@ test_that("qskewnorm errors with arguments = NULL", {
 })
 
 test_that("qskewnorm errors with character arguments", {
-  skip_if_not_installed("sn")
   expect_chk_error(qskewnorm(character(0)), "`character` must be FALSE.")
   expect_chk_error(qskewnorm("1", 1:5, 1:5, 1:5), "`character` must be FALSE.")
   expect_chk_error(qskewnorm("1"), "`character` must be FALSE.")
 })
 
 test_that("qskewnorm does not allow negative sd argument", {
-  skip_if_not_installed("sn")
   expect_chk_error(qskewnorm(1, 0, -5, 0), "`sd` must be greater than or equal to 0, not -5.")
   expect_chk_error(qskewnorm(1, 0, -1, -10), "`sd` must be greater than or equal to 0, not -1.")
 })
 
 test_that("qskewnorm returns NA with NA arguments", {
-  skip_if_not_installed("sn")
   expect_identical(qskewnorm(NA), NA_real_)
   expect_identical(qskewnorm(0.1, NA), NA_real_)
   expect_identical(qskewnorm(0.1, 2, NA), NA_real_)
@@ -368,7 +326,6 @@ test_that("qskewnorm returns NA with NA arguments", {
 })
 
 test_that("qskewnorm returns NA with NA arguments vectorized", {
-  skip_if_not_installed("sn")
   expect_identical(qskewnorm(c(NA, 1)), c(NA_real_, Inf))
   expect_equal(qskewnorm(0.1, c(NA, 1)), c(NA_real_, -0.281551565544601))
   expect_equal(qskewnorm(0.1, 2, c(NA, 1)), c(NA_real_, 0.718448434455399))
@@ -376,56 +333,47 @@ test_that("qskewnorm returns NA with NA arguments vectorized", {
 })
 
 test_that("qskewnorm errors with p < 0", {
-  skip_if_not_installed("sn")
   expect_chk_error(qskewnorm(-1), "`p` must be greater than or equal to 0, not -1.")
 })
 
 test_that("qskewnorm errors with p > 1", {
-  skip_if_not_installed("sn")
   expect_chk_error(qskewnorm(1.1), "`p` must be less than or equal to 1, not 1.1.")
 })
 
 test_that("qskewnorm returns Inf with mean = Inf", {
-  skip_if_not_installed("sn")
   expect_identical(qskewnorm(0.5, Inf, 1, 3), Inf)
   expect_identical(qskewnorm(0.5, Inf, 2, -1), Inf)
   expect_identical(qskewnorm(0.5, Inf, 2, -10), Inf)
 })
 
 test_that("qskewnorm returns Inf with mean = -Inf", {
-  skip_if_not_installed("sn")
   expect_identical(qskewnorm(0.5, -Inf, 1, 3), -Inf)
   expect_identical(qskewnorm(0.5, -Inf, 2, -1), -Inf)
   expect_identical(qskewnorm(0.5, -Inf, 2, -10), -Inf)
 })
 
 test_that("qskewnorm returns expected value with sd = Inf", {
-  skip_if_not_installed("sn")
   expect_equal(qskewnorm(0.5, 0, Inf, 3), Inf)
   expect_equal(qskewnorm(0.5, 0, Inf, -1), -Inf)
   expect_equal(qskewnorm(0.5, 0, Inf, -10), -Inf)
 })
 
 test_that("qskewnorm returns expected value with shape = Inf", {
-  skip_if_not_installed("sn")
   expect_equal(qskewnorm(0.1, 0, 2, Inf), 0.251322693710148)
   expect_equal(qskewnorm(0.5, 2, 3, Inf), 4.02346925058825)
 })
 
 test_that("qskewnorm returns expected value with shape = -Inf", {
-  skip_if_not_installed("sn")
   expect_equal(qskewnorm(0.5, 0, 2, -Inf), -1.34897950039216)
   expect_equal(qskewnorm(0.5, 2, 3, -Inf), -0.0234692505882457)
 })
 
 test_that("qskewnorm equal to pnorm when shape = 0", {
-  skip_if_not_installed("sn")
   expect_equal(qskewnorm(seq(0, 1, 0.1), 3, 1, 0), stats::qnorm(seq(0, 1, 0.1), 3, 1))
   expect_equal(qskewnorm(seq(0, 1, 0.1), 13, 3, 0), stats::qnorm(seq(0, 1, 0.1), 13, 3))
 })
 
 test_that("qskewnorm returns expected output scalar", {
-  skip_if_not_installed("sn")
   expect_equal(qskewnorm(0.1, 1, 0.3, 1), 0.856517940287211)
   expect_equal(qskewnorm(0.5, 1, 0.3, 1), 1.16348563932328)
   expect_equal(qskewnorm(0.2, 1, 0.3, 1), 0.960188690640188)
@@ -434,7 +382,6 @@ test_that("qskewnorm returns expected output scalar", {
 })
 
 test_that("qskewnorm returns expected output vector", {
-  skip_if_not_installed("sn")
   expect_equal(
     qskewnorm(seq(0, 1, 0.2), 4, 3, 2),
     c(
@@ -476,7 +423,6 @@ test_that("qskewnorm returns expected output vector", {
 })
 
 test_that("qskewnorm errors if argument lengths are incompatible", {
-  skip_if_not_installed("sn")
   expect_chk_error(qskewnorm(c(0.1, 0.2, 0.3), 0, 3, 1:5), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 3 and 5.")
   expect_chk_error(qskewnorm(c(0.1, 0.2, 0.3), 0:3, 3, 1), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 3 and 4.")
   expect_chk_error(qskewnorm(1, 0:10, 3, 1:5), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 5 and 11.")
@@ -485,7 +431,6 @@ test_that("qskewnorm errors if argument lengths are incompatible", {
 # rskewnorm ----
 
 test_that("rskewnorm passes through numeric(0) with zero-length arguments", {
-  skip_if_not_installed("sn")
   expect_identical(rskewnorm(logical(0)), numeric(0))
   expect_identical(rskewnorm(numeric(0)), numeric(0))
   expect_identical(rskewnorm(1, numeric(0)), numeric(0))
@@ -496,7 +441,6 @@ test_that("rskewnorm passes through numeric(0) with zero-length arguments", {
 })
 
 test_that("rskewnorm errors with arguments = NULL", {
-  skip_if_not_installed("sn")
   expect_error(rskewnorm(NULL), "invalid arguments")
   expect_error(rskewnorm(1, NULL), "invalid arguments")
   expect_error(rskewnorm(1, 2, NULL), "invalid arguments")
@@ -504,44 +448,37 @@ test_that("rskewnorm errors with arguments = NULL", {
 })
 
 test_that("rskewnorm errors with character arguments", {
-  skip_if_not_installed("sn")
   expect_chk_error(rskewnorm(character(0)), "`n` must be a whole number")
   expect_chk_error(rskewnorm("1", 1:5, 1:5, 1:5), "`n` must be a whole number.")
   expect_chk_error(rskewnorm("1"), "`n` must be a whole number.")
 })
 
 test_that("rskewnorm does not allow negative sd argument", {
-  skip_if_not_installed("sn")
   expect_chk_error(rskewnorm(1, 0, -5, 0), "`sd` must be greater than or equal to 0, not -5.")
   expect_chk_error(rskewnorm(1, 0, -1, -10), "`sd` must be greater than or equal to 0, not -1.")
 })
 
 test_that("rskewnorm errors with n = NA", {
-  skip_if_not_installed("sn")
   expect_chk_error(rskewnorm(NA), "`n` must not have any missing values.")
   expect_chk_error(rskewnorm(c(NA, 1)), "`n` must not have any missing values.")
 })
 
 test_that("rskewnorm errors with n not a whole number", {
-  skip_if_not_installed("sn")
   expect_chk_error(rskewnorm(0.1), "`n` must be a whole number")
   expect_chk_error(rskewnorm(c(NA, 1)), "n` must not have any missing values.")
 })
 
 test_that("rskewnorm returns numeric(0) with n = 0L", {
-  skip_if_not_installed("sn")
   expect_identical(rskewnorm(0L), numeric(0))
 })
 
 test_that("rskewnorm returns NA with NA arguments", {
-  skip_if_not_installed("sn")
   expect_identical(rskewnorm(1, NA), NA_real_)
   expect_identical(rskewnorm(2, 2, NA), rep(NA_real_, 2))
   expect_identical(rskewnorm(1, 2, 3, NA), NA_real_)
 })
 
 test_that("rskewnorm returns NA with NA arguments vectorized", {
-  skip_if_not_installed("sn")
   set.seed(101)
   expect_equal(rskewnorm(1, c(NA, 1)), NA_real_)
   expect_equal(rskewnorm(2, c(NA, 1)), c(NA, 2.1739662875627))
@@ -550,18 +487,15 @@ test_that("rskewnorm returns NA with NA arguments vectorized", {
 })
 
 test_that("rskewnorm errors with n = Inf", {
-  skip_if_not_installed("sn")
   expect_chk_error(rskewnorm(Inf), "`n` must be less than Inf, not Inf.")
 })
 
 test_that("rskewnorm errors with n < 0", {
-  skip_if_not_installed("sn")
   expect_chk_error(rskewnorm(-1), "`n` must be greater than or equal to 0, not -1.")
   expect_chk_error(rskewnorm(-Inf, 4, 2, -1), "`n` must be greater than or equal to 0, not -Inf.")
 })
 
 test_that("rskewnorm returns Inf with mean = Inf", {
-  skip_if_not_installed("sn")
   expect_identical(rskewnorm(1, Inf, 1, 3), Inf)
   expect_identical(rskewnorm(1, Inf, 2, -1), Inf)
   expect_identical(rskewnorm(1, Inf, 2, -10), Inf)
@@ -569,7 +503,6 @@ test_that("rskewnorm returns Inf with mean = Inf", {
 })
 
 test_that("rskewnorm returns 0 with mean = -Inf", {
-  skip_if_not_installed("sn")
   expect_identical(rskewnorm(1, -Inf, 1, 3), -Inf)
   expect_identical(rskewnorm(1, -Inf, 2, -1), -Inf)
   expect_identical(rskewnorm(1, -Inf, 2, -10), -Inf)
@@ -577,7 +510,6 @@ test_that("rskewnorm returns 0 with mean = -Inf", {
 })
 
 test_that("rskewnorm returns expected value with sd = Inf", {
-  skip_if_not_installed("sn")
   set.seed(101)
   expect_equal(rskewnorm(1, 0, Inf, 3), Inf)
   expect_equal(rskewnorm(1, 0, Inf, -1), -Inf)
@@ -585,19 +517,16 @@ test_that("rskewnorm returns expected value with sd = Inf", {
 })
 
 test_that("rskewnorm returns NaN with shape = Inf", {
-  skip_if_not_installed("sn")
   expect_equal(rskewnorm(1, 0, 2, Inf), NaN)
   expect_equal(rskewnorm(5, 2, 3, Inf), rep(NaN, 5))
 })
 
 test_that("rskewnorm returns NaN with shape = -Inf", {
-  skip_if_not_installed("sn")
   expect_equal(rskewnorm(2, 0, 2, -Inf), rep(NaN, 2))
   expect_equal(rskewnorm(2, 2, 3, -Inf), rep(NaN, 2))
 })
 
 test_that("rskewnorm has same mean and sd as rnorm when shape = 0", {
-  skip_if_not_installed("sn")
   set.seed(101)
   skew <- rskewnorm(10000, 3, 1, 0)
   norm <- rnorm(10000, 3, 1)
@@ -608,7 +537,6 @@ test_that("rskewnorm has same mean and sd as rnorm when shape = 0", {
 })
 
 test_that("rskewnorm returns values scalar", {
-  skip_if_not_installed("sn")
   set.seed(101)
   expect_equal(rskewnorm(1, 1, 0.3, 1), 1.18635764130144)
   expect_equal(rskewnorm(2, 1, 0.3, 1), c(1.18864971882471, 1.31495996312994))
@@ -618,7 +546,6 @@ test_that("rskewnorm returns values scalar", {
 })
 
 test_that("rskewnorm returns expected output vector", {
-  skip_if_not_installed("sn")
   set.seed(101)
   expect_equal(
     rskewnorm(5, 1:5, 3, 2),
@@ -658,7 +585,6 @@ test_that("rskewnorm returns expected output vector", {
 })
 
 test_that("rskewnorm errors if argument lengths are incompatible", {
-  skip_if_not_installed("sn")
   expect_chk_error(rskewnorm(3, 0, 3, 1:5), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 3 and 5.")
   expect_chk_error(rskewnorm(2, 0:3, 3, 1), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 2 and 4.")
   expect_chk_error(rskewnorm(11, 0:10, 3, 1:5), "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 5 and 11.")

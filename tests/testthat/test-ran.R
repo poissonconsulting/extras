@@ -242,7 +242,6 @@ test_that("ran_beta_binom", {
 })
 
 test_that("ran_skewnorm", {
-  skip_if_not_installed("sn")
   expect_error(ran_skewnorm(NA_integer_))
   expect_error(ran_skewnorm(NULL))
   expect_error(ran_skewnorm(integer(0)))
