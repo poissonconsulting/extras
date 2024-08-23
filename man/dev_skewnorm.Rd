@@ -25,9 +25,11 @@ An numeric vector of the corresponding deviances or deviance residuals.
 Skew Normal Deviances
 }
 \examples{
+if (require("sn")) {
 dev_skewnorm(c(-2:2))
 dev_skewnorm(-2:2, 0, 1, 5)
 dev_skewnorm(-2:2, 0, 1, 5, res = TRUE)
+}
 }
 \seealso{
 Other dev_dist: 
