@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r eval = requireNamespace("tidyr", "ggplot2", "viridis", "scales"), include = FALSE}
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -19,7 +19,6 @@ library(ggplot2)
 library(viridis)
 library(scales)
 ```
-
 
 ### Beta-binomial distribution
 
