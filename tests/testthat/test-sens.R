@@ -548,82 +548,96 @@ test_that("sens_exp errors with negative sd_mult", {
 
 # skew normal ----
 test_that("sens_skewnorm returns a numeric vector of length 3 with correct names", {
+  skip_if_not_installed("sn")
   expect_snapshot(sens_skewnorm(mean = 2, sd = 10, shape = -1, sd_mult = 2))
 })
 
 test_that("sens_skewnorm errors with NULL input for mean", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = NULL, sd = 10, shape = 0.1, sd_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors with NULL input for sd", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 0, sd = NULL, shape = 0.1, sd_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors with NULL input for shape", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 0, sd = 0.3, shape = NULL, sd_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors with NULL input for sd_mult", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 10, sd = 10, shape = 0.1, sd_mult = NULL)
   )
 })
 
 test_that("sens_skewnorm errors with empty numeric input for mean", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = numeric(0), sd = 10, shape = 0.1, sd_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors with empty numeric input for sd", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 0, sd = numeric(0), shape = 0.1, sd_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors with empty numeric input for shape", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 0, sd = 12, shape = numeric(0), sd_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors with empty numeric input for sd_mult", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 10, sd = 10, shape = 0.1, sd_mult = numeric(0))
   )
 })
 
 test_that("sens_skewnorm errors when provided with a vector of values for mean", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 10:13, sd = 10, shape = 0.1, sd_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors when provided with a vector of values for sd", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 10, sd = 10:13, shape = 0.1, sd_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors when provided with a vector of values for shape", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 10, sd = 10, shape = 1:2, sd_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors when provided with a vector of values for sd_mult", {
+  skip_if_not_installed("sn")
   expect_chk_error(
     sens_skewnorm(mean = 10, sd = 10, shape = 0.1, sd_mult = 2:3)
   )
 })
 
 test_that("sd of skewnorm deviates expands as expected", {
+  skip_if_not_installed("sn")
   mean <- 10
   sd <- 20
   shape <- -1
@@ -640,6 +654,7 @@ test_that("sd of skewnorm deviates expands as expected", {
 })
 
 test_that("sd of skewnorm deviates decreases as expected", {
+  skip_if_not_installed("sn")
   mean <- 10
   sd <- 20
   shape <- 2
@@ -656,6 +671,7 @@ test_that("sd of skewnorm deviates decreases as expected", {
 })
 
 test_that("mean of skewnorm deviates changes expectedly with expanding sd", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- 20
   shape <- 2
@@ -672,6 +688,7 @@ test_that("mean of skewnorm deviates changes expectedly with expanding sd", {
 })
 
 test_that("mean of skewnorm deviates changes expectedly with reducing sd", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- 20
   shape <- 2
@@ -688,6 +705,7 @@ test_that("mean of skewnorm deviates changes expectedly with reducing sd", {
 })
 
 test_that("sens_skewnorm errors with character mean", {
+  skip_if_not_installed("sn")
   mean <- "100"
   sd <- 20
   shape <- 2
@@ -698,6 +716,7 @@ test_that("sens_skewnorm errors with character mean", {
 })
 
 test_that("sens_skewnorm errors with character sd", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- "twenty"
   shape <- 2
@@ -707,8 +726,8 @@ test_that("sens_skewnorm errors with character sd", {
   )
 })
 
-
 test_that("sens_skewnorm errors when sd < 0", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- -1
   shape <- 5
@@ -719,6 +738,7 @@ test_that("sens_skewnorm errors when sd < 0", {
 })
 
 test_that("sens_skewnorm errors with character shape", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- 10
   shape <- "five"
@@ -730,6 +750,7 @@ test_that("sens_skewnorm errors with character shape", {
 })
 
 test_that("sens_skewnorm errors with character sd_mult", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- 10
   shape <- 5
@@ -740,6 +761,7 @@ test_that("sens_skewnorm errors with character sd_mult", {
 })
 
 test_that("sens_skewnorm errors when sd_mult < 0", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- 1
   shape <- 5
@@ -750,6 +772,7 @@ test_that("sens_skewnorm errors when sd_mult < 0", {
 })
 
 test_that("sens_skewnorm has same behaviour as normal when shape = 0", {
+  skip_if_not_installed("sn")
   mean <- 100
   sd <- 10
   shape <- 0
