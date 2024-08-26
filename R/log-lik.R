@@ -214,11 +214,12 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
 #' @family log_lik_dist
 #' @export
 #'
-#' @examples
+#' @examplesIf requireNamespace("sn")
 #' log_lik_skewnorm(c(-2:2))
 #' log_lik_skewnorm(c(-2:2), shape = -2)
 #' log_lik_skewnorm(c(-2:2), shape = 2)
 log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
+  rlang::check_installed("sn")
   log_lik <- dskewnorm(x = x, mean = mean, sd = sd, shape = shape, log = TRUE)
   use_norm <- !is.na(shape) & shape == 0
   lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
