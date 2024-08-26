@@ -1,35 +1,10 @@
-## Test environments
-
-release 4.4.1
-
-* OSX (local) - release
-* OSX (actions) - release
-* OSX (R-hub) - devel
-* Ubuntu (actions) - oldrel-1, release, and devel 
-* Ubuntu (R-hub) - devel
-* Fedora (R-hub)
-* Windows (actions) - release
-* Windows (winbuilder) - devel
-* Windows (R-hub) - devel
-
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-New maintainer:
-  Nicole Hill <nicole@poissonconsulting.ca>
-Old maintainer(s):
-  Joe Thorley <joe@poissonconsulting.ca>
+0 errors | 0 warnings | 0 notes
   
 ## CRAN Issues
 
-Fixed the following error by conditionally skipping tests that rely on packages listed in suggests, if those packages are not installed.
-After review, also decided to remove the dependency to the 'aods3' package.
-
-══ Failed tests ════════════════════════════════════════════════════════════════
-── Error ('test-log-lik.R:184:3'): beta_binom log_lik ──────────────────────────
-<packageNotFoundError/error/condition>
-Error in `loadNamespace(x)`: there is no package called 'aods3'
+After feedback, corrected the noSuggests issue to have all tests, examples, and vignettes run conditionally for packages listed under Suggests.
 
 ## revdepcheck results
 
