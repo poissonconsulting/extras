@@ -10,7 +10,7 @@
 #' @rdname skewnorm
 #' @export
 #'
-#' @examples
+#' @examplesIf requireNamespace("sn")
 #' dskewnorm(x = -2:2, mean = 0, sd = 1, shape = 0.1)
 #' dskewnorm(x = -2:2, mean = 0, sd = 1, shape = -1)
 #' qskewnorm(p = c(0.1, 0.4), mean = 0, sd = 1, shape = 0.1)
