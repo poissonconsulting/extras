@@ -288,11 +288,12 @@ dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
 #' @family dev_dist
 #' @export
 #'
-#' @examples
+#' @examplesIf requireNamespace("sn")
 #' dev_skewnorm(c(-2:2))
 #' dev_skewnorm(-2:2, 0, 1, 5)
 #' dev_skewnorm(-2:2, 0, 1, 5, res = TRUE)
 dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
+  rlang::check_installed("sn")
   delta <- shape / sqrt(1 + shape^2)
   mu_z <- sqrt(2 / pi) * delta
   sig_z <- sqrt(1 - mu_z^2)

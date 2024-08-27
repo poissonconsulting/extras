@@ -7,6 +7,7 @@
 #'
 #' @param x An existing R object.
 #' @family translations
+#' @return A numeric vector of the corresponding absolute values.
 #' @export
 #' @examples
 #' fabs(c(0, -1, 2))

@@ -50,6 +50,7 @@
 #' @param x An object.
 #' @aliases parameters arguments args
 #' @usage NULL
+#' @export
 # nocov start
 params <- function(...) NULL
 # nocov end

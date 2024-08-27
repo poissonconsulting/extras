@@ -62,7 +62,7 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
 #' @family sens_dist
 #' @export
 #'
-#' @examples
+#' @examplesIf requireNamespace("sn")
 #' sens_skewnorm(10, 3, -1, 2)
 #' sens_skewnorm(10, 3, 3, 0.8)
 sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {

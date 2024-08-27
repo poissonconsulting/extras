@@ -1,5 +1,4 @@
 # dskewnorm ----
-
 test_that("dskewnorm passes through numeric(0) with zero-length arguments", {
   skip_if_not_installed("sn")
   expect_identical(dskewnorm(logical(0)), numeric(0))
