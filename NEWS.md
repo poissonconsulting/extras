@@ -2,11 +2,7 @@
 
 # extras 0.7.3
 
-- Merge pull request #78 from poissonconsulting/b-conditional-suggests-5.
-  Correct examples using suggests packages to run conditionally
-- Merge pull request #76 from poissonconsulting/b-conditional-sensitivity-4.
-  Skip tests for `sens_skewnorm()` that use the `sn` package if it is not installed.
-
+- Ensure all tests, examples, and vignettes run conditionally for packages listed in suggests.
 
 # extras 0.7.2
 
