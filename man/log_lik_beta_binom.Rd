@@ -16,7 +16,7 @@ success.}
 
 \item{theta}{A non-negative numeric vector of the dispersion for the mixture
 models (student, gamma-Poisson and beta-binomial).}
-  
+
 \item{memoize}{Whether or not to memoize the function.}
 }
 \value{
