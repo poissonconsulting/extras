@@ -180,11 +180,12 @@ ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
 #' @family ran_dist
 #' @export
 #'
-#' @examples
+#' @examplesIf rlang::is_installed("sn")
 #' ran_skewnorm(10, shape = -1)
 #' ran_skewnorm(10, shape = 0)
 #' ran_skewnorm(10, shape = 1)
 ran_skewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
+  rlang::check_installed("sn")
   chk_whole_number(n)
   chk_gte(n)
   rskewnorm(n = n, mean = mean, sd = sd, shape = shape)

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# extras <img src="man/figures/logo.png" align="right" />
+# extras <a href="https://poissonconsulting.github.io/extras/"><img src="man/figures/logo.png" align="right" height="138" alt="extras website" /></a>
 
 <!-- badges: start -->
 
@@ -9,7 +9,7 @@
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/poissonconsulting/extras/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/poissonconsulting/extras/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/extras?branch=master)
+coverage](https://codecov.io/gh/poissonconsulting/extras/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/extras)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/extras)](https://cran.r-project.org/package=extras)
 ![CRAN downloads](https://cranlogs.r-pkg.org/badges/extras)
@@ -31,8 +31,8 @@ To install the developmental version from
 [GitHub](https://github.com/poissonconsulting/extras)
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("poissonconsulting/extras")
+# install.packages("pak")
+pak::pak("poissonconsulting/extras")
 ```
 
 ## Demonstration

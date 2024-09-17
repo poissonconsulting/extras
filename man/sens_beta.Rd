@@ -11,7 +11,8 @@ sens_beta(alpha, beta, sd_mult = 2)
 
 \item{beta}{The second shape parameter of the Beta distribution.}
 
-\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the
+distribution.}
 }
 \value{
 A named list of the adjusted distribution's parameters.

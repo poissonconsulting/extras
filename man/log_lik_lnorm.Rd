@@ -11,7 +11,8 @@ log_lik_lnorm(x, meanlog = 0, sdlog = 1)
 
 \item{meanlog}{A numeric vector of the means on the log scale.}
 
-\item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
+\item{sdlog}{A non-negative numeric vector of the standard deviations on the
+log scale.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

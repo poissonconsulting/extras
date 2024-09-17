@@ -15,7 +15,8 @@ res_skewnorm(x, mean = 0, sd = 1, shape = 0, type = "dev", simulate = FALSE)
 
 \item{shape}{A numeric vector of shape.}
 
-\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }
@@ -26,7 +27,9 @@ An numeric vector of the corresponding residuals.
 Skew Normal Residuals
 }
 \examples{
+\dontshow{if (rlang::is_installed("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 res_skewnorm(c(-2:2))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other res_dist: 

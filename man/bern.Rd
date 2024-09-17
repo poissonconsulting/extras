@@ -18,17 +18,20 @@ rbern(n, prob)
 \arguments{
 \item{x}{A vector of 0s and 1s.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 
 \item{log}{A flag specifying whether to return the log-transformed value.}
 
 \item{q}{A vector of quantiles.}
 
-\item{lower.tail}{A flag specifying whether to return the lower or upper tail of the distribution.}
+\item{lower.tail}{A flag specifying whether to return the lower or upper tail
+of the distribution.}
 
 \item{p}{A vector of probabilities.}
 
-\item{n}{A non-negative whole number of the number of random samples to generate.}
+\item{n}{A non-negative whole number of the number of random samples to
+generate.}
 }
 \value{
 An numeric vector of the random samples.

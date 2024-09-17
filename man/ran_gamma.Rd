@@ -7,7 +7,8 @@
 ran_gamma(n = 1, shape = 1, rate = 1)
 }
 \arguments{
-\item{n}{A non-negative whole number of the number of random samples to generate.}
+\item{n}{A non-negative whole number of the number of random samples to
+generate.}
 
 \item{shape}{A non-negative numeric vector of shape.}
 

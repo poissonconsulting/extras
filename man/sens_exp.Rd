@@ -9,7 +9,8 @@ sens_exp(rate, sd_mult = 2)
 \arguments{
 \item{rate}{A non-negative numeric vector of rate.}
 
-\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the
+distribution.}
 }
 \value{
 A named list of the adjusted distribution's parameters.

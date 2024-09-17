@@ -13,7 +13,8 @@ res_norm(x, mean = 0, sd = 1, type = "dev", simulate = FALSE)
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
-\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }

@@ -13,7 +13,8 @@ res_pois_zi(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of zero-inflation.}
 
-\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }

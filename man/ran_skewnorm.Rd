@@ -7,7 +7,8 @@
 ran_skewnorm(n = 1, mean = 0, sd = 1, shape = 0)
 }
 \arguments{
-\item{n}{A non-negative whole number of the number of random samples to generate.}
+\item{n}{A non-negative whole number of the number of random samples to
+generate.}
 
 \item{mean}{A numeric vector of the means.}
 
@@ -22,9 +23,11 @@ A numeric vector of the random samples.
 Skew Normal Random Samples
 }
 \examples{
+\dontshow{if (rlang::is_installed("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 ran_skewnorm(10, shape = -1)
 ran_skewnorm(10, shape = 0)
 ran_skewnorm(10, shape = 1)
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other ran_dist: 

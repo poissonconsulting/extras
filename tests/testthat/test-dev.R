@@ -242,6 +242,7 @@ test_that("gamma_pois log_lik", {
 })
 
 test_that("gamma_pois deviance", {
+  skip_if_not_installed("MASS")
   samples <- ran_gamma_pois(10000, 3, 0.5)
   mod <- MASS::glm.nb(samples ~ 1)
   deviance <- sum(dev_gamma_pois(samples, exp(coef(mod)[1]), theta = 1 / mod$theta))
@@ -766,6 +767,7 @@ test_that("student deviance", {
 })
 
 test_that("skewnorm missing values", {
+  skip_if_not_installed("sn")
   expect_identical(dev_skewnorm(logical(0), integer(0), numeric(0), numeric(0)), numeric(0))
   expect_identical(dev_skewnorm(NA, 1, 1, 1), NA_real_)
   expect_identical(dev_skewnorm(1, NA, 1, 1), NA_real_)
@@ -774,6 +776,7 @@ test_that("skewnorm missing values", {
 })
 
 test_that("skewnorm known values", {
+  skip_if_not_installed("sn")
   expect_identical(dev_skewnorm(1, 1), 0)
   expect_identical(dev_skewnorm(1, 1, 1), 0)
   expect_equal(dev_skewnorm(1, 1, 1, 1), 0.398456311678723)
@@ -799,6 +802,7 @@ test_that("skewnorm known values", {
 })
 
 test_that("skewnorm vectorized", {
+  skip_if_not_installed("sn")
   expect_equal(dev_skewnorm(0:3, 2, 0.1, 0), c(400, 100, 0, 100))
   expect_equal(dev_skewnorm(c(0, 1, 3, 0), 3, 0.5, 0.5), c(47.9668417319782, 22.3177579563216, 0.137683650077409, 47.9668417319782))
   expect_equal(dev_skewnorm(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
@@ -806,6 +810,7 @@ test_that("skewnorm vectorized", {
 })
 
 test_that("skewnorm vectorized missing values", {
+  skip_if_not_installed("sn")
   expect_equal(dev_skewnorm(c(NA, 1), 0:1, 0:1, 0:1), c(NA, 0.398456311678723))
   expect_equal(dev_skewnorm(c(0, NA), 0:1, 1:2, 0:1), c(0, NA))
   expect_equal(dev_skewnorm(c(0:1), c(NA, 1), 1:2, 0:1), c(NA, 0.398456311678724))
@@ -817,11 +822,13 @@ test_that("skewnorm vectorized missing values", {
 })
 
 test_that("skewnorm res", {
+  skip_if_not_installed("sn")
   expect_equal(dev_skewnorm(10, 0.5, 0.5), dev_skewnorm(10, 0.5, 0.5, res = TRUE)^2)
   expect_equal(dev_skewnorm(0:1, c(0.3, 0.6), 0.5), dev_skewnorm(0:1, c(0.3, 0.6), 0.5, res = TRUE)^2)
 })
 
 test_that("skewnorm log_lik", {
+  skip_if_not_installed("sn")
   expect_equal(
     dev_skewnorm(0:1, 1:2, 2:3, shape = 0),
     2 * (log_lik_skewnorm(0:1, 0:1, 2:3, shape = 0) - log_lik_skewnorm(0:1, 1:2, 2:3, shape = 0))
@@ -829,6 +836,7 @@ test_that("skewnorm log_lik", {
 })
 
 test_that("skewnorm ran", {
+  skip_if_not_installed("sn")
   set.seed(101)
   samples <- ran_skewnorm(100000, 3, 0.5, 0.5)
   expect_equal(mean(samples), 3.17851201086154)
@@ -839,6 +847,7 @@ test_that("skewnorm ran", {
 })
 
 test_that("skewnorm deviance", {
+  skip_if_not_installed("sn")
   samples <- ran_skewnorm(1000, 3, 0.5, 0)
   mod <- glm(samples ~ 1, family = gaussian)
   deviance <- sum(dev_skewnorm(samples, coef(mod)[1]))

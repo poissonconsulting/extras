@@ -10,7 +10,7 @@
 #' @rdname skewnorm
 #' @export
 #'
-#' @examples
+#' @examplesIf rlang::is_installed("sn")
 #' dskewnorm(x = -2:2, mean = 0, sd = 1, shape = 0.1)
 #' dskewnorm(x = -2:2, mean = 0, sd = 1, shape = -1)
 #' qskewnorm(p = c(0.1, 0.4), mean = 0, sd = 1, shape = 0.1)
@@ -20,12 +20,7 @@
 #' rskewnorm(n = 3, mean = 0, sd = 1, shape = 0.1)
 #' rskewnorm(n = 3, mean = 0, sd = 1, shape = -1)
 dskewnorm <- function(x, mean = 0, sd = 1, shape = 0, log = FALSE) {
-  if (!requireNamespace("sn", quietly = TRUE)) {
-    stop(
-      "Package \"sn\" must be installed to use this function.",
-      call. = FALSE
-    )
-  }
+  rlang::check_installed("sn")
   chk_gte(sd)
   nulls <- any(is.null(x), is.null(mean), is.null(sd), is.null(shape))
   if (nulls) stop("invalid arguments")
@@ -49,12 +44,7 @@ dskewnorm <- function(x, mean = 0, sd = 1, shape = 0, log = FALSE) {
 #' @rdname skewnorm
 #' @export
 pskewnorm <- function(q, mean = 0, sd = 1, shape = 0) {
-  if (!requireNamespace("sn", quietly = TRUE)) {
-    stop(
-      "Package \"sn\" must be installed to use this function.",
-      call. = FALSE
-    )
-  }
+  rlang::check_installed("sn")
   chk_gte(sd)
   nulls <- any(is.null(q), is.null(mean), is.null(sd), is.null(shape))
   if (nulls) stop("invalid arguments")
@@ -78,12 +68,7 @@ pskewnorm <- function(q, mean = 0, sd = 1, shape = 0) {
 #' @rdname skewnorm
 #' @export
 qskewnorm <- function(p, mean = 0, sd = 1, shape = 0) {
-  if (!requireNamespace("sn", quietly = TRUE)) {
-    stop(
-      "Package \"sn\" must be installed to use this function.",
-      call. = FALSE
-    )
-  }
+  rlang::check_installed("sn")
   chk_gte(sd)
   chk_gte(p)
   chk_lte(p, 1)
@@ -112,12 +97,7 @@ qskewnorm <- function(p, mean = 0, sd = 1, shape = 0) {
 #' @rdname skewnorm
 #' @export
 rskewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
-  if (!requireNamespace("sn", quietly = TRUE)) {
-    stop(
-      "Package \"sn\" must be installed to use this function.",
-      call. = FALSE
-    )
-  }
+  rlang::check_installed("sn")
   chk_gte(n)
   chk_lt(n, Inf)
   chk_not_any_na(n)

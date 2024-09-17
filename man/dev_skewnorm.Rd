@@ -15,7 +15,8 @@ dev_skewnorm(x, mean = 0, sd = 1, shape = 0, res = FALSE)
 
 \item{shape}{A numeric vector of shape.}
 
-\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as
+opposed to the deviance.}
 }
 \value{
 An numeric vector of the corresponding deviances or deviance residuals.
@@ -24,9 +25,11 @@ An numeric vector of the corresponding deviances or deviance residuals.
 Skew Normal Deviances
 }
 \examples{
+\dontshow{if (rlang::is_installed("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 dev_skewnorm(c(-2:2))
 dev_skewnorm(-2:2, 0, 1, 5)
 dev_skewnorm(-2:2, 0, 1, 5, res = TRUE)
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other dev_dist: 

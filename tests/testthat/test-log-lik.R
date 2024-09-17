@@ -224,24 +224,22 @@ test_that("beta_binom vectorized", {
 })
 
 test_that("beta_binom log_lik", {
-  samples2 <- ran_beta_binom(100, size = 50, prob = 0.1, theta = 1)
-  data <- data.frame(
-    samples2 = samples2,
-    mod_prob2 = 50 - samples2
+  withr::with_seed(
+    101,
+    samples <- ran_beta_binom(100, size = 50, prob = 0.1, theta = 1)
   )
-  mod2 <- aods3::aodml(cbind(samples2, mod_prob2) ~ 1,
-    data = data,
-    family = "bb", method = "Nelder-Mead"
+  expect_snapshot(
+    log_lik_beta_binom(
+      x = samples,
+      size = 50,
+      prob = 0.2,
+      theta = 1.1
+    )
   )
-  est_prob <- ilogit(mod2$b)
-  est_theta <- 2 / (1 / mod2$phi - 1)
-  expect_equal(mod2$logL, sum(log_lik_beta_binom(samples2,
-    size = 50,
-    prob = est_prob, theta = est_theta
-  )))
 })
 
 test_that("skewnorm missing values", {
+  skip_if_not_installed("sn")
   expect_identical(log_lik_skewnorm(numeric(0), numeric(0), numeric(0), numeric(0)), numeric(0))
   expect_identical(log_lik_skewnorm(1, numeric(0)), numeric(0))
   expect_identical(log_lik_skewnorm(1, 1, sd = numeric(0)), numeric(0))
@@ -253,6 +251,7 @@ test_that("skewnorm missing values", {
 })
 
 test_that("skewnorm known values", {
+  skip_if_not_installed("sn")
   expect_equal(log_lik_skewnorm(0.5, 3), -4.04393853320467)
   expect_equal(log_lik_skewnorm(0.5, 3, 0), -Inf)
   expect_equal(log_lik_skewnorm(0.5, 3, 1, -4), -3.35079135264473)
@@ -269,6 +268,7 @@ test_that("skewnorm known values", {
 })
 
 test_that("skewnorm vectorized", {
+  skip_if_not_installed("sn")
   expect_equal(
     log_lik_skewnorm(0:3, 2, 0.5, 0),
     c(-8.22579135264473, -2.22579135264473, -0.225791352644727, -2.22579135264473)

@@ -11,10 +11,12 @@ log_lik_beta_binom(x, size = 1, prob = 0.5, theta = 0, memoize = FALSE)
 
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
-
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture
+models (student, gamma-Poisson and beta-binomial).}
+  
 \item{memoize}{Whether or not to memoize the function.}
 }
 \value{

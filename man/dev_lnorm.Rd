@@ -11,9 +11,11 @@ dev_lnorm(x, meanlog = 0, sdlog = 1, res = FALSE)
 
 \item{meanlog}{A numeric vector of the means on the log scale.}
 
-\item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
+\item{sdlog}{A non-negative numeric vector of the standard deviations on the
+log scale.}
 
-\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as
+opposed to the deviance.}
 }
 \value{
 An numeric vector of the corresponding deviances or deviance residuals.

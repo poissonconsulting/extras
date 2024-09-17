@@ -12,6 +12,7 @@ Summarise
 Surprisal
 TMB
 WinBUGS
+behaviour
 bern
 bigg
 cdot
@@ -24,7 +25,6 @@ lik
 modelling
 numericise
 skewnorm
-styler
 summarise
 surprisal
 testthat

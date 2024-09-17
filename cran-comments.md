@@ -1,25 +1,10 @@
-## Test environments
-
-release 4.4.1
-
-* OSX (local) - release
-* OSX (actions) - release
-* OSX (R-hub) - devel
-* Ubuntu (actions) - oldrel-1, release, and devel 
-* Ubuntu (R-hub) - devel
-* Fedora (R-hub)
-* Windows (actions) - release
-* Windows (winbuilder) - devel
-* Windows (R-hub) - devel
-
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
+  
+## CRAN Issues
 
-New maintainer:
-  Nicole Hill <nicole@poissonconsulting.ca>
-Old maintainer(s):
-  Joe Thorley <joe@poissonconsulting.ca>
+After feedback, corrected the noSuggests issue to have all tests, examples, and vignettes run conditionally for packages listed under Suggests.
 
 ## revdepcheck results
 

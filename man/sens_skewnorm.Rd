@@ -13,7 +13,8 @@ sens_skewnorm(mean, sd, shape, sd_mult = 2)
 
 \item{shape}{A non-negative numeric vector of shape.}
 
-\item{sd_mult}{A non-negative multiplier on the standard deviation of the distribution.}
+\item{sd_mult}{A non-negative multiplier on the standard deviation of the
+distribution.}
 }
 \value{
 A named list of the adjusted distribution's parameters.
@@ -23,8 +24,10 @@ Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviat
 of the Skew Normal distribution without changing the mean.
 }
 \examples{
+\dontshow{if (rlang::is_installed("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 sens_skewnorm(10, 3, -1, 2)
 sens_skewnorm(10, 3, 3, 0.8)
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other sens_dist: 

@@ -7,13 +7,16 @@
 ran_beta_binom(n = 1, size = 1, prob = 0.5, theta = 0)
 }
 \arguments{
-\item{n}{A non-negative whole number of the number of random samples to generate.}
+\item{n}{A non-negative whole number of the number of random samples to
+generate.}
 
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture
+models (student, gamma-Poisson and beta-binomial).}
 }
 \value{
 A numeric vector of the random samples.

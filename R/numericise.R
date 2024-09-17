@@ -77,12 +77,10 @@ numericise.POSIXct <- function(x, ...) {
 #' @examples
 #'
 #' # hms
+#' @examplesIf rlang::is_installed("hms")
 #' numericise(hms::as_hms("00:01:03"))
 numericise.hms <- function(x, ...) {
-  # I'm not sure if this test is needed since S3 function
-  if (!requireNamespace("hms", quietly = TRUE)) {
-    err("Please install the 'hms' package.")
-  }
+  rlang::check_installed("hms")
   x <- unclass(x)
   as.numeric(x)
 }

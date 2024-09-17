@@ -7,7 +7,8 @@
 ran_pois(n = 1, lambda = 1)
 }
 \arguments{
-\item{n}{A non-negative whole number of the number of random samples to generate.}
+\item{n}{A non-negative whole number of the number of random samples to
+generate.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 }

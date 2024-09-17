@@ -7,11 +7,13 @@
 ran_lnorm(n = 1, meanlog = 0, sdlog = 1)
 }
 \arguments{
-\item{n}{A non-negative whole number of the number of random samples to generate.}
+\item{n}{A non-negative whole number of the number of random samples to
+generate.}
 
 \item{meanlog}{A numeric vector of the means on the log scale.}
 
-\item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
+\item{sdlog}{A non-negative numeric vector of the standard deviations on the
+log scale.}
 }
 \value{
 A numeric vector of the random samples.
