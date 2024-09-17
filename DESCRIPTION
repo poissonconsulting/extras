@@ -1,6 +1,6 @@
 Package: extras
 Title: Helper Functions for Bayesian Analyses
-Version: 0.7.2.9000
+Version: 0.7.3.9000
 Authors@R: c(
     person("Nicole", "Hill", , "nicole@poissonconsulting.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7623-2153")),
@@ -49,3 +49,5 @@ Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr
+Config/Needs/website: poissonconsulting/poissontemplate

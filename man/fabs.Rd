@@ -9,6 +9,9 @@ fabs(x)
 \arguments{
 \item{x}{An existing R object.}
 }
+\value{
+A numeric vector of the corresponding absolute values.
+}
 \description{
 Computes the absolute value of \code{x}.
 Used in TMB as replacement for \code{abs()} which is seemingly ambiguous.

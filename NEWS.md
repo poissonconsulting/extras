@@ -2,6 +2,10 @@
 
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.7.3
+
+- Ensure all tests, examples, and vignettes run conditionally for packages listed in suggests.
+
 # extras 0.7.2
 
 - Fix behaviour of `dev_beta_binom()` when size \< x.

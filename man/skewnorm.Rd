@@ -41,6 +41,7 @@ generate.}
 Skew-Normal Distribution
 }
 \examples{
+\dontshow{if (requireNamespace("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 dskewnorm(x = -2:2, mean = 0, sd = 1, shape = 0.1)
 dskewnorm(x = -2:2, mean = 0, sd = 1, shape = -1)
 qskewnorm(p = c(0.1, 0.4), mean = 0, sd = 1, shape = 0.1)
@@ -49,5 +50,6 @@ pskewnorm(q = -2:2, mean = 0, sd = 1, shape = 0.1)
 pskewnorm(q = -2:2, mean = 0, sd = 1, shape = -1)
 rskewnorm(n = 3, mean = 0, sd = 1, shape = 0.1)
 rskewnorm(n = 3, mean = 0, sd = 1, shape = -1)
+\dontshow{\}) # examplesIf}
 }
 \concept{skewnorm}
