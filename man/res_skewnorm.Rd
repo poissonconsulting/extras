@@ -27,7 +27,7 @@ An numeric vector of the corresponding residuals.
 Skew Normal Residuals
 }
 \examples{
-\dontshow{if (requireNamespace("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 res_skewnorm(c(-2:2))
 \dontshow{\}) # examplesIf}
 }

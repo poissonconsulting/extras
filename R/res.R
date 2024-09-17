@@ -335,7 +335,7 @@ res_student_standardized <- function(x, mean, sd, theta) {
 #' @family res_dist
 #' @export
 #'
-#' @examplesIf requireNamespace("sn")
+#' @examplesIf rlang::is_installed("sn")
 #' res_skewnorm(c(-2:2))
 res_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, type = "dev", simulate = FALSE) {
   rlang::check_installed("sn")
