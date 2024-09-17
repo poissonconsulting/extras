@@ -288,7 +288,7 @@ dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
 #' @family dev_dist
 #' @export
 #'
-#' @examplesIf requireNamespace("sn")
+#' @examplesIf rlang::is_installed("sn")
 #' dev_skewnorm(c(-2:2))
 #' dev_skewnorm(-2:2, 0, 1, 5)
 #' dev_skewnorm(-2:2, 0, 1, 5, res = TRUE)

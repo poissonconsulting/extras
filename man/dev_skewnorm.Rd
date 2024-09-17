@@ -25,7 +25,7 @@ An numeric vector of the corresponding deviances or deviance residuals.
 Skew Normal Deviances
 }
 \examples{
-\dontshow{if (requireNamespace("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 dev_skewnorm(c(-2:2))
 dev_skewnorm(-2:2, 0, 1, 5)
 dev_skewnorm(-2:2, 0, 1, 5, res = TRUE)

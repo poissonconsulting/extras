@@ -180,7 +180,7 @@ ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
 #' @family ran_dist
 #' @export
 #'
-#' @examplesIf requireNamespace("sn")
+#' @examplesIf rlang::is_installed("sn")
 #' ran_skewnorm(10, shape = -1)
 #' ran_skewnorm(10, shape = 0)
 #' ran_skewnorm(10, shape = 1)

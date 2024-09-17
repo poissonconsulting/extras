@@ -214,7 +214,7 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
 #' @family log_lik_dist
 #' @export
 #'
-#' @examplesIf requireNamespace("sn")
+#' @examplesIf rlang::is_installed("sn")
 #' log_lik_skewnorm(c(-2:2))
 #' log_lik_skewnorm(c(-2:2), shape = -2)
 #' log_lik_skewnorm(c(-2:2), shape = 2)

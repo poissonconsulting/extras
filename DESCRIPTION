@@ -29,8 +29,8 @@ Imports:
     stats
 Suggests: 
     covr,
-    hms,
     ggplot2,
+    hms,
     knitr,
     MASS,
     rlang,
