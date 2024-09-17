@@ -1,6 +1,10 @@
-# extras (development version)
-
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# extras 0.7.3.9001
+
+- Register poissontemplate usage.
+- Fix actions.
+- Perform upkeep on package.
 
 # extras 0.7.3
 
