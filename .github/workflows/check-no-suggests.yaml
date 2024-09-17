@@ -12,7 +12,7 @@ on:
   pull_request:
     branches: [main, master]
 
-name: check-no-suggests.yaml
+name: check-no-suggests
 
 permissions: read-all
 
