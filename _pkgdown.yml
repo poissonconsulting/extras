@@ -1,5 +1,5 @@
-url: https://poissonconsulting.github.io/extras/
 destination: docs
+url: https://poissonconsulting.github.io/extras/
 reference:
 - title: Manipulate Objects
   desc: Functions to numericise and fill objects
@@ -187,4 +187,5 @@ reference:
   - '`pextreme`'
   - '`sextreme`'
   - '`as_list_unnamed`'
-
+template:
+  package: poissontemplate
