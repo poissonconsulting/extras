@@ -33,6 +33,7 @@ Suggests:
     hms,
     knitr,
     MASS,
+    memoise,
     rlang,
     rmarkdown,
     scales,

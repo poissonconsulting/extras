@@ -68,6 +68,7 @@ Implemented distributions with functions to draw random samples,
 calculate log-likelihoods, and calculate deviance residuals for include:
 
 - Bernoulli
+- Binomial
 - Beta-binomial
 - Gamma
 - Gamma-Poisson

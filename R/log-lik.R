@@ -12,6 +12,7 @@
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of values.
+#' @param memoize Whether or not to memoize the function.
 #'
 #' @return An numeric vector of the corresponding log-likelihoods.
 #' @family log_lik_dist
@@ -19,28 +20,75 @@
 #'
 #' @examples
 #' log_lik_beta_binom(c(0, 1, 2), 3, 0.5, 0)
-log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
+log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, memoize = FALSE) {
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
-  lbeta_binom <- lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1) +
+
+  # Memoise use case:
+  # Posterior_predictive_check calls this function repeatedly with
+  # x and size unchanged; memoize it to reduce repeated calls
+  # when length(x) is large enough to outweigh the overhead required by memoize.
+  # For length(x) < 800, memoize is slower
+  # See detail here https://github.com/poissonconsulting/extras/issues/63
+  if (memoize && length(x) >= 800) {
+    lgamma_size_x <- lgamma_size_x(size, x)
+  } else {
+    lgamma_size_x <- lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1)
+  }
+  lbeta_binom <- lgamma_size_x +
     lgamma(x + alpha) + lgamma(size - x + beta) - lgamma(size + alpha + beta) +
     lgamma(alpha + beta) - lgamma(alpha) - lgamma(beta)
-  bol <- !is.na(x + size + prob + theta)
-  lbeta_binom[bol & ((x == 0 & prob == 0) | (x == size & prob == 1))] <- 0
-  lbeta_binom[bol & x != 0 & prob == 0] <- -Inf
-  lbeta_binom[bol & x != size & prob == 1] <- -Inf
-  lbeta_binom[bol & x > size] <- -Inf
-  bol_theta <- !is.na(theta)
-  lbeta_binom[bol_theta & theta < 0] <- NaN
-  use_binom <- bol_theta & theta == 0
-  if (any(use_binom)) {
-    lbinom <- log_lik_binom(x, size = size, prob = prob)
-    lbeta_binom[use_binom] <- lbinom[use_binom]
+
+  args_na <- is.na(x + size + prob + theta)
+  length_args_na <- length(args_na)
+  if (length_args_na == 1) {
+    if (args_na) {
+      return(NA_real_)
+    }
+    if (prob == 0) {
+      if (x == 0) {
+        lbeta_binom <- 0
+      } else {
+        lbeta_binom <- -Inf
+      }
+    } else if (prob == 1) {
+      if (x == size) {
+        lbeta_binom <- 0
+      } else {
+        lbeta_binom <- -Inf
+      }
+    }
+    if (x > size) {
+      lbeta_binom <- -Inf
+    }
+    if (theta == 0) {
+      lbeta_binom <- log_lik_binom(x = x, size = size, prob = prob)
+    } else if (theta < 0) {
+      lbeta_binom <- NaN
+    }
+    lbeta_binom
+  } else if (length_args_na == 0) {
+    numeric(0)
+  } else {
+    args_not_na <- !args_na
+    lbeta_binom[args_not_na & ((x == 0 & prob == 0) | (x == size & prob == 1))] <- 0
+    lbeta_binom[args_not_na & x != 0 & prob == 0] <- -Inf
+    lbeta_binom[args_not_na & x != size & prob == 1] <- -Inf
+    lbeta_binom[args_not_na & x > size] <- -Inf
+    theta_not_na <- !is.na(theta)
+    lbeta_binom[theta_not_na & theta < 0] <- NaN
+    use_binom <- theta_not_na & theta == 0
+    if (any(use_binom)) {
+      lbinom <- log_lik_binom(x, size = size, prob = prob)
+      lbeta_binom[use_binom] <- lbinom[use_binom]
+    }
+    lbeta_binom
   }
-  if (length(bol) == 0) {
-    lbeta_binom <- numeric(0)
-  }
-  lbeta_binom
+}
+
+# Function to memoize (called repeatedly for non-changing values of size and x)
+lgamma_size_x <- function(size, x) {
+  lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1)
 }
 
 #' Bernoulli Log-Likelihood
