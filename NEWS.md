@@ -1,5 +1,9 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.7.3.9002
+
+- Remove dependency on MASS package so minimum R version can be brought down to 4.0.0 from 4.3.0.
+
 # extras 0.7.3.9001
 
 - Register poissontemplate usage.
