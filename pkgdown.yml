@@ -1,10 +1,10 @@
 pandoc: 3.1.11
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   beta-binomial-deviance-residuals: beta-binomial-deviance-residuals.html
   deviance-residuals: deviance-residuals.html
-last_built: 2024-09-17T23:04Z
+last_built: 2024-09-19T20:40Z
 urls:
   reference: https://poissonconsulting.github.io/extras/reference
   article: https://poissonconsulting.github.io/extras/articles
