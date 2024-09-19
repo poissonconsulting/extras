@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   beta-binomial-deviance-residuals: beta-binomial-deviance-residuals.html
   deviance-residuals: deviance-residuals.html
-last_built: 2024-09-19T20:40Z
+last_built: 2024-09-19T20:43Z
 urls:
   reference: https://poissonconsulting.github.io/extras/reference
   article: https://poissonconsulting.github.io/extras/articles
