@@ -23,7 +23,7 @@ A numeric vector of the random samples.
 Skew Normal Random Samples
 }
 \examples{
-\dontshow{if (rlang::is_installed("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
 ran_skewnorm(10, shape = -1)
 ran_skewnorm(10, shape = 0)
 ran_skewnorm(10, shape = 1)

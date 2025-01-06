@@ -24,7 +24,7 @@ Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviat
 of the Skew Normal distribution without changing the mean.
 }
 \examples{
-\dontshow{if (rlang::is_installed("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
 sens_skewnorm(10, 3, -1, 2)
 sens_skewnorm(10, 3, 3, 0.8)
 \dontshow{\}) # examplesIf}
