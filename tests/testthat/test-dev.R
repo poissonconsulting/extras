@@ -241,12 +241,32 @@ test_that("gamma_pois log_lik", {
   )
 })
 
-test_that("gamma_pois deviance", {
-  skip_if_not_installed("MASS")
-  samples <- ran_gamma_pois(10000, 3, 0.5)
-  mod <- MASS::glm.nb(samples ~ 1)
-  deviance <- sum(dev_gamma_pois(samples, exp(coef(mod)[1]), theta = 1 / mod$theta))
-  expect_equal(deviance, deviance(mod))
+# This test confirms that the deviance calculation is correct by comparing the
+# sum of the deviance residuals for a set of randomly generated gamma-Poisson
+# values is the same as the deviance of an intercept-only GLM model with the
+# same family.
+# The test is commented out to avoid the dependency on the MASS package, which
+# was requiring us to increase the minimum version of R.
+# test_that("gamma_pois deviance", {
+#   skip_if_not_installed("MASS")
+#   samples <- ran_gamma_pois(10000, 3, 0.5)
+#   mod <- MASS::glm.nb(samples ~ 1)
+#   deviance <- sum(dev_gamma_pois(samples, exp(coef(mod)[1]), theta = 1 / mod$theta))
+#   expect_equal(deviance, deviance(mod))
+# })
+
+test_that("gamma_pois deviance snapshot", {
+  expect_snapshot(
+    {
+      withr::with_seed(
+        101, {
+          x <- ran_gamma_pois(10000, 3, 0.5)
+        }
+      )
+      deviance <- dev_gamma_pois(x, 3, 0.5)
+      deviance
+    }
+  )
 })
 
 test_that("gamma_pois ran", {

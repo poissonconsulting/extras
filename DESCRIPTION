@@ -1,6 +1,6 @@
 Package: extras
 Title: Helper Functions for Bayesian Analyses
-Version: 0.7.3.9000
+Version: 0.7.3.9002
 Authors@R: c(
     person("Nicole", "Hill", , "nicole@poissonconsulting.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7623-2153")),
@@ -22,7 +22,7 @@ URL: https://poissonconsulting.github.io/extras/,
     https://github.com/poissonconsulting/extras
 BugReports: https://github.com/poissonconsulting/extras/issues
 Depends: 
-    R (>= 4.3.0)
+    R (>= 4.0.0)
 Imports:
     chk,
     lifecycle,
@@ -32,7 +32,6 @@ Suggests:
     ggplot2,
     hms,
     knitr,
-    MASS,
     memoise,
     rlang,
     rmarkdown,
