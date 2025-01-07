@@ -3,6 +3,9 @@ url: https://poissonconsulting.github.io/extras/
 template:
   package: poissontemplate
 
+development:
+  mode: auto
+
 reference:
 - title: Manipulate Objects
   desc: Functions to numericise and fill objects
