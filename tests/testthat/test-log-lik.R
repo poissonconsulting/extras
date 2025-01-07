@@ -165,8 +165,55 @@ test_that("beta_binom known values", {
   expect_equal(log_lik_beta_binom(1, 2, 0.2, 1), -1.54489939129653)
   expect_equal(log_lik_beta_binom(2, 2, 0.2, 10), -1.75253875607477)
   expect_equal(log_lik_beta_binom(1, 2, 0.5), -0.693147180559945)
+  expect_equal(log_lik_beta_binom(10, 2, 0.5, 0.1), -Inf)
+  expect_equal(log_lik_beta_binom(10, 2, 0.5, -0.1), NaN)
   expect_equal(log_lik_beta_binom(1, 2, 0.5), log_lik_binom(1, 2, 0.5))
   expect_equal(log_lik_beta_binom(1, 2, 0.2), dbinom(1, 2, 0.2, log = TRUE))
+})
+
+test_that("beta binomial deviance function is memoized", {
+  expect_true(memoise::is.memoized(lgamma_size_x))
+})
+
+test_that("lgamma_size_x produces expected outputs", {
+  size <- 100
+  x <- 1
+  expect_equal(
+    lgamma_size_x(size, x),
+    lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1)
+  )
+  size <- 100
+  x <- 1:100
+  expect_equal(
+    lgamma_size_x(size, x),
+    lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1)
+  )
+  size <- 201:300
+  x <- 1:100
+  expect_equal(
+    lgamma_size_x(size, x),
+    lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1)
+  )
+})
+
+test_that("beta_binom memoized function gives same outputs as non-memoized function", {
+  expect_equal(
+    log_lik_beta_binom(1:100, 200, 0.5, 0.1, memoize = FALSE),
+    log_lik_beta_binom(1:100, 200, 0.5, 0.1, memoize = TRUE)
+  )
+  expect_equal(
+    log_lik_beta_binom(1:100, 200, 0.1, 0, memoize = FALSE),
+    log_lik_beta_binom(1:100, 200, 0.1, 0, memoize = TRUE)
+  )
+  withr::with_seed(
+    101,
+    {
+      x <- ran_beta_binom(1e7, 10, 0.5, 0.1)
+    }
+  )
+  time_no_mem <- system.time(log_lik_beta_binom(x, 10, 0.5, 0.2, memoize = FALSE))[3]
+  time_mem <- system.time(log_lik_beta_binom(x, 10, 0.5, 0.2, memoize = TRUE))[3]
+  expect_true(time_mem < time_no_mem)
 })
 
 test_that("beta_binom vectorized", {

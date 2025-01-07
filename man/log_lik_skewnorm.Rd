@@ -22,7 +22,7 @@ An numeric vector of the corresponding log-likelihoods.
 Skew Normal Log-Likelihood
 }
 \examples{
-\dontshow{if (rlang::is_installed("sn")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
 log_lik_skewnorm(c(-2:2))
 log_lik_skewnorm(c(-2:2), shape = -2)
 log_lik_skewnorm(c(-2:2), shape = 2)

@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.8.0
+
+- Added a scalar case to `log_lik_beta_binom()` to improve speed for scalar inputs.
+- Add memoization (if memoize package is installed) and data has > 800 rows to gain speed from repeated function calls.
+- Use a vectorized optimization to improve speed of optimization required for deviance calculation.
+
 # extras 0.7.3.9002
 
 - Remove dependency on MASS package so minimum R version can be brought down to 4.0.0 from 4.3.0.

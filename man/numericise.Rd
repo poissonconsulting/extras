@@ -100,7 +100,7 @@ numericise(as.Date("1972-01-01"))
 numericise(as.POSIXct("1972-01-01", tz = "UTC"))
 
 # hms
-\dontshow{if (rlang::is_installed("hms")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("hms")) withAutoprint(\{ # examplesIf}
 numericise(hms::as_hms("00:01:03"))
 \dontshow{\}) # examplesIf}
 

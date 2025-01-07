@@ -23,18 +23,6 @@ distributions and calculate deviance residuals as well as R translations
 of some BUGS (Bayesian Using Gibbs Sampling), JAGS (Just Another Gibbs
 Sampler), STAN and TMB (Template Model Builder) functions.
 
-## Installation
-
-<!-- To install the latest release from [CRAN](https://cran.r-project.org) -->
-
-To install the developmental version from
-[GitHub](https://github.com/poissonconsulting/extras)
-
-``` r
-# install.packages("pak")
-pak::pak("poissonconsulting/extras")
-```
-
 ## Demonstration
 
 ### Summarise MCMC Samples
@@ -68,6 +56,7 @@ Implemented distributions with functions to draw random samples,
 calculate log-likelihoods, and calculate deviance residuals for include:
 
 - Bernoulli
+- Binomial
 - Beta-binomial
 - Gamma
 - Gamma-Poisson
@@ -113,6 +102,44 @@ numericise(
 #>      logical factor  Date hms
 #> [1,]       1      1 10957   2
 #> [2,]       0      2 10958  61
+```
+
+## Installation
+
+## Information
+
+For more information see the [Get
+Started](https://poissonconsulting.github.io/chk/articles/chk.html)
+vignette.
+
+## Installation
+
+### Release
+
+To install the release version from
+[CRAN](https://CRAN.R-project.org/package=extras).
+
+``` r
+install.packages("extras")
+```
+
+The website for the release version is at
+<https://poissonconsulting.github.io/extras/>.
+
+### Development
+
+To install the development version from
+[GitHub](https://github.com/poissonconsulting/extras)
+
+``` r
+# install.packages("remotes")
+remotes::install_github("poissonconsulting/extras")
+```
+
+or from [r-universe](https://poissonconsulting.r-universe.dev/extras).
+
+``` r
+install.packages("extras", repos = c("https://poissonconsulting.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ## References
