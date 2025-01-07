@@ -256,17 +256,16 @@ test_that("gamma_pois log_lik", {
 # })
 
 test_that("gamma_pois deviance snapshot", {
-  expect_snapshot(
-    {
-      withr::with_seed(
-        101, {
-          x <- ran_gamma_pois(10000, 3, 0.5)
-        }
-      )
-      deviance <- dev_gamma_pois(x, 3, 0.5)
-      deviance
-    }
-  )
+  expect_snapshot({
+    withr::with_seed(
+      101,
+      {
+        x <- ran_gamma_pois(10000, 3, 0.5)
+      }
+    )
+    deviance <- dev_gamma_pois(x, 3, 0.5)
+    deviance
+  })
 })
 
 test_that("gamma_pois ran", {

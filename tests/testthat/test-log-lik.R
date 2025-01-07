@@ -206,7 +206,8 @@ test_that("beta_binom memoized function gives same outputs as non-memoized funct
     log_lik_beta_binom(1:100, 200, 0.1, 0, memoize = TRUE)
   )
   withr::with_seed(
-    101, {
+    101,
+    {
       x <- ran_beta_binom(1e7, 10, 0.5, 0.1)
     }
   )
