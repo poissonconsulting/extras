@@ -172,6 +172,7 @@ test_that("beta_binom known values", {
 })
 
 test_that("beta binomial deviance function is memoized", {
+  skip_if_not_installed("memoise")
   expect_true(memoise::is.memoized(lgamma_size_x))
 })
 
@@ -197,6 +198,7 @@ test_that("lgamma_size_x produces expected outputs", {
 })
 
 test_that("beta_binom memoized function gives same outputs as non-memoized function", {
+  skip_if_not_installed("memoise")
   expect_equal(
     log_lik_beta_binom(1:100, 200, 0.5, 0.1, memoize = FALSE),
     log_lik_beta_binom(1:100, 200, 0.5, 0.1, memoize = TRUE)

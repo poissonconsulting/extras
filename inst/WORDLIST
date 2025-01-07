@@ -22,10 +22,14 @@ funder
 hms
 ie
 lik
+memoization
+memoize
 modelling
 numericise
+poissontemplate
 skewnorm
 summarise
 surprisal
 testthat
 th
+vectorized
