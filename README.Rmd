@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+
 # extras <a href="https://poissonconsulting.github.io/extras/"><img src="man/figures/logo.png" align="right" height="138" alt="extras website" /></a>
 
 <!-- badges: start -->
@@ -31,19 +32,6 @@ draw random samples from various distributions and
 calculate deviance residuals as well as R translations of some
 BUGS (Bayesian Using Gibbs Sampling), JAGS (Just Another Gibbs
 Sampler), STAN and TMB (Template Model Builder) functions.
-
-## Installation
-
-<!-- To install the latest release from [CRAN](https://cran.r-project.org) -->
-```{r, eval=FALSE, echo=FALSE}
-install.packages("extras")
-```
-
-To install the developmental version from [GitHub](https://github.com/poissonconsulting/extras)
-```{r, eval=FALSE}
-# install.packages("pak")
-pak::pak("poissonconsulting/extras")
-```
 
 ## Demonstration
 
@@ -107,6 +95,37 @@ numericise(
 )
 ```
 
+## Installation
+
+
+## Information
+
+For more information see the [Get Started](https://poissonconsulting.github.io/chk/articles/chk.html) vignette.
+
+## Installation
+
+### Release
+
+To install the release version from [CRAN](https://CRAN.R-project.org/package=extras).
+```r
+install.packages("extras")
+```
+
+The website for the release version is at <https://poissonconsulting.github.io/extras/>.
+
+### Development
+
+To install the development version from [GitHub](https://github.com/poissonconsulting/extras)
+```r
+# install.packages("remotes")
+remotes::install_github("poissonconsulting/extras")
+```
+
+or from [r-universe](https://poissonconsulting.r-universe.dev/extras).
+```r
+install.packages("extras", repos = c("https://poissonconsulting.r-universe.dev", "https://cloud.r-project.org"))
+```
+
 ## References
 
 Greenland, S. 2019. Valid P-Values Behave Exactly as They Should: Some Misleading Criticisms of P-Values and Their Resolution With S-Values. The American Statistician 73(sup1): 106–114.
@@ -121,4 +140,3 @@ Please report any [issues](https://github.com/poissonconsulting/extras/issues).
 
 Please note that the extras project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). 
 By contributing to this project, you agree to abide by its terms.
-
