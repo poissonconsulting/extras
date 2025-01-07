@@ -17,8 +17,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto_Condensed-0.4.9/font.css" rel="stylesheet">
 <link href="deps/Roboto_Mono-0.4.9/font.css" rel="stylesheet">
 <link href="deps/Playfair_Display-0.4.9/font.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><link href="deps/KaTex-0.16.10/katex.min.css" rel="stylesheet">
 <script src="deps/KaTex-0.16.10/katex.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Helper Functions for Bayesian Analyses">
 <meta name="description" content="Functions to numericise R objects (coerce to numeric objects), summarise MCMC (Monte Carlo Markov Chain) samples and calculate deviance residuals as well as R translations of some BUGS (Bayesian Using Gibbs Sampling), JAGS (Just Another Gibbs Sampler), STAN and TMB (Template Model Builder) functions.">
@@ -33,7 +33,7 @@
 
     <a class="navbar-brand me-2" href="index.html">extras</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.3.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,22 +75,13 @@
 <p><code>extras</code> provides helper functions for Bayesian analyses.</p>
 <p>In particular it provides functions to summarise vectors of MCMC (Monte Carlo Markov Chain) samples, draw random samples from various distributions and calculate deviance residuals as well as R translations of some BUGS (Bayesian Using Gibbs Sampling), JAGS (Just Another Gibbs Sampler), STAN and TMB (Template Model Builder) functions.</p>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<!-- To install the latest release from [CRAN](https://cran.r-project.org) -->
-<p>To install the developmental version from <a href="https://github.com/poissonconsulting/extras" class="external-link">GitHub</a></p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"poissonconsulting/extras"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
 <h2 id="demonstration">Demonstration<a class="anchor" aria-label="anchor" href="#demonstration"></a>
 </h2>
 <div class="section level3">
 <h3 id="summarise-mcmc-samples">Summarise MCMC Samples<a class="anchor" aria-label="anchor" href="#summarise-mcmc-samples"></a>
 </h3>
 <p>The <code>extras</code> package provides functions to summarise MCMC samples like <code><a href="reference/svalue.html">svalue()</a></code> which gives the <em>surprisal value</em> (Greenland, 2019)</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://poissonconsulting.github.io/extras/">extras</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'extras'</span></span>
@@ -115,6 +106,7 @@
 <p>Implemented distributions with functions to draw random samples, calculate log-likelihoods, and calculate deviance residuals for include:</p>
 <ul>
 <li>Bernoulli</li>
+<li>Binomial</li>
 <li>Beta-binomial</li>
 <li>Gamma</li>
 <li>Gamma-Poisson</li>
@@ -132,7 +124,7 @@
 <h3 id="r-translations">R translations<a class="anchor" aria-label="anchor" href="#r-translations"></a>
 </h3>
 <p>The package also provides R translations of <code>BUGS</code> (and <code>JAGS</code>) functions such as <code><a href="reference/pow.html">pow()</a></code> and <code>log&lt;-</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/pow.html">pow</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 100</span></span>
 <span></span>
@@ -145,7 +137,7 @@
 <h3 id="numericise-r-objects">Numericise R Objects<a class="anchor" aria-label="anchor" href="#numericise-r-objects"></a>
 </h3>
 <p>Atomic vectors, matrices, arrays and data.frames of appropriate classes can be converted to numeric objects suitable for Bayesian analysis using the <code><a href="reference/numericise.html">numericise()</a></code> (and <code><a href="reference/numericise.html">numericize()</a></code>) function.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/numericise.html">numericise</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>    logical <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>,</span>
@@ -157,6 +149,38 @@
 <span><span class="co">#&gt;      logical factor  Date hms</span></span>
 <span><span class="co">#&gt; [1,]       1      1 10957   2</span></span>
 <span><span class="co">#&gt; [2,]       0      2 10958  61</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+</div>
+<div class="section level2">
+<h2 id="information">Information<a class="anchor" aria-label="anchor" href="#information"></a>
+</h2>
+<p>For more information see the <a href="https://poissonconsulting.github.io/chk/articles/chk.html" class="external-link">Get Started</a> vignette.</p>
+</div>
+<div class="section level2">
+<h2 id="installation-1">Installation<a class="anchor" aria-label="anchor" href="#installation-1"></a>
+</h2>
+<div class="section level3">
+<h3 id="release">Release<a class="anchor" aria-label="anchor" href="#release"></a>
+</h3>
+<p>To install the release version from <a href="https://CRAN.R-project.org/package=extras" class="external-link">CRAN</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"extras"</span><span class="op">)</span></span></code></pre></div>
+<p>The website for the release version is at <a href="https://poissonconsulting.github.io/extras/" class="uri">https://poissonconsulting.github.io/extras/</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
+</h3>
+<p>To install the development version from <a href="https://github.com/poissonconsulting/extras" class="external-link">GitHub</a></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"poissonconsulting/extras"</span><span class="op">)</span></span></code></pre></div>
+<p>or from <a href="https://poissonconsulting.r-universe.dev/extras" class="external-link">r-universe</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"extras"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://poissonconsulting.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -221,15 +245,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://github.com/poissonconsulting/extras/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/poissonconsulting/extras/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://app.codecov.io/gh/poissonconsulting/extras" class="external-link"><img src="https://codecov.io/gh/poissonconsulting/extras/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://cran.r-project.org/package=extras" class="external-link"><img src="https://www.r-pkg.org/badges/version/extras" alt="CRAN status"></a></li>
-</ul>
-</div>
+
 
   </aside>
 </div>
