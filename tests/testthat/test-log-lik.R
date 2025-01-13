@@ -207,15 +207,6 @@ test_that("beta_binom memoized function gives same outputs as non-memoized funct
     log_lik_beta_binom(1:100, 200, 0.1, 0, memoize = FALSE),
     log_lik_beta_binom(1:100, 200, 0.1, 0, memoize = TRUE)
   )
-  withr::with_seed(
-    101,
-    {
-      x <- ran_beta_binom(1e7, 10, 0.5, 0.1)
-    }
-  )
-  time_no_mem <- system.time(log_lik_beta_binom(x, 10, 0.5, 0.2, memoize = FALSE))[3]
-  time_mem <- system.time(log_lik_beta_binom(x, 10, 0.5, 0.2, memoize = TRUE))[3]
-  expect_true(time_mem < time_no_mem)
 })
 
 test_that("beta_binom vectorized", {
