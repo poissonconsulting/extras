@@ -4,7 +4,7 @@
 \alias{ran_gamma_pois}
 \title{Gamma-Poisson Random Samples}
 \usage{
-ran_gamma_pois(n = 1, lambda = 1, theta = 0)
+ran_gamma_pois(n = 1, lambda = 1, theta = 0, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

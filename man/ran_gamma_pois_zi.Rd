@@ -4,7 +4,14 @@
 \alias{ran_gamma_pois_zi}
 \title{Zero-Inflated Gamma-Poisson Random Samples}
 \usage{
-ran_gamma_pois_zi(n = 1, lambda = 1, theta = 0, prob = 0)
+ran_gamma_pois_zi(
+  n = 1,
+  lambda = 1,
+  theta = 0,
+  prob = 0,
+  tlower = 0,
+  tupper = Inf
+)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

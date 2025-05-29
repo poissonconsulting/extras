@@ -4,7 +4,14 @@
 \alias{ran_beta_binom}
 \title{Beta-Binomial Random Samples}
 \usage{
-ran_beta_binom(n = 1, size = 1, prob = 0.5, theta = 0)
+ran_beta_binom(
+  n = 1,
+  size = 1,
+  prob = 0.5,
+  theta = 0,
+  tlower = 0,
+  tupper = Inf
+)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

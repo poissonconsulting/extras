@@ -4,7 +4,14 @@
 \alias{log_lik_gamma_pois_zi}
 \title{Zero-Inflated Gamma-Poisson Log-Likelihood}
 \usage{
-log_lik_gamma_pois_zi(x, lambda = 1, theta = 0, prob = 0)
+log_lik_gamma_pois_zi(
+  x,
+  lambda = 1,
+  theta = 0,
+  prob = 0,
+  tlower = 0,
+  tupper = Inf
+)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}

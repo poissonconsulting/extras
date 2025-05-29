@@ -4,7 +4,7 @@
 \alias{ran_norm}
 \title{Normal Random Samples}
 \usage{
-ran_norm(n = 1, mean = 0, sd = 1)
+ran_norm(n = 1, mean = 0, sd = 1, tlower = -Inf, tupper = Inf)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

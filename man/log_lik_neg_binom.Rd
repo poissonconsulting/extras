@@ -4,7 +4,7 @@
 \alias{log_lik_neg_binom}
 \title{Negative Binomial Log-Likelihood}
 \usage{
-log_lik_neg_binom(x, lambda = 1, theta = 0)
+log_lik_neg_binom(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}

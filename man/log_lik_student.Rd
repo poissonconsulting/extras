@@ -4,7 +4,7 @@
 \alias{log_lik_student}
 \title{Student's t Log-Likelihood}
 \usage{
-log_lik_student(x, mean = 0, sd = 1, theta = 0)
+log_lik_student(x, mean = 0, sd = 1, theta = 0, tlower = -Inf, tupper = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of values.}

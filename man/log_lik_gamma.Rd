@@ -4,7 +4,7 @@
 \alias{log_lik_gamma}
 \title{Gamma Log-Likelihood}
 \usage{
-log_lik_gamma(x, shape = 1, rate = 1)
+log_lik_gamma(x, shape = 1, rate = 1, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of values.}

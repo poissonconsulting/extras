@@ -4,7 +4,7 @@
 \alias{log_lik_norm}
 \title{Normal Log-Likelihood}
 \usage{
-log_lik_norm(x, mean = 0, sd = 1)
+log_lik_norm(x, mean = 0, sd = 1, tlower = -Inf, tupper = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of values.}

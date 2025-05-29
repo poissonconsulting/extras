@@ -4,7 +4,7 @@
 \alias{log_lik_pois}
 \title{Poisson Log-Likelihood}
 \usage{
-log_lik_pois(x, lambda = 1)
+log_lik_pois(x, lambda = 1, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}

@@ -4,7 +4,7 @@
 \alias{log_lik_skewnorm}
 \title{Skew Normal Log-Likelihood}
 \usage{
-log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0)
+log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupper = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of values.}

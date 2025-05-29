@@ -300,31 +300,6 @@ res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
   )
 }
 
-res_student_standardized <- function(x, mean, sd, theta) {
-  res <- rep(NA, length(x))
-  if (length(mean) == 1) {
-    mean <- rep(mean, length(x))
-  }
-  if (length(sd) == 1) {
-    sd <- rep(sd, length(x))
-  }
-  if (length(theta) == 1) {
-    theta <- rep(theta, length(x))
-  }
-  bol <- !is.na(theta)
-  use_norm <- bol & theta == 0
-  res[use_norm] <- ((x - mean) / sd)
-  df <- 1 / theta
-  df_var_undef <- bol & df <= 1
-  res[df_var_undef] <- NaN
-  df_var_inf <- bol & 1 < df & df <= 2
-  res[df_var_inf] <- 0
-  df_var_def <- bol & df > 2 & df < Inf
-  res[df_var_def] <- ((x[df_var_def] - mean[df_var_def]) / (sd[df_var_def] *
-    sqrt((1 / theta[df_var_def]) / (1 / theta[df_var_def] - 2))))
-  return(res)
-}
-
 #' Skew Normal Residuals
 #'
 #' @inheritParams params
@@ -351,6 +326,31 @@ res_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, type = "dev", simulate 
     dev = dev_skewnorm(x, mean = mean, sd = sd, shape = shape, res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )
+}
+
+res_student_standardized <- function(x, mean, sd, theta) {
+  res <- rep(NA, length(x))
+  if (length(mean) == 1) {
+    mean <- rep(mean, length(x))
+  }
+  if (length(sd) == 1) {
+    sd <- rep(sd, length(x))
+  }
+  if (length(theta) == 1) {
+    theta <- rep(theta, length(x))
+  }
+  bol <- !is.na(theta)
+  use_norm <- bol & theta == 0
+  res[use_norm] <- ((x - mean) / sd)
+  df <- 1 / theta
+  df_var_undef <- bol & df <= 1
+  res[df_var_undef] <- NaN
+  df_var_inf <- bol & 1 < df & df <= 2
+  res[df_var_inf] <- 0
+  df_var_def <- bol & df > 2 & df < Inf
+  res[df_var_def] <- ((x[df_var_def] - mean[df_var_def]) / (sd[df_var_def] *
+    sqrt((1 / theta[df_var_def]) / (1 / theta[df_var_def] - 2))))
+  return(res)
 }
 
 #' Student's t Residuals

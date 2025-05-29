@@ -4,7 +4,7 @@
 \alias{ran_lnorm}
 \title{Log-Normal Random Samples}
 \usage{
-ran_lnorm(n = 1, meanlog = 0, sdlog = 1)
+ran_lnorm(n = 1, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to
