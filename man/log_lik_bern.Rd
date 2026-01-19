@@ -23,6 +23,7 @@ log_lik_bern(c(TRUE, FALSE), 0.7)
 }
 \seealso{
 Other log_lik_dist: 
+\code{\link{log_lik_beta}()},
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
 \code{\link{log_lik_gamma}()},

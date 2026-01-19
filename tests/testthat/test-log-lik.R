@@ -10,6 +10,21 @@ test_that("log_lik_bern", {
   expect_equal(log_lik_bern(1, 0.7), -0.356674943938732)
 })
 
+test_that("log_lik_beta", {
+  expect_identical(log_lik_beta(numeric(0)), numeric(0))
+  expect_identical(log_lik_beta(1, alpha = numeric(0)), numeric(0))
+  expect_identical(log_lik_beta(NA), NA_real_)
+  expect_identical(log_lik_beta(1, NA), NA_real_)
+  expect_identical(log_lik_beta(0, 0), Inf)
+  expect_identical(log_lik_beta(0L, 0), Inf)
+  expect_identical(log_lik_beta(1, 0), -Inf)
+  expect_identical(log_lik_beta(1), 0)
+  expect_identical(log_lik_beta(0.5), 0)
+  expect_identical(log_lik_beta(0, 2, 2), -Inf)
+  expect_identical(log_lik_beta(1, 2, 2), -Inf)    
+  expect_equal(log_lik_beta(0.5, 2, 2), 0.405465108108164)
+})
+
 test_that("log_lik_binom", {
   expect_identical(log_lik_binom(numeric(0)), numeric(0))
   expect_identical(log_lik_binom(1, numeric(0)), numeric(0))
