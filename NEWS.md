@@ -1,6 +1,11 @@
-# extras (development version)
-
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# extras 0.8.0.9001
+
+- Added `log_lik_exp()`.
+- Added `log_lik_beta()`.
+- Added 'log_lik_unif()'.
+
 
 # extras 0.8.0
 
