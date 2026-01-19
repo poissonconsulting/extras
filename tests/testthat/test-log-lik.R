@@ -41,6 +41,17 @@ test_that("log_lik_binom", {
   expect_identical(log_lik_binom(1, 2, 0.7), dbinom(1, 2, 0.7, log = TRUE))
 })
 
+test_that("log_lik_exp", {
+  expect_identical(log_lik_exp(numeric(0)), numeric(0))
+  expect_identical(log_lik_exp(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_exp(NA), NA_real_)
+  expect_identical(log_lik_exp(1, NA), NA_real_)
+  expect_equal(log_lik_exp(0), 0)
+  expect_equal(log_lik_exp(1, 1), -1)
+  expect_equal(log_lik_exp(1, 1/2), -1.19314718055995)
+
+  expect_identical(log_lik_exp(1, 1/2), dexp(1, 1/2, log = TRUE))
+})
 
 test_that("log_lik_pois", {
   expect_equal(log_lik_pois(1, 2), -1.30685281944005)
