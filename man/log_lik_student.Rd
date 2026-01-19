@@ -28,6 +28,7 @@ log_lik_student(c(1, 3.5, 4), mean = 1, sd = 2, theta = 1 / 3)
 \seealso{
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
+\code{\link{log_lik_beta}()},
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
 \code{\link{log_lik_gamma}()},

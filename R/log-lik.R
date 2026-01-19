@@ -106,6 +106,21 @@ log_lik_bern <- function(x, prob = 0.5) {
   log_lik_binom(x, size = 1, prob = prob)
 }
 
+#' Beta Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A vector of values between 0s and 1s.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_beta(c(0, 0.5, 0.7, 1), 0.7)
+log_lik_beta <- function(x, beta = 1, alpha = 1) {
+  stats::dbeta(x, shape1 = alpha , shape2 = beta, log = TRUE)
+}
+
 #' Binomial Log-Likelihood
 #'
 #' @inheritParams params

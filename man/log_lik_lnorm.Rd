@@ -26,6 +26,7 @@ log_lik_lnorm(10, 0, 2)
 \seealso{
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
+\code{\link{log_lik_beta}()},
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
 \code{\link{log_lik_gamma}()},
