@@ -9,9 +9,9 @@ log_lik_beta(x, alpha = 1, beta = 1)
 \arguments{
 \item{x}{A vector of values between 0s and 1s.}
 
-\item{alpha}{The first shape parameter of the Beta distribution.}
+\item{alpha}{The first shape parameter of the beta distribution.}
 
-\item{beta}{The second shape parameter of the Beta distribution.}
+\item{beta}{The second shape parameter of the beta distribution.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
@@ -27,6 +27,7 @@ Other log_lik_dist:
 \code{\link{log_lik_bern}()},
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
+\code{\link{log_lik_exp}()},
 \code{\link{log_lik_gamma}()},
 \code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_gamma_pois_zi}()},
@@ -36,6 +37,7 @@ Other log_lik_dist:
 \code{\link{log_lik_pois}()},
 \code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_skewnorm}()},
-\code{\link{log_lik_student}()}
+\code{\link{log_lik_student}()},
+\code{\link{log_lik_unif}()}
 }
 \concept{log_lik_dist}

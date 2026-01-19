@@ -25,8 +25,10 @@ log_lik_unif(c(0, 0.7, 1))
 \seealso{
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
+\code{\link{log_lik_beta}()},
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
+\code{\link{log_lik_exp}()},
 \code{\link{log_lik_gamma}()},
 \code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_gamma_pois_zi}()},

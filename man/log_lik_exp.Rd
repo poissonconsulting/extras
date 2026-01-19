@@ -23,6 +23,7 @@ log_lik_exp(c(0, 1, 2), 2)
 \seealso{
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
+\code{\link{log_lik_beta}()},
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
 \code{\link{log_lik_gamma}()},
@@ -34,6 +35,7 @@ Other log_lik_dist:
 \code{\link{log_lik_pois}()},
 \code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_skewnorm}()},
-\code{\link{log_lik_student}()}
+\code{\link{log_lik_student}()},
+\code{\link{log_lik_unif}()}
 }
 \concept{log_lik_dist}
