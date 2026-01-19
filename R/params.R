@@ -20,8 +20,10 @@
 #' @param log A flag specifying whether to return the log-transformed value.
 #' @param lower.tail A flag specifying whether to return the lower or upper tail
 #'   of the distribution.
+#' @param min A numeric vector of the minimums.
 #' @param mean A numeric vector of the means.
 #' @param meanlog A numeric vector of the means on the log scale.
+#' @param max A numeric vector of the maximums.
 #' @param n A non-negative whole number of the number of random samples to
 #'   generate.
 #' @param na_rm A flag specifying whether to remove missing values.

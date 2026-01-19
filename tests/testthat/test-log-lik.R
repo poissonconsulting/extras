@@ -291,3 +291,21 @@ test_that("skewnorm vectorized", {
     c(-111.116353440211, -11.8095006207706, -11.1163537268622, -111.116353440211)
   )
 })
+
+test_that("log_lik_unif", {
+  expect_identical(log_lik_unif(numeric(0)), numeric(0))
+  expect_identical(log_lik_unif(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_unif(1, max = numeric(0)), numeric(0))
+  expect_identical(log_lik_unif(NA), NA_real_)
+  expect_identical(log_lik_unif(1, NA), NA_real_)
+  expect_identical(log_lik_unif(1, max = NA), NA_real_)
+  expect_identical(log_lik_unif(0, 0), 0)
+  expect_identical(log_lik_unif(0L, 0), 0)
+  expect_equal(log_lik_unif(1, 1), NaN)
+  expect_equal(log_lik_unif(1, max = 1), -0)
+  expect_equal(log_lik_unif(1, min = 0.5, max = 1.5), 0)
+  expect_equal(log_lik_unif(1, min = 0, max = 2), log(0.5))
+  expect_equal(log_lik_unif(c(0,1), min = 0, max = 2), log(c(0.5, 0.5)))
+
+  expect_identical(log_lik_unif(0.5, 0, 2), dunif(0.5, 0, 2, log = TRUE))
+})

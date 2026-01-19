@@ -41,6 +41,7 @@ Other log_lik_dist:
 \code{\link{log_lik_norm}()},
 \code{\link{log_lik_pois}()},
 \code{\link{log_lik_pois_zi}()},
-\code{\link{log_lik_student}()}
+\code{\link{log_lik_student}()},
+\code{\link{log_lik_unif}()}
 }
 \concept{log_lik_dist}
