@@ -4,12 +4,12 @@
 \alias{log_lik_exp}
 \title{Exponential Log-Likelihood}
 \usage{
-log_lik_exp(x, scale = 1)
+log_lik_exp(x, mean = 1)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
 
-\item{scale}{A non-negative numeric vector of the scale.}
+\item{mean}{A numeric vector of the means.}
 }
 \value{
 A numeric vector of the corresponding log-likelihoods.

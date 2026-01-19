@@ -134,8 +134,8 @@ log_lik_binom <- function(x, size = 1, prob = 0.5) {
 #'
 #' @examples
 #' log_lik_exp(c(0, 1, 2), 2)
-log_lik_exp <- function(x, scale = 1) {
-  stats::dexp(x, rate = 1/scale, log = TRUE)
+log_lik_exp <- function(x, mean = 1) {
+  stats::dexp(x, rate = 1/mean, log = TRUE)
 }
 
 #' Gamma Log-Likelihood
