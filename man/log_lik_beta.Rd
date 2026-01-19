@@ -4,14 +4,14 @@
 \alias{log_lik_beta}
 \title{Beta Log-Likelihood}
 \usage{
-log_lik_beta(x, beta = 1, alpha = 1)
+log_lik_beta(x, alpha = 1, beta = 1)
 }
 \arguments{
 \item{x}{A vector of values between 0s and 1s.}
 
-\item{beta}{The second shape parameter of the Beta distribution.}
-
 \item{alpha}{The first shape parameter of the Beta distribution.}
+
+\item{beta}{The second shape parameter of the Beta distribution.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

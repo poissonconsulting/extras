@@ -117,7 +117,7 @@ log_lik_bern <- function(x, prob = 0.5) {
 #'
 #' @examples
 #' log_lik_beta(c(0, 0.5, 0.7, 1), 0.7)
-log_lik_beta <- function(x, beta = 1, alpha = 1) {
+log_lik_beta <- function(x, alpha = 1, beta = 1) {
   stats::dbeta(x, shape1 = alpha , shape2 = beta, log = TRUE)
 }
 
