@@ -299,3 +299,18 @@ log_lik_student <- function(x, mean = 0, sd = 1, theta = 0) {
   lstudent[use_norm] <- lnorm[use_norm]
   lstudent
 }
+
+#' Uniform Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_unif(c(0, 0.7, 1))
+log_lik_unif <- function(x, min = 0, max = 1) {
+  stats::dunif(x, min = min, max = max, log = TRUE)
+}

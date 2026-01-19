@@ -26,9 +26,13 @@ should be returned as negative values.}
 \item{lower.tail}{A flag specifying whether to return the lower or upper tail
 of the distribution.}
 
+\item{min}{A numeric vector of the minimums.}
+
 \item{mean}{A numeric vector of the means.}
 
 \item{meanlog}{A numeric vector of the means on the log scale.}
+
+\item{max}{A numeric vector of the maximums.}
 
 \item{n}{A non-negative whole number of the number of random samples to
 generate.}
