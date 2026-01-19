@@ -121,6 +121,23 @@ log_lik_binom <- function(x, size = 1, prob = 0.5) {
   dbinom(x, size = size, prob = prob, log = TRUE)
 }
 
+#' Exponential Log-Likelihood
+#'
+#' The exponential distribution is parameterized in terms of the scale.
+#' 
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return A numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_exp(c(0, 1, 2), 2)
+log_lik_exp <- function(x, scale = 1) {
+  stats::dexp(x, rate = 1/scale, log = TRUE)
+}
+
 #' Gamma Log-Likelihood
 #'
 #' @inheritParams params

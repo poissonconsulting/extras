@@ -9,9 +9,9 @@
 \arguments{
 \item{...}{Other arguments passed to methods.}
 
-\item{alpha}{The first shape parameter of the Beta distribution.}
+\item{alpha}{The first shape parameter of the beta distribution.}
 
-\item{beta}{The second shape parameter of the Beta distribution.}
+\item{beta}{The second shape parameter of the beta distribution.}
 
 \item{conf_level}{A numeric scalar between 0 and 1 specifying the confidence
 level.}
@@ -48,6 +48,8 @@ success.}
 
 \item{res}{A flag specifying whether to return the deviance residual as
 opposed to the deviance.}
+
+\item{scale}{A non-negative numeric vector of the scale.}
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
