@@ -33,9 +33,9 @@ test_that("log_lik_exp", {
   expect_identical(log_lik_exp(1, NA), NA_real_)
   expect_equal(log_lik_exp(0), 0)
   expect_equal(log_lik_exp(1, 1), -1)
-  expect_equal(log_lik_exp(1, 2), -1.19314718055995)
+  expect_equal(log_lik_exp(1, 1/2), -1.19314718055995)
 
-  expect_identical(log_lik_exp(1, 2), dexp(1, 1/2, log = TRUE))
+  expect_identical(log_lik_exp(1, 1/2), dexp(1, 1/2, log = TRUE))
 })
 
 test_that("log_lik_pois", {
