@@ -21,7 +21,7 @@ An numeric vector of the corresponding quantiles.
 Binomial Quantile Function
 }
 \examples{
-quant_binom(c(0, 1, 2), 2, 0.3)
+quant_binom(c(0.1, 0.4, 0.6), 2, 0.3)
 }
 \seealso{
 Other quant_dist: 

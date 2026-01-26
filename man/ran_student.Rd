@@ -4,7 +4,7 @@
 \alias{ran_student}
 \title{Student's t Random Samples}
 \usage{
-ran_student(n = 1, mean = 0, sd = 1, theta = 0, tlower = -Inf, tuuper = Inf)
+ran_student(n = 1, mean = 0, sd = 1, theta = 0)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

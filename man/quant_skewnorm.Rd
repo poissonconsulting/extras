@@ -23,9 +23,9 @@ Skew Normal Quantile Function
 }
 \examples{
 \dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
-quant_skewnorm(c(-2:2))
-quant_skewnorm(c(-2:2), shape = -2)
-quant_skewnorm(c(-2:2), shape = 2)
+quant_skewnorm(c(0.1, 0.4, 0.6))
+quant_skewnorm(c(0.1, 0.4, 0.6), shape = -2)
+quant_skewnorm(c(0.1, 0.4, 0.6), shape = 2)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

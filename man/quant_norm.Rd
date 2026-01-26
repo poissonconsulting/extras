@@ -20,7 +20,7 @@ An numeric vector of the corresponding quantiles.
 Normal Quantile Function
 }
 \examples{
-quant_norm(c(-2:2))
+quant_norm(c(0.1, 0.4, 0.6))
 }
 \seealso{
 Other quant_dist: 

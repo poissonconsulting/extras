@@ -18,7 +18,7 @@ An numeric vector of the corresponding quantiles.
 Poisson Quantile Function
 }
 \examples{
-quant_pois(c(1, 3, 4), 3)
+quant_pois(c(0.1, 0.4, 0.6), 3)
 }
 \seealso{
 Other quant_dist: 

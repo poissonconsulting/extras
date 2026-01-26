@@ -21,14 +21,15 @@
 #' @export
 #'
 #' @examples
-#' quant_beta_binom(c(0, 1, 2), 3, 0.5, 0)
+#' quant_beta_binom(c(0.1, 0.4, 0.6), 3, 0.5, 0)
 quant_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
+  # Needs numerical optimization if theta > 0 - not yet implemented.
+  stop("Quantile function for the beta-binomial distribution not currently implemented.")
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
-  quant <- quant_binom(x = x, size = size, prob = prob)
-  # FIXME: if theta > 0 need the beta-binom version.. how to do this??
-  # maybe truncating the beta_binomial distribution won't be super relevant...
-  stop("Quantile function for the beta-binomial distribution not currently implemented.")
+  if (!is.na(theta) & theta == 0) {
+    return(quant_binom(x = x, size = size, prob = prob))
+  }
 }
 
 
@@ -44,7 +45,7 @@ quant_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
 #' @examples
 #' quant_bern(c(TRUE, FALSE), 0.7)
 quant_bern <- function(x, prob = 0.5) {
-  quant_binom(x, size = 1, prob = prob)
+  qbern(p = x, prob = prob)
 }
 
 #' Binomial Quantile Function
@@ -57,7 +58,7 @@ quant_bern <- function(x, prob = 0.5) {
 #' @export
 #'
 #' @examples
-#' quant_binom(c(0, 1, 2), 2, 0.3)
+#' quant_binom(c(0.1, 0.4, 0.6), 2, 0.3)
 quant_binom <- function(x, size = 1, prob = 0.5) {
   stats::qbinom(p = x, size = size, prob = prob)
 }
@@ -72,7 +73,7 @@ quant_binom <- function(x, size = 1, prob = 0.5) {
 #' @export
 #'
 #' @examples
-#' quant_gamma(c(0, 1, 2), 1, 2)
+#' quant_gamma(c(0.1, 0.4, 0.6), 1, 2)
 quant_gamma <- function(x, shape = 1, rate = 1) {
   stats::qgamma(p = x, shape = shape, rate = rate)
 }
@@ -87,7 +88,7 @@ quant_gamma <- function(x, shape = 1, rate = 1) {
 #' @export
 #'
 #' @examples
-#' quant_gamma_pois(c(0, 1, 2), 1, 1)
+#' quant_gamma_pois(c(0.1, 0.4, 0.6), 1, 1)
 quant_gamma_pois <- function(x, lambda = 1, theta = 0) {
   quant_neg_binom(x, lambda = lambda, theta = theta)
 }
@@ -102,7 +103,7 @@ quant_gamma_pois <- function(x, lambda = 1, theta = 0) {
 #' @export
 #'
 #' @examples
-#' quant_gamma_pois_zi(c(1, 3, 4), 3, 1, prob = 0.5)
+#' quant_gamma_pois_zi(c(0.1, 0.4, 0.6), 3, 1, prob = 0.5)
 quant_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
   stats::qnbinom(p = pmax(0, (x - prob) / (1 - prob)), mu = lambda, size = 1 / theta)
 }
@@ -117,7 +118,7 @@ quant_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
 #' @export
 #'
 #' @examples
-#' quant_lnorm(10, 0, 2)
+#' quant_lnorm(c(0.1, 0.4, 0.6), 0, 2)
 quant_lnorm <- function(x, meanlog = 0, sdlog = 1) {
   stats::qlnorm(p = x, meanlog = meanlog, sdlog = sdlog)
 }
@@ -132,7 +133,7 @@ quant_lnorm <- function(x, meanlog = 0, sdlog = 1) {
 #' @export
 #'
 #' @examples
-#' quant_neg_binom(c(0, 1, 2), 2, 1)
+#' quant_neg_binom(c(0.1, 0.4, 0.6), 2, 1)
 quant_neg_binom <- function(x, lambda = 1, theta = 0) {
   stats::qnbinom(p = x, mu = lambda, size = 1 / theta)
 }
@@ -147,7 +148,7 @@ quant_neg_binom <- function(x, lambda = 1, theta = 0) {
 #' @export
 #'
 #' @examples
-#' quant_norm(c(-2:2))
+#' quant_norm(c(0.1, 0.4, 0.6))
 quant_norm <- function(x, mean = 0, sd = 1) {
   stats::qnorm(p = x, mean = mean, sd = sd)
 }
@@ -162,7 +163,7 @@ quant_norm <- function(x, mean = 0, sd = 1) {
 #' @export
 #'
 #' @examples
-#' quant_pois(c(1, 3, 4), 3)
+#' quant_pois(c(0.1, 0.4, 0.6), 3)
 quant_pois <- function(x, lambda = 1) {
   stats::qpois(p = x, lambda = lambda)
 }
@@ -177,7 +178,7 @@ quant_pois <- function(x, lambda = 1) {
 #' @export
 #'
 #' @examples
-#' quant_pois_zi(c(1, 3, 4), 3, prob = 0.5)
+#' quant_pois_zi(c(0.1, 0.4, 0.6), 3, prob = 0.5)
 quant_pois_zi <- function(x, lambda = 1, prob = 0) {
   stats::qpois(pmax(0, (x - prob) / (1 - prob)), lambda)
 }
@@ -193,9 +194,9 @@ quant_pois_zi <- function(x, lambda = 1, prob = 0) {
 #' @export
 #'
 #' @examplesIf rlang::is_installed("sn")
-#' quant_skewnorm(c(-2:2))
-#' quant_skewnorm(c(-2:2), shape = -2)
-#' quant_skewnorm(c(-2:2), shape = 2)
+#' quant_skewnorm(c(0.1, 0.4, 0.6))
+#' quant_skewnorm(c(0.1, 0.4, 0.6), shape = -2)
+#' quant_skewnorm(c(0.1, 0.4, 0.6), shape = 2)
 quant_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
   qskewnorm(p = x, mean = mean, sd = sd, shape = shape)
 }
@@ -210,9 +211,10 @@ quant_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
 #' @export
 #'
 #' @examples
-#' quant_student(c(1, 3.5, 4), mean = 1, sd = 2, theta = 1 / 3)
+#' quant_student(c(0.1, 0.4, 0.6), mean = 1, sd = 2, theta = 1 / 3)
 quant_student <- function(x, mean = 0, sd = 1, theta = 0) {
-  chk::chk_gte(sd, 0) # FIXME: why don't we have more chk functions in the log_lik ones?? ask Joe
+  chk::chk_number(mean)
+  chk::chk_gte(sd)
   df <- 1 / theta
   mean + sd * stats::qt(x, df)
 }

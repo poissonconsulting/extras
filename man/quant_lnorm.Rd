@@ -21,7 +21,7 @@ An numeric vector of the corresponding quantiles.
 Log-Normal Quantile Function
 }
 \examples{
-quant_lnorm(10, 0, 2)
+quant_lnorm(c(0.1, 0.4, 0.6), 0, 2)
 }
 \seealso{
 Other quant_dist: 

@@ -4,7 +4,7 @@
 \alias{ran_pois}
 \title{Poisson Random Samples}
 \usage{
-ran_pois(n = 1, lambda = 1, tlower = 0, tupper = Inf)
+ran_pois(n = 1, lambda = 1)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

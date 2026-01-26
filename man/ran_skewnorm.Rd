@@ -4,7 +4,7 @@
 \alias{ran_skewnorm}
 \title{Skew Normal Random Samples}
 \usage{
-ran_skewnorm(n = 1, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupper = Inf)
+ran_skewnorm(n = 1, mean = 0, sd = 1, shape = 0)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

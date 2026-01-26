@@ -8,6 +8,8 @@ test_that("log_lik_bern", {
   expect_identical(log_lik_bern(1, 1), 0)
   expect_equal(log_lik_bern(0), -0.693147180559945)
   expect_equal(log_lik_bern(1, 0.7), -0.356674943938732)
+  expect_error(log_lik_bern(1, 0.7, tlower = 0))
+  expect_error(log_lik_bern(1, 0.7, tupper = 0.4))
 })
 
 test_that("log_lik_binom", {
@@ -25,12 +27,56 @@ test_that("log_lik_binom", {
   expect_identical(log_lik_binom(1, 2, 0.7), dbinom(1, 2, 0.7, log = TRUE))
 })
 
+test_that("log_lik_binom truncated", {
+  expect_identical(log_lik_binom(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_binom(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_binom(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_identical(log_lik_binom(1, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_binom(0, 0, tlower = 1), -Inf)
+  expect_identical(log_lik_binom(4L, 10, 0.5, tlower = 5), -Inf)
+  expect_equal(log_lik_binom(4L, 10, 0.5, tlower = 2), -1.57356397353121)
+  expect_equal(log_lik_binom(4, 10, 0.5, tlower = 2, tupper = 7), -1.51669586073549)
+  expect_equal(log_lik_binom(c(4, 10), 10, 0.5, tlower = 2, tupper = 7), c(-1.51669586073549, -Inf))
+  expect_equal(log_lik_binom(c(2, 7), 10, 0.5, tlower = 2, tupper = 7), c(-3.05714090168264, -2.07631164867091))
+  expect_equal(log_lik_binom(c(1, 8), 10, 0.5, tlower = 2, tupper = 7), rep(-Inf, 2))
+  expect_equal(log_lik_binom(c(1, 1), 10, 0.5, tlower = c(1, 2), tupper = 7), c(-4.57161340245925, -Inf))
+  expect_equal(log_lik_binom(1, 10, 0.4, tlower = 0), log_lik_binom(1, 10, 0.4, tlower = -1))
+})
+
 
 test_that("log_lik_pois", {
+  expect_identical(log_lik_pois(numeric(0)), numeric(0))
+  expect_identical(log_lik_pois(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_pois(NA), NA_real_)
+  expect_identical(log_lik_pois(1, NA), NA_real_)
   expect_equal(log_lik_pois(1, 2), -1.30685281944005)
 })
 
+test_that("log_lik_pois truncated", {
+  expect_identical(log_lik_pois(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_pois(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_pois(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_identical(log_lik_pois(1, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_pois(0, 1, tlower = 1), -Inf)
+  expect_identical(log_lik_pois(4L, 10, tlower = 5), -Inf)
+  expect_equal(log_lik_pois(4L, 10, tlower = 2), -3.96721393440305)
+  expect_equal(log_lik_pois(4L, 10, tupper = 7), -2.45458816223323)
+  expect_equal(log_lik_pois(4, 10, tlower = 2, tupper = 7), -2.45231786495658)
+  expect_equal(log_lik_pois(c(4, 10), 10, tlower = 2, tupper = 7), c(-2.45231786495658, -Inf))
+  expect_equal(log_lik_pois(c(2, 7), 10, tlower = 2, tupper = 7), c(-4.57258140115667, -0.891670116691908))
+  expect_equal(log_lik_pois(c(1, 8), 10, tlower = 2, tupper = 7), rep(-Inf, 2))
+  expect_equal(log_lik_pois(c(1, 1), 10, tlower = c(1, 2), tupper = 7), c(-6.1840834330596, -Inf))
+  expect_equal(log_lik_pois(1, 10, tlower = 0), log_lik_pois(1, 10, tlower = -1))
+})
+
 test_that("log_lik_pois_zi", {
+  expect_identical(log_lik_pois_zi(numeric(0)), numeric(0))
+  expect_identical(log_lik_pois_zi(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_pois_zi(1, prob = numeric(0)), numeric(0))
+  expect_identical(log_lik_pois_zi(NA), NA_real_)
+  expect_identical(log_lik_pois_zi(1, NA), NA_real_)
+  expect_identical(log_lik_pois_zi(1, prob = NA), NA_real_)
+
   expect_identical(log_lik_pois_zi(1, 2), dpois(1, 2, log = TRUE))
   expect_identical(log_lik_pois_zi(0, 2), dpois(0, 2, log = TRUE))
   expect_identical(log_lik_pois_zi(0, 2, 1), 0)
@@ -41,19 +87,81 @@ test_that("log_lik_pois_zi", {
   expect_equal(log_lik_pois_zi(3, 3.5, 0.1), -1.63883107939978)
   expect_equal(log_lik_pois_zi(3, 3.5, 0.2), -1.75661411505616)
   expect_equal(log_lik_pois_zi(3, 3.5, 1), -Inf)
+  expect_equal(log_lik_pois_zi(1, 10, 0.4, tlower = 0), log_lik_pois_zi(1, 10, 0.4, tlower = -1))
+})
+
+test_that("log_lik_pois_zi truncated", {
+  expect_identical(log_lik_pois_zi(1, prob = 0.5, tlower = NA), NA_real_)
+  expect_identical(log_lik_pois_zi(1, prob = 0.5, tupper = NA), NA_real_)
+  expect_warning(log_lik_pois_zi(0, 1, 0.5, tlower = 1), "Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
+  expect_equal(suppressWarnings(log_lik_pois_zi(0, 1, 0.5, tlower = 1)), -Inf)
+  expect_equal(log_lik_pois_zi(4L, 10, prob = 0.2, tupper = 7), -2.45442322338786)
+  expect_equal(log_lik_pois_zi(4, 10, prob = 0.3, tupper = 7), -2.45444384223136)
+  expect_equal(log_lik_pois_zi(c(4, 10), prob = 0.5, 10, tupper = 7), c(-2.45448507864298, -Inf))
+  expect_equal(log_lik_pois_zi(c(2, 7), prob = 0.5, 10, tupper = 7), c(-4.57474861484307, -0.893837330378314))
+  expect_equal(log_lik_pois_zi(c(1, 8), prob = 0.5, 10, tupper = 7), c(-6.18418652727717, -Inf))
+  expect_equal(suppressWarnings(log_lik_pois_zi(c(1, 1), prob = 0.5, 10, tlower = c(1, 2), tupper = 7)), c(-6.18201931359077, -Inf))
+  expect_warning(log_lik_pois_zi(c(1, 1), prob = 0.5, 10, tlower = c(1, 2), tupper = 7), "Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
+  expect_equal(log_lik_pois_zi(2, prob = c(0.5, 0.1), 10, tupper = c(7, 10)), c(-4.57474861484307, -5.54840699843274))
+  expect_equal(log_lik_pois_zi(1, 10, prob = 0.5, tlower = 0), log_lik_pois_zi(1, prob = 0.5, 10, tlower = -1))
 })
 
 test_that("log_lik_norm", {
+  expect_identical(log_lik_norm(numeric(0)), numeric(0))
+  expect_identical(log_lik_norm(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_norm(1, sd = numeric(0)), numeric(0))
+  expect_identical(log_lik_norm(NA), NA_real_)
+  expect_identical(log_lik_norm(1, NA), NA_real_)
+  expect_identical(log_lik_norm(1, sd = NA), NA_real_)
   expect_identical(log_lik_norm(1, 2), dnorm(1, 2, log = TRUE))
+})
+
+test_that("log_lik_norm truncated", {
+  expect_identical(log_lik_norm(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_norm(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_norm(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_identical(log_lik_norm(1, tupper = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_equal(log_lik_norm(10, 10, 1, tlower = 0), -0.918938533204673)
+  expect_equal(log_lik_norm(10, 10, 1, tlower = 0, tupper = 10), -0.225791352644727)
+  expect_equal(log_lik_norm(c(10, 2), 10, 1, tlower = 0, tupper = 10), c(-0.225791352644727, -32.2257913526447))
+  expect_equal(log_lik_norm(c(10, 2), c(10, 3), 1, tlower = 0, tupper = 10), c(-0.225791352644727, -1.41758772323864))
+  expect_equal(log_lik_norm(c(10, 2), c(10, 3), c(1, 2), tlower = 0, tupper = 10), c(-0.225791352644727, -1.66769294409916))
+  expect_equal(log_lik_norm(c(10, 2), c(10, 3), c(1, 2), tlower = c(0, 1), tupper = 10), c(-0.225791352644727, -1.56405539976945))
+  expect_equal(log_lik_norm(c(10, 2), c(10, 3), c(1, 2), tlower = c(0, 1), tupper = c(10, 12)), c(-0.225791352644727, -1.56432789634906))
 })
 
 test_that("log_lik_lnorm", {
   expect_identical(log_lik_lnorm(1, 2), dlnorm(1, 2, log = TRUE))
 })
 
+test_that("log_lik_lnorm truncated", {
+  expect_identical(log_lik_lnorm(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_lnorm(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_lnorm(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_identical(log_lik_lnorm(1, tupper = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_equal(log_lik_lnorm(10, 10, 1, tlower = 0), -32.8466217514975)
+  expect_equal(log_lik_lnorm(10, 10, 1, tlower = 0, tupper = 10), -0.24548202100403)
+  expect_equal(log_lik_lnorm(c(10, 2), 10, 1, tlower = 0, tupper = 10), c(-0.24548202100403, -12.3197006846308))
+  expect_equal(log_lik_lnorm(c(10, 2), c(10, 3), 1, tlower = 0, tupper = 10), c(-0.24548202100403, -2.85723643248397))
+  expect_equal(log_lik_lnorm(c(10, 2), c(10, 3), c(1, 2), tlower = 0, tupper = 10), c(-0.24548202100403, -1.95887802625377))
+  expect_equal(log_lik_lnorm(c(10, 2), c(10, 3), c(1, 2), tlower = c(0, 1), tupper = 10), c(-0.24548202100403, -1.75589163000754))
+  expect_equal(log_lik_lnorm(c(10, 2), c(10, 3), c(1, 2), tlower = c(0, 1), tupper = c(10, 12)), c(-0.24548202100403, -1.86651640350366))
+})
+
+
 test_that("log_lik_neg_binom", {
   expect_identical(log_lik_neg_binom(0, 2, 1), dnbinom(0, mu = 2, size = 1, log = TRUE))
   expect_identical(log_lik_neg_binom(0, 2, 2), dnbinom(0, size = 1 / 2, mu = 2, log = TRUE))
+})
+
+test_that("log_lik_neg_binom truncated", {
+  expect_identical(log_lik_neg_binom(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_neg_binom(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_neg_binom(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_identical(log_lik_neg_binom(1, tupper = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_equal(log_lik_neg_binom(1, 10, 0.2, tlower = 10), -Inf) # FIXME: need check that tlower is an integer!
+  expect_equal(log_lik_neg_binom(1, 10, 0.2, tlower = 9), -Inf)
+
 })
 
 test_that("log_lik_gamma_pois", {

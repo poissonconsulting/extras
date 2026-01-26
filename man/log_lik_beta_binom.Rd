@@ -31,6 +31,9 @@ models (student, gamma-Poisson and beta-binomial).}
 An numeric vector of the corresponding log-likelihoods.
 }
 \description{
+Beta-Binomial Log-Likelihood
+}
+\details{
 This parameterization of the beta-binomial distribution uses an expected
 probability parameter, \code{prob}, and a dispersion parameter, \code{theta}. The
 parameters of the underlying beta mixture are \code{alpha = (2 * prob) / theta}

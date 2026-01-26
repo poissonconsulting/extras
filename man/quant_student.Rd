@@ -23,7 +23,7 @@ An numeric vector of the corresponding quantiles.
 Student's t Quantile Function
 }
 \examples{
-quant_student(c(1, 3.5, 4), mean = 1, sd = 2, theta = 1 / 3)
+quant_student(c(0.1, 0.4, 0.6), mean = 1, sd = 2, theta = 1 / 3)
 }
 \seealso{
 Other quant_dist: 

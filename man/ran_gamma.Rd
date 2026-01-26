@@ -4,7 +4,7 @@
 \alias{ran_gamma}
 \title{Gamma Random Samples}
 \usage{
-ran_gamma(n = 1, shape = 1, rate = 1, tlower = 0, tupper = Inf)
+ran_gamma(n = 1, shape = 1, rate = 1)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

@@ -4,7 +4,7 @@
 \alias{ran_binom}
 \title{Binomial Random Samples}
 \usage{
-ran_binom(n = 1, size = 1, prob = 0.5, tlower = 0, tupper = Inf)
+ran_binom(n = 1, size = 1, prob = 0.5)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

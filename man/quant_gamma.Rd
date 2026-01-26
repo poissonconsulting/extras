@@ -20,7 +20,7 @@ An numeric vector of the corresponding quantiles.
 Gamma Quantile Function
 }
 \examples{
-quant_gamma(c(0, 1, 2), 1, 2)
+quant_gamma(c(0.1, 0.4, 0.6), 1, 2)
 }
 \seealso{
 Other quant_dist: 

@@ -4,7 +4,7 @@
 \alias{ran_pois_zi}
 \title{Zero-Inflated Poisson Random Samples}
 \usage{
-ran_pois_zi(n = 1, lambda = 1, prob = 0, tlower = 0, tupper = Inf)
+ran_pois_zi(n = 1, lambda = 1, prob = 0)
 }
 \arguments{
 \item{n}{A non-negative whole number of the number of random samples to

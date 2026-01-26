@@ -21,7 +21,7 @@ An numeric vector of the corresponding quantiles.
 Gamma-Poisson Quantile Function
 }
 \examples{
-quant_gamma_pois(c(0, 1, 2), 1, 1)
+quant_gamma_pois(c(0.1, 0.4, 0.6), 1, 1)
 }
 \seealso{
 Other quant_dist: 

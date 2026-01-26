@@ -21,7 +21,7 @@ An numeric vector of the corresponding quantiles.
 Zero-Inflated Poisson Quantile Function
 }
 \examples{
-quant_pois_zi(c(1, 3, 4), 3, prob = 0.5)
+quant_pois_zi(c(0.1, 0.4, 0.6), 3, prob = 0.5)
 }
 \seealso{
 Other quant_dist: 

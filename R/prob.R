@@ -23,6 +23,9 @@ prob_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
   rlang::check_installed("extraDistr") # FIXME: this function seems too difficult to implement for now. use extraDistr::pbbinom() for now.
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
+  if (!is.na(theta) & theta == 0) {
+    return(prob_binom(x = x, size = size, prob = prob))
+  }
   extraDistr::pbbinom(q = x, size = size, alpha = alpha, beta = beta)
 }
 
