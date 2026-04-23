@@ -7,8 +7,7 @@
 #'
 #' @param x A numeric vector of MCMC values.
 #' @inheritParams params
-#' @param two_sided logical of length 1: calculate two-sided p-values if `TRUE` (default) and one-sided if `FALSE`. See `side`.
-#' @param side character of length 1: whether to calculate p-values for the left tail (`"left"`) or right tail (`"right"`).
+#' @param side character of length 1: whether to calculate p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
 #' @return A number between 0 and 1.
 #' @family summary
 #' @references
@@ -22,19 +21,12 @@
 #' pvalue(x) # should be 0.05 * 2
 #' pvalue(x, two_sided = FALSE, side = "left") # should be 0.05
 #' pvalue(x, two_sided = FALSE, side = "right") # should be 0.95
-pvalue <- function(x, threshold = 0, two_sided = TRUE, side = "", na_rm = FALSE) {
+pvalue <- function(x, threshold = 0, side = "both", na_rm = FALSE) {
   chk_numeric(x)
   chk_number(threshold)
-  chk_logical(two_sided)
-  chk_null_or(side, vld = vld_character)
-  if (two_sided) {
-    if (nchar(side) > 0) {
-      warning("`side` is ignored if `two_sided = TRUE`.")
-    }
-  } else {
-    if (! side %in% c("left", "right")) {
-      stop("`side` must be \"left\" or \"right\" if `two_sided = FALSE`.")
-    }
+  chk_character(side)
+  if (! side %in% c("left", "right", "both")) {
+    stop("`side` must be \"left\", \"right\", or \"both\".")
   }
 
   if (anyNA(x)) {
@@ -48,7 +40,7 @@ pvalue <- function(x, threshold = 0, two_sided = TRUE, side = "", na_rm = FALSE)
     return(NA_real_)
   }
 
-  if (two_sided) {
+  if (side == "both") {
     n <- length(x)
     s1 <- sum(x < threshold)
     s2 <- sum(x > threshold)
