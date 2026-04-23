@@ -16,7 +16,7 @@
 #' Academic Press, Boston. Available from <https://www.vogelwarte.ch/en/research/population-biology/book-bpa/>.
 #' @export
 #' @examples
-#' x <- rnorm(1e6, qnorm(0.05))
+#' x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
 #' hist(x); abline(v = 0, col = "red", lwd = 2, lty = 2)
 #' pvalue(x) # should be 0.05 * 2
 #' pvalue(x, two_sided = FALSE, side = "left") # should be 0.05
