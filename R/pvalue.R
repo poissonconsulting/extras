@@ -46,12 +46,12 @@ chk_subset(side, c("left", "right", "both"))
     s <- s * 2 # two sided p-value
     s <- s + n - s1 - s2 # include threshold values
     p <- (s + 1) / (n + 1) # avoid pvalues of 0
-  } else {
-    if (side == "left") {
-      s <- sum(x <= threshold) # include threshold values
-    } else {
-      s <- sum(x >= threshold) # include threshold values
-    }
+  } else if (side == "left") {
+    s <- sum(x <= threshold) # include threshold values
+    n <- length(x)
+    p <- (s + 1) / (n + 1) # avoid pvalues of 0
+  } else { # can only be "right" because of earlier check
+    s <- sum(x >= threshold) # include threshold values
     n <- length(x)
     p <- (s + 1) / (n + 1) # avoid pvalues of 0
   }
