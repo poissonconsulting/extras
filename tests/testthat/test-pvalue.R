@@ -29,32 +29,32 @@ test_that("pvalue() returns correct two-sided p-values.", {
 
 test_that("pvalue() returns the correct one-sided p-values", {
   expect_equal(round(pvalue(x = rnorm(1e7, mean = qnorm(0.95)),
-                            two_sided = FALSE, side = "left"), 2),
+                            side = "left"), 2),
                0.05)
   expect_equal(round(pvalue(x = rnorm(1e7, mean = qnorm(0.95)),
-                            two_sided = FALSE, side = "right"), 2),
+                            side = "right"), 2),
                0.95)
 
   expect_equal(round(pvalue(x = rcauchy(1e7, location = qcauchy(0.95)),
-                            two_sided = FALSE, side = "left"), 2),
+                            side = "left"), 2),
                0.05)
   expect_equal(round(pvalue(x = rcauchy(1e7, location = qcauchy(0.95)),
-                            two_sided = FALSE, side = "right"), 2),
+                            side = "right"), 2),
                0.95)
 
   # NOTE: poisson distribution is discrete, so p-values are more complicated
-  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3), two_sided = TRUE), 2),
+  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3)), 2),
                round(dpois(0, 3), 2))
-  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3), two_sided = FALSE,
+  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3),
                             side = "left"), 2),
                round(dpois(0, 3), 2))
-  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3), two_sided = FALSE,
+  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3),
                             side = "right"), 2),
                1)
-  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3), two_sided = FALSE,
+  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3),
                             side = "left", threshold = qpois(0.05, 3)), 2),
                round(ppois(qpois(0.05, 3), 3), 2))
-  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3), two_sided = FALSE,
+  expect_equal(round(pvalue(x = rpois(1e7, lambda = 3),
                             side = "right",
                             threshold = qpois(0.05, 3)), 2),
                round(ppois(qpois(0.05, 3) - 1, # correct for boundary inclusion
@@ -62,17 +62,11 @@ test_that("pvalue() returns the correct one-sided p-values", {
 
 })
 
-test_that("pvalue() ignores `side` if `two_side = TRUE` but throws a warning", {
+test_that("pvalue() only accepts `side` as left, right, or both.", {
   expect_no_error(pvalue(1))
-  expect_no_error(pvalue(1, two_sided = TRUE))
-  expect_warning(pvalue(1, two_sided = TRUE, side = "left"))
-  expect_warning(pvalue(1, two_sided = TRUE, side = "right"))
-  expect_warning(pvalue(1, two_sided = TRUE, side = "aaa"))
-})
-
-test_that("pvalue() requires a valid `side` if `two_side = FALSE` and throws an error otherwise", {
-  expect_error(pvalue(1, two_sided = FALSE))
-  expect_no_error(pvalue(1, two_sided = FALSE, side = "left"))
-  expect_no_error(pvalue(1, two_sided = FALSE, side = "right"))
-  expect_error(pvalue(1, two_sided = FALSE, side = "aaa"))
+  expect_no_error(pvalue(1, side = "both"))
+  expect_no_error(pvalue(1, side = "left"))
+  expect_no_error(pvalue(1, side = "right"))
+  expect_error(pvalue(1, side = "aaa"),
+               "`side` must be \"left\", \"right\", or \"both\".")
 })
