@@ -11,7 +11,7 @@ pvalue(x, threshold = 0, side = "both", na_rm = FALSE)
 
 \item{threshold}{A number of the threshold value.}
 
-\item{side}{character of length 1: whether to calculate p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or two-sided (\code{"both"}; default).}
+\item{side}{A character vector of length 1 indicating whether to calculate p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or two-sided (\code{"both"}; default).}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 }

@@ -7,7 +7,7 @@
 #'
 #' @param x A numeric vector of MCMC values.
 #' @inheritParams params
-#' @param side character of length 1: whether to calculate p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
+#' @param side A character vector of length 1 indicating whether to calculate p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
 #' @return A number between 0 and 1.
 #' @family summary
 #' @references
