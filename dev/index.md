@@ -1,0 +1,156 @@
+# extras
+
+`extras` provides helper functions for Bayesian analyses.
+
+In particular it provides functions to summarise vectors of MCMC (Monte
+Carlo Markov Chain) samples, draw random samples from various
+distributions and calculate deviance residuals as well as R translations
+of some BUGS (Bayesian Using Gibbs Sampling), JAGS (Just Another Gibbs
+Sampler), STAN and TMB (Template Model Builder) functions.
+
+## Demonstration
+
+### Summarise MCMC Samples
+
+The `extras` package provides functions to summarise MCMC samples like
+[`svalue()`](https://poissonconsulting.github.io/extras/dev/reference/svalue.md)
+which gives the *surprisal value* (Greenland, 2019)
+
+``` r
+library(extras)
+#> 
+#> Attaching package: 'extras'
+#> The following object is masked from 'package:stats':
+#> 
+#>     step
+
+set.seed(1)
+x <- rnorm(100)
+svalue(rnorm(100))
+#> [1] 0.3183615
+svalue(rnorm(100, mean = 1))
+#> [1] 1.704015
+svalue(rnorm(100, mean = 2))
+#> [1] 3.850857
+svalue(rnorm(100, mean = 3))
+#> [1] 5.073249
+```
+
+### Distributions
+
+Implemented distributions with functions to draw random samples,
+calculate log-likelihoods, and calculate deviance residuals for include:
+
+- Bernoulli
+- Binomial
+- Beta-binomial
+- Gamma
+- Gamma-Poisson
+- Zero-inflated gamma-Poisson
+- Log-Normal
+- Negative Binomial
+- Normal
+- Poisson
+- Zero-inflated Poisson
+- Skew Normal
+- Student’s t
+
+### R translations
+
+The package also provides R translations of `BUGS` (and `JAGS`)
+functions such as
+[`pow()`](https://poissonconsulting.github.io/extras/dev/reference/pow.md)
+and `log<-`.
+
+``` r
+pow(10, 2)
+#> [1] 100
+
+mu <- NULL
+log(mu) <- 1
+mu
+#> [1] 2.718282
+```
+
+### Numericise R Objects
+
+Atomic vectors, matrices, arrays and data.frames of appropriate classes
+can be converted to numeric objects suitable for Bayesian analysis using
+the
+[`numericise()`](https://poissonconsulting.github.io/extras/dev/reference/numericise.md)
+(and
+[`numericize()`](https://poissonconsulting.github.io/extras/dev/reference/numericise.md))
+function.
+
+``` r
+numericise(
+  data.frame(
+    logical = c(TRUE, FALSE),
+    factor = factor(c("blue", "green")),
+    Date = as.Date(c("2000-01-01", "2000-01-02")),
+    hms = hms::as_hms(c("00:00:02", "00:01:01"))
+  )
+)
+#>      logical factor  Date hms
+#> [1,]       1      1 10957   2
+#> [2,]       0      2 10958  61
+```
+
+## Installation
+
+## Information
+
+For more information see the [Get
+Started](https://poissonconsulting.github.io/chk/articles/chk.html)
+vignette.
+
+## Installation
+
+### Release
+
+To install the release version from
+[CRAN](https://CRAN.R-project.org/package=extras).
+
+``` r
+install.packages("extras")
+```
+
+The website for the release version is at
+<https://poissonconsulting.github.io/extras/>.
+
+### Development
+
+To install the development version from
+[GitHub](https://github.com/poissonconsulting/extras)
+
+``` r
+# install.packages("remotes")
+remotes::install_github("poissonconsulting/extras")
+```
+
+or from [r-universe](https://poissonconsulting.r-universe.dev/extras).
+
+``` r
+install.packages("extras", repos = c("https://poissonconsulting.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+## References
+
+Greenland, S. 2019. Valid P-Values Behave Exactly as They Should: Some
+Misleading Criticisms of P-Values and Their Resolution With S-Values.
+The American Statistician 73(sup1): 106–114.
+
+## Contribution
+
+Please report any
+[issues](https://github.com/poissonconsulting/extras/issues).
+
+[Pull requests](https://github.com/poissonconsulting/extras/pulls) are
+always welcome.
+
+## Code of Conduct
+
+Please note that the extras project is released with a [Contributor Code
+of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.

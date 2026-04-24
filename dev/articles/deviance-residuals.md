@@ -1,0 +1,66 @@
+# Deviance Residuals
+
+Recall that the likelihood of a model is the probability of the data set
+given the model (P(D\|\theta)).
+
+The *deviance* of a model is defined by
+
+D(\theta,D) = 2(\log(P(D\|\theta_s)) - \log(P(D\|\theta)))
+
+where \theta_s is the *saturated model* which is so named because it
+perfectly fits the data.
+
+In the case of normally distributed errors the likelihood for a single
+prediction (\mu_i) and data point (y_i) is given by
+
+P(y_i\|\mu_i) = \frac{1}{\sigma\sqrt{2\pi}}
+\exp\bigg(-\frac{1}{2}\bigg(\frac{y_i - \mu_i}{\sigma}\bigg)^2\bigg) and
+the log-likelihood by
+
+\log(P(y_i\|\mu_i)) = -\log(\sigma) - \frac{1}{2}\big(\log(2\pi)\big)
+-\frac{1}{2}\bigg(\frac{y_i - \mu_i}{\sigma}\bigg)^2
+
+The log-likelihood for the saturated model, which is when \mu_i = y_i,
+is therefore simply
+
+\log(P(y_i\|\mu\_{s_i})) = -\log(\sigma) -
+\frac{1}{2}\big(\log(2\pi)\big)
+
+It follows that the unit deviance is
+
+d_i = 2(\log(P(y_i\|\mu\_{s_i})) - \log(P(y_i\|\mu_i)))
+
+d_i = 2\bigg(\frac{1}{2}\bigg(\frac{y_i - \mu_i}{\sigma}\bigg)^2\bigg)
+
+d_i = \bigg(\frac{y_i - \mu_i}{\sigma}\bigg)^2
+
+As the *deviance residual* is the signed squared root of the unit
+deviance,
+
+r_i = \text{sign}(y_i - \mu_i) \sqrt{d_i} in the case of normally
+distributed errors we arrive at r_i = \frac{y_i - \mu_i}{\sigma} which
+is the Pearson residual.
+
+To confirm this consider a normal distribution with a \hat{\mu} = 2 and
+\sigma = 0.5 and a value of 1.
+
+``` r
+library(extras)
+#> 
+#> Attaching package: 'extras'
+#> The following object is masked from 'package:stats':
+#> 
+#>     step
+mu <- 2
+sigma <- 0.5
+y <- 1
+
+(y - mu) / sigma
+#> [1] -2
+dev_norm(y, mu, sigma, res = TRUE)
+#> [1] -2
+sign(y - mu) * sqrt(dev_norm(y, mu, sigma))
+#> [1] -2
+sign(y - mu) * sqrt(2 * (log(dnorm(y, y, sigma)) - log(dnorm(y, mu, sigma))))
+#> [1] -2
+```

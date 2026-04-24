@@ -48,8 +48,10 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log10-set.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log2-set.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_bern.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_beta.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_beta_binom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_binom.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_exp.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_gamma.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_gamma_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_gamma_pois_zi.html</loc></url>
@@ -60,6 +62,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_pois_zi.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_skewnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_student.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_unif.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_odds-set.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_odds.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_odds_ratio.html</loc></url>
