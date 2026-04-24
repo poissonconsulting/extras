@@ -55,4 +55,5 @@ pvalue <- function(x, threshold = 0, side = "both", na_rm = FALSE) {
     n <- length(x)
     p <- (s + 1) / (n + 1) # avoid pvalues of 0
   }
+  p
 }
