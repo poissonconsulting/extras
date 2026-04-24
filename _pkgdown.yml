@@ -125,11 +125,13 @@ reference:
   desc: Log-likelihood functions
   contents:
   - '`log_lik_bern`'
+  - '`log_lik_beta`'
   - '`log_lik_beta_binom`'
   - '`log_lik_binom`'
   - '`log_lik_gamma`'
   - '`log_lik_gamma_pois`'
   - '`log_lik_gamma_pois_zi`'
+  - '`log_lik_exp`'
   - '`log_lik_lnorm`'
   - '`log_lik_neg_binom`'
   - '`log_lik_norm`'
@@ -137,6 +139,7 @@ reference:
   - '`log_lik_pois_zi`'
   - '`log_lik_skewnorm`'
   - '`log_lik_student`'
+  - '`log_lik_unif`'
 - title: Random
   desc: Random sample functions
   contents:
