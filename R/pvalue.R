@@ -50,7 +50,7 @@ pvalue <- function(x, threshold = 0, side = "both", na_rm = FALSE) {
     s <- sum(x <= threshold) # include threshold values
     n <- length(x)
     p <- (s + 1) / (n + 1) # avoid pvalues of 0
-  } else { # can only be "right" because of earlier check
+  } else if (side == "right") {
     s <- sum(x >= threshold) # include threshold values
     n <- length(x)
     p <- (s + 1) / (n + 1) # avoid pvalues of 0
