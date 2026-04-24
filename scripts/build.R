@@ -6,5 +6,6 @@ devtools::test()
 devtools::document()
 
 pkgdown::build_home()
+pkgdown::build_site()
 
 devtools::check()
