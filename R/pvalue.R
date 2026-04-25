@@ -17,7 +17,6 @@
 #' @export
 #' @examples
 #' x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
-#' hist(x); abline(v = 0, col = "red", lwd = 2, lty = 2)
 #' pvalue(x) # should be 0.05 * 2
 #' pvalue(x, side = "left") # should be 0.95
 #' pvalue(x, side = "right") # should be 0.05
