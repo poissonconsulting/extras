@@ -68,5 +68,5 @@ test_that("pvalue() only accepts `side` as left, right, or both.", {
   expect_no_error(pvalue(1, side = "left"))
   expect_no_error(pvalue(1, side = "right"))
   expect_error(pvalue(1, side = "aaa"),
-               "`side` must be \"left\", \"right\", or \"both\".")
+               "`side` must match 'both', 'left' or 'right', not 'aaa'.")
 })
