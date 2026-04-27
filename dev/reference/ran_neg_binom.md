@@ -48,5 +48,5 @@ Other ran_dist:
 
 ``` r
 ran_neg_binom(10, theta = 1)
-#>  [1] 0 3 3 2 0 2 0 3 1 5
+#>  [1] 0 1 0 2 0 0 0 1 0 2
 ```

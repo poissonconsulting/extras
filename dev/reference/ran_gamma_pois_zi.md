@@ -53,5 +53,5 @@ Other ran_dist:
 
 ``` r
 ran_gamma_pois_zi(10, lambda = 3, theta = 1, prob = 0.5)
-#>  [1] 0 0 0 0 0 0 5 1 3 4
+#>  [1] 2 0 2 0 0 0 3 0 2 0
 ```

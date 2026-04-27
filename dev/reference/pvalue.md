@@ -8,7 +8,7 @@ A Bayesian p-value (p) is here defined in terms of the quantile-based
 ## Usage
 
 ``` r
-pvalue(x, threshold = 0, na_rm = FALSE)
+pvalue(x, threshold = 0, side = "both", na_rm = FALSE)
 ```
 
 ## Arguments
@@ -20,6 +20,12 @@ pvalue(x, threshold = 0, na_rm = FALSE)
 - threshold:
 
   A number of the threshold value.
+
+- side:
+
+  A character vector of length 1 indicating whether to calculate
+  p-values for the left tail (`"left"`), right tail (`"right"`), or
+  two-sided (`"both"`; default).
 
 - na_rm:
 
@@ -55,6 +61,11 @@ Other summary:
 ## Examples
 
 ``` r
-pvalue(as.numeric(0:100))
-#> [1] 0.01960784
+x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
+pvalue(x) # should be 0.05 * 2
+#> [1] 0.0998769
+pvalue(x, side = "left") # should be 0.95
+#> [1] 0.950062
+pvalue(x, side = "right") # should be 0.05
+#> [1] 0.04993895
 ```
