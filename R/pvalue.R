@@ -7,6 +7,7 @@
 #'
 #' @param x A numeric vector of MCMC values.
 #' @inheritParams params
+#' @param side A character vector of length 1 indicating whether to calculate p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
 #' @return A number between 0 and 1.
 #' @family summary
 #' @references
@@ -15,10 +16,15 @@
 #' Academic Press, Boston. Available from <https://www.vogelwarte.ch/en/research/population-biology/book-bpa/>.
 #' @export
 #' @examples
-#' pvalue(as.numeric(0:100))
-pvalue <- function(x, threshold = 0, na_rm = FALSE) {
+#' x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
+#' pvalue(x) # should be 0.05 * 2
+#' pvalue(x, side = "left") # should be 0.95
+#' pvalue(x, side = "right") # should be 0.05
+pvalue <- function(x, threshold = 0, side = "both", na_rm = FALSE) {
   chk_numeric(x)
   chk_number(threshold)
+  chk_string(side)
+  chk_subset(side, c("left", "right", "both"))
 
   if (anyNA(x)) {
     if (vld_false(na_rm)) {
@@ -30,11 +36,23 @@ pvalue <- function(x, threshold = 0, na_rm = FALSE) {
   if (!length(x)) {
     return(NA_real_)
   }
-  n <- length(x)
-  s1 <- sum(x < threshold)
-  s2 <- sum(x > threshold)
-  s <- min(s1, s2)
-  s <- s * 2 # two sided p-value
-  s <- s + n - s1 - s2 # include threshold values
-  (s + 1) / (n + 1) # avoid pvalues of 0
+
+  if (side == "both") {
+    n <- length(x)
+    s1 <- sum(x < threshold)
+    s2 <- sum(x > threshold)
+    s <- min(s1, s2)
+    s <- s * 2 # two sided p-value
+    s <- s + n - s1 - s2 # include threshold values
+    p <- (s + 1) / (n + 1) # avoid pvalues of 0
+  } else if (side == "left") {
+    s <- sum(x <= threshold) # include threshold values
+    n <- length(x)
+    p <- (s + 1) / (n + 1) # avoid pvalues of 0
+  } else if (side == "right") {
+    s <- sum(x >= threshold) # include threshold values
+    n <- length(x)
+    p <- (s + 1) / (n + 1) # avoid pvalues of 0
+  }
+  p
 }
