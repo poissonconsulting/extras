@@ -3,7 +3,8 @@
 #' A Bayesian p-value (p) is here defined in terms of the quantile-based
 #' (1-p) * 100% credible interval (CRI) that
 #' just includes a threshold (Kery and Schaub 2011).
-#' By default a p-value of 0.05 indicates that the 95% CRI just includes 0.
+#' By default a p-value of 0.05 indicates that the 95% CRI just includes the
+#' threshold value.
 #'
 #' @param x A numeric vector of MCMC values.
 #' @param side A character vector of length 1 indicating whether to calculate
