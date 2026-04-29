@@ -31,5 +31,5 @@ test_that("svalue() requires side to be one of left, right, both, or NULL, and r
   expect_no_error(pvalue(1, side = "right"))
   expect_error(pvalue(1, side = "aaa"),
                "`side` must match 'both', 'left' or 'right', not 'aaa'.")
-  expect_warning(svalue(1), regexp = "`side` should now be specified. Using `side = 'both'. This warning will be removed in the future.")
+  expect_warning(svalue(1), regexp = "`side` should now be specified. Using `side = 'both'` by default. This warning will be removed in the future.")
 })
