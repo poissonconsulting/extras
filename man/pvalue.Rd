@@ -26,15 +26,17 @@ A Bayesian p-value (p) is here defined in terms of the quantile-based
 just includes a threshold (Kery and Schaub 2011).
 By default a p-value of 0.05 indicates that the 95\% CRI just includes the
 threshold value.
-To use as a measure of certainty in the direction of the estimate (i.e.,
-positive or negative), see \code{\link[=probability_direction]{probability_direction()}}.
 
 Note that the function contains the sample-size correction
 \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
 return p-values of 1 (unlike \code{\link[=probability_direction]{probability_direction()}}).
 
+To use as a measure of certainty in the direction of the estimate (i.e.,
+positive or negative), see \code{\link[=probability_direction]{probability_direction()}}.
+
 For p-values converted to bits, see \code{\link[=svalue]{svalue()}}.
 
+To convert MCMC objects to information, see \code{\link[=directional_information]{directional_information()}}.
 }
 }
 \examples{
