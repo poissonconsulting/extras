@@ -7,6 +7,11 @@
 #'
 #' @param x A numeric object of MCMC values.
 #' @inheritParams params
+#' @param side A character indicating whether to calculate s-values using
+#' p-values for the left tail (`"left"`), right tail (`"right"`), or both tails
+#' (`"both"`).
+#' Defaults to `NULL`, which is treated as `"both"` but returns a warning.
+#' The warning will be removed in future package versions.
 #' @return A non-negative number.
 #' @family summary
 #' @references
@@ -16,7 +21,19 @@
 #' \doi{10.1080/00031305.2018.1529625}.
 #' @export
 #' @examples
-#' svalue(as.numeric(0:100))
-svalue <- function(x, threshold = 0, na_rm = FALSE) {
-  -log(pvalue(x, threshold = threshold, na_rm = na_rm), 2)
+#' svalue(rnorm(1e4, mean = 1), side = "left")
+#' svalue(rnorm(1e4, mean = 1), side = "right")
+svalue <- function(x, side = NULL, threshold = 0, na_rm = FALSE) {
+  chk_numeric(x)
+  chk_null_or(side, vld = vld_string)
+  chk_null_or(side, vld = vld_subset, values = c("left", "right", "both"))
+  chk_number(threshold)
+  chk_logical(na_rm)
+
+  if (is.null(side)) {
+    rlang::warn("`side` should now be specified. Using `side = 'both'` by default. This warning will be removed in the future.")
+    side <- "both"
+  }
+
+  -log2(pvalue(x, side = side, threshold = threshold, na_rm = na_rm))
 }
