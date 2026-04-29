@@ -2,8 +2,8 @@
 #'
 #' The surprisal value (Greenland 2019) is the [pvalue] expressed in
 #' terms of how many consecutive heads would have to be thrown on a fair coin
-#' in a single attempt to achieve the same probability.
-#'
+#' in a single attempt to achieve the same probability: \eqn{-\log_2(p)}, where
+#' \eqn{p} is the p-value of interest.
 #'
 #' @param x A numeric object of MCMC values.
 #' @inheritParams params
