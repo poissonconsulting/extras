@@ -9,7 +9,7 @@
 #'
 #' Note that the function contains the sample-size correction
 #' \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
-#' return p-values of 1 (unlike [`probability_direction()`]).
+#' return p-values of 1.
 #'
 #' For p-values converted to bits, see [`svalue()`].
 #' }
