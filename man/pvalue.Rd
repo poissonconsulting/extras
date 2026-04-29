@@ -4,14 +4,15 @@
 \alias{pvalue}
 \title{Bayesian P-Value}
 \usage{
-pvalue(x, threshold = 0, side = "both", na_rm = FALSE)
+pvalue(x, side = "both", threshold = 0, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
 
-\item{threshold}{A number of the threshold value.}
+\item{side}{A character vector of length 1 indicating whether to calculate
+p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or two-sided (\code{"both"}; default).}
 
-\item{side}{A character vector of length 1 indicating whether to calculate p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or two-sided (\code{"both"}; default).}
+\item{threshold}{A number of the threshold value.}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 }
@@ -19,10 +20,22 @@ pvalue(x, threshold = 0, side = "both", na_rm = FALSE)
 A number between 0 and 1.
 }
 \description{
+{
 A Bayesian p-value (p) is here defined in terms of the quantile-based
 (1-p) * 100\% credible interval (CRI) that
 just includes a threshold (Kery and Schaub 2011).
-By default a p-value of 0.05 indicates that the 95\% CRI just includes 0.
+By default a p-value of 0.05 indicates that the 95\% CRI just includes the
+threshold value.
+To use as a measure of certainty in the direction of the estimate (i.e.,
+positive or negative), see \code{\link[=probability_direction]{probability_direction()}}.
+
+Note that the function contains the sample-size correction
+\eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
+return p-values of 1 (unlike \code{\link[=probability_direction]{probability_direction()}}).
+
+For p-values converted to bits, see \code{\link[=svalue]{svalue()}}.
+
+}
 }
 \examples{
 x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
@@ -37,8 +50,10 @@ Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/en/researc
 }
 \seealso{
 Other summary: 
+\code{\link{directional_information}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
+\code{\link{probability_direction}()},
 \code{\link{pzeros}()},
 \code{\link{skewness}()},
 \code{\link{svalue}()},
