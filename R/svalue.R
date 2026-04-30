@@ -10,8 +10,6 @@
 #' @param side A character indicating whether to calculate s-values using
 #' p-values for the left tail (`"left"`), right tail (`"right"`), or both tails
 #' (`"both"`).
-#' Defaults to `NULL`, which is treated as `"both"` but returns a warning.
-#' The warning will be removed in future package versions.
 #' @return A non-negative number.
 #' @family summary
 #' @references
