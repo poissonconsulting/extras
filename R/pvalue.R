@@ -37,11 +37,6 @@ pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
   chk_number(threshold)
   chk_logical(na_rm)
 
-  n <- length(x)
-  if (n == 0) {
-    return(NA_real_)
-  }
-
   if (anyNA(x)) {
     if (vld_true(na_rm)) {
       x <- as.vector(x)
@@ -49,6 +44,11 @@ pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
     } else {
       return(NA_real_)
     }
+  }
+
+  n <- length(x)
+  if (n == 0) {
+    return(NA_real_)
   }
 
   if (side == "both") {
