@@ -103,7 +103,7 @@ directional_information <- function(x, side = NULL, threshold = 0,
 
   if (side == "left") {
     i <- log2(p_l) - log2(p_r)
-  } else if (side == "right") {
+  } else {
     i <- log2(p_r) - log2(p_l)
   }
 
