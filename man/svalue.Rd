@@ -4,16 +4,14 @@
 \alias{svalue}
 \title{Surprisal Value}
 \usage{
-svalue(x, side = NULL, threshold = 0, na_rm = FALSE)
+svalue(x, side = "both", threshold = 0, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
 
 \item{side}{A character indicating whether to calculate s-values using
 p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or both tails
-(\code{"both"}).
-Defaults to \code{NULL}, which is treated as \code{"both"} but returns a warning.
-The warning will be removed in future package versions.}
+(\code{"both"}; default).}
 
 \item{threshold}{A number of the threshold value.}
 
