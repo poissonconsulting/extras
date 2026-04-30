@@ -9,8 +9,7 @@
 #' the directional information relative to the left side (`"left"`; `x < threshold`),
 #' or the right side (`"right"`; `x > threshold`). Positive information suggests
 #' greater evidence for the specified side.
-#' Defaults to `NULL`, which uses the side of the median of `x` and the right
-#' side if the median is the threshold.
+#' Defaults to `NULL`, which uses the side of the median of `x` via [`direction()`].
 #' @param threshold_split A character vector of length 1 indicating how to deal
 #' with threshold values:
 #'
@@ -67,15 +66,7 @@ directional_information <- function(x, side = NULL, threshold = 0,
   }
 
   if (is.null(side)) {
-    if (median(x = x, na.rm = na_rm) < threshold) {
-      side <- "left"
-    } else if (median(x = x, na.rm = na_rm) > threshold) {
-      side <- "right"
-    } else if (median(x, na.rm = na_rm) == threshold) {
-      side <- "right"
-    }
-    warning(paste0("The `side` argument was not specified, so the median ",
-                   "direction (", side,") was used."))
+    side <- direction(x)
   }
 
   if (all(x == threshold)) {

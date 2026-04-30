@@ -84,10 +84,6 @@ test_that("probability_direction() returns correct right-sided p-values.", {
                ppois(qpois(0.05, 3), 3, lower.tail = FALSE), tolerance = 0.1)
 })
 
-test_that("probability_direction() returns a warning if `side` is not specified.", {
-  expect_warning(probability_direction(1), "The `side` argument was not specified, so the median direction \\((right|left)\\) was used\\.")
-})
-
 test_that("probability_direction() only accepts `side` as left, right, or both.", {
   expect_no_error(probability_direction(1, side = "left"))
   expect_no_error(probability_direction(1, side = "right"))

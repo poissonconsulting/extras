@@ -16,7 +16,8 @@
 #' @param side A character vector of length 1 indicating whether to calculate
 #' the directional probability for the left tail (`"left"`; `x < threshold`),
 #' or the right tail (`"right"`; `x > threshold`).
-#' Defaults to `NULL`, which uses the side of the median of `x`.
+#' Defaults to `NULL`, which uses the side of the median of `x` via
+#' [`direction()`].
 #' @param threshold A number of the threshold value, which is excluded from the
 #' interval for the probability.
 #' @inheritParams params
@@ -27,8 +28,7 @@
 #' @export
 #' @examples
 #' x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
-#' probability_direction(x) # unspecified side returns a warning
-#' probability_direction(x, side = "left") # no warning
+#' probability_direction(x, side = "left")
 #' probability_direction(x, side = "right") # = 1 - probability_direction(x, side = "left")
 #' probability_direction(c(0, 0, 1), side = "right") # does not include threshold
 #' probability_direction(c(1, 1), side = "right") # p = 1 - 1/(n+1)
@@ -51,13 +51,7 @@ probability_direction <- function(x, side = NULL, threshold = 0, na_rm = FALSE) 
   }
 
   if (is.null(side)) {
-    if (median(x = x, na.rm = na_rm) < threshold) { # threshold samples ignored
-      side <- "left"
-    } else {
-      side <- "right"
-    }
-    warning(paste0("The `side` argument was not specified, so the median ",
-                   "direction (", side,") was used."))
+    side <- direction(x)
   }
 
   if (side == "left") {
