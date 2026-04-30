@@ -23,17 +23,12 @@
 #' @examples
 #' svalue(rnorm(1e4, mean = 1), side = "left")
 #' svalue(rnorm(1e4, mean = 1), side = "right")
-svalue <- function(x, side = NULL, threshold = 0, na_rm = FALSE) {
+svalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
   chk_numeric(x)
-  chk_null_or(side, vld = vld_string)
-  chk_null_or(side, vld = vld_subset, values = c("left", "right", "both"))
+  chk_string(side)
+  chk_subset(side, values = c("left", "right", "both"))
   chk_number(threshold)
   chk_logical(na_rm)
-
-  if (is.null(side)) {
-    rlang::warn("`side` should now be specified. Using `side = 'both'` by default. This warning will be removed in the future.")
-    side <- "both"
-  }
 
   -log2(pvalue(x, side = side, threshold = threshold, na_rm = na_rm))
 }
