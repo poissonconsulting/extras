@@ -52,6 +52,7 @@ Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/en/researc
 }
 \seealso{
 Other summary: 
+\code{\link{direction}()},
 \code{\link{directional_information}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},

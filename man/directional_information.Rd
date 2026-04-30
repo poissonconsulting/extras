@@ -19,8 +19,7 @@ directional_information(
 the directional information relative to the left side (\code{"left"}; \code{x < threshold}),
 or the right side (\code{"right"}; \code{x > threshold}). Positive information suggests
 greater evidence for the specified side.
-Defaults to \code{NULL}, which uses the side of the median of \code{x} and the right
-side if the median is the threshold.}
+Defaults to \code{NULL}, which uses the side of the median of \code{x} via \code{\link[=direction]{direction()}}.}
 
 \item{threshold}{A number of the threshold value.}
 
@@ -69,6 +68,7 @@ Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/en/researc
 }
 \seealso{
 Other summary: 
+\code{\link{direction}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
 \code{\link{probability_direction}()},

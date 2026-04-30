@@ -40,6 +40,7 @@ The American Statistician 73(sup1): 106–114.
 }
 \seealso{
 Other summary: 
+\code{\link{direction}()},
 \code{\link{directional_information}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},

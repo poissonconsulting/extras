@@ -22,6 +22,7 @@ xtr_mean(1:10)
 }
 \seealso{
 Other summary: 
+\code{\link{direction}()},
 \code{\link{directional_information}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},

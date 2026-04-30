@@ -12,7 +12,8 @@ probability_direction(x, side = NULL, threshold = 0, na_rm = FALSE)
 \item{side}{A character vector of length 1 indicating whether to calculate
 the directional probability for the left tail (\code{"left"}; \code{x < threshold}),
 or the right tail (\code{"right"}; \code{x > threshold}).
-Defaults to \code{NULL}, which uses the side of the median of \code{x}.}
+Defaults to \code{NULL}, which uses the side of the median of \code{x} via
+\code{\link[=direction]{direction()}}.}
 
 \item{threshold}{A number of the threshold value, which is excluded from the
 interval for the probability.}
@@ -37,8 +38,7 @@ Ideally, \code{x} should be large enough as to make the correction negligible.
 }
 \examples{
 x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
-probability_direction(x) # unspecified side returns a warning
-probability_direction(x, side = "left") # no warning
+probability_direction(x, side = "left")
 probability_direction(x, side = "right") # = 1 - probability_direction(x, side = "left")
 probability_direction(c(0, 0, 1), side = "right") # does not include threshold
 probability_direction(c(1, 1), side = "right") # p = 1 - 1/(n+1)
@@ -48,6 +48,7 @@ Makowski, D., Ben-Shachar, M.S., Chen, S.H.A., and Lüdecke, D. 2019. Indices of
 }
 \seealso{
 Other summary: 
+\code{\link{direction}()},
 \code{\link{directional_information}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
