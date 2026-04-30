@@ -21,6 +21,7 @@ reference:
   - '`zscore`'
   - '`pvalue`'
   - '`svalue`'
+  - '`direction`'
   - '`probability_direction`'
   - '`directional_information`'
   - '`xtr_mean`'
