@@ -100,7 +100,7 @@ directional_information <- function(x, side = NULL, threshold = 0,
 
   i <- min(i, n) # max information difference is a bit for each sample
   i <- max(i, -n)
-  # equivalent to, if o is the odds of the ratios:
+  # equivalent to, if o is the odds ratio:
   # if (is.infinite(o)) {
   #   if (o > 0) {
   #     o <- n # = n / (n+1) / (1 / (n+1))
