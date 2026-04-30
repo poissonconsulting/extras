@@ -9,7 +9,7 @@
 #' @inheritParams params
 #' @param side A character indicating whether to calculate s-values using
 #' p-values for the left tail (`"left"`), right tail (`"right"`), or both tails
-#' (`"both"`).
+#' (`"both"`; default).
 #' @return A non-negative number.
 #' @family summary
 #' @references
