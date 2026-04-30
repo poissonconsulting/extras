@@ -96,13 +96,9 @@ directional_information <- function(x, side = NULL, threshold = 0,
   } else if (threshold_split == "equal") {
     p_l <- p_l + p_t / 2
     p_r <- p_r + p_t / 2
-  } else if (threshold_split == "proportional") {
+  } else { # proportional and exclude are effectively the same
     p_l <- p_l + p_t * (p_l / p_lr)
     p_r <- p_r + p_t * (p_r / p_lr)
-  } else if (threshold_split == "exclude") { # effectively same as proportional
-    p_t <- 0
-    p_l <- p_l / p_lr
-    p_r <- p_r / p_lr
   }
 
   if (side == "left") {
