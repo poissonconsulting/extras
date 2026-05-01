@@ -4,10 +4,14 @@
 \alias{svalue}
 \title{Surprisal Value}
 \usage{
-svalue(x, threshold = 0, na_rm = FALSE)
+svalue(x, side = "both", threshold = 0, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
+
+\item{side}{A character indicating whether to calculate s-values using
+p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or both tails
+(\code{"both"}; default).}
 
 \item{threshold}{A number of the threshold value.}
 
@@ -19,14 +23,16 @@ A non-negative number.
 \description{
 The surprisal value (Greenland 2019) is the \link{pvalue} expressed in
 terms of how many consecutive heads would have to be thrown on a fair coin
-in a single attempt to achieve the same probability.
+in a single attempt to achieve the same probability: \eqn{-\log_2(p)}, where
+\eqn{p} is the p-value of interest.
 }
 \examples{
-svalue(as.numeric(0:100))
+svalue(rnorm(1e4, mean = 1), side = "left")
+svalue(rnorm(1e4, mean = 1), side = "right")
 }
 \references{
-Greenland, S. 2019. Valid P -Values Behave Exactly as They Should:
-Some Misleading Criticisms of P -Values and Their Resolution With S -Values.
+Greenland, S. 2019. Valid P-Values Behave Exactly as They Should:
+Some Misleading Criticisms of P-Values and Their Resolution With S -Values.
 The American Statistician 73(sup1): 106–114.
 \doi{10.1080/00031305.2018.1529625}.
 }
