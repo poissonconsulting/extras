@@ -4,7 +4,7 @@
 #' This function calculates such information using absolute difference in the the probability of direction (see [`probability_direction()`]), after converting each probability to bits (also see [`svalue()`].
 #'
 #' @param x A numeric vector of MCMC values.
-#' @param side A character vector of length 1 indicating whether to calculate
+#' @param side A string indicating whether to calculate
 #' the directional information relative to the left side (`"left"`; `x < threshold`),
 #' or the right side (`"right"`; `x > threshold`). Positive information suggests
 #' greater evidence for the specified side.
