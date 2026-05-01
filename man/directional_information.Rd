@@ -15,7 +15,7 @@ directional_information(
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
 
-\item{side}{A character vector of length 1 indicating whether to calculate
+\item{side}{A string indicating whether to calculate
 the directional information relative to the left side (\code{"left"}; \code{x < threshold}),
 or the right side (\code{"right"}; \code{x > threshold}). Positive information suggests
 greater evidence for the specified side.
@@ -24,7 +24,7 @@ Defaults to \code{"median"}, which uses the side of the median of \code{x} via
 
 \item{threshold}{A number of the threshold value.}
 
-\item{threshold_split}{A character vector of length 1 indicating how to deal
+\item{threshold_split}{A string indicating how to deal
 with threshold values:
 \itemize{
 \item \code{"left"} to include them on the left side,
@@ -32,20 +32,17 @@ with threshold values:
 \item \code{"equal"} to split them equally between the left and side,
 \item \code{"proportional"} (default) to split them between the left and right sides
 proportionally to the values of \code{x} on the left and right sides,
-\item \code{"exclude"} to drop the values of \code{x} equal to \code{threshold} (effectively
-identical to using \code{"proportional"}).
-}
-
-Users should choose the combination of \code{side} and \code{threshold_split} carefully.}
+\item \code{"exclude"} to drop the values of \code{x} equal to \code{threshold}
+(identical to using \code{"proportional"}).
+}}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
-A non-negative number.
+A number indicating the directional information.
 }
 \description{
-The information contained in a posterior belief can be summarized using the
-directional probability contained within that posterior.
+Quantifies the information about direction in a posterior distribution based on the directional probability.
 This function calculates such information using absolute difference in the the probability of direction (see \code{\link[=probability_direction]{probability_direction()}}), after converting each probability to bits (also see \code{\link[=svalue]{svalue()}}.
 }
 \examples{

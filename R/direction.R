@@ -2,16 +2,16 @@
 #'
 #' The direction of a distribution is the side (left/right) that the
 #' distribution's center falls on, relative to a threshold. The center can be
-#' calculated using a user-specified function, including the `[median]` (default),
-#' `[mean]`, geometric mean, mode, or any other custom function. By convention,
+#' calculated using a user-specified function, including the median (default),
+#' mean, geometric mean, mode, or any other custom function. By convention,
 #' values below the threshold fall to the left, while values above the threshold
 #' fall to the right. Center estimates equal to the threshold are assumed to
 #' fall to the right.
 #'
 #' @param x A numeric vector of MCMC values or any other numeric vector of samples.
 #' @param estimate A function for estimating the center of the distribution.
-#' Defaults to [`median()`], but can also be `[mean()`] or any custom function
-#' that returns a number (non-missing numeric vector of length 1).
+#' Defaults to [median()], but can also be [mean()] or any custom function
+#' that returns a number (a non-missing numeric vector of length 1).
 #' `NA` values are dropped before calling the function.
 #' @param threshold A number of the threshold value.
 #' @inheritParams params

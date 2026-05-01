@@ -10,8 +10,8 @@ direction(x, estimate = median, threshold = 0, na_rm = FALSE)
 \item{x}{A numeric vector of MCMC values or any other numeric vector of samples.}
 
 \item{estimate}{A function for estimating the center of the distribution.
-Defaults to \code{\link[=median]{median()}}, but can also be \verb{[mean()}] or any custom function
-that returns a numeric vector of length 1.
+Defaults to \code{\link[=median]{median()}}, but can also be \code{\link[=mean]{mean()}} or any custom function
+that returns a number (a non-missing numeric vector of length 1).
 \code{NA} values are dropped before calling the function.}
 
 \item{threshold}{A number of the threshold value.}
@@ -19,14 +19,14 @@ that returns a numeric vector of length 1.
 \item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
-A character vector of length one indicating if at least half of the
-observations are above the threshold (\code{"right"}) or not (\code{"left"}).
+A string indicating if at least half of the
+observations are above the threshold (\code{"right"}) or not (\code{"left"}) or NA_character_ in the case of non-missing values if \code{na_rm = FALSE}.
 }
 \description{
 The direction of a distribution is the side (left/right) that the
 distribution's center falls on, relative to a threshold. The center can be
-calculated using a user-specified function, including the \verb{[median]} (default),
-\verb{[mean]}, geometric mean, mode, or any other custom function. By convention,
+calculated using a user-specified function, including the median (default),
+mean, geometric mean, mode, or any other custom function. By convention,
 values below the threshold fall to the left, while values above the threshold
 fall to the right. Center estimates equal to the threshold are assumed to
 fall to the right.
