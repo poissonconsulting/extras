@@ -11,7 +11,7 @@
 #' @param x A numeric vector of MCMC values or any other numeric vector of samples.
 #' @param estimate A function for estimating the center of the distribution.
 #' Defaults to [`median()`], but can also be `[mean()`] or any custom function
-#' that returns a numeric vector of length 1.
+#' that returns a number (non-missing numeric vector of length 1).
 #' `NA` values are dropped before calling the function.
 #' @param threshold A number of the threshold value.
 #' @inheritParams params
