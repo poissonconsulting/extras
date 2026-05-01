@@ -58,7 +58,7 @@ kl_divergence <- function(x = x, distribution = dnorm, ref_pars = c(0, 1),
       x_max <- 0
     }
   }
-  n_bins <- log2(length(x)) + 1
+  n_bins <- floor(log2(length(x)) + 1)
   bins <- seq(min(x), max(x), length.out = n_bins)
   p_x <- sapply(1:(n_bins - 1), function(.i) {
     mean(x >= bins[.i] & x < bins[.i + 1])
