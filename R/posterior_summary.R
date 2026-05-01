@@ -42,6 +42,9 @@ posterior_summary <- function(x, side = NULL, threshold = 0,
     x <- x[!is.na(x)]
   }
 
+  if (is.null(side)) {
+    side <- direction(x)
+  }
 
   out <-
     data.frame(
