@@ -21,7 +21,6 @@
 #' - `"exclude"` to drop the values of `x` equal to `threshold` 
 #'   (identical to using `"proportional"`).
 #'
-#' Users should choose the combination of `side` and `threshold_split` carefully.
 #' @inheritParams params
 #' @return A non-negative number.
 #' @family summary
