@@ -13,7 +13,6 @@
 #' Defaults to [`median()`], but can also be `[mean()`] or any custom function
 #' that returns a numeric vector of length 1.
 #' `NA` values are dropped before calling the function.
-#' @param threshold A number of the threshold value.
 #' @inheritParams params
 #' @return A character vector of length one indicating if at least half of the
 #' observations are above the threshold (`"right"`) or not (`"left"`).

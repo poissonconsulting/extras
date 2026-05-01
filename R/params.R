@@ -46,7 +46,7 @@
 #' @param size A non-negative whole numeric vector of the number of trials.
 #' @param theta A non-negative numeric vector of the dispersion for the mixture
 #'   models (student, gamma-Poisson and beta-binomial).
-#' @param threshold A number of the threshold value.
+#' @param threshold A number of the threshold value. Defaults to 0.
 #' @param type A string of the residual type. 'raw' for raw residuals 'dev' for
 #'   deviance residuals and 'data' for the data.
 #' @param value A scalar of the value to replace values with.

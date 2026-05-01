@@ -19,7 +19,7 @@
 #' Defaults to `NULL`, which uses the side of the median of `x` via
 #' [`direction()`].
 #' @param threshold A number of the threshold value, which is excluded from the
-#' interval for the probability.
+#' interval for the probability. Defaults to 0.
 #' @inheritParams params
 #' @return A number between 0 and 1.
 #' @family summary
