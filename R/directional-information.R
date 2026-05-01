@@ -10,7 +10,7 @@
 #' greater evidence for the specified side.
 #' Defaults to `"median"`, which uses the side of the median of `x` via
 #' [`direction()`].
-#' @param threshold_split A character vector of length 1 indicating how to deal
+#' @param threshold_split A string indicating how to deal
 #' with threshold values:
 #'
 #' - `"left"` to include them on the left side,
