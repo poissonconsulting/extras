@@ -39,14 +39,14 @@ direction <- function(x, estimate = median, threshold = 0, na_rm = FALSE) {
   if (length(x) == 0) {
     return(NA_character_)
   }
-  
+
   est <- estimate(x)
   if(!vld_number(est)) {
     err("The estimate function must return a number (non-missing numeric scalar).")
   }
 
- if (est < threshold) {
-   return("left")
-  }   
- "right"
+  if (est < threshold) {
+    return("left")
+  }
+  "right"
 }
