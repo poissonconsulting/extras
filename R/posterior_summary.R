@@ -50,7 +50,8 @@ posterior_summary <- function(x, side = NULL, threshold = 0,
     data.frame(
       # assuming parameter name is provided outside posterior_summary()
       median = median(x),
-      direction = paste("estimate", ifelse(side == "left", "<", ">"), threshold_sting),
+      threshold = threshold,
+      direction = side,
       probability_direction = probability_direction(x = x, side = side, threshold = threshold),
       directional_information = directional_information(x = x, side = side, threshold = threshold,
                                                         threshold_split = threshold_split),
