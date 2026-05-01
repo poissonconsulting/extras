@@ -38,14 +38,13 @@ direction <- function(x, estimate = median, threshold = 0, na_rm = FALSE) {
 
   if (length(x) == 0) {
     return(NA_character_)
-  } else {
-    est <- estimate(x)
-    chk_number(est)
-
-    if (est < threshold) {
-      "left"
-    } else { # threshold values go with right
-      "right"
-    }
   }
+  
+  est <- estimate(x)
+  chk_number(est)
+
+ if (est < threshold) {
+   return("left")
+  }   
+ "right"
 }
