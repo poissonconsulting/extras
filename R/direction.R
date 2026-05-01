@@ -37,7 +37,7 @@ direction <- function(x, estimate = median, threshold = 0, na_rm = FALSE) {
   }
 
   if (length(x) == 0) {
-    return(NA_real_)
+    return(NA_character_)
   } else {
     est <- estimate(x)
     chk_number(est)
