@@ -39,8 +39,8 @@ kl_divergence <- function(x = x, distribution = dnorm, ref_pars = c(0, 1),
   chk_function(distribution)
   chk_numeric(ref_pars)
   chk_true(length(ref_pars) <= 2)
-  chk_logical(na_rm)
-  chk_logical(include_zero)
+  chk_flag(na_rm)
+  chk_flag(include_zero)
 
   if (na_rm) {
     x <- x[!is.na(x)]

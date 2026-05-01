@@ -29,8 +29,8 @@ posterior_summary <- function(x, side = NULL, threshold = 0,
   chk_null_or(side, vld = vld_subset, values = c("left", "right"))
   chk_numeric(threshold)
   chk_subset(threshold_split, c("left", "right", "equal", "proportional", "exclude"))
-  chk_logical(na_rm)
-  chk_logical(format_threshold)
+  chk_flag(na_rm)
+  chk_flag(format_threshold)
 
   if (format_threshold & (abs(log10(abs(threshold))) > 3 & threshold != 0)) {
     threshold_sting <- formatC(threshold, format = "e", digits = 3)
