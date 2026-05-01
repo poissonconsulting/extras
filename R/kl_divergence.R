@@ -60,8 +60,13 @@ kl_divergence <- function(x = x, distribution = dnorm, ref_pars = c(0, 1),
   }
   n_bins <- floor(log2(length(x)) + 1)
   bins <- seq(min(x), max(x), length.out = n_bins)
-  p_x <- sapply(1:(n_bins - 1), function(.i) {
-    mean(x >= bins[.i] & x < bins[.i + 1])
+  p_obs <- sapply(1:(n_bins - 1), function(.i) {
+    # include max(x) in the last bin
+    if (.i < n_bins - 1) {
+      mean(x >= bins[.i] & x < bins[.i])
+    } else {
+      mean(x >= bins[.i] & x <= bins[.i])
+    }
   })
   if (length(ref_pars) == 1) {
     ref_p_x <- distribution((bins[1:(n_bins - 1)] + bins[2:n_bins]) / 2,
