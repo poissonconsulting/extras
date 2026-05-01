@@ -25,7 +25,7 @@ test_that("svalue", {
   expect_equal(svalue(-c(1, 1, NA), side = "right", na_rm = TRUE), -log2(1 / 3))
 })
 
-test_that("svalue() requires side to be one of left, right, both, or NULL, and returns a warning with default side.", {
+test_that("svalue() requires side to be one of left, right, both, or NULL.", {
   expect_no_error(pvalue(1, side = "both"))
   expect_no_error(pvalue(1, side = "left"))
   expect_no_error(pvalue(1, side = "right"))

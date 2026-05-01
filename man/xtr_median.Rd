@@ -22,8 +22,11 @@ xtr_mean(1:10)
 }
 \seealso{
 Other summary: 
+\code{\link{direction}()},
+\code{\link{directional_information}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
+\code{\link{probability_direction}()},
 \code{\link{pvalue}()},
 \code{\link{pzeros}()},
 \code{\link{skewness}()},

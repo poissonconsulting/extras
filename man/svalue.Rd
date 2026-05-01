@@ -37,7 +37,9 @@ The American Statistician 73(sup1): 106–114.
 \doi{10.1080/00031305.2018.1529625}.
 }
 \seealso{
-Other summary: 
+Other summary:
+\code{\link{direction}()},
+\code{\link{directional_information}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
 \code{\link{pvalue}()},
