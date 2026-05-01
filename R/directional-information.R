@@ -22,7 +22,7 @@
 #'   (identical to using `"proportional"`).
 #'
 #' @inheritParams params
-#' @return A non-negative number.
+#' @return A number indicating the directional information.
 #' @family summary
 #' @references
 #' Kery, M., and Schaub, M. 2011.
