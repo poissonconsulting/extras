@@ -1,7 +1,6 @@
 #' Directional information
 #'
-#' The information contained in a posterior belief can be summarized using the
-#' directional probability contained within that posterior.
+#' Quantifies the information about direction in a posterior distribution based on the directional probability.
 #' This function calculates such information using absolute difference in the the probability of direction (see [`probability_direction()`]), after converting each probability to bits (also see [`svalue()`].
 #'
 #' @param x A numeric vector of MCMC values.
