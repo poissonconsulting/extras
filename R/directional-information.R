@@ -24,6 +24,7 @@
 #' @inheritParams params
 #' @return A number indicating the directional information.
 #' @family summary
+#' @seealso [`probability_direction()`] and [`svalue()`]
 #' @references
 #' Kery, M., and Schaub, M. 2011.
 #' Bayesian population analysis using WinBUGS: a hierarchical perspective.
