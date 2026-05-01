@@ -22,14 +22,10 @@
 #' @examples
 #' posterior_summary(rnorm(100), side = "right")
 
-posterior_summary <- function(x, conf_level = 0.95, ci_side = "two-sided",
-                              side = NULL, threshold = 0,
+posterior_summary <- function(x, side = NULL, threshold = 0,
                               threshold_split = "proportional",
                               na_rm = FALSE, format_threshold = TRUE) {
   chk_numeric(x)
-  chk_number(conf_level)
-  chk_range(conf_level, inclusive = FALSE)
-  chk_subset(ci_side, c("left", "right", "two-sided"))
   chk_null_or(side, vld = vld_subset, values = c("left", "right"))
   chk_numeric(threshold)
   chk_subset(threshold_split, c("left", "right", "equal", "proportional", "exclude"))
@@ -46,21 +42,11 @@ posterior_summary <- function(x, conf_level = 0.95, ci_side = "two-sided",
     x <- x[!is.na(x)]
   }
 
-  if (ci_side == "two-sided") {
-    cri <- quantile(x, probs = c((1 - conf_level) / 2, 0.5 + conf_level / 2))
-  } else if (ci_side == "left") {
-    cri <- c(quantile(x, 1 - conf_level), Inf)
-  } else {
-    cri <- quantile(-Inf, quantile(conf_level))
-  }
 
   out <-
     data.frame(
       # assuming parameter name is provided outside posterior_summary()
       median = median(x),
-      lower = cri[1],
-      upper = cri[2],
-      svalue = svalue(x, side = side, threshold = threshold),
       direction = paste("estimate", ifelse(side == "left", "<", ">"), threshold_sting),
       probability_direction = probability_direction(x = x, side = side, threshold = threshold),
       directional_information = directional_information(x = x, side = side, threshold = threshold,
