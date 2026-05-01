@@ -51,11 +51,12 @@ Bayesian population analysis using WinBUGS: a hierarchical perspective.
 Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/en/research/population-biology/book-bpa/}.
 }
 \seealso{
-Other summary:
+Other summary: 
 \code{\link{direction}()},
 \code{\link{directional_information}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
+\code{\link{probability_direction}()},
 \code{\link{pzeros}()},
 \code{\link{skewness}()},
 \code{\link{svalue}()},
