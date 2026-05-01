@@ -32,8 +32,13 @@ direction <- function(x, estimate = median, threshold = 0, na_rm = FALSE) {
   chk_logical(na_rm)
   chk_function(estimate)
 
-  if (na_rm) {
-    x <- x[! is.na(x)]
+  if (anyNA(x)) {
+    if (vld_true(na_rm)) {
+      x <- as.vector(x)
+      x <- x[!is.na(x)]
+    } else {
+      return(NA_character_)
+    }
   }
 
   if (length(x) == 0) {

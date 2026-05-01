@@ -40,12 +40,14 @@ probability_direction <- function(x, side = NULL, threshold = 0, na_rm = FALSE) 
   chk_logical(na_rm)
 
   if (anyNA(x)) {
-    if (vld_false(na_rm)) {
+    if (vld_true(na_rm)) {
+      x <- as.vector(x)
+      x <- x[!is.na(x)]
+    } else {
       return(NA_real_)
     }
-    x <- as.vector(x)
-    x <- x[!is.na(x)]
   }
+
   n <- length(x)
   if (n == 0) {
     return(NA_real_)

@@ -52,10 +52,11 @@ directional_information <- function(x, side = "median", threshold = 0,
   chk_subset(threshold_split, c("left", "right", "equal", "proportional", "exclude"))
   chk_logical(na_rm)
 
-  if (na_rm) {
-    x <- x[! is.na(x)]
-  } else {
-    if (any(is.na(x))) {
+  if (anyNA(x)) {
+    if (vld_true(na_rm)) {
+      x <- as.vector(x)
+      x <- x[!is.na(x)]
+    } else {
       return(NA_real_)
     }
   }
