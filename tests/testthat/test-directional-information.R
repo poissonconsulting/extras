@@ -1,5 +1,7 @@
 test_that("directional_information() returns correct values.", {
   expect_identical(directional_information(NA_integer_), NA_real_)
+  expect_identical(directional_information(NA_real_), NA_real_)
+  expect_identical(directional_information(NaN), NA_real_)
   expect_identical(directional_information(integer(0)), NA_real_)
   expect_identical(directional_information(c(1, NA)), NA_real_)
   expect_identical(directional_information(1), 1)
