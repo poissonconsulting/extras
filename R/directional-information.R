@@ -60,7 +60,8 @@ directional_information <- function(x, side = "median", threshold = 0,
     }
   }
 
-  if (! length(x)) {
+  n <- length(x)
+  if (n == 0) {
     return(NA_real_)
   }
 
@@ -72,7 +73,6 @@ directional_information <- function(x, side = "median", threshold = 0,
     return(0)
   }
 
-  n <- length(x)
   p_l <- sum(x < threshold) / n # exclude threshold samples
   p_r <- sum(x > threshold) / n # exclude threshold samples
   p_t <- sum(x == threshold) / n

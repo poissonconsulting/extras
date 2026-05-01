@@ -46,7 +46,8 @@ probability_direction <- function(x, side = NULL, threshold = 0, na_rm = FALSE) 
     x <- as.vector(x)
     x <- x[!is.na(x)]
   }
-  if (!length(x)) {
+  n <- length(x)
+  if (n == 0) {
     return(NA_real_)
   }
 
@@ -60,7 +61,6 @@ probability_direction <- function(x, side = NULL, threshold = 0, na_rm = FALSE) 
     s <- sum(x > threshold) # exclude threshold samples
   }
 
-  n <- length(x)
   p <- s / n
 
   if (p == 0) {
