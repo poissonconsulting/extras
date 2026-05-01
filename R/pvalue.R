@@ -35,7 +35,7 @@ pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
   chk_string(side)
   chk_subset(side, c("left", "right", "both"))
   chk_number(threshold)
-  chk_logical(na_rm)
+  chk_flag(na_rm)
 
   if (anyNA(x)) {
     if (vld_true(na_rm)) {
