@@ -37,7 +37,7 @@ probability_direction <- function(x, side = NULL, threshold = 0, na_rm = FALSE) 
   chk_null_or(side, vld = vld_string)
   chk_null_or(side, vld = vld_subset, values = c("left", "right"))
   chk_number(threshold)
-  chk_logical(na_rm)
+  chk_flag(na_rm)
 
   if (anyNA(x)) {
     if (vld_true(na_rm)) {

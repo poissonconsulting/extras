@@ -50,7 +50,7 @@ directional_information <- function(x, side = "median", threshold = 0,
   chk_subset(side, c("left", "right", "median"))
   chk_number(threshold)
   chk_subset(threshold_split, c("left", "right", "equal", "proportional", "exclude"))
-  chk_logical(na_rm)
+  chk_flag(na_rm)
 
   if (anyNA(x)) {
     if (vld_true(na_rm)) {

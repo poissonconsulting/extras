@@ -29,7 +29,7 @@
 direction <- function(x, estimate = median, threshold = 0, na_rm = FALSE) {
   chk_numeric(x)
   chk_number(threshold)
-  chk_logical(na_rm)
+  chk_flag(na_rm)
   chk_function(estimate)
 
   if (anyNA(x)) {
