@@ -69,11 +69,11 @@ kl_divergence <- function(x = x, distribution = dnorm, ref_pars = c(0, 1),
     }
   })
   if (length(ref_pars) == 1) {
-    ref_p_x <- distribution((bins[1:(n_bins - 1)] + bins[2:n_bins]) / 2,
-                            ref_pars[1])
+    p_ref <- distribution((bins[1:(n_bins - 1)] + bins[2:n_bins]) / 2,
+                          ref_pars[1])
   } else {
-    ref_p_x <- distribution((bins[1:(n_bins - 1)] + bins[2:n_bins]) / 2,
-                            ref_pars[1], ref_pars[2])
+    p_ref <- distribution((bins[1:(n_bins - 1)] + bins[2:n_bins]) / 2,
+                          ref_pars[1], ref_pars[2])
   }
-  weighted.mean(p_x * log(p_x / ref_p_x), w = p_x * n_bins)
+  weighted.mean(p_obs * log(p_obs / p_ref), w = p_obs * n_bins)
 }
