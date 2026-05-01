@@ -18,8 +18,8 @@
 #' - `"equal"` to split them equally between the left and side,
 #' - `"proportional"` (default) to split them between the left and right sides
 #'    proportionally to the values of `x` on the left and right sides,
-#' - `"exclude"` to drop the values of `x` equal to `threshold` (effectively
-#'   identical to using `"proportional"`).
+#' - `"exclude"` to drop the values of `x` equal to `threshold` 
+#'   (identical to using `"proportional"`).
 #'
 #' Users should choose the combination of `side` and `threshold_split` carefully.
 #' @inheritParams params
