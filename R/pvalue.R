@@ -9,7 +9,7 @@
 #'
 #' Note that the function contains the sample-size correction
 #' \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
-#' return p-values of 1 (unlike [`probability_direction()`]).
+#' return p-values of 1.
 #'
 #' To use as a measure of certainty in the direction of the estimate (i.e.,
 #' positive or negative), see [`probability_direction()`].
@@ -43,17 +43,18 @@ pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
   chk_logical(na_rm)
 
   if (anyNA(x)) {
-    if (vld_false(na_rm)) {
+    if (vld_true(na_rm)) {
+      x <- as.vector(x)
+      x <- x[!is.na(x)]
+    } else {
       return(NA_real_)
     }
-    x <- as.vector(x)
-    x <- x[!is.na(x)]
-  }
-  if (!length(x)) {
-    return(NA_real_)
   }
 
   n <- length(x)
+  if (n == 0) {
+    return(NA_real_)
+  }
 
   if (side == "both") {
     s1 <- sum(x < threshold)

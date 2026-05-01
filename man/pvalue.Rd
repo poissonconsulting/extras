@@ -29,7 +29,7 @@ threshold value.
 
 Note that the function contains the sample-size correction
 \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
-return p-values of 1 (unlike \code{\link[=probability_direction]{probability_direction()}}).
+return p-values of 1.
 
 To use as a measure of certainty in the direction of the estimate (i.e.,
 positive or negative), see \code{\link[=probability_direction]{probability_direction()}}.
@@ -51,12 +51,11 @@ Bayesian population analysis using WinBUGS: a hierarchical perspective.
 Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/en/research/population-biology/book-bpa/}.
 }
 \seealso{
-Other summary: 
+Other summary:
 \code{\link{direction}()},
 \code{\link{directional_information}()},
 \code{\link{kurtosis}()},
 \code{\link{lower}()},
-\code{\link{probability_direction}()},
 \code{\link{pzeros}()},
 \code{\link{skewness}()},
 \code{\link{svalue}()},
