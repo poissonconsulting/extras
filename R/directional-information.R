@@ -8,7 +8,8 @@
 #' the directional information relative to the left side (`"left"`; `x < threshold`),
 #' or the right side (`"right"`; `x > threshold`). Positive information suggests
 #' greater evidence for the specified side.
-#' Defaults to `NULL`, which uses the side of the median of `x` via [`direction()`].
+#' Defaults to `"median"`, which uses the side of the median of `x` via
+#' [`direction()`].
 #' @param threshold_split A character vector of length 1 indicating how to deal
 #' with threshold values:
 #'
@@ -43,11 +44,11 @@
 #' directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 #' directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
 
-directional_information <- function(x, side = NULL, threshold = 0,
+directional_information <- function(x, side = "median", threshold = 0,
                                     threshold_split = "proportional",
                                     na_rm = FALSE) {
   chk_numeric(x)
-  chk_null_or(side, vld = vld_subset, values = c("left", "right"))
+  chk_subset(side, c("left", "right", "median"))
   chk_number(threshold)
   chk_subset(threshold_split, c("left", "right", "equal", "proportional", "exclude"))
   chk_logical(na_rm)
@@ -64,7 +65,7 @@ directional_information <- function(x, side = NULL, threshold = 0,
     return(NA_real_)
   }
 
-  if (is.null(side)) {
+  if (side == "median") {
     side <- direction(x)
   }
 
