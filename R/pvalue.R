@@ -43,7 +43,7 @@ pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
   chk_logical(na_rm)
 
   if (anyNA(x)) {
-    if (vld_true(na_rm)) {
+    if (na_rm) {
       x <- as.vector(x)
       x <- x[!is.na(x)]
     } else {

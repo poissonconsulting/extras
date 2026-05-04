@@ -40,7 +40,7 @@ probability_direction <- function(x, side = NULL, threshold = 0, na_rm = FALSE) 
   chk_flag(na_rm)
 
   if (anyNA(x)) {
-    if (vld_true(na_rm)) {
+    if (na_rm) {
       x <- as.vector(x)
       x <- x[!is.na(x)]
     } else {

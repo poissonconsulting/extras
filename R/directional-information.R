@@ -53,7 +53,7 @@ directional_information <- function(x, side = "median", threshold = 0,
   chk_flag(na_rm)
 
   if (anyNA(x)) {
-    if (vld_true(na_rm)) {
+    if (na_rm) {
       x <- as.vector(x)
       x <- x[!is.na(x)]
     } else {
