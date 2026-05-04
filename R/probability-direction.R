@@ -57,7 +57,7 @@ probability_direction <- function(x, side = NULL, threshold = 0, na_rm = FALSE) 
     return(NA_real_)
   }
 
-  if (is.null(side)) {
+  if (side == "median") {
     side <- direction(x)
   }
 
