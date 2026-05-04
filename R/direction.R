@@ -10,7 +10,7 @@
 #'
 #' @param x A numeric vector of MCMC values or any other numeric vector of samples.
 #' @param estimate A function for estimating the center of the distribution.
-#' Defaults to [median()], but can also be [mean()] or any custom function
+#' Defaults to [xtr_median()], but can also be [xtr_mean()] or any custom function
 #' that returns a number (a non-missing numeric vector of length 1).
 #' `NA` values are dropped before calling the function.
 #' @param threshold A number of the threshold value.
@@ -26,7 +26,7 @@
 #' direction(c(-100, 1, 1))
 #' direction(c(-100, 1, 1), mean)
 #' direction(c(100, 0.01, 0.01), function(.x) exp(mean(log(.x))))
-direction <- function(x, estimate = median, threshold = 0, na_rm = FALSE) {
+direction <- function(x, estimate = xtr_median, threshold = 0, na_rm = FALSE) {
   chk_numeric(x)
   chk_number(threshold)
   chk_flag(na_rm)

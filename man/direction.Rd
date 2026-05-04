@@ -4,13 +4,13 @@
 \alias{direction}
 \title{Direction of a distribution}
 \usage{
-direction(x, estimate = median, threshold = 0, na_rm = FALSE)
+direction(x, estimate = xtr_median, threshold = 0, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values or any other numeric vector of samples.}
 
 \item{estimate}{A function for estimating the center of the distribution.
-Defaults to \code{\link[=median]{median()}}, but can also be \code{\link[=mean]{mean()}} or any custom function
+Defaults to \code{\link[=xtr_median]{xtr_median()}}, but can also be \code{\link[=xtr_mean]{xtr_mean()}} or any custom function
 that returns a number (a non-missing numeric vector of length 1).
 \code{NA} values are dropped before calling the function.}
 
