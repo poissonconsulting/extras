@@ -22,11 +22,6 @@
 #' svalue(rnorm(1e4, mean = 1), side = "left")
 #' svalue(rnorm(1e4, mean = 1), side = "right")
 svalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
-  chk_numeric(x)
-  chk_string(side)
-  chk_subset(side, values = c("left", "right", "both"))
-  chk_number(threshold)
-  chk_logical(na_rm)
 
   -log2(pvalue(x, side = side, threshold = threshold, na_rm = na_rm))
 }
