@@ -34,13 +34,18 @@
 #'               ref_pars = c(10))
 
 kl_divergence <- function(x = x, distribution = dnorm, ref_pars = c(0, 1),
-                          na_rm = FALSE, include_zero = FALSE) {
+                          range = c(-Inf, Inf), na_rm = FALSE, plots = TRUE) {
+  # TODO: remove `plots` arguement
+  # TODO: allow comparing two samples nonparametrically
+  # TODO: make `kl_normal`, `kl_lnorm`, `kl_exp`, ..., for all families
+  # TODO: `kl_samples` for two nonparametric samples
   chk_numeric(x)
   chk_function(distribution)
   chk_numeric(ref_pars)
   chk_true(length(ref_pars) <= 2)
+  chk_numeric(range)
+  chk_length(range, 2)
   chk_flag(na_rm)
-  chk_flag(include_zero)
 
   if (na_rm) {
     x <- x[!is.na(x)]
@@ -48,32 +53,51 @@ kl_divergence <- function(x = x, distribution = dnorm, ref_pars = c(0, 1),
   if (any(is.na(x))) {
     return(NA_real_)
   }
+  x <- sort(x)
   x_min <- min(x)
   x_max <- max(x)
-  if (include_zero) {
-    if(x_min > 0) {
-      x_min <- 0
-    }
-    if(x_max < 0) {
-      x_max <- 0
-    }
+  if (is.finite(range[1])) {
+    x_min <- range[1]
   }
-  n_bins <- floor(log2(length(x)) + 1)
-  bins <- seq(min(x), max(x), length.out = n_bins)
-  p_obs <- sapply(1:(n_bins - 1), function(.i) {
-    # include max(x) in the last bin
-    if (.i < n_bins - 1) {
-      mean(x >= bins[.i] & x < bins[.i])
-    } else {
-      mean(x >= bins[.i] & x <= bins[.i])
-    }
-  })
+  if(is.finite(range[2])) {
+    x_max <- range[2]
+  }
+  # the probability function becomes flat if eps is too small or too large
+  # the eps seems to be related to the sample size passed to ecdf()
+  eps <- 400 / length(x)
+  if (diff(range(x)) / eps < 5) {
+    return(NA_real_)
+  }
+  ECDF <- ecdf(x)
+  sample_space <- seq(x_min + 2 * eps, x_max - 2 * eps, by = eps / 100)
+  left_sample <- sample_space - eps
+  right_sample <- sample_space + eps
+  left_sample <- pmax(left_sample, x_min)
+  right_sample <- pmin(right_sample, x_max)
+  left <- ECDF(left_sample)
+  right <- ECDF(right_sample)
+  p_obs <- (right - left) / (right_sample - left_sample)
   if (length(ref_pars) == 1) {
-    p_ref <- distribution((bins[1:(n_bins - 1)] + bins[2:n_bins]) / 2,
-                          ref_pars[1])
+    p_ref <- distribution(sample_space, ref_pars[1])
   } else {
-    p_ref <- distribution((bins[1:(n_bins - 1)] + bins[2:n_bins]) / 2,
-                          ref_pars[1], ref_pars[2])
+    p_ref <- distribution(sample_space, ref_pars[1], ref_pars[2])
   }
-  weighted.mean(p_obs * log(p_obs / p_ref), w = p_obs * n_bins)
+  if (plots) {
+    layout(matrix(c(1:3, 3), ncol = 2, byrow = TRUE))
+    plot(sample_space, p_obs, type = "l"); plot(sample_space, p_ref,type= "l")
+    plot(p_ref, p_obs, type = "l")
+    layout(1)
+  }
+  sum(p_obs * log(p_obs / p_ref))
+}
+
+if(FALSE) {
+  debug(kl_divergence)
+  # TODO: something is wrong with the right side of the density plots
+  kl_divergence(qnorm(seq(0.001, 0.995, by = 0.001)))
+  kl_divergence(qnorm(seq(0.001, 0.995, length.out = 400)))
+  kl_divergence(qnorm(seq(0.001, 0.995, length.out = 350)))
+  kl_divergence(qexp(seq(0.001, 0.995, by = 0.0001)), range = c(0, Inf))
+  kl_divergence(qnorm(seq(0.001, 0.995, by = 0.0001), mean = 3), range = c(0, Inf))
+  undebug(kl_divergence)
 }
