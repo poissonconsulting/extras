@@ -61,10 +61,6 @@ directional_information <- function(x, side = "median", threshold = 0,
     }
   }
 
-  if (any(is.infinite(x))) {
-    return(NA_real_)
-  }
-
   n <- length(x)
   if (n == 0) {
     return(NA_real_)

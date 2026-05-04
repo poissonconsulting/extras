@@ -48,10 +48,6 @@ probability_direction <- function(x, side = NULL, threshold = 0, na_rm = FALSE) 
     }
   }
 
-  if (any(is.infinite(x))) {
-    return(NA_real_)
-  }
-
   n <- length(x)
   if (n == 0) {
     return(NA_real_)
