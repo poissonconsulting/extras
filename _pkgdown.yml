@@ -29,6 +29,11 @@ reference:
   - '`kurtosis`'
   - '`zeros`'
   - '`pzeros`'
+  - '`rope`'
+  - '`xtr_ci`'
+  - '`xtr_ci_eti`'
+  - '`xtr_ci_hdi`'
+  - '`xtr_ci_norm`'
 - title: Conversion Functions
   desc: Conversion functions
   contents:
