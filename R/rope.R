@@ -16,7 +16,7 @@
 #' @return A number indicating the estimated proportion of the posterior (or
 #' credible interval) within the region of practical equivalence.
 #' @export
-#' @seealso [extras::xtr_hdi]
+#' @seealso [extras::xtr_ci]
 #' @examples
 #' rope(c(-Inf, -1, -0.1, 0.1, 1, Inf))
 #' rope(rnorm(1e4))
@@ -24,7 +24,7 @@
 NULL
 
 rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ci_level = 1,
-                 na_rm = FALSE, quiet = TRUE) {
+                 type = "HDI", na_rm = FALSE, quiet = TRUE) {
   chk_numeric(x)
   chk_numeric(interval)
   chk_length(interval, 2)
@@ -42,7 +42,7 @@ rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ci_level = 1,
   }
 
   if(ci_level < 1) {
-    ci <- xtr_hdi(x = x, level = ci_level, na_rm = na_rm, quiet = quiet)
+    ci <- xtr_ci(x = x, level = ci_level, type = type, na_rm = na_rm, quiet = quiet)
     x <- x[x >= ci[1] & x <= ci[2]]
   }
   mean(x >= threshold + interval[1] & x <= threshold + interval[2])
