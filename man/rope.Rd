@@ -31,5 +31,5 @@ rope(c(-Inf, -1, -0.1, 0.1, 1, Inf))
 rope(rnorm(1e4))
 }
 \seealso{
-\link{xtr_hdi}
+\link{xtr_ci}
 }
