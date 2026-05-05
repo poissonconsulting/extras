@@ -12,13 +12,13 @@
 #' @return A data frame of the `lower` and `upper` limits for the credible interval.
 #' Note that the interval is not guaranteed to be one-sided or two-sided.
 #' @export
-#' @seealso [extras::xtr_ci] and [extras::xtr_hdi]
+#' @seealso [extras::xtr_ci], [extras::xtr_ci_hdi], and [extras::xtr_ci_norm]
 #' @examples
-#' xtr_eti(rnorm(1e4))
-#' @name xtr_eti
+#' xtr_ci_eti(rnorm(1e4))
+#' @name xtr_ci_eti
 NULL
 
-xtr_eti <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
+xtr_ci_eti <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
   chk_numeric(x)
   chk_number(level)
   chk_range(level)

@@ -1,7 +1,7 @@
 #' Highest Density Interval
 #'
-#' Calculates credible intervals using the empirical highest density interval
-#' (HDI), i.e., the narrowest CI with the specified minimum coverage.
+#' Calculates Bayesian credible intervals using the highest density
+#' interval (HDI), i.e., the narrowest CI with the specified minimum coverage.
 #'
 #' @param x A numeric vector of MCMC samples.
 #' @param level A number between 0 and 1 (exclusive) specifying the probability
@@ -11,13 +11,13 @@
 #' @return A data frame of the `lower` and `upper` limits for the credible interval.
 #' Note that the interval is not guaranteed to be one-sided or two-sided.
 #' @export
-#' @seealso [mcmcr::coef]
+#' @seealso [extras::xtr_ci] and [extras::xtr_ci_eti()]
 #' @examples
-#' xtr_hdi(rnorm(1e4))
-#' @name xtr_hdi
+#' xtr_ci_hdi(rnorm(1e4))
+#' @name xtr_ci_hdi
 NULL
 
-xtr_hdi <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
+xtr_ci_hdi <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
   chk_numeric(x)
   chk_number(level)
   chk_range(level)
