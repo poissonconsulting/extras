@@ -38,7 +38,7 @@ xtr_ci_eti <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
   }
 
   data.frame(
-    lower = unname(quantile(x, (1 - level) / 2)),
-    upper = unname(quantile(x, (1 + level) / 2))
+    lower = unname(stats::quantile(x, (1 - level) / 2)),
+    upper = unname(stats::quantile(x, (1 + level) / 2))
   )
 }

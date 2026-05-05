@@ -43,7 +43,7 @@ xtr_ci_norm <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
   }
 
   data.frame(
-    lower = mean(x) + qnorm((1 - level) / 2) * sd(x),
-    upper = mean(x) + qnorm((1 + level) / 2) * sd(x)
+    lower = xtr_mean(x) + stats::qnorm((1 - level) / 2) * xtr_sd(x),
+    upper = xtr_mean(x) + stats::qnorm((1 + level) / 2) * xtr_sd(x)
   )
 }
