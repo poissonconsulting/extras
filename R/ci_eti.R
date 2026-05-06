@@ -21,7 +21,7 @@ NULL
 xtr_ci_eti <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
-  chk_range(level)
+  chk_range(level, inclusive = FALSE)
   chk_flag(na_rm)
   chk_unused(...)
 
