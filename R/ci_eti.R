@@ -18,12 +18,12 @@
 #' @name xtr_ci_eti
 NULL
 
-xtr_ci_eti <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
+xtr_ci_eti <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
   chk_range(level)
   chk_flag(na_rm)
-  chk_flag(quiet)
+  chk_unused(...)
 
   if(length(x) == 0) {
     return(tibble::tibble(lower = NA_real_, upper = NA_real_))

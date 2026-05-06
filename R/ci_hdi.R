@@ -17,12 +17,12 @@
 #' @name xtr_ci_hdi
 NULL
 
-xtr_ci_hdi <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
+xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
   chk_range(level)
   chk_flag(na_rm)
-  chk_flag(quiet)
+  chk_unused(...)
 
   if (anyNA(x)) {
     if (vld_true(na_rm)) {

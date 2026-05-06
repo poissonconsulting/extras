@@ -19,16 +19,16 @@
 #' @name xtr_ci
 NULL
 
-xtr_ci <- function(x, level = 0.95, type = "HDI", quiet = TRUE, na_rm = FALSE) {
+xtr_ci <- function(x, level = 0.95, ..., type = "HDI", na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
   chk_subset(type, c("HDI", "ETI"))
   chk_range(level)
   chk_flag(na_rm)
-  chk_flag(quiet)
+  chk_unused(...)
 
   if(type == "HDI") {
-    xtr_ci_hdi(x = x, level = level, na_rm = na_rm, quiet = quiet)
+    xtr_ci_hdi(x = x, level = level, na_rm = na_rmt)
   } else if (type == "ETI") {
     xtr_ci_eti(x = x, level = level, na_rm = na_rm)
   }
