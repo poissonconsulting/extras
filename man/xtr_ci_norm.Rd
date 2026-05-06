@@ -28,5 +28,5 @@ Returns \code{NA_real_} if any elements of \code{x} are infinite.
 xtr_ci_norm(rnorm(1e4))
 }
 \seealso{
-\link{xtr_ci}, \link{xtr_ci_eti}, and \link{xtr_ci_hdi}
+\code{\link[=xtr_ci]{xtr_ci()}}, \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}, and \code{\link[=xtr_ci_hdi]{xtr_ci_hdi()}}
 }

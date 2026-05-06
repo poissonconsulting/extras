@@ -26,5 +26,5 @@ coverage.
 xtr_ci_eti(rnorm(1e4))
 }
 \seealso{
-\link{xtr_ci}, \link{xtr_ci_hdi}, and \link{xtr_ci_norm}
+\code{\link[=xtr_ci]{xtr_ci()}}, \code{\link[=xtr_ci_hdi]{xtr_ci_hdi()}}, and \code{\link[=xtr_ci_norm]{xtr_ci_norm()}}
 }

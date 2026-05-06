@@ -25,5 +25,5 @@ interval (HDI), i.e., the narrowest CI with the specified minimum coverage.
 xtr_ci_hdi(rnorm(1e4))
 }
 \seealso{
-\link{xtr_ci} and \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}
+\code{\link[=xtr_ci]{xtr_ci()}}, \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}, and \link{xtr_ci_norm}
 }

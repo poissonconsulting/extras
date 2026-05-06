@@ -11,7 +11,7 @@
 #' @return A data frame of the `lower` and `upper` limits for the credible interval.
 #' Note that the interval is not guaranteed to be one-sided or two-sided.
 #' @export
-#' @seealso [extras::xtr_ci] and [extras::xtr_ci_eti()]
+#' @seealso [extras::xtr_ci()], [extras::xtr_ci_eti()], and [extras::xtr_ci_norm()]
 #' @examples
 #' xtr_ci_hdi(rnorm(1e4))
 #' @name xtr_ci_hdi
