@@ -6,11 +6,11 @@
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
 
-\item{ci_level}{A number > 0 and <= 1 specifying the probability coverage of
+\item{level}{A number > 0 and <= 1 specifying the probability coverage of
 the HDI to use.
 The default of 1 uses the full posterior.}
 
-\item{quiet}{A flag indicating whether to return warnings.}
+\item{...}{Currently unused.}
 
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
@@ -20,7 +20,7 @@ credible interval) within the region of practical equivalence.
 }
 \description{
 Calculates the proportion of the posterior (or credible interval if
-\code{ci_level < 1}) that falls within the region of practical equivalence (ROPE)
+\code{level < 1}) that falls within the region of practical equivalence (ROPE)
 to a \code{threshold}.
 The ROPE is calculated as \code{threshold + interval}.
 Note that the default is not appropriate for all models, since the \code{interval}
