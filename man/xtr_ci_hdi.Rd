@@ -14,7 +14,7 @@ coverage of the HDI.}
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
 \value{
-A data frame of the \code{lower} and \code{upper} limits for the credible interval.
+A \link[tibble:tibble]{tibble::tibble} of the \code{lower} and \code{upper} limits for the credible interval.
 Note that the interval is not guaranteed to be one-sided or two-sided.
 }
 \description{
@@ -25,5 +25,5 @@ interval (HDI), i.e., the narrowest CI with the specified minimum coverage.
 xtr_ci_hdi(rnorm(1e4))
 }
 \seealso{
-\code{\link[=xtr_ci]{xtr_ci()}}, \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}, and \link{xtr_ci_norm}
+\code{\link[=xtr_ci]{xtr_ci()}}, \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}, and \code{\link[=xtr_ci_norm]{xtr_ci_norm()}}
 }

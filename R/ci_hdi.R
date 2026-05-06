@@ -8,7 +8,7 @@
 #' coverage of the HDI.
 #' @param quiet A flag indicating whether to return warnings.
 #' @param na_rm A flag indicating whether to remove missing values.
-#' @return A data frame of the `lower` and `upper` limits for the credible interval.
+#' @return A [tibble::tibble] of the `lower` and `upper` limits for the credible interval.
 #' Note that the interval is not guaranteed to be one-sided or two-sided.
 #' @export
 #' @seealso [extras::xtr_ci()], [extras::xtr_ci_eti()], and [extras::xtr_ci_norm()]
@@ -28,21 +28,21 @@ xtr_ci_hdi <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
     if (vld_true(na_rm)) {
       x <- x[!is.na(x)]
     } else {
-      return(data.frame(lower = NA_real_, upper = NA_real_))
+      return(tibble::tibble(lower = NA_real_, upper = NA_real_))
     }
   }
   x <- sort(x)
   n <- length(x)
 
   if (n < 1 / (1 - level)) {
-    return(data.frame(lower = NA_real_, upper = NA_real_))
+    return(tibble::tibble(lower = NA_real_, upper = NA_real_))
   }
 
   n_in <- ceiling(n * level)
   n_out <- n - n_in
 
   if (sum(is.infinite(x)) >= n_in) {
-    return(data.frame(lower = Inf * sign(min(x[is.infinite(x)])),
+    return(tibble::tibble(lower = Inf * sign(min(x[is.infinite(x)])),
                       upper = Inf * sign(max(x[is.infinite(x)]))))
   }
 
@@ -56,7 +56,7 @@ xtr_ci_hdi <- function(x, level = 0.95, na_rm = FALSE, quiet = TRUE) {
     narrowest_i <- round(xtr_median(narrowest_is))
   }
 
-  data.frame(
+  tibble::tibble(
     lower = x[narrowest_i],
     upper = x[narrowest_i + n_in]
   )
