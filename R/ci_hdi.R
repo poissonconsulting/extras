@@ -42,8 +42,7 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   n_out <- n - n_in
 
   if (sum(is.infinite(x)) >= n_in) {
-    return(tibble::tibble(lower = Inf * sign(min(x[is.infinite(x)])),
-                      upper = Inf * sign(max(x[is.infinite(x)]))))
+    return(tibble::tibble(lower = min(x), upper = max(x)))
   }
 
   widths <- sapply(1:n_out, function(.i) x[.i + n_in] - x[.i])
