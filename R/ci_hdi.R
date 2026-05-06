@@ -41,7 +41,7 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   n_in <- ceiling(n * level)
   n_out <- n - n_in
 
-  if (sum(is.infinite(x)) >= n_in) {
+  if (sum(is.infinite(x)) > n_out) {
     return(tibble::tibble(lower = min(x), upper = max(x)))
   }
 
