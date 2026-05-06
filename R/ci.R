@@ -22,7 +22,7 @@ NULL
 xtr_ci <- function(x, level = 0.95, type = "HDI", quiet = TRUE, na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
-  chk_subset(type, c("HDI", "ETI", "normal"))
+  chk_subset(type, c("HDI", "ETI"))
   chk_range(level)
   chk_flag(na_rm)
   chk_flag(quiet)
@@ -30,8 +30,6 @@ xtr_ci <- function(x, level = 0.95, type = "HDI", quiet = TRUE, na_rm = FALSE) {
   if(type == "HDI") {
     xtr_ci_hdi(x = x, level = level, na_rm = na_rm, quiet = quiet)
   } else if (type == "ETI") {
-    xtr_ci_eti(x = x, level = level, na_rm = na_rm, quiet = quiet)
-  } else if (type == "normal") {
-    xtr_ci_norm(x = x, level = level, na_rm = na_rm, quiet = quiet)
+    xtr_ci_eti(x = x, level = level, na_rm = na_rm)
   }
 }
