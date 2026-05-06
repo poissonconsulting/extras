@@ -57,6 +57,6 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
 
   tibble::tibble(
     lower = x[narrowest_i],
-    upper = x[narrowest_i + n_in]
+    upper = x[n_in + narrowest_i - 1]
   )
 }
