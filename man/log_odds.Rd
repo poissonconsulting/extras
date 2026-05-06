@@ -19,12 +19,12 @@ Calculates the log odds for probabilities.
 log_odds(c(0, 0.5, 0.9, 1))
 }
 \seealso{
-Other odds: 
-\code{\link{inv_odds}()},
-\code{\link{log_odds<-}()},
-\code{\link{log_odds_ratio}()},
-\code{\link{odds}()},
-\code{\link{odds<-}()},
-\code{\link{odds_ratio}()}
+Other odds:
+\code{\link[=inv_odds]{inv_odds()}},
+\code{\link[=log_odds<-]{log_odds<-()}},
+\code{\link[=log_odds_ratio]{log_odds_ratio()}},
+\code{\link[=odds]{odds()}},
+\code{\link[=odds<-]{odds<-()}},
+\code{\link[=odds_ratio]{odds_ratio()}}
 }
 \concept{odds}

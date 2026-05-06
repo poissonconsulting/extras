@@ -21,7 +21,7 @@ probability is at least that extreme.
 pextreme(seq(0, 1, by = 0.1))
 }
 \seealso{
-Other residuals: 
-\code{\link{sextreme}()}
+Other residuals:
+\code{\link[=sextreme]{sextreme()}}
 }
 \concept{residuals}
