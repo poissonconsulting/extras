@@ -9,7 +9,7 @@
 \item{level}{A number between 0 and 1 (exclusive) specifying the probability
 coverage of the HDI.}
 
-\item{quiet}{A flag indicating whether to return warnings.}
+\item{...}{Currently unused.}
 
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
@@ -25,5 +25,5 @@ interval (HDI), i.e., the narrowest CI with the specified minimum coverage.
 xtr_ci_hdi(rnorm(1e4))
 }
 \seealso{
-\code{\link[=xtr_ci]{xtr_ci()}}, \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}, and \code{\link[=xtr_ci_norm]{xtr_ci_norm()}}
+\code{\link[=xtr_ci]{xtr_ci()}} and \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}
 }

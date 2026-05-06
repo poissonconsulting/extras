@@ -9,7 +9,7 @@
 \item{level}{A number between 0 and 1 (exclusive) specifying the probability
 coverage of the ETI.}
 
-\item{quiet}{A flag indicating whether to return warnings.}
+\item{...}{Currently unused.}
 
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
@@ -26,5 +26,5 @@ coverage.
 xtr_ci_eti(rnorm(1e4))
 }
 \seealso{
-\code{\link[=xtr_ci]{xtr_ci()}}, \code{\link[=xtr_ci_hdi]{xtr_ci_hdi()}}, and \code{\link[=xtr_ci_norm]{xtr_ci_norm()}}
+\code{\link[=xtr_ci]{xtr_ci()}} and \code{\link[=xtr_ci_hdi]{xtr_ci_hdi()}}
 }

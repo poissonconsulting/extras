@@ -9,7 +9,7 @@
 \item{level}{A number between 0 and 1 (exclusive) specifying the probability
 coverage of the CI.}
 
-\item{quiet}{A flag indicating whether to return warnings.}
+\item{...}{Currently unused.}
 
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
@@ -21,8 +21,7 @@ Note that the interval is not guaranteed to be one-sided or two-sided.
 Calculates Bayesian credible intervals (CI) using one of the available methods:
 \itemize{
 \item \code{"HDI"}: highest density interval (see \code{\link[=xtr_ci_hdi]{xtr_ci_hdi()}}),
-\item \code{"ETI"}: equal tailed intervals (see \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}),
-\item \code{"normal"}: normal approximation intervals (see \code{\link[=xtr_ci_norm]{xtr_ci_norm()}}).
+\item \code{"ETI"}: equal tailed intervals (see \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}).
 }
 }
 \examples{
