@@ -6,16 +6,18 @@
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
 
-\item{level}{A number > 0 and <= 1 (exclusive) specifying the probability
-coverage of the HDI.}
+\item{level}{A number > 0 and <= 1 specifying the probability coverage of the
+HDI.}
 
 \item{...}{Currently unused.}
 
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
 \value{
-A \link[tibble:tibble]{tibble::tibble} of the \code{lower} and \code{upper} limits for the credible interval.
+A \link{data.frame} of the \code{lower} and \code{upper} limits for the credible
+interval.
 Note that the interval is not guaranteed to be one-sided or two-sided.
+Returns integer limits if the input data are integers and double otherwise.
 }
 \description{
 Calculates Bayesian credible intervals using the highest density

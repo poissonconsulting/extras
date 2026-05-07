@@ -6,21 +6,24 @@
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
 
-\item{level}{A number between 0 and 1 (exclusive) specifying the probability
-coverage of the ETI.}
+\item{level}{A number > 0 and <= 1 specifying the probability coverage of the
+ETI.}
 
 \item{...}{Currently unused.}
 
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
 \value{
-A \link[tibble:tibble]{tibble::tibble} of the \code{lower} and \code{upper} limits for the credible interval.
-Note that the interval is not guaranteed to be one-sided or two-sided.
+A \link{data.frame} of the \code{lower} and \code{upper} limits for the credible
+interval.
+Note that the interval is guaranteed to be two-sided with real (i.e., double)
+numeric limits, even if the input data are integers.
 }
 \description{
 Calculates Bayesian credible intervals using the equal-tailed interval (ETI),
 i.e., the CI such that the left and right tails outside the CI have the same
-coverage.
+coverage. Note that the function does not return integer outputs, even if the
+input data are integers, unlike \code{\link[=xtr_ci_hdi]{xtr_ci_hdi()}}.
 }
 \examples{
 xtr_ci_eti(rnorm(1e4))
