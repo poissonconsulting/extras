@@ -26,7 +26,8 @@ Depends:
 Imports:
     chk,
     lifecycle,
-    stats
+    stats,
+    tibble
 Suggests: 
     covr,
     ggplot2,
@@ -38,7 +39,6 @@ Suggests:
     scales,
     sn,
     testthat (>= 3.0.0),
-    tibble,
     tidyr,
     viridis,
     withr
