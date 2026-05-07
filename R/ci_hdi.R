@@ -4,59 +4,89 @@
 #' interval (HDI), i.e., the narrowest CI with the specified minimum coverage.
 #'
 #' @param x A numeric vector of MCMC samples.
-#' @param level A number between 0 and 1 (exclusive) specifying the probability
-#' coverage of the HDI.
+#' @param level A number > 0 and <= 1 specifying the probability coverage of the
+#'  HDI.
 #' @param ... Currently unused.
 #' @param na_rm A flag indicating whether to remove missing values.
-#' @return A [tibble::tibble] of the `lower` and `upper` limits for the credible interval.
+#' @return A [tibble::tibble] of the `lower` and `upper` limits for the credible
+#' interval.
 #' Note that the interval is not guaranteed to be one-sided or two-sided.
+#' Returns integer limits if the input data are integers and double otherwise.
 #' @export
 #' @seealso [extras::xtr_ci()] and [extras::xtr_ci_eti()]
 #' @examples
-#' xtr_ci_hdi(rnorm(1e4))
+#' xtr_ci_hdi(1:10, level = 0.1) # only 10% of values inside
+#' xtr_ci_hdi(1:10, level = 0.2) # only 20% of values inside
+#' xtr_ci_hdi(1:10, level = 0.2 + 0.01) # at least 20.1% of values inside
+#' xtr_ci_hdi(1:100) # inclusive interval [3, 98] with 5% of values outside
 #' @name xtr_ci_hdi
 NULL
 
 xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
-  chk_range(level, inclusive = FALSE)
+  chk_range(level, inclusive = TRUE)
+  chk_gt(level)
   chk_flag(na_rm)
   chk_unused(...)
+
+  if(is.integer(x)) {
+    na <- NA_integer_
+  } else {
+    na <- NA_real_
+  }
 
   if (anyNA(x)) {
     if (vld_true(na_rm)) {
       x <- x[!is.na(x)]
     } else {
-      return(tibble::tibble(lower = NA_real_, upper = NA_real_))
+      return(tibble::tibble(lower = na, upper = na))
     }
   }
+
   x <- sort(x)
   n <- length(x)
 
-  if (n < 1 / (1 - level)) {
-    return(tibble::tibble(lower = NA_real_, upper = NA_real_))
+  if (n <= 1) {
+    return(tibble::tibble(lower = na, upper = na))
+  }
+
+  if (level == 1) {
+    return(tibble::tibble(lower = x[1], upper = x[n]))
   }
 
   n_in <- ceiling(n * level)
   n_out <- n - n_in
-
-  if (sum(is.infinite(x)) > n_out) {
-    return(tibble::tibble(lower = min(x), upper = max(x)))
-  }
-
-  widths <- sapply(1:n_out, function(.i) x[.i + n_in] - x[.i])
-  narrowest_is <- which(widths == min(widths)) # which.min() returns first min
+  n_inf <- sum(is.infinite(x))
+  widths <- sapply(1:(n_out + 1), function(.i) {
+    x[.i + n_in - 1] - x[.i]
+  })
+  narrowest_is <- which(widths == min(widths))
 
   if (length(narrowest_is) == 1) {
     narrowest_i <- narrowest_is
   } else {
-    # not testing for non-consecutive intervals: seems inconsequential
-    narrowest_i <- round(xtr_median(narrowest_is))
+    if (n_inf <= n_out) {
+      actual_n_ins <- sapply(narrowest_is, function(.i) {
+        .l <- x[.i + n_in - 1]
+        .u <- x[.i]
+        sum(x >= .l & x <= .u)
+      })
+      narrowest_is <- narrowest_is[actual_n_ins == max(actual_n_ins)]
+      midpoints <- narrowest_is + (n_in - 1) / 2
+      narrowest_i <- narrowest_is[which.min(abs(midpoints - (1 + n) / 2))]
+    } else if(n_inf < n_in) {
+      if (is.infinite(x[1])) {
+        narrowest_i <- min(narrowest_is)
+      } else {
+        narrowest_i <- max(narrowest_is)
+      }
+    } else {
+      return(tibble::tibble(lower = x[1], upper = x[n]))
+    }
   }
+  l <- x[narrowest_i]
+  u <- x[n_in + narrowest_i - 1]
 
-  tibble::tibble(
-    lower = x[narrowest_i],
-    upper = x[n_in + narrowest_i - 1]
-  )
+  tibble::tibble(lower = l, upper = u)
 }

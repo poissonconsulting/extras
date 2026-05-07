@@ -6,7 +6,7 @@
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
 
-\item{level}{A number between 0 and 1 (exclusive) specifying the probability
+\item{level}{A number > 0 and <= 1 (exclusive) specifying the probability
 coverage of the HDI.}
 
 \item{...}{Currently unused.}
@@ -22,7 +22,10 @@ Calculates Bayesian credible intervals using the highest density
 interval (HDI), i.e., the narrowest CI with the specified minimum coverage.
 }
 \examples{
-xtr_ci_hdi(rnorm(1e4))
+xtr_ci_hdi(1:10, level = 0.1) # only 10\% of values inside
+xtr_ci_hdi(1:10, level = 0.2) # only 20\% of values inside
+xtr_ci_hdi(1:10, level = 0.2 + 0.01) # at least 20.1\% of values inside
+xtr_ci_hdi(1:100) # inclusive interval [3, 98] with 5\% of values outside
 }
 \seealso{
 \code{\link[=xtr_ci]{xtr_ci()}} and \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}
