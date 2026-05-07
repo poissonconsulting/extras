@@ -10,7 +10,7 @@
 #' ETI.
 #' @param ... Currently unused.
 #' @param na_rm A flag indicating whether to remove missing values.
-#' @return A [tibble::tibble] of the `lower` and `upper` limits for the credible
+#' @return A [data.frame] of the `lower` and `upper` limits for the credible
 #' interval.
 #' Note that the interval is guaranteed to be two-sided with real (i.e., double)
 #' numeric limits, even if the input data are integers.
@@ -36,18 +36,18 @@ xtr_ci_eti <- function(x, level = 0.95, ..., na_rm = FALSE) {
   }
 
   if(length(x) <= 1) {
-    return(tibble::tibble(lower = na, upper = na))
+    return(data.frame(lower = na, upper = na))
   }
 
   if (anyNA(x)) {
     if (vld_true(na_rm)) {
       x <- x[!is.na(x)]
     } else {
-      return(tibble::tibble(lower = na, upper = na))
+      return(data.frame(lower = na, upper = na))
     }
   }
 
-  tibble::tibble(
+  data.frame(
     lower = unname(stats::quantile(x, (1 - level) / 2)),
     upper = unname(stats::quantile(x, (1 + level) / 2))
   )

@@ -8,7 +8,7 @@
 #'  HDI.
 #' @param ... Currently unused.
 #' @param na_rm A flag indicating whether to remove missing values.
-#' @return A [tibble::tibble] of the `lower` and `upper` limits for the credible
+#' @return A [data.frame] of the `lower` and `upper` limits for the credible
 #' interval.
 #' Note that the interval is not guaranteed to be one-sided or two-sided.
 #' Returns integer limits if the input data are integers and double otherwise.
@@ -40,7 +40,7 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
     if (vld_true(na_rm)) {
       x <- x[!is.na(x)]
     } else {
-      return(tibble::tibble(lower = na, upper = na))
+      return(data.frame(lower = na, upper = na))
     }
   }
 
@@ -48,11 +48,11 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   n <- length(x)
 
   if (n <= 1) {
-    return(tibble::tibble(lower = na, upper = na))
+    return(data.frame(lower = na, upper = na))
   }
 
   if (level == 1) {
-    return(tibble::tibble(lower = x[1], upper = x[n]))
+    return(data.frame(lower = x[1], upper = x[n]))
   }
 
   n_in <- ceiling(n * level)
@@ -82,11 +82,11 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
         narrowest_i <- max(narrowest_is)
       }
     } else {
-      return(tibble::tibble(lower = x[1], upper = x[n]))
+      return(data.frame(lower = x[1], upper = x[n]))
     }
   }
   l <- x[narrowest_i]
   u <- x[n_in + narrowest_i - 1]
 
-  tibble::tibble(lower = l, upper = u)
+  data.frame(lower = l, upper = u)
 }
