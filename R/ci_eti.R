@@ -2,15 +2,18 @@
 #'
 #' Calculates Bayesian credible intervals using the equal-tailed interval (ETI),
 #' i.e., the CI such that the left and right tails outside the CI have the same
-#' coverage.
+#' coverage. Note that the function does not return integer outputs, even if the
+#' input data are integers, unlike [`xtr_ci_hdi()`].
 #'
 #' @param x A numeric vector of MCMC samples.
-#' @param level A number between 0 and 1 (exclusive) specifying the probability
-#' coverage of the ETI.
+#' @param level A number > 0 and <= 1 specifying the probability coverage of the
+#' ETI.
 #' @param ... Currently unused.
 #' @param na_rm A flag indicating whether to remove missing values.
-#' @return A [tibble::tibble] of the `lower` and `upper` limits for the credible interval.
-#' Note that the interval is not guaranteed to be one-sided or two-sided.
+#' @return A [tibble::tibble] of the `lower` and `upper` limits for the credible
+#' interval.
+#' Note that the interval is guaranteed to be two-sided with real (i.e., double)
+#' numeric limits, even if the input data are integers.
 #' @export
 #' @seealso [extras::xtr_ci()] and [extras::xtr_ci_hdi()]
 #' @examples
@@ -21,19 +24,26 @@ NULL
 xtr_ci_eti <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
-  chk_range(level, inclusive = FALSE)
+  chk_range(level, inclusive = TRUE)
+  chk_gt(level)
   chk_flag(na_rm)
   chk_unused(...)
 
-  if(length(x) == 0) {
-    return(tibble::tibble(lower = NA_real_, upper = NA_real_))
+  if(is.integer(x)) {
+    na <- NA_integer_
+  } else {
+    na <- NA_real_
+  }
+
+  if(length(x) <= 1) {
+    return(tibble::tibble(lower = na, upper = na))
   }
 
   if (anyNA(x)) {
     if (vld_true(na_rm)) {
       x <- x[!is.na(x)]
     } else {
-      return(tibble::tibble(lower = NA_real_, upper = NA_real_))
+      return(tibble::tibble(lower = na, upper = na))
     }
   }
 
