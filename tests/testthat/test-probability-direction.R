@@ -1,4 +1,6 @@
 test_that("probability_direction() returns correct left-sided p-values.", {
+  expect_no_error(probability_direction(1:4))
+
   expect_identical(probability_direction(NA_integer_, side = "left"), NA_real_)
   expect_identical(probability_direction(NA_real_, side = "left"), NA_real_)
   expect_identical(probability_direction(NaN, side = "left"), NA_real_)
