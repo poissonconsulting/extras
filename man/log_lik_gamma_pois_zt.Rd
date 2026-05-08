@@ -18,8 +18,7 @@ models (student, gamma-Poisson and beta-binomial).}
 An numeric vector of the corresponding log-likelihoods.
 }
 \description{
-Density of the gamma-Poisson (negative binomial) distribution conditional
-on \code{x >= 1}.
+Zero-Truncated Gamma-Poisson Log-Likelihood
 }
 \examples{
 log_lik_gamma_pois_zt(c(1, 3, 4), 3, 1)

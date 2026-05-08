@@ -23,9 +23,7 @@ deviance residuals and 'data' for the data.}
 An numeric vector of the corresponding residuals.
 }
 \description{
-Residuals for the zero-truncated gamma-Poisson (negative binomial)
-distribution. Centring and standardisation use the truncated mean
-\verb{lambda / (1 - P(0; lambda, theta))} and the truncated variance.
+Centred on the truncated mean and standardised by the truncated variance.
 }
 \examples{
 res_gamma_pois_zt(c(1, 2, 5), 2, 1)

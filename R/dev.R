@@ -246,13 +246,8 @@ dev_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, res = FALSE) {
 
 #' Zero-Truncated Gamma-Poisson Deviances
 #'
-#' Deviances for the zero-truncated gamma-Poisson (negative binomial)
-#' distribution. The deviance is approximated by the untruncated
-#' gamma-Poisson deviance; deviance residuals are centred on the
-#' truncated mean `lambda / (1 - P(0; lambda, theta))`. The saturated
-#' MLE for the zero-truncated likelihood differs from the observation
-#' and has no closed form; the approximation is accurate for typical
-#' `x` and small zero-mass `P(0; lambda, theta)`.
+#' Approximated by the untruncated gamma-Poisson deviance with deviance
+#' residuals centred on the truncated mean.
 #'
 #' @inheritParams params
 #' @param x A whole numeric vector of values greater than or equal to 1.

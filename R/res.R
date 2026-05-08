@@ -175,9 +175,7 @@ res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", 
 
 #' Zero-Truncated Gamma-Poisson Residuals
 #'
-#' Residuals for the zero-truncated gamma-Poisson (negative binomial)
-#' distribution. Centring and standardisation use the truncated mean
-#' `lambda / (1 - P(0; lambda, theta))` and the truncated variance.
+#' Centred on the truncated mean and standardised by the truncated variance.
 #'
 #' @inheritParams params
 #' @param x A whole numeric vector of values greater than or equal to 1.

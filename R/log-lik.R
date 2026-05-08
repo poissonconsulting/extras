@@ -207,9 +207,6 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
 
 #' Zero-Truncated Gamma-Poisson Log-Likelihood
 #'
-#' Density of the gamma-Poisson (negative binomial) distribution conditional
-#' on `x >= 1`.
-#'
 #' @inheritParams params
 #' @param x A whole numeric vector of values greater than or equal to 1.
 #'

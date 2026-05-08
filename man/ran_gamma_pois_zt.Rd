@@ -19,9 +19,7 @@ models (student, gamma-Poisson and beta-binomial).}
 A numeric vector of the random samples.
 }
 \description{
-Draws from the gamma-Poisson (negative binomial) distribution conditional
-on the value being greater than or equal to 1. Implemented via rejection
-sampling: zero draws are redrawn until accepted.
+Drawn via rejection sampling so all returned values are at least 1.
 }
 \examples{
 ran_gamma_pois_zt(10, lambda = 3, theta = 1)

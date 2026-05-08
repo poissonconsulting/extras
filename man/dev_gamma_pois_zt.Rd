@@ -21,13 +21,8 @@ opposed to the deviance.}
 An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
-Deviances for the zero-truncated gamma-Poisson (negative binomial)
-distribution. The deviance is approximated by the untruncated
-gamma-Poisson deviance; deviance residuals are centred on the
-truncated mean \verb{lambda / (1 - P(0; lambda, theta))}. The saturated
-MLE for the zero-truncated likelihood differs from the observation
-and has no closed form; the approximation is accurate for typical
-\code{x} and small zero-mass \verb{P(0; lambda, theta)}.
+Approximated by the untruncated gamma-Poisson deviance with deviance
+residuals centred on the truncated mean.
 }
 \examples{
 dev_gamma_pois_zt(c(1, 3, 4), 3, 2)
