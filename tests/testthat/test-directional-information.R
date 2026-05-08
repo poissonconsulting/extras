@@ -6,6 +6,13 @@ test_that("directional_information() returns correct values.", {
   expect_identical(directional_information(-Inf), 1)
   expect_identical(directional_information(integer(0)), NA_real_)
   expect_identical(directional_information(c(1, NA)), NA_real_)
+
+  expect_identical(directional_information(c(-1:2), threshold_split = "left"), log2(2/2))
+  expect_identical(directional_information(c(-1:2), threshold_split = "right"), log2(3/1))
+  expect_identical(directional_information(c(-1:2), threshold_split = "equal"), log2(2.5/1.5))
+  expect_identical(directional_information(c(-1:2), threshold_split = "proportional"), log2(2/1))
+  expect_identical(directional_information(c(-1:2), threshold_split = "exclude"), log2(2/1))
+
   expect_identical(directional_information(1), 1)
   expect_equal(directional_information(c(1, 1)), 2)
   expect_equal(directional_information(c(1, 1, 1)), 3)
