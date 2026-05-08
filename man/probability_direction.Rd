@@ -25,7 +25,9 @@ A number between 0 and 1.
 }
 \description{
 The probability of direction (PD) is the proportion of the (posterior)
-distribution above or below zero.
+distribution above (right) or below (left) a threshold.
+}
+\details{
 By default, the direction is based on the side of the median value, but it
 can be specified to measure support for specific hypotheses.
 A right-side PD of 0.9 indicates that the CRI spanning from the threshold to
@@ -47,21 +49,21 @@ probability_direction(c(1, 1), side = "right") # p = 1 - 1/(n+1)
 Makowski, D., Ben-Shachar, M.S., Chen, S.H.A., and Lüdecke, D. 2019. Indices of Effect Existence and Significance in the Bayesian Framework. Front. Psychol. 10: 2767. \doi{10.3389/fpsyg.2019.02767}.
 }
 \seealso{
-Other summary: 
-\code{\link{direction}()},
-\code{\link{directional_information}()},
-\code{\link{kurtosis}()},
-\code{\link{lower}()},
-\code{\link{pvalue}()},
-\code{\link{pzeros}()},
-\code{\link{skewness}()},
-\code{\link{svalue}()},
-\code{\link{upper}()},
-\code{\link{variance}()},
-\code{\link{xtr_mean}()},
-\code{\link{xtr_median}()},
-\code{\link{xtr_sd}()},
-\code{\link{zeros}()},
-\code{\link{zscore}()}
+Other summary:
+\code{\link[=direction]{direction()}},
+\code{\link[=directional_information]{directional_information()}},
+\code{\link[=kurtosis]{kurtosis()}},
+\code{\link[=lower]{lower()}},
+\code{\link[=pvalue]{pvalue()}},
+\code{\link[=pzeros]{pzeros()}},
+\code{\link[=skewness]{skewness()}},
+\code{\link[=svalue]{svalue()}},
+\code{\link[=upper]{upper()}},
+\code{\link[=variance]{variance()}},
+\code{\link[=xtr_mean]{xtr_mean()}},
+\code{\link[=xtr_median]{xtr_median()}},
+\code{\link[=xtr_sd]{xtr_sd()}},
+\code{\link[=zeros]{zeros()}},
+\code{\link[=zscore]{zscore()}}
 }
 \concept{summary}

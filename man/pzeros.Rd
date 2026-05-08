@@ -21,21 +21,21 @@ The proportion of zeros in an numeric object.
 pzeros(c(0:2))
 }
 \seealso{
-Other summary: 
-\code{\link{direction}()},
-\code{\link{directional_information}()},
-\code{\link{kurtosis}()},
-\code{\link{lower}()},
-\code{\link{probability_direction}()},
-\code{\link{pvalue}()},
-\code{\link{skewness}()},
-\code{\link{svalue}()},
-\code{\link{upper}()},
-\code{\link{variance}()},
-\code{\link{xtr_mean}()},
-\code{\link{xtr_median}()},
-\code{\link{xtr_sd}()},
-\code{\link{zeros}()},
-\code{\link{zscore}()}
+Other summary:
+\code{\link[=direction]{direction()}},
+\code{\link[=directional_information]{directional_information()}},
+\code{\link[=kurtosis]{kurtosis()}},
+\code{\link[=lower]{lower()}},
+\code{\link[=probability_direction]{probability_direction()}},
+\code{\link[=pvalue]{pvalue()}},
+\code{\link[=skewness]{skewness()}},
+\code{\link[=svalue]{svalue()}},
+\code{\link[=upper]{upper()}},
+\code{\link[=variance]{variance()}},
+\code{\link[=xtr_mean]{xtr_mean()}},
+\code{\link[=xtr_median]{xtr_median()}},
+\code{\link[=xtr_sd]{xtr_sd()}},
+\code{\link[=zeros]{zeros()}},
+\code{\link[=zscore]{zscore()}}
 }
 \concept{summary}
