@@ -113,6 +113,35 @@ test_that("gamma_pois_zi vectorized", {
   expect_equal(log_lik_gamma_pois_zi(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(-3, -1.90954250488444, -3.43967790223022, -Inf))
 })
 
+test_that("gamma_pois_zt missing values", {
+  expect_identical(log_lik_gamma_pois_zt(numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_gamma_pois_zt(NA, 1, 1), NA_real_)
+  expect_identical(log_lik_gamma_pois_zt(1, NA, 1), NA_real_)
+  expect_identical(log_lik_gamma_pois_zt(1, 1, NA), NA_real_)
+})
+
+test_that("gamma_pois_zt known values", {
+  expect_equal(log_lik_gamma_pois_zt(1, 2), -1.1614393615712)
+  expect_equal(log_lik_gamma_pois_zt(2, 2), -1.1614393615712)
+  expect_equal(log_lik_gamma_pois_zt(1, 2, 0.5), -1.09861228866811)
+  expect_equal(log_lik_gamma_pois_zt(c(1, 3, 4), 3, 1),
+               c(-1.38629436111989, -1.96165850602345, -2.24934057847523))
+})
+
+test_that("gamma_pois_zt vectorized", {
+  expect_equal(log_lik_gamma_pois_zt(1:3, 2, 0),
+               c(-1.1614393615712, -1.1614393615712, -1.56690446967936))
+})
+
+test_that("gamma_pois_zt matches truncated NB conditional", {
+  # log L_zt(x; mu, theta) = log NB(x; mu, theta) - log(1 - P(0; mu, theta))
+  expect_equal(
+    log_lik_gamma_pois_zt(2, 3, 1),
+    dnbinom(2, mu = 3, size = 1, log = TRUE) -
+      log1p(-dnbinom(0, mu = 3, size = 1))
+  )
+})
+
 test_that("gamma missing values", {
   expect_identical(log_lik_gamma(NA), NA_real_)
   expect_identical(log_lik_gamma(1, NA), NA_real_)

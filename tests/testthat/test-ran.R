@@ -146,6 +146,39 @@ test_that("ran_gamma_pois_zi", {
   expect_identical(ran_gamma_pois_zi(1, c(0.1, 100), theta = 1, prob = 0.5), 0L)
 })
 
+test_that("ran_gamma_pois_zt", {
+  expect_error(ran_gamma_pois_zt(NA_integer_))
+  expect_error(ran_gamma_pois_zt(integer(0)))
+  expect_identical(ran_gamma_pois_zt(0L), integer(0))
+  set.seed(101)
+  expect_identical(ran_gamma_pois_zt(), 1L)
+  expect_identical(ran_gamma_pois_zt(2), c(3L, 2L))
+  expect_identical(ran_gamma_pois_zt(2, 10), c(7L, 7L))
+  expect_identical(ran_gamma_pois_zt(2, c(0.1, 100)), c(1L, 95L))
+  set.seed(101)
+  expect_identical(ran_gamma_pois_zt(2, theta = 10), c(2L, 1L))
+  expect_identical(ran_gamma_pois_zt(2, 10, theta = 10), c(7L, 13L))
+  expect_identical(ran_gamma_pois_zt(2, c(0.1, 100), theta = 1), c(1L, 12L))
+})
+
+test_that("ran_gamma_pois_zt always >= 1", {
+  set.seed(42)
+  # Even with very small lambda where most untruncated draws would be 0,
+  # rejection sampling guarantees all returned values are >= 1.
+  y <- ran_gamma_pois_zt(2000, lambda = 0.5, theta = 1)
+  expect_true(all(y >= 1))
+  expect_length(y, 2000)
+})
+
+test_that("ran_gamma_pois_zt mean approximates truncated mean", {
+  set.seed(42)
+  lambda <- 5
+  theta <- 0.5
+  y <- ran_gamma_pois_zt(20000, lambda = lambda, theta = theta)
+  expected <- lambda / (1 - dnbinom(0, mu = lambda, size = 1 / theta))
+  expect_equal(mean(y), expected, tolerance = 0.05)
+})
+
 test_that("ran_gamma", {
   expect_error(ran_gamma(NA_integer_))
   expect_error(ran_gamma(integer(0)))

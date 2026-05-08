@@ -205,6 +205,26 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
   log(lpois)
 }
 
+#' Zero-Truncated Gamma-Poisson Log-Likelihood
+#'
+#' Density of the gamma-Poisson (negative binomial) distribution conditional
+#' on `x >= 1`.
+#'
+#' @inheritParams params
+#' @param x A whole numeric vector of values greater than or equal to 1.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_gamma_pois_zt(c(1, 3, 4), 3, 1)
+log_lik_gamma_pois_zt <- function(x, lambda = 1, theta = 0) {
+  log_lik <- dnbinom(x, mu = lambda, size = 1 / theta, log = TRUE)
+  log_p0 <- dnbinom(0, mu = lambda, size = 1 / theta, log = TRUE)
+  log_lik - log1p(-exp(log_p0))
+}
+
 #' Log-Normal Log-Likelihood
 #'
 #' @inheritParams params

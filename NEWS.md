@@ -2,6 +2,7 @@
 
 # extras 0.8.0.9001
 
+- Added `log_lik_gamma_pois_zt()`, `dev_gamma_pois_zt()`, `ran_gamma_pois_zt()`, and `res_gamma_pois_zt()` for the zero-truncated gamma-Poisson (negative binomial) distribution.
 - Added `log_lik_exp()`.
 - Added `log_lik_beta()`.
 - Added 'log_lik_unif()'.

@@ -173,6 +173,39 @@ res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", 
   )
 }
 
+#' Zero-Truncated Gamma-Poisson Residuals
+#'
+#' Residuals for the zero-truncated gamma-Poisson (negative binomial)
+#' distribution. Centring and standardisation use the truncated mean
+#' `lambda / (1 - P(0; lambda, theta))` and the truncated variance.
+#'
+#' @inheritParams params
+#' @param x A whole numeric vector of values greater than or equal to 1.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_gamma_pois_zt(c(1, 2, 5), 2, 1)
+res_gamma_pois_zt <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE) {
+  chk_string(type)
+  if (!vld_false(simulate)) {
+    x <- ran_gamma_pois_zt(length(x), lambda = lambda, theta = theta)
+  }
+  log_p0 <- dnbinom(0, mu = lambda, size = 1 / theta, log = TRUE)
+  one_minus_p0 <- -expm1(log_p0)
+  trunc_mean <- lambda / one_minus_p0
+  trunc_var <- (lambda + lambda^2 * (1 + theta)) / one_minus_p0 - trunc_mean^2
+  switch(type,
+    data = x,
+    raw = x - trunc_mean,
+    standardized = (x - trunc_mean) / sqrt(trunc_var),
+    dev = dev_gamma_pois_zt(x, lambda = lambda, theta = theta, res = TRUE),
+    chk_subset(x, c("data", "raw", "dev", "standardized"))
+  )
+}
+
 #' Log-Normal Residuals
 #'
 #' @inheritParams params

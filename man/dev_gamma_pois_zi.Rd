@@ -29,4 +29,8 @@ Zero-Inflated Gamma-Poisson Deviances
 \examples{
 dev_gamma_pois_zi(c(1, 3, 4), 3, 2)
 }
+\seealso{
+Other dev_dist # make live when complete: 
+\code{\link{dev_gamma_pois_zt}()}
+}
 \concept{dev_dist # make live when complete}

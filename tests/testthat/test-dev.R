@@ -316,6 +316,34 @@ test_that("gamma_pois_zi vectorized", {
   expect_equal(dev_gamma_pois_zi(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(6, 1.0464962875291, 2.41568518074605, Inf))
 })
 
+test_that("gamma_pois_zt missing values", {
+  expect_identical(dev_gamma_pois_zt(logical(0), integer(0), numeric(0)), numeric(0))
+  expect_identical(dev_gamma_pois_zt(NA, 1, 1), NA_real_)
+  expect_identical(dev_gamma_pois_zt(1, NA, 1), NA_real_)
+  expect_identical(dev_gamma_pois_zt(1, 1, NA), NA_real_)
+})
+
+test_that("gamma_pois_zt matches NB deviance approximation", {
+  # dev_gamma_pois_zt uses untruncated NB deviance (truncation correction
+  # to the deviance is small at typical x values).
+  expect_identical(dev_gamma_pois_zt(3, 3), dev_gamma_pois(3, 3))
+  expect_equal(dev_gamma_pois_zt(c(1, 3, 4), 3, 2), dev_gamma_pois(c(1, 3, 4), 3, 2))
+  expect_equal(dev_gamma_pois_zt(c(1, 3, 5), 3, 1), dev_gamma_pois(c(1, 3, 5), 3, 1))
+})
+
+test_that("gamma_pois_zt deviance residuals", {
+  # Residuals are signed by sign(x - trunc_mean) and scaled by sqrt(dev_NB).
+  # When x equals lambda, deviance is 0.
+  expect_identical(dev_gamma_pois_zt(3, 3, res = TRUE), 0)
+  expect_equal(dev_gamma_pois_zt(c(1, 2, 5), 2, 1, res = TRUE),
+               c(-0.485351492542021, 0, 0.91931558891504))
+  # Sign of nonzero residuals follows sign(x - trunc_mean). At x = lambda
+  # the untruncated NB deviance is 0 so the residual is exactly 0.
+  trunc_mean_at_2_1 <- 2 / (1 - dnbinom(0, mu = 2, size = 1))  # = 3
+  expect_equal(sign(dev_gamma_pois_zt(c(1, 5), 2, 1, res = TRUE)),
+               sign(c(1, 5) - trunc_mean_at_2_1))
+})
+
 test_that("gamma_pois_zi vectorized missing values", {
   expect_equal(dev_gamma_pois_zi(c(NA, 1), 0:1, 0:1, 0:1), c(NA, Inf))
   expect_equal(dev_gamma_pois_zi(c(0, NA), 0:1, 0:1, 0:1), c(0, NA))

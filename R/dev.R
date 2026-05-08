@@ -244,6 +244,35 @@ dev_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, res = FALSE) {
   dev_res(x, lambda * (1 - prob), dev)
 }
 
+#' Zero-Truncated Gamma-Poisson Deviances
+#'
+#' Deviances for the zero-truncated gamma-Poisson (negative binomial)
+#' distribution. The deviance is approximated by the untruncated
+#' gamma-Poisson deviance; deviance residuals are centred on the
+#' truncated mean `lambda / (1 - P(0; lambda, theta))`. The saturated
+#' MLE for the zero-truncated likelihood differs from the observation
+#' and has no closed form; the approximation is accurate for typical
+#' `x` and small zero-mass `P(0; lambda, theta)`.
+#'
+#' @inheritParams params
+#' @param x A whole numeric vector of values greater than or equal to 1.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist # make live when complete
+#' @export
+#'
+#' @examples
+#' dev_gamma_pois_zt(c(1, 3, 4), 3, 2)
+dev_gamma_pois_zt <- function(x, lambda = 1, theta = 0, res = FALSE) {
+  dev <- dev_gamma_pois(x, lambda = lambda, theta = theta, res = FALSE)
+  if (vld_false(res)) {
+    return(dev)
+  }
+  log_p0 <- dnbinom(0, mu = lambda, size = 1 / theta, log = TRUE)
+  trunc_mean <- lambda / -expm1(log_p0)
+  dev_res(x, trunc_mean, dev)
+}
+
 #' Log-Normal Deviances
 #'
 #' @inheritParams params
