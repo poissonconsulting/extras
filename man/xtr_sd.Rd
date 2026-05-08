@@ -21,18 +21,21 @@ Standard Deviation
 xtr_sd(1:10)
 }
 \seealso{
-Other summary: 
-\code{\link{kurtosis}()},
-\code{\link{lower}()},
-\code{\link{pvalue}()},
-\code{\link{pzeros}()},
-\code{\link{skewness}()},
-\code{\link{svalue}()},
-\code{\link{upper}()},
-\code{\link{variance}()},
-\code{\link{xtr_mean}()},
-\code{\link{xtr_median}()},
-\code{\link{zeros}()},
-\code{\link{zscore}()}
+Other summary:
+\code{\link[=direction]{direction()}},
+\code{\link[=directional_information]{directional_information()}},
+\code{\link[=kurtosis]{kurtosis()}},
+\code{\link[=lower]{lower()}},
+\code{\link[=probability_direction]{probability_direction()}},
+\code{\link[=pvalue]{pvalue()}},
+\code{\link[=pzeros]{pzeros()}},
+\code{\link[=skewness]{skewness()}},
+\code{\link[=svalue]{svalue()}},
+\code{\link[=upper]{upper()}},
+\code{\link[=variance]{variance()}},
+\code{\link[=xtr_mean]{xtr_mean()}},
+\code{\link[=xtr_median]{xtr_median()}},
+\code{\link[=zeros]{zeros()}},
+\code{\link[=zscore]{zscore()}}
 }
 \concept{summary}
