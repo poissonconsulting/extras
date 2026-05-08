@@ -36,7 +36,7 @@ na <-  if(is.integer(x)) NA_integer_ else NA_real_
   }
 
   if (anyNA(x)) {
-    if (vld_true(na_rm)) {
+    if (na_rm) {
       x <- x[!is.na(x)]
     } else {
       return(data.frame(lower = na, upper = na))
