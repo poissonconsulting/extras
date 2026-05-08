@@ -4,6 +4,8 @@ test_that("xtr_ci_eti() returns the correct values.", {
   expect_equal(xtr_ci_eti(numeric(0)), data.frame(lower = NA_real_, upper = NA_real_))
   expect_equal(xtr_ci_eti(double(0)), data.frame(lower = NA_real_, upper = NA_real_))
   expect_equal(xtr_ci_eti(integer(0)), data.frame(lower = NA_real_, upper = NA_real_))
+  expect_equal(xtr_ci_eti(c(NA_integer_, 1:2)), data.frame(lower = NA_real_, upper = NA_real_))
+  expect_equal(xtr_ci_eti(c(NA_integer_, 1:2), na_rm = TRUE), data.frame(lower = 1.025, upper = 1.975))
   expect_error(xtr_ci_eti(1, 1, TRUE), "`...` must be unused.")
 
   expect_no_error(xtr_ci_eti(matrix(1:9, ncol = 3)))

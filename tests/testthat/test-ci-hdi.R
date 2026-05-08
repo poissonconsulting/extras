@@ -4,6 +4,7 @@ test_that("xtr_ci_hdi()", {
   expect_equal(xtr_ci_hdi(numeric(0)), data.frame(lower = NA_real_, upper = NA_real_))
   expect_equal(xtr_ci_hdi(double(0)), data.frame(lower = NA_real_, upper = NA_real_))
   expect_equal(xtr_ci_hdi(integer(0)), data.frame(lower = NA_real_, upper = NA_real_))
+  expect_equal(xtr_ci_hdi(c(NA_integer_, 1:2), na_rm = TRUE), data.frame(lower = 1L, upper = 2L))
   expect_error(xtr_ci_hdi(1, 1, TRUE), "`...` must be unused.")
 
   expect_no_error(xtr_ci_hdi(matrix(1:9, ncol = 3)))
