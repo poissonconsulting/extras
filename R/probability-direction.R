@@ -1,15 +1,6 @@
 #' Probability of Direction
 #'
 #' The probability of direction (PD) is the proportion of the (posterior)
-#' By default, the direction is based on the side of the median value, but it
-#' can be specified to measure support for specific hypotheses.
-#' A right-side PD of 0.9 indicates that the CRI spanning from the threshold to
-#' infinity has a coverage of 90%.
-#' Can be used as a measure of certainty in the direction of the estimate
-#' (e.g., positive or negative when using a threshold of 0).
-#' **NOTE:** probability estimates of 0 or 1 are corrected towards 0.5 by adding
-#' or subtracting `1 / (length(x) + 1)`, where `x` is a vector of MCMC samples.
-#' Ideally, `x` should be large enough as to make the correction negligible.
 #' distribution above (right) or below (left) a threshold.
 #'
 #' @param x A numeric vector of MCMC values.
@@ -22,6 +13,17 @@
 #' interval for the probability.
 #' @inheritParams params
 #' @return A number between 0 and 1.
+#' @details
+#' By default, the direction is based on the side of the median value, but it
+#' can be specified to measure support for specific hypotheses.
+#' A right-side PD of 0.9 indicates that the CRI spanning from the threshold to
+#' infinity has a coverage of 90%.
+#' Can be used as a measure of certainty in the direction of the estimate
+#' (e.g., positive or negative when using a threshold of 0).
+#' **NOTE:** probability estimates of 0 or 1 are corrected towards 0.5 by adding
+#' or subtracting `1 / (length(x) + 1)`, where `x` is a vector of MCMC samples.
+#' Ideally, `x` should be large enough as to make the correction negligible.
+#'
 #' @family summary
 #' @references
 #' Makowski, D., Ben-Shachar, M.S., Chen, S.H.A., and Lüdecke, D. 2019. Indices of Effect Existence and Significance in the Bayesian Framework. Front. Psychol. 10: 2767. \doi{10.3389/fpsyg.2019.02767}.
