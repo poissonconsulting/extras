@@ -18,4 +18,5 @@ test_that("rope() returns the correct values.", {
   expect_equal(xtr_rope(seq(0, 1, length.out = 1e3)), 0.1)
   expect_equal(xtr_rope(seq(-1, 1, length.out = 2e3)), 0.1)
   expect_equal(xtr_rope(seq(-0.1, 0.3, length.out = 2e3)), 0.5)
+  expect_equal(xtr_rope(seq(-0.1, 0.3, length.out = 2e3), level = 0.5), 0.2460)
 })
