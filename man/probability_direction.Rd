@@ -4,7 +4,7 @@
 \alias{probability_direction}
 \title{Probability of Direction}
 \usage{
-probability_direction(x, side = NULL, threshold = 0, na_rm = FALSE)
+probability_direction(x, side = "median", threshold = 0, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
@@ -12,7 +12,7 @@ probability_direction(x, side = NULL, threshold = 0, na_rm = FALSE)
 \item{side}{A character vector of length 1 indicating whether to calculate
 the directional probability for the left tail (\code{"left"}; \code{x < threshold}),
 or the right tail (\code{"right"}; \code{x > threshold}).
-Defaults to \code{NULL}, which uses the side of the median of \code{x} via
+Defaults to \code{"median"}, which uses the side of the median of \code{x} via
 \code{\link[=direction]{direction()}}.}
 
 \item{threshold}{A number of the threshold value, which is excluded from the
