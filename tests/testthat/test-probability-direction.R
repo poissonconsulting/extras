@@ -94,5 +94,5 @@ test_that("probability_direction() only accepts `side` as left, right, or both."
   expect_no_error(probability_direction(1, side = "left"))
   expect_no_error(probability_direction(1, side = "right"))
   expect_error(probability_direction(1, side = "aaa"),
-               "`side` must match 'left' or 'right', not 'aaa'.")
+               "`side` must match 'left', 'median' or 'right', not 'aaa'.")
 })
