@@ -19,12 +19,12 @@ Calculates the probabilities for odds.
 inv_odds(c(0, 1, 9, 9999))
 }
 \seealso{
-Other odds: 
-\code{\link{log_odds}()},
-\code{\link{log_odds<-}()},
-\code{\link{log_odds_ratio}()},
-\code{\link{odds}()},
-\code{\link{odds<-}()},
-\code{\link{odds_ratio}()}
+Other odds:
+\code{\link[=log_odds]{log_odds()}},
+\code{\link[=log_odds<-]{log_odds<-()}},
+\code{\link[=log_odds_ratio]{log_odds_ratio()}},
+\code{\link[=odds]{odds()}},
+\code{\link[=odds<-]{odds<-()}},
+\code{\link[=odds_ratio]{odds_ratio()}}
 }
 \concept{odds}

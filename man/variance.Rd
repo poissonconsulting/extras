@@ -21,18 +21,18 @@ Variance
 variance(1:10)
 }
 \seealso{
-Other summary: 
-\code{\link{kurtosis}()},
-\code{\link{lower}()},
-\code{\link{pvalue}()},
-\code{\link{pzeros}()},
-\code{\link{skewness}()},
-\code{\link{svalue}()},
-\code{\link{upper}()},
-\code{\link{xtr_mean}()},
-\code{\link{xtr_median}()},
-\code{\link{xtr_sd}()},
-\code{\link{zeros}()},
-\code{\link{zscore}()}
+Other summary:
+\code{\link[=kurtosis]{kurtosis()}},
+\code{\link[=lower]{lower()}},
+\code{\link[=pvalue]{pvalue()}},
+\code{\link[=pzeros]{pzeros()}},
+\code{\link[=skewness]{skewness()}},
+\code{\link[=svalue]{svalue()}},
+\code{\link[=upper]{upper()}},
+\code{\link[=xtr_mean]{xtr_mean()}},
+\code{\link[=xtr_median]{xtr_median()}},
+\code{\link[=xtr_sd]{xtr_sd()}},
+\code{\link[=zeros]{zeros()}},
+\code{\link[=zscore]{zscore()}}
 }
 \concept{summary}
