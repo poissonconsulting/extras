@@ -406,10 +406,12 @@ test_that("res_gamma_pois_zt", {
     (c(1, 3, 4) - 4) / sqrt(12)
   )
 
-  # type = "dev" — uses untruncated NB deviance, signed by sign(x - trunc_mean)
+  # type = "dev" — saturated MLE found numerically per observation,
+  # signed by sign(x - trunc_mean)
   expect_equal(
     res_gamma_pois_zt(c(1, 2, 5), 2, 1),
-    c(-0.485351492542021, 0, 0.91931558891504)
+    c(-1.4823038, -0.4853515, 0.6610002),
+    tolerance = 1e-6
   )
 
   # simulate = TRUE replaces x with random draws from ZT distribution

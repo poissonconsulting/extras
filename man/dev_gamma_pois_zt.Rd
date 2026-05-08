@@ -21,8 +21,8 @@ opposed to the deviance.}
 An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
-Approximated by the untruncated gamma-Poisson deviance with deviance
-residuals centred on the truncated mean.
+Saturated log-likelihood is found numerically per observation since the
+truncated likelihood has no closed-form maximum.
 }
 \examples{
 dev_gamma_pois_zt(c(1, 3, 4), 3, 2)

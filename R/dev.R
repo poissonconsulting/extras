@@ -246,8 +246,8 @@ dev_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, res = FALSE) {
 
 #' Zero-Truncated Gamma-Poisson Deviances
 #'
-#' Approximated by the untruncated gamma-Poisson deviance with deviance
-#' residuals centred on the truncated mean.
+#' Saturated log-likelihood is found numerically per observation since the
+#' truncated likelihood has no closed-form maximum.
 #'
 #' @inheritParams params
 #' @param x A whole numeric vector of values greater than or equal to 1.
@@ -259,13 +259,45 @@ dev_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, res = FALSE) {
 #' @examples
 #' dev_gamma_pois_zt(c(1, 3, 4), 3, 2)
 dev_gamma_pois_zt <- function(x, lambda = 1, theta = 0, res = FALSE) {
-  dev <- dev_gamma_pois(x, lambda = lambda, theta = theta, res = FALSE)
+  force(x)
+  args_not_na <- !is.na(x + lambda + theta)
+  if (length(theta) == 1) {
+    theta_vec <- theta
+  } else {
+    theta_vec <- theta[args_not_na]
+  }
+  opt_lambda <- rep(NA_real_, length(args_not_na))
+  if (any(args_not_na)) {
+    upper <- max(x[args_not_na])
+    if (!is.finite(upper) || upper <= 0) upper <- 1
+    opt_lambda[args_not_na] <- parallel_optimize(
+      f = make_opt_gamma_pois_zt(x[args_not_na], theta_vec),
+      interval = c(.Machine$double.eps, upper),
+      N = sum(args_not_na)
+    )
+  }
+  dev1 <- log_lik_gamma_pois_zt(x = x, lambda = opt_lambda, theta = theta)
+  dev2 <- log_lik_gamma_pois_zt(x = x, lambda = lambda, theta = theta)
+  dev <- dev1 - dev2
+  dev[!is.na(dev) & dev < 0 & dev > -1e-7] <- 0
+  dev <- dev * 2
   if (vld_false(res)) {
     return(dev)
   }
   log_p0 <- dnbinom(0, mu = lambda, size = 1 / theta, log = TRUE)
   trunc_mean <- lambda / -expm1(log_p0)
   dev_res(x, trunc_mean, dev)
+}
+
+# Objective function for optimization.
+make_opt_gamma_pois_zt <- function(x, theta) {
+  force(x)
+  force(theta)
+  function(lambda) {
+    out <- -log_lik_gamma_pois_zt(x = x, lambda = lambda, theta = theta)
+    out[is.nan(out)] <- Inf
+    out
+  }
 }
 
 #' Log-Normal Deviances
