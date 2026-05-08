@@ -38,6 +38,7 @@ Other log_lik_dist:
 \code{\link{log_lik_gamma}()},
 \code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_gamma_pois_zi}()},
+\code{\link{log_lik_gamma_pois_zt}()},
 \code{\link{log_lik_lnorm}()},
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},

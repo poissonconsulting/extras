@@ -316,6 +316,38 @@ test_that("gamma_pois_zi vectorized", {
   expect_equal(dev_gamma_pois_zi(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(6, 1.0464962875291, 2.41568518074605, Inf))
 })
 
+test_that("gamma_pois_zt missing values", {
+  expect_identical(dev_gamma_pois_zt(logical(0), integer(0), numeric(0)), numeric(0))
+  expect_identical(dev_gamma_pois_zt(NA, 1, 1), NA_real_)
+  expect_identical(dev_gamma_pois_zt(1, NA, 1), NA_real_)
+  expect_identical(dev_gamma_pois_zt(1, 1, NA), NA_real_)
+})
+
+test_that("gamma_pois_zt known values", {
+  expect_equal(dev_gamma_pois_zt(c(1, 3, 4), 3, 2),
+               c(2.69098973, 0.19520565, 0.03152929),
+               tolerance = 1e-6)
+  expect_equal(dev_gamma_pois_zt(3, 3), 0.009522421, tolerance = 1e-6)
+})
+
+test_that("gamma_pois_zt deviance is non-negative", {
+  expect_true(all(dev_gamma_pois_zt(1:20, 5, 1) >= 0))
+  expect_true(all(dev_gamma_pois_zt(1:20, 10, 0.5) >= 0))
+  expect_true(all(dev_gamma_pois_zt(1:20, 1, 2) >= 0))
+})
+
+test_that("gamma_pois_zt deviance residuals", {
+  # Residuals signed by sign(x - trunc_mean) and scaled by sqrt(dev).
+  expect_equal(dev_gamma_pois_zt(c(1, 2, 5), 2, 1, res = TRUE),
+               c(-1.4823038, -0.4853515, 0.6610002),
+               tolerance = 1e-6)
+  # Sign follows sign(x - trunc_mean). For lambda = 2, theta = 1,
+  # trunc_mean = 2 / (1 - 1/3) = 3.
+  trunc_mean_at_2_1 <- 2 / (1 - dnbinom(0, mu = 2, size = 1))
+  expect_equal(sign(dev_gamma_pois_zt(c(1, 5), 2, 1, res = TRUE)),
+               sign(c(1, 5) - trunc_mean_at_2_1))
+})
+
 test_that("gamma_pois_zi vectorized missing values", {
   expect_equal(dev_gamma_pois_zi(c(NA, 1), 0:1, 0:1, 0:1), c(NA, Inf))
   expect_equal(dev_gamma_pois_zi(c(0, NA), 0:1, 0:1, 0:1), c(0, NA))
