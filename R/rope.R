@@ -18,13 +18,13 @@
 #' @export
 #' @seealso [extras::xtr_ci]
 #' @examples
-#' rope(c(-Inf, -1, -0.1, 0.1, 1, Inf))
-#' rope(rnorm(1e4))
-#' @name rope
+#' xtr_rope(c(-Inf, -1, -0.1, 0.1, 1, Inf))
+#' xtr_rope(rnorm(1e4))
+#' @name xtr_rope
 NULL
 
-rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ..., level = 1,
-                 type = "HDI", na_rm = FALSE) {
+xtr_rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ..., level = 1,
+                     type = "HDI", na_rm = FALSE) {
   chk_numeric(x)
   chk_number(threshold)
   chk_numeric(interval)
