@@ -29,6 +29,7 @@ rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ..., level = 1,
   chk_number(threshold)
   chk_numeric(interval)
   chk_length(interval, 2)
+  chk_unused(...)
   chk_number(level)
   chk_range(level)
   chk_flag(na_rm)
