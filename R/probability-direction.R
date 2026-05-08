@@ -1,7 +1,6 @@
 #' Probability of Direction
 #'
 #' The probability of direction (PD) is the proportion of the (posterior)
-#' distribution above or below zero.
 #' By default, the direction is based on the side of the median value, but it
 #' can be specified to measure support for specific hypotheses.
 #' A right-side PD of 0.9 indicates that the CRI spanning from the threshold to
@@ -11,6 +10,7 @@
 #' **NOTE:** probability estimates of 0 or 1 are corrected towards 0.5 by adding
 #' or subtracting `1 / (length(x) + 1)`, where `x` is a vector of MCMC samples.
 #' Ideally, `x` should be large enough as to make the correction negligible.
+#' distribution above (right) or below (left) a threshold.
 #'
 #' @param x A numeric vector of MCMC values.
 #' @param side A character vector of length 1 indicating whether to calculate
