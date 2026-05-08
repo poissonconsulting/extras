@@ -27,8 +27,7 @@ xtr_ci <- function(x, level = 0.95, ..., type = "HDI", na_rm = FALSE) {
   chk_unused(...)
 
   if(type == "HDI") {
-    xtr_ci_hdi(x = x, level = level, na_rm = na_rm)
-  } else if (type == "ETI") {
-    xtr_ci_eti(x = x, level = level, na_rm = na_rm)
-  }
+    return(xtr_ci_hdi(x = x, level = level, na_rm = na_rm))
+  } 
+  xtr_ci_eti(x = x, level = level, na_rm = na_rm)
 }
