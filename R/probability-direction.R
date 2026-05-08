@@ -7,7 +7,7 @@
 #' @param side A character vector of length 1 indicating whether to calculate
 #' the directional probability for the left tail (`"left"`; `x < threshold`),
 #' or the right tail (`"right"`; `x > threshold`).
-#' Defaults to `NULL`, which uses the side of the median of `x` via
+#' Defaults to `"median"`, which uses the side of the median of `x` via
 #' [`direction()`].
 #' @param threshold A number of the threshold value, which is excluded from the
 #' interval for the probability.
@@ -34,10 +34,10 @@
 #' probability_direction(x, side = "right") # = 1 - probability_direction(x, side = "left")
 #' probability_direction(c(0, 0, 1), side = "right") # does not include threshold
 #' probability_direction(c(1, 1), side = "right") # p = 1 - 1/(n+1)
-probability_direction <- function(x, side = NULL, threshold = 0, na_rm = FALSE) {
+probability_direction <- function(x, side = "median", threshold = 0, na_rm = FALSE) {
   chk_numeric(x)
-  chk_null_or(side, vld = vld_string)
-  chk_null_or(side, vld = vld_subset, values = c("left", "right"))
+  chk_string(side)
+  chk_subset(side, values = c("left", "right", "median"))
   chk_number(threshold)
   chk_flag(na_rm)
 
