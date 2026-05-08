@@ -29,6 +29,8 @@ xtr_rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ..., level = 1,
   chk_number(threshold)
   chk_numeric(interval)
   chk_length(interval, 2)
+  chk_not_any_na(interval)
+  chk_sorted(interval)
   chk_unused(...)
   chk_number(level)
   chk_range(level)
