@@ -66,6 +66,7 @@ Other fill:
 ## Examples
 
 ``` r
+
 # logical
 fill_all(c(TRUE, NA, FALSE))
 #> [1] FALSE FALSE FALSE

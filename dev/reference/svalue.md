@@ -3,12 +3,13 @@
 The surprisal value (Greenland 2019) is the
 [pvalue](https://poissonconsulting.github.io/extras/dev/reference/pvalue.md)
 expressed in terms of how many consecutive heads would have to be thrown
-on a fair coin in a single attempt to achieve the same probability.
+on a fair coin in a single attempt to achieve the same probability:
+\\-\log_2(p)\\, where \\p\\ is the p-value of interest.
 
 ## Usage
 
 ``` r
-svalue(x, threshold = 0, na_rm = FALSE)
+svalue(x, side = "both", threshold = 0, na_rm = FALSE)
 ```
 
 ## Arguments
@@ -16,6 +17,12 @@ svalue(x, threshold = 0, na_rm = FALSE)
 - x:
 
   A numeric object of MCMC values.
+
+- side:
+
+  A character indicating whether to calculate s-values using p-values
+  for the left tail (`"left"`), right tail (`"right"`), or both tails
+  (`"both"`; default).
 
 - threshold:
 
@@ -31,8 +38,8 @@ A non-negative number.
 
 ## References
 
-Greenland, S. 2019. Valid P -Values Behave Exactly as They Should: Some
-Misleading Criticisms of P -Values and Their Resolution With S -Values.
+Greenland, S. 2019. Valid P-Values Behave Exactly as They Should: Some
+Misleading Criticisms of P-Values and Their Resolution With S -Values.
 The American Statistician 73(sup1): 106–114.
 [doi:10.1080/00031305.2018.1529625](https://doi.org/10.1080/00031305.2018.1529625)
 .
@@ -56,6 +63,8 @@ Other summary:
 ## Examples
 
 ``` r
-svalue(as.numeric(0:100))
-#> [1] 5.672425
+svalue(rnorm(1e4, mean = 1), side = "left")
+#> [1] 2.683159
+svalue(rnorm(1e4, mean = 1), side = "right")
+#> [1] 0.2546336
 ```

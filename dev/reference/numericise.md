@@ -84,6 +84,7 @@ method for a class `"foo"`, implement `numericise.foo()`.
 ## Examples
 
 ``` r
+
 # logical
 numericise(TRUE)
 #> [1] 1

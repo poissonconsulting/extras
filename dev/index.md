@@ -17,6 +17,7 @@ The `extras` package provides functions to summarise MCMC samples like
 which gives the *surprisal value* (Greenland, 2019)
 
 ``` r
+
 library(extras)
 #> 
 #> Attaching package: 'extras'
@@ -63,6 +64,7 @@ functions such as
 and `log<-`.
 
 ``` r
+
 pow(10, 2)
 #> [1] 100
 
@@ -83,6 +85,7 @@ the
 function.
 
 ``` r
+
 numericise(
   data.frame(
     logical = c(TRUE, FALSE),
@@ -112,6 +115,7 @@ To install the release version from
 [CRAN](https://CRAN.R-project.org/package=extras).
 
 ``` r
+
 install.packages("extras")
 ```
 
@@ -124,6 +128,7 @@ To install the development version from
 [GitHub](https://github.com/poissonconsulting/extras)
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("poissonconsulting/extras")
 ```
@@ -131,6 +136,7 @@ remotes::install_github("poissonconsulting/extras")
 or from [r-universe](https://poissonconsulting.r-universe.dev/extras).
 
 ``` r
+
 install.packages("extras", repos = c("https://poissonconsulting.r-universe.dev", "https://cloud.r-project.org"))
 ```
 

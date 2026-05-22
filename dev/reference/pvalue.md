@@ -3,12 +3,16 @@
 A Bayesian p-value (p) is here defined in terms of the quantile-based
 (1-p) \* 100% credible interval (CRI) that just includes a threshold
 (Kery and Schaub 2011). By default a p-value of 0.05 indicates that the
-95% CRI just includes 0.
+95% CRI just includes the threshold value.Note that the function
+contains the sample-size correction \\p\_{c} = p \* n / (n + 1)\\ to
+avoid p-values of 0. The function can still return p-values of 1.For
+p-values converted to bits, see
+[`svalue()`](https://poissonconsulting.github.io/extras/dev/reference/svalue.md).
 
 ## Usage
 
 ``` r
-pvalue(x, threshold = 0, side = "both", na_rm = FALSE)
+pvalue(x, side = "both", threshold = 0, na_rm = FALSE)
 ```
 
 ## Arguments
@@ -17,15 +21,15 @@ pvalue(x, threshold = 0, side = "both", na_rm = FALSE)
 
   A numeric vector of MCMC values.
 
-- threshold:
-
-  A number of the threshold value.
-
 - side:
 
   A character vector of length 1 indicating whether to calculate
   p-values for the left tail (`"left"`), right tail (`"right"`), or
   two-sided (`"both"`; default).
+
+- threshold:
+
+  A number of the threshold value.
 
 - na_rm:
 
@@ -63,9 +67,9 @@ Other summary:
 ``` r
 x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
 pvalue(x) # should be 0.05 * 2
-#> [1] 0.0998769
+#> [1] 0.099876
 pvalue(x, side = "left") # should be 0.95
 #> [1] 0.950062
 pvalue(x, side = "right") # should be 0.05
-#> [1] 0.04993895
+#> [1] 0.049938
 ```

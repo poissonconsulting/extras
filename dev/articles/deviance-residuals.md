@@ -45,6 +45,7 @@ To confirm this consider a normal distribution with a \hat{\mu} = 2 and
 \sigma = 0.5 and a value of 1.
 
 ``` r
+
 library(extras)
 #> 
 #> Attaching package: 'extras'
