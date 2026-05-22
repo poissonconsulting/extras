@@ -100,13 +100,9 @@ directional_information <- function(x, side = "median", threshold = 0,
 
   i <- min(i, n) # max information difference is a bit for each sample
   i <- max(i, -n)
-  # equivalent to, if o is the odds ratio:
-  # if (is.infinite(o)) {
-  #   if (o > 0) {
-  #     o <- n # = n / (n+1) / (1 / (n+1))
-  #   } else {
-  #     o <- 1 / n # = 1 / (n+1) / (n / (n+1))
-  #   }
-  # }
+  # the two lines above are equivalent to, if o is the odds ratio:
+  # returning n   if o is  Inf, since n    = n / (n+1) / (1 / (n+1))
+  # returning 1/n if o is -Inf, since 1/n  = 1 / (n+1) / (n / (n+1))
+  # note that the odds ratio could be p_l / p_r or p_r / p_l
   i
 }
