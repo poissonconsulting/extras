@@ -18,9 +18,6 @@
 #' @seealso [extras::xtr_ci()] and [extras::xtr_ci_hdi()]
 #' @examples
 #' xtr_ci_eti(rnorm(1e4))
-#' @name xtr_ci_eti
-NULL
-
 xtr_ci_eti <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
