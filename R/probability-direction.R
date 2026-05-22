@@ -32,7 +32,7 @@
 #' x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
 #' probability_direction(x, side = "left")
 #' probability_direction(x, side = "right") # = 1 - probability_direction(x, side = "left")
-#' probability_direction(c(0, 0, 1), side = "right") # does not include threshold
+#' probability_direction(c(0, 0, 1), side = "right") # returns P(X >0) = 1/3 instead of P(X >= 0) = 1
 #' probability_direction(c(1, 1), side = "right") # p = 1 - 1/(n+1)
 probability_direction <- function(x, side = "median", threshold = 0, na_rm = FALSE) {
   chk_numeric(x)
