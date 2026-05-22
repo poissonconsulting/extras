@@ -41,12 +41,12 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
     }
   }
 
-  x <- sort(x)
   n <- length(x)
 
   if (n <= 1) {
     return(data.frame(lower = na, upper = na))
   }
+  x <- sort(x)
 
   if (level == 1) {
     return(data.frame(lower = x[1], upper = x[n]))
