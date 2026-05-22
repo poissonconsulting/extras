@@ -15,9 +15,6 @@
 #' @seealso [mcmcr::coef]
 #' @examples
 #' xtr_ci(rnorm(1e4), type = "HDI")
-#' @name xtr_ci
-NULL
-
 xtr_ci <- function(x, level = 0.95, ..., type = "HDI", na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
