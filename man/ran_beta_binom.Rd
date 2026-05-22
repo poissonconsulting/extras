@@ -36,18 +36,18 @@ probability parameter.
 ran_beta_binom(10, 1, 0.5, 0)
 }
 \seealso{
-Other ran_dist: 
-\code{\link{ran_bern}()},
-\code{\link{ran_binom}()},
-\code{\link{ran_gamma}()},
-\code{\link{ran_gamma_pois}()},
-\code{\link{ran_gamma_pois_zi}()},
-\code{\link{ran_lnorm}()},
-\code{\link{ran_neg_binom}()},
-\code{\link{ran_norm}()},
-\code{\link{ran_pois}()},
-\code{\link{ran_pois_zi}()},
-\code{\link{ran_skewnorm}()},
-\code{\link{ran_student}()}
+Other ran_dist:
+\code{\link[=ran_bern]{ran_bern()}},
+\code{\link[=ran_binom]{ran_binom()}},
+\code{\link[=ran_gamma]{ran_gamma()}},
+\code{\link[=ran_gamma_pois]{ran_gamma_pois()}},
+\code{\link[=ran_gamma_pois_zi]{ran_gamma_pois_zi()}},
+\code{\link[=ran_lnorm]{ran_lnorm()}},
+\code{\link[=ran_neg_binom]{ran_neg_binom()}},
+\code{\link[=ran_norm]{ran_norm()}},
+\code{\link[=ran_pois]{ran_pois()}},
+\code{\link[=ran_pois_zi]{ran_pois_zi()}},
+\code{\link[=ran_skewnorm]{ran_skewnorm()}},
+\code{\link[=ran_student]{ran_student()}}
 }
 \concept{ran_dist}

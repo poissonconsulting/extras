@@ -31,7 +31,12 @@ Note that the function contains the sample-size correction
 \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
 return p-values of 1.
 
+To use as a measure of certainty in the direction of the estimate (i.e.,
+positive or negative), see \code{\link[=probability_direction]{probability_direction()}}.
+
 For p-values converted to bits, see \code{\link[=svalue]{svalue()}}.
+
+To convert MCMC objects to information, see \code{\link[=directional_information]{directional_information()}}.
 }
 }
 \examples{
@@ -46,18 +51,21 @@ Bayesian population analysis using WinBUGS: a hierarchical perspective.
 Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/en/research/population-biology/book-bpa/}.
 }
 \seealso{
-Other summary: 
-\code{\link{kurtosis}()},
-\code{\link{lower}()},
-\code{\link{pzeros}()},
-\code{\link{skewness}()},
-\code{\link{svalue}()},
-\code{\link{upper}()},
-\code{\link{variance}()},
-\code{\link{xtr_mean}()},
-\code{\link{xtr_median}()},
-\code{\link{xtr_sd}()},
-\code{\link{zeros}()},
-\code{\link{zscore}()}
+Other summary:
+\code{\link[=direction]{direction()}},
+\code{\link[=directional_information]{directional_information()}},
+\code{\link[=kurtosis]{kurtosis()}},
+\code{\link[=lower]{lower()}},
+\code{\link[=probability_direction]{probability_direction()}},
+\code{\link[=pzeros]{pzeros()}},
+\code{\link[=skewness]{skewness()}},
+\code{\link[=svalue]{svalue()}},
+\code{\link[=upper]{upper()}},
+\code{\link[=variance]{variance()}},
+\code{\link[=xtr_mean]{xtr_mean()}},
+\code{\link[=xtr_median]{xtr_median()}},
+\code{\link[=xtr_sd]{xtr_sd()}},
+\code{\link[=zeros]{zeros()}},
+\code{\link[=zscore]{zscore()}}
 }
 \concept{summary}

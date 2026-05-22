@@ -22,7 +22,7 @@ proportional_difference(1, 2)
 proportional_difference(2, 1)
 }
 \seealso{
-Other proportional: 
-\code{\link{proportional_change}()}
+Other proportional:
+\code{\link[=proportional_change]{proportional_change()}}
 }
 \concept{proportional}

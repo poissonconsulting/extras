@@ -19,6 +19,9 @@
 #' \doi{10.1080/00031305.2018.1529625}.
 #' @export
 #' @examples
+#' svalue(as.numeric(0:100))
+#' svalue(as.numeric(0:100), side = "left")
+#' svalue(as.numeric(0:100), side = "right")
 #' svalue(rnorm(1e4, mean = 1), side = "left")
 #' svalue(rnorm(1e4, mean = 1), side = "right")
 svalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {

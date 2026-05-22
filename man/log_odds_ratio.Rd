@@ -21,12 +21,12 @@ Calculates the log odds ratio for two probabilities.
 log_odds_ratio(0.5, 0.75)
 }
 \seealso{
-Other odds: 
-\code{\link{inv_odds}()},
-\code{\link{log_odds}()},
-\code{\link{log_odds<-}()},
-\code{\link{odds}()},
-\code{\link{odds<-}()},
-\code{\link{odds_ratio}()}
+Other odds:
+\code{\link[=inv_odds]{inv_odds()}},
+\code{\link[=log_odds]{log_odds()}},
+\code{\link[=log_odds<-]{log_odds<-()}},
+\code{\link[=odds]{odds()}},
+\code{\link[=odds<-]{odds<-()}},
+\code{\link[=odds_ratio]{odds_ratio()}}
 }
 \concept{odds}

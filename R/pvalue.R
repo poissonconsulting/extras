@@ -11,7 +11,12 @@
 #' \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
 #' return p-values of 1.
 #'
+#' To use as a measure of certainty in the direction of the estimate (i.e.,
+#' positive or negative), see [`probability_direction()`].
+#'
 #' For p-values converted to bits, see [`svalue()`].
+#'
+#' To convert MCMC objects to information, see [`directional_information()`].
 #' }
 #'
 #' @param x A numeric vector of MCMC values.
@@ -38,7 +43,7 @@ pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
   chk_flag(na_rm)
 
   if (anyNA(x)) {
-    if (vld_true(na_rm)) {
+    if (na_rm) {
       x <- as.vector(x)
       x <- x[!is.na(x)]
     } else {
