@@ -24,8 +24,8 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_number(level)
   chk_range(level, inclusive = TRUE)
   chk_gt(level)
-  chk_flag(na_rm)
   chk_unused(...)
+  chk_flag(na_rm)
 
   if(is.integer(x)) {
     na <- NA_integer_
