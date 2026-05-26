@@ -32,7 +32,7 @@ xtr_ci_eti <- function(x, level = 0.95, ..., na_rm = FALSE) {
 
 na <-  if (is.integer(x)) NA_integer_ else NA_real_
 
-  if(length(x) <= 1) {
+  if (length(x) <= 1) {
     return(data.frame(lower = na, upper = na))
   }
 
