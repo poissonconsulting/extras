@@ -19,6 +19,7 @@
 #' @examples
 #' xtr_ci(rnorm(1e4), type = "HDI")
 xtr_ci <- function(x, level = 0.95, ..., type = "HDI", na_rm = FALSE) {
+  chk_string(type)
   chk_subset(type, c("HDI", "ETI"))
   chk_unused(...)
 
