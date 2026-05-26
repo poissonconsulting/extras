@@ -3,14 +3,25 @@
 \name{xtr_rope}
 \alias{xtr_rope}
 \title{Region of Practical Equivalence}
+\usage{
+xtr_rope(
+  x,
+  threshold = 0,
+  interval = c(-0.1, 0.1),
+  ...,
+  level = 1,
+  type = "HDI",
+  na_rm = FALSE
+)
+}
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
+
+\item{...}{Currently unused.}
 
 \item{level}{A number > 0 and <= 1 specifying the probability coverage of
 the HDI to use.
 The default of 1 uses the full posterior.}
-
-\item{...}{Currently unused.}
 
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
