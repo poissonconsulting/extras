@@ -3,6 +3,9 @@
 \name{xtr_ci}
 \alias{xtr_ci}
 \title{Credible Intervals}
+\usage{
+xtr_ci(x, level = 0.95, ..., type = "HDI", na_rm = FALSE)
+}
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
 

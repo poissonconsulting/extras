@@ -3,6 +3,9 @@
 \name{xtr_ci_hdi}
 \alias{xtr_ci_hdi}
 \title{Highest Density Interval}
+\usage{
+xtr_ci_hdi(x, level = 0.95, ..., na_rm = FALSE)
+}
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
 

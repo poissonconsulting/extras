@@ -3,6 +3,9 @@
 \name{xtr_ci_eti}
 \alias{xtr_ci_eti}
 \title{Equal-Tailed Interval}
+\usage{
+xtr_ci_eti(x, level = 0.95, ..., na_rm = FALSE)
+}
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
 
