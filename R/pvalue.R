@@ -1,24 +1,26 @@
 #' Bayesian P-Value
 #'
-#' @description {
+#' @description
 #' A Bayesian p-value (p) is here defined in terms of the quantile-based
 #' (1-p) * 100% credible interval (CRI) that
 #' just includes a threshold (Kery and Schaub 2011).
-#' By default a p-value of 0.05 indicates that the 95% CRI just includes the
-#' threshold value.
-#'
-#' Note that the function contains the sample-size correction
-#' \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
-#' return p-values of 1.
-#'
-#' For p-values converted to bits, see [`svalue()`].
-#' }
 #'
 #' @param x A numeric vector of MCMC values.
 #' @param side A character vector of length 1 indicating whether to calculate
 #' p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
 #' @inheritParams params
 #' @return A number between 0 and 1.
+#'
+#' @details
+#' A p-value of 0.05 indicates that the 95% CRI just includes the threshold value.
+#'
+#' Note that the function contains the sample-size correction
+#' \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
+#' return p-values of 1.
+#'
+#' For p-values converted to bits, see [`svalue()`].
+#'
+#'
 #' @family summary
 #' @references
 #' Kery, M., and Schaub, M. 2011.
