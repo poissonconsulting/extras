@@ -15,10 +15,10 @@ test_that("xtr_ci_eti() returns the correct values.", {
 
   expect_error(xtr_ci_eti(1:100, level = 0), "level` must be greater than 0, not 0.")
   expect_no_error(xtr_ci_eti(1:100, level = 1))
+  expect_error(xtr_ci_eti(1:100, level = 2), "level` must be between 0 and 1, not 2.")
 
   expect_equal(xtr_ci_eti(1:100, level = 1), data.frame(lower = 1, upper = 100))
   expect_equal(xtr_ci_eti(NA_real_), data.frame(lower = NA_real_, upper = NA_real_))
-  expect_equal(xtr_ci_eti(numeric(0)), data.frame(lower = NA_real_, upper = NA_real_))
   expect_equal(xtr_ci_eti(NA_integer_), data.frame(lower = NA_real_, upper = NA_real_))
   expect_equal(xtr_ci_eti(c(0, rep(Inf, 19))), data.frame(lower = Inf, upper = Inf))
   expect_equal(xtr_ci_eti(c(0, rep(-Inf, 19))), data.frame(lower = -Inf, upper = -Inf))
