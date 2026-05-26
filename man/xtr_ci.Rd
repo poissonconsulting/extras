@@ -11,6 +11,10 @@ coverage of the CI.}
 
 \item{...}{Currently unused.}
 
+\item{type}{A string indicating which type of CI to return.
+Currently allows Highest Density Intervals (\code{"HDI"}; default) and
+Equal-Tailed Intervals (\code{"ETI"}).}
+
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
 \value{
