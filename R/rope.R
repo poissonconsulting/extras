@@ -53,7 +53,7 @@ xtr_rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ..., level = 1,
     return(NA_real_)
   }
 
-  if(level < 1) {
+  if (level < 1) {
     ci <- xtr_ci(x = x, level = level, ..., type = type, na_rm = na_rm)
     x <- x[x >= ci$lower[1] & x <= ci$upper[1]]
   }
