@@ -19,14 +19,17 @@ ETI.}
 \value{
 A \link{data.frame} of the \code{lower} and \code{upper} limits for the credible
 interval.
-Note that the interval is guaranteed to be two-sided with real (i.e., double)
-numeric limits, even if the input data are integers.
 }
 \description{
 Calculates Bayesian credible intervals using the equal-tailed interval (ETI),
 i.e., the CI such that the left and right tails outside the CI have the same
-coverage. Note that the function does not return integer outputs, even if the
-input data are integers, unlike \code{\link[=xtr_ci_hdi]{xtr_ci_hdi()}}.
+coverage.
+}
+\details{
+The interval is guaranteed to be two-sided, unlike \verb{[xtr_ci_hdi()]}.
+Does not return integer outputs even if the input data are integers,
+unlike \code{\link[=xtr_ci_hdi]{xtr_ci_hdi()}}.
+The interval limits are always real (double) numeric values.
 }
 \examples{
 xtr_ci_eti(rnorm(1e4))

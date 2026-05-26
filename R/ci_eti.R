@@ -2,8 +2,7 @@
 #'
 #' Calculates Bayesian credible intervals using the equal-tailed interval (ETI),
 #' i.e., the CI such that the left and right tails outside the CI have the same
-#' coverage. Note that the function does not return integer outputs, even if the
-#' input data are integers, unlike [`xtr_ci_hdi()`].
+#' coverage.
 #'
 #' @param x A numeric vector of MCMC samples.
 #' @param level A number > 0 and <= 1 specifying the probability coverage of the
@@ -12,8 +11,13 @@
 #' @param na_rm A flag indicating whether to remove missing values.
 #' @return A [data.frame] of the `lower` and `upper` limits for the credible
 #' interval.
-#' Note that the interval is guaranteed to be two-sided with real (i.e., double)
-#' numeric limits, even if the input data are integers.
+#'
+#' @details
+#' The interval is guaranteed to be two-sided, unlike `[xtr_ci_hdi()]`.
+#' Does not return integer outputs even if the input data are integers,
+#' unlike [`xtr_ci_hdi()`].
+#' The interval limits are always real (double) numeric values.
+#'
 #' @export
 #' @seealso [extras::xtr_ci()] and [extras::xtr_ci_hdi()]
 #' @examples
