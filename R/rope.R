@@ -8,10 +8,18 @@
 #' is sensitive to unit conversions.
 #'
 #' @param x A numeric vector of MCMC samples.
+#' @param threshold A number specifying the center of the ROPE.
+#' @param interval A numeric vector of length 2 to be added to `threshold` to
+#' calculate the ROPE.
+#' Generally, `threshold[1] == - threshold[2]` and `threshold[1] < 0` should
+#' both be true.
 #' @param level A number > 0 and <= 1 specifying the probability coverage of
 #' the HDI to use.
 #' The default of 1 uses the full posterior.
 #' @param ... Currently unused.
+#' @param type A string indicating which type of CI to return.
+#' Currently allows Highest Density Intervals (`"HDI"`; default) and
+#' Equal-Tailed Intervals (`"ETI"`).
 #' @param na_rm A flag indicating whether to remove missing values.
 #' @return A number indicating the estimated proportion of the posterior (or
 #' credible interval) within the region of practical equivalence.

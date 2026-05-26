@@ -17,11 +17,22 @@ xtr_rope(
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
 
+\item{threshold}{A number specifying the center of the ROPE.}
+
+\item{interval}{A numeric vector of length 2 to be added to \code{threshold} to
+calculate the ROPE.
+Generally, \code{threshold[1] == - threshold[2]} and \code{threshold[1] < 0} should
+both be true.}
+
 \item{...}{Currently unused.}
 
 \item{level}{A number > 0 and <= 1 specifying the probability coverage of
 the HDI to use.
 The default of 1 uses the full posterior.}
+
+\item{type}{A string indicating which type of CI to return.
+Currently allows Highest Density Intervals (\code{"HDI"}; default) and
+Equal-Tailed Intervals (\code{"ETI"}).}
 
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
