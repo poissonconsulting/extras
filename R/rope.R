@@ -20,9 +20,6 @@
 #' @examples
 #' xtr_rope(c(-Inf, -1, -0.1, 0.1, 1, Inf))
 #' xtr_rope(rnorm(1e4))
-#' @name xtr_rope
-NULL
-
 xtr_rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ..., level = 1,
                      type = "HDI", na_rm = FALSE) {
   chk_numeric(x)
