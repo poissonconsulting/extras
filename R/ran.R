@@ -97,6 +97,40 @@ ran_gamma_pois_zi <- function(n = 1, lambda = 1, theta = 0, prob = 0) {
   ran_neg_binom(n = n, lambda = lambda, theta = theta) * ran_bern(n, prob = 1 - prob)
 }
 
+#' Zero-Truncated Gamma-Poisson Random Samples
+#'
+#' Drawn via rejection sampling so all returned values are at least 1.
+#'
+#' @inheritParams params
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_gamma_pois_zt(10, lambda = 3, theta = 1)
+ran_gamma_pois_zt <- function(n = 1, lambda = 1, theta = 0) {
+  chk_whole_number(n)
+  chk_gte(n)
+  if (n == 0) {
+    return(integer(0))
+  }
+  lambda <- rep_len(lambda, n)
+  theta <- rep_len(theta, n)
+  out <- integer(n)
+  remaining <- seq_len(n)
+  while (length(remaining) > 0) {
+    draws <- as.integer(stats::rnbinom(
+      length(remaining),
+      mu = lambda[remaining],
+      size = 1 / theta[remaining]
+    ))
+    accepted <- draws > 0
+    out[remaining[accepted]] <- draws[accepted]
+    remaining <- remaining[!accepted]
+  }
+  out
+}
+
 #' Log-Normal Random Samples
 #'
 #' @inheritParams params

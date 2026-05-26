@@ -380,6 +380,52 @@ test_that("res_gamma_pois_zi", {
   expect_equal(sd(res), 0.860406154019735)
 })
 
+test_that("res_gamma_pois_zt", {
+  expect_identical(res_gamma_pois_zt(integer(0), integer(0), integer(0)), numeric(0))
+  expect_identical(res_gamma_pois_zt(NA, 1, 1), NA_real_)
+  expect_identical(res_gamma_pois_zt(1, NA, 1), NA_real_)
+  expect_identical(res_gamma_pois_zt(1, 1, NA), NA_real_)
+  expect_error(res_gamma_pois_zt(1, 1, 1, type = "unknown"))
+
+  # type = "data"
+  expect_identical(res_gamma_pois_zt(1:3, 2, 1, type = "data"), 1:3)
+
+  # type = "raw" — residual is x - truncated mean
+  # truncated mean for lambda = 2, theta = 1 is 2 / (1 - 1/3) = 3
+  expect_equal(res_gamma_pois_zt(c(1, 3, 5), 2, 1, type = "raw"), c(-2, 0, 2))
+  # When theta -> 0, truncated mean approaches lambda for moderate lambda
+  expect_equal(
+    res_gamma_pois_zt(c(1, 10, 20), 10, 0, type = "raw"),
+    c(1, 10, 20) - 10 / (1 - exp(-10))
+  )
+
+  # type = "standardized" — residual is (x - trunc_mean) / sqrt(trunc_var)
+  # For lambda = 3, theta = 1: trunc_mean = 4, trunc_var = 12
+  expect_equal(
+    res_gamma_pois_zt(c(1, 3, 4), 3, 1, type = "standardized"),
+    (c(1, 3, 4) - 4) / sqrt(12)
+  )
+
+  # type = "dev" — saturated MLE found numerically per observation,
+  # signed by sign(x - trunc_mean)
+  expect_equal(
+    res_gamma_pois_zt(c(1, 2, 5), 2, 1),
+    c(-1.4823038, -0.4853515, 0.6610002),
+    tolerance = 1e-6
+  )
+
+  # simulate = TRUE replaces x with random draws from ZT distribution
+  set.seed(101)
+  expect_true(all(res_gamma_pois_zt(1:5, 2, 1, simulate = TRUE, type = "data") >= 1))
+
+  # Standardised residuals on simulated data approximate N(0, 1)
+  set.seed(101)
+  res <- res_gamma_pois_zt(rep(2, 10000), 2, 1, simulate = TRUE,
+                           type = "standardized")
+  expect_equal(mean(res), 0, tolerance = 0.05)
+  expect_equal(sd(res), 1, tolerance = 0.05)
+})
+
 test_that("res_gamma", {
   expect_identical(res_gamma(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(res_gamma(1, 1, 1), 0)
