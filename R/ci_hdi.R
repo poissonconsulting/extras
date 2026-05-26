@@ -72,7 +72,7 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
       narrowest_is <- narrowest_is[actual_n_ins == max(actual_n_ins)]
       midpoints <- narrowest_is + (n_in - 1) / 2
       narrowest_i <- narrowest_is[which.min(abs(midpoints - (1 + n) / 2))]
-    } else if(n_inf < n_in) {
+    } else if (n_inf < n_in) {
       if (is.infinite(x[1])) {
         narrowest_i <- min(narrowest_is)
       } else {
