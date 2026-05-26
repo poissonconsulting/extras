@@ -27,7 +27,7 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_unused(...)
   chk_flag(na_rm)
 
-  if(is.integer(x)) {
+  if (is.integer(x)) {
     na <- NA_integer_
   } else {
     na <- NA_real_
