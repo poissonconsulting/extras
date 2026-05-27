@@ -25,7 +25,7 @@ sextreme(seq(0.1, 0.9, by = 0.1))
 sextreme(seq(0.1, 0.9, by = 0.1), directional = TRUE)
 }
 \seealso{
-Other residuals: 
-\code{\link{pextreme}()}
+Other residuals:
+\code{\link[=pextreme]{pextreme()}}
 }
 \concept{residuals}

@@ -31,18 +31,18 @@ Student's t Residuals
 res_student(c(1, 3.5, 4), mean = 6, sd = 0.5, theta = 1 / 3, type = "raw")
 }
 \seealso{
-Other res_dist: 
-\code{\link{res_bern}()},
-\code{\link{res_beta_binom}()},
-\code{\link{res_binom}()},
-\code{\link{res_gamma}()},
-\code{\link{res_gamma_pois}()},
-\code{\link{res_gamma_pois_zi}()},
-\code{\link{res_lnorm}()},
-\code{\link{res_neg_binom}()},
-\code{\link{res_norm}()},
-\code{\link{res_pois}()},
-\code{\link{res_pois_zi}()},
-\code{\link{res_skewnorm}()}
+Other res_dist:
+\code{\link[=res_bern]{res_bern()}},
+\code{\link[=res_beta_binom]{res_beta_binom()}},
+\code{\link[=res_binom]{res_binom()}},
+\code{\link[=res_gamma]{res_gamma()}},
+\code{\link[=res_gamma_pois]{res_gamma_pois()}},
+\code{\link[=res_gamma_pois_zi]{res_gamma_pois_zi()}},
+\code{\link[=res_lnorm]{res_lnorm()}},
+\code{\link[=res_neg_binom]{res_neg_binom()}},
+\code{\link[=res_norm]{res_norm()}},
+\code{\link[=res_pois]{res_pois()}},
+\code{\link[=res_pois_zi]{res_pois_zi()}},
+\code{\link[=res_skewnorm]{res_skewnorm()}}
 }
 \concept{res_dist}

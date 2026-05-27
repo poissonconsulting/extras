@@ -63,7 +63,7 @@ fill_na(c("text", NA))
 fill_na(matrix(c("text", NA)), value = Inf)
 }
 \seealso{
-Other fill: 
-\code{\link{fill_all}()}
+Other fill:
+\code{\link[=fill_all]{fill_all()}}
 }
 \concept{fill}
