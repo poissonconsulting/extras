@@ -1,5 +1,5 @@
 .onLoad <- function(libname, pkgname) {
-  if (requireNamespace("memoise", quietly = TRUE)) {
+  if (rlang::is_installed("memoise")) {
     lgamma_size_x <<- memoise::memoise(lgamma_size_x)
   }
 }
