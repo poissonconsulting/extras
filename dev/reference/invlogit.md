@@ -33,9 +33,11 @@ Other translations:
 [`ilog2()`](https://poissonconsulting.github.io/extras/dev/reference/ilog2.md),
 [`ilogit()`](https://poissonconsulting.github.io/extras/dev/reference/ilogit.md),
 [`inv_logit()`](https://poissonconsulting.github.io/extras/dev/reference/inv_logit.md),
-`log10<-()`, `log2<-()`, `log<-()`,
+[`log10<-()`](https://poissonconsulting.github.io/extras/dev/reference/log10-set.md),
+[`log2<-()`](https://poissonconsulting.github.io/extras/dev/reference/log2-set.md),
+[`log<-()`](https://poissonconsulting.github.io/extras/dev/reference/log-set.md),
 [`logit()`](https://poissonconsulting.github.io/extras/dev/reference/logit.md),
-`logit<-()`,
+[`logit<-()`](https://poissonconsulting.github.io/extras/dev/reference/logit-set.md),
 [`phi()`](https://poissonconsulting.github.io/extras/dev/reference/phi.md),
 [`pow()`](https://poissonconsulting.github.io/extras/dev/reference/pow.md),
 [`step()`](https://poissonconsulting.github.io/extras/dev/reference/step.md)

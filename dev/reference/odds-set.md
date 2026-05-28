@@ -27,7 +27,7 @@ Called for the side effect of updating `x`.
 Other odds:
 [`inv_odds()`](https://poissonconsulting.github.io/extras/dev/reference/inv_odds.md),
 [`log_odds()`](https://poissonconsulting.github.io/extras/dev/reference/log_odds.md),
-`log_odds<-()`,
+[`log_odds<-()`](https://poissonconsulting.github.io/extras/dev/reference/log_odds-set.md),
 [`log_odds_ratio()`](https://poissonconsulting.github.io/extras/dev/reference/log_odds_ratio.md),
 [`odds()`](https://poissonconsulting.github.io/extras/dev/reference/odds.md),
 [`odds_ratio()`](https://poissonconsulting.github.io/extras/dev/reference/odds_ratio.md)

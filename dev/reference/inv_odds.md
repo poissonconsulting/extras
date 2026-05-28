@@ -22,10 +22,10 @@ A numeric object of the the probabilities for each odd.
 
 Other odds:
 [`log_odds()`](https://poissonconsulting.github.io/extras/dev/reference/log_odds.md),
-`log_odds<-()`,
+[`log_odds<-()`](https://poissonconsulting.github.io/extras/dev/reference/log_odds-set.md),
 [`log_odds_ratio()`](https://poissonconsulting.github.io/extras/dev/reference/log_odds_ratio.md),
 [`odds()`](https://poissonconsulting.github.io/extras/dev/reference/odds.md),
-`odds<-()`,
+[`odds<-()`](https://poissonconsulting.github.io/extras/dev/reference/odds-set.md),
 [`odds_ratio()`](https://poissonconsulting.github.io/extras/dev/reference/odds_ratio.md)
 
 ## Examples
