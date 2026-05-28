@@ -16,28 +16,28 @@ The logistically transformed numeric atomic object.
 Logistic transforms a numeric atomic object.
 }
 \details{
-A wrapper on \code{\link[stats:Logistic]{stats::qlogis()}}.
+A wrapper on \code{\link[stats:qlogis]{stats::qlogis()}}.
 }
 \examples{
 logit(c(0.25, 0.5, 0.75))
 }
 \seealso{
-Other translations: 
-\code{\link{exp10}()},
-\code{\link{exp2}()},
-\code{\link{fabs}()},
-\code{\link{ilog}()},
-\code{\link{ilog10}()},
-\code{\link{ilog2}()},
-\code{\link{ilogit}()},
-\code{\link{inv_logit}()},
-\code{\link{invlogit}()},
-\code{\link{log10<-}()},
-\code{\link{log2<-}()},
-\code{\link{log<-}()},
-\code{\link{logit<-}()},
-\code{\link{phi}()},
-\code{\link{pow}()},
-\code{\link{step}()}
+Other translations:
+\code{\link[=exp10]{exp10()}},
+\code{\link[=exp2]{exp2()}},
+\code{\link[=fabs]{fabs()}},
+\code{\link[=ilog]{ilog()}},
+\code{\link[=ilog10]{ilog10()}},
+\code{\link[=ilog2]{ilog2()}},
+\code{\link[=ilogit]{ilogit()}},
+\code{\link[=inv_logit]{inv_logit()}},
+\code{\link[=invlogit]{invlogit()}},
+\code{\link[=log10<-]{log10<-()}},
+\code{\link[=log2<-]{log2<-()}},
+\code{\link[=log<-]{log<-()}},
+\code{\link[=logit<-]{logit<-()}},
+\code{\link[=phi]{phi()}},
+\code{\link[=pow]{pow()}},
+\code{\link[=step]{step()}}
 }
 \concept{translations}
