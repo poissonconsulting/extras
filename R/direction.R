@@ -12,7 +12,7 @@
 #' @param estimate A function for estimating the center of the distribution.
 #' Defaults to [xtr_median()], but can also be [xtr_mean()] or any custom function
 #' that returns a number (a non-missing numeric vector of length 1).
-#' `NA` values are dropped before calling the function.
+#' If `na.rm` is true, `NA` values are dropped before calling the function.
 #' @param threshold A number of the threshold value.
 #' @inheritParams params
 #' @return A string indicating if at least half of the
