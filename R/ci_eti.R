@@ -29,7 +29,7 @@ xtr_ci_eti <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_unused(...)
   chk_flag(na_rm)
 
-na <-  if (is.integer(x)) NA_integer_ else NA_real_
+  na <- if (is.integer(x)) NA_integer_ else NA_real_
 
   if (length(x) <= 1) {
     return(data.frame(lower = na, upper = na))
