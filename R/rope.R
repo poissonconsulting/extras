@@ -46,7 +46,7 @@ xtr_rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ..., level = 1,
     if (na_rm) {
       x <- x[!is.na(x)]
     } else {
-      NA_real_
+      return(NA_real_)
     }
   }
 
