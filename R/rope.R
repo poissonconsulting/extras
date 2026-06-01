@@ -39,6 +39,7 @@ xtr_rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ..., level = 1,
   chk_unused(...)
   chk_number(level)
   chk_range(level)
+  chk_gt(level, 0)
   chk_flag(na_rm)
 
   if (anyNA(x)) {
