@@ -18,6 +18,7 @@ p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or two-
 }
 \value{
 A number between 0 and 1.
+If \code{x} has \code{NA} values but \code{na.rm} is \code{FALSE}, returns \code{NA_real}.
 }
 \description{
 {

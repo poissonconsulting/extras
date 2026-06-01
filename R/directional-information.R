@@ -22,7 +22,8 @@
 #'   (identical to using `"proportional"`).
 #'
 #' @inheritParams params
-#' @return A number indicating the directional information.
+#' @return A number indicating the directional information in bits.
+#' If `x` has `NA` values but `na.rm` is `FALSE`, returns `NA_real`.
 #' @family summary
 #' @references
 #' Kery, M., and Schaub, M. 2011.

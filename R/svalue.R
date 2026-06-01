@@ -11,6 +11,7 @@
 #' p-values for the left tail (`"left"`), right tail (`"right"`), or both tails
 #' (`"both"`; default).
 #' @return A non-negative number.
+#' If `x` has `NA` values but `na.rm` is `FALSE`, returns `NA_real`.
 #' @family summary
 #' @references
 #' Greenland, S. 2019. Valid P-Values Behave Exactly as They Should:
