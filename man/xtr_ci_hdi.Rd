@@ -30,7 +30,7 @@ interval (HDI), i.e., the narrowest CI with the specified minimum coverage.
 xtr_ci_hdi(1:10, level = 0.1) # only 10\% of values inside
 xtr_ci_hdi(1:10, level = 0.2) # only 20\% of values inside
 xtr_ci_hdi(1:10, level = 0.2 + 0.01) # at least 20.1\% of values inside
-xtr_ci_hdi(1:100) # inclusive interval [3, 98] with 5\% of values outside
+xtr_ci_hdi(1:100) # inclusive interval [3, 98] with 95\% of values inside
 }
 \seealso{
 \code{\link[=xtr_ci]{xtr_ci()}} and \code{\link[=xtr_ci_eti]{xtr_ci_eti()}}

@@ -17,7 +17,7 @@
 #' xtr_ci_hdi(1:10, level = 0.1) # only 10% of values inside
 #' xtr_ci_hdi(1:10, level = 0.2) # only 20% of values inside
 #' xtr_ci_hdi(1:10, level = 0.2 + 0.01) # at least 20.1% of values inside
-#' xtr_ci_hdi(1:100) # inclusive interval [3, 98] with 5% of values outside
+#' xtr_ci_hdi(1:100) # inclusive interval [3, 98] with 95% of values inside
 xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   chk_numeric(x)
   chk_number(level)
