@@ -21,8 +21,8 @@
 #' Currently allows Highest Density Intervals (`"HDI"`; default) and
 #' Equal-Tailed Intervals (`"ETI"`).
 #' @param na_rm A flag indicating whether to remove missing values.
-#' @return A number indicating the estimated proportion of the posterior (or
-#' credible interval) within the region of practical equivalence.
+#' @return A number indicating the proportion of the posterior (or credible
+#' interval) within the region of practical equivalence.
 #' @export
 #' @seealso [extras::xtr_ci]
 #' @examples
