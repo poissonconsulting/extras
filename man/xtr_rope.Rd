@@ -27,7 +27,7 @@ both be true.}
 \item{...}{Currently unused.}
 
 \item{level}{A number > 0 and <= 1 specifying the probability coverage of
-the HDI to use.
+the interval to use.
 The default of 1 uses the full posterior.}
 
 \item{type}{A string indicating which type of CI to return.
@@ -37,8 +37,8 @@ Equal-Tailed Intervals (\code{"ETI"}).}
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
 \value{
-A number indicating the estimated proportion of the posterior (or
-credible interval) within the region of practical equivalence.
+A number indicating the proportion of the posterior (or credible
+interval) within the region of practical equivalence.
 }
 \description{
 Calculates the proportion of the posterior (or credible interval if
