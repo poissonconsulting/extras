@@ -42,7 +42,7 @@ xtr_rope <- function(x, threshold = 0, interval = c(-0.1, 0.1), ..., level = 1,
   chk_flag(na_rm)
 
   if (anyNA(x)) {
-    if (vld_true(na_rm)) {
+    if (na_rm) {
       x <- x[!is.na(x)]
     } else {
       NA_real_

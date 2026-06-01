@@ -33,7 +33,7 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   }
 
   if (anyNA(x)) {
-    if (vld_true(na_rm)) {
+    if (na_rm) {
       x <- x[!is.na(x)]
     } else {
       return(data.frame(lower = na, upper = na))
