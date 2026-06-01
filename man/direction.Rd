@@ -19,8 +19,9 @@ If \code{na.rm} is true, \code{NA} values are dropped before calling the functio
 \item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
-A string indicating if at least half of the
-observations are above the threshold (\code{"right"}) or not (\code{"left"}) or NA_character_ in the case of non-missing values if \code{na_rm = FALSE}.
+A string indicating if at least half of the observations are above
+the threshold (\code{"right"}) or not (\code{"left"}), or \code{NA_character_} in the case
+of missing values when \code{na_rm = FALSE}.
 }
 \description{
 The direction of a distribution is the side (left/right) that the

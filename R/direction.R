@@ -15,8 +15,9 @@
 #' If `na.rm` is true, `NA` values are dropped before calling the function.
 #' @param threshold A number of the threshold value.
 #' @inheritParams params
-#' @return A string indicating if at least half of the
-#' observations are above the threshold (`"right"`) or not (`"left"`) or NA_character_ in the case of non-missing values if `na_rm = FALSE`.
+#' @return A string indicating if at least half of the observations are above
+#' the threshold (`"right"`) or not (`"left"`), or `NA_character_` in the case
+#' of missing values when `na_rm = FALSE`.
 #' @family summary
 #' @export
 #' @examples
