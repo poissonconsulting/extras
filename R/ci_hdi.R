@@ -54,6 +54,16 @@ xtr_ci_hdi <- function(x, level = 0.95, ..., na_rm = FALSE) {
   n_in <- ceiling(n * level)
   n_out <- n - n_in
   n_inf <- sum(is.infinite(x))
+  if (n_inf == n) {
+    if (all(x == -Inf)) {
+      return(data.frame(lower = -Inf, upper = -Inf))
+    } else if (all(x == Inf)) {
+      return(data.frame(lower = Inf, upper = Inf))
+    } else {
+      return(data.frame(lower = -Inf, upper = Inf))
+    }
+  }
+
   widths <- sapply(1:(n_out + 1), function(.i) {
     x[.i + n_in - 1] - x[.i]
   })
