@@ -30,8 +30,8 @@ distribution above (right) or below (left) a threshold.
 \details{
 By default, the direction is based on the side of the median value, but it
 can be specified to measure support for specific hypotheses.
-A right-side PD of 0.9 indicates that the CRI spanning from the threshold to
-infinity has a coverage of 90\%.
+A right-side PD of 0.9 indicates that the interval spanning from the
+threshold to infinity has a coverage of 90\%.
 Can be used as a measure of certainty in the direction of the estimate
 (e.g., positive or negative when using a threshold of 0).
 \strong{NOTE:} probability estimates of 0 or 1 are corrected towards 0.5 by adding
@@ -42,7 +42,7 @@ Ideally, \code{x} should be large enough as to make the correction negligible.
 x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
 probability_direction(x, side = "left")
 probability_direction(x, side = "right") # = 1 - probability_direction(x, side = "left")
-probability_direction(c(0, 0, 1), side = "right") # does not include threshold
+probability_direction(c(0, 0, 1), side = "right") # returns P(X >0) = 1/3 instead of P(X >= 0) = 1
 probability_direction(c(1, 1), side = "right") # p = 1 - 1/(n+1)
 }
 \references{

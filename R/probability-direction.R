@@ -16,8 +16,8 @@
 #' @details
 #' By default, the direction is based on the side of the median value, but it
 #' can be specified to measure support for specific hypotheses.
-#' A right-side PD of 0.9 indicates that the CRI spanning from the threshold to
-#' infinity has a coverage of 90%.
+#' A right-side PD of 0.9 indicates that the interval spanning from the
+#' threshold to infinity has a coverage of 90%.
 #' Can be used as a measure of certainty in the direction of the estimate
 #' (e.g., positive or negative when using a threshold of 0).
 #' **NOTE:** probability estimates of 0 or 1 are corrected towards 0.5 by adding

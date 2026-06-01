@@ -43,7 +43,7 @@ A number indicating the directional information.
 }
 \description{
 Quantifies the information about direction in a posterior distribution based on the directional probability.
-This function calculates such information using absolute difference in the the probability of direction (see \code{\link[=probability_direction]{probability_direction()}}), after converting each probability to bits (also see \code{\link[=svalue]{svalue()}}.
+This function calculates such information using the difference in the probability of direction (see \code{\link[=probability_direction]{probability_direction()}}), after converting each probability to bits (also see \code{\link[=svalue]{svalue()}}.
 }
 \examples{
 
