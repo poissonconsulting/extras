@@ -3,9 +3,8 @@
 #' Calculates Bayesian credible intervals using the highest density
 #' interval (HDI), i.e., the narrowest CI with the specified minimum coverage.
 #'
+#' @inheritParams params
 #' @param x A numeric vector of MCMC samples.
-#' @param level A number > 0 and <= 1 specifying the probability coverage of the
-#'  HDI.
 #' @param ... Currently unused.
 #' @param na_rm A flag indicating whether to remove missing values.
 #' @return A [data.frame] of the `lower` and `upper` limits for the credible

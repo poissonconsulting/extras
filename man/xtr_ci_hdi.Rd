@@ -9,8 +9,8 @@ xtr_ci_hdi(x, level = 0.95, ..., na_rm = FALSE)
 \arguments{
 \item{x}{A numeric vector of MCMC samples.}
 
-\item{level}{A number > 0 and <= 1 specifying the probability coverage of the
-HDI.}
+\item{level}{A number between 0 and 1 (inclusive) specifying the probability
+coverage of the interval.}
 
 \item{...}{Currently unused.}
 
