@@ -14,7 +14,7 @@
 #' Generally, `threshold[1] == - threshold[2]` and `threshold[1] < 0` should
 #' both be true.
 #' @param level A number > 0 and <= 1 specifying the probability coverage of
-#' the HDI to use.
+#' the interval to use.
 #' The default of 1 uses the full posterior.
 #' @param ... Currently unused.
 #' @param type A string indicating which type of CI to return.
