@@ -20,19 +20,18 @@ p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or two-
 A number between 0 and 1.
 }
 \description{
-{
 A Bayesian p-value (p) is here defined in terms of the quantile-based
 (1-p) * 100\% credible interval (CRI) that
 just includes a threshold (Kery and Schaub 2011).
-By default a p-value of 0.05 indicates that the 95\% CRI just includes the
-threshold value.
+}
+\details{
+A p-value of 0.05 indicates that the 95\% CRI just includes the threshold value.
 
 Note that the function contains the sample-size correction
 \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
 return p-values of 1.
 
 For p-values converted to bits, see \code{\link[=svalue]{svalue()}}.
-}
 }
 \examples{
 x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
