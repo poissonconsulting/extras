@@ -26,13 +26,13 @@ Source:
 [`DESCRIPTION`](https://github.com/poissonconsulting/extras/blob/main/DESCRIPTION)
 
 Hill N, Thorley J (2026). *extras: Helper Functions for Bayesian
-Analyses*. R package version 0.8.0.9002,
+Analyses*. R package version 0.8.0.9003,
 <https://poissonconsulting.github.io/extras/>.
 
     @Manual{,
       title = {extras: Helper Functions for Bayesian Analyses},
       author = {Nicole Hill and Joe Thorley},
       year = {2026},
-      note = {R package version 0.8.0.9002},
+      note = {R package version 0.8.0.9003},
       url = {https://poissonconsulting.github.io/extras/},
     }
