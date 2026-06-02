@@ -22,7 +22,7 @@ interval for the probability.}
 }
 \value{
 A number between 0 and 1.
-If \code{x} has \code{NA} values but \code{na.rm} is \code{FALSE}, returns \code{NA_real}.
+If \code{x} has \code{NA} values but \code{na_rm} is \code{FALSE}, returns \code{NA_real}.
 }
 \description{
 The probability of direction (PD) is the proportion of the (posterior)

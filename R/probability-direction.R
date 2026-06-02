@@ -13,7 +13,7 @@
 #' interval for the probability.
 #' @inheritParams params
 #' @return A number between 0 and 1.
-#' If `x` has `NA` values but `na.rm` is `FALSE`, returns `NA_real`.
+#' If `x` has `NA` values but `na_rm` is `FALSE`, returns `NA_real`.
 #' @details
 #' By default, the direction is based on the side of the median value, but it
 #' can be specified to measure support for specific hypotheses.

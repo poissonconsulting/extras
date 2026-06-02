@@ -19,7 +19,7 @@ p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or both
 }
 \value{
 A non-negative number.
-If \code{x} has \code{NA} values but \code{na.rm} is \code{FALSE}, returns \code{NA_real}.
+If \code{x} has \code{NA} values but \code{na_rm} is \code{FALSE}, returns \code{NA_real}.
 }
 \description{
 The surprisal value (Greenland 2019) is the \link{pvalue} expressed in

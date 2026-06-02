@@ -24,7 +24,7 @@
 #' p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
 #' @inheritParams params
 #' @return A number between 0 and 1.
-#' If `x` has `NA` values but `na.rm` is `FALSE`, returns `NA_real`.
+#' If `x` has `NA` values but `na_rm` is `FALSE`, returns `NA_real`.
 #' @family summary
 #' @references
 #' Kery, M., and Schaub, M. 2011.

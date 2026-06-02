@@ -40,7 +40,7 @@ proportionally to the values of \code{x} on the left and right sides,
 }
 \value{
 A number indicating the directional information in bits.
-If \code{x} has \code{NA} values but \code{na.rm} is \code{FALSE}, returns \code{NA_real}.
+If \code{x} has \code{NA} values but \code{na_rm} is \code{FALSE}, returns \code{NA_real}.
 }
 \description{
 Quantifies the information about direction in a posterior distribution based on the directional probability.
