@@ -17,8 +17,8 @@
 #' @param directional A flag specifying whether probabilities less than 0.5
 #'   should be returned as negative values.
 #' @param lambda A non-negative numeric vector of means.
-#' @param level A number > 0 and <= 1 (inclusive) specifying the probability
-#' coverage of the interval.
+#' @param level A number > 0 and <= 1 specifying the probability coverage of the
+#' interval.
 #' @param log A flag specifying whether to return the log-transformed value.
 #' @param lower.tail A flag specifying whether to return the lower or upper tail
 #'   of the distribution.

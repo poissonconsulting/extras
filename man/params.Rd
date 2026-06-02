@@ -21,8 +21,8 @@ should be returned as negative values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{level}{A number > 0 and <= 1 (inclusive) specifying the probability
-coverage of the interval.}
+\item{level}{A number > 0 and <= 1 specifying the probability coverage of the
+interval.}
 
 \item{log}{A flag specifying whether to return the log-transformed value.}
 
