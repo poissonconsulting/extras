@@ -9,9 +9,9 @@
 \arguments{
 \item{...}{Other arguments passed to methods.}
 
-\item{alpha}{The first shape parameter of the Beta distribution.}
+\item{alpha}{The first shape parameter of the beta distribution.}
 
-\item{beta}{The second shape parameter of the Beta distribution.}
+\item{beta}{The second shape parameter of the beta distribution.}
 
 \item{conf_level}{A numeric scalar between 0 and 1 specifying the confidence
 level.}
@@ -26,9 +26,13 @@ should be returned as negative values.}
 \item{lower.tail}{A flag specifying whether to return the lower or upper tail
 of the distribution.}
 
+\item{min}{A numeric vector of the minimums.}
+
 \item{mean}{A numeric vector of the means.}
 
 \item{meanlog}{A numeric vector of the means on the log scale.}
+
+\item{max}{A numeric vector of the maximums.}
 
 \item{n}{A non-negative whole number of the number of random samples to
 generate.}
@@ -48,6 +52,8 @@ success.}
 
 \item{res}{A flag specifying whether to return the deviance residual as
 opposed to the deviance.}
+
+\item{scale}{A non-negative numeric vector of the scale.}
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 

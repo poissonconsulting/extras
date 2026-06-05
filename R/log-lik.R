@@ -125,6 +125,21 @@ log_lik_bern <- function(x, prob = 0.5) {
   log_lik_binom(x, size = 1, prob = prob)
 }
 
+#' Beta Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A vector of values between 0s and 1s.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_beta(c(0, 0.5, 0.7, 1), 0.7)
+log_lik_beta <- function(x, alpha = 1, beta = 1) {
+  stats::dbeta(x, shape1 = alpha , shape2 = beta, log = TRUE)
+}
+
 #' Binomial Log-Likelihood
 #'
 #' @inheritParams params
@@ -154,6 +169,23 @@ log_lik_binom <- function(x, size = 1, prob = 0.5, tlower = 0, tupper = Inf) {
     log_lik[trunc_na] <- NA
   }
   log_lik
+}
+
+#' Exponential Log-Likelihood
+#'
+#' The exponential distribution is parameterized in terms of the scale.
+#' 
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return A numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_exp(c(0, 1, 2), 2)
+log_lik_exp <- function(x, rate = 1) {
+  stats::dexp(x, rate = rate, log = TRUE)
 }
 
 #' Gamma Log-Likelihood
@@ -496,4 +528,19 @@ log_lik_student <- function(x, mean = 0, sd = 1, theta = 0, tlower = -Inf, tuppe
     log_lik[trunc_na] <- NA
   }
   log_lik
+}
+
+#' Uniform Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_unif(c(0, 0.7, 1))
+log_lik_unif <- function(x, min = 0, max = 1) {
+  stats::dunif(x, min = min, max = max, log = TRUE)
 }
