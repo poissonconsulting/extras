@@ -39,7 +39,7 @@ test_that("log_lik_beta truncated", {
   expect_equal(log_lik_beta(0.5, 2, 3, tlower = 0.2, tupper = 0.8), 0.638658995275876)
   expect_equal(log_lik_beta(c(0.5, 0.9), 2, 3, tlower = 0.2, tupper = 0.8), c(0.638658995275876, -Inf))
   expect_equal(log_lik_beta(c(0.2, 0.8), 2, 3, tlower = 0.2, tupper = 0.8), c(0.662375521893192, -0.723918839226699))
-  expect_equal(log_lik_beta(0.5, 2, 3, tlower = 0), log_lik_beta(0.5, 2, 3))
+  expect_equal(log_lik_beta(0.5, 2, 3, tlower = 0, tupper = 1), log_lik_beta(0.5, 2, 3))
 })
 
 test_that("log_lik_binom", {

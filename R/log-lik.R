@@ -136,10 +136,10 @@ log_lik_bern <- function(x, prob = 0.5) {
 #'
 #' @examples
 #' log_lik_beta(c(0, 0.5, 0.7, 1), 0.7)
-log_lik_beta <- function(x, alpha = 1, beta = 1, tlower = 0, tupper = Inf) {
+log_lik_beta <- function(x, alpha = 1, beta = 1, tlower = 0, tupper = 1) {
   log_lik <- stats::dbeta(x, shape1 = alpha, shape2 = beta, log = TRUE)
   if (!length(tlower) || !length(tupper)) return(numeric(0))
-  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  truncated <- (tlower != 0 | tupper != 1) & !is.na(tlower) & !is.na(tupper)
   if (any(truncated & !is.na(truncated))) {
     log_lik_truncated <- log_lik - log(
       prob_beta(tupper, alpha = alpha, beta = beta) -
