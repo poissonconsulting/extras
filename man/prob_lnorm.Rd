@@ -24,18 +24,18 @@ Log-Normal Cumulative Distribution Function
 prob_lnorm(10, 0, 2)
 }
 \seealso{
-Other prob_dist: 
-\code{\link{prob_bern}()},
-\code{\link{prob_beta_binom}()},
-\code{\link{prob_binom}()},
-\code{\link{prob_gamma}()},
-\code{\link{prob_gamma_pois}()},
-\code{\link{prob_gamma_pois_zi}()},
-\code{\link{prob_neg_binom}()},
-\code{\link{prob_norm}()},
-\code{\link{prob_pois}()},
-\code{\link{prob_pois_zi}()},
-\code{\link{prob_skewnorm}()},
-\code{\link{prob_student}()}
+Other prob_dist:
+\code{\link[=prob_bern]{prob_bern()}},
+\code{\link[=prob_beta_binom]{prob_beta_binom()}},
+\code{\link[=prob_binom]{prob_binom()}},
+\code{\link[=prob_gamma]{prob_gamma()}},
+\code{\link[=prob_gamma_pois]{prob_gamma_pois()}},
+\code{\link[=prob_gamma_pois_zi]{prob_gamma_pois_zi()}},
+\code{\link[=prob_neg_binom]{prob_neg_binom()}},
+\code{\link[=prob_norm]{prob_norm()}},
+\code{\link[=prob_pois]{prob_pois()}},
+\code{\link[=prob_pois_zi]{prob_pois_zi()}},
+\code{\link[=prob_skewnorm]{prob_skewnorm()}},
+\code{\link[=prob_student]{prob_student()}}
 }
 \concept{prob_dist}

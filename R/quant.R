@@ -1,17 +1,5 @@
-# FIXME: finish beta-binom
-# FIXME: fix examples to make sense with x = probabilities
 
-#' Beta-Binomial Quantile Function
-#'
-#' This parameterization of the beta-binomial distribution uses an expected
-#' probability parameter, `prob`, and a dispersion parameter, `theta`. The
-#' parameters of the underlying beta mixture are `alpha = (2 * prob) / theta`
-#' and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is
-#' unconventional, but has useful properties when modelling. When `theta = 0`,
-#' the beta-binomial reverts to the binomial distribution. When `theta = 1` and
-#' `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and
-#' `beta = 1`, which correspond to a uniform distribution for the beta-binomial
-#' probability parameter.
+#' Bernoulli Quantile Function
 #'
 #' @inheritParams params
 #' @param x A numeric vector of probabilities.
@@ -21,29 +9,7 @@
 #' @export
 #'
 #' @examples
-#' quant_beta_binom(c(0.1, 0.4, 0.6), 3, 0.5, 0)
-quant_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
-  # Needs numerical optimization if theta > 0 - not yet implemented.
-  stop("Quantile function for the beta-binomial distribution not currently implemented.")
-  alpha <- prob * 2 * (1 / theta)
-  beta <- (1 - prob) * 2 * (1 / theta)
-  if (!is.na(theta) & theta == 0) {
-    return(quant_binom(x = x, size = size, prob = prob))
-  }
-}
-
-
-#' Bernoulli Quantile Function
-#'
-#' @inheritParams params
-#' @param x A vector of probabilities.
-#'
-#' @return An numeric vector of the corresponding quantiles.
-#' @family quant_dist
-#' @export
-#'
-#' @examples
-#' quant_bern(c(TRUE, FALSE), 0.7)
+#' quant_bern(c(0.3, 0.8), 0.7)
 quant_bern <- function(x, prob = 0.5) {
   qbern(p = x, prob = prob)
 }

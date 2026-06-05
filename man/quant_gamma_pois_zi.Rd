@@ -27,18 +27,17 @@ Zero-Inflated Gamma-Poisson Quantile Function
 quant_gamma_pois_zi(c(0.1, 0.4, 0.6), 3, 1, prob = 0.5)
 }
 \seealso{
-Other quant_dist: 
-\code{\link{quant_bern}()},
-\code{\link{quant_beta_binom}()},
-\code{\link{quant_binom}()},
-\code{\link{quant_gamma}()},
-\code{\link{quant_gamma_pois}()},
-\code{\link{quant_lnorm}()},
-\code{\link{quant_neg_binom}()},
-\code{\link{quant_norm}()},
-\code{\link{quant_pois}()},
-\code{\link{quant_pois_zi}()},
-\code{\link{quant_skewnorm}()},
-\code{\link{quant_student}()}
+Other quant_dist:
+\code{\link[=quant_bern]{quant_bern()}},
+\code{\link[=quant_binom]{quant_binom()}},
+\code{\link[=quant_gamma]{quant_gamma()}},
+\code{\link[=quant_gamma_pois]{quant_gamma_pois()}},
+\code{\link[=quant_lnorm]{quant_lnorm()}},
+\code{\link[=quant_neg_binom]{quant_neg_binom()}},
+\code{\link[=quant_norm]{quant_norm()}},
+\code{\link[=quant_pois]{quant_pois()}},
+\code{\link[=quant_pois_zi]{quant_pois_zi()}},
+\code{\link[=quant_skewnorm]{quant_skewnorm()}},
+\code{\link[=quant_student]{quant_student()}}
 }
 \concept{quant_dist}

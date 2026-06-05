@@ -20,7 +20,7 @@
 #' @examples
 #' prob_beta_binom(c(0, 1, 2), 3, 0.5, 0)
 prob_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
-  rlang::check_installed("extraDistr") # FIXME: this function seems too difficult to implement for now. use extraDistr::pbbinom() for now.
+  rlang::check_installed("extraDistr")
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
   if (!is.na(theta) & theta == 0) {
@@ -33,7 +33,7 @@ prob_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
 #' Bernoulli Cumulative Distribution Function
 #'
 #' @inheritParams params
-#' @param x A vector of quantiles.
+#' @param x A numeric vector of quantiles.
 #'
 #' @return An numeric vector of the corresponding probabilities.
 #' @family prob_dist
@@ -210,7 +210,7 @@ prob_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
 #' @examples
 #' prob_student(c(1, 3.5, 4), mean = 1, sd = 2, theta = 1 / 3)
 prob_student <- function(x, mean = 0, sd = 1, theta = 0) {
-  chk::chk_gte(sd, 0) # FIXME: why don't we have more chk functions in the log_lik ones?? ask Joe
+  chk::chk_gte(sd, 0)
   df <- 1 / theta
   stats::pt((x - mean) / sd, df)
 }

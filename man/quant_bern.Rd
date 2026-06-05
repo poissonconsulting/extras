@@ -7,7 +7,7 @@
 quant_bern(x, prob = 0.5)
 }
 \arguments{
-\item{x}{A vector of probabilities.}
+\item{x}{A numeric vector of probabilities.}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of
 success.}
@@ -19,21 +19,20 @@ An numeric vector of the corresponding quantiles.
 Bernoulli Quantile Function
 }
 \examples{
-quant_bern(c(TRUE, FALSE), 0.7)
+quant_bern(c(0.3, 0.8), 0.7)
 }
 \seealso{
-Other quant_dist: 
-\code{\link{quant_beta_binom}()},
-\code{\link{quant_binom}()},
-\code{\link{quant_gamma}()},
-\code{\link{quant_gamma_pois}()},
-\code{\link{quant_gamma_pois_zi}()},
-\code{\link{quant_lnorm}()},
-\code{\link{quant_neg_binom}()},
-\code{\link{quant_norm}()},
-\code{\link{quant_pois}()},
-\code{\link{quant_pois_zi}()},
-\code{\link{quant_skewnorm}()},
-\code{\link{quant_student}()}
+Other quant_dist:
+\code{\link[=quant_binom]{quant_binom()}},
+\code{\link[=quant_gamma]{quant_gamma()}},
+\code{\link[=quant_gamma_pois]{quant_gamma_pois()}},
+\code{\link[=quant_gamma_pois_zi]{quant_gamma_pois_zi()}},
+\code{\link[=quant_lnorm]{quant_lnorm()}},
+\code{\link[=quant_neg_binom]{quant_neg_binom()}},
+\code{\link[=quant_norm]{quant_norm()}},
+\code{\link[=quant_pois]{quant_pois()}},
+\code{\link[=quant_pois_zi]{quant_pois_zi()}},
+\code{\link[=quant_skewnorm]{quant_skewnorm()}},
+\code{\link[=quant_student]{quant_student()}}
 }
 \concept{quant_dist}

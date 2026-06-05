@@ -21,6 +21,7 @@
 #' @examples
 #' log_lik_beta_binom(c(0, 1, 2), 3, 0.5, 0)
 log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, tlower = 0, tupper = Inf, memoize = FALSE) {
+  if (any(lengths(list(x, size, prob, theta, tlower, tupper)) == 0L)) return(numeric(0))
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
 
@@ -89,9 +90,9 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, tlower = 0, t
     log_lik_truncated <- log_lik - log(
       prob_beta_binom(tupper, size = size, prob = prob, theta = theta) -
         prob_beta_binom(tlower, size = size, prob = prob, theta = theta) +
-        (
-          lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1) +
-            lgamma(x + alpha) + lgamma(size - x + beta) -
+        exp(
+          lgamma(size + 1) - lgamma(tlower + 1) - lgamma(size - tlower + 1) +
+            lgamma(tlower + alpha) + lgamma(size - tlower + beta) -
             lgamma(size + alpha + beta) + lgamma(alpha + beta) - lgamma(alpha) -
             lgamma(beta)
         )
@@ -137,6 +138,7 @@ log_lik_bern <- function(x, prob = 0.5) {
 #' log_lik_binom(c(0, 1, 2), 2, 0.3)
 log_lik_binom <- function(x, size = 1, prob = 0.5, tlower = 0, tupper = Inf) {
   log_lik <- dbinom(x, size = size, prob = prob, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
   if (any(truncated & !is.na(truncated))) {
     log_lik_truncated <- log_lik - log(
@@ -167,6 +169,7 @@ log_lik_binom <- function(x, size = 1, prob = 0.5, tlower = 0, tupper = Inf) {
 #' log_lik_gamma(c(0, 1, 2), 1, 2)
 log_lik_gamma <- function(x, shape = 1, rate = 1, tlower = 0, tupper = Inf) {
   log_lik <- stats::dgamma(x, shape = shape, rate = rate, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
   if (any(truncated & !is.na(truncated))) {
     log_lik_truncated <- log_lik - log(
@@ -196,6 +199,7 @@ log_lik_gamma <- function(x, shape = 1, rate = 1, tlower = 0, tupper = Inf) {
 #' log_lik_gamma_pois(c(0, 1, 2), 1, 1)
 log_lik_gamma_pois <- function(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf) {
   log_lik <- log_lik_neg_binom(x, lambda = lambda, theta = theta)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
   if (any(truncated & !is.na(truncated))) {
     log_lik_truncated <- log_lik - log(
@@ -225,8 +229,9 @@ log_lik_gamma_pois <- function(x, lambda = 1, theta = 0, tlower = 0, tupper = In
 #' @examples
 #' log_lik_gamma_pois_zi(c(1, 3, 4), 3, 1, prob = 0.5)
 log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, tlower = 0, tupper = Inf) {
-  if (tlower > 0 & !is.na(tlower)) {
-    warning("Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  if (any(tlower > 0 & !is.na(tlower))) {
+    stop("Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
   }
   lpois <- dnbinom(x, mu = lambda, size = 1 / theta)
   lpois <- lpois * (1 - prob)
@@ -270,6 +275,7 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, tlower = 0
 #' log_lik_lnorm(10, 0, 2)
 log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
   log_lik <- dlnorm(x, meanlog = meanlog, sdlog = sdlog, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
   if (any(truncated & !is.na(truncated))) {
     log_lik_truncated <- log_lik - log(
@@ -299,6 +305,7 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
 #' log_lik_neg_binom(c(0, 1, 2), 2, 1)
 log_lik_neg_binom <- function(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf) {
   log_lik <- dnbinom(x, mu = lambda, size = 1 / theta, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
   if (any(truncated & !is.na(truncated))) {
     log_lik_truncated <- log_lik - log(
@@ -329,6 +336,7 @@ log_lik_neg_binom <- function(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf
 #' log_lik_norm(c(-2:2))
 log_lik_norm <- function(x, mean = 0, sd = 1, tlower = -Inf, tupper = Inf) {
   log_lik <- dnorm(x, mean = mean, sd = sd, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   truncated <- (!is.infinite(tlower) | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
   if (any(truncated & !is.na(truncated))) {
     log_lik_truncated <- log_lik - log(
@@ -358,6 +366,7 @@ log_lik_norm <- function(x, mean = 0, sd = 1, tlower = -Inf, tupper = Inf) {
 #' log_lik_pois(c(1, 3, 4), 3)
 log_lik_pois <- function(x, lambda = 1, tlower = 0, tupper = Inf) {
   log_lik <- dpois(x, lambda, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
   if (any(truncated & !is.na(truncated))) {
     log_lik_truncated <- log_lik - log(
@@ -387,8 +396,9 @@ log_lik_pois <- function(x, lambda = 1, tlower = 0, tupper = Inf) {
 #' @examples
 #' log_lik_pois_zi(c(1, 3, 4), 3, prob = 0.5)
 log_lik_pois_zi <- function(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf) {
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   if (any(tlower > 0 & !is.na(tlower))) {
-    warning("Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
+    stop("Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
   }
   lpois <- dpois(x, lambda = lambda)
   lpois <- lpois * (1 - prob)
@@ -400,7 +410,7 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf) {
     log_lik_truncated <- log_lik - log(
       prob_pois_zi(tupper, lambda = lambda, prob = prob) -
         prob_pois_zi(tlower, lambda = lambda, prob = prob) +
-        (dpois(x = tlower, lambda = lambda) * (1 - prob) * prob * as.integer(tlower == 0))
+        (dpois(x = tlower, lambda = lambda) * (1 - prob) + prob * as.integer(tlower == 0))
     )
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
@@ -427,6 +437,7 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf) {
 #' log_lik_skewnorm(c(-2:2), shape = -2)
 #' log_lik_skewnorm(c(-2:2), shape = 2)
 log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupper = Inf) {
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   rlang::check_installed("sn")
   log_lik <- dskewnorm(x = x, mean = mean, sd = sd, shape = shape, log = TRUE)
   use_norm <- !is.na(shape) & shape == 0
@@ -461,6 +472,7 @@ log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupp
 #' @examples
 #' log_lik_student(c(1, 3.5, 4), mean = 1, sd = 2, theta = 1 / 3)
 log_lik_student <- function(x, mean = 0, sd = 1, theta = 0, tlower = -Inf, tupper = Inf) {
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   df <- 1 / theta
   lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
   log_lik <- (lgamma((df + 1) / 2) - lgamma(df / 2) - 0.5 * log(pi * df) - log(sd)) -

@@ -29,16 +29,16 @@ of the Zero-Inflated Gamma-Poisson distribution.
 sens_gamma_pois_zi(10, 0.1, 0.3, 2)
 }
 \seealso{
-Other sens_dist: 
-\code{\link{sens_beta}()},
-\code{\link{sens_exp}()},
-\code{\link{sens_gamma}()},
-\code{\link{sens_gamma_pois}()},
-\code{\link{sens_lnorm}()},
-\code{\link{sens_neg_binom}()},
-\code{\link{sens_norm}()},
-\code{\link{sens_pois}()},
-\code{\link{sens_skewnorm}()},
-\code{\link{sens_student}()}
+Other sens_dist:
+\code{\link[=sens_beta]{sens_beta()}},
+\code{\link[=sens_exp]{sens_exp()}},
+\code{\link[=sens_gamma]{sens_gamma()}},
+\code{\link[=sens_gamma_pois]{sens_gamma_pois()}},
+\code{\link[=sens_lnorm]{sens_lnorm()}},
+\code{\link[=sens_neg_binom]{sens_neg_binom()}},
+\code{\link[=sens_norm]{sens_norm()}},
+\code{\link[=sens_pois]{sens_pois()}},
+\code{\link[=sens_skewnorm]{sens_skewnorm()}},
+\code{\link[=sens_student]{sens_student()}}
 }
 \concept{sens_dist}

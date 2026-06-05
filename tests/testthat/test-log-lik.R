@@ -30,7 +30,7 @@ test_that("log_lik_binom", {
 test_that("log_lik_binom truncated", {
   expect_identical(log_lik_binom(1, tlower = NA), NA_real_)
   expect_identical(log_lik_binom(1, tupper = NA), NA_real_)
-  expect_identical(log_lik_binom(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_identical(log_lik_binom(1, tlower = numeric(0)), numeric(0))
   expect_identical(log_lik_binom(1, tupper = numeric(0)), numeric(0))
   expect_identical(log_lik_binom(0, 0, tlower = 1), -Inf)
   expect_identical(log_lik_binom(4L, 10, 0.5, tlower = 5), -Inf)
@@ -55,7 +55,7 @@ test_that("log_lik_pois", {
 test_that("log_lik_pois truncated", {
   expect_identical(log_lik_pois(1, tlower = NA), NA_real_)
   expect_identical(log_lik_pois(1, tupper = NA), NA_real_)
-  expect_identical(log_lik_pois(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_identical(log_lik_pois(1, tlower = numeric(0)), numeric(0))
   expect_identical(log_lik_pois(1, tupper = numeric(0)), numeric(0))
   expect_identical(log_lik_pois(0, 1, tlower = 1), -Inf)
   expect_identical(log_lik_pois(4L, 10, tlower = 5), -Inf)
@@ -93,16 +93,14 @@ test_that("log_lik_pois_zi", {
 test_that("log_lik_pois_zi truncated", {
   expect_identical(log_lik_pois_zi(1, prob = 0.5, tlower = NA), NA_real_)
   expect_identical(log_lik_pois_zi(1, prob = 0.5, tupper = NA), NA_real_)
-  expect_warning(log_lik_pois_zi(0, 1, 0.5, tlower = 1), "Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
-  expect_equal(suppressWarnings(log_lik_pois_zi(0, 1, 0.5, tlower = 1)), -Inf)
-  expect_equal(log_lik_pois_zi(4L, 10, prob = 0.2, tupper = 7), -2.45442322338786)
-  expect_equal(log_lik_pois_zi(4, 10, prob = 0.3, tupper = 7), -2.45444384223136)
-  expect_equal(log_lik_pois_zi(c(4, 10), prob = 0.5, 10, tupper = 7), c(-2.45448507864298, -Inf))
-  expect_equal(log_lik_pois_zi(c(2, 7), prob = 0.5, 10, tupper = 7), c(-4.57474861484307, -0.893837330378314))
-  expect_equal(log_lik_pois_zi(c(1, 8), prob = 0.5, 10, tupper = 7), c(-6.18418652727717, -Inf))
-  expect_equal(suppressWarnings(log_lik_pois_zi(c(1, 1), prob = 0.5, 10, tlower = c(1, 2), tupper = 7)), c(-6.18201931359077, -Inf))
-  expect_warning(log_lik_pois_zi(c(1, 1), prob = 0.5, 10, tlower = c(1, 2), tupper = 7), "Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
-  expect_equal(log_lik_pois_zi(2, prob = c(0.5, 0.1), 10, tupper = c(7, 10)), c(-4.57474861484307, -5.54840699843274))
+  expect_error(log_lik_pois_zi(0, 1, 0.5, tlower = 1), "Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
+  expect_equal(log_lik_pois_zi(4L, 10, prob = 0.2, tupper = 7), -3.21316022478614)
+  expect_equal(log_lik_pois_zi(4, 10, prob = 0.3, tupper = 7), -3.53507046752487)
+  expect_equal(log_lik_pois_zi(c(4, 10), prob = 0.5, 10, tupper = 7), c(-4.16674515863436, -Inf))
+  expect_equal(log_lik_pois_zi(c(2, 7), prob = 0.5, 10, tupper = 7), c(-6.28700869483445, -2.60609741036969))
+  expect_equal(log_lik_pois_zi(c(1, 8), prob = 0.5, 10, tupper = 7), c(-7.89644660726855, -Inf))
+  expect_error(log_lik_pois_zi(c(1, 1), prob = 0.5, 10, tlower = c(1, 2), tupper = 7), "Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
+  expect_equal(log_lik_pois_zi(2, prob = c(0.5, 0.1), 10, tupper = c(7, 10)), c(-6.28700869483445, -5.72291103187376))
   expect_equal(log_lik_pois_zi(1, 10, prob = 0.5, tlower = 0), log_lik_pois_zi(1, prob = 0.5, 10, tlower = -1))
 })
 
@@ -119,8 +117,8 @@ test_that("log_lik_norm", {
 test_that("log_lik_norm truncated", {
   expect_identical(log_lik_norm(1, tlower = NA), NA_real_)
   expect_identical(log_lik_norm(1, tupper = NA), NA_real_)
-  expect_identical(log_lik_norm(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
-  expect_identical(log_lik_norm(1, tupper = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_identical(log_lik_norm(1, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_norm(1, tupper = numeric(0)), numeric(0))
   expect_equal(log_lik_norm(10, 10, 1, tlower = 0), -0.918938533204673)
   expect_equal(log_lik_norm(10, 10, 1, tlower = 0, tupper = 10), -0.225791352644727)
   expect_equal(log_lik_norm(c(10, 2), 10, 1, tlower = 0, tupper = 10), c(-0.225791352644727, -32.2257913526447))
@@ -137,8 +135,8 @@ test_that("log_lik_lnorm", {
 test_that("log_lik_lnorm truncated", {
   expect_identical(log_lik_lnorm(1, tlower = NA), NA_real_)
   expect_identical(log_lik_lnorm(1, tupper = NA), NA_real_)
-  expect_identical(log_lik_lnorm(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
-  expect_identical(log_lik_lnorm(1, tupper = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
+  expect_identical(log_lik_lnorm(1, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_lnorm(1, tupper = numeric(0)), numeric(0))
   expect_equal(log_lik_lnorm(10, 10, 1, tlower = 0), -32.8466217514975)
   expect_equal(log_lik_lnorm(10, 10, 1, tlower = 0, tupper = 10), -0.24548202100403)
   expect_equal(log_lik_lnorm(c(10, 2), 10, 1, tlower = 0, tupper = 10), c(-0.24548202100403, -12.3197006846308))
@@ -157,17 +155,39 @@ test_that("log_lik_neg_binom", {
 test_that("log_lik_neg_binom truncated", {
   expect_identical(log_lik_neg_binom(1, tlower = NA), NA_real_)
   expect_identical(log_lik_neg_binom(1, tupper = NA), NA_real_)
-  expect_identical(log_lik_neg_binom(1, tlower = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
-  expect_identical(log_lik_neg_binom(1, tupper = numeric(0)), numeric(0)) #FIXME: fix this and add tests for other dists
-  expect_equal(log_lik_neg_binom(1, 10, 0.2, tlower = 10), -Inf) # FIXME: need check that tlower is an integer!
-  expect_equal(log_lik_neg_binom(1, 10, 0.2, tlower = 9), -Inf)
-
+  expect_identical(log_lik_neg_binom(1, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_neg_binom(1, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_neg_binom(1, 10, 0.2, tlower = 2), -Inf)
+  expect_equal(log_lik_neg_binom(4, 10, 0.2, tlower = 2), -2.84843306867583)
+  expect_equal(log_lik_neg_binom(4, 10, 0.2, tupper = 7), -1.86805585194197)
+  expect_equal(log_lik_neg_binom(4, 10, 0.2, tlower = 2, tupper = 7), -1.81845034206372)
+  expect_equal(log_lik_neg_binom(c(4, 10), 10, 0.2, tlower = 2, tupper = 7), c(-1.81845034206372, -Inf))
+  expect_equal(log_lik_neg_binom(c(2, 7), 10, 0.2, tlower = 2, tupper = 7), c(-2.54796516679454, -1.48424825397705))
+  expect_equal(log_lik_neg_binom(c(1, 8), 10, 0.2, tlower = 2, tupper = 7), rep(-Inf, 2))
+  expect_equal(log_lik_neg_binom(c(1, 1), 10, 0.2, tlower = c(1, 2), tupper = 7), c(-3.27948689055305, -Inf))
+  expect_equal(log_lik_neg_binom(1, 10, 0.2, tlower = 0), log_lik_neg_binom(1, 10, 0.2, tlower = -1))
 })
 
 test_that("log_lik_gamma_pois", {
   expect_equal(log_lik_gamma_pois(1, 2), -1.30685281944005)
   expect_equal(log_lik_gamma_pois(1, 2, 0.5), -1.38629436111989)
   expect_equal(log_lik_gamma_pois(0, 2, 2), -0.80471895621705)
+})
+
+test_that("log_lik_gamma_pois truncated", {
+  expect_identical(log_lik_gamma_pois(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_gamma_pois(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_gamma_pois(1, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_gamma_pois(1, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_gamma_pois(1, 10, 0.5, tlower = 2), -Inf)
+  expect_equal(log_lik_gamma_pois(4, 10, 0.5, tlower = 2), -2.6264062120617)
+  expect_equal(log_lik_gamma_pois(4, 10, 0.5, tupper = 7), -1.92104178557192)
+  expect_equal(log_lik_gamma_pois(4, 10, 0.5, tlower = 2, tupper = 7), -1.74434428526587)
+  expect_equal(log_lik_gamma_pois(c(4, 10), 10, 0.5, tlower = 2, tupper = 7), c(-1.74434428526587, -Inf))
+  expect_equal(log_lik_gamma_pois(c(2, 7), 10, 0.5, tlower = 2, tupper = 7), c(-1.89052679544395, -1.82130532640199))
+  expect_equal(log_lik_gamma_pois(c(1, 8), 10, 0.5, tlower = 2, tupper = 7), rep(-Inf, 2))
+  expect_equal(log_lik_gamma_pois(c(1, 1), 10, 0.5, tlower = c(1, 2), tupper = 7), c(-2.22770752806138, -Inf))
+  expect_equal(log_lik_gamma_pois(1, 10, 0.5, tlower = 0), log_lik_gamma_pois(1, 10, 0.5, tlower = -1))
 })
 
 test_that("gamma_pois_zi missing values", {
@@ -194,6 +214,24 @@ test_that("gamma_pois_zi vectorized", {
   expect_equal(log_lik_gamma_pois_zi(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(-3, -1.90954250488444, -3.43967790223022, -Inf))
 })
 
+test_that("log_lik_gamma_pois_zi truncated", {
+  expect_identical(log_lik_gamma_pois_zi(1, prob = 0.5, tlower = NA), NA_real_)
+  expect_identical(log_lik_gamma_pois_zi(1, prob = 0.5, tupper = NA), NA_real_)
+  expect_identical(log_lik_gamma_pois_zi(1, prob = 0.5, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_gamma_pois_zi(1, prob = 0.5, tupper = numeric(0)), numeric(0))
+  expect_error(
+    log_lik_gamma_pois_zi(0, 1, 0.5, 0.5, tlower = 1),
+    "Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution."
+  )
+  expect_equal(log_lik_gamma_pois_zi(4L, 10, 0.5, prob = 0.2, tupper = 7), -2.35712518489952)
+  expect_equal(log_lik_gamma_pois_zi(4, 10, 0.5, prob = 0.3, tupper = 7), -2.58223035344082)
+  expect_equal(log_lik_gamma_pois_zi(c(4, 10), 10, 0.5, prob = 0.3, tupper = 7), c(-2.58223035344082, -Inf))
+  expect_equal(log_lik_gamma_pois_zi(c(0, 7), 10, 0.5, prob = 0.3, tupper = 7), c(-0.663360059391162, -2.65919139457695))
+  expect_equal(log_lik_gamma_pois_zi(c(1, 8), 10, 0.5, prob = 0.3, tupper = 7), c(-2.95155641493311, -Inf))
+  expect_equal(log_lik_gamma_pois_zi(2, 10, 0.5, prob = c(0.3, 0.1), tupper = c(7, 10)), c(-2.7284128636189, -2.53453552706736))
+  expect_equal(log_lik_gamma_pois_zi(1, 10, 0.5, 0.3, tlower = 0), log_lik_gamma_pois_zi(1, 10, 0.5, 0.3, tlower = -1))
+})
+
 test_that("gamma missing values", {
   expect_identical(log_lik_gamma(NA), NA_real_)
   expect_identical(log_lik_gamma(1, NA), NA_real_)
@@ -216,6 +254,24 @@ test_that("gamma vectorized", {
   expect_equal(log_lik_gamma(4:6, 1:3, c(0.5, 1, 2)), c(-2.69314718055995, -3.3905620875659, -7.030186700424))
   expect_equal(log_lik_gamma(1:3, c(0.5, 0.4, 0.3), 3:1), c(-3.02305879859065, -4.93530725381377, -4.86482659688575))
   expect_equal(log_lik_gamma(seq(0, 1, length.out = 4), 1:4, seq(0, 2, length.out = 4)), c(-Inf, -2.13176472710666, -1.52992006830982, -1.01917074698827))
+})
+
+test_that("log_lik_gamma truncated", {
+  expect_identical(log_lik_gamma(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_gamma(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_gamma(1, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_gamma(1, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_gamma(0.5, 1, 1, tlower = 1), -Inf)
+  expect_identical(log_lik_gamma(5, 1, 1, tupper = 3), -Inf)
+  expect_equal(log_lik_gamma(1, 2, 2, tlower = 0.5), -0.306852819440055)
+  expect_equal(log_lik_gamma(1, 2, 2, tlower = 0.5, tupper = 2), -0.173929617921638)
+  expect_equal(log_lik_gamma(c(1, 3), 2, 2, tlower = 0.5, tupper = 2), c(-0.173929617921638, -Inf))
+  expect_equal(log_lik_gamma(c(1, 2), 2, 2, tlower = 0.5, tupper = 1.5), c(0.00877693176656302, -Inf))
+  expect_equal(log_lik_gamma(c(1, 2), c(2, 3), 2, tlower = 0.5, tupper = 2), c(-0.173929617921638, -0.844092074878338))
+  expect_equal(log_lik_gamma(c(1, 2), c(2, 3), c(2, 1), tlower = 0.5, tupper = 2), c(-0.173929617921638, -0.132231371406472))
+  expect_equal(log_lik_gamma(c(1, 2), c(2, 3), c(2, 1), tlower = c(0.5, 1.5), tupper = 2), c(-0.173929617921638, 0.71681035176181))
+  expect_equal(log_lik_gamma(c(1, 2), c(2, 3), c(2, 1), tlower = c(0.5, 1.5), tupper = c(2, 3)), c(-0.173929617921638, -0.354045264075196))
+  expect_equal(log_lik_gamma(1, 2, 2, tlower = 0), log_lik_gamma(1, 2, 2, tlower = -1))
 })
 
 test_that("student missing values", {
@@ -249,8 +305,27 @@ test_that("student vectorized", {
   expect_equal(log_lik_student(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(-Inf, -1.57625299452707, -1.96248581517591, -2.93648935507746))
 })
 
+test_that("log_lik_student truncated", {
+  expect_identical(log_lik_student(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_student(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_student(1, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_student(1, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_student(0, 2, 1, 0.5, tlower = 1), -Inf)
+  expect_identical(log_lik_student(5, 2, 1, 0.5, tupper = 3), -Inf)
+  expect_equal(log_lik_student(2, 2, 1, 0.5, tlower = 0), -0.943483280726507)
+  expect_equal(log_lik_student(2, 2, 1, 0.5, tupper = 3), -0.802319984688299)
+  expect_equal(log_lik_student(2, 2, 1, 0.5, tlower = 0, tupper = 3), -0.678641032965461)
+  expect_equal(log_lik_student(c(2, 5), 2, 1, 0.5, tlower = 0, tupper = 3), c(-0.678641032965461, -Inf))
+  expect_equal(log_lik_student(c(0, 3), 2, 1, 0.5, tlower = 0, tupper = 3), c(-2.32655946596763, -1.28683869512771))
+  expect_equal(log_lik_student(c(2, 1), c(2, 3), 1, 0.5, tlower = 0, tupper = 3), c(-0.678641032965461, -1.89415667555106))
+  expect_equal(log_lik_student(c(2, 1), c(2, 3), c(1, 2), 0.5, tlower = 0, tupper = 3), c(-0.678641032965461, -1.32992404964217))
+  expect_equal(log_lik_student(c(2, 1), c(2, 3), c(1, 2), 0.5, tlower = c(0, 1), tupper = 3), c(-0.678641032965461, -1.09861228866811))
+  expect_equal(log_lik_student(c(2, 1), c(2, 3), c(1, 2), 0.5, tlower = c(0, 1), tupper = c(3, 4)), c(-0.678641032965461, -1.55435868307644))
+})
+
 test_that("beta_binom missing values", {
   expect_identical(log_lik_beta_binom(numeric(0), numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_beta_binom(numeric(0), 3, 0.5, 0.5), numeric(0))
   expect_identical(log_lik_beta_binom(1, numeric(0)), numeric(0))
   expect_identical(log_lik_beta_binom(1, 1, prob = numeric(0)), numeric(0))
   expect_identical(log_lik_beta_binom(1, 1, theta = numeric(0)), numeric(0))
@@ -322,6 +397,22 @@ test_that("beta_binom vectorized", {
   expect_equal(log_lik_beta_binom(c(0, 1, 3, 4, 5), 3, 0.5, 0.5), c(-1.6094379124341, -1.20397280432594, -1.6094379124341, -Inf, -Inf))
   expect_equal(log_lik_beta_binom(0:3, 5:8, seq(0, 1, length.out = 4), 0.5), c(0, -1.47834815081045, -2.50875218945204, -Inf))
   expect_equal(log_lik_beta_binom(0:3, 3:0, seq(0, 1, length.out = 4), 0.5), c(0, -1.03407376753054, -Inf, -Inf))
+})
+
+test_that("beta_binom truncated", {
+  expect_identical(log_lik_beta_binom(1, 3, 0.5, 0.5, tlower = NA), NA_real_)
+  expect_identical(log_lik_beta_binom(1, 3, 0.5, 0.5, tupper = NA), NA_real_)
+  expect_identical(log_lik_beta_binom(1, 3, 0.5, 0.5, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_beta_binom(1, 3, 0.5, 0.5, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_beta_binom(1, 10, 0.5, 0.5, tlower = 2), -Inf)
+  expect_identical(log_lik_beta_binom(6, 10, 0.5, 0.5, tupper = 5), -Inf)
+  expect_equal(log_lik_beta_binom(4, 10, 0.5, 0.5, tlower = 2), -1.98591548366901)
+  expect_equal(log_lik_beta_binom(4, 10, 0.5, 0.5, tupper = 7), -1.87399756746503)
+  expect_equal(log_lik_beta_binom(4, 10, 0.5, 0.5, tlower = 2, tupper = 7), -1.72785566724858)
+  expect_equal(log_lik_beta_binom(c(4, 10), 10, 0.5, 0.5, tlower = 2, tupper = 7), c(-1.72785566724858, -Inf))
+  expect_equal(log_lik_beta_binom(c(2, 7), 10, 0.5, 0.5, tlower = 2, tupper = 7), c(-1.98736686273366, -1.81746782593826))
+  expect_equal(log_lik_beta_binom(c(1, 8), 10, 0.5, 0.5, tlower = 2, tupper = 7), rep(-Inf, 2))
+  expect_equal(log_lik_beta_binom(c(1, 1), 10, 0.5, 0.5, tlower = c(1, 2), tupper = 7), c(-2.38416507998647, -Inf))
 })
 
 test_that("beta_binom log_lik", {
@@ -397,4 +488,23 @@ test_that("skewnorm vectorized", {
     log_lik_skewnorm(0:3, 3:0, 0.2, -1:2),
     c(-111.116353440211, -11.8095006207706, -11.1163537268622, -111.116353440211)
   )
+})
+
+test_that("log_lik_skewnorm truncated", {
+  skip_if_not_installed("sn")
+  expect_identical(log_lik_skewnorm(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_skewnorm(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_skewnorm(1, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_skewnorm(1, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_skewnorm(0, 2, 1, 2, tlower = 1), -Inf)
+  expect_identical(log_lik_skewnorm(5, 2, 1, 2, tupper = 3), -Inf)
+  expect_equal(log_lik_skewnorm(2, 2, 1, 2, tlower = 0), -0.918938218842819)
+  expect_equal(log_lik_skewnorm(2, 2, 1, 2, tupper = 3), -0.539738028898623)
+  expect_equal(log_lik_skewnorm(2, 2, 1, 2, tlower = 0, tupper = 3), -0.539737569579466)
+  expect_equal(log_lik_skewnorm(c(2, 5), 2, 1, 2, tlower = 0, tupper = 3), c(-0.539737569579466, -Inf))
+  expect_equal(log_lik_skewnorm(c(0, 3), 2, 1, 2, tlower = 0, tupper = 3), c(-12.2066918755468, -0.369603298348484))
+  expect_equal(log_lik_skewnorm(c(2, 1), c(2, 3), 1, 2, tlower = 0, tupper = 3), c(-0.539737569579466, -10.6725324746642))
+  expect_equal(log_lik_skewnorm(c(2, 1), c(2, 3), c(1, 2), 2, tlower = 0, tupper = 3), c(-0.539737569579466, -3.2884866170158))
+  expect_equal(log_lik_skewnorm(c(2, 1), c(2, 3), c(1, 2), c(2, -1), tlower = 0, tupper = 3), c(-0.539737569579466, -1.11502460663457))
+  expect_equal(log_lik_skewnorm(2, 2, 1, 0, tlower = 0, tupper = 3), log_lik_norm(2, 2, 1, tlower = 0, tupper = 3))
 })

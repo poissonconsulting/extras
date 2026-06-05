@@ -13,6 +13,10 @@ log_lik_pois_zi(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf)
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of
 success.}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
@@ -24,18 +28,18 @@ Zero-Inflated Poisson Log-Likelihood
 log_lik_pois_zi(c(1, 3, 4), 3, prob = 0.5)
 }
 \seealso{
-Other log_lik_dist: 
-\code{\link{log_lik_bern}()},
-\code{\link{log_lik_beta_binom}()},
-\code{\link{log_lik_binom}()},
-\code{\link{log_lik_gamma}()},
-\code{\link{log_lik_gamma_pois}()},
-\code{\link{log_lik_gamma_pois_zi}()},
-\code{\link{log_lik_lnorm}()},
-\code{\link{log_lik_neg_binom}()},
-\code{\link{log_lik_norm}()},
-\code{\link{log_lik_pois}()},
-\code{\link{log_lik_skewnorm}()},
-\code{\link{log_lik_student}()}
+Other log_lik_dist:
+\code{\link[=log_lik_bern]{log_lik_bern()}},
+\code{\link[=log_lik_beta_binom]{log_lik_beta_binom()}},
+\code{\link[=log_lik_binom]{log_lik_binom()}},
+\code{\link[=log_lik_gamma]{log_lik_gamma()}},
+\code{\link[=log_lik_gamma_pois]{log_lik_gamma_pois()}},
+\code{\link[=log_lik_gamma_pois_zi]{log_lik_gamma_pois_zi()}},
+\code{\link[=log_lik_lnorm]{log_lik_lnorm()}},
+\code{\link[=log_lik_neg_binom]{log_lik_neg_binom()}},
+\code{\link[=log_lik_norm]{log_lik_norm()}},
+\code{\link[=log_lik_pois]{log_lik_pois()}},
+\code{\link[=log_lik_skewnorm]{log_lik_skewnorm()}},
+\code{\link[=log_lik_student]{log_lik_student()}}
 }
 \concept{log_lik_dist}

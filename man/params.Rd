@@ -68,6 +68,10 @@ models (student, gamma-Poisson and beta-binomial).}
 
 \item{threshold}{A number of the threshold value.}
 
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
+
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
 deviance residuals and 'data' for the data.}
 
