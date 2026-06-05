@@ -27,8 +27,9 @@ Imports:
     chk,
     lifecycle,
     stats
-Suggests: 
+Suggests:
     covr,
+    extraDistr,
     ggplot2,
     hms,
     knitr,

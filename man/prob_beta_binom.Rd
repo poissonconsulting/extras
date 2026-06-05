@@ -32,7 +32,9 @@ the beta-binomial reverts to the binomial distribution. When \code{theta = 1} an
 probability parameter.
 }
 \examples{
+\dontshow{if (rlang::is_installed("extraDistr")) withAutoprint(\{ # examplesIf}
 prob_beta_binom(c(0, 1, 2), 3, 0.5, 0)
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other prob_dist:

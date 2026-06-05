@@ -47,7 +47,7 @@ prob_exp <- function(x, rate = 1) {
 #' @family prob_dist
 #' @export
 #'
-#' @examples
+#' @examplesIf rlang::is_installed("extraDistr")
 #' prob_beta_binom(c(0, 1, 2), 3, 0.5, 0)
 prob_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
   rlang::check_installed("extraDistr")

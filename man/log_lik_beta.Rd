@@ -4,7 +4,7 @@
 \alias{log_lik_beta}
 \title{Beta Log-Likelihood}
 \usage{
-log_lik_beta(x, alpha = 1, beta = 1, tlower = 0, tupper = Inf)
+log_lik_beta(x, alpha = 1, beta = 1, tlower = 0, tupper = 1)
 }
 \arguments{
 \item{x}{A vector of values between 0s and 1s.}
