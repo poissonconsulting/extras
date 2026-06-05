@@ -17,6 +17,9 @@
   Hussein](https://www.poissonconsulting.ca/author/nadine-hussein/)**.
   Contributor. [](https://orcid.org/0000-0003-4470-8361)
 
+- **Stefano Mezzini**. Contributor.
+  [](https://orcid.org/0000-0001-8551-7436)
+
 - **[![](https://github.com/poissonconsulting.png)](https://www.poissonconsulting.ca/)**.
   Copyright holder, funder.
 
