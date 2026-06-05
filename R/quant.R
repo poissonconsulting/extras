@@ -1,4 +1,19 @@
 
+#' Beta Quantile Function
+#'
+#' @inheritParams params
+#' @param x A numeric vector of probabilities.
+#'
+#' @return An numeric vector of the corresponding quantiles.
+#' @family quant_dist
+#' @export
+#'
+#' @examples
+#' quant_beta(c(0.1, 0.4, 0.6), 2, 3)
+quant_beta <- function(x, alpha = 1, beta = 1) {
+  stats::qbeta(p = x, shape1 = alpha, shape2 = beta)
+}
+
 #' Bernoulli Quantile Function
 #'
 #' @inheritParams params
@@ -185,3 +200,33 @@ quant_student <- function(x, mean = 0, sd = 1, theta = 0) {
   mean + sd * stats::qt(x, df)
 }
 
+
+#' Exponential Quantile Function
+#'
+#' @inheritParams params
+#' @param x A numeric vector of probabilities.
+#'
+#' @return An numeric vector of the corresponding quantiles.
+#' @family quant_dist
+#' @export
+#'
+#' @examples
+#' quant_exp(c(0.1, 0.4, 0.6), 2)
+quant_exp <- function(x, rate = 1) {
+  stats::qexp(p = x, rate = rate)
+}
+
+#' Uniform Quantile Function
+#'
+#' @inheritParams params
+#' @param x A numeric vector of probabilities.
+#'
+#' @return An numeric vector of the corresponding quantiles.
+#' @family quant_dist
+#' @export
+#'
+#' @examples
+#' quant_unif(c(0.1, 0.4, 0.6))
+quant_unif <- function(x, min = 0, max = 1) {
+  stats::qunif(p = x, min = min, max = max)
+}

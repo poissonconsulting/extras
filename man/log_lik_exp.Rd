@@ -4,12 +4,16 @@
 \alias{log_lik_exp}
 \title{Exponential Log-Likelihood}
 \usage{
-log_lik_exp(x, rate = 1)
+log_lik_exp(x, rate = 1, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
 
 \item{rate}{A non-negative numeric vector of rate.}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 }
 \value{
 A numeric vector of the corresponding log-likelihoods.

@@ -4,7 +4,7 @@
 \alias{log_lik_beta}
 \title{Beta Log-Likelihood}
 \usage{
-log_lik_beta(x, alpha = 1, beta = 1)
+log_lik_beta(x, alpha = 1, beta = 1, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{x}{A vector of values between 0s and 1s.}
@@ -12,6 +12,10 @@ log_lik_beta(x, alpha = 1, beta = 1)
 \item{alpha}{The first shape parameter of the beta distribution.}
 
 \item{beta}{The second shape parameter of the beta distribution.}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

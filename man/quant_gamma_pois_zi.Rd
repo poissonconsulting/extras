@@ -29,7 +29,9 @@ quant_gamma_pois_zi(c(0.1, 0.4, 0.6), 3, 1, prob = 0.5)
 \seealso{
 Other quant_dist:
 \code{\link[=quant_bern]{quant_bern()}},
+\code{\link[=quant_beta]{quant_beta()}},
 \code{\link[=quant_binom]{quant_binom()}},
+\code{\link[=quant_exp]{quant_exp()}},
 \code{\link[=quant_gamma]{quant_gamma()}},
 \code{\link[=quant_gamma_pois]{quant_gamma_pois()}},
 \code{\link[=quant_lnorm]{quant_lnorm()}},
@@ -38,6 +40,7 @@ Other quant_dist:
 \code{\link[=quant_pois]{quant_pois()}},
 \code{\link[=quant_pois_zi]{quant_pois_zi()}},
 \code{\link[=quant_skewnorm]{quant_skewnorm()}},
-\code{\link[=quant_student]{quant_student()}}
+\code{\link[=quant_student]{quant_student()}},
+\code{\link[=quant_unif]{quant_unif()}}
 }
 \concept{quant_dist}

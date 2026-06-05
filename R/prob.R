@@ -1,3 +1,33 @@
+#' Beta Cumulative Distribution Function
+#'
+#' @inheritParams params
+#' @param x A numeric vector of quantiles.
+#'
+#' @return An numeric vector of the corresponding probabilities.
+#' @family prob_dist
+#' @export
+#'
+#' @examples
+#' prob_beta(c(0, 0.5, 1), 2, 3)
+prob_beta <- function(x, alpha = 1, beta = 1) {
+  stats::pbeta(q = x, shape1 = alpha, shape2 = beta)
+}
+
+#' Exponential Cumulative Distribution Function
+#'
+#' @inheritParams params
+#' @param x A numeric vector of quantiles.
+#'
+#' @return An numeric vector of the corresponding probabilities.
+#' @family prob_dist
+#' @export
+#'
+#' @examples
+#' prob_exp(c(0, 1, 2), 2)
+prob_exp <- function(x, rate = 1) {
+  stats::pexp(q = x, rate = rate)
+}
+
 #' Beta-Binomial Cumulative Distribution Function
 #'
 #' This parameterization of the beta-binomial distribution uses an expected
@@ -215,3 +245,18 @@ prob_student <- function(x, mean = 0, sd = 1, theta = 0) {
   stats::pt((x - mean) / sd, df)
 }
 
+
+#' Uniform Cumulative Distribution Function
+#'
+#' @inheritParams params
+#' @param x A numeric vector of quantiles.
+#'
+#' @return An numeric vector of the corresponding probabilities.
+#' @family prob_dist
+#' @export
+#'
+#' @examples
+#' prob_unif(c(0, 0.5, 1))
+prob_unif <- function(x, min = 0, max = 1) {
+  stats::punif(q = x, min = min, max = max)
+}

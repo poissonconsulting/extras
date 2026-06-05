@@ -27,8 +27,10 @@ log_lik_pois(c(1, 3, 4), 3)
 \seealso{
 Other log_lik_dist:
 \code{\link[=log_lik_bern]{log_lik_bern()}},
+\code{\link[=log_lik_beta]{log_lik_beta()}},
 \code{\link[=log_lik_beta_binom]{log_lik_beta_binom()}},
 \code{\link[=log_lik_binom]{log_lik_binom()}},
+\code{\link[=log_lik_exp]{log_lik_exp()}},
 \code{\link[=log_lik_gamma]{log_lik_gamma()}},
 \code{\link[=log_lik_gamma_pois]{log_lik_gamma_pois()}},
 \code{\link[=log_lik_gamma_pois_zi]{log_lik_gamma_pois_zi()}},
@@ -37,6 +39,7 @@ Other log_lik_dist:
 \code{\link[=log_lik_norm]{log_lik_norm()}},
 \code{\link[=log_lik_pois_zi]{log_lik_pois_zi()}},
 \code{\link[=log_lik_skewnorm]{log_lik_skewnorm()}},
-\code{\link[=log_lik_student]{log_lik_student()}}
+\code{\link[=log_lik_student]{log_lik_student()}},
+\code{\link[=log_lik_unif]{log_lik_unif()}}
 }
 \concept{log_lik_dist}

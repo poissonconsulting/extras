@@ -25,8 +25,10 @@ prob_gamma(c(0, 1, 2), 1, 2)
 \seealso{
 Other prob_dist:
 \code{\link[=prob_bern]{prob_bern()}},
+\code{\link[=prob_beta]{prob_beta()}},
 \code{\link[=prob_beta_binom]{prob_beta_binom()}},
 \code{\link[=prob_binom]{prob_binom()}},
+\code{\link[=prob_exp]{prob_exp()}},
 \code{\link[=prob_gamma_pois]{prob_gamma_pois()}},
 \code{\link[=prob_gamma_pois_zi]{prob_gamma_pois_zi()}},
 \code{\link[=prob_lnorm]{prob_lnorm()}},
@@ -35,6 +37,7 @@ Other prob_dist:
 \code{\link[=prob_pois]{prob_pois()}},
 \code{\link[=prob_pois_zi]{prob_pois_zi()}},
 \code{\link[=prob_skewnorm]{prob_skewnorm()}},
-\code{\link[=prob_student]{prob_student()}}
+\code{\link[=prob_student]{prob_student()}},
+\code{\link[=prob_unif]{prob_unif()}}
 }
 \concept{prob_dist}

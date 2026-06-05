@@ -28,7 +28,9 @@ quant_student(c(0.1, 0.4, 0.6), mean = 1, sd = 2, theta = 1 / 3)
 \seealso{
 Other quant_dist:
 \code{\link[=quant_bern]{quant_bern()}},
+\code{\link[=quant_beta]{quant_beta()}},
 \code{\link[=quant_binom]{quant_binom()}},
+\code{\link[=quant_exp]{quant_exp()}},
 \code{\link[=quant_gamma]{quant_gamma()}},
 \code{\link[=quant_gamma_pois]{quant_gamma_pois()}},
 \code{\link[=quant_gamma_pois_zi]{quant_gamma_pois_zi()}},
@@ -37,6 +39,7 @@ Other quant_dist:
 \code{\link[=quant_norm]{quant_norm()}},
 \code{\link[=quant_pois]{quant_pois()}},
 \code{\link[=quant_pois_zi]{quant_pois_zi()}},
-\code{\link[=quant_skewnorm]{quant_skewnorm()}}
+\code{\link[=quant_skewnorm]{quant_skewnorm()}},
+\code{\link[=quant_unif]{quant_unif()}}
 }
 \concept{quant_dist}

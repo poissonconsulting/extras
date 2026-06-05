@@ -136,8 +136,23 @@ log_lik_bern <- function(x, prob = 0.5) {
 #'
 #' @examples
 #' log_lik_beta(c(0, 0.5, 0.7, 1), 0.7)
-log_lik_beta <- function(x, alpha = 1, beta = 1) {
-  stats::dbeta(x, shape1 = alpha , shape2 = beta, log = TRUE)
+log_lik_beta <- function(x, alpha = 1, beta = 1, tlower = 0, tupper = Inf) {
+  log_lik <- stats::dbeta(x, shape1 = alpha, shape2 = beta, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_beta(tupper, alpha = alpha, beta = beta) -
+        prob_beta(tlower, alpha = alpha, beta = beta)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  if (any(is.na(tlower), is.na(tupper))) {
+    trunc_na <- is.na(tlower) | is.na(tupper)
+    log_lik[trunc_na] <- NA
+  }
+  log_lik
 }
 
 #' Binomial Log-Likelihood
@@ -184,8 +199,23 @@ log_lik_binom <- function(x, size = 1, prob = 0.5, tlower = 0, tupper = Inf) {
 #'
 #' @examples
 #' log_lik_exp(c(0, 1, 2), 2)
-log_lik_exp <- function(x, rate = 1) {
-  stats::dexp(x, rate = rate, log = TRUE)
+log_lik_exp <- function(x, rate = 1, tlower = 0, tupper = Inf) {
+  log_lik <- stats::dexp(x, rate = rate, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_exp(tupper, rate = rate) -
+        prob_exp(tlower, rate = rate)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  if (any(is.na(tlower), is.na(tupper))) {
+    trunc_na <- is.na(tlower) | is.na(tupper)
+    log_lik[trunc_na] <- NA
+  }
+  log_lik
 }
 
 #' Gamma Log-Likelihood

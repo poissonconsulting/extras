@@ -27,6 +27,21 @@ test_that("log_lik_beta", {
   expect_equal(log_lik_beta(0.5, 2, 2), 0.405465108108164)
 })
 
+test_that("log_lik_beta truncated", {
+  expect_identical(log_lik_beta(0.5, 2, 3, tlower = NA), NA_real_)
+  expect_identical(log_lik_beta(0.5, 2, 3, tupper = NA), NA_real_)
+  expect_identical(log_lik_beta(0.5, 2, 3, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_beta(0.5, 2, 3, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_beta(0.1, 2, 3, tlower = 0.2), -Inf)
+  expect_identical(log_lik_beta(0.9, 2, 3, tupper = 0.8), -Inf)
+  expect_equal(log_lik_beta(0.5, 2, 3, tlower = 0.2), 0.604892132805058)
+  expect_equal(log_lik_beta(0.5, 2, 3, tupper = 0.8), 0.433041875878399)
+  expect_equal(log_lik_beta(0.5, 2, 3, tlower = 0.2, tupper = 0.8), 0.638658995275876)
+  expect_equal(log_lik_beta(c(0.5, 0.9), 2, 3, tlower = 0.2, tupper = 0.8), c(0.638658995275876, -Inf))
+  expect_equal(log_lik_beta(c(0.2, 0.8), 2, 3, tlower = 0.2, tupper = 0.8), c(0.662375521893192, -0.723918839226699))
+  expect_equal(log_lik_beta(0.5, 2, 3, tlower = 0), log_lik_beta(0.5, 2, 3))
+})
+
 test_that("log_lik_binom", {
   expect_identical(log_lik_binom(numeric(0)), numeric(0))
   expect_identical(log_lik_binom(1, numeric(0)), numeric(0))
@@ -69,6 +84,21 @@ test_that("log_lik_exp", {
   expect_equal(log_lik_exp(1, 1/2), -1.19314718055995)
 
   expect_identical(log_lik_exp(1, 1/2), dexp(1, 1/2, log = TRUE))
+})
+
+test_that("log_lik_exp truncated", {
+  expect_identical(log_lik_exp(1, 2, tlower = NA), NA_real_)
+  expect_identical(log_lik_exp(1, 2, tupper = NA), NA_real_)
+  expect_identical(log_lik_exp(1, 2, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_exp(1, 2, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_exp(0.5, 2, tlower = 1), -Inf)
+  expect_identical(log_lik_exp(3, 2, tupper = 2), -Inf)
+  expect_equal(log_lik_exp(1, 2, tlower = 0.5), -0.306852819440055)
+  expect_equal(log_lik_exp(1, 2, tupper = 2), -1.28836737261417)
+  expect_equal(log_lik_exp(1, 2, tlower = 0.5, tupper = 2), -0.255783638497353)
+  expect_equal(log_lik_exp(c(1, 3), 2, tlower = 0.5, tupper = 2), c(-0.255783638497353, -Inf))
+  expect_equal(log_lik_exp(c(1, 1.5), c(2, 1), tlower = 0.5, tupper = 2), c(-0.255783638497353, -0.747517541074546))
+  expect_equal(log_lik_exp(1, 2, tlower = 0), log_lik_exp(1, 2))
 })
 
 test_that("log_lik_pois", {
