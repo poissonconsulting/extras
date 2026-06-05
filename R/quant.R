@@ -194,8 +194,6 @@ quant_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
 #' @examples
 #' quant_student(c(0.1, 0.4, 0.6), mean = 1, sd = 2, theta = 1 / 3)
 quant_student <- function(x, mean = 0, sd = 1, theta = 0) {
-  chk::chk_number(mean)
-  chk::chk_gte(sd)
   df <- 1 / theta
   mean + sd * stats::qt(x, df)
 }

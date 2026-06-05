@@ -108,8 +108,7 @@ test_that("quant_skewnorm", {
 
 test_that("quant_student", {
   expect_identical(quant_student(NA, 1, 1, 0.5), NA_real_)
-  expect_error(quant_student(0.5, mean = c(1, 2), sd = 1, theta = 0.5))
-  expect_error(quant_student(0.5, mean = 0, sd = -1, theta = 0.5))
+  expect_equal(quant_student(0.5, c(1, 2), 1, 0.5), c(1, 2))
   expect_equal(quant_student(0.5, 2, 1, 0.5), 2)
   expect_equal(quant_student(0.5, 2, 1, 0), 2)
   expect_equal(quant_student(0.975, 0, 1, 0.5), qt(0.975, df = 2))

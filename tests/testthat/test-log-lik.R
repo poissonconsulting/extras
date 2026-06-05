@@ -560,7 +560,7 @@ test_that("log_lik_beta_binom vectorized", {
   )
 })
 
-test_that("beta_binom truncated", {
+test_that("log_lik_beta_binom truncated", {
   skip_if_not_installed("extraDistr")
   expect_identical(log_lik_beta_binom(1, 3, 0.5, 0.5, tlower = NA), NA_real_)
   expect_identical(log_lik_beta_binom(1, 3, 0.5, 0.5, tupper = NA), NA_real_)

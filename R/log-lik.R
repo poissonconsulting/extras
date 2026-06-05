@@ -101,7 +101,7 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, tlower = 0, t
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
   trunc_na <- is.na(tlower) | is.na(tupper)
-  log_lik[trunc_na] <- NA
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -148,10 +148,8 @@ log_lik_beta <- function(x, alpha = 1, beta = 1, tlower = 0, tupper = 1) {
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -179,10 +177,8 @@ log_lik_binom <- function(x, size = 1, prob = 0.5, tlower = 0, tupper = Inf) {
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -211,10 +207,8 @@ log_lik_exp <- function(x, rate = 1, tlower = 0, tupper = Inf) {
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -241,10 +235,8 @@ log_lik_gamma <- function(x, shape = 1, rate = 1, tlower = 0, tupper = Inf) {
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -260,23 +252,7 @@ log_lik_gamma <- function(x, shape = 1, rate = 1, tlower = 0, tupper = Inf) {
 #' @examples
 #' log_lik_gamma_pois(c(0, 1, 2), 1, 1)
 log_lik_gamma_pois <- function(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf) {
-  log_lik <- log_lik_neg_binom(x, lambda = lambda, theta = theta)
-  if (!length(tlower) || !length(tupper)) return(numeric(0))
-  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
-  if (any(truncated & !is.na(truncated))) {
-    log_lik_truncated <- log_lik - log(
-      prob_gamma_pois(tupper, lambda = lambda, theta = theta) -
-        prob_gamma_pois(tlower, lambda = lambda, theta = theta) +
-        dnbinom(x = tlower, mu = lambda, size = 1 / theta)
-    )
-    log_lik_truncated[x < tlower | x > tupper] <- -Inf
-    log_lik[truncated] <- log_lik_truncated[truncated]
-  }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
-  log_lik
+  log_lik_neg_binom(x, lambda = lambda, theta = theta, tlower = tlower, tupper = tupper)
 }
 
 #' Zero-Inflated Gamma-Poisson Log-Likelihood
@@ -317,10 +293,8 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, tlower = 0
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -347,10 +321,8 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -378,10 +350,8 @@ log_lik_neg_binom <- function(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -408,10 +378,8 @@ log_lik_norm <- function(x, mean = 0, sd = 1, tlower = -Inf, tupper = Inf) {
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -439,10 +407,8 @@ log_lik_pois <- function(x, lambda = 1, tlower = 0, tupper = Inf) {
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -477,10 +443,8 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf) {
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -515,10 +479,8 @@ log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupp
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -553,10 +515,8 @@ log_lik_student <- function(x, mean = 0, sd = 1, theta = 0, tlower = -Inf, tuppe
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]
   }
-  if (any(is.na(tlower), is.na(tupper))) {
-    trunc_na <- is.na(tlower) | is.na(tupper)
-    log_lik[trunc_na] <- NA
-  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
