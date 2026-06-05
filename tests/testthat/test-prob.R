@@ -1,3 +1,34 @@
+test_that("prob_beta", {
+  expect_identical(prob_beta(numeric(0)), numeric(0))
+  expect_identical(prob_beta(NA), NA_real_)
+  expect_identical(prob_beta(1, NA), NA_real_)
+  expect_equal(prob_beta(0), 0)
+  expect_equal(prob_beta(1), 1)
+  expect_equal(prob_beta(0.5, 2, 3), pbeta(0.5, 2, 3))
+  expect_equal(prob_beta(0.5, 2, 3), 0.6875)
+})
+
+test_that("prob_exp", {
+  expect_identical(prob_exp(numeric(0)), numeric(0))
+  expect_identical(prob_exp(NA), NA_real_)
+  expect_identical(prob_exp(1, NA), NA_real_)
+  expect_equal(prob_exp(0), 0)
+  expect_equal(prob_exp(Inf), 1)
+  expect_equal(prob_exp(1, 2), pexp(1, 2))
+  expect_equal(prob_exp(1, 2), 0.864664716763387)
+})
+
+test_that("prob_unif", {
+  expect_identical(prob_unif(numeric(0)), numeric(0))
+  expect_identical(prob_unif(NA), NA_real_)
+  expect_identical(prob_unif(1, NA), NA_real_)
+  expect_equal(prob_unif(-Inf), 0)
+  expect_equal(prob_unif(Inf), 1)
+  expect_equal(prob_unif(0.5), punif(0.5))
+  expect_equal(prob_unif(0.5), 0.5)
+  expect_equal(prob_unif(0.5, 0, 2), 0.25)
+})
+
 test_that("prob_bern", {
   expect_identical(prob_bern(numeric(0)), numeric(0))
   expect_identical(prob_bern(1, numeric(0)), numeric(0))

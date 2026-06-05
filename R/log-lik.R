@@ -184,10 +184,10 @@ log_lik_binom <- function(x, size = 1, prob = 0.5, tlower = 0, tupper = Inf) {
 
 #' Exponential Log-Likelihood
 #'
-#' The exponential distribution is parameterized in terms of the scale.
-#' 
+#' The exponential distribution is parameterized in terms of the rate.
+#'
 #' @inheritParams params
-#' @param x A non-negative whole numeric vector of values.
+#' @param x A non-negative numeric vector of values.
 #'
 #' @return A numeric vector of the corresponding log-likelihoods.
 #' @family log_lik_dist

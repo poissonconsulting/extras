@@ -7,7 +7,7 @@
 log_lik_exp(x, rate = 1, tlower = 0, tupper = Inf)
 }
 \arguments{
-\item{x}{A non-negative whole numeric vector of values.}
+\item{x}{A non-negative numeric vector of values.}
 
 \item{rate}{A non-negative numeric vector of rate.}
 
@@ -19,7 +19,7 @@ log_lik_exp(x, rate = 1, tlower = 0, tupper = Inf)
 A numeric vector of the corresponding log-likelihoods.
 }
 \description{
-The exponential distribution is parameterized in terms of the scale.
+The exponential distribution is parameterized in terms of the rate.
 }
 \examples{
 log_lik_exp(c(0, 1, 2), 2)

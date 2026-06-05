@@ -1,4 +1,38 @@
 
+test_that("quant_beta", {
+  expect_identical(quant_beta(numeric(0)), numeric(0))
+  expect_identical(quant_beta(NA), NA_real_)
+  expect_identical(quant_beta(0.5, NA), NA_real_)
+  expect_equal(quant_beta(0), 0)
+  expect_equal(quant_beta(1), 1)
+  expect_equal(quant_beta(0.5, 2, 3), qbeta(0.5, 2, 3))
+  expect_equal(quant_beta(0.5, 2, 3), 0.38572756813239)
+  expect_equal(prob_beta(quant_beta(0.7, 2, 3), 2, 3), 0.7)
+})
+
+test_that("quant_exp", {
+  expect_identical(quant_exp(numeric(0)), numeric(0))
+  expect_identical(quant_exp(NA), NA_real_)
+  expect_identical(quant_exp(0.5, NA), NA_real_)
+  expect_equal(quant_exp(0), 0)
+  expect_equal(quant_exp(1), Inf)
+  expect_equal(quant_exp(0.5, 2), qexp(0.5, 2))
+  expect_equal(quant_exp(0.5, 2), 0.346573590279973)
+  expect_equal(prob_exp(quant_exp(0.7, 2), 2), 0.7)
+})
+
+test_that("quant_unif", {
+  expect_identical(quant_unif(numeric(0)), numeric(0))
+  expect_identical(quant_unif(NA), NA_real_)
+  expect_identical(quant_unif(0.5, NA), NA_real_)
+  expect_equal(quant_unif(0), 0)
+  expect_equal(quant_unif(1), 1)
+  expect_equal(quant_unif(0.5), qunif(0.5))
+  expect_equal(quant_unif(0.5), 0.5)
+  expect_equal(quant_unif(0.5, 0, 2), 1)
+  expect_equal(prob_unif(quant_unif(0.7), 0, 1), 0.7)
+})
+
 test_that("quant_bern", {
   expect_identical(quant_bern(numeric(0)), numeric(0))
   expect_identical(quant_bern(0.5, numeric(0)), numeric(0))
@@ -109,6 +143,7 @@ test_that("quant_skewnorm", {
 test_that("quant_student", {
   expect_identical(quant_student(NA, 1, 1, 0.5), NA_real_)
   expect_equal(quant_student(0.5, c(1, 2), 1, 0.5), c(1, 2))
+  expect_error(quant_student(0.5, mean = 0, sd = -1, theta = 0.5))
   expect_equal(quant_student(0.5, 2, 1, 0.5), 2)
   expect_equal(quant_student(0.5, 2, 1, 0), 2)
   expect_equal(quant_student(0.975, 0, 1, 0.5), qt(0.975, df = 2))
