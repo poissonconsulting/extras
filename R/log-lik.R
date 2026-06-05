@@ -63,7 +63,7 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, tlower = 0, t
       lbeta_binom <- -Inf
     }
     if (theta == 0) {
-      lbeta_binom <- log_lik_binom(x = x, size = size, prob = prob)
+      return(log_lik_binom(x = x, size = size, prob = prob, tlower = tlower, tupper = tupper))
     } else if (theta < 0) {
       lbeta_binom <- NaN
     }

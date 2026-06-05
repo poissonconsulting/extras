@@ -207,7 +207,7 @@ prob_pois <- function(x, lambda = 1) {
 #' @examples
 #' prob_pois_zi(c(1, 3, 4), 3, prob = 0.5)
 prob_pois_zi <- function(x, lambda = 1, prob = 0) {
-  prob * (x >= 0) + (1 - prob) * ppois(q = x, lambda = lambda)
+  prob * (x >= 0) + (1 - prob) * stats::ppois(q = x, lambda = lambda)
 }
 
 #' Skew Normal Cumulative Distribution Function
@@ -244,7 +244,6 @@ prob_student <- function(x, mean = 0, sd = 1, theta = 0) {
   df <- 1 / theta
   stats::pt((x - mean) / sd, df)
 }
-
 
 #' Uniform Cumulative Distribution Function
 #'
