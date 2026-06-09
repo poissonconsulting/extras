@@ -5,7 +5,7 @@ Beta Log-Likelihood
 ## Usage
 
 ``` r
-log_lik_beta(x, alpha = 1, beta = 1)
+log_lik_beta(x, alpha = 1, beta = 1, tlower = 0, tupper = 1)
 ```
 
 ## Arguments
@@ -21,6 +21,14 @@ log_lik_beta(x, alpha = 1, beta = 1)
 - beta:
 
   The second shape parameter of the beta distribution.
+
+- tlower:
+
+  A numeric vector of the lower truncation point.
+
+- tupper:
+
+  A numeric vector of the upper truncation point.
 
 ## Value
 

@@ -417,6 +417,78 @@ Log-likelihood functions
 - [`log_lik_unif()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_unif.md)
   : Uniform Log-Likelihood
 
+## Cumulative Distribution
+
+Cumulative distribution functions
+
+- [`prob_bern()`](https://poissonconsulting.github.io/extras/dev/reference/prob_bern.md)
+  : Bernoulli Cumulative Distribution Function
+- [`prob_beta()`](https://poissonconsulting.github.io/extras/dev/reference/prob_beta.md)
+  : Beta Cumulative Distribution Function
+- [`prob_beta_binom()`](https://poissonconsulting.github.io/extras/dev/reference/prob_beta_binom.md)
+  : Beta-Binomial Cumulative Distribution Function
+- [`prob_binom()`](https://poissonconsulting.github.io/extras/dev/reference/prob_binom.md)
+  : Binomial Cumulative Distribution Function
+- [`prob_exp()`](https://poissonconsulting.github.io/extras/dev/reference/prob_exp.md)
+  : Exponential Cumulative Distribution Function
+- [`prob_gamma()`](https://poissonconsulting.github.io/extras/dev/reference/prob_gamma.md)
+  : Gamma Cumulative Distribution Function
+- [`prob_gamma_pois()`](https://poissonconsulting.github.io/extras/dev/reference/prob_gamma_pois.md)
+  : Gamma-Poisson Cumulative Distribution Function
+- [`prob_gamma_pois_zi()`](https://poissonconsulting.github.io/extras/dev/reference/prob_gamma_pois_zi.md)
+  : Zero-Inflated Gamma-Poisson Cumulative Distribution Function
+- [`prob_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/prob_lnorm.md)
+  : Log-Normal Cumulative Distribution Function
+- [`prob_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/prob_neg_binom.md)
+  : Negative Binomial Cumulative Distribution Function
+- [`prob_norm()`](https://poissonconsulting.github.io/extras/dev/reference/prob_norm.md)
+  : Normal Cumulative Distribution Function
+- [`prob_pois()`](https://poissonconsulting.github.io/extras/dev/reference/prob_pois.md)
+  : Poisson Cumulative Distribution Function
+- [`prob_pois_zi()`](https://poissonconsulting.github.io/extras/dev/reference/prob_pois_zi.md)
+  : Zero-Inflated Poisson Cumulative Distribution Function
+- [`prob_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/prob_skewnorm.md)
+  : Skew Normal Cumulative Distribution Function
+- [`prob_student()`](https://poissonconsulting.github.io/extras/dev/reference/prob_student.md)
+  : Student's t Cumulative Distribution Function
+- [`prob_unif()`](https://poissonconsulting.github.io/extras/dev/reference/prob_unif.md)
+  : Uniform Cumulative Distribution Function
+
+## Quantile
+
+Quantile functions
+
+- [`quant_bern()`](https://poissonconsulting.github.io/extras/dev/reference/quant_bern.md)
+  : Bernoulli Quantile Function
+- [`quant_beta()`](https://poissonconsulting.github.io/extras/dev/reference/quant_beta.md)
+  : Beta Quantile Function
+- [`quant_binom()`](https://poissonconsulting.github.io/extras/dev/reference/quant_binom.md)
+  : Binomial Quantile Function
+- [`quant_exp()`](https://poissonconsulting.github.io/extras/dev/reference/quant_exp.md)
+  : Exponential Quantile Function
+- [`quant_gamma()`](https://poissonconsulting.github.io/extras/dev/reference/quant_gamma.md)
+  : Gamma Quantile Function
+- [`quant_gamma_pois()`](https://poissonconsulting.github.io/extras/dev/reference/quant_gamma_pois.md)
+  : Gamma-Poisson Quantile Function
+- [`quant_gamma_pois_zi()`](https://poissonconsulting.github.io/extras/dev/reference/quant_gamma_pois_zi.md)
+  : Zero-Inflated Gamma-Poisson Quantile Function
+- [`quant_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/quant_lnorm.md)
+  : Log-Normal Quantile Function
+- [`quant_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/quant_neg_binom.md)
+  : Negative Binomial Quantile Function
+- [`quant_norm()`](https://poissonconsulting.github.io/extras/dev/reference/quant_norm.md)
+  : Normal Quantile Function
+- [`quant_pois()`](https://poissonconsulting.github.io/extras/dev/reference/quant_pois.md)
+  : Poisson Quantile Function
+- [`quant_pois_zi()`](https://poissonconsulting.github.io/extras/dev/reference/quant_pois_zi.md)
+  : Zero-Inflated Poisson Quantile Function
+- [`quant_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/quant_skewnorm.md)
+  : Skew Normal Quantile Function
+- [`quant_student()`](https://poissonconsulting.github.io/extras/dev/reference/quant_student.md)
+  : Student's t Quantile Function
+- [`quant_unif()`](https://poissonconsulting.github.io/extras/dev/reference/quant_unif.md)
+  : Uniform Quantile Function
+
 ## Random
 
 Random sample functions

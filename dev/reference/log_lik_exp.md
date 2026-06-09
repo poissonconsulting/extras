@@ -1,22 +1,30 @@
 # Exponential Log-Likelihood
 
-The exponential distribution is parameterized in terms of the scale.
+The exponential distribution is parameterized in terms of the rate.
 
 ## Usage
 
 ``` r
-log_lik_exp(x, rate = 1)
+log_lik_exp(x, rate = 1, tlower = 0, tupper = Inf)
 ```
 
 ## Arguments
 
 - x:
 
-  A non-negative whole numeric vector of values.
+  A non-negative numeric vector of values.
 
 - rate:
 
   A non-negative numeric vector of rate.
+
+- tlower:
+
+  A numeric vector of the lower truncation point.
+
+- tupper:
+
+  A numeric vector of the upper truncation point.
 
 ## Value
 

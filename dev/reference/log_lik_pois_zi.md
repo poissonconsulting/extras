@@ -5,7 +5,7 @@ Zero-Inflated Poisson Log-Likelihood
 ## Usage
 
 ``` r
-log_lik_pois_zi(x, lambda = 1, prob = 0)
+log_lik_pois_zi(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf)
 ```
 
 ## Arguments
@@ -22,6 +22,14 @@ log_lik_pois_zi(x, lambda = 1, prob = 0)
 
   A numeric vector of values between 0 and 1 of the probability of
   success.
+
+- tlower:
+
+  A numeric vector of the lower truncation point.
+
+- tupper:
+
+  A numeric vector of the upper truncation point.
 
 ## Value
 

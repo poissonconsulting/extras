@@ -129,6 +129,14 @@ functions.
 
   A number of the threshold value.
 
+- tlower:
+
+  A numeric vector of the lower truncation point.
+
+- tupper:
+
+  A numeric vector of the upper truncation point.
+
 - type:
 
   A string of the residual type. 'raw' for raw residuals 'dev' for

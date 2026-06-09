@@ -5,7 +5,7 @@ Skew Normal Log-Likelihood
 ## Usage
 
 ``` r
-log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0)
+log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupper = Inf)
 ```
 
 ## Arguments
@@ -25,6 +25,14 @@ log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0)
 - shape:
 
   A numeric vector of shape.
+
+- tlower:
+
+  A numeric vector of the lower truncation point.
+
+- tupper:
+
+  A numeric vector of the upper truncation point.
 
 ## Value
 

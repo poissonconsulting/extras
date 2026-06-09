@@ -5,7 +5,7 @@ Poisson Log-Likelihood
 ## Usage
 
 ``` r
-log_lik_pois(x, lambda = 1)
+log_lik_pois(x, lambda = 1, tlower = 0, tupper = Inf)
 ```
 
 ## Arguments
@@ -17,6 +17,14 @@ log_lik_pois(x, lambda = 1)
 - lambda:
 
   A non-negative numeric vector of means.
+
+- tlower:
+
+  A numeric vector of the lower truncation point.
+
+- tupper:
+
+  A numeric vector of the upper truncation point.
 
 ## Value
 

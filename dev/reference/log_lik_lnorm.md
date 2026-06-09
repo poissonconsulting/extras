@@ -5,7 +5,7 @@ Log-Normal Log-Likelihood
 ## Usage
 
 ``` r
-log_lik_lnorm(x, meanlog = 0, sdlog = 1)
+log_lik_lnorm(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf)
 ```
 
 ## Arguments
@@ -22,6 +22,14 @@ log_lik_lnorm(x, meanlog = 0, sdlog = 1)
 
   A non-negative numeric vector of the standard deviations on the log
   scale.
+
+- tlower:
+
+  A numeric vector of the lower truncation point.
+
+- tupper:
+
+  A numeric vector of the upper truncation point.
 
 ## Value
 

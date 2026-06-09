@@ -67,7 +67,15 @@ probability parameter.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">log_lik_beta_binom</span><span class="op">(</span><span class="va">x</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span>, theta <span class="op">=</span> <span class="fl">0</span>, memoize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">log_lik_beta_binom</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  prob <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  theta <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  tlower <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  tupper <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  memoize <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -90,6 +98,14 @@ success.</p></dd>
 <dt id="arg-theta">theta<a class="anchor" aria-label="anchor" href="#arg-theta"></a></dt>
 <dd><p>A non-negative numeric vector of the dispersion for the mixture
 models (student, gamma-Poisson and beta-binomial).</p></dd>
+
+
+<dt id="arg-tlower">tlower<a class="anchor" aria-label="anchor" href="#arg-tlower"></a></dt>
+<dd><p>A numeric vector of the lower truncation point.</p></dd>
+
+
+<dt id="arg-tupper">tupper<a class="anchor" aria-label="anchor" href="#arg-tupper"></a></dt>
+<dd><p>A numeric vector of the upper truncation point.</p></dd>
 
 
 <dt id="arg-memoize">memoize<a class="anchor" aria-label="anchor" href="#arg-memoize"></a></dt>

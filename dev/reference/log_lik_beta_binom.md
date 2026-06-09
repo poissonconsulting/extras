@@ -14,7 +14,15 @@ parameter.
 ## Usage
 
 ``` r
-log_lik_beta_binom(x, size = 1, prob = 0.5, theta = 0, memoize = FALSE)
+log_lik_beta_binom(
+  x,
+  size = 1,
+  prob = 0.5,
+  theta = 0,
+  tlower = 0,
+  tupper = Inf,
+  memoize = FALSE
+)
 ```
 
 ## Arguments
@@ -36,6 +44,14 @@ log_lik_beta_binom(x, size = 1, prob = 0.5, theta = 0, memoize = FALSE)
 
   A non-negative numeric vector of the dispersion for the mixture models
   (student, gamma-Poisson and beta-binomial).
+
+- tlower:
+
+  A numeric vector of the lower truncation point.
+
+- tupper:
+
+  A numeric vector of the upper truncation point.
 
 - memoize:
 

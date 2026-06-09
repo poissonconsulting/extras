@@ -5,7 +5,7 @@ Gamma-Poisson Log-Likelihood
 ## Usage
 
 ``` r
-log_lik_gamma_pois(x, lambda = 1, theta = 0)
+log_lik_gamma_pois(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf)
 ```
 
 ## Arguments
@@ -22,6 +22,14 @@ log_lik_gamma_pois(x, lambda = 1, theta = 0)
 
   A non-negative numeric vector of the dispersion for the mixture models
   (student, gamma-Poisson and beta-binomial).
+
+- tlower:
+
+  A numeric vector of the lower truncation point.
+
+- tupper:
+
+  A numeric vector of the upper truncation point.
 
 ## Value
 
