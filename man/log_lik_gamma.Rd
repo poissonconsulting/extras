@@ -4,7 +4,7 @@
 \alias{log_lik_gamma}
 \title{Gamma Log-Likelihood}
 \usage{
-log_lik_gamma(x, shape = 1, rate = 1)
+log_lik_gamma(x, shape = 1, rate = 1, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
@@ -12,6 +12,10 @@ log_lik_gamma(x, shape = 1, rate = 1)
 \item{shape}{A non-negative numeric vector of shape.}
 
 \item{rate}{A non-negative numeric vector of rate.}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
