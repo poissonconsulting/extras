@@ -28,7 +28,7 @@ success.}
 \item{lower.tail}{A flag specifying whether to return the lower or upper tail
 of the distribution.}
 
-\item{p}{A vector of probabilities.}
+\item{p}{A numeric vector of probabilities.}
 
 \item{n}{A non-negative whole number of the number of random samples to
 generate.}
