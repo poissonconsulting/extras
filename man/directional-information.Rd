@@ -43,7 +43,8 @@ proportionally to the values of \code{x} on the left and right sides,
 
 \item{p}{A numeric vector of probabilities of direction.}
 
-\item{n}{A numeric vector of the sample sizes used to estimate \code{p}.}
+\item{n}{A numeric vector of the number of posterior samples used to estimate
+each value of \code{p}. Used to limit the information to be within the interval \eqn{[-n, n]}.}
 }
 \value{
 A number indicating the directional information in bits.
@@ -79,7 +80,7 @@ directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
 
 p_2_info(seq(0, 1, by = 0.1))
-p_2_info(seq(0, 1, by = 0.1), n = 10)
+p_2_info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 }
 \references{
 Kery, M., and Schaub, M. 2011.

@@ -26,7 +26,8 @@
 #'   (identical to using `"proportional"`).
 #'
 #' @param p A numeric vector of probabilities of direction.
-#' @param n A numeric vector of the sample sizes used to estimate `p`.
+#' @param n A numeric vector of the number of posterior samples used to estimate
+#' each value of `p`. Used to limit the information to be within the interval \eqn{[-n, n]}.
 #'
 #' @inheritParams params
 #' @return A number indicating the directional information in bits.
@@ -52,7 +53,7 @@
 #' directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
 #'
 #' p_2_info(seq(0, 1, by = 0.1))
-#' p_2_info(seq(0, 1, by = 0.1), n = 10)
+#' p_2_info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 
 directional_information <- function(x, side = "median", threshold = 0,
                                     threshold_split = "proportional",
