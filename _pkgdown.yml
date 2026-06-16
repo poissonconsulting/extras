@@ -143,6 +143,43 @@ reference:
   - '`log_lik_skewnorm`'
   - '`log_lik_student`'
   - '`log_lik_unif`'
+- title: Cumulative Distribution
+  desc: Cumulative distribution functions
+  contents:
+  - '`prob_bern`'
+  - '`prob_beta`'
+  - '`prob_beta_binom`'
+  - '`prob_binom`'
+  - '`prob_exp`'
+  - '`prob_gamma`'
+  - '`prob_gamma_pois`'
+  - '`prob_gamma_pois_zi`'
+  - '`prob_lnorm`'
+  - '`prob_neg_binom`'
+  - '`prob_norm`'
+  - '`prob_pois`'
+  - '`prob_pois_zi`'
+  - '`prob_skewnorm`'
+  - '`prob_student`'
+  - '`prob_unif`'
+- title: Quantile
+  desc: Quantile functions
+  contents:
+  - '`quant_bern`'
+  - '`quant_beta`'
+  - '`quant_binom`'
+  - '`quant_exp`'
+  - '`quant_gamma`'
+  - '`quant_gamma_pois`'
+  - '`quant_gamma_pois_zi`'
+  - '`quant_lnorm`'
+  - '`quant_neg_binom`'
+  - '`quant_norm`'
+  - '`quant_pois`'
+  - '`quant_pois_zi`'
+  - '`quant_skewnorm`'
+  - '`quant_student`'
+  - '`quant_unif`'
 - title: Random
   desc: Random sample functions
   contents:
