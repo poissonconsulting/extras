@@ -4,7 +4,15 @@
 \alias{log_lik_beta_binom}
 \title{Beta-Binomial Log-Likelihood}
 \usage{
-log_lik_beta_binom(x, size = 1, prob = 0.5, theta = 0, memoize = FALSE)
+log_lik_beta_binom(
+  x,
+  size = 1,
+  prob = 0.5,
+  theta = 0,
+  tlower = 0,
+  tupper = Inf,
+  memoize = FALSE
+)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
@@ -16,6 +24,10 @@ success.}
 
 \item{theta}{A non-negative numeric vector of the dispersion for the mixture
 models (student, gamma-Poisson and beta-binomial).}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 
 \item{memoize}{Whether or not to memoize the function.}
 }

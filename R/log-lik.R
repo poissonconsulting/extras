@@ -20,7 +20,8 @@
 #'
 #' @examples
 #' log_lik_beta_binom(c(0, 1, 2), 3, 0.5, 0)
-log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, memoize = FALSE) {
+log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, tlower = 0, tupper = Inf, memoize = FALSE) {
+  if (any(lengths(list(x, size, prob, theta, tlower, tupper)) == 0L)) return(numeric(0))
   alpha <- prob * 2 * (1 / theta)
   beta <- (1 - prob) * 2 * (1 / theta)
 
@@ -62,13 +63,13 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, memoize = FAL
       lbeta_binom <- -Inf
     }
     if (theta == 0) {
-      lbeta_binom <- log_lik_binom(x = x, size = size, prob = prob)
+      return(log_lik_binom(x = x, size = size, prob = prob, tlower = tlower, tupper = tupper))
     } else if (theta < 0) {
       lbeta_binom <- NaN
     }
-    lbeta_binom
+    log_lik <- lbeta_binom
   } else if (length_args_na == 0) {
-    numeric(0)
+    log_lik <- numeric(0)
   } else {
     args_not_na <- !args_na
     lbeta_binom[args_not_na & ((x == 0 & prob == 0) | (x == size & prob == 1))] <- 0
@@ -82,8 +83,26 @@ log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, memoize = FAL
       lbinom <- log_lik_binom(x, size = size, prob = prob)
       lbeta_binom[use_binom] <- lbinom[use_binom]
     }
-    lbeta_binom
+    log_lik <- lbeta_binom
   }
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_beta_binom(tupper, size = size, prob = prob, theta = theta) -
+        prob_beta_binom(tlower, size = size, prob = prob, theta = theta) +
+        exp(
+          lgamma(size + 1) - lgamma(tlower + 1) - lgamma(size - tlower + 1) +
+            lgamma(tlower + alpha) + lgamma(size - tlower + beta) -
+            lgamma(size + alpha + beta) + lgamma(alpha + beta) - lgamma(alpha) -
+            lgamma(beta)
+        )
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 # Function to memoize (called repeatedly for non-changing values of size and x)
@@ -117,8 +136,21 @@ log_lik_bern <- function(x, prob = 0.5) {
 #'
 #' @examples
 #' log_lik_beta(c(0, 0.5, 0.7, 1), 0.7)
-log_lik_beta <- function(x, alpha = 1, beta = 1) {
-  stats::dbeta(x, shape1 = alpha , shape2 = beta, log = TRUE)
+log_lik_beta <- function(x, alpha = 1, beta = 1, tlower = 0, tupper = 1) {
+  log_lik <- stats::dbeta(x, shape1 = alpha, shape2 = beta, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (tlower != 0 | tupper != 1) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_beta(tupper, alpha = alpha, beta = beta) -
+        prob_beta(tlower, alpha = alpha, beta = beta)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Binomial Log-Likelihood
@@ -132,16 +164,30 @@ log_lik_beta <- function(x, alpha = 1, beta = 1) {
 #'
 #' @examples
 #' log_lik_binom(c(0, 1, 2), 2, 0.3)
-log_lik_binom <- function(x, size = 1, prob = 0.5) {
-  dbinom(x, size = size, prob = prob, log = TRUE)
+log_lik_binom <- function(x, size = 1, prob = 0.5, tlower = 0, tupper = Inf) {
+  log_lik <- dbinom(x, size = size, prob = prob, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_binom(tupper, size = size, prob = prob) -
+         prob_binom(tlower, size = size, prob = prob) +
+        dbinom(x = tlower, size = size, prob = prob)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Exponential Log-Likelihood
 #'
-#' The exponential distribution is parameterized in terms of the scale.
-#' 
+#' The exponential distribution is parameterized in terms of the rate.
+#'
 #' @inheritParams params
-#' @param x A non-negative whole numeric vector of values.
+#' @param x A non-negative numeric vector of values.
 #'
 #' @return A numeric vector of the corresponding log-likelihoods.
 #' @family log_lik_dist
@@ -149,8 +195,21 @@ log_lik_binom <- function(x, size = 1, prob = 0.5) {
 #'
 #' @examples
 #' log_lik_exp(c(0, 1, 2), 2)
-log_lik_exp <- function(x, rate = 1) {
-  stats::dexp(x, rate = rate, log = TRUE)
+log_lik_exp <- function(x, rate = 1, tlower = 0, tupper = Inf) {
+  log_lik <- stats::dexp(x, rate = rate, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_exp(tupper, rate = rate) -
+        prob_exp(tlower, rate = rate)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Gamma Log-Likelihood
@@ -164,8 +223,21 @@ log_lik_exp <- function(x, rate = 1) {
 #'
 #' @examples
 #' log_lik_gamma(c(0, 1, 2), 1, 2)
-log_lik_gamma <- function(x, shape = 1, rate = 1) {
-  stats::dgamma(x, shape = shape, rate = rate, log = TRUE)
+log_lik_gamma <- function(x, shape = 1, rate = 1, tlower = 0, tupper = Inf) {
+  log_lik <- stats::dgamma(x, shape = shape, rate = rate, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_gamma(tupper, shape = shape, rate = rate) -
+        prob_gamma(tlower, shape = shape, rate = rate)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Gamma-Poisson Log-Likelihood
@@ -179,8 +251,8 @@ log_lik_gamma <- function(x, shape = 1, rate = 1) {
 #'
 #' @examples
 #' log_lik_gamma_pois(c(0, 1, 2), 1, 1)
-log_lik_gamma_pois <- function(x, lambda = 1, theta = 0) {
-  log_lik_neg_binom(x, lambda = lambda, theta = theta)
+log_lik_gamma_pois <- function(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf) {
+  log_lik_neg_binom(x, lambda = lambda, theta = theta, tlower = tlower, tupper = tupper)
 }
 
 #' Zero-Inflated Gamma-Poisson Log-Likelihood
@@ -194,7 +266,11 @@ log_lik_gamma_pois <- function(x, lambda = 1, theta = 0) {
 #'
 #' @examples
 #' log_lik_gamma_pois_zi(c(1, 3, 4), 3, 1, prob = 0.5)
-log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
+log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, tlower = 0, tupper = Inf) {
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  if (any(tlower > 0 & !is.na(tlower))) {
+    stop("Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
+  }
   lpois <- dnbinom(x, mu = lambda, size = 1 / theta)
   lpois <- lpois * (1 - prob)
   zero <- !is.na(x) & x == 0
@@ -202,7 +278,24 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
     prob <- rep(prob, length(lpois))
   }
   lpois[zero] <- lpois[zero] + prob[zero]
-  log(lpois)
+  log_lik <- log(lpois)
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_gamma_pois_zi(tupper, lambda = lambda, theta = theta, prob = prob) -
+        prob_gamma_pois_zi(tlower, lambda = lambda, theta = theta, prob = prob) +
+        (
+          dnbinom(tlower, mu = lambda, size = 1 / theta) *
+            (1 - prob) +
+            prob * as.integer(tlower == 0)
+        )
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Log-Normal Log-Likelihood
@@ -216,8 +309,21 @@ log_lik_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
 #'
 #' @examples
 #' log_lik_lnorm(10, 0, 2)
-log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1) {
-  dlnorm(x, meanlog = meanlog, sdlog = sdlog, log = TRUE)
+log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
+  log_lik <- dlnorm(x, meanlog = meanlog, sdlog = sdlog, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_lnorm(tupper, meanlog = meanlog, sdlog = sdlog) -
+        prob_lnorm(tlower, meanlog = meanlog, sdlog = sdlog)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Negative Binomial Log-Likelihood
@@ -231,8 +337,22 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1) {
 #'
 #' @examples
 #' log_lik_neg_binom(c(0, 1, 2), 2, 1)
-log_lik_neg_binom <- function(x, lambda = 1, theta = 0) {
-  dnbinom(x, mu = lambda, size = 1 / theta, log = TRUE)
+log_lik_neg_binom <- function(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf) {
+  log_lik <- dnbinom(x, mu = lambda, size = 1 / theta, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_neg_binom(tupper, lambda = lambda, theta = theta) -
+        prob_neg_binom(tlower, lambda = lambda, theta = theta) +
+        dnbinom(x = tlower, mu = lambda, size = 1 / theta)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Normal Log-Likelihood
@@ -246,8 +366,21 @@ log_lik_neg_binom <- function(x, lambda = 1, theta = 0) {
 #'
 #' @examples
 #' log_lik_norm(c(-2:2))
-log_lik_norm <- function(x, mean = 0, sd = 1) {
-  dnorm(x, mean = mean, sd = sd, log = TRUE)
+log_lik_norm <- function(x, mean = 0, sd = 1, tlower = -Inf, tupper = Inf) {
+  log_lik <- dnorm(x, mean = mean, sd = sd, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (!is.infinite(tlower) | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_norm(tupper, mean = mean, sd = sd) -
+        prob_norm(tlower, mean = mean, sd = sd)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Poisson Log-Likelihood
@@ -261,8 +394,22 @@ log_lik_norm <- function(x, mean = 0, sd = 1) {
 #'
 #' @examples
 #' log_lik_pois(c(1, 3, 4), 3)
-log_lik_pois <- function(x, lambda = 1) {
-  dpois(x, lambda, log = TRUE)
+log_lik_pois <- function(x, lambda = 1, tlower = 0, tupper = Inf) {
+  log_lik <- dpois(x, lambda, log = TRUE)
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_pois(tupper, lambda = lambda) -
+        prob_pois(tlower, lambda = lambda) +
+        dpois(x = tlower, lambda = lambda)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Zero-Inflated Poisson Log-Likelihood
@@ -276,12 +423,29 @@ log_lik_pois <- function(x, lambda = 1) {
 #'
 #' @examples
 #' log_lik_pois_zi(c(1, 3, 4), 3, prob = 0.5)
-log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
+log_lik_pois_zi <- function(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf) {
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  if (any(tlower > 0 & !is.na(tlower))) {
+    stop("Specifying a lower truncation point greater than 0 doesn't make sense for a zero-inflated distribution.")
+  }
   lpois <- dpois(x, lambda = lambda)
   lpois <- lpois * (1 - prob)
   zero <- x == 0
   lpois[zero] <- lpois[zero] + prob
-  log(lpois)
+  log_lik <- log(lpois)
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_pois_zi(tupper, lambda = lambda, prob = prob) -
+        prob_pois_zi(tlower, lambda = lambda, prob = prob) +
+        (dpois(x = tlower, lambda = lambda) * (1 - prob) + prob * as.integer(tlower == 0))
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Skew Normal Log-Likelihood
@@ -298,13 +462,25 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
 #' log_lik_skewnorm(c(-2:2))
 #' log_lik_skewnorm(c(-2:2), shape = -2)
 #' log_lik_skewnorm(c(-2:2), shape = 2)
-log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
+log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupper = Inf) {
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   rlang::check_installed("sn")
   log_lik <- dskewnorm(x = x, mean = mean, sd = sd, shape = shape, log = TRUE)
   use_norm <- !is.na(shape) & shape == 0
   lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
   lengths <- as.logical(length(x)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
   if (lengths >= 4) log_lik[use_norm] <- lnorm[use_norm]
+  truncated <- (!is.infinite(tlower) | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_skewnorm(tupper, mean = mean, sd = sd, shape = shape) -
+        prob_skewnorm(tlower, mean = mean, sd = sd, shape = shape)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
   log_lik
 }
 
@@ -319,17 +495,29 @@ log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
 #'
 #' @examples
 #' log_lik_student(c(1, 3.5, 4), mean = 1, sd = 2, theta = 1 / 3)
-log_lik_student <- function(x, mean = 0, sd = 1, theta = 0) {
+log_lik_student <- function(x, mean = 0, sd = 1, theta = 0, tlower = -Inf, tupper = Inf) {
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
   df <- 1 / theta
   lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
-  lstudent <- (lgamma((df + 1) / 2) - lgamma(df / 2) - 0.5 * log(pi * df) - log(sd)) -
+  log_lik <- (lgamma((df + 1) / 2) - lgamma(df / 2) - 0.5 * log(pi * df) - log(sd)) -
     ((df + 1) / 2 * log(1 + (1 / df) * ((x - mean) / sd)^2))
   if (length(theta) == 1) {
     theta <- rep(theta, length(lnorm))
   }
   use_norm <- (!is.na(theta) & theta == 0) | (!is.na(sd) & sd == 0)
-  lstudent[use_norm] <- lnorm[use_norm]
-  lstudent
+  log_lik[use_norm] <- lnorm[use_norm]
+  truncated <- (!is.infinite(tlower) | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_student(tupper, mean = mean, sd = sd, theta = theta) -
+        prob_student(tlower, mean = mean, sd = sd, theta = theta)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
 }
 
 #' Uniform Log-Likelihood

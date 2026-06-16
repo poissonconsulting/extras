@@ -4,7 +4,7 @@
 \alias{log_lik_lnorm}
 \title{Log-Normal Log-Likelihood}
 \usage{
-log_lik_lnorm(x, meanlog = 0, sdlog = 1)
+log_lik_lnorm(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
@@ -13,6 +13,10 @@ log_lik_lnorm(x, meanlog = 0, sdlog = 1)
 
 \item{sdlog}{A non-negative numeric vector of the standard deviations on the
 log scale.}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
