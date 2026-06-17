@@ -25,8 +25,11 @@ A number between 0 and 1.
 ## See also
 
 Other summary:
+[`direction()`](https://poissonconsulting.github.io/extras/reference/direction.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional_information.md),
 [`kurtosis()`](https://poissonconsulting.github.io/extras/reference/kurtosis.md),
 [`lower()`](https://poissonconsulting.github.io/extras/reference/lower.md),
+[`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md),
 [`pvalue()`](https://poissonconsulting.github.io/extras/reference/pvalue.md),
 [`skewness()`](https://poissonconsulting.github.io/extras/reference/skewness.md),
 [`svalue()`](https://poissonconsulting.github.io/extras/reference/svalue.md),

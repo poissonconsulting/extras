@@ -189,6 +189,12 @@ Functions to summarise MCMC vectors as scalars
   : Bayesian P-Value
 - [`svalue()`](https://poissonconsulting.github.io/extras/reference/svalue.md)
   : Surprisal Value
+- [`direction()`](https://poissonconsulting.github.io/extras/reference/direction.md)
+  : Direction of a distribution
+- [`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md)
+  : Probability of Direction
+- [`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional_information.md)
+  : Directional information
 - [`xtr_mean()`](https://poissonconsulting.github.io/extras/reference/xtr_mean.md)
   : Mean
 - [`xtr_median()`](https://poissonconsulting.github.io/extras/reference/xtr_median.md)

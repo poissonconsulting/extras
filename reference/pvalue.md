@@ -5,9 +5,14 @@ A Bayesian p-value (p) is here defined in terms of the quantile-based
 (Kery and Schaub 2011). By default a p-value of 0.05 indicates that the
 95% CRI just includes the threshold value.Note that the function
 contains the sample-size correction \\p\_{c} = p \* n / (n + 1)\\ to
-avoid p-values of 0. The function can still return p-values of 1.For
+avoid p-values of 0. The function can still return p-values of 1.To use
+as a measure of certainty in the direction of the estimate (i.e.,
+positive or negative), see
+[`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md).For
 p-values converted to bits, see
-[`svalue()`](https://poissonconsulting.github.io/extras/reference/svalue.md).
+[`svalue()`](https://poissonconsulting.github.io/extras/reference/svalue.md).To
+convert MCMC objects to information, see
+[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional_information.md).
 
 ## Usage
 
@@ -37,7 +42,8 @@ pvalue(x, side = "both", threshold = 0, na_rm = FALSE)
 
 ## Value
 
-A number between 0 and 1.
+A number between 0 and 1. If `x` has `NA` values but `na_rm` is `FALSE`,
+returns `NA_real`.
 
 ## References
 
@@ -49,8 +55,11 @@ from
 ## See also
 
 Other summary:
+[`direction()`](https://poissonconsulting.github.io/extras/reference/direction.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional_information.md),
 [`kurtosis()`](https://poissonconsulting.github.io/extras/reference/kurtosis.md),
 [`lower()`](https://poissonconsulting.github.io/extras/reference/lower.md),
+[`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md),
 [`pzeros()`](https://poissonconsulting.github.io/extras/reference/pzeros.md),
 [`skewness()`](https://poissonconsulting.github.io/extras/reference/skewness.md),
 [`svalue()`](https://poissonconsulting.github.io/extras/reference/svalue.md),
@@ -67,9 +76,9 @@ Other summary:
 ``` r
 x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
 pvalue(x) # should be 0.05 * 2
-#> [1] 0.099876
+#> [1] 0.099858
 pvalue(x, side = "left") # should be 0.95
-#> [1] 0.950062
+#> [1] 0.950071
 pvalue(x, side = "right") # should be 0.05
-#> [1] 0.049938
+#> [1] 0.049929
 ```

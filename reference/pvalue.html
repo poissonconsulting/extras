@@ -5,13 +5,15 @@ just includes a threshold (Kery and Schaub 2011).
 By default a p-value of 0.05 indicates that the 95% CRI just includes the
 threshold value.Note that the function contains the sample-size correction
 \(p_{c} = p * n / (n + 1)\) to avoid p-values of 0. The function can still
-return p-values of 1.For p-values converted to bits, see svalue()."><meta property="og:description" content="A Bayesian p-value (p) is here defined in terms of the quantile-based
+return p-values of 1.To use as a measure of certainty in the direction of the estimate (i.e.,
+positive or negative), see probability_direction().For p-values converted to bits, see svalue().To convert MCMC objects to information, see directional_information()."><meta property="og:description" content="A Bayesian p-value (p) is here defined in terms of the quantile-based
 (1-p) * 100% credible interval (CRI) that
 just includes a threshold (Kery and Schaub 2011).
 By default a p-value of 0.05 indicates that the 95% CRI just includes the
 threshold value.Note that the function contains the sample-size correction
 \(p_{c} = p * n / (n + 1)\) to avoid p-values of 0. The function can still
-return p-values of 1.For p-values converted to bits, see svalue()."><meta property="og:image" content="https://poissonconsulting.github.io/extras/logo.png"></head><body>
+return p-values of 1.To use as a measure of certainty in the direction of the estimate (i.e.,
+positive or negative), see probability_direction().For p-values converted to bits, see svalue().To convert MCMC objects to information, see directional_information()."><meta property="og:image" content="https://poissonconsulting.github.io/extras/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -56,7 +58,8 @@ just includes a threshold (Kery and Schaub 2011).
 By default a p-value of 0.05 indicates that the 95% CRI just includes the
 threshold value.Note that the function contains the sample-size correction
 \(p_{c} = p * n / (n + 1)\) to avoid p-values of 0. The function can still
-return p-values of 1.For p-values converted to bits, see <code><a href="svalue.html">svalue()</a></code>.</p>
+return p-values of 1.To use as a measure of certainty in the direction of the estimate (i.e.,
+positive or negative), see <code><a href="probability_direction.html">probability_direction()</a></code>.For p-values converted to bits, see <code><a href="svalue.html">svalue()</a></code>.To convert MCMC objects to information, see <code><a href="directional_information.html">directional_information()</a></code>.</p>
     </div>
 
     <div class="section level2">
@@ -87,7 +90,8 @@ p-values for the left tail (<code>"left"</code>), right tail (<code>"right"</cod
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A number between 0 and 1.</p>
+    <p>A number between 0 and 1.
+If <code>x</code> has <code>NA</code> values but <code>na_rm</code> is <code>FALSE</code>, returns <code>NA_real</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -98,8 +102,11 @@ Academic Press, Boston. Available from <a href="https://www.vogelwarte.ch/en/res
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other summary:
+<code><a href="direction.html">direction()</a></code>,
+<code><a href="directional_information.html">directional_information()</a></code>,
 <code><a href="kurtosis.html">kurtosis()</a></code>,
 <code><a href="lower.html">lower()</a></code>,
+<code><a href="probability_direction.html">probability_direction()</a></code>,
 <code><a href="pzeros.html">pzeros()</a></code>,
 <code><a href="skewness.html">skewness()</a></code>,
 <code><a href="svalue.html">svalue()</a></code>,
@@ -116,11 +123,11 @@ Academic Press, Boston. Available from <a href="https://www.vogelwarte.ch/en/res
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1e6</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="fl">0.05</span>, lower.tail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pvalue</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># should be 0.05 * 2</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.099876</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.099858</span>
 <span class="r-in"><span><span class="fu">pvalue</span><span class="op">(</span><span class="va">x</span>, side <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span> <span class="co"># should be 0.95</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.950062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.950071</span>
 <span class="r-in"><span><span class="fu">pvalue</span><span class="op">(</span><span class="va">x</span>, side <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span> <span class="co"># should be 0.05</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.049938</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.049929</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

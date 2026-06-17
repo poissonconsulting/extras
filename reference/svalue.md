@@ -34,7 +34,8 @@ svalue(x, side = "both", threshold = 0, na_rm = FALSE)
 
 ## Value
 
-A non-negative number.
+A non-negative number. If `x` has `NA` values but `na_rm` is `FALSE`,
+returns `NA_real`.
 
 ## References
 
@@ -47,8 +48,11 @@ The American Statistician 73(sup1): 106–114.
 ## See also
 
 Other summary:
+[`direction()`](https://poissonconsulting.github.io/extras/reference/direction.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional_information.md),
 [`kurtosis()`](https://poissonconsulting.github.io/extras/reference/kurtosis.md),
 [`lower()`](https://poissonconsulting.github.io/extras/reference/lower.md),
+[`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md),
 [`pvalue()`](https://poissonconsulting.github.io/extras/reference/pvalue.md),
 [`pzeros()`](https://poissonconsulting.github.io/extras/reference/pzeros.md),
 [`skewness()`](https://poissonconsulting.github.io/extras/reference/skewness.md),
@@ -63,8 +67,14 @@ Other summary:
 ## Examples
 
 ``` r
+svalue(as.numeric(0:100))
+#> [1] 6.658211
+svalue(as.numeric(0:100), side = "left")
+#> [1] 6.658211
+svalue(as.numeric(0:100), side = "right")
+#> [1] 0
 svalue(rnorm(1e4, mean = 1), side = "left")
-#> [1] 2.683159
+#> [1] 2.653809
 svalue(rnorm(1e4, mean = 1), side = "right")
-#> [1] 0.2546336
+#> [1] 0.240418
 ```

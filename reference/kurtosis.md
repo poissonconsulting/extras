@@ -25,7 +25,10 @@ A number.
 ## See also
 
 Other summary:
+[`direction()`](https://poissonconsulting.github.io/extras/reference/direction.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional_information.md),
 [`lower()`](https://poissonconsulting.github.io/extras/reference/lower.md),
+[`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md),
 [`pvalue()`](https://poissonconsulting.github.io/extras/reference/pvalue.md),
 [`pzeros()`](https://poissonconsulting.github.io/extras/reference/pzeros.md),
 [`skewness()`](https://poissonconsulting.github.io/extras/reference/skewness.md),

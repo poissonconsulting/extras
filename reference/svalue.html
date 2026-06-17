@@ -79,7 +79,8 @@ p-values for the left tail (<code>"left"</code>), right tail (<code>"right"</cod
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A non-negative number.</p>
+    <p>A non-negative number.
+If <code>x</code> has <code>NA</code> values but <code>na_rm</code> is <code>FALSE</code>, returns <code>NA_real</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -92,8 +93,11 @@ The American Statistician 73(sup1): 106–114.
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other summary:
+<code><a href="direction.html">direction()</a></code>,
+<code><a href="directional_information.html">directional_information()</a></code>,
 <code><a href="kurtosis.html">kurtosis()</a></code>,
 <code><a href="lower.html">lower()</a></code>,
+<code><a href="probability_direction.html">probability_direction()</a></code>,
 <code><a href="pvalue.html">pvalue()</a></code>,
 <code><a href="pzeros.html">pzeros()</a></code>,
 <code><a href="skewness.html">skewness()</a></code>,
@@ -108,10 +112,16 @@ The American Statistician 73(sup1): 106–114.
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">svalue</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1e4</span>, mean <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.683159</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">svalue</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6.658211</span>
+<span class="r-in"><span><span class="fu">svalue</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6.658211</span>
+<span class="r-in"><span><span class="fu">svalue</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-in"><span><span class="fu">svalue</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1e4</span>, mean <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.653809</span>
 <span class="r-in"><span><span class="fu">svalue</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1e4</span>, mean <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2546336</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.240418</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
