@@ -18,6 +18,7 @@ p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or two-
 }
 \value{
 A number between 0 and 1.
+If \code{x} has \code{NA} values but \code{na_rm} is \code{FALSE}, returns \code{NA_real}.
 }
 \description{
 {
@@ -31,7 +32,12 @@ Note that the function contains the sample-size correction
 \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
 return p-values of 1.
 
+To use as a measure of certainty in the direction of the estimate (i.e.,
+positive or negative), see \code{\link[=probability_direction]{probability_direction()}}.
+
 For p-values converted to bits, see \code{\link[=svalue]{svalue()}}.
+
+To convert MCMC objects to information, see \code{\link[=directional_information]{directional_information()}}.
 }
 }
 \examples{
@@ -47,8 +53,11 @@ Academic Press, Boston. Available from \url{https://www.vogelwarte.ch/en/researc
 }
 \seealso{
 Other summary:
+\code{\link[=direction]{direction()}},
+\code{\link[=directional_information]{directional_information()}},
 \code{\link[=kurtosis]{kurtosis()}},
 \code{\link[=lower]{lower()}},
+\code{\link[=probability_direction]{probability_direction()}},
 \code{\link[=pzeros]{pzeros()}},
 \code{\link[=skewness]{skewness()}},
 \code{\link[=svalue]{svalue()}},

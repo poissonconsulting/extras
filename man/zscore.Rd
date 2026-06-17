@@ -23,8 +23,11 @@ zscore(as.numeric(0:100))
 }
 \seealso{
 Other summary:
+\code{\link[=direction]{direction()}},
+\code{\link[=directional_information]{directional_information()}},
 \code{\link[=kurtosis]{kurtosis()}},
 \code{\link[=lower]{lower()}},
+\code{\link[=probability_direction]{probability_direction()}},
 \code{\link[=pvalue]{pvalue()}},
 \code{\link[=pzeros]{pzeros()}},
 \code{\link[=skewness]{skewness()}},
