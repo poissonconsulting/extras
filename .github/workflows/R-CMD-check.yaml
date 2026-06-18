@@ -1,11 +1,13 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+# JAGS variant: installs JAGS on macOS and Windows (Linux gets it via setup-r-dependencies
+# system requirements). Use for packages that depend on rjags/runjags/jagsUI/R2jags.
 on:
   push:
     branches: [main, master]
   pull_request:
+    branches: [main, master]
 
-name: R-CMD-check.yaml
+name: R-CMD-check
 
 permissions: read-all
 
@@ -33,6 +35,23 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Install JAGS (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          curl -o wjags.pkg -L0 -k --url https://downloads.sourceforge.net/project/mcmc-jags/JAGS/4.x/Mac%20OS%20X/JAGS-4.3.2.pkg
+          sudo installer -pkg wjags.pkg -target /
+          rm wjags.pkg
+
+      - name: Download JAGS (Windows)
+        if: runner.os == 'Windows'
+        run: (New-Object System.Net.WebClient).DownloadFile('https://github.com/poissonconsulting/jags-win/raw/main/JAGS-4.3.1.exe', 'C:\JAGS-4.3.1.exe')
+        shell: powershell
+
+      - name: Install JAGS (Windows)
+        if: runner.os == 'Windows'
+        run: C:\JAGS-4.3.1.exe /S
+        shell: cmd
 
       - uses: r-lib/actions/setup-r@v2
         with:
