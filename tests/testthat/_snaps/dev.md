@@ -1,4 +1,4 @@
-# gamma_pois deviance snapshot
+# dev_gamma_pois deviance snapshot
 
     Code
       withr::with_seed(101, {

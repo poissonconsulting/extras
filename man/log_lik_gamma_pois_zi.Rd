@@ -4,7 +4,14 @@
 \alias{log_lik_gamma_pois_zi}
 \title{Zero-Inflated Gamma-Poisson Log-Likelihood}
 \usage{
-log_lik_gamma_pois_zi(x, lambda = 1, theta = 0, prob = 0)
+log_lik_gamma_pois_zi(
+  x,
+  lambda = 1,
+  theta = 0,
+  prob = 0,
+  tlower = 0,
+  tupper = Inf
+)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
@@ -16,6 +23,10 @@ models (student, gamma-Poisson and beta-binomial).}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of
 success.}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

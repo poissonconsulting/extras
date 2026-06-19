@@ -1,5 +1,17 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.9.0
+
+- Add truncation arguments to log_lik functions; add prob and quant families (#119).
+
+
+# extras 0.8.0.9003
+
+- Tidy tests for `log_lik`, `res`, `ran`, and `dev` (#117) (#33).
+
+- Update `roxygen` to 8.0.0.9000 (#116).
+
+
 # extras 0.8.0.9002
 
 - Merge pull request #100 from poissonconsulting/1sided-pvalues.

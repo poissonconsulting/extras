@@ -4,7 +4,7 @@
 \alias{log_lik_skewnorm}
 \title{Skew Normal Log-Likelihood}
 \usage{
-log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0)
+log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupper = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
@@ -14,6 +14,10 @@ log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0)
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
 \item{shape}{A numeric vector of shape.}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.

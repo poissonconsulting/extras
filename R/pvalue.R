@@ -18,9 +18,20 @@
 #' \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
 #' return p-values of 1.
 #'
+#' To use as a measure of certainty in the direction of the estimate (i.e.,
+#' positive or negative), see [`probability_direction()`].
+#'
 #' For p-values converted to bits, see [`svalue()`].
 #'
+#' To convert MCMC objects to information, see [`directional_information()`].
+#' }
 #'
+#' @param x A numeric vector of MCMC values.
+#' @param side A character vector of length 1 indicating whether to calculate
+#' p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
+#' @inheritParams params
+#' @return A number between 0 and 1.
+#' If `x` has `NA` values but `na_rm` is `FALSE`, returns `NA_real`.
 #' @family summary
 #' @references
 #' Kery, M., and Schaub, M. 2011.

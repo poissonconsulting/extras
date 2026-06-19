@@ -19,6 +19,7 @@ p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or both
 }
 \value{
 A non-negative number.
+If \code{x} has \code{NA} values but \code{na_rm} is \code{FALSE}, returns \code{NA_real}.
 }
 \description{
 The surprisal value (Greenland 2019) is the \link{pvalue} expressed in
@@ -27,6 +28,9 @@ in a single attempt to achieve the same probability: \eqn{-\log_2(p)}, where
 \eqn{p} is the p-value of interest.
 }
 \examples{
+svalue(as.numeric(0:100))
+svalue(as.numeric(0:100), side = "left")
+svalue(as.numeric(0:100), side = "right")
 svalue(rnorm(1e4, mean = 1), side = "left")
 svalue(rnorm(1e4, mean = 1), side = "right")
 }
@@ -38,8 +42,11 @@ The American Statistician 73(sup1): 106–114.
 }
 \seealso{
 Other summary:
+\code{\link[=direction]{direction()}},
+\code{\link[=directional_information]{directional_information()}},
 \code{\link[=kurtosis]{kurtosis()}},
 \code{\link[=lower]{lower()}},
+\code{\link[=probability_direction]{probability_direction()}},
 \code{\link[=pvalue]{pvalue()}},
 \code{\link[=pzeros]{pzeros()}},
 \code{\link[=skewness]{skewness()}},

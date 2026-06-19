@@ -1,4 +1,4 @@
-# beta_binom log_lik
+# log_lik_beta_binom log_lik
 
     Code
       log_lik_beta_binom(x = samples, size = 50, prob = 0.2, theta = 1.1)
