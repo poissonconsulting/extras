@@ -2,12 +2,12 @@
 % Please edit documentation in R/svalue.R
 \name{svalue}
 \alias{svalue}
-\alias{p_2_svalue}
+\alias{p2svalue}
 \title{Surprisal Value}
 \usage{
 svalue(x, side = "both", threshold = 0, na_rm = FALSE)
 
-p_2_svalue(p)
+p2svalue(p)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
@@ -50,7 +50,7 @@ successes on a fair coin.
 \itemize{
 \item \code{svalue()}: Calculate an s-value from a posterior distribution.
 
-\item \code{p_2_svalue()}: Calculate an s-value from a vector of probabilities.
+\item \code{p2svalue()}: Calculate an s-value from a vector of probabilities.
 
 }}
 \examples{
@@ -60,7 +60,7 @@ svalue(as.numeric(0:100), side = "right")
 svalue(rnorm(1e4, mean = 1), side = "left")
 svalue(rnorm(1e4, mean = 1), side = "right")
 
-p_2_svalue(seq(0, 1, by = 0.1))
+p2svalue(seq(0, 1, by = 0.1))
 }
 \references{
 Greenland, S. 2019. Valid P-Values Behave Exactly as They Should:

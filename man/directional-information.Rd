@@ -2,7 +2,7 @@
 % Please edit documentation in R/directional-information.R
 \name{directional_information}
 \alias{directional_information}
-\alias{p_2_info}
+\alias{p2info}
 \title{Directional information}
 \usage{
 directional_information(
@@ -13,7 +13,7 @@ directional_information(
   na_rm = FALSE
 )
 
-p_2_info(p, n = Inf)
+p2info(p, n = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
@@ -62,7 +62,7 @@ This function calculates such information using the difference in the probabilit
 \itemize{
 \item \code{directional_information()}: Calculate the directional information from a posterior distribution.
 
-\item \code{p_2_info()}: Calculate the information from a vector of probabilities.
+\item \code{p2info()}: Calculate the information from a vector of probabilities.
 
 }}
 \examples{
@@ -79,8 +79,8 @@ directional_information(rnorm(1e3, mean = -10)) # all coin flips are negative
 directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
 
-p_2_info(seq(0, 1, by = 0.1))
-p_2_info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
+p2info(seq(0, 1, by = 0.1))
+p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 }
 \references{
 Kery, M., and Schaub, M. 2011.

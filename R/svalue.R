@@ -41,7 +41,7 @@
 #' svalue(rnorm(1e4, mean = 1), side = "left")
 #' svalue(rnorm(1e4, mean = 1), side = "right")
 #'
-#' p_2_svalue(seq(0, 1, by = 0.1))
+#' p2svalue(seq(0, 1, by = 0.1))
 svalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
   chk_numeric(x)
   chk_string(side)
@@ -54,7 +54,7 @@ svalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
 
 #' @describeIn svalue Calculate an s-value from a vector of probabilities.
 #' @export
-p_2_svalue <- function(p) {
+p2svalue <- function(p) {
   chk_numeric(p)
   chk_range(p)
   -log2(p)

@@ -33,13 +33,13 @@ test_that("svalue() requires side to be one of left, right, both, or NULL, and r
                "`side` must match 'both', 'left' or 'right', not 'aaa'.")
 })
 
-test_that("p_2_svalue() returns the correct values", {
-  expect_equal(p_2_svalue(NA_real_), NA_real_)
-  expect_equal(p_2_svalue(NA_integer_), NA_real_)
-  expect_equal(p_2_svalue(1), 0)
-  expect_equal(p_2_svalue(1 - .Machine$double.eps), -log2(1 - .Machine$double.eps))
+test_that("p2svalue() returns the correct values", {
+  expect_equal(p2svalue(NA_real_), NA_real_)
+  expect_equal(p2svalue(NA_integer_), NA_real_)
+  expect_equal(p2svalue(1), 0)
+  expect_equal(p2svalue(1 - .Machine$double.eps), -log2(1 - .Machine$double.eps))
   p <- runif(1e4)
-  expect_equal(p_2_svalue(p), -log2(p))
-  expect_equal(p_2_svalue(.Machine$double.eps), -log2(.Machine$double.eps))
-  expect_equal(p_2_svalue(0), Inf)
+  expect_equal(p2svalue(p), -log2(p))
+  expect_equal(p2svalue(.Machine$double.eps), -log2(.Machine$double.eps))
+  expect_equal(p2svalue(0), Inf)
 })

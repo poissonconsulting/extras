@@ -52,8 +52,8 @@
 #' directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 #' directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
 #'
-#' p_2_info(seq(0, 1, by = 0.1))
-#' p_2_info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
+#' p2info(seq(0, 1, by = 0.1))
+#' p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 
 directional_information <- function(x, side = "median", threshold = 0,
                                     threshold_split = "proportional",
@@ -121,7 +121,7 @@ directional_information <- function(x, side = "median", threshold = 0,
 
 #' @describeIn directional-information Calculate the information from a vector of probabilities.
 #' @export
-p_2_info <- function(p, n = Inf) {
+p2info <- function(p, n = Inf) {
   chk_numeric(p)
   chk_range(p)
   chk_numeric(n)
