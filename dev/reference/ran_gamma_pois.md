@@ -48,5 +48,5 @@ Other ran_dist:
 
 ``` r
 ran_gamma_pois(10, theta = 1)
-#>  [1] 0 0 0 1 1 0 0 1 0 2
+#>  [1] 0 0 2 2 0 2 2 0 2 2
 ```

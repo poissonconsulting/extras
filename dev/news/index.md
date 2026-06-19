@@ -1,5 +1,16 @@
 # Changelog
 
+## extras 0.9.0.9000
+
+- Add fledge-bump workflow
+- Add fledge-tag-on-merge workflow
+
+## extras 0.9.0
+
+- Add truncation arguments to log_lik functions; add prob and quant
+  families
+  ([\#119](https://github.com/poissonconsulting/extras/issues/119)).
+
 ## extras 0.8.0.9003
 
 - Tidy tests for `log_lik`, `res`, `ran`, and `dev`

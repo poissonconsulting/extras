@@ -34,7 +34,10 @@ By default it returns the 95% credible limit which corresponds to the
 ## See also
 
 Other summary:
+[`direction()`](https://poissonconsulting.github.io/extras/dev/reference/direction.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/dev/reference/directional_information.md),
 [`kurtosis()`](https://poissonconsulting.github.io/extras/dev/reference/kurtosis.md),
+[`probability_direction()`](https://poissonconsulting.github.io/extras/dev/reference/probability_direction.md),
 [`pvalue()`](https://poissonconsulting.github.io/extras/dev/reference/pvalue.md),
 [`pzeros()`](https://poissonconsulting.github.io/extras/dev/reference/pzeros.md),
 [`skewness()`](https://poissonconsulting.github.io/extras/dev/reference/skewness.md),
