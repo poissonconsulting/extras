@@ -383,6 +383,26 @@ dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
   dev_res(x, mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi), dev)
 }
 
+#' Skew-Lognormal Deviances
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#' @param shape A numeric vector of shape.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examplesIf rlang::is_installed("sn")
+#' dev_skewlnorm(exp(-2:2))
+#' dev_skewlnorm(exp(-2:2), 0, 1, 5)
+#' dev_skewlnorm(exp(-2:2), 0, 1, 5, res = TRUE)
+dev_skewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0, res = FALSE) {
+  rlang::check_installed("sn")
+  x <- pmax(x, 0)
+  dev_skewnorm(log(x), mean = meanlog, sd = sdlog, shape = shape, res = res)
+}
+
 #' Student's t Deviances
 #'
 #' @inheritParams params

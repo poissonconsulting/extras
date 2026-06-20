@@ -429,3 +429,15 @@ test_that("ran_skewnorm", {
     )
   })
 })
+
+test_that("ran_skewlnorm", {
+  skip_if_not_installed("sn")
+  expect_error(ran_skewlnorm(NA_integer_))
+  expect_error(ran_skewlnorm(NULL))
+  expect_error(ran_skewlnorm(1, 0, sdlog = -1))
+  expect_identical(ran_skewlnorm(0L), numeric(0))
+  set.seed(101)
+  expect_true(all(ran_skewlnorm(100, 0, 1, 2) > 0))
+  set.seed(101)
+  expect_equal(ran_skewlnorm(3, 0, 1, 2), c(1.71375069101727, 2.01285193758523, 2.23216981261934))
+})

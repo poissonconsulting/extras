@@ -47,6 +47,7 @@ Other log_lik_dist:
 \code{\link[=log_lik_norm]{log_lik_norm()}},
 \code{\link[=log_lik_pois]{log_lik_pois()}},
 \code{\link[=log_lik_pois_zi]{log_lik_pois_zi()}},
+\code{\link[=log_lik_skewlnorm]{log_lik_skewlnorm()}},
 \code{\link[=log_lik_student]{log_lik_student()}},
 \code{\link[=log_lik_unif]{log_lik_unif()}}
 }

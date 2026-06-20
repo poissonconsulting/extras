@@ -36,6 +36,7 @@ Other quant_dist:
 \code{\link[=quant_norm]{quant_norm()}},
 \code{\link[=quant_pois]{quant_pois()}},
 \code{\link[=quant_pois_zi]{quant_pois_zi()}},
+\code{\link[=quant_skewlnorm]{quant_skewlnorm()}},
 \code{\link[=quant_skewnorm]{quant_skewnorm()}},
 \code{\link[=quant_student]{quant_student()}}
 }

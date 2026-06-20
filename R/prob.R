@@ -228,6 +228,24 @@ prob_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
   pskewnorm(q = x, mean = mean, sd = sd, shape = shape)
 }
 
+#' Skew-Lognormal Cumulative Distribution Function
+#'
+#' @inheritParams params
+#' @param x A numeric vector of quantiles.
+#' @param shape A numeric vector of shape.
+#'
+#' @return An numeric vector of the corresponding probabilities.
+#' @family prob_dist
+#' @export
+#'
+#' @examplesIf rlang::is_installed("sn")
+#' prob_skewlnorm(1:5)
+#' prob_skewlnorm(1:5, shape = -2)
+#' prob_skewlnorm(1:5, shape = 2)
+prob_skewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0) {
+  pskewlnorm(q = x, meanlog = meanlog, sdlog = sdlog, shape = shape)
+}
+
 #' Student's t Cumulative Distribution Function
 #'
 #' @inheritParams params

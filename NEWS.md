@@ -2,6 +2,7 @@
 
 # extras 0.9.0.9000
 
+* Add skew-lognormal distribution family (`dskewlnorm()`, `pskewlnorm()`, `qskewlnorm()`, `rskewlnorm()`, `ran_skewlnorm()`, `sens_skewlnorm()`, `quant_skewlnorm()`, `dev_skewlnorm()`, `res_skewlnorm()`, `log_lik_skewlnorm()`, `prob_skewlnorm()`) (#127).
 * Add fledge-bump workflow
 * Add fledge-tag-on-merge workflow
 
