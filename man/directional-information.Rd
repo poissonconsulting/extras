@@ -2,6 +2,7 @@
 % Please edit documentation in R/directional-information.R
 \name{directional_information}
 \alias{directional_information}
+\alias{p2info}
 \title{Directional information}
 \usage{
 directional_information(
@@ -11,6 +12,8 @@ directional_information(
   threshold_split = "proportional",
   na_rm = FALSE
 )
+
+p2info(p, n = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
@@ -37,15 +40,31 @@ proportionally to the values of \code{x} on the left and right sides,
 }}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
+
+\item{p}{A numeric vector of probabilities of direction.}
+
+\item{n}{A numeric vector of the number of posterior samples used to estimate
+each value of \code{p}. Used to limit the information to be within the interval \eqn{[-n, n]}.}
 }
 \value{
 A number indicating the directional information in bits.
 If \code{x} has \code{NA} values but \code{na_rm} is \code{FALSE}, returns \code{NA_real}.
 }
 \description{
+The occurrence of an event (or lack thereof) transmits more or less
+information depending on the event's probability.
+}
+\details{
 Quantifies the information about direction in a posterior distribution based on the directional probability.
 This function calculates such information using the difference in the probability of direction (see \code{\link[=probability_direction]{probability_direction()}}), after converting each probability to bits (also see \code{\link[=svalue]{svalue()}}.
 }
+\section{Functions}{
+\itemize{
+\item \code{directional_information()}: Calculate the directional information from a posterior distribution.
+
+\item \code{p2info()}: Calculate the information from a vector of probabilities.
+
+}}
 \examples{
 
 directional_information(0)
@@ -59,6 +78,9 @@ directional_information(rnorm(1e3, mean = 10)) # all coin flips are positive
 directional_information(rnorm(1e3, mean = -10)) # all coin flips are negative
 directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
+
+p2info(seq(0, 1, by = 0.1))
+p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 }
 \references{
 Kery, M., and Schaub, M. 2011.

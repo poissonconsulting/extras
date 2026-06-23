@@ -1,10 +1,25 @@
 #' Surprisal Value
 #'
-#' The surprisal value (Greenland 2019) is the [pvalue] expressed in
-#' terms of how many consecutive heads would have to be thrown on a fair coin
-#' in a single attempt to achieve the same probability: \eqn{-\log_2(p)}, where
-#' \eqn{p} is the p-value of interest.
+#' @description
+#' The [surprisal value](https://www.poissonconsulting.ca/post/2026/what-are-s-values/)
+#' (Greenland 2019) is a probability expressed in terms of how many consecutive
+#' heads would have to be thrown on a fair coin in a single attempt to achieve
+#' the same probability: \eqn{-\log_2(p)}, where \eqn{p} is the p-value of
+#' interest. See the details section for some examples.
 #'
+#' @details {
+#' A near-certain event has an s-value near 0 because it is similar to getting
+#' 0 successful coin flips out of 0 tosses, which is certain and unsurprising.
+#'
+#' An event with a probability of 0.5 is as surprising as getting a successful
+#' coin toss.
+#'
+#' A near-impossible event has a very large s-value because its
+#' occurrence would be extremely surprising, like observing many consecutive
+#' successes on a fair coin.
+#' }
+#'
+#' @describeIn svalue Calculate an s-value from a posterior distribution.
 #' @param x A numeric object of MCMC values.
 #' @inheritParams params
 #' @param side A character indicating whether to calculate s-values using
@@ -15,7 +30,7 @@
 #' @family summary
 #' @references
 #' Greenland, S. 2019. Valid P-Values Behave Exactly as They Should:
-#' Some Misleading Criticisms of P-Values and Their Resolution With S -Values.
+#' Some Misleading Criticisms of P-Values and Their Resolution With S-Values.
 #' The American Statistician 73(sup1): 106–114.
 #' \doi{10.1080/00031305.2018.1529625}.
 #' @export
@@ -25,6 +40,8 @@
 #' svalue(as.numeric(0:100), side = "right")
 #' svalue(rnorm(1e4, mean = 1), side = "left")
 #' svalue(rnorm(1e4, mean = 1), side = "right")
+#'
+#' p2svalue(seq(0, 1, by = 0.1))
 svalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
   chk_numeric(x)
   chk_string(side)
@@ -33,4 +50,12 @@ svalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
   chk_flag(na_rm)
 
   -log2(pvalue(x, side = side, threshold = threshold, na_rm = na_rm))
+}
+
+#' @describeIn svalue Calculate an s-value from a vector of probabilities.
+#' @export
+p2svalue <- function(p) {
+  chk_numeric(p)
+  chk_range(p)
+  -log2(p)
 }
