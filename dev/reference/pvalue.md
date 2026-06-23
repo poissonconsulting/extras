@@ -12,7 +12,7 @@ positive or negative), see
 p-values converted to bits, see
 [`svalue()`](https://poissonconsulting.github.io/extras/dev/reference/svalue.md).To
 convert MCMC objects to information, see
-[`directional_information()`](https://poissonconsulting.github.io/extras/dev/reference/directional_information.md).
+[`directional_information()`](https://poissonconsulting.github.io/extras/dev/reference/directional-information.md).
 
 ## Usage
 
@@ -56,7 +56,7 @@ from
 
 Other summary:
 [`direction()`](https://poissonconsulting.github.io/extras/dev/reference/direction.md),
-[`directional_information()`](https://poissonconsulting.github.io/extras/dev/reference/directional_information.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/dev/reference/directional-information.md),
 [`kurtosis()`](https://poissonconsulting.github.io/extras/dev/reference/kurtosis.md),
 [`lower()`](https://poissonconsulting.github.io/extras/dev/reference/lower.md),
 [`probability_direction()`](https://poissonconsulting.github.io/extras/dev/reference/probability_direction.md),

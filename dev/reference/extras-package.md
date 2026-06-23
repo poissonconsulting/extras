@@ -37,4 +37,7 @@ Other contributors:
 - Nadine Hussein ([ORCID](https://orcid.org/0000-0003-4470-8361))
   \[contributor\]
 
+- Stefano Mezzini ([ORCID](https://orcid.org/0000-0001-8551-7436))
+  \[contributor\]
+
 - Poisson Consulting \[copyright holder, funder\]

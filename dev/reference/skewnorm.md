@@ -42,7 +42,7 @@ rskewnorm(n = 1, mean = 0, sd = 1, shape = 0)
 
 - p:
 
-  A vector of probabilities.
+  A numeric vector of probabilities.
 
 - n:
 

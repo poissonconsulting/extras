@@ -70,7 +70,7 @@ functions.
 
 - p:
 
-  A vector of probabilities.
+  A numeric vector of probabilities.
 
 - prob:
 

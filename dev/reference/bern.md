@@ -40,7 +40,7 @@ rbern(n, prob)
 
 - p:
 
-  A vector of probabilities.
+  A numeric vector of probabilities.
 
 - n:
 

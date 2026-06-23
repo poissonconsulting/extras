@@ -27,7 +27,7 @@ A number.
 
 Other summary:
 [`direction()`](https://poissonconsulting.github.io/extras/dev/reference/direction.md),
-[`directional_information()`](https://poissonconsulting.github.io/extras/dev/reference/directional_information.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/dev/reference/directional-information.md),
 [`kurtosis()`](https://poissonconsulting.github.io/extras/dev/reference/kurtosis.md),
 [`lower()`](https://poissonconsulting.github.io/extras/dev/reference/lower.md),
 [`probability_direction()`](https://poissonconsulting.github.io/extras/dev/reference/probability_direction.md),
