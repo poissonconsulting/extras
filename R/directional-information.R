@@ -1,8 +1,12 @@
 #' Directional information
 #'
+#' The occurrence of an event (or lack thereof) transmits more or less
+#' information depending on the event's probability.
+#'
 #' Quantifies the information about direction in a posterior distribution based on the directional probability.
 #' This function calculates such information using the difference in the probability of direction (see [`probability_direction()`]), after converting each probability to bits (also see [`svalue()`].
 #'
+#' @describeIn directional-information Calculate the directional information from a posterior distribution.
 #' @param x A numeric vector of MCMC values.
 #' @param side A string indicating whether to calculate
 #' the directional information relative to the left side (`"left"`; `x < threshold`),
@@ -20,6 +24,10 @@
 #'    proportionally to the values of `x` on the left and right sides,
 #' - `"exclude"` to drop the values of `x` equal to `threshold`
 #'   (identical to using `"proportional"`).
+#'
+#' @param p A numeric vector of probabilities of direction.
+#' @param n A numeric vector of the number of posterior samples used to estimate
+#' each value of `p`. Used to limit the information to be within the interval \eqn{[-n, n]}.
 #'
 #' @inheritParams params
 #' @return A number indicating the directional information in bits.
@@ -43,6 +51,9 @@
 #' directional_information(rnorm(1e3, mean = -10)) # all coin flips are negative
 #' directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 #' directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
+#'
+#' p2info(seq(0, 1, by = 0.1))
+#' p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 
 directional_information <- function(x, side = "median", threshold = 0,
                                     threshold_split = "proportional",
@@ -105,5 +116,20 @@ directional_information <- function(x, side = "median", threshold = 0,
   # returning n   if o is  Inf, since n    = n / (n+1) / (1 / (n+1))
   # returning 1/n if o is -Inf, since 1/n  = 1 / (n+1) / (n / (n+1))
   # note that the odds ratio could be p_l / p_r or p_r / p_l
+  i
+}
+
+#' @describeIn directional-information Calculate the information from a vector of probabilities.
+#' @export
+p2info <- function(p, n = Inf) {
+  chk_numeric(p)
+  chk_range(p)
+  chk_numeric(n)
+  # to require integers without requiring integer class:
+  chk_all_equal(n, as.integer(n))
+
+  i <- -log2(1 - p) - (-log2(p))
+  i <- pmin(i, n) # max information difference is a bit for each sample
+  i <- pmax(i, -n)
   i
 }

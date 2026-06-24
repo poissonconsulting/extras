@@ -28,7 +28,7 @@ rskewnorm(n = 1, mean = 0, sd = 1, shape = 0)
 
 \item{q}{A vector of quantiles.}
 
-\item{p}{A vector of probabilities.}
+\item{p}{A numeric vector of probabilities.}
 
 \item{n}{A non-negative whole number of the number of random samples to
 generate.}

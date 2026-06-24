@@ -41,7 +41,7 @@ generate.}
 
 \item{nas}{A flag specifying whether to also fill missing values.}
 
-\item{p}{A vector of probabilities.}
+\item{p}{A numeric vector of probabilities.}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of
 success.}

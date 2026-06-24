@@ -2,9 +2,12 @@
 % Please edit documentation in R/svalue.R
 \name{svalue}
 \alias{svalue}
+\alias{p2svalue}
 \title{Surprisal Value}
 \usage{
 svalue(x, side = "both", threshold = 0, na_rm = FALSE)
+
+p2svalue(p)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
@@ -16,27 +19,52 @@ p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or both
 \item{threshold}{A number of the threshold value.}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
+
+\item{p}{A numeric vector of probabilities.}
 }
 \value{
 A non-negative number.
 If \code{x} has \code{NA} values but \code{na_rm} is \code{FALSE}, returns \code{NA_real}.
 }
 \description{
-The surprisal value (Greenland 2019) is the \link{pvalue} expressed in
-terms of how many consecutive heads would have to be thrown on a fair coin
-in a single attempt to achieve the same probability: \eqn{-\log_2(p)}, where
-\eqn{p} is the p-value of interest.
+The \href{https://www.poissonconsulting.ca/post/2026/what-are-s-values/}{surprisal value}
+(Greenland 2019) is a probability expressed in terms of how many consecutive
+heads would have to be thrown on a fair coin in a single attempt to achieve
+the same probability: \eqn{-\log_2(p)}, where \eqn{p} is the p-value of
+interest. See the details section for some examples.
 }
+\details{
+{
+A near-certain event has an s-value near 0 because it is similar to getting
+0 successful coin flips out of 0 tosses, which is certain and unsurprising.
+
+An event with a probability of 0.5 is as surprising as getting a successful
+coin toss.
+
+A near-impossible event has a very large s-value because its
+occurrence would be extremely surprising, like observing many consecutive
+successes on a fair coin.
+}
+}
+\section{Functions}{
+\itemize{
+\item \code{svalue()}: Calculate an s-value from a posterior distribution.
+
+\item \code{p2svalue()}: Calculate an s-value from a vector of probabilities.
+
+}}
 \examples{
 svalue(as.numeric(0:100))
 svalue(as.numeric(0:100), side = "left")
 svalue(as.numeric(0:100), side = "right")
 svalue(rnorm(1e4, mean = 1), side = "left")
 svalue(rnorm(1e4, mean = 1), side = "right")
+
+p2svalue(seq(0, 1, by = 0.1))
 }
 \references{
 Greenland, S. 2019. Valid P-Values Behave Exactly as They Should:
-Some Misleading Criticisms of P-Values and Their Resolution With S -Values.
+Some Misleading Criticisms of P-Values and Their Resolution With S-Values.
 The American Statistician 73(sup1): 106–114.
 \doi{10.1080/00031305.2018.1529625}.
 }
