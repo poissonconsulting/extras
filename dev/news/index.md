@@ -1,5 +1,11 @@
 # Changelog
 
+## extras 0.9.0.9002
+
+- Add functions to calculate s-values and information from vectors of
+  probabilities
+  ([\#122](https://github.com/poissonconsulting/extras/issues/122))
+
 ## extras 0.9.0.9001
 
 - Same as previous version.
