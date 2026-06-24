@@ -3,9 +3,6 @@
 #' Calculates the proportion of the posterior (or credible interval if
 #' `level < 1`) that falls within the region of practical equivalence (ROPE)
 #' to a `threshold`.
-#' The ROPE is calculated as `threshold + interval`.
-#' Note that the default is not appropriate for all models, since the `interval`
-#' is sensitive to unit conversions.
 #'
 #' @param x A numeric vector of MCMC samples.
 #' @param threshold A number specifying the center of the ROPE.
@@ -23,6 +20,11 @@
 #' @param na_rm A flag indicating whether to remove missing values.
 #' @return A number indicating the proportion of the posterior (or credible
 #' interval) within the region of practical equivalence.
+#' @details
+#' The ROPE is calculated as `threshold + interval`.
+#' Note that the default is not appropriate for all models, since the `interval`
+#' is sensitive to unit conversions.
+#'
 #' @export
 #' @seealso [extras::xtr_ci]
 #' @examples

@@ -9,7 +9,6 @@
 #' @param side A character vector of length 1 indicating whether to calculate
 #' p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
 #' @inheritParams params
-#' @return A number between 0 and 1.
 #'
 #' @details
 #' A p-value of 0.05 indicates that the 95% CRI just includes the threshold value.
@@ -24,7 +23,6 @@
 #' For p-values converted to bits, see [`svalue()`].
 #'
 #' To convert MCMC objects to information, see [`directional_information()`].
-#' }
 #'
 #' @param x A numeric vector of MCMC values.
 #' @param side A character vector of length 1 indicating whether to calculate

@@ -21,7 +21,7 @@ Equal-Tailed Intervals (\code{"ETI"}).}
 \item{na_rm}{A flag indicating whether to remove missing values.}
 }
 \value{
-A data frame of the \code{lower} and \code{upper} limits for the credible interval.
+A \link{data.frame} of the \code{lower} and \code{upper} limits for the credible interval.
 Note that the interval is not guaranteed to be one-sided or two-sided.
 }
 \description{

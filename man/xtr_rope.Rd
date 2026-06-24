@@ -44,6 +44,8 @@ interval) within the region of practical equivalence.
 Calculates the proportion of the posterior (or credible interval if
 \code{level < 1}) that falls within the region of practical equivalence (ROPE)
 to a \code{threshold}.
+}
+\details{
 The ROPE is calculated as \code{threshold + interval}.
 Note that the default is not appropriate for all models, since the \code{interval}
 is sensitive to unit conversions.
