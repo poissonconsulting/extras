@@ -11,7 +11,7 @@
 #' Currently allows Highest Density Intervals (`"HDI"`; default) and
 #' Equal-Tailed Intervals (`"ETI"`).
 #' @param na_rm A flag indicating whether to remove missing values.
-#' @return A data frame of the `lower` and `upper` limits for the credible interval.
+#' @return A [data.frame] of the `lower` and `upper` limits for the credible interval.
 #' Note that the interval is not guaranteed to be one-sided or two-sided.
 #' @export
 #' @seealso [mcmcr::coef]
