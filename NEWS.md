@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# extras 0.9.0.9002
+
+- Add functions to calculate s-values and information from vectors of probabilities (#122)
+
+
 # extras 0.9.0.9001
 
 - Same as previous version.
