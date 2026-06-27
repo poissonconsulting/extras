@@ -28,7 +28,7 @@
 #'   generate.
 #' @param na_rm A flag specifying whether to remove missing values.
 #' @param nas A flag specifying whether to also fill missing values.
-#' @param p A vector of probabilities.
+#' @param p A numeric vector of probabilities.
 #' @param prob A numeric vector of values between 0 and 1 of the probability of
 #'   success.
 #' @param q A vector of quantiles.
