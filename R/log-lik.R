@@ -484,6 +484,42 @@ log_lik_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupp
   log_lik
 }
 
+#' Skew-Lognormal Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#' @param shape A numeric vector of shape.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examplesIf rlang::is_installed("sn")
+#' log_lik_skewlnorm(1:5)
+#' log_lik_skewlnorm(1:5, shape = -2)
+#' log_lik_skewlnorm(1:5, shape = 2)
+log_lik_skewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0, tlower = 0, tupper = Inf) {
+  if (!length(tlower) || !length(tupper)) return(numeric(0))
+  rlang::check_installed("sn")
+  log_lik <- dskewlnorm(x = x, meanlog = meanlog, sdlog = sdlog, shape = shape, log = TRUE)
+  use_lnorm <- !is.na(shape) & shape == 0
+  llnorm <- log_lik_lnorm(x = x, meanlog = meanlog, sdlog = sdlog)
+  lengths <- as.logical(length(x)) + as.logical(length(meanlog)) + as.logical(length(sdlog)) + as.logical(length(shape))
+  if (lengths >= 4) log_lik[use_lnorm] <- llnorm[use_lnorm]
+  truncated <- (tlower != 0 | !is.infinite(tupper)) & !is.na(tlower) & !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik - log(
+      prob_skewlnorm(tupper, meanlog = meanlog, sdlog = sdlog, shape = shape) -
+        prob_skewlnorm(tlower, meanlog = meanlog, sdlog = sdlog, shape = shape)
+    )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) log_lik[trunc_na] <- NA
+  log_lik
+}
+
 #' Student's t Log-Likelihood
 #'
 #' @inheritParams params

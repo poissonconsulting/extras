@@ -39,6 +39,7 @@ Other res_dist:
 \code{\link[=res_neg_binom]{res_neg_binom()}},
 \code{\link[=res_pois]{res_pois()}},
 \code{\link[=res_pois_zi]{res_pois_zi()}},
+\code{\link[=res_skewlnorm]{res_skewlnorm()}},
 \code{\link[=res_skewnorm]{res_skewnorm()}},
 \code{\link[=res_student]{res_student()}}
 }

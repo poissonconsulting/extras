@@ -1151,3 +1151,22 @@ test_that("res_skewnorm", {
   })
   expect_error(res_skewnorm(10, type = "unknown"))
 })
+
+test_that("res_skewlnorm", {
+  skip_if_not_installed("sn")
+  expect_identical(res_skewlnorm(NA, 1, 1, 1), NA_real_)
+  expect_identical(res_skewlnorm(1, NA, 1, 1), NA_real_)
+  expect_identical(res_skewlnorm(1, 1, NA, 1), NA_real_)
+  expect_identical(res_skewlnorm(1, 1, 1, NA), NA_real_)
+  expect_equal(
+    res_skewlnorm(exp(0:2), 1, 0.5, 0.5),
+    dev_skewlnorm(exp(0:2), 1, 0.5, 0.5, res = TRUE)
+  )
+  expect_equal(res_skewlnorm(c(1, 2, 5), 0, 1, 2, type = "raw"), c(0, 1, 4))
+  expect_equal(
+    res_skewlnorm(c(1, 2, 5), 0, 1, 2, type = "standardized"),
+    c(-0.636126686943430, -0.258740725100024, 0.873417160430193)
+  )
+  expect_equal(res_skewlnorm(1:5, 0.3, 0.7, 0), res_lnorm(1:5, 0.3, 0.7))
+  expect_error(res_skewlnorm(10, type = "unknown"))
+})

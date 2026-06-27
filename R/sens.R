@@ -80,6 +80,58 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
   return(list(mean = adjusted_mean, sd = new_sd, shape = shape))
 }
 
+#' Adjust Skew-Lognormal Distribution Parameters for Sensitivity Analyses
+#'
+#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' of the Skew-Lognormal distribution while preserving its mean and `shape`.
+#' The adjustment is made on the natural scale (i.e. for `x`, not for
+#' `log(x)`), mirroring [sens_lnorm()], to which it reduces when `shape = 0`.
+#'
+#' @inheritParams params
+#'
+#' @return A named list of the adjusted distribution's parameters.
+#' @family sens_dist
+#' @export
+#'
+#' @examplesIf rlang::is_installed("sn")
+#' sens_skewlnorm(0, 1, 2, 2)
+#' sens_skewlnorm(0, 1, 2, 0.8)
+sens_skewlnorm <- function(meanlog, sdlog, shape, sd_mult = 2) {
+  chk::chk_number(meanlog)
+  chk::chk_number(sdlog)
+  chk::chk_gte(sdlog, value = 0)
+  chk::chk_number(shape)
+  chk::chk_number(sd_mult)
+  chk::chk_gt(sd_mult, value = 0)
+
+  delta <- shape / sqrt(1 + shape^2)
+  # squared coefficient of variation plus one, as a function of sdlog
+  cv2p1 <- function(sl) {
+    exp(sl^2) * stats::pnorm(2 * delta * sl) / (2 * stats::pnorm(delta * sl)^2)
+  }
+
+  if (sdlog == 0) {
+    return(list(meanlog = meanlog, sdlog = sdlog, shape = shape))
+  }
+
+  original_mean <- 2 * exp(meanlog + sdlog^2 / 2) * stats::pnorm(delta * sdlog)
+  target <- sd_mult^2 * (cv2p1(sdlog) - 1) + 1
+
+  hi <- max(sdlog, 1)
+  while (cv2p1(hi) < target) {
+    hi <- hi * 2
+  }
+  new_sdlog <- stats::uniroot(
+    function(sl) cv2p1(sl) - target,
+    interval = c(0, hi),
+    tol = .Machine$double.eps^0.5
+  )$root
+  new_meanlog <- log(original_mean / (2 * stats::pnorm(delta * new_sdlog))) -
+    new_sdlog^2 / 2
+
+  return(list(meanlog = new_meanlog, sdlog = new_sdlog, shape = shape))
+}
+
 #' Adjust Log-Normal Distribution Parameters for Sensitivity Analysis
 #'
 #' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation

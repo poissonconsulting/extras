@@ -43,6 +43,7 @@ Other dev_dist:
 \code{\link[=dev_norm]{dev_norm()}},
 \code{\link[=dev_pois]{dev_pois()}},
 \code{\link[=dev_pois_zi]{dev_pois_zi()}},
+\code{\link[=dev_skewlnorm]{dev_skewlnorm()}},
 \code{\link[=dev_student]{dev_student()}}
 }
 \concept{dev_dist}

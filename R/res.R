@@ -328,6 +328,37 @@ res_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, type = "dev", simulate 
   )
 }
 
+#' Skew-Lognormal Residuals
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#' @param shape A numeric vector of shape.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examplesIf rlang::is_installed("sn")
+#' res_skewlnorm(exp(-2:2))
+res_skewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0, type = "dev", simulate = FALSE) {
+  rlang::check_installed("sn")
+  chk_string(type)
+  if (!vld_false(simulate)) {
+    x <- ran_skewlnorm(length(x), meanlog = meanlog, sdlog = sdlog, shape = shape)
+  }
+  delta <- shape / sqrt(1 + shape^2)
+  mean_sln <- 2 * exp(meanlog + sdlog^2 / 2) * stats::pnorm(delta * sdlog)
+  m2_sln <- 2 * exp(2 * meanlog + 2 * sdlog^2) * stats::pnorm(2 * delta * sdlog)
+  sd_sln <- sqrt(m2_sln - mean_sln^2)
+  switch(type,
+    data = x,
+    raw = x - exp(meanlog),
+    standardized = (x - mean_sln) / sd_sln,
+    dev = dev_skewlnorm(x, meanlog = meanlog, sdlog = sdlog, shape = shape, res = TRUE),
+    chk_subset(x, c("data", "raw", "dev", "standardized"))
+  )
+}
+
 res_student_standardized <- function(x, mean, sd, theta) {
   res <- rep(NA, length(x))
   if (length(mean) == 1) {
