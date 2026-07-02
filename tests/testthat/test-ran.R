@@ -440,4 +440,5 @@ test_that("ran_skewlnorm", {
   expect_true(all(ran_skewlnorm(100, 0, 1, 2) > 0))
   set.seed(101)
   expect_equal(ran_skewlnorm(3, 0, 1, 2), c(1.71375069101727, 2.01285193758523, 2.23216981261934))
+)
 })
