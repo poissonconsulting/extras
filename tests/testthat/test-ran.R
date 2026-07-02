@@ -436,7 +436,8 @@ test_that("ran_skewlnorm", {
   expect_error(ran_skewlnorm(NULL))
   expect_error(ran_skewlnorm(1, 0, sdlog = -1))
   expect_identical(ran_skewlnorm(0L), numeric(0))
-  set.seed(101)
+  withr::with_seed(
+    101,
   expect_true(all(ran_skewlnorm(100, 0, 1, 2) > 0))
 )
   withr::with_seed(
