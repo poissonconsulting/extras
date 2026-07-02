@@ -1166,7 +1166,10 @@ test_that("res_skewlnorm", {
     res_skewlnorm(exp(0:2), 1, 0.5, 0.5),
     dev_skewlnorm(exp(0:2), 1, 0.5, 0.5, res = TRUE)
   )
-  expect_equal(res_skewlnorm(c(1, 2, 5), 0, 1, 2, type = "raw"), c(0, 1, 4))
+  expect_equal(
+    res_skewlnorm(c(1, 2, 5), 0, 1, 2, type = "raw"), 
+    c(-1.6856130096524, -0.685613009652402, 2.3143869903476)
+  )
   expect_equal(
     res_skewlnorm(c(1, 2, 5), 0, 1, 2, type = "standardized"),
     c(-0.636126686943430, -0.258740725100024, 0.873417160430193)
