@@ -1027,6 +1027,10 @@ test_that("dev_skewnorm deviance", {
 
 test_that("dev_skewlnorm missing values", {
   skip_if_not_installed("sn")
+   expect_identical(
+    dev_skewlnorm(numeric(0), numeric(0), numeric(0), numeric(0)),
+    numeric(0)
+  )
   expect_identical(dev_skewlnorm(NA, 1, 1, 1), NA_real_)
   expect_identical(dev_skewlnorm(1, NA, 1, 1), NA_real_)
   expect_identical(dev_skewlnorm(1, 1, NA, 1), NA_real_)
