@@ -2,17 +2,7 @@
 
 A Bayesian p-value (p) is here defined in terms of the quantile-based
 (1-p) \* 100% credible interval (CRI) that just includes a threshold
-(Kery and Schaub 2011). By default a p-value of 0.05 indicates that the
-95% CRI just includes the threshold value.Note that the function
-contains the sample-size correction \\p\_{c} = p \* n / (n + 1)\\ to
-avoid p-values of 0. The function can still return p-values of 1.To use
-as a measure of certainty in the direction of the estimate (i.e.,
-positive or negative), see
-[`probability_direction()`](https://poissonconsulting.github.io/extras/dev/reference/probability_direction.md).For
-p-values converted to bits, see
-[`svalue()`](https://poissonconsulting.github.io/extras/dev/reference/svalue.md).To
-convert MCMC objects to information, see
-[`directional_information()`](https://poissonconsulting.github.io/extras/dev/reference/directional-information.md).
+(Kery and Schaub 2011).
 
 ## Usage
 
@@ -44,6 +34,25 @@ pvalue(x, side = "both", threshold = 0, na_rm = FALSE)
 
 A number between 0 and 1. If `x` has `NA` values but `na_rm` is `FALSE`,
 returns `NA_real`.
+
+## Details
+
+A p-value of 0.05 indicates that the 95% CRI just includes the threshold
+value.
+
+Note that the function contains the sample-size correction \\p\_{c} = p
+\* n / (n + 1)\\ to avoid p-values of 0. The function can still return
+p-values of 1.
+
+To use as a measure of certainty in the direction of the estimate (i.e.,
+positive or negative), see
+[`probability_direction()`](https://poissonconsulting.github.io/extras/dev/reference/probability_direction.md).
+
+For p-values converted to bits, see
+[`svalue()`](https://poissonconsulting.github.io/extras/dev/reference/svalue.md).
+
+To convert MCMC objects to information, see
+[`directional_information()`](https://poissonconsulting.github.io/extras/dev/reference/directional-information.md).
 
 ## References
 

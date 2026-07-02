@@ -30,6 +30,11 @@ functions.
 
   A non-negative numeric vector of means.
 
+- level:
+
+  A number \> 0 and \<= 1 specifying the probability coverage of the
+  interval.
+
 - log:
 
   A flag specifying whether to return the log-transformed value.

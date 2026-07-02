@@ -213,6 +213,14 @@ Functions to summarise MCMC vectors as scalars
   : Zeros
 - [`pzeros()`](https://poissonconsulting.github.io/extras/dev/reference/pzeros.md)
   : Proportion of Zeros
+- [`xtr_rope()`](https://poissonconsulting.github.io/extras/dev/reference/xtr_rope.md)
+  : Region of Practical Equivalence
+- [`xtr_ci()`](https://poissonconsulting.github.io/extras/dev/reference/xtr_ci.md)
+  : Credible Intervals
+- [`xtr_ci_eti()`](https://poissonconsulting.github.io/extras/dev/reference/xtr_ci_eti.md)
+  : Equal-Tailed Interval
+- [`xtr_ci_hdi()`](https://poissonconsulting.github.io/extras/dev/reference/xtr_ci_hdi.md)
+  : Highest Density Interval
 
 ## Conversion Functions
 
