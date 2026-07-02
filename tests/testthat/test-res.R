@@ -1154,6 +1154,10 @@ test_that("res_skewnorm", {
 
 test_that("res_skewlnorm", {
   skip_if_not_installed("sn")
+  expect_identical(
+    res_skewlnorm(numeric(0), numeric(0), numeric(0), numeric(0)), 
+    numeric(0)
+  )
   expect_identical(res_skewlnorm(NA, 1, 1, 1), NA_real_)
   expect_identical(res_skewlnorm(1, NA, 1, 1), NA_real_)
   expect_identical(res_skewlnorm(1, 1, NA, 1), NA_real_)
