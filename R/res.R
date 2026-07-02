@@ -352,7 +352,7 @@ res_skewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0, type = "dev", si
   sd_sln <- sqrt(m2_sln - mean_sln^2)
   switch(type,
     data = x,
-    raw = x - exp(meanlog),
+    raw = x - mean_sln,
     standardized = (x - mean_sln) / sd_sln,
     dev = dev_skewlnorm(x, meanlog = meanlog, sdlog = sdlog, shape = shape, res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
