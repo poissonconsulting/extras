@@ -248,6 +248,7 @@ test_that("rskewlnorm has same mean and sd as rlnorm when shape = 0", {
 
 test_that("rskewlnorm returns expected output", {
   skip_if_not_installed("sn")
-  set.seed(101)
+  withr::with_seed(
+    101, 
   expect_equal(rskewlnorm(3, 0, 1, 2), c(1.71375069101727, 2.01285193758523, 2.23216981261934))
 })
