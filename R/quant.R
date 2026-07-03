@@ -182,6 +182,24 @@ quant_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
   qskewnorm(p = x, mean = mean, sd = sd, shape = shape)
 }
 
+#' Skew-Lognormal Quantile Function
+#'
+#' @inheritParams params
+#' @param x A numeric vector of probabilities.
+#' @param shape A numeric vector of shape.
+#'
+#' @return An numeric vector of the corresponding quantiles.
+#' @family quant_dist
+#' @export
+#'
+#' @examplesIf rlang::is_installed("sn")
+#' quant_skewlnorm(c(0.1, 0.4, 0.6))
+#' quant_skewlnorm(c(0.1, 0.4, 0.6), shape = -2)
+#' quant_skewlnorm(c(0.1, 0.4, 0.6), shape = 2)
+quant_skewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0) {
+  qskewlnorm(p = x, meanlog = meanlog, sdlog = sdlog, shape = shape)
+}
+
 #' Student's t Quantile Function
 #'
 #' @inheritParams params

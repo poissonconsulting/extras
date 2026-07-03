@@ -1024,3 +1024,45 @@ test_that("dev_skewnorm deviance", {
   deviance <- sum(dev_skewnorm(samples, coef(mod)[1]))
   expect_equal(deviance, deviance(mod))
 })
+
+test_that("dev_skewlnorm missing values", {
+  skip_if_not_installed("sn")
+   expect_identical(
+    dev_skewlnorm(numeric(0), numeric(0), numeric(0), numeric(0)),
+    numeric(0)
+  )
+  expect_identical(dev_skewlnorm(NA, 1, 1, 1), NA_real_)
+  expect_identical(dev_skewlnorm(1, NA, 1, 1), NA_real_)
+  expect_identical(dev_skewlnorm(1, 1, NA, 1), NA_real_)
+  expect_identical(dev_skewlnorm(1, 1, 1, NA), NA_real_)
+})
+
+test_that("dev_skewlnorm equal to dev_lnorm when shape = 0", {
+  skip_if_not_installed("sn")
+  expect_equal(dev_skewlnorm(exp(-2:2), 0.3, 0.7, 0), dev_lnorm(exp(-2:2), 0.3, 0.7))
+})
+
+test_that("dev_skewlnorm known values", {
+  skip_if_not_installed("sn")
+  expect_equal(dev_skewlnorm(2, 0, 1, 2), 0.0601555584713913)
+  expect_equal(
+    dev_skewlnorm(exp(0:2), 1, 0.5, 0.5),
+    c(6.433432578976046, 0.137683650077409, 3.096896847004418)
+  )
+})
+
+test_that("dev_skewlnorm res", {
+  skip_if_not_installed("sn")
+  expect_equal(
+    dev_skewlnorm(exp(0:2), 1, 0.5, 0.5),
+    dev_skewlnorm(exp(0:2), 1, 0.5, 0.5, res = TRUE)^2
+  )
+})
+
+test_that("dev_skewlnorm log_lik", {
+  skip_if_not_installed("sn")
+  expect_equal(
+    dev_skewlnorm(1:3, 0.5, 0.7, shape = 0),
+    dev_lnorm(1:3, 0.5, 0.7)
+  )
+})

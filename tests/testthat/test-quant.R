@@ -150,3 +150,11 @@ test_that("quant_student", {
   expect_equal(quant_student(0.975, 0, 1, 0.5), 4.30265272974946)
   expect_equal(prob_student(quant_student(0.7, 2, 1, 0.5), 2, 1, 0.5), 0.7)
 })
+
+test_that("quant_skewlnorm", {
+  skip_if_not_installed("sn")
+  expect_identical(quant_skewlnorm(NA), NA_real_)
+  expect_equal(quant_skewlnorm(c(0.1, 0.5, 0.9), 0.3, 0.7, shape = 0), quant_lnorm(c(0.1, 0.5, 0.9), 0.3, 0.7))
+  expect_equal(quant_skewlnorm(0.5, 0, 1, 2), 1.92585572275397)
+  expect_equal(prob_skewlnorm(quant_skewlnorm(0.7, 0, 1, 2), 0, 1, 2), 0.7, tolerance = 1e-6)
+})

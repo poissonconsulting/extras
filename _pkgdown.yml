@@ -111,6 +111,7 @@ reference:
   - '`dev_pois`'
   - '`dev_pois_zi`'
   - '`dev_skewnorm`'
+  - '`dev_skewlnorm`'
   - '`dev_student`'
 - title: Residual
   desc: Raw and Deviance Residuals
@@ -127,6 +128,7 @@ reference:
   - '`res_pois`'
   - '`res_pois_zi`'
   - '`res_skewnorm`'
+  - '`res_skewlnorm`'
   - '`res_student`'
 - title: Log-Likelihood
   desc: Log-likelihood functions
@@ -145,6 +147,7 @@ reference:
   - '`log_lik_pois`'
   - '`log_lik_pois_zi`'
   - '`log_lik_skewnorm`'
+  - '`log_lik_skewlnorm`'
   - '`log_lik_student`'
   - '`log_lik_unif`'
 - title: Cumulative Distribution
@@ -164,6 +167,7 @@ reference:
   - '`prob_pois`'
   - '`prob_pois_zi`'
   - '`prob_skewnorm`'
+  - '`prob_skewlnorm`'
   - '`prob_student`'
   - '`prob_unif`'
 - title: Quantile
@@ -182,6 +186,7 @@ reference:
   - '`quant_pois`'
   - '`quant_pois_zi`'
   - '`quant_skewnorm`'
+  - '`quant_skewlnorm`'
   - '`quant_student`'
   - '`quant_unif`'
 - title: Random
@@ -199,6 +204,7 @@ reference:
   - '`ran_pois`'
   - '`ran_pois_zi`'
   - '`ran_skewnorm`'
+  - '`ran_skewlnorm`'
   - '`ran_student`'
 - title: Sensitivity
   desc: Sensitivity functions
@@ -213,6 +219,7 @@ reference:
   - '`sens_norm`'
   - '`sens_pois`'
   - '`sens_skewnorm`'
+  - '`sens_skewlnorm`'
   - '`sens_student`'
 - title: Bernoulli
   desc: Bernoulli distribution functions
@@ -228,6 +235,13 @@ reference:
   - '`pskewnorm`'
   - '`qskewnorm`'
   - '`rskewnorm`'
+- title: Skew-Lognormal
+  desc: Skew-Lognormal distribution functions
+  contents:
+  - '`dskewlnorm`'
+  - '`pskewlnorm`'
+  - '`qskewlnorm`'
+  - '`rskewlnorm`'
 - title: Miscellaneous
   desc: Miscellaneous functions
   contents: '`par_pattern`'

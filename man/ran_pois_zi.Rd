@@ -36,6 +36,7 @@ Other ran_dist:
 \code{\link[=ran_neg_binom]{ran_neg_binom()}},
 \code{\link[=ran_norm]{ran_norm()}},
 \code{\link[=ran_pois]{ran_pois()}},
+\code{\link[=ran_skewlnorm]{ran_skewlnorm()}},
 \code{\link[=ran_skewnorm]{ran_skewnorm()}},
 \code{\link[=ran_student]{ran_student()}}
 }

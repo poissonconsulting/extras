@@ -709,3 +709,41 @@ test_that("log_lik_unif", {
 
   expect_identical(log_lik_unif(0.5, 0, 2), dunif(0.5, 0, 2, log = TRUE))
 })
+
+test_that("log_lik_skewlnorm missing values", {
+  skip_if_not_installed("sn")
+  expect_identical(log_lik_skewlnorm(numeric(0)), numeric(0))
+  expect_identical(log_lik_skewlnorm(NA, 1, 1, 0.5), NA_real_)
+  expect_identical(log_lik_skewlnorm(1, NA, 1, 0.5), NA_real_)
+  expect_identical(log_lik_skewlnorm(1, 1, NA, 0.5), NA_real_)
+  expect_identical(log_lik_skewlnorm(1, 1, 1, NA), NA_real_)
+})
+
+test_that("log_lik_skewlnorm equal to log_lik_lnorm when shape = 0", {
+  skip_if_not_installed("sn")
+  expect_equal(log_lik_skewlnorm(1:5, 0.3, 0.7, 0), log_lik_lnorm(1:5, 0.3, 0.7))
+})
+
+test_that("log_lik_skewlnorm known values", {
+  skip_if_not_installed("sn")
+  expect_equal(log_lik_skewlnorm(1:5, 0, 1, 2), dskewlnorm(1:5, 0, 1, 2, log = TRUE))
+  expect_equal(
+    log_lik_skewlnorm(1:5, 0, 1, 2),
+    c(
+      -0.918938533204673, -1.245625862193001, -1.941979282991543,
+      -2.575776232562584, -3.131018140198185
+    )
+  )
+})
+
+test_that("log_lik_skewlnorm truncated", {
+  skip_if_not_installed("sn")
+  expect_identical(log_lik_skewlnorm(1, tlower = NA), NA_real_)
+  expect_identical(log_lik_skewlnorm(1, tupper = NA), NA_real_)
+  expect_identical(log_lik_skewlnorm(1, tlower = numeric(0)), numeric(0))
+  expect_equal(log_lik_skewlnorm(c(2, 5), 0, 1, 2, tlower = 0, tupper = 3), c(-0.929486834393317, -Inf))
+  expect_equal(
+    log_lik_skewlnorm(2, 0.5, 0.7, 0, tupper = 3),
+    log_lik_lnorm(2, 0.5, 0.7, tupper = 3)
+  )
+})
