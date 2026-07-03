@@ -244,6 +244,7 @@ test_that("rskewlnorm has same mean and sd as rlnorm when shape = 0", {
   expect_equal(mean(skew), mean(ln), tolerance = 0.05)
   expect_equal(sd(skew), sd(ln), tolerance = 0.05)
 })
+})
 
 test_that("rskewlnorm returns expected output", {
   skip_if_not_installed("sn")
