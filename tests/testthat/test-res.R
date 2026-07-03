@@ -1176,4 +1176,12 @@ test_that("res_skewlnorm", {
   )
   expect_equal(res_skewlnorm(1:5, 0.3, 0.7, 0), res_lnorm(1:5, 0.3, 0.7))
   expect_error(res_skewlnorm(10, type = "unknown"))
+  withr::with_seed(101, {
+    res <- res_skewlnorm(
+      rep(2, 10000), meanlog = 10, sdlog = 0.3, shape = 0.2,
+      simulate = TRUE, type = "standardized"
+    )
+    expect_equal(mean(res), 0.00463040173426368)
+    expect_equal(sd(res), 0.995340625582139)
+  })
 })
