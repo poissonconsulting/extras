@@ -236,7 +236,9 @@ test_that("rskewlnorm returns positive deviates", {
 
 test_that("rskewlnorm has same mean and sd as rlnorm when shape = 0", {
   skip_if_not_installed("sn")
-  set.seed(101)
+  withr::with_seed(
+   101, 
+   {
   skew <- rskewlnorm(1e5, 0.3, 0.7, 0)
   ln <- stats::rlnorm(1e5, 0.3, 0.7)
   expect_equal(mean(skew), mean(ln), tolerance = 0.05)
