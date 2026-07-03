@@ -55,6 +55,7 @@ Other ran_dist:
 [`ran_norm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_norm.md),
 [`ran_pois()`](https://poissonconsulting.github.io/extras/dev/reference/ran_pois.md),
 [`ran_pois_zi()`](https://poissonconsulting.github.io/extras/dev/reference/ran_pois_zi.md),
+[`ran_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_skewlnorm.md),
 [`ran_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_skewnorm.md),
 [`ran_student()`](https://poissonconsulting.github.io/extras/dev/reference/ran_student.md)
 

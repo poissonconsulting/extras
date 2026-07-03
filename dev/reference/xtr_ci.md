@@ -55,5 +55,5 @@ mcmcr::coef
 ``` r
 xtr_ci(rnorm(1e4), type = "HDI")
 #>       lower    upper
-#> 1 -1.943616 1.962412
+#> 1 -1.943616 1.960297
 ```

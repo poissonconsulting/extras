@@ -20,6 +20,19 @@
 
 ## extras 0.9.0.9000
 
+- Add skew-lognormal distribution family
+  ([`dskewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewlnorm.md),
+  [`pskewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewlnorm.md),
+  [`qskewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewlnorm.md),
+  [`rskewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewlnorm.md),
+  [`ran_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_skewlnorm.md),
+  [`sens_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/sens_skewlnorm.md),
+  [`quant_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/quant_skewlnorm.md),
+  [`dev_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/dev_skewlnorm.md),
+  [`res_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/res_skewlnorm.md),
+  [`log_lik_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_skewlnorm.md),
+  [`prob_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/prob_skewlnorm.md))
+  ([\#127](https://github.com/poissonconsulting/extras/issues/127)).
 - Add fledge-bump workflow
 - Add fledge-tag-on-merge workflow
 

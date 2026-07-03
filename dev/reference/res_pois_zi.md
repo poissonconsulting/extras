@@ -49,6 +49,7 @@ Other res_dist:
 [`res_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/res_neg_binom.md),
 [`res_norm()`](https://poissonconsulting.github.io/extras/dev/reference/res_norm.md),
 [`res_pois()`](https://poissonconsulting.github.io/extras/dev/reference/res_pois.md),
+[`res_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/res_skewlnorm.md),
 [`res_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/res_skewnorm.md),
 [`res_student()`](https://poissonconsulting.github.io/extras/dev/reference/res_student.md)
 

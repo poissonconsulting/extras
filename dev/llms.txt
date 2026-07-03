@@ -362,6 +362,8 @@ Deviances and Deviance Residuals
   : Zero-Inflated Poisson Deviances
 - [`dev_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/dev_skewnorm.md)
   : Skew Normal Deviances
+- [`dev_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/dev_skewlnorm.md)
+  : Skew-Lognormal Deviances
 - [`dev_student()`](https://poissonconsulting.github.io/extras/dev/reference/dev_student.md)
   : Student's t Deviances
 
@@ -393,6 +395,8 @@ Raw and Deviance Residuals
   : Zero-Inflated Poisson Residuals
 - [`res_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/res_skewnorm.md)
   : Skew Normal Residuals
+- [`res_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/res_skewlnorm.md)
+  : Skew-Lognormal Residuals
 - [`res_student()`](https://poissonconsulting.github.io/extras/dev/reference/res_student.md)
   : Student's t Residuals
 
@@ -428,6 +432,8 @@ Log-likelihood functions
   : Zero-Inflated Poisson Log-Likelihood
 - [`log_lik_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_skewnorm.md)
   : Skew Normal Log-Likelihood
+- [`log_lik_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_skewlnorm.md)
+  : Skew-Lognormal Log-Likelihood
 - [`log_lik_student()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_student.md)
   : Student's t Log-Likelihood
 - [`log_lik_unif()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_unif.md)
@@ -465,6 +471,8 @@ Cumulative distribution functions
   : Zero-Inflated Poisson Cumulative Distribution Function
 - [`prob_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/prob_skewnorm.md)
   : Skew Normal Cumulative Distribution Function
+- [`prob_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/prob_skewlnorm.md)
+  : Skew-Lognormal Cumulative Distribution Function
 - [`prob_student()`](https://poissonconsulting.github.io/extras/dev/reference/prob_student.md)
   : Student's t Cumulative Distribution Function
 - [`prob_unif()`](https://poissonconsulting.github.io/extras/dev/reference/prob_unif.md)
@@ -500,6 +508,8 @@ Quantile functions
   : Zero-Inflated Poisson Quantile Function
 - [`quant_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/quant_skewnorm.md)
   : Skew Normal Quantile Function
+- [`quant_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/quant_skewlnorm.md)
+  : Skew-Lognormal Quantile Function
 - [`quant_student()`](https://poissonconsulting.github.io/extras/dev/reference/quant_student.md)
   : Student's t Quantile Function
 - [`quant_unif()`](https://poissonconsulting.github.io/extras/dev/reference/quant_unif.md)
@@ -533,6 +543,8 @@ Random sample functions
   : Zero-Inflated Poisson Random Samples
 - [`ran_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_skewnorm.md)
   : Skew Normal Random Samples
+- [`ran_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_skewlnorm.md)
+  : Skew-Lognormal Random Samples
 - [`ran_student()`](https://poissonconsulting.github.io/extras/dev/reference/ran_student.md)
   : Student's t Random Samples
 
@@ -563,6 +575,9 @@ Sensitivity functions
   : Adjust Poisson Distribution Parameters for Sensitivity Analyses
 - [`sens_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/sens_skewnorm.md)
   : Adjust Skew Normal Distribution Parameters for Sensitivity Analyses
+- [`sens_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/sens_skewlnorm.md)
+  : Adjust Skew-Lognormal Distribution Parameters for Sensitivity
+  Analyses
 - [`sens_student()`](https://poissonconsulting.github.io/extras/dev/reference/sens_student.md)
   : Adjust Student's t Distribution Parameters for Sensitivity Analyses
 
@@ -585,6 +600,16 @@ Skew Normal distribution functions
   [`qskewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewnorm.md)
   [`rskewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewnorm.md)
   : Skew-Normal Distribution
+
+## Skew-Lognormal
+
+Skew-Lognormal distribution functions
+
+- [`dskewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewlnorm.md)
+  [`pskewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewlnorm.md)
+  [`qskewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewlnorm.md)
+  [`rskewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/skewlnorm.md)
+  : Skew-Lognormal Distribution
 
 ## Miscellaneous
 

@@ -27,6 +27,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_pois_zi.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_skewlnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_skewnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_student.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/direction.html</loc></url>
@@ -62,6 +63,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_pois_zi.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_skewlnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_skewnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_student.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_unif.html</loc></url>
@@ -95,6 +97,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/prob_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/prob_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/prob_pois_zi.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/prob_skewlnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/prob_skewnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/prob_student.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/prob_unif.html</loc></url>
@@ -117,6 +120,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/quant_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/quant_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/quant_pois_zi.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/quant_skewlnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/quant_skewnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/quant_student.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/quant_unif.html</loc></url>
@@ -131,6 +135,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_pois_zi.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_skewlnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_skewnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_student.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_bern.html</loc></url>
@@ -144,6 +149,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_pois_zi.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_skewlnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_skewnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_student.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/sens_beta.html</loc></url>
@@ -155,9 +161,11 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/sens_neg_binom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/sens_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/sens_pois.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/sens_skewlnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/sens_skewnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/sens_student.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/sextreme.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/skewlnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/skewness.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/skewnorm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/step.html</loc></url>

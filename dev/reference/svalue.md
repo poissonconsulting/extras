@@ -96,9 +96,9 @@ svalue(as.numeric(0:100), side = "left")
 svalue(as.numeric(0:100), side = "right")
 #> [1] 0
 svalue(rnorm(1e4, mean = 1), side = "left")
-#> [1] 2.653809
+#> [1] 2.654717
 svalue(rnorm(1e4, mean = 1), side = "right")
-#> [1] 0.240418
+#> [1] 0.2412704
 
 p2svalue(seq(0, 1, by = 0.1))
 #>  [1]       Inf 3.3219281 2.3219281 1.7369656 1.3219281 1.0000000 0.7369656

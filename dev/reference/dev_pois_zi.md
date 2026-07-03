@@ -44,6 +44,7 @@ Other dev_dist:
 [`dev_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/dev_neg_binom.md),
 [`dev_norm()`](https://poissonconsulting.github.io/extras/dev/reference/dev_norm.md),
 [`dev_pois()`](https://poissonconsulting.github.io/extras/dev/reference/dev_pois.md),
+[`dev_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/dev_skewlnorm.md),
 [`dev_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/dev_skewnorm.md),
 [`dev_student()`](https://poissonconsulting.github.io/extras/dev/reference/dev_student.md)
 

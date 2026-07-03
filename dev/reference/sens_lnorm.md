@@ -44,6 +44,7 @@ Other sens_dist:
 [`sens_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/sens_neg_binom.md),
 [`sens_norm()`](https://poissonconsulting.github.io/extras/dev/reference/sens_norm.md),
 [`sens_pois()`](https://poissonconsulting.github.io/extras/dev/reference/sens_pois.md),
+[`sens_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/sens_skewlnorm.md),
 [`sens_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/sens_skewnorm.md),
 [`sens_student()`](https://poissonconsulting.github.io/extras/dev/reference/sens_student.md)
 

@@ -52,6 +52,6 @@ and
 
 ``` r
 xtr_ci_eti(rnorm(1e4))
-#>      lower    upper
-#> 1 -1.94765 1.943883
+#>       lower   upper
+#> 1 -1.947095 1.94436
 ```
