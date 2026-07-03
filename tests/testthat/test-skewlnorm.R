@@ -251,4 +251,5 @@ test_that("rskewlnorm returns expected output", {
   withr::with_seed(
     101, 
   expect_equal(rskewlnorm(3, 0, 1, 2), c(1.71375069101727, 2.01285193758523, 2.23216981261934))
+)
 })
