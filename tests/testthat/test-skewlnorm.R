@@ -228,7 +228,8 @@ test_that("rskewlnorm returns numeric(0) with n = 0L", {
 
 test_that("rskewlnorm returns positive deviates", {
   skip_if_not_installed("sn")
-  set.seed(101)
+  withr::with_seed(
+    101,
   expect_true(all(rskewlnorm(100, 0, 1, 2) > 0))
 })
 
