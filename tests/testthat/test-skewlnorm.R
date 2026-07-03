@@ -231,6 +231,7 @@ test_that("rskewlnorm returns positive deviates", {
   withr::with_seed(
     101,
   expect_true(all(rskewlnorm(100, 0, 1, 2) > 0))
+)
 })
 
 test_that("rskewlnorm has same mean and sd as rlnorm when shape = 0", {
