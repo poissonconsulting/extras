@@ -103,7 +103,8 @@ test_that("dev_beta_binom deviance", {
   samples <- ran_beta_binom(100, size = 3, prob = 0.5, theta = 0)
   mod <- glm(cbind(samples, 3 - samples) ~ 1, family = binomial)
   deviance <- sum(
-    dev_beta_binom(samples, size = 3, ilogit(coef(mod)[1])), theta = 0
+    dev_beta_binom(samples, size = 3, ilogit(coef(mod)[1])),
+    theta = 0
   )
   expect_equal(deviance, deviance(mod))
 })
@@ -192,10 +193,15 @@ test_that("dev_binom", {
   expect_equal(
     dev_binom(1:9, 10, 0.5, res = TRUE),
     c(
-      -2.71316865369073, -1.96338868806845,
-      -1.28283185573988, -0.634594572159089,
-      0, 0.634594572159089,
-      1.28283185573988, 1.96338868806845, 2.71316865369073
+      -2.71316865369073,
+      -1.96338868806845,
+      -1.28283185573988,
+      -0.634594572159089,
+      0,
+      0.634594572159089,
+      1.28283185573988,
+      1.96338868806845,
+      2.71316865369073
     )
   )
 })
@@ -405,13 +411,15 @@ test_that("dev_gamma_pois_zi log_lik", {
   )
   expect_equal(
     dev_gamma_pois_zi(0:1, 0.7, 1),
-    2 * (log_lik_gamma_pois_zi(0:1, 0:1, 1) -
-      log_lik_gamma_pois_zi(0:1, 0.7, 1))
+    2 *
+      (log_lik_gamma_pois_zi(0:1, 0:1, 1) -
+        log_lik_gamma_pois_zi(0:1, 0.7, 1))
   )
   expect_equal(
     dev_gamma_pois_zi(0:1, 0.7, 1, 0.5),
-    2 * (log_lik_gamma_pois_zi(0:1, 0:1, 1) -
-      log_lik_gamma_pois_zi(0:1, 0.7, 1, 0.5))
+    2 *
+      (log_lik_gamma_pois_zi(0:1, 0:1, 1) -
+        log_lik_gamma_pois_zi(0:1, 0.7, 1, 0.5))
   )
 })
 
@@ -879,13 +887,15 @@ test_that("dev_student res", {
 test_that("dev_student log_lik", {
   expect_equal(
     dev_student(0:1, 1:2, 2:3, theta = 0),
-    2 * (log_lik_student(0:1, 0:1, 2:3, theta = 0) -
-      log_lik_student(0:1, 1:2, 2:3, theta = 0))
+    2 *
+      (log_lik_student(0:1, 0:1, 2:3, theta = 0) -
+        log_lik_student(0:1, 1:2, 2:3, theta = 0))
   )
   expect_equal(
     dev_student(0:1, 1:2, 2:3, theta = 0.7),
-    2 * (log_lik_student(0:1, 0:1, 2:3, theta = 0.7) -
-      log_lik_student(0:1, 1:2, 2:3, theta = 0.7))
+    2 *
+      (log_lik_student(0:1, 0:1, 2:3, theta = 0.7) -
+        log_lik_student(0:1, 1:2, 2:3, theta = 0.7))
   )
   expect_equal(
     dev_student(1, 0.7, 1, 5),
@@ -1000,8 +1010,9 @@ test_that("dev_skewnorm log_lik", {
   skip_if_not_installed("sn")
   expect_equal(
     dev_skewnorm(0:1, 1:2, 2:3, shape = 0),
-    2 * (log_lik_skewnorm(0:1, 0:1, 2:3, shape = 0) -
-      log_lik_skewnorm(0:1, 1:2, 2:3, shape = 0))
+    2 *
+      (log_lik_skewnorm(0:1, 0:1, 2:3, shape = 0) -
+        log_lik_skewnorm(0:1, 1:2, 2:3, shape = 0))
   )
 })
 
@@ -1027,7 +1038,7 @@ test_that("dev_skewnorm deviance", {
 
 test_that("dev_skewlnorm missing values", {
   skip_if_not_installed("sn")
-   expect_identical(
+  expect_identical(
     dev_skewlnorm(numeric(0), numeric(0), numeric(0), numeric(0)),
     numeric(0)
   )
@@ -1039,7 +1050,10 @@ test_that("dev_skewlnorm missing values", {
 
 test_that("dev_skewlnorm equal to dev_lnorm when shape = 0", {
   skip_if_not_installed("sn")
-  expect_equal(dev_skewlnorm(exp(-2:2), 0.3, 0.7, 0), dev_lnorm(exp(-2:2), 0.3, 0.7))
+  expect_equal(
+    dev_skewlnorm(exp(-2:2), 0.3, 0.7, 0),
+    dev_lnorm(exp(-2:2), 0.3, 0.7)
+  )
 })
 
 test_that("dev_skewlnorm known values", {

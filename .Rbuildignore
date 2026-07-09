@@ -17,3 +17,5 @@
 ⁠pkgdown/⁠
 ^\.positai$
 ^\.claude$
+^[.]?air[.]toml$
+^\.vscode$

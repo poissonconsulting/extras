@@ -7,8 +7,10 @@ res_beta_binom_standardized <- function(x, size, prob, theta) {
   res[bol] <- NA_real_
   use_beta_binom <- !bol & theta > 0
   res[use_beta_binom] <- (x - size * prob) /
-    sqrt((size * (4 * prob * (1 - prob) / theta) * (2 / theta + size)) /
-      ((2 / theta)^2 * (2 / theta + 1)))
+    sqrt(
+      (size * (4 * prob * (1 - prob) / theta) * (2 / theta + size)) /
+        ((2 / theta)^2 * (2 / theta + 1))
+    )
   return(res)
 }
 
@@ -33,16 +35,35 @@ res_beta_binom_standardized <- function(x, size, prob, theta) {
 #'
 #' @examples
 #' res_beta_binom(c(0, 1, 2), 4, 0.5, 0.1)
-res_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0, type = "dev", simulate = FALSE) {
+res_beta_binom <- function(
+  x,
+  size = 1,
+  prob = 0.5,
+  theta = 0,
+  type = "dev",
+  simulate = FALSE
+) {
   chk_string(type)
   if (!vld_false(simulate)) {
     x <- ran_beta_binom(length(x), size = size, prob = prob, theta = theta)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - size * prob,
-    standardized = res_beta_binom_standardized(x = x, size = size, prob = prob, theta = theta),
-    dev = dev_beta_binom(x, size = size, prob = prob, theta = theta, res = TRUE),
+    standardized = res_beta_binom_standardized(
+      x = x,
+      size = size,
+      prob = prob,
+      theta = theta
+    ),
+    dev = dev_beta_binom(
+      x,
+      size = size,
+      prob = prob,
+      theta = theta,
+      res = TRUE
+    ),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )
 }
@@ -63,7 +84,8 @@ res_bern <- function(x, prob = 0.5, type = "dev", simulate = FALSE) {
   if (!vld_false(simulate)) {
     x <- ran_bern(length(x), prob = prob)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - prob,
     standardized = (x - prob) / sqrt(prob * (1 - prob)),
@@ -88,7 +110,8 @@ res_binom <- function(x, size = 1, prob = 0.5, type = "dev", simulate = FALSE) {
   if (!vld_false(simulate)) {
     x <- ran_binom(length(x), size = size, prob = prob)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - size * prob,
     standardized = (x - size * prob) / sqrt(size * prob * (1 - prob)),
@@ -113,7 +136,8 @@ res_gamma <- function(x, shape = 1, rate = 1, type = "dev", simulate = FALSE) {
   if (!vld_false(simulate)) {
     x <- ran_gamma(length(x), shape = shape, rate = rate)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - shape / rate,
     standardized = (x - shape / rate) / sqrt(shape / rate^2),
@@ -133,12 +157,19 @@ res_gamma <- function(x, shape = 1, rate = 1, type = "dev", simulate = FALSE) {
 #'
 #' @examples
 #' res_gamma_pois(c(0, 1, 2), 1, 1)
-res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE) {
+res_gamma_pois <- function(
+  x,
+  lambda = 1,
+  theta = 0,
+  type = "dev",
+  simulate = FALSE
+) {
   chk_string(type)
   if (!vld_false(simulate)) {
     x <- ran_gamma_pois(length(x), lambda = lambda, theta = theta)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - lambda,
     standardized = (x - lambda) / sqrt(lambda + theta * lambda^2),
@@ -159,15 +190,29 @@ res_gamma_pois <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FA
 #'
 #' @examples
 #' res_gamma_pois_zi(c(0, 1, 2), 1, 1, 0.5)
-res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", simulate = FALSE) {
+res_gamma_pois_zi <- function(
+  x,
+  lambda = 1,
+  theta = 0,
+  prob = 0,
+  type = "dev",
+  simulate = FALSE
+) {
   chk_string(type)
   if (!vld_false(simulate)) {
-    x <- ran_gamma_pois_zi(length(x), lambda = lambda, theta = theta, prob = prob)
+    x <- ran_gamma_pois_zi(
+      length(x),
+      lambda = lambda,
+      theta = theta,
+      prob = prob
+    )
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - lambda * (1 - prob),
-    standardized = (x - lambda * (1 - prob)) / sqrt(lambda * (1 + lambda * theta)),
+    standardized = (x - lambda * (1 - prob)) /
+      sqrt(lambda * (1 + lambda * theta)),
     dev = dev_gamma_pois_zi(x, lambda, theta = theta, prob = prob, res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )
@@ -184,12 +229,19 @@ res_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0, type = "dev", 
 #'
 #' @examples
 #' res_lnorm(10)
-res_lnorm <- function(x, meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE) {
+res_lnorm <- function(
+  x,
+  meanlog = 0,
+  sdlog = 1,
+  type = "dev",
+  simulate = FALSE
+) {
   chk_string(type)
   if (!vld_false(simulate)) {
     x <- ran_lnorm(length(x), meanlog = meanlog, sdlog = sdlog)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - exp(meanlog), # isn't this the median?
     standardized = (x - exp(meanlog + (sdlog^2 / 2))) /
@@ -210,12 +262,19 @@ res_lnorm <- function(x, meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE)
 #'
 #' @examples
 #' res_neg_binom(c(0, 1, 5), 2, 3)
-res_neg_binom <- function(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE) {
+res_neg_binom <- function(
+  x,
+  lambda = 1,
+  theta = 0,
+  type = "dev",
+  simulate = FALSE
+) {
   chk_string(type)
   if (!vld_false(simulate)) {
     x <- ran_neg_binom(length(x), lambda = lambda, theta = theta)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - lambda,
     standardized = (x - lambda) / sqrt(lambda + theta * lambda^2),
@@ -240,7 +299,8 @@ res_norm <- function(x, mean = 0, sd = 1, type = "dev", simulate = FALSE) {
   if (!vld_false(simulate)) {
     x <- ran_norm(length(x), mean = mean, sd = sd)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - mean,
     standardized = (x - mean) / sd,
@@ -265,7 +325,8 @@ res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
   if (!vld_false(simulate)) {
     x <- ran_pois(length(x), lambda = lambda)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - lambda,
     standardized = (x - lambda) / sqrt(lambda),
@@ -286,15 +347,23 @@ res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
 #'
 #' @examples
 #' res_pois_zi(c(1, 3, 4), 6, 0.5, type = "raw")
-res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE) {
+res_pois_zi <- function(
+  x,
+  lambda = 1,
+  prob = 0,
+  type = "dev",
+  simulate = FALSE
+) {
   chk_string(type)
   if (!vld_false(simulate)) {
     x <- ran_pois_zi(length(x), lambda = lambda, prob = prob)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - lambda * (1 - prob),
-    standardized = (x - lambda * (1 - prob)) / sqrt((1 - prob) * lambda * (1 + lambda * prob)),
+    standardized = (x - lambda * (1 - prob)) /
+      sqrt((1 - prob) * lambda * (1 + lambda * prob)),
     dev = dev_pois_zi(x, lambda, prob = prob, res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )
@@ -312,16 +381,25 @@ res_pois_zi <- function(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
 #'
 #' @examplesIf rlang::is_installed("sn")
 #' res_skewnorm(c(-2:2))
-res_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, type = "dev", simulate = FALSE) {
+res_skewnorm <- function(
+  x,
+  mean = 0,
+  sd = 1,
+  shape = 0,
+  type = "dev",
+  simulate = FALSE
+) {
   rlang::check_installed("sn")
   chk_string(type)
   if (!vld_false(simulate)) {
     x <- ran_skewnorm(length(x), mean = mean, sd = sd, shape = shape)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi),
-    standardized = (x - (mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi))) /
+    standardized = (x -
+      (mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi))) /
       (sd^2 * (1 - ((2 * (shape / sqrt(1 + shape^2))^2) / pi))),
     dev = dev_skewnorm(x, mean = mean, sd = sd, shape = shape, res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
@@ -340,21 +418,40 @@ res_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, type = "dev", simulate 
 #'
 #' @examplesIf rlang::is_installed("sn")
 #' res_skewlnorm(exp(-2:2))
-res_skewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0, type = "dev", simulate = FALSE) {
+res_skewlnorm <- function(
+  x,
+  meanlog = 0,
+  sdlog = 1,
+  shape = 0,
+  type = "dev",
+  simulate = FALSE
+) {
   rlang::check_installed("sn")
   chk_string(type)
   if (!vld_false(simulate)) {
-    x <- ran_skewlnorm(length(x), meanlog = meanlog, sdlog = sdlog, shape = shape)
+    x <- ran_skewlnorm(
+      length(x),
+      meanlog = meanlog,
+      sdlog = sdlog,
+      shape = shape
+    )
   }
   delta <- shape / sqrt(1 + shape^2)
   mean_sln <- 2 * exp(meanlog + sdlog^2 / 2) * stats::pnorm(delta * sdlog)
   m2_sln <- 2 * exp(2 * meanlog + 2 * sdlog^2) * stats::pnorm(2 * delta * sdlog)
   sd_sln <- sqrt(m2_sln - mean_sln^2)
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - mean_sln,
     standardized = (x - mean_sln) / sd_sln,
-    dev = dev_skewlnorm(x, meanlog = meanlog, sdlog = sdlog, shape = shape, res = TRUE),
+    dev = dev_skewlnorm(
+      x,
+      meanlog = meanlog,
+      sdlog = sdlog,
+      shape = shape,
+      res = TRUE
+    ),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )
 }
@@ -379,8 +476,9 @@ res_student_standardized <- function(x, mean, sd, theta) {
   df_var_inf <- bol & 1 < df & df <= 2
   res[df_var_inf] <- 0
   df_var_def <- bol & df > 2 & df < Inf
-  res[df_var_def] <- ((x[df_var_def] - mean[df_var_def]) / (sd[df_var_def] *
-    sqrt((1 / theta[df_var_def]) / (1 / theta[df_var_def] - 2))))
+  res[df_var_def] <- ((x[df_var_def] - mean[df_var_def]) /
+    (sd[df_var_def] *
+      sqrt((1 / theta[df_var_def]) / (1 / theta[df_var_def] - 2))))
   return(res)
 }
 
@@ -395,15 +493,28 @@ res_student_standardized <- function(x, mean, sd, theta) {
 #'
 #' @examples
 #' res_student(c(1, 3.5, 4), mean = 6, sd = 0.5, theta = 1 / 3, type = "raw")
-res_student <- function(x, mean = 0, sd = 1, theta = 0, type = "dev", simulate = FALSE) {
+res_student <- function(
+  x,
+  mean = 0,
+  sd = 1,
+  theta = 0,
+  type = "dev",
+  simulate = FALSE
+) {
   chk_string(type)
   if (!vld_false(simulate)) {
     x <- ran_student(length(x), mean = mean, sd = sd, theta = theta)
   }
-  switch(type,
+  switch(
+    type,
     data = x,
     raw = x - mean,
-    standardized = res_student_standardized(x = x, mean = mean, sd = sd, theta = theta),
+    standardized = res_student_standardized(
+      x = x,
+      mean = mean,
+      sd = sd,
+      theta = theta
+    ),
     dev = dev_student(x, mean = mean, sd = sd, theta = theta, res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )

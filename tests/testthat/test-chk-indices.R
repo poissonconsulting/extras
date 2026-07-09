@@ -13,5 +13,9 @@ test_that("vld_indices", {
 test_that("chk_indices", {
   expect_null(chk_indices(list()))
   expect_error(chk_indices(1L), "^`1L` must be a list[.]$", class = "chk_error")
-  expect_error(chk_indices(list(1)), "^All elements of `list[(]1[)]` must be integer[.]$", class = "chk_error")
+  expect_error(
+    chk_indices(list(1)),
+    "^All elements of `list[(]1[)]` must be integer[.]$",
+    class = "chk_error"
+  )
 })

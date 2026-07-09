@@ -71,7 +71,9 @@ test_that("numericise.data.frame", {
   )
   expect_error(
     numericise(data.frame(
-      x = factor(3:2), y = c(FALSE, NA), z = c("1", "2"),
+      x = factor(3:2),
+      y = c(FALSE, NA),
+      z = c("1", "2"),
       stringsAsFactors = FALSE
     ))
   )
@@ -84,10 +86,14 @@ test_that("numericise.data.frame", {
       dte = as.Date(c("2001-01-02", "2001-01-01")),
       fac = factor(c("b", "a"))
     )),
-    structure(c(1, NA, 1, 2, 2.5, 1.5, 11324, 11323, 2, 1), .Dim = c(
-      2L,
-      5L
-    ), .Dimnames = list(NULL, c("lgl", "int", "dbl", "dte", "fac")))
+    structure(
+      c(1, NA, 1, 2, 2.5, 1.5, 11324, 11323, 2, 1),
+      .Dim = c(
+        2L,
+        5L
+      ),
+      .Dimnames = list(NULL, c("lgl", "int", "dbl", "dte", "fac"))
+    )
   )
 })
 

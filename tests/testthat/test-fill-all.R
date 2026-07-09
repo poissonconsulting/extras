@@ -16,22 +16,19 @@ test_that("fill_all atomic objects", {
     matrix(c(0L, 0L, 0L, NA), nrow = 2)
   )
   expect_identical(fill_all(c(10L, NA), value = 11L), c(11L, 11L))
-  expect_identical(fill_all(c(10L, NA),
-    value = 11,
-    nas = FALSE
-  ), c(11L, NA))
+  expect_identical(fill_all(c(10L, NA), value = 11, nas = FALSE), c(11L, NA))
 })
 
 test_that("fill_all.matrix", {
   expect_identical(
-    fill_all(matrix(c(TRUE, NA, FALSE, NA), nrow = 2),
-      value = "TRUE"
-    ),
+    fill_all(matrix(c(TRUE, NA, FALSE, NA), nrow = 2), value = "TRUE"),
     matrix(c(TRUE, TRUE, TRUE, TRUE), nrow = 2)
   )
   expect_identical(
-    fill_all(matrix(c(TRUE, NA, FALSE, NA), nrow = 2),
-      value = "TRUE", nas = FALSE
+    fill_all(
+      matrix(c(TRUE, NA, FALSE, NA), nrow = 2),
+      value = "TRUE",
+      nas = FALSE
     ),
     matrix(c(TRUE, NA, TRUE, NA), nrow = 2)
   )

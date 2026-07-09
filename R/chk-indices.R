@@ -18,7 +18,9 @@ chk_indices <- function(x, x_name = NULL) {
   if (vld_indices(x)) {
     return(invisible())
   }
-  if (is.null(x_name)) x_name <- deparse_backtick_chk(substitute(x))
+  if (is.null(x_name)) {
+    x_name <- deparse_backtick_chk(substitute(x))
+  }
   chk_list(x, x_name = x_name)
   chk_all(x, chk_index, x_name = x_name)
 }
