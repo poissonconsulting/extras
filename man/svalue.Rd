@@ -20,9 +20,9 @@ p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or both
 
 \item{threshold}{A number of the threshold value.}
 
-\item{skeptical}{A flag specifying whether or not to include an extra sample
-in the opposite direction of the estimate to acknowledge additional
-uncertainty.}
+\item{skeptical}{A flag specifying whether or not to add one sample to the
+empty side of the threshold when 100\% of samples are on one side, to avoid
+infinite information or zero p-values.}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 

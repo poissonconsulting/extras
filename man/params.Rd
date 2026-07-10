@@ -72,9 +72,9 @@ log scale.}
 
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
-\item{skeptical}{A flag specifying whether or not to include an extra sample
-in the opposite direction of the estimate to acknowledge additional
-uncertainty.}
+\item{skeptical}{A flag specifying whether or not to add one sample to the
+empty side of the threshold when 100\% of samples are on one side, to avoid
+infinite information or zero p-values.}
 
 \item{theta}{A non-negative numeric vector of the dispersion for the mixture
 models (student, gamma-Poisson and beta-binomial).}
