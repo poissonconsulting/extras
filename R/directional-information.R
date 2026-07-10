@@ -66,7 +66,7 @@
 #' p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 
 directional_information <- function(x, ..., side = "median", threshold = 0,
-                                    threshold_split = "proportional", 
+                                    threshold_split = "proportional",
                                     skeptical = FALSE,
                                     na_rm = FALSE) {
   chk_unused(...)
@@ -74,7 +74,7 @@ directional_information <- function(x, ..., side = "median", threshold = 0,
   chk_subset(side, c("left", "right", "median"))
   chk_number(threshold)
   chk_subset(threshold_split, c("left", "right", "equal", "proportional", "exclude"))
-  chk_logical(skeptical)
+  chk_flag(skeptical)
   chk_flag(na_rm)
 
   if (anyNA(x)) {

@@ -52,7 +52,7 @@
 #' p2svalue(seq(0, 1, by = 0.1))
 svalue <- function(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE) {
   chk_unused(...)
-  chk_logical(skeptical)
+  chk_flag(skeptical)
   chk_numeric(x)
   chk_string(side)
   chk_subset(side, values = c("left", "right", "both"))

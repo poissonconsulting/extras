@@ -51,7 +51,7 @@
 #' pvalue(rep(1, 10), skeptical = FALSE) # skeptical = FALSE allows p = 0
 pvalue <- function(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE) {
   chk_unused(...)
-  chk_logical(skeptical)
+  chk_flag(skeptical)
   chk_numeric(x)
   chk_string(side)
   chk_subset(side, c("left", "right", "both"))
