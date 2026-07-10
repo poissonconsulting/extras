@@ -27,6 +27,7 @@
 #' @param x A numeric vector of MCMC values.
 #' @param side A character vector of length 1 indicating whether to calculate
 #' p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
+#' @param ... Unused.
 #' @inheritParams params
 #' @return A number between 0 and 1.
 #' If `x` has `NA` values but `na_rm` is `FALSE`, returns `NA_real`.
@@ -41,12 +42,22 @@
 #' pvalue(x) # should be 0.05 * 2
 #' pvalue(x, side = "left") # should be 0.95
 #' pvalue(x, side = "right") # should be 0.05
-pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
+pvalue <- function(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE) {
+  chk_unused(...)
+  chk_logical(skeptical)
   chk_numeric(x)
   chk_string(side)
   chk_subset(side, c("left", "right", "both"))
   chk_number(threshold)
   chk_flag(na_rm)
+
+  if (missing(skeptical)) {
+    lifecycle::deprecate_soft(
+      when = "0.10.0",
+      what = "pvalue(skeptical)",
+      details = "The default will change to `skeptical = FALSE`."
+    )
+  }
 
   if (anyNA(x)) {
     if (na_rm) {
@@ -74,6 +85,8 @@ pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
     s <- sum(x >= threshold) # include threshold samples
   }
   p <- s / n
-  p <- max(p, 1 / (n + 1)) # avoid pvalues of 0
+  if (skeptical) {
+    p <- max(p, 1 / (n + 1)) # avoid pvalues of 0
+  }
   p
 }

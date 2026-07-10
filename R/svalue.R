@@ -21,6 +21,7 @@
 #'
 #' @describeIn svalue Calculate an s-value from a posterior distribution.
 #' @param x A numeric object of MCMC values.
+#' @param ... Unused.
 #' @inheritParams params
 #' @param side A character indicating whether to calculate s-values using
 #' p-values for the left tail (`"left"`), right tail (`"right"`), or both tails
@@ -42,14 +43,24 @@
 #' svalue(rnorm(1e4, mean = 1), side = "right")
 #'
 #' p2svalue(seq(0, 1, by = 0.1))
-svalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
+svalue <- function(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE) {
+  chk_unused(...)
+  chk_logical(skeptical)
   chk_numeric(x)
   chk_string(side)
   chk_subset(side, values = c("left", "right", "both"))
   chk_number(threshold)
   chk_flag(na_rm)
 
-  -log2(pvalue(x, side = side, threshold = threshold, na_rm = na_rm))
+  if (missing(skeptical)) {
+    lifecycle::deprecate_soft(
+      when = "0.10.0",
+      what = "svalue(skeptical)",
+      details = "The default will change to `skeptical = FALSE`."
+    )
+  }
+
+  -log2(pvalue(x, side = side, threshold = threshold, skeptical = skeptical, na_rm = na_rm))
 }
 
 #' @describeIn svalue Calculate an s-value from a vector of probabilities.

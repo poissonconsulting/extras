@@ -44,6 +44,19 @@ test_that("directional_information() returns correct values.", {
                4.246, tolerance = 0.01)
 })
 
+test_that("directional_information() errors with unused arguments", {
+  expect_error(directional_information(1, 0))
+  expect_error(directional_information(1, foo = TRUE))
+})
+
+test_that("directional_information() skeptical argument works correctly", {
+  expect_equal(directional_information(rep(1, 4)), 4)
+  expect_equal(directional_information(rep(1, 4), skeptical = TRUE), log2(4))
+  expect_equal(directional_information(rep(-1, 4), skeptical = TRUE), log2(4))
+  expect_equal(directional_information(c(-1, 1, 1), skeptical = TRUE),
+               log2(2) - log2(1))
+})
+
 test_that("directional_information() performs the right correction if most x = threshold", {
   expect_identical(directional_information(0), 0)
   expect_equal(directional_information(c(0, 0)), 0)

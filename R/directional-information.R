@@ -8,6 +8,7 @@
 #'
 #' @describeIn directional-information Calculate the directional information from a posterior distribution.
 #' @param x A numeric vector of MCMC values.
+#' @param ... Unused.
 #' @param side A string indicating whether to calculate
 #' the directional information relative to the left side (`"left"`; `x < threshold`),
 #' or the right side (`"right"`; `x > threshold`). Positive information suggests
@@ -51,17 +52,22 @@
 #' directional_information(rnorm(1e3, mean = -10)) # all coin flips are negative
 #' directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 #' directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
+#' directional_information(rep(1, 1000))
+#' directional_information(rep(1, 1000), skeptical = TRUE)
 #'
 #' p2info(seq(0, 1, by = 0.1))
 #' p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 
-directional_information <- function(x, side = "median", threshold = 0,
-                                    threshold_split = "proportional",
+directional_information <- function(x, ..., side = "median", threshold = 0,
+                                    threshold_split = "proportional", 
+                                    skeptical = FALSE,
                                     na_rm = FALSE) {
+  chk_unused(...)
   chk_numeric(x)
   chk_subset(side, c("left", "right", "median"))
   chk_number(threshold)
   chk_subset(threshold_split, c("left", "right", "equal", "proportional", "exclude"))
+  chk_logical(skeptical)
   chk_flag(na_rm)
 
   if (anyNA(x)) {
@@ -110,12 +116,16 @@ directional_information <- function(x, side = "median", threshold = 0,
     i <- log2(p_r) - log2(p_l)
   }
 
-  i <- min(i, n) # max information difference is a bit for each sample
-  i <- max(i, -n)
-  # the two lines above are equivalent to, if o is the odds ratio:
-  # returning n   if o is  Inf, since n    = n / (n+1) / (1 / (n+1))
-  # returning 1/n if o is -Inf, since 1/n  = 1 / (n+1) / (n / (n+1))
-  # note that the odds ratio could be p_l / p_r or p_r / p_l
+  if (skeptical && is.infinite(i)) {
+    i <- sign(i) * log2(n)
+  } else {
+    i <- min(i, n) # max information difference is a bit for each sample
+    i <- max(i, -n)
+    # the two lines above are equivalent to, if o is the odds ratio:
+    # returning n   if o is  Inf, since n    = n / (n+1) / (1 / (n+1))
+    # returning 1/n if o is -Inf, since 1/n  = 1 / (n+1) / (n / (n+1))
+    # note that the odds ratio could be p_l / p_r or p_r / p_l
+  }
   i
 }
 

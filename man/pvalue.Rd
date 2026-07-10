@@ -4,15 +4,21 @@
 \alias{pvalue}
 \title{Bayesian P-Value}
 \usage{
-pvalue(x, side = "both", threshold = 0, na_rm = FALSE)
+pvalue(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
+
+\item{...}{Unused.}
 
 \item{side}{A character vector of length 1 indicating whether to calculate
 p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or two-sided (\code{"both"}; default).}
 
 \item{threshold}{A number of the threshold value.}
+
+\item{skeptical}{A flag specifying whether or not to include an extra sample
+in the opposite direction of the estimate to acknowledge additional
+uncertainty.}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 }

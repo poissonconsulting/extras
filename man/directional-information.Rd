@@ -7,9 +7,11 @@
 \usage{
 directional_information(
   x,
+  ...,
   side = "median",
   threshold = 0,
   threshold_split = "proportional",
+  skeptical = FALSE,
   na_rm = FALSE
 )
 
@@ -17,6 +19,8 @@ p2info(p, n = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
+
+\item{...}{Unused.}
 
 \item{side}{A string indicating whether to calculate
 the directional information relative to the left side (\code{"left"}; \code{x < threshold}),
@@ -38,6 +42,10 @@ proportionally to the values of \code{x} on the left and right sides,
 \item \code{"exclude"} to drop the values of \code{x} equal to \code{threshold}
 (identical to using \code{"proportional"}).
 }}
+
+\item{skeptical}{A flag specifying whether or not to include an extra sample
+in the opposite direction of the estimate to acknowledge additional
+uncertainty.}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 
@@ -78,6 +86,8 @@ directional_information(rnorm(1e3, mean = 10)) # all coin flips are positive
 directional_information(rnorm(1e3, mean = -10)) # all coin flips are negative
 directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
+directional_information(rep(1, 1000))
+directional_information(rep(1, 1000), skeptical = TRUE)
 
 p2info(seq(0, 1, by = 0.1))
 p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]

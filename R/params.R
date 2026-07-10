@@ -46,6 +46,9 @@
 #' @param shape A non-negative numeric vector of shape.
 #' @param simulate A flag specifying whether to simulate residuals.
 #' @param size A non-negative whole numeric vector of the number of trials.
+#' @param skeptical A flag specifying whether or not to include an extra sample
+#' in the opposite direction of the estimate to acknowledge additional 
+#' uncertainty.
 #' @param theta A non-negative numeric vector of the dispersion for the mixture
 #'   models (student, gamma-Poisson and beta-binomial).
 #' @param threshold A number of the threshold value.

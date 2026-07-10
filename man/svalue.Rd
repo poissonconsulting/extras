@@ -5,18 +5,24 @@
 \alias{p2svalue}
 \title{Surprisal Value}
 \usage{
-svalue(x, side = "both", threshold = 0, na_rm = FALSE)
+svalue(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE)
 
 p2svalue(p)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
 
+\item{...}{Unused.}
+
 \item{side}{A character indicating whether to calculate s-values using
 p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or both tails
 (\code{"both"}; default).}
 
 \item{threshold}{A number of the threshold value.}
+
+\item{skeptical}{A flag specifying whether or not to include an extra sample
+in the opposite direction of the estimate to acknowledge additional
+uncertainty.}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 
