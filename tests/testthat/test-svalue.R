@@ -31,7 +31,7 @@ test_that("svalue() errors with unused arguments", {
 })
 
 test_that("svalue() warns when skeptical is not supplied", {
-  expect_warning(svalue(1), "deprecated")
+  lifecycle::expect_deprecated(svalue(1))
   expect_no_warning(svalue(1, skeptical = TRUE))
   expect_no_warning(svalue(1, skeptical = FALSE))
 })

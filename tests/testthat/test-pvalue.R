@@ -113,7 +113,7 @@ test_that("pvalue() errors with unused arguments", {
 })
 
 test_that("pvalue() warns when skeptical is not supplied", {
-  expect_warning(pvalue(1), "deprecated")
+  lifecycle::expect_deprecated(pvalue(1))
   expect_no_warning(pvalue(1, skeptical = TRUE))
   expect_no_warning(pvalue(1, skeptical = FALSE))
 })
