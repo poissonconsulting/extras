@@ -17,6 +17,11 @@
 #' A near-impossible event has a very large s-value because its
 #' occurrence would be extremely surprising, like observing many consecutive
 #' successes on a fair coin.
+#'
+#' When `skeptical = TRUE`, a floor of \eqn{1 / (n + 1)} is applied to the
+#' underlying p-value to avoid s-values of `Inf` when all samples are on one
+#' side of the threshold. When `skeptical = FALSE`, s-values of `Inf` are
+#' allowed. The default will change from `TRUE` to `FALSE` in a future release.
 #' }
 #'
 #' @describeIn svalue Calculate an s-value from a posterior distribution.
@@ -36,11 +41,13 @@
 #' \doi{10.1080/00031305.2018.1529625}.
 #' @export
 #' @examples
-#' svalue(as.numeric(0:100))
-#' svalue(as.numeric(0:100), side = "left")
-#' svalue(as.numeric(0:100), side = "right")
-#' svalue(rnorm(1e4, mean = 1), side = "left")
-#' svalue(rnorm(1e4, mean = 1), side = "right")
+#' svalue(as.numeric(0:100), skeptical = TRUE)
+#' svalue(as.numeric(0:100), side = "left", skeptical = TRUE)
+#' svalue(as.numeric(0:100), side = "right", skeptical = TRUE)
+#' svalue(rnorm(1e4, mean = 1), side = "left", skeptical = TRUE)
+#' svalue(rnorm(1e4, mean = 1), side = "right", skeptical = TRUE)
+#' svalue(rep(1, 10), skeptical = TRUE) # skeptical = TRUE avoids Inf
+#' svalue(rep(1, 10), skeptical = FALSE) # skeptical = FALSE allows Inf
 #'
 #' p2svalue(seq(0, 1, by = 0.1))
 svalue <- function(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE) {

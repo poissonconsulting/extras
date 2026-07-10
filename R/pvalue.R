@@ -17,6 +17,11 @@
 #' \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
 #' return p-values of 1.
 #'
+#' When `skeptical = TRUE`, a floor of \eqn{1 / (n + 1)} is applied to avoid
+#' p-values of 0 when all samples are on one side of the threshold.
+#' When `skeptical = FALSE`, p-values of 0 are allowed.
+#' The default will change from `TRUE` to `FALSE` in a future release.
+#'
 #' To use as a measure of certainty in the direction of the estimate (i.e.,
 #' positive or negative), see [`probability_direction()`].
 #'
@@ -39,9 +44,11 @@
 #' @export
 #' @examples
 #' x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
-#' pvalue(x) # should be 0.05 * 2
-#' pvalue(x, side = "left") # should be 0.95
-#' pvalue(x, side = "right") # should be 0.05
+#' pvalue(x, skeptical = TRUE) # should be 0.05 * 2
+#' pvalue(x, side = "left", skeptical = TRUE) # should be 0.95
+#' pvalue(x, side = "right", skeptical = TRUE) # should be 0.05
+#' pvalue(rep(1, 10), skeptical = TRUE) # skeptical = TRUE avoids p = 0
+#' pvalue(rep(1, 10), skeptical = FALSE) # skeptical = FALSE allows p = 0
 pvalue <- function(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE) {
   chk_unused(...)
   chk_logical(skeptical)

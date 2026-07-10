@@ -65,6 +65,11 @@ information depending on the event's probability.
 \details{
 Quantifies the information about direction in a posterior distribution based on the directional probability.
 This function calculates such information using the difference in the probability of direction (see \code{\link[=probability_direction]{probability_direction()}}), after converting each probability to bits (also see \code{\link[=svalue]{svalue()}}.
+
+When \code{skeptical = FALSE} (default), information is clamped to \eqn{[-n, n]}
+when all samples are on one side of the threshold.
+When \code{skeptical = TRUE}, one sample is instead added to the empty side,
+giving \eqn{\pm \log_2(n)} rather than \eqn{\pm n}.
 }
 \section{Functions}{
 \itemize{

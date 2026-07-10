@@ -30,6 +30,12 @@
 #' @param n A numeric vector of the number of posterior samples used to estimate
 #' each value of `p`. Used to limit the information to be within the interval \eqn{[-n, n]}.
 #'
+#' @details
+#' When `skeptical = FALSE` (default), information is clamped to \eqn{[-n, n]}
+#' when all samples are on one side of the threshold.
+#' When `skeptical = TRUE`, one sample is instead added to the empty side,
+#' giving \eqn{\pm \log_2(n)} rather than \eqn{\pm n}.
+#'
 #' @inheritParams params
 #' @return A number indicating the directional information in bits.
 #' If `x` has `NA` values but `na_rm` is `FALSE`, returns `NA_real`.

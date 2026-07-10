@@ -38,6 +38,11 @@ Note that the function contains the sample-size correction
 \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
 return p-values of 1.
 
+When \code{skeptical = TRUE}, a floor of \eqn{1 / (n + 1)} is applied to avoid
+p-values of 0 when all samples are on one side of the threshold.
+When \code{skeptical = FALSE}, p-values of 0 are allowed.
+The default will change from \code{TRUE} to \code{FALSE} in a future release.
+
 To use as a measure of certainty in the direction of the estimate (i.e.,
 positive or negative), see \code{\link[=probability_direction]{probability_direction()}}.
 
@@ -47,9 +52,11 @@ To convert MCMC objects to information, see \code{\link[=directional_information
 }
 \examples{
 x <- rnorm(1e6, qnorm(0.05, lower.tail = TRUE))
-pvalue(x) # should be 0.05 * 2
-pvalue(x, side = "left") # should be 0.95
-pvalue(x, side = "right") # should be 0.05
+pvalue(x, skeptical = TRUE) # should be 0.05 * 2
+pvalue(x, side = "left", skeptical = TRUE) # should be 0.95
+pvalue(x, side = "right", skeptical = TRUE) # should be 0.05
+pvalue(rep(1, 10), skeptical = TRUE) # skeptical = TRUE avoids p = 0
+pvalue(rep(1, 10), skeptical = FALSE) # skeptical = FALSE allows p = 0
 }
 \references{
 Kery, M., and Schaub, M. 2011.
