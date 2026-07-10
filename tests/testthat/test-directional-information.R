@@ -55,6 +55,21 @@ test_that("directional_information() skeptical argument works correctly", {
   expect_equal(directional_information(rep(-1, 4), skeptical = TRUE), log2(4))
   expect_equal(directional_information(c(-1, 1, 1), skeptical = TRUE),
                log2(2) - log2(1))
+  # skeptical = FALSE has no effect when samples are on both sides
+  expect_equal(directional_information(c(-1, 1, 1), skeptical = TRUE),
+               directional_information(c(-1, 1, 1), skeptical = FALSE))
+})
+
+test_that("directional_information() skeptical works correctly with side argument", {
+  # all positive: supports right, contradicts left
+  expect_equal(directional_information(rep(1, 4), side = "right", skeptical = TRUE), log2(4))
+  expect_equal(directional_information(rep(1, 4), side = "left",  skeptical = TRUE), -log2(4))
+  # all negative: supports left, contradicts right
+  expect_equal(directional_information(rep(-1, 4), side = "left",  skeptical = TRUE), log2(4))
+  expect_equal(directional_information(rep(-1, 4), side = "right", skeptical = TRUE), -log2(4))
+  # default (median) follows the direction of the data
+  expect_equal(directional_information(rep(1,  4), side = "median", skeptical = TRUE), log2(4))
+  expect_equal(directional_information(rep(-1, 4), side = "median", skeptical = TRUE), log2(4))
 })
 
 test_that("directional_information() performs the right correction if most x = threshold", {
