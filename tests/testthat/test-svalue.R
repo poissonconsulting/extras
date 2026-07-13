@@ -30,12 +30,6 @@ test_that("svalue() errors with unused arguments", {
   expect_error(svalue(1, foo = TRUE), "`...` must be unused.")
 })
 
-test_that("svalue() warns when skeptical is not supplied", {
-  lifecycle::expect_deprecated(svalue(1))
-  expect_no_warning(svalue(1, skeptical = TRUE))
-  expect_no_warning(svalue(1, skeptical = FALSE))
-})
-
 test_that("svalue() skeptical argument controls sample-size correction", {
   expect_identical(svalue(1:9, skeptical = TRUE), -log2(1 / 10))
   expect_identical(svalue(1:9, skeptical = FALSE), Inf)

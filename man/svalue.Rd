@@ -51,10 +51,10 @@ A near-impossible event has a very large s-value because its
 occurrence would be extremely surprising, like observing many consecutive
 successes on a fair coin.
 
-When \code{skeptical = TRUE}, a floor of \eqn{1 / (n + 1)} is applied to the
-underlying p-value to avoid s-values of \code{Inf} when all samples are on one
-side of the threshold. When \code{skeptical = FALSE}, s-values of \code{Inf} are
-allowed. The default will change from \code{TRUE} to \code{FALSE} in a future release.
+When \code{skeptical = TRUE} (default), a floor of \eqn{1 / (n + 1)} is applied
+to the underlying p-value to avoid s-values of \code{Inf} when all samples are on
+one side of the threshold. When \code{skeptical = FALSE}, s-values of \code{Inf} are
+allowed.
 }
 }
 \section{Functions}{
@@ -65,12 +65,12 @@ allowed. The default will change from \code{TRUE} to \code{FALSE} in a future re
 
 }}
 \examples{
-svalue(as.numeric(0:100), skeptical = TRUE)
-svalue(as.numeric(0:100), side = "left", skeptical = TRUE)
-svalue(as.numeric(0:100), side = "right", skeptical = TRUE)
-svalue(rnorm(1e4, mean = 1), side = "left", skeptical = TRUE)
-svalue(rnorm(1e4, mean = 1), side = "right", skeptical = TRUE)
-svalue(rep(1, 10), skeptical = TRUE) # skeptical = TRUE avoids Inf
+svalue(as.numeric(0:100))
+svalue(as.numeric(0:100), side = "left")
+svalue(as.numeric(0:100), side = "right")
+svalue(rnorm(1e4, mean = 1), side = "left")
+svalue(rnorm(1e4, mean = 1), side = "right")
+svalue(rep(1, 10)) # skeptical = TRUE (default) avoids Inf
 svalue(rep(1, 10), skeptical = FALSE) # skeptical = FALSE allows Inf
 
 p2svalue(seq(0, 1, by = 0.1))

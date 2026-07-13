@@ -11,7 +11,7 @@ directional_information(
   side = "median",
   threshold = 0,
   threshold_split = "proportional",
-  skeptical = FALSE,
+  skeptical = TRUE,
   na_rm = FALSE
 )
 
@@ -66,9 +66,9 @@ information depending on the event's probability.
 Quantifies the information about direction in a posterior distribution based on the directional probability.
 This function calculates such information using the difference in the probability of direction (see \code{\link[=probability_direction]{probability_direction()}}), after converting each probability to bits (also see \code{\link[=svalue]{svalue()}}.
 
-When \code{skeptical = FALSE} (default), information is clamped to \eqn{[-n, n]}
+When \code{skeptical = FALSE}, information is clamped to \eqn{[-n, n]}
 when all samples are on one side of the threshold.
-When \code{skeptical = TRUE}, one sample is instead added to the empty side,
+When \code{skeptical = TRUE} (default), one sample is instead added to the empty side,
 giving \eqn{\pm \log_2(n)} rather than \eqn{\pm n}, to mimic the behaviour of
 \code{pvalue()} and \code{svalue()}.
 }
@@ -92,8 +92,8 @@ directional_information(rnorm(1e3, mean = 10)) # all coin flips are positive
 directional_information(rnorm(1e3, mean = -10)) # all coin flips are negative
 directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
-directional_information(rep(1, 1000))
-directional_information(rep(1, 1000), skeptical = TRUE)
+directional_information(rep(1, 1000)) # skeptical = TRUE (default) gives log2(n)
+directional_information(rep(1, 1000), skeptical = FALSE) # skeptical = FALSE gives n
 
 p2info(seq(0, 1, by = 0.1))
 p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]

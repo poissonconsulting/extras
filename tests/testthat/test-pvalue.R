@@ -112,12 +112,6 @@ test_that("pvalue() errors with unused arguments", {
   expect_error(pvalue(1, foo = TRUE), "`...` must be unused.")
 })
 
-test_that("pvalue() warns when skeptical is not supplied", {
-  lifecycle::expect_deprecated(pvalue(1))
-  expect_no_warning(pvalue(1, skeptical = TRUE))
-  expect_no_warning(pvalue(1, skeptical = FALSE))
-})
-
 test_that("pvalue() skeptical argument controls sample-size correction", {
   expect_identical(pvalue(1:9, skeptical = TRUE), 1 / 10)
   expect_identical(pvalue(1:9, skeptical = FALSE), 0)
