@@ -45,8 +45,8 @@ test_that("directional_information() returns correct values.", {
 })
 
 test_that("directional_information() errors with unused arguments", {
-  expect_error(directional_information(1, 0))
-  expect_error(directional_information(1, foo = TRUE))
+  expect_error(directional_information(1, 0),  "`...` must be unused.")
+  expect_error(directional_information(1, foo = TRUE),  "`...` must be unused.")
 })
 
 test_that("directional_information() skeptical argument works correctly", {
