@@ -69,8 +69,8 @@ This function calculates such information using the difference in the probabilit
 When \code{skeptical = FALSE} (default), information is clamped to \eqn{[-n, n]}
 when all samples are on one side of the threshold.
 When \code{skeptical = TRUE}, one sample is instead added to the empty side,
-giving \eqn{\pm \log_2(n)} rather than \eqn{\pm n}, to acknowledge additional
-uncertainty.
+giving \eqn{\pm \log_2(n)} rather than \eqn{\pm n}, to mimic the behaviour of
+\code{pvalue()} and \code{svalue()}.
 }
 \section{Functions}{
 \itemize{
