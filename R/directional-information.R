@@ -31,11 +31,11 @@
 #' each value of `p`. Used to limit the information to be within the interval \eqn{[-n, n]}.
 #'
 #' @details
-#' When `skeptical = FALSE`, information is clamped to \eqn{[-n, n]}
-#' when all samples are on one side of the threshold.
-#' When `skeptical = TRUE` (default), one sample is instead added to the empty side,
+#' When `skeptical = TRUE` (default), one sample is added to the empty side,
 #' giving \eqn{\pm \log_2(n)} rather than \eqn{\pm n}, to mimic the behaviour of
 #' `pvalue()` and `svalue()`.
+#' When `skeptical = FALSE`, information is instead clamped to \eqn{[-n, n]},
+#' which is assumes the MCMC samples are independent and representative.
 #'
 #' @inheritParams params
 #' @return A number indicating the directional information in bits.
