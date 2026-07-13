@@ -26,8 +26,8 @@ test_that("svalue", {
 })
 
 test_that("svalue() errors with unused arguments", {
-  expect_error(svalue(1, 0))
-  expect_error(svalue(1, foo = TRUE))
+  expect_error(svalue(1, 0), "`...` must be unused.")
+  expect_error(svalue(1, foo = TRUE), "`...` must be unused.")
 })
 
 test_that("svalue() warns when skeptical is not supplied", {
