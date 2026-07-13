@@ -123,15 +123,17 @@ directional_information <- function(x, ..., side = "median", threshold = 0,
     i <- log2(p_r) - log2(p_l)
   }
 
-  if (skeptical && is.infinite(i)) {
-    i <- sign(i) * log2(n)
-  } else {
-    i <- min(i, n) # max information difference is a bit for each sample
-    i <- max(i, -n)
-    # the two lines above are equivalent to, if o is the odds ratio:
-    # o being n   if i is  Inf, since n    = n / (n+1) / (1 / (n+1))
-    # o being 1/n if i is -Inf, since 1/n  = 1 / (n+1) / (n / (n+1))
-    # note that o could be p_l / p_r or p_r / p_l
+  if (is.infinite(i)) {
+    if (skeptical) {
+      i <- sign(i) * log2(n)
+    } else {
+      i <- min(i, n) # max information difference is a bit for each sample
+      i <- max(i, -n)
+      # the two lines above are equivalent to, if o is the odds ratio:
+      # o being n   if i is  Inf, since n    = n / (n+1) / (1 / (n+1))
+      # o being 1/n if i is -Inf, since 1/n  = 1 / (n+1) / (n / (n+1))
+      # note that o could be p_l / p_r or p_r / p_l
+    }
   }
   i
 }
