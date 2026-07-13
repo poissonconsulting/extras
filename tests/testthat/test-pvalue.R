@@ -108,8 +108,8 @@ test_that("pvalue() returns the correct one-sided p-values", {
 })
 
 test_that("pvalue() errors with unused arguments", {
-  expect_error(pvalue(1, 0))
-  expect_error(pvalue(1, foo = TRUE))
+  expect_error(pvalue(1, 0), "`...` must be unused.")
+  expect_error(pvalue(1, foo = TRUE), "`...` must be unused.")
 })
 
 test_that("pvalue() warns when skeptical is not supplied", {
