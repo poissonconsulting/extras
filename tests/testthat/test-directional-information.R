@@ -49,7 +49,7 @@ test_that("directional_information() errors with unused arguments", {
   expect_error(directional_information(1, foo = TRUE),  "`...` must be unused.")
 })
 
-test_that("directional_information() skeptical argument works correctly", {
+test_that("directional_information() skeptical argument works correctly with default side", {
   expect_equal(directional_information(rep(1, 4)), 4)
   expect_equal(directional_information(rep(1, 4), skeptical = TRUE), log2(4))
   expect_equal(directional_information(rep(-1, 4), skeptical = TRUE), log2(4))
