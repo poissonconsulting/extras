@@ -18,7 +18,9 @@ p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or two-
 
 \item{skeptical}{A flag specifying whether or not to add one sample to the
 empty side of the threshold when 100\% of samples are on one side, to avoid
-infinite information or zero p-values.}
+zero p-values and infinite s-values, and also to impose stronger bounds on
+directional information than [-n, n], which assume the MCMC samples are
+independent and representative.}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 }

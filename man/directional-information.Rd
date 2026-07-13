@@ -45,7 +45,9 @@ proportionally to the values of \code{x} on the left and right sides,
 
 \item{skeptical}{A flag specifying whether or not to add one sample to the
 empty side of the threshold when 100\% of samples are on one side, to avoid
-infinite information or zero p-values.}
+zero p-values and infinite s-values, and also to impose stronger bounds on
+directional information than [-n, n], which assume the MCMC samples are
+independent and representative.}
 
 \item{na_rm}{A flag specifying whether to remove missing values.}
 
@@ -66,11 +68,11 @@ information depending on the event's probability.
 Quantifies the information about direction in a posterior distribution based on the directional probability.
 This function calculates such information using the difference in the probability of direction (see \code{\link[=probability_direction]{probability_direction()}}), after converting each probability to bits (also see \code{\link[=svalue]{svalue()}}.
 
-When \code{skeptical = FALSE}, information is clamped to \eqn{[-n, n]}
-when all samples are on one side of the threshold.
-When \code{skeptical = TRUE} (default), one sample is instead added to the empty side,
+When \code{skeptical = TRUE} (default), one sample is added to the empty side,
 giving \eqn{\pm \log_2(n)} rather than \eqn{\pm n}, to mimic the behaviour of
 \code{pvalue()} and \code{svalue()}.
+When \code{skeptical = FALSE}, information is instead clamped to \eqn{[-n, n]},
+which is assumes the MCMC samples are independent and representative.
 }
 \section{Functions}{
 \itemize{
