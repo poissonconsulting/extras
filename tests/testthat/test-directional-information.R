@@ -13,7 +13,7 @@ test_that("directional_information() returns correct values.", {
   expect_identical(directional_information(c(-1:2), threshold_split = "proportional"), log2(2/1))
   expect_identical(directional_information(c(-1:2), threshold_split = "exclude"), log2(2/1))
 
-  expect_identical(directional_information(1), 0)
+  expect_identical(directional_information(1), log2(1))
   expect_equal(directional_information(c(1, 1)), log2(2))
   expect_equal(directional_information(c(1, 1, 1)), log2(3))
   expect_equal(directional_information(1:9), log2(9))
