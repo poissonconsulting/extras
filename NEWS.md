@@ -1,93 +1,23 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
-# extras 0.9.0.9006
+# extras 0.10.0 2026-07-14
 
-- Same as previous version.
-
-
-# extras 0.9.0.9005
-
-- Same as previous version.
-
-
-# extras 0.9.0.9004
-
-- Same as previous version.
-
-
-# extras 0.9.0.9003
-
-- Same as previous version.
-
-
-# extras 0.9.0.9002
-
-- Add functions to calculate s-values and information from vectors of probabilities (#122)
-
-
-# extras 0.9.0.9001
-
-- Same as previous version.
-
-
-# extras 0.9.0.9000
-
-* Add skew-lognormal distribution family (`dskewlnorm()`, `pskewlnorm()`, `qskewlnorm()`, `rskewlnorm()`, `ran_skewlnorm()`, `sens_skewlnorm()`, `quant_skewlnorm()`, `dev_skewlnorm()`, `res_skewlnorm()`, `log_lik_skewlnorm()`, `prob_skewlnorm()`) (#127).
-* Add fledge-bump workflow
-* Add fledge-tag-on-merge workflow
-
-
-<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+- Add functions to calculate s-values and information from vectors of probabilities (#122).
+- Add skew-lognormal distribution family (`dskewlnorm()`, `pskewlnorm()`, `qskewlnorm()`, `rskewlnorm()`, `ran_skewlnorm()`, `sens_skewlnorm()`, `quant_skewlnorm()`, `dev_skewlnorm()`, `res_skewlnorm()`, `log_lik_skewlnorm()`, `prob_skewlnorm()`) (#127).
 
 # extras 0.9.0
 
 - Add truncation arguments to log_lik functions; add prob and quant families (#119).
-
-
-# extras 0.8.0.9003
-
 - Tidy tests for `log_lik`, `res`, `ran`, and `dev` (#117) (#33).
-
-- Update `roxygen` to 8.0.0.9000 (#116).
-
-
-# extras 0.8.0.9002
-
-- Merge pull request #100 from poissonconsulting/1sided-pvalues.
-
-  allow one-sided p-values
-
-- Merge pull request #102 from poissonconsulting/fix-gh-actions-2026-04.
-
-  Fix gh actions 2026 04
-
-- Merge pull request #103 from poissonconsulting/add-loglik-beta-exp-unif.
-
-  Add `log_lik_ *()` for beta, exp, and unif to site
-
-
-# extras 0.8.0.9001
-
-- Added `log_lik_exp()`.
-- Added `log_lik_beta()`.
-- Added 'log_lik_unif()'.
-
+- Allow one-sided p-values.
+- Added `log_lik_exp()`, `log_lik_beta()`, and `log_lik_unif()`.
 
 # extras 0.8.0
 
 - Added a scalar case to `log_lik_beta_binom()` to improve speed for scalar inputs.
 - Add memoization (if memoize package is installed) and data has > 800 rows to gain speed from repeated function calls.
 - Use a vectorized optimization to improve speed of optimization required for deviance calculation.
-
-# extras 0.7.3.9002
-
 - Remove dependency on MASS package so minimum R version can be brought down to 4.0.0 from 4.3.0.
-
-# extras 0.7.3.9001
-
-- Register poissontemplate usage.
-- Fix actions.
-- Perform upkeep on package.
 
 # extras 0.7.3
 
