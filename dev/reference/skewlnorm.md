@@ -47,7 +47,7 @@ rskewlnorm(n = 1, meanlog = 0, sdlog = 1, shape = 0)
 
 - p:
 
-  A vector of probabilities.
+  A numeric vector of probabilities.
 
 - n:
 

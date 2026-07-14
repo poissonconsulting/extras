@@ -7,7 +7,7 @@ A Bayesian p-value (p) is here defined in terms of the quantile-based
 ## Usage
 
 ``` r
-pvalue(x, side = "both", threshold = 0, na_rm = FALSE)
+pvalue(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE)
 ```
 
 ## Arguments
@@ -15,6 +15,10 @@ pvalue(x, side = "both", threshold = 0, na_rm = FALSE)
 - x:
 
   A numeric vector of MCMC values.
+
+- ...:
+
+  Unused.
 
 - side:
 
@@ -25,6 +29,14 @@ pvalue(x, side = "both", threshold = 0, na_rm = FALSE)
 - threshold:
 
   A number of the threshold value.
+
+- skeptical:
+
+  A flag specifying whether or not to add one sample to the empty side
+  of the threshold when 100% of samples are on one side. Avoids zero
+  p-values and infinite s-values, and also imposes stronger bounds on
+  directional information than \[-n, n\], which assume the MCMC samples
+  are independent and representative.
 
 - na_rm:
 
@@ -43,6 +55,10 @@ value.
 Note that the function contains the sample-size correction \\p\_{c} = p
 \* n / (n + 1)\\ to avoid p-values of 0. The function can still return
 p-values of 1.
+
+When `skeptical = TRUE` (default), a floor of \\1 / (n + 1)\\ is applied
+to avoid p-values of 0 when all samples are on one side of the
+threshold. When `skeptical = FALSE`, p-values of 0 are allowed.
 
 To use as a measure of certainty in the direction of the estimate (i.e.,
 positive or negative), see
@@ -90,4 +106,8 @@ pvalue(x, side = "left") # should be 0.95
 #> [1] 0.950071
 pvalue(x, side = "right") # should be 0.05
 #> [1] 0.049929
+pvalue(rep(1, 10)) # skeptical = TRUE (default) avoids p = 0
+#> [1] 0.09090909
+pvalue(rep(1, 10), skeptical = FALSE) # skeptical = FALSE allows p = 0
+#> [1] 0
 ```

@@ -8,9 +8,11 @@ information depending on the event's probability.
 ``` r
 directional_information(
   x,
+  ...,
   side = "median",
   threshold = 0,
   threshold_split = "proportional",
+  skeptical = TRUE,
   na_rm = FALSE
 )
 
@@ -22,6 +24,10 @@ p2info(p, n = Inf)
 - x:
 
   A numeric vector of MCMC values.
+
+- ...:
+
+  Unused.
 
 - side:
 
@@ -53,6 +59,14 @@ p2info(p, n = Inf)
   - `"exclude"` to drop the values of `x` equal to `threshold`
     (identical to using `"proportional"`).
 
+- skeptical:
+
+  A flag specifying whether or not to add one sample to the empty side
+  of the threshold when 100% of samples are on one side. Avoids zero
+  p-values and infinite s-values, and also imposes stronger bounds on
+  directional information than \[-n, n\], which assume the MCMC samples
+  are independent and representative.
+
 - na_rm:
 
   A flag specifying whether to remove missing values.
@@ -80,6 +94,16 @@ information using the difference in the probability of direction (see
 [`probability_direction()`](https://poissonconsulting.github.io/extras/dev/reference/probability_direction.md)),
 after converting each probability to bits (also see
 [`svalue()`](https://poissonconsulting.github.io/extras/dev/reference/svalue.md).
+
+When `skeptical = TRUE` (default), one sample is added to the empty
+side, giving bounds of \\\pm \log_2(n)\\ rather than \\\pm n\\, to mimic
+the behaviour of
+[`pvalue()`](https://poissonconsulting.github.io/extras/dev/reference/pvalue.md)
+and
+[`svalue()`](https://poissonconsulting.github.io/extras/dev/reference/svalue.md).
+When `skeptical = FALSE`, information is instead clamped to \\\[-n,
+n\]\\, which is assumes the MCMC samples are independent and
+representative.
 
 ## Functions
 
@@ -121,9 +145,9 @@ Other summary:
 directional_information(0)
 #> [1] 0
 directional_information(1) # one coin flip of information
-#> [1] 1
+#> [1] 0
 directional_information(c(1, 1)) # two coin flips
-#> [1] 2
+#> [1] 1
 directional_information(c(1, 1, -1)) # x[2] and x[3] cancel out
 #> [1] 1
 directional_information(c(1, 1, -1, -1)) # both sides cancel out
@@ -133,13 +157,17 @@ directional_information(rnorm(1e3, mean = 0))
 directional_information(rnorm(1e3, mean = 1))
 #> [1] 2.328864
 directional_information(rnorm(1e3, mean = 10)) # all coin flips are positive
-#> [1] 1000
+#> [1] 9.965784
 directional_information(rnorm(1e3, mean = -10)) # all coin flips are negative
-#> [1] 1000
+#> [1] 9.965784
 directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
-#> [1] 1000
+#> [1] 9.965784
 directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
-#> [1] 1e+06
+#> [1] 19.93157
+directional_information(rep(1, 1000)) # skeptical = TRUE (default) gives log2(n)
+#> [1] 9.965784
+directional_information(rep(1, 1000), skeptical = FALSE) # skeptical = FALSE gives n
+#> [1] 1000
 
 p2info(seq(0, 1, by = 0.1))
 #>  [1]       -Inf -3.1699250 -2.0000000 -1.2223924 -0.5849625  0.0000000
