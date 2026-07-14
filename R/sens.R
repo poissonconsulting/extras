@@ -319,7 +319,9 @@ sens_neg_binom <- function(lambda, theta, sd_mult = 2) {
   chk::chk_gt(sd_mult, value = 0)
 
   if (sd_mult < 1) {
-    stop("This function does not currently have the option to reduce the standard deviation.")
+    stop(
+      "This function does not currently have the option to reduce the standard deviation."
+    )
   }
 
   size <- 1 / theta
@@ -373,9 +375,15 @@ sens_gamma_pois_zi <- function(lambda, theta, prob, sd_mult = 2) {
   chk::chk_gt(sd_mult, value = 0)
 
   if (sd_mult < 1) {
-    stop("This function does not currently have the option to reduce the standard deviation.")
+    stop(
+      "This function does not currently have the option to reduce the standard deviation."
+    )
   }
 
-  new_theta <- (sd_mult^2 * (1 + lambda * (prob + theta)) - (lambda * prob) - 1) / lambda
+  new_theta <- (sd_mult^2 *
+    (1 + lambda * (prob + theta)) -
+    (lambda * prob) -
+    1) /
+    lambda
   return(list(lambda = lambda, theta = new_theta, prob = prob))
 }

@@ -1,4 +1,3 @@
-
 #' Beta Quantile Function
 #'
 #' @inheritParams params
@@ -86,7 +85,11 @@ quant_gamma_pois <- function(x, lambda = 1, theta = 0) {
 #' @examples
 #' quant_gamma_pois_zi(c(0.1, 0.4, 0.6), 3, 1, prob = 0.5)
 quant_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
-  stats::qnbinom(p = pmax(0, (x - prob) / (1 - prob)), mu = lambda, size = 1 / theta)
+  stats::qnbinom(
+    p = pmax(0, (x - prob) / (1 - prob)),
+    mu = lambda,
+    size = 1 / theta
+  )
 }
 
 #' Log-Normal Quantile Function

@@ -39,15 +39,20 @@ test_that("res_pois", {
 test_that("res_pois simulate", {
   withr::with_seed(101, {
     res <- res_pois(
-      rep(2, 10000), lambda = 10, simulate = TRUE, type = "dev"
+      rep(2, 10000),
+      lambda = 10,
+      simulate = TRUE,
+      type = "dev"
     )
     expect_equal(mean(res), -0.0747938731623342)
     expect_equal(sd(res), 1.00265783064155)
   })
   withr::with_seed(101, {
     res <- res_pois(
-      rep(2, 10000), lambda = 10,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      lambda = 10,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), -0.0207445414507045)
     expect_equal(sd(res), 0.991366705510403)
@@ -105,11 +110,16 @@ test_that("res_pois_zi", {
     expect_equal(
       res_pois_zi(1:10, 10, 0.5, simulate = TRUE, type = "standardized"),
       c(
-        -0.912870929175277, 1.09544511501033,
-        0.365148371670111, 0.547722557505166,
-        -0.912870929175277, -0.912870929175277,
-        -0.912870929175277, 0.912870929175277,
-        -0.912870929175277, -0.912870929175277
+        -0.912870929175277,
+        1.09544511501033,
+        0.365148371670111,
+        0.547722557505166,
+        -0.912870929175277,
+        -0.912870929175277,
+        -0.912870929175277,
+        0.912870929175277,
+        -0.912870929175277,
+        -0.912870929175277
       )
     )
   })
@@ -118,16 +128,22 @@ test_that("res_pois_zi", {
 test_that("res_pois_zi simulate", {
   withr::with_seed(101, {
     res <- res_pois_zi(
-      rep(2, 10000), lambda = 100, prob = 0.01,
-      simulate = TRUE, type = "dev"
+      rep(2, 10000),
+      lambda = 100,
+      prob = 0.01,
+      simulate = TRUE,
+      type = "dev"
     )
     expect_equal(mean(res), -0.0391353490642631)
     expect_equal(sd(res), 1.04793224317444)
   })
   withr::with_seed(101, {
     res <- res_pois_zi(
-      rep(2, 10000), lambda = 100, prob = 0.01,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      lambda = 100,
+      prob = 0.01,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), 0.00328329103187647)
     expect_equal(sd(res), 0.971476934943575)
@@ -189,7 +205,9 @@ test_that("res_norm simulate", {
   })
   withr::with_seed(101, {
     res <- res_norm(
-      rep(2, 10000), simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), 0.0052778928309291)
     expect_equal(sd(res), 0.993174129657875)
@@ -271,10 +289,15 @@ test_that("res_binom", {
   expect_equal(
     res_binom(1:9, 10, 0.5),
     c(
-      -2.71316865369073, -1.96338868806845,
-      -1.28283185573988, -0.634594572159089,
-      0, 0.634594572159089, 1.28283185573988,
-      1.96338868806845, 2.71316865369073
+      -2.71316865369073,
+      -1.96338868806845,
+      -1.28283185573988,
+      -0.634594572159089,
+      0,
+      0.634594572159089,
+      1.28283185573988,
+      1.96338868806845,
+      2.71316865369073
     )
   )
   expect_equal(res_binom(0, 2, 0.5, type = "raw"), -1)
@@ -310,15 +333,21 @@ test_that("res_binom", {
 test_that("res_binom simulate", {
   withr::with_seed(101, {
     res <- res_binom(
-      rep(2, 10000), size = 10, simulate = TRUE, type = "dev"
+      rep(2, 10000),
+      size = 10,
+      simulate = TRUE,
+      type = "dev"
     )
     expect_equal(mean(res), 0.00262573802624805)
     expect_equal(sd(res), 1.02781369459726)
   })
   withr::with_seed(101, {
     res <- res_binom(
-      rep(2, 10000), 10, 0.5,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      10,
+      0.5,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), 0.00252982212813479)
     expect_equal(sd(res), 0.998525565686988)
@@ -392,7 +421,9 @@ test_that("res_bern simulate", {
   })
   withr::with_seed(101, {
     res <- res_bern(
-      rep(2, 10000), simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), -0.00559999999999963)
     expect_equal(sd(res), 1.00003432284339)
@@ -454,16 +485,22 @@ test_that("res_gamma_pois", {
 test_that("res_gamma_pois simulate", {
   withr::with_seed(101, {
     res <- res_gamma_pois(
-      rep(2, 10000), lambda = 100, theta = 0.5,
-      simulate = TRUE, type = "dev"
+      rep(2, 10000),
+      lambda = 100,
+      theta = 0.5,
+      simulate = TRUE,
+      type = "dev"
     )
     expect_equal(mean(res), -0.250801462240149)
     expect_equal(sd(res), 1.01494516351537)
   })
   withr::with_seed(101, {
     res <- res_gamma_pois(
-      rep(2, 10000), lambda = 100, theta = 0.5,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      lambda = 100,
+      theta = 0.5,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), -0.00860612139643616)
     expect_equal(sd(res), 0.999023530246265)
@@ -522,8 +559,11 @@ test_that("res_neg_binom", {
   })
   withr::with_seed(101, {
     res <- res_neg_binom(
-      rep(2, 10000), 2, 2,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      2,
+      2,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), -0.0100560429593354)
     expect_equal(sd(res), 0.973207885992976)
@@ -533,7 +573,8 @@ test_that("res_neg_binom", {
 test_that("res_gamma_pois_zi", {
   expect_identical(
     res_gamma_pois_zi(integer(0), integer(0), integer(0)),
-    numeric(0), numeric(0)
+    numeric(0),
+    numeric(0)
   )
   expect_identical(res_gamma_pois_zi(1, 1, 0, 0), 0)
   expect_identical(res_gamma_pois_zi(1, 1, 0, 0, type = "raw"), 0)
@@ -612,7 +653,11 @@ test_that("res_gamma_pois_zi", {
   withr::with_seed(101, {
     expect_equal(
       res_gamma_pois_zi(
-        1:2, 2, prob = 0.7, simulate = TRUE, type = "data"
+        1:2,
+        2,
+        prob = 0.7,
+        simulate = TRUE,
+        type = "data"
       ),
       c(0L, 0L)
     )
@@ -620,15 +665,22 @@ test_that("res_gamma_pois_zi", {
   withr::with_seed(101, {
     expect_equal(
       res_gamma_pois_zi(
-        1:2, 2, prob = 0.7, simulate = TRUE, type = "standardized"
+        1:2,
+        2,
+        prob = 0.7,
+        simulate = TRUE,
+        type = "standardized"
       ),
       c(-0.424264068711929, -0.424264068711929)
     )
   })
   withr::with_seed(101, {
     res <- res_gamma_pois_zi(
-      rep(2, 10000), 2, prob = 0.7,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      2,
+      prob = 0.7,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), 0.00593969696196716)
     expect_equal(sd(res), 0.860406154019735)
@@ -694,7 +746,11 @@ test_that("res_gamma", {
   })
   withr::with_seed(101, {
     res <- res_gamma(
-      rep(2, 10000), 2, 1, simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      2,
+      1,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), 0.00754439840612374)
     expect_equal(sd(res), 1.00440120529188)
@@ -792,7 +848,10 @@ test_that("res_student", {
   )
   expect_equal(
     res_student(
-      numeric(0), numeric(0), numeric(0), numeric(0),
+      numeric(0),
+      numeric(0),
+      numeric(0),
+      numeric(0),
       type = "standardized"
     ),
     numeric(0)
@@ -818,7 +877,12 @@ test_that("res_student", {
   withr::with_seed(101, {
     expect_equal(
       res_student(
-        1:3, 5, 10, 1 / 1.5, simulate = TRUE, type = "standardized"
+        1:3,
+        5,
+        10,
+        1 / 1.5,
+        simulate = TRUE,
+        type = "standardized"
       ),
       rep(0, 3)
     )
@@ -831,8 +895,12 @@ test_that("res_student", {
   })
   withr::with_seed(101, {
     res <- res_student(
-      rep(2, 10000), 5, 10, 1 / 5,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      5,
+      10,
+      1 / 5,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), 0.000136223967493112)
     expect_equal(sd(res), 1.01150399649323)
@@ -873,19 +941,29 @@ test_that("res_beta_binom", {
   expect_equal(
     res_beta_binom(1:9, 10, 0.5),
     c(
-      -2.71316865369073, -1.96338868806845,
-      -1.28283185573988, -0.634594572159089,
-      0, 0.634594572159089, 1.28283185573988,
-      1.96338868806845, 2.71316865369073
+      -2.71316865369073,
+      -1.96338868806845,
+      -1.28283185573988,
+      -0.634594572159089,
+      0,
+      0.634594572159089,
+      1.28283185573988,
+      1.96338868806845,
+      2.71316865369073
     )
   )
   expect_equal(
     res_beta_binom(1:9, 10, 0.5, 0.1),
     c(
-      -2.26648244134579, -1.61504974877637,
-      -1.04572341572075, -0.51475735786997,
-      0, 0.514757357869973, 1.04572341572074,
-      1.61504974877637, 2.26648244134578
+      -2.26648244134579,
+      -1.61504974877637,
+      -1.04572341572075,
+      -0.51475735786997,
+      0,
+      0.514757357869973,
+      1.04572341572074,
+      1.61504974877637,
+      2.26648244134578
     )
   )
   expect_equal(res_beta_binom(0, 2, 0.5, type = "dev"), -1.6651092223154)
@@ -942,8 +1020,12 @@ test_that("res_beta_binom", {
   withr::with_seed(101, {
     expect_equal(
       res_beta_binom(
-        1:2, 2, prob = 0.5, theta = 2,
-        simulate = TRUE, type = "standardized"
+        1:2,
+        2,
+        prob = 0.5,
+        theta = 2,
+        simulate = TRUE,
+        type = "standardized"
       ),
       c(0.816496580927726, -0.816496580927726)
     )
@@ -970,7 +1052,10 @@ test_that("res_beta_binom", {
   )
   expect_equal(
     res_beta_binom(
-      numeric(0), numeric(0), numeric(0), numeric(0),
+      numeric(0),
+      numeric(0),
+      numeric(0),
+      numeric(0),
       type = "standardized"
     ),
     numeric(0)
@@ -978,16 +1063,24 @@ test_that("res_beta_binom", {
   withr::with_seed(101, {
     expect_equal(
       res_beta_binom(
-        1:2, 2, prob = 0.5, theta = 0,
-        simulate = TRUE, type = "standardized"
+        1:2,
+        2,
+        prob = 0.5,
+        theta = 0,
+        simulate = TRUE,
+        type = "standardized"
       ),
       c(0, -1.4142135623731)
     )
   })
   withr::with_seed(101, {
     res <- res_beta_binom(
-      rep(2, 10000), size = 10, prob = 0.3, theta = 0.2,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      size = 10,
+      prob = 0.3,
+      theta = 0.2,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), 0.0345591969703882)
     expect_equal(sd(res), 2.24030672587351)
@@ -1030,20 +1123,28 @@ test_that("res_skewnorm", {
   expect_equal(
     res_skewnorm(1:9, 10, 0.5, 10),
     c(
-      -180.931340047915, -160.835052963763,
-      -140.739643395107, -120.645509483193,
-      -100.553340951113, -80.4644530321068,
-      -60.3817280342612, -40.3130604527845,
+      -180.931340047915,
+      -160.835052963763,
+      -140.739643395107,
+      -120.645509483193,
+      -100.553340951113,
+      -80.4644530321068,
+      -60.3817280342612,
+      -40.3130604527845,
       -20.2918769408978
     )
   )
   expect_equal(
     res_skewnorm(1:9, 10, 0.5, -10),
     c(
-      -17.9979431892188, -15.9976860527498,
-      -13.9973554303071, -11.9969145634345,
-      -9.99629726660561, -7.99537110097754,
-      -5.99382674443854, -3.99073414829236,
+      -17.9979431892188,
+      -15.9976860527498,
+      -13.9973554303071,
+      -11.9969145634345,
+      -9.99629726660561,
+      -7.99537110097754,
+      -5.99382674443854,
+      -3.99073414829236,
       -1.98140330128592
     )
   )
@@ -1099,8 +1200,12 @@ test_that("res_skewnorm", {
   withr::with_seed(101, {
     expect_equal(
       res_skewnorm(
-        1:2, 2, sd = 0.5, shape = 2,
-        simulate = TRUE, type = "standardized"
+        1:2,
+        2,
+        sd = 0.5,
+        shape = 2,
+        simulate = TRUE,
+        type = "standardized"
       ),
       c(-0.713119218167245, -0.0574564315318186)
     )
@@ -1127,7 +1232,10 @@ test_that("res_skewnorm", {
   )
   expect_equal(
     res_skewnorm(
-      numeric(0), numeric(0), numeric(0), numeric(0),
+      numeric(0),
+      numeric(0),
+      numeric(0),
+      numeric(0),
       type = "standardized"
     ),
     numeric(0)
@@ -1135,16 +1243,24 @@ test_that("res_skewnorm", {
   withr::with_seed(101, {
     expect_equal(
       res_skewnorm(
-        1:2, 2, sd = 0.5, shape = 0,
-        simulate = TRUE, type = "standardized"
+        1:2,
+        2,
+        sd = 0.5,
+        shape = 0,
+        simulate = TRUE,
+        type = "standardized"
       ),
       c(1.10492371083828, 0.428718918086851)
     )
   })
   withr::with_seed(101, {
     res <- res_skewnorm(
-      rep(2, 10000), mean = 10, sd = 0.3, shape = 0.2,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      mean = 10,
+      sd = 0.3,
+      shape = 0.2,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), 0.0236707225149864)
     expect_equal(sd(res), 3.34458775450197)
@@ -1155,7 +1271,7 @@ test_that("res_skewnorm", {
 test_that("res_skewlnorm", {
   skip_if_not_installed("sn")
   expect_identical(
-    res_skewlnorm(numeric(0), numeric(0), numeric(0), numeric(0)), 
+    res_skewlnorm(numeric(0), numeric(0), numeric(0), numeric(0)),
     numeric(0)
   )
   expect_identical(res_skewlnorm(NA, 1, 1, 1), NA_real_)
@@ -1167,7 +1283,7 @@ test_that("res_skewlnorm", {
     dev_skewlnorm(exp(0:2), 1, 0.5, 0.5, res = TRUE)
   )
   expect_equal(
-    res_skewlnorm(c(1, 2, 5), 0, 1, 2, type = "raw"), 
+    res_skewlnorm(c(1, 2, 5), 0, 1, 2, type = "raw"),
     c(-1.6856130096524, -0.685613009652402, 2.3143869903476)
   )
   expect_equal(
@@ -1178,8 +1294,12 @@ test_that("res_skewlnorm", {
   expect_error(res_skewlnorm(10, type = "unknown"))
   withr::with_seed(101, {
     res <- res_skewlnorm(
-      rep(2, 10000), meanlog = 10, sdlog = 0.3, shape = 0.2,
-      simulate = TRUE, type = "standardized"
+      rep(2, 10000),
+      meanlog = 10,
+      sdlog = 0.3,
+      shape = 0.2,
+      simulate = TRUE,
+      type = "standardized"
     )
     expect_equal(mean(res), 0.00463040173426368)
     expect_equal(sd(res), 0.995340625582139)

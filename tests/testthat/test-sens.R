@@ -258,7 +258,12 @@ test_that("student's sensitivity expands the sd by the multiplier", {
   sd <- 5
   theta <- 0.1
   sd_mult <- 5
-  new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
+  new_pars <- sens_student(
+    mean = mean,
+    sd = sd,
+    theta = theta,
+    sd_mult = sd_mult
+  )
   expect_equal(as.numeric(new_pars$sd) / sd, sd_mult)
 })
 
@@ -267,7 +272,12 @@ test_that("student's sensitivity reduces the sd by the multiplier", {
   sd <- 0.6
   theta <- 0.1
   sd_mult <- 5
-  new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
+  new_pars <- sens_student(
+    mean = mean,
+    sd = sd,
+    theta = theta,
+    sd_mult = sd_mult
+  )
   expect_equal(as.numeric(new_pars$sd) / sd, sd_mult)
 })
 
@@ -276,7 +286,12 @@ test_that("student's sensitivity keeps the same mean", {
   sd <- 0.6
   theta <- 0.1
   sd_mult <- 5
-  new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
+  new_pars <- sens_student(
+    mean = mean,
+    sd = sd,
+    theta = theta,
+    sd_mult = sd_mult
+  )
   expect_equal(as.numeric(new_pars$mean), mean)
 })
 
@@ -285,7 +300,12 @@ test_that("student's sensitivity has the same results as the normal with theta =
   sd <- 5
   theta <- 0
   sd_mult <- 5
-  new_pars_student <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
+  new_pars_student <- sens_student(
+    mean = mean,
+    sd = sd,
+    theta = theta,
+    sd_mult = sd_mult
+  )
   new_pars_norm <- sens_norm(mean = mean, sd = sd, sd_mult = sd_mult)
   expect_equal(new_pars_student$mean, new_pars_norm$mean)
   expect_equal(new_pars_student$sd, new_pars_norm$sd)
@@ -346,7 +366,12 @@ test_that("student's sensitivity expands sd by multiplier", {
   sd <- 10
   theta <- 0.1
   sd_mult <- 2
-  new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
+  new_pars <- sens_student(
+    mean = mean,
+    sd = sd,
+    theta = theta,
+    sd_mult = sd_mult
+  )
   withr::with_seed(
     101,
     {
@@ -362,7 +387,12 @@ test_that("student's sensitivity expands sd by multiplier", {
   sd <- 10
   theta <- 0.1
   sd_mult <- 0.6
-  new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
+  new_pars <- sens_student(
+    mean = mean,
+    sd = sd,
+    theta = theta,
+    sd_mult = sd_mult
+  )
   withr::with_seed(
     101,
     {
@@ -378,7 +408,12 @@ test_that("student's sensitivity keeps the same mean", {
   sd <- 10
   theta <- 0.1
   sd_mult <- 2
-  new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
+  new_pars <- sens_student(
+    mean = mean,
+    sd = sd,
+    theta = theta,
+    sd_mult = sd_mult
+  )
   withr::with_seed(
     101,
     {
@@ -394,7 +429,12 @@ test_that("student's sensitivity works with large theta", {
   sd <- 10
   theta <- 10
   sd_mult <- 5
-  new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
+  new_pars <- sens_student(
+    mean = mean,
+    sd = sd,
+    theta = theta,
+    sd_mult = sd_mult
+  )
   expect_equal(as.numeric(new_pars[1]), mean)
   expect_equal(as.numeric(new_pars[2]), (sd * sd_mult))
   expect_equal(as.numeric(new_pars[3]), theta)
@@ -405,7 +445,12 @@ test_that("student's sensitivity works with small theta", {
   sd <- 10
   theta <- 0.01
   sd_mult <- 5
-  new_pars <- sens_student(mean = mean, sd = sd, theta = theta, sd_mult = sd_mult)
+  new_pars <- sens_student(
+    mean = mean,
+    sd = sd,
+    theta = theta,
+    sd_mult = sd_mult
+  )
   expect_equal(as.numeric(new_pars[1]), mean)
   expect_equal(as.numeric(new_pars[2]), (sd * sd_mult))
   expect_equal(as.numeric(new_pars[3]), theta)
@@ -642,7 +687,12 @@ test_that("sd of skewnorm deviates expands as expected", {
   sd <- 20
   shape <- -1
   sd_mult <- 5
-  new_pars <- sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+  new_pars <- sens_skewnorm(
+    mean = mean,
+    sd = sd,
+    shape = shape,
+    sd_mult = sd_mult
+  )
   withr::with_seed(
     101,
     {
@@ -659,7 +709,12 @@ test_that("sd of skewnorm deviates decreases as expected", {
   sd <- 20
   shape <- 2
   sd_mult <- 0.4
-  new_pars <- sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+  new_pars <- sens_skewnorm(
+    mean = mean,
+    sd = sd,
+    shape = shape,
+    sd_mult = sd_mult
+  )
   withr::with_seed(
     101,
     {
@@ -676,7 +731,12 @@ test_that("mean of skewnorm deviates changes expectedly with expanding sd", {
   sd <- 20
   shape <- 2
   sd_mult <- 2
-  new_pars <- sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+  new_pars <- sens_skewnorm(
+    mean = mean,
+    sd = sd,
+    shape = shape,
+    sd_mult = sd_mult
+  )
   withr::with_seed(
     101,
     {
@@ -693,7 +753,12 @@ test_that("mean of skewnorm deviates changes expectedly with reducing sd", {
   sd <- 20
   shape <- 2
   sd_mult <- 0.4
-  new_pars <- sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+  new_pars <- sens_skewnorm(
+    mean = mean,
+    sd = sd,
+    shape = shape,
+    sd_mult = sd_mult
+  )
   withr::with_seed(
     101,
     {
@@ -777,7 +842,12 @@ test_that("sens_skewnorm has same behaviour as normal when shape = 0", {
   sd <- 10
   shape <- 0
   sd_mult <- 2
-  new_pars_skewnorm <- sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+  new_pars_skewnorm <- sens_skewnorm(
+    mean = mean,
+    sd = sd,
+    shape = shape,
+    sd_mult = sd_mult
+  )
   new_pars_norm <- sens_norm(mean = mean, sd = sd, sd_mult = sd_mult)
   expect_equal(new_pars_skewnorm$mean, new_pars_norm$mean)
   expect_equal(new_pars_skewnorm$sd, new_pars_norm$sd)
@@ -1710,7 +1780,12 @@ test_that("sens_neg_binom errors with sd_mult < 0", {
 
 # Zero-inflated Gamma-Poisson ----
 test_that("sens_gamma_pois_zi returns a numeric vector of length 3 with correct names", {
-  expect_snapshot(sens_gamma_pois_zi(lambda = 2, theta = 0.2, prob = 0.3, sd_mult = 2))
+  expect_snapshot(sens_gamma_pois_zi(
+    lambda = 2,
+    theta = 0.2,
+    prob = 0.3,
+    sd_mult = 2
+  ))
 })
 
 test_that("sens_gamma_pois_zi errors with NULL input for lambda", {
@@ -1745,19 +1820,34 @@ test_that("sens_gamma_pois_zi errors with empty numeric input for lambda", {
 
 test_that("sens_gamma_pois_zi errors with empty numeric input for theta", {
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = 0.1, theta = numeric(0), prob = 0.1, sd_mult = 2)
+    sens_gamma_pois_zi(
+      lambda = 0.1,
+      theta = numeric(0),
+      prob = 0.1,
+      sd_mult = 2
+    )
   )
 })
 
 test_that("sens_gamma_pois_zi errors with empty numeric input for prob", {
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = 0.1, theta = 0.2, prob = numeric(0), sd_mult = 2)
+    sens_gamma_pois_zi(
+      lambda = 0.1,
+      theta = 0.2,
+      prob = numeric(0),
+      sd_mult = 2
+    )
   )
 })
 
 test_that("sens_gamma_pois_zi errors with empty numeric input for sd_mult", {
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = 10, theta = 10, prob = 0.1, sd_mult = numeric(0))
+    sens_gamma_pois_zi(
+      lambda = 10,
+      theta = 10,
+      prob = 0.1,
+      sd_mult = numeric(0)
+    )
   )
 })
 
@@ -1775,7 +1865,12 @@ test_that("sens_gamma_pois_zi errors when provided with a vector of values for t
 
 test_that("sens_gamma_pois_zi errors when provided with a vector of values for prob", {
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = 10, theta = 10, prob = seq(0.1, 0.3, 0.1), sd_mult = 2)
+    sens_gamma_pois_zi(
+      lambda = 10,
+      theta = 10,
+      prob = seq(0.1, 0.3, 0.1),
+      sd_mult = 2
+    )
   )
 })
 
@@ -1790,12 +1885,22 @@ test_that("sd of gamma-poisson random deviates expands with sd_mult > 1", {
   theta <- 0.1
   prob <- 0.1
   sd_mult <- 2
-  new_pars <- sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+  new_pars <- sens_gamma_pois_zi(
+    lambda = lambda,
+    theta = theta,
+    prob = prob,
+    sd_mult = sd_mult
+  )
   withr::with_seed(
     101,
     {
       ran_original <- ran_gamma_pois_zi(10000, lambda, theta, prob)
-      ran_new <- ran_gamma_pois_zi(10000, new_pars$lambda, new_pars$theta, new_pars$prob)
+      ran_new <- ran_gamma_pois_zi(
+        10000,
+        new_pars$lambda,
+        new_pars$theta,
+        new_pars$prob
+      )
       expect_equal(sd(ran_new) / sd(ran_original), 2.01617303374106)
     }
   )
@@ -1807,7 +1912,12 @@ test_that("sens_gamma_pois_zi errors when trying to reduce sd", {
   prob <- 0.3
   sd_mult <- 0.2
   expect_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult),
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    ),
     "This function does not currently have the option to reduce the standard deviation"
   )
 })
@@ -1817,12 +1927,22 @@ test_that("mean of gamma-poisson random deviates stays the same when expanding s
   theta <- 0.1
   prob <- 0.3
   sd_mult <- 2
-  new_pars <- sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+  new_pars <- sens_gamma_pois_zi(
+    lambda = lambda,
+    theta = theta,
+    prob = prob,
+    sd_mult = sd_mult
+  )
   withr::with_seed(
     101,
     {
       ran_original <- ran_gamma_pois_zi(10000, lambda, theta, prob)
-      ran_new <- ran_gamma_pois_zi(10000, new_pars$lambda, new_pars$theta, new_pars$prob)
+      ran_new <- ran_gamma_pois_zi(
+        10000,
+        new_pars$lambda,
+        new_pars$theta,
+        new_pars$prob
+      )
       expect_equal(mean(ran_new) - mean(ran_original), -0.0522999999999998)
     }
   )
@@ -1834,7 +1954,12 @@ test_that("sens_gamma_pois_zi errors with character lambda", {
   prob <- 0.3
   sd_mult <- 2
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    )
   )
 })
 
@@ -1844,7 +1969,12 @@ test_that("sens_gamma_pois_zi errors with lambda < 0", {
   prob <- 0.3
   sd_mult <- 2
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    )
   )
 })
 
@@ -1854,7 +1984,12 @@ test_that("sens_gamma_pois_zi errors with character theta", {
   prob <- 0.3
   sd_mult <- 2
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    )
   )
 })
 
@@ -1864,7 +1999,12 @@ test_that("sens_gamma_pois_zi errors with theta < 0", {
   prob <- 0.3
   sd_mult <- 2
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    )
   )
 })
 
@@ -1874,7 +2014,12 @@ test_that("sens_gamma_pois_zi errors with character prob", {
   prob <- "one"
   sd_mult <- 2
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    )
   )
 })
 
@@ -1884,7 +2029,12 @@ test_that("sens_gamma_pois_zi errors with prob < 0", {
   prob <- -0.2
   sd_mult <- 2
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    )
   )
 })
 
@@ -1894,7 +2044,12 @@ test_that("sens_gamma_pois_zi errors with prob > 1", {
   prob <- 1.1
   sd_mult <- 2
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    )
   )
 })
 
@@ -1904,7 +2059,12 @@ test_that("sens_gamma_pois_zi errors with character sd_mult", {
   prob <- 0.3
   sd_mult <- "two"
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    )
   )
 })
 
@@ -1914,7 +2074,12 @@ test_that("sens_gamma_pois_zi errors with sd_mult < 0", {
   prob <- 0.3
   sd_mult <- -2
   expect_chk_error(
-    sens_gamma_pois_zi(lambda = lambda, theta = theta, prob = prob, sd_mult = sd_mult)
+    sens_gamma_pois_zi(
+      lambda = lambda,
+      theta = theta,
+      prob = prob,
+      sd_mult = sd_mult
+    )
   )
 })
 
@@ -1930,8 +2095,18 @@ test_that("sens_skewlnorm returns a numeric list of length 3 with correct names"
 
 test_that("sens_skewlnorm errors with NULL, empty, or vector inputs", {
   skip_if_not_installed("sn")
-  expect_error(sens_skewlnorm(meanlog = NULL, sdlog = 1, shape = 2, sd_mult = 2))
-  expect_error(sens_skewlnorm(meanlog = 0, sdlog = numeric(0), shape = 2, sd_mult = 2))
+  expect_error(sens_skewlnorm(
+    meanlog = NULL,
+    sdlog = 1,
+    shape = 2,
+    sd_mult = 2
+  ))
+  expect_error(sens_skewlnorm(
+    meanlog = 0,
+    sdlog = numeric(0),
+    shape = 2,
+    sd_mult = 2
+  ))
   expect_error(sens_skewlnorm(meanlog = 0:1, sdlog = 1, shape = 2, sd_mult = 2))
   expect_error(sens_skewlnorm(meanlog = 0, sdlog = -1, shape = 2, sd_mult = 2))
   expect_error(sens_skewlnorm(meanlog = 0, sdlog = 1, shape = 2, sd_mult = -1))
@@ -1939,7 +2114,12 @@ test_that("sens_skewlnorm errors with NULL, empty, or vector inputs", {
 
 test_that("sens_skewlnorm reduces to sens_lnorm when shape = 0", {
   skip_if_not_installed("sn")
-  new_skewlnorm <- sens_skewlnorm(meanlog = 0.3, sdlog = 0.7, shape = 0, sd_mult = 2)
+  new_skewlnorm <- sens_skewlnorm(
+    meanlog = 0.3,
+    sdlog = 0.7,
+    shape = 0,
+    sd_mult = 2
+  )
   new_lnorm <- sens_lnorm(meanlog = 0.3, sdlog = 0.7, sd_mult = 2)
   expect_equal(new_skewlnorm$meanlog, new_lnorm$meanlog)
   expect_equal(new_skewlnorm$sdlog, new_lnorm$sdlog)
@@ -1947,7 +2127,10 @@ test_that("sens_skewlnorm reduces to sens_lnorm when shape = 0", {
 
 test_that("sens_skewlnorm returns the input unchanged when sdlog = 0", {
   skip_if_not_installed("sn")
-  expect_equal(sens_skewlnorm(2, 0, 1, 2), list(meanlog = 2, sdlog = 0, shape = 1))
+  expect_equal(
+    sens_skewlnorm(2, 0, 1, 2),
+    list(meanlog = 2, sdlog = 0, shape = 1)
+  )
 })
 
 test_that("sd of skewlnorm deviates scales by sd_mult while preserving the mean", {
@@ -1956,10 +2139,20 @@ test_that("sd of skewlnorm deviates scales by sd_mult while preserving the mean"
   sdlog <- 0.7
   shape <- 2
   for (sd_mult in c(0.5, 2)) {
-    new_pars <- sens_skewlnorm(meanlog = meanlog, sdlog = sdlog, shape = shape, sd_mult = sd_mult)
+    new_pars <- sens_skewlnorm(
+      meanlog = meanlog,
+      sdlog = sdlog,
+      shape = shape,
+      sd_mult = sd_mult
+    )
     withr::with_seed(101, {
       ran_original <- ran_skewlnorm(1e6, meanlog, sdlog, shape)
-      ran_new <- ran_skewlnorm(1e6, new_pars$meanlog, new_pars$sdlog, new_pars$shape)
+      ran_new <- ran_skewlnorm(
+        1e6,
+        new_pars$meanlog,
+        new_pars$sdlog,
+        new_pars$shape
+      )
     })
     expect_equal(mean(ran_new), mean(ran_original), tolerance = 0.02)
     expect_equal(sd(ran_new) / sd(ran_original), sd_mult, tolerance = 0.02)

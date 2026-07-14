@@ -8,12 +8,14 @@ test_that("chk_pars", {
   expect_null(chk_pars(NA_character_))
   expect_null(chk_pars(c("a", "a")))
   x <- factor("a")
-  expect_error(chk_pars(x),
+  expect_error(
+    chk_pars(x),
     "^`x` must inherit from S3 class 'character'[.]$",
     class = "chk_error"
   )
   x <- ".1"
-  expect_error(chk_pars("."),
+  expect_error(
+    chk_pars("."),
     "^`\".\"` must match regular expression",
     class = "chk_error"
   )

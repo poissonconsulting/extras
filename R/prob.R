@@ -132,7 +132,9 @@ prob_gamma_pois <- function(x, lambda = 1, theta = 0) {
 #' @examples
 #' prob_gamma_pois_zi(c(1, 3, 4), 3, 1, prob = 0.5)
 prob_gamma_pois_zi <- function(x, lambda = 1, theta = 0, prob = 0) {
-  prob * (x >= 0) + (1 - prob) * stats::pnbinom(q = x, mu = lambda, size = 1 / theta)
+  prob *
+    (x >= 0) +
+    (1 - prob) * stats::pnbinom(q = x, mu = lambda, size = 1 / theta)
 }
 
 #' Log-Normal Cumulative Distribution Function

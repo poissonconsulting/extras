@@ -48,7 +48,9 @@ direction <- function(x, estimate = xtr_median, threshold = 0, na_rm = FALSE) {
 
   est <- estimate(x)
   if (!vld_number(est)) {
-    err("The estimate function must return a number (non-missing numeric scalar).")
+    err(
+      "The estimate function must return a number (non-missing numeric scalar)."
+    )
   }
 
   if (est < threshold) {

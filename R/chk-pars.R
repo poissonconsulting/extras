@@ -23,7 +23,9 @@ chk_pars <- function(x, x_name = NULL) {
   if (vld_pars(x)) {
     return(invisible())
   }
-  if (is.null(x_name)) x_name <- deparse_backtick_chk(substitute(x))
+  if (is.null(x_name)) {
+    x_name <- deparse_backtick_chk(substitute(x))
+  }
 
   chk_s3_class(x, "character", x_name = x_name)
   chk_match(x, p0("^", par_pattern(), "$"), x_name = x_name)

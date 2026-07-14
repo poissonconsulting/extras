@@ -18,7 +18,9 @@ chk_index <- function(x, x_name = NULL) {
   if (vld_index(x)) {
     return(invisible())
   }
-  if (is.null(x_name)) x_name <- deparse_backtick_chk(substitute(x))
+  if (is.null(x_name)) {
+    x_name <- deparse_backtick_chk(substitute(x))
+  }
 
   chk_integer(x, x_name = x_name)
   chk_gt(x, x_name = x_name)

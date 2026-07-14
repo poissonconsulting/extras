@@ -23,13 +23,23 @@ dskewnorm <- function(x, mean = 0, sd = 1, shape = 0, log = FALSE) {
   rlang::check_installed("sn")
   chk_gte(sd)
   nulls <- any(is.null(x), is.null(mean), is.null(sd), is.null(shape))
-  if (nulls) stop("invalid arguments")
-  lengths <- as.logical(length(x)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
+  if (nulls) {
+    stop("invalid arguments")
+  }
+  lengths <- as.logical(length(x)) +
+    as.logical(length(mean)) +
+    as.logical(length(sd)) +
+    as.logical(length(shape))
   if (lengths >= 4) {
     nas <- any(is.na(x), is.na(mean), is.na(sd), is.na(shape))
     if (!nas) chk_compatible_lengths(x, mean, sd, shape)
   }
-  character <- any(is.character(x), is.character(mean), is.character(sd), is.character(shape))
+  character <- any(
+    is.character(x),
+    is.character(mean),
+    is.character(sd),
+    is.character(shape)
+  )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
@@ -47,13 +57,23 @@ pskewnorm <- function(q, mean = 0, sd = 1, shape = 0) {
   rlang::check_installed("sn")
   chk_gte(sd)
   nulls <- any(is.null(q), is.null(mean), is.null(sd), is.null(shape))
-  if (nulls) stop("invalid arguments")
-  lengths <- as.logical(length(q)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
+  if (nulls) {
+    stop("invalid arguments")
+  }
+  lengths <- as.logical(length(q)) +
+    as.logical(length(mean)) +
+    as.logical(length(sd)) +
+    as.logical(length(shape))
   if (lengths >= 4) {
     nas <- any(is.na(q), is.na(mean), is.na(sd), is.na(shape))
     if (!nas) chk_compatible_lengths(q, mean, sd, shape)
   }
-  character <- any(is.character(q), is.character(mean), is.character(sd), is.character(shape))
+  character <- any(
+    is.character(q),
+    is.character(mean),
+    is.character(sd),
+    is.character(shape)
+  )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
@@ -73,13 +93,23 @@ qskewnorm <- function(p, mean = 0, sd = 1, shape = 0) {
   chk_gte(p)
   chk_lte(p, 1)
   nulls <- any(is.null(p), is.null(mean), is.null(sd), is.null(shape))
-  if (nulls) stop("invalid arguments")
-  lengths <- as.logical(length(p)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
+  if (nulls) {
+    stop("invalid arguments")
+  }
+  lengths <- as.logical(length(p)) +
+    as.logical(length(mean)) +
+    as.logical(length(sd)) +
+    as.logical(length(shape))
   if (lengths >= 4) {
     nas <- any(is.na(p), is.na(mean), is.na(sd), is.na(shape))
     if (!nas) chk_compatible_lengths(p, mean, sd, shape)
   }
-  character <- any(is.character(p), is.character(mean), is.character(sd), is.character(shape))
+  character <- any(
+    is.character(p),
+    is.character(mean),
+    is.character(sd),
+    is.character(shape)
+  )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
@@ -103,9 +133,19 @@ rskewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
   chk_not_any_na(n)
   chk_gte(sd)
   nulls <- any(is.null(n), is.null(mean), is.null(sd), is.null(shape))
-  if (nulls) stop("invalid arguments")
-  lengths <- as.logical(length(n)) + as.logical(length(mean)) + as.logical(length(sd)) + as.logical(length(shape))
-  character <- any(is.character(n), is.character(mean), is.character(sd), is.character(shape))
+  if (nulls) {
+    stop("invalid arguments")
+  }
+  lengths <- as.logical(length(n)) +
+    as.logical(length(mean)) +
+    as.logical(length(sd)) +
+    as.logical(length(shape))
+  character <- any(
+    is.character(n),
+    is.character(mean),
+    is.character(sd),
+    is.character(shape)
+  )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }

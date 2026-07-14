@@ -11,7 +11,10 @@ test_that("exp2 test missing values", {
 
 test_that("exp2 test strings", {
   expect_error(exp2("4"), regexp = "non-numeric argument to binary operator")
-  expect_error(exp2(c("4", "10")), regexp = "non-numeric argument to binary operator")
+  expect_error(
+    exp2(c("4", "10")),
+    regexp = "non-numeric argument to binary operator"
+  )
 })
 
 test_that("exp2 test logicals", {
@@ -26,9 +29,27 @@ test_that("exp2 test integers", {
   expect_equal(
     exp2(-10:10),
     c(
-      0.0009765625, 0.001953125, 0.00390625, 0.0078125, 0.015625,
-      0.03125, 0.0625, 0.125, 0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128,
-      256, 512, 1024
+      0.0009765625,
+      0.001953125,
+      0.00390625,
+      0.0078125,
+      0.015625,
+      0.03125,
+      0.0625,
+      0.125,
+      0.25,
+      0.5,
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64,
+      128,
+      256,
+      512,
+      1024
     )
   )
   expect_equal(exp2(-100:100), 2^(-100:100))
@@ -41,8 +62,15 @@ test_that("exp2 test real numbers", {
   expect_equal(
     exp2(seq(0, 1, length.out = 10)),
     c(
-      1, 1.08005973889231, 1.16652903957612, 1.25992104989487, 1.36079000017438,
-      1.4697344922756, 1.5874010519682, 1.71448796570615, 1.85174942457458,
+      1,
+      1.08005973889231,
+      1.16652903957612,
+      1.25992104989487,
+      1.36079000017438,
+      1.4697344922756,
+      1.5874010519682,
+      1.71448796570615,
+      1.85174942457458,
       2
     )
   )
@@ -60,7 +88,10 @@ test_that("exp2 test dataframes and matrices", {
 })
 
 test_that("exp2 test multiple types", {
-  expect_error(exp2(c(5, "5")), regexp = "non-numeric argument to binary operator")
+  expect_error(
+    exp2(c(5, "5")),
+    regexp = "non-numeric argument to binary operator"
+  )
   expect_equal(exp2(c(5, 5L)), c(32, 32))
   expect_equal(exp2(c(NA_real_, 5)), c(NA_real_, 32))
   expect_equal(exp2(c(NA, 4, TRUE)), c(NA_real_, 16, 2))
@@ -80,7 +111,10 @@ test_that("exp10 test missing values", {
 
 test_that("exp10 test strings", {
   expect_error(exp10("4"), regexp = "non-numeric argument to binary operator")
-  expect_error(exp10(c("4", "10")), regexp = "non-numeric argument to binary operator")
+  expect_error(
+    exp10(c("4", "10")),
+    regexp = "non-numeric argument to binary operator"
+  )
 })
 
 test_that("exp10 test logicals", {
@@ -96,8 +130,26 @@ test_that("exp10 test integers", {
   expect_equal(
     exp10(-10:10),
     c(
-      1e-10, 1e-09, 1e-08, 1e-07, 1e-06, 1e-05, 1e-04, 0.001, 0.01,
-      0.1, 1, 10, 100, 1000, 10000, 1e+05, 1e+06, 1e+07, 1e+08, 1e+09,
+      1e-10,
+      1e-09,
+      1e-08,
+      1e-07,
+      1e-06,
+      1e-05,
+      1e-04,
+      0.001,
+      0.01,
+      0.1,
+      1,
+      10,
+      100,
+      1000,
+      10000,
+      1e+05,
+      1e+06,
+      1e+07,
+      1e+08,
+      1e+09,
       1e+10
     )
   )
@@ -111,8 +163,15 @@ test_that("exp10 test real numbers", {
   expect_equal(
     exp10(seq(0, 1, length.out = 10)),
     c(
-      1, 1.29154966501488, 1.66810053720006, 2.15443469003188, 2.78255940220712,
-      3.59381366380463, 4.64158883361278, 5.99484250318941, 7.74263682681127,
+      1,
+      1.29154966501488,
+      1.66810053720006,
+      2.15443469003188,
+      2.78255940220712,
+      3.59381366380463,
+      4.64158883361278,
+      5.99484250318941,
+      7.74263682681127,
       10
     )
   )
@@ -130,7 +189,10 @@ test_that("exp10 test dataframes and matrices", {
 })
 
 test_that("exp10 test multiple types", {
-  expect_error(exp10(c(5, "5")), regexp = "non-numeric argument to binary operator")
+  expect_error(
+    exp10(c(5, "5")),
+    regexp = "non-numeric argument to binary operator"
+  )
   expect_equal(exp10(c(5, 5L)), c(1e+05, 1e+05))
   expect_equal(exp10(c(NA_real_, 5)), c(NA_real_, 1e+05))
 })

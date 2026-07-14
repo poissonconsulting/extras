@@ -19,7 +19,12 @@ parallel_optimize <- function(f, interval, N, tol = .Machine$double.eps^0.5) {
   stopifnot(!anyNA(f1), !anyNA(f2))
 
   # Iteratively narrow the search interval
-  while (all((abs(upper - lower) > threshold) | (abs(f2 - f1) > pmax(abs(f1) * tol, 1e-150)))) {
+  while (
+    all(
+      (abs(upper - lower) > threshold) |
+        (abs(f2 - f1) > pmax(abs(f1) * tol, 1e-150))
+    )
+  ) {
     pos_smaller <- f1 < f2
     idx_smaller <- which(pos_smaller)
     idx_larger <- which(!pos_smaller)
@@ -27,12 +32,14 @@ parallel_optimize <- function(f, interval, N, tol = .Machine$double.eps^0.5) {
     upper[idx_smaller] <- x2[idx_smaller]
     x2[idx_smaller] <- x1[idx_smaller]
     f2[idx_smaller] <- f1[idx_smaller]
-    x1[idx_smaller] <- lower[idx_smaller] + (1 - gr) * (upper[idx_smaller] - lower[idx_smaller])
+    x1[idx_smaller] <- lower[idx_smaller] +
+      (1 - gr) * (upper[idx_smaller] - lower[idx_smaller])
 
     lower[idx_larger] <- x1[idx_larger]
     x1[idx_larger] <- x2[idx_larger]
     f1[idx_larger] <- f2[idx_larger]
-    x2[idx_larger] <- lower[idx_larger] + gr * (upper[idx_larger] - lower[idx_larger])
+    x2[idx_larger] <- lower[idx_larger] +
+      gr * (upper[idx_larger] - lower[idx_larger])
 
     x_new <- ifelse(pos_smaller, x1, x2)
     f_new <- f(x_new)
@@ -370,7 +377,9 @@ dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
   sig_z <- sqrt(1 - mu_z^2)
   gam_1 <- ((4 - pi) / 2) *
     ((delta * sqrt(2 / pi))^3 / (1 - (2 * delta^2) / pi)^(3 / 2))
-  m_o <- mu_z - (gam_1 * sig_z / 2) - (sign(shape) / 2) * exp(-2 * pi / abs(shape))
+  m_o <- mu_z -
+    (gam_1 * sig_z / 2) -
+    (sign(shape) / 2) * exp(-2 * pi / abs(shape))
   mode_sat <- mean + sd * m_o
   dev <- log_lik_skewnorm(mode_sat, mean = mean, sd = sd, shape = shape) -
     log_lik_skewnorm(x, mean = mean, sd = sd, shape = shape)

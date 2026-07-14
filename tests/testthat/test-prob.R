@@ -39,7 +39,10 @@ test_that("prob_bern", {
   expect_equal(prob_bern(0, 0), 1)
   expect_equal(prob_bern(1, 0), 1)
   expect_equal(prob_bern(0, 1), 0)
-  expect_equal(prob_bern(c(0, 1), 0.3), prob_binom(c(0, 1), size = 1, prob = 0.3))
+  expect_equal(
+    prob_bern(c(0, 1), 0.3),
+    prob_binom(c(0, 1), size = 1, prob = 0.3)
+  )
 })
 
 test_that("prob_binom", {
@@ -91,7 +94,10 @@ test_that("prob_gamma_pois", {
 
 test_that("prob_gamma_pois_zi", {
   expect_identical(prob_gamma_pois_zi(NA), NA_real_)
-  expect_equal(prob_gamma_pois_zi(4, 3, 0.5, prob = 0), prob_gamma_pois(4, 3, 0.5))
+  expect_equal(
+    prob_gamma_pois_zi(4, 3, 0.5, prob = 0),
+    prob_gamma_pois(4, 3, 0.5)
+  )
   expect_equal(prob_gamma_pois_zi(0, 3, 0.5, prob = 0.4), 0.496)
   expect_equal(prob_gamma_pois_zi(2, 3, 0.5, prob = 0.4), 0.71488)
 })
@@ -133,8 +139,14 @@ test_that("prob_gamma", {
 
 test_that("prob_beta_binom", {
   skip_if_not_installed("extraDistr")
-  expect_equal(prob_beta_binom(c(0, 1, 2), 3, 0.5, 0), prob_binom(c(0, 1, 2), 3, 0.5))
-  expect_equal(prob_beta_binom(c(0, 1, 2), 3, 0.5, 0.2), c(0.159090909090909, 0.500000000000001, 0.840909090909093))
+  expect_equal(
+    prob_beta_binom(c(0, 1, 2), 3, 0.5, 0),
+    prob_binom(c(0, 1, 2), 3, 0.5)
+  )
+  expect_equal(
+    prob_beta_binom(c(0, 1, 2), 3, 0.5, 0.2),
+    c(0.159090909090909, 0.500000000000001, 0.840909090909093)
+  )
   expect_equal(prob_beta_binom(-1, 1, 0.5, 0.2), 0)
   expect_equal(prob_beta_binom(5, 3, 0.5, 0.2), 1)
 })
@@ -142,7 +154,10 @@ test_that("prob_beta_binom", {
 test_that("prob_skewnorm", {
   skip_if_not_installed("sn")
   expect_identical(prob_skewnorm(NA), NA_real_)
-  expect_equal(prob_skewnorm(c(-1, 0, 1), 2, 1.5, shape = 0), pnorm(c(-1, 0, 1), 2, 1.5))
+  expect_equal(
+    prob_skewnorm(c(-1, 0, 1), 2, 1.5, shape = 0),
+    pnorm(c(-1, 0, 1), 2, 1.5)
+  )
   expect_equal(prob_skewnorm(1, 2, 1, 2), 0.00171887994528883)
 })
 

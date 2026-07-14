@@ -1,4 +1,3 @@
-
 test_that("quant_beta", {
   expect_identical(quant_beta(numeric(0)), numeric(0))
   expect_identical(quant_beta(NA), NA_real_)
@@ -42,7 +41,10 @@ test_that("quant_bern", {
   expect_equal(quant_bern(0.8, 0.7), 1)
   expect_equal(quant_bern(0, 0.5), 0)
   expect_equal(quant_bern(1, 0.5), 1)
-  expect_equal(quant_bern(c(0.3, 0.8), 0.7), qbinom(c(0.3, 0.8), size = 1, prob = 0.7))
+  expect_equal(
+    quant_bern(c(0.3, 0.8), 0.7),
+    qbinom(c(0.3, 0.8), size = 1, prob = 0.7)
+  )
 })
 
 test_that("quant_binom", {
@@ -69,7 +71,10 @@ test_that("quant_pois", {
 
 test_that("quant_pois_zi", {
   expect_identical(quant_pois_zi(NA), NA_real_)
-  expect_equal(quant_pois_zi(c(0.3, 0.45, 0.6), 3, prob = 0), quant_pois(c(0.3, 0.45, 0.6), 3))
+  expect_equal(
+    quant_pois_zi(c(0.3, 0.45, 0.6), 3, prob = 0),
+    quant_pois(c(0.3, 0.45, 0.6), 3)
+  )
   expect_equal(quant_pois_zi(c(0.3, 0.45, 0.6), 3, prob = 0.4), c(0, 1, 2))
 })
 
@@ -77,7 +82,10 @@ test_that("quant_neg_binom", {
   expect_identical(quant_neg_binom(numeric(0)), numeric(0))
   expect_identical(quant_neg_binom(NA), NA_real_)
   expect_identical(quant_neg_binom(0.5, NA), NA_real_)
-  expect_equal(quant_neg_binom(0.7, 4, 0.2), qnbinom(0.7, mu = 4, size = 1 / 0.2))
+  expect_equal(
+    quant_neg_binom(0.7, 4, 0.2),
+    qnbinom(0.7, mu = 4, size = 1 / 0.2)
+  )
   expect_equal(quant_neg_binom(0.7, 4, 0.2), 5)
   expect_equal(quant_neg_binom(0, 1, 1), 0)
 })
@@ -90,8 +98,14 @@ test_that("quant_gamma_pois", {
 
 test_that("quant_gamma_pois_zi", {
   expect_identical(quant_gamma_pois_zi(NA), NA_real_)
-  expect_equal(quant_gamma_pois_zi(c(0.3, 0.5, 0.7), 3, 0.5, prob = 0), quant_neg_binom(c(0.3, 0.5, 0.7), 3, 0.5))
-  expect_equal(quant_gamma_pois_zi(c(0.3, 0.5, 0.7), 3, 0.5, prob = 0.4), c(0, 1, 2))
+  expect_equal(
+    quant_gamma_pois_zi(c(0.3, 0.5, 0.7), 3, 0.5, prob = 0),
+    quant_neg_binom(c(0.3, 0.5, 0.7), 3, 0.5)
+  )
+  expect_equal(
+    quant_gamma_pois_zi(c(0.3, 0.5, 0.7), 3, 0.5, prob = 0.4),
+    c(0, 1, 2)
+  )
 })
 
 test_that("quant_norm", {
@@ -137,7 +151,11 @@ test_that("quant_skewnorm", {
   expect_identical(quant_skewnorm(NA), NA_real_)
   expect_equal(quant_skewnorm(0.5, 3, 2, shape = 0), quant_norm(0.5, 3, 2))
   expect_equal(quant_skewnorm(0.5, 2, 1, 2), 2.65537040026575)
-  expect_equal(prob_skewnorm(quant_skewnorm(0.7, 2, 1, 2), 2, 1, 2), 0.7, tolerance = 1e-6)
+  expect_equal(
+    prob_skewnorm(quant_skewnorm(0.7, 2, 1, 2), 2, 1, 2),
+    0.7,
+    tolerance = 1e-6
+  )
 })
 
 test_that("quant_student", {
@@ -154,7 +172,14 @@ test_that("quant_student", {
 test_that("quant_skewlnorm", {
   skip_if_not_installed("sn")
   expect_identical(quant_skewlnorm(NA), NA_real_)
-  expect_equal(quant_skewlnorm(c(0.1, 0.5, 0.9), 0.3, 0.7, shape = 0), quant_lnorm(c(0.1, 0.5, 0.9), 0.3, 0.7))
+  expect_equal(
+    quant_skewlnorm(c(0.1, 0.5, 0.9), 0.3, 0.7, shape = 0),
+    quant_lnorm(c(0.1, 0.5, 0.9), 0.3, 0.7)
+  )
   expect_equal(quant_skewlnorm(0.5, 0, 1, 2), 1.92585572275397)
-  expect_equal(prob_skewlnorm(quant_skewlnorm(0.7, 0, 1, 2), 0, 1, 2), 0.7, tolerance = 1e-6)
+  expect_equal(
+    prob_skewlnorm(quant_skewlnorm(0.7, 0, 1, 2), 0, 1, 2),
+    0.7,
+    tolerance = 1e-6
+  )
 })

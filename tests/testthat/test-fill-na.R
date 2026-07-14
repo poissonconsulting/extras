@@ -13,9 +13,7 @@ test_that("fill_na atomic objects", {
 
 test_that("fill_na.matrix", {
   expect_identical(
-    fill_na(matrix(c(TRUE, NA, FALSE, NA), nrow = 2),
-      value = "TRUE"
-    ),
+    fill_na(matrix(c(TRUE, NA, FALSE, NA), nrow = 2), value = "TRUE"),
     matrix(c(TRUE, TRUE, FALSE, TRUE), nrow = 2)
   )
   expect_identical(fill_na(matrix(NA_integer_)), matrix(0L))

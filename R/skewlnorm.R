@@ -28,13 +28,23 @@ dskewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0, log = FALSE) {
   rlang::check_installed("sn")
   chk_gte(sdlog)
   nulls <- any(is.null(x), is.null(meanlog), is.null(sdlog), is.null(shape))
-  if (nulls) stop("invalid arguments")
-  lengths <- as.logical(length(x)) + as.logical(length(meanlog)) + as.logical(length(sdlog)) + as.logical(length(shape))
+  if (nulls) {
+    stop("invalid arguments")
+  }
+  lengths <- as.logical(length(x)) +
+    as.logical(length(meanlog)) +
+    as.logical(length(sdlog)) +
+    as.logical(length(shape))
   if (lengths >= 4) {
     nas <- any(is.na(x), is.na(meanlog), is.na(sdlog), is.na(shape))
     if (!nas) chk_compatible_lengths(x, meanlog, sdlog, shape)
   }
-  character <- any(is.character(x), is.character(meanlog), is.character(sdlog), is.character(shape))
+  character <- any(
+    is.character(x),
+    is.character(meanlog),
+    is.character(sdlog),
+    is.character(shape)
+  )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
@@ -42,7 +52,14 @@ dskewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0, log = FALSE) {
   na_shape <- is.na(shape)
   shape[na_shape] <- 0
   logx <- suppressWarnings(log(x))
-  log_lik <- sn::dsn(x = logx, xi = meanlog, omega = sdlog, alpha = shape, log = TRUE) - logx
+  log_lik <- sn::dsn(
+    x = logx,
+    xi = meanlog,
+    omega = sdlog,
+    alpha = shape,
+    log = TRUE
+  ) -
+    logx
   xr <- rep_len(x, length(log_lik))
   log_lik[!is.na(xr) & xr <= 0] <- -Inf
   lik <- if (isTRUE(log)) log_lik else exp(log_lik)
@@ -56,13 +73,23 @@ pskewlnorm <- function(q, meanlog = 0, sdlog = 1, shape = 0) {
   rlang::check_installed("sn")
   chk_gte(sdlog)
   nulls <- any(is.null(q), is.null(meanlog), is.null(sdlog), is.null(shape))
-  if (nulls) stop("invalid arguments")
-  lengths <- as.logical(length(q)) + as.logical(length(meanlog)) + as.logical(length(sdlog)) + as.logical(length(shape))
+  if (nulls) {
+    stop("invalid arguments")
+  }
+  lengths <- as.logical(length(q)) +
+    as.logical(length(meanlog)) +
+    as.logical(length(sdlog)) +
+    as.logical(length(shape))
   if (lengths >= 4) {
     nas <- any(is.na(q), is.na(meanlog), is.na(sdlog), is.na(shape))
     if (!nas) chk_compatible_lengths(q, meanlog, sdlog, shape)
   }
-  character <- any(is.character(q), is.character(meanlog), is.character(sdlog), is.character(shape))
+  character <- any(
+    is.character(q),
+    is.character(meanlog),
+    is.character(sdlog),
+    is.character(shape)
+  )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
@@ -84,13 +111,23 @@ qskewlnorm <- function(p, meanlog = 0, sdlog = 1, shape = 0) {
   chk_gte(p)
   chk_lte(p, 1)
   nulls <- any(is.null(p), is.null(meanlog), is.null(sdlog), is.null(shape))
-  if (nulls) stop("invalid arguments")
-  lengths <- as.logical(length(p)) + as.logical(length(meanlog)) + as.logical(length(sdlog)) + as.logical(length(shape))
+  if (nulls) {
+    stop("invalid arguments")
+  }
+  lengths <- as.logical(length(p)) +
+    as.logical(length(meanlog)) +
+    as.logical(length(sdlog)) +
+    as.logical(length(shape))
   if (lengths >= 4) {
     nas <- any(is.na(p), is.na(meanlog), is.na(sdlog), is.na(shape))
     if (!nas) chk_compatible_lengths(p, meanlog, sdlog, shape)
   }
-  character <- any(is.character(p), is.character(meanlog), is.character(sdlog), is.character(shape))
+  character <- any(
+    is.character(p),
+    is.character(meanlog),
+    is.character(sdlog),
+    is.character(shape)
+  )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
@@ -115,9 +152,19 @@ rskewlnorm <- function(n = 1, meanlog = 0, sdlog = 1, shape = 0) {
   chk_not_any_na(n)
   chk_gte(sdlog)
   nulls <- any(is.null(n), is.null(meanlog), is.null(sdlog), is.null(shape))
-  if (nulls) stop("invalid arguments")
-  lengths <- as.logical(length(n)) + as.logical(length(meanlog)) + as.logical(length(sdlog)) + as.logical(length(shape))
-  character <- any(is.character(n), is.character(meanlog), is.character(sdlog), is.character(shape))
+  if (nulls) {
+    stop("invalid arguments")
+  }
+  lengths <- as.logical(length(n)) +
+    as.logical(length(meanlog)) +
+    as.logical(length(sdlog)) +
+    as.logical(length(shape))
+  character <- any(
+    is.character(n),
+    is.character(meanlog),
+    is.character(sdlog),
+    is.character(shape)
+  )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }

@@ -65,15 +65,23 @@
 #' p2info(seq(0, 1, by = 0.1))
 #' p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 
-directional_information <- function(x, ..., side = "median", threshold = 0,
-                                    threshold_split = "proportional",
-                                    skeptical = TRUE,
-                                    na_rm = FALSE) {
+directional_information <- function(
+  x,
+  ...,
+  side = "median",
+  threshold = 0,
+  threshold_split = "proportional",
+  skeptical = TRUE,
+  na_rm = FALSE
+) {
   chk_unused(...)
   chk_numeric(x)
   chk_subset(side, c("left", "right", "median"))
   chk_number(threshold)
-  chk_subset(threshold_split, c("left", "right", "equal", "proportional", "exclude"))
+  chk_subset(
+    threshold_split,
+    c("left", "right", "equal", "proportional", "exclude")
+  )
   chk_flag(skeptical)
   chk_flag(na_rm)
 
@@ -112,7 +120,8 @@ directional_information <- function(x, ..., side = "median", threshold = 0,
   } else if (threshold_split == "equal") {
     p_l <- p_l + p_t / 2
     p_r <- p_r + p_t / 2
-  } else { # proportional and exclude are effectively the same
+  } else {
+    # proportional and exclude are effectively the same
     p_l <- p_l + p_t * (p_l / p_lr)
     p_r <- p_r + p_t * (p_r / p_lr)
   }

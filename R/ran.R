@@ -94,7 +94,8 @@ ran_gamma_pois <- function(n = 1, lambda = 1, theta = 0) {
 #' @examples
 #' ran_gamma_pois_zi(10, lambda = 3, theta = 1, prob = 0.5)
 ran_gamma_pois_zi <- function(n = 1, lambda = 1, theta = 0, prob = 0) {
-  ran_neg_binom(n = n, lambda = lambda, theta = theta) * ran_bern(n, prob = 1 - prob)
+  ran_neg_binom(n = n, lambda = lambda, theta = theta) *
+    ran_bern(n, prob = 1 - prob)
 }
 
 #' Log-Normal Random Samples
