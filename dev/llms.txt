@@ -634,7 +634,7 @@ Deprecated functions
 - [`sextreme()`](https://poissonconsulting.github.io/extras/dev/reference/sextreme.md)
   **\[deprecated\]** : Extreme Surprisal
 - [`as_list_unnamed()`](https://poissonconsulting.github.io/extras/dev/reference/as_list_unnamed.md)
-  : As List
+  **\[deprecated\]** : As List
 
 # Articles
 
