@@ -21,8 +21,8 @@ p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or both
 \item{threshold}{A number of the threshold value.}
 
 \item{skeptical}{A flag specifying whether or not to add one sample to the
-empty side of the threshold when 100\% of samples are on one side, to avoid
-zero p-values and infinite s-values, and also to impose stronger bounds on
+empty side of the threshold when 100\% of samples are on one side. Avoids
+zero p-values and infinite s-values, and also imposes stronger bounds on
 directional information than [-n, n], which assume the MCMC samples are
 independent and representative.}
 
@@ -53,7 +53,7 @@ A near-impossible event has a very large s-value because its
 occurrence would be extremely surprising, like observing many consecutive
 successes on a fair coin.
 
-When \code{skeptical = TRUE} (default), a ceiling of \eqn{n + 1} is applied
+When \code{skeptical = TRUE} (default), a ceiling of \eqn{\log_2(n + 1)} is applied
 to the s-value to avoid s-values of \code{Inf} when all samples are on
 one side of the threshold. When \code{skeptical = FALSE}, s-values of \code{Inf} are
 allowed.
