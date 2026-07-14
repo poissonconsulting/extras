@@ -44,3 +44,12 @@ test_that("sextreme", {
     c(-Inf, NA_real_)
   )
 })
+
+test_that("sextreme warns", {
+  # sextreme() calls pextreme() internally (sharing id = "sextreme"), which
+  # also emits a deprecation warning once the id-based dedup is bypassed by
+  # forcing verbosity = "warning", so we can't assert a single exact match.
+  rlang::local_options(lifecycle_verbosity = "warning")
+  warnings <- testthat::capture_warnings(sextreme(0.5))
+  expect_match(warnings, "sextreme.*deprecated", all = FALSE)
+})

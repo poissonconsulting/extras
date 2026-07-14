@@ -12,3 +12,10 @@ test_that("pextreme", {
     c(0, NA_real_)
   )
 })
+
+test_that("pextreme warns", {
+  lifecycle::expect_deprecated(
+    pextreme(0.5),
+    regexp = "pextreme.*deprecated"
+  )
+})

@@ -5,6 +5,13 @@ test_that("as_list_unnamed works", {
   expect_identical(as_list_unnamed(integer(0)), list())
 })
 
+test_that("as_list_unnamed warns", {
+  lifecycle::expect_deprecated(
+    as_list_unnamed(1:2),
+    regexp = "as_list_unnamed.*deprecated.*as_list"
+  )
+})
+
 test_that("as_list works", {
   rlang::local_options(lifecycle_verbosity = "quiet")
   expect_identical(as_list(1:2), list(1L, 2L))
