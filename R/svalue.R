@@ -18,7 +18,7 @@
 #' occurrence would be extremely surprising, like observing many consecutive
 #' successes on a fair coin.
 #'
-#' When `skeptical = TRUE` (default), a ceiling of \eqn{n + 1} is applied
+#' When `skeptical = TRUE` (default), a ceiling of \eqn{\log_2(n + 1)} is applied
 #' to the s-value to avoid s-values of `Inf` when all samples are on
 #' one side of the threshold. When `skeptical = FALSE`, s-values of `Inf` are
 #' allowed.
