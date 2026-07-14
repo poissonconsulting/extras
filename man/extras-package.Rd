@@ -26,13 +26,13 @@ Authors:
 \itemize{
   \item Nicole Hill \email{nicole@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-7623-2153}{ORCID})
   \item Joe Thorley \email{joe@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-7683-4592}{ORCID})
+  \item Stefano Mezzini (\href{https://orcid.org/0000-0001-8551-7436}{ORCID})
 }
 
 Other contributors:
 \itemize{
   \item Kirill Müller (\href{https://orcid.org/0000-0002-1416-3412}{ORCID}) [contributor]
   \item Nadine Hussein (\href{https://orcid.org/0000-0003-4470-8361}{ORCID}) [contributor]
-  \item Stefano Mezzini (\href{https://orcid.org/0000-0001-8551-7436}{ORCID}) [contributor]
   \item Poisson Consulting [copyright holder, funder]
 }
 
