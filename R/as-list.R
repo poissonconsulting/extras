@@ -2,12 +2,13 @@
 #'
 #' Coerces an object to an list.
 #' All attributes are removed except any names.
+#' `r lifecycle::badge('deprecated')`
 #'
 #' @inheritParams params
 #' @return A list.
 #' @export
 as_list_unnamed <- function(x, ...) {
-  lifecycle::deprecate_soft("0.1.1", "as_list_unnamed()", "as_list()")
+  lifecycle::deprecate_warn("0.10.0", "as_list_unnamed()", "as_list()")
   UseMethod("as_list_unnamed")
 }
 
