@@ -47,8 +47,8 @@
 #' @param simulate A flag specifying whether to simulate residuals.
 #' @param size A non-negative whole numeric vector of the number of trials.
 #' @param skeptical A flag specifying whether or not to add one sample to the 
-#' empty side of the threshold when 100% of samples are on one side, to avoid 
-#' zero p-values and infinite s-values, and also to impose stronger bounds on
+#' empty side of the threshold when 100% of samples are on one side. Avoids 
+#' zero p-values and infinite s-values, and also imposes stronger bounds on
 #' directional information than \[-n, n\], which assume the MCMC samples are
 #' independent and representative.
 #' @param theta A non-negative numeric vector of the dispersion for the mixture
