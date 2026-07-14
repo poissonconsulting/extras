@@ -25,11 +25,29 @@ test_that("svalue", {
   expect_equal(svalue(-c(1, 1, NA), side = "right", na_rm = TRUE), -log2(1 / 3))
 })
 
+test_that("svalue() errors with unused arguments", {
+  expect_error(svalue(1, 0), "`...` must be unused.")
+  expect_error(svalue(1, foo = TRUE), "`...` must be unused.")
+})
+
+test_that("svalue() skeptical argument controls sample-size correction", {
+  expect_identical(svalue(1:9), -log2(1 / 10))
+  expect_identical(svalue(1:9, skeptical = FALSE), Inf)
+  expect_identical(svalue(-(1:9)), -log2(1 / 10))
+  expect_identical(svalue(-(1:9), skeptical = FALSE), Inf)
+  expect_identical(svalue(c(-1, 1, 1)),
+                   svalue(c(-1, 1, 1), skeptical = FALSE))
+  expect_identical(svalue(c(-1, 1, 1), side = "left"),
+                   svalue(c(-1, 1, 1), side = "left", skeptical = FALSE))
+  expect_identical(svalue(c(-1, 1, 1), side = "right"),
+                   svalue(c(-1, 1, 1), side = "right", skeptical = FALSE))
+})
+
 test_that("svalue() requires side to be one of left, right, both, or NULL, and returns a warning with default side.", {
-  expect_no_error(pvalue(1, side = "both"))
-  expect_no_error(pvalue(1, side = "left"))
-  expect_no_error(pvalue(1, side = "right"))
-  expect_error(pvalue(1, side = "aaa"),
+  expect_no_error(svalue(1, side = "both"))
+  expect_no_error(svalue(1, side = "left"))
+  expect_no_error(svalue(1, side = "right"))
+  expect_error(svalue(1, side = "aaa"),
                "`side` must match 'both', 'left' or 'right', not 'aaa'.")
 })
 

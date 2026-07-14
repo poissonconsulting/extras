@@ -8,6 +8,7 @@
 #'
 #' @describeIn directional-information Calculate the directional information from a posterior distribution.
 #' @param x A numeric vector of MCMC values.
+#' @param ... Unused.
 #' @param side A string indicating whether to calculate
 #' the directional information relative to the left side (`"left"`; `x < threshold`),
 #' or the right side (`"right"`; `x > threshold`). Positive information suggests
@@ -28,6 +29,13 @@
 #' @param p A numeric vector of probabilities of direction.
 #' @param n A numeric vector of the number of posterior samples used to estimate
 #' each value of `p`. Used to limit the information to be within the interval \eqn{[-n, n]}.
+#'
+#' @details
+#' When `skeptical = TRUE` (default), one sample is added to the empty side,
+#' giving bounds of \eqn{\pm \log_2(n)} rather than \eqn{\pm n}, to mimic the
+#' behaviour of `pvalue()` and `svalue()`.
+#' When `skeptical = FALSE`, information is instead clamped to \eqn{[-n, n]},
+#' which is assumes the MCMC samples are independent and representative.
 #'
 #' @inheritParams params
 #' @return A number indicating the directional information in bits.
@@ -51,17 +59,22 @@
 #' directional_information(rnorm(1e3, mean = -10)) # all coin flips are negative
 #' directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 #' directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
+#' directional_information(rep(1, 1000)) # skeptical = TRUE (default) gives log2(n)
+#' directional_information(rep(1, 1000), skeptical = FALSE) # skeptical = FALSE gives n
 #'
 #' p2info(seq(0, 1, by = 0.1))
 #' p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
 
-directional_information <- function(x, side = "median", threshold = 0,
+directional_information <- function(x, ..., side = "median", threshold = 0,
                                     threshold_split = "proportional",
+                                    skeptical = TRUE,
                                     na_rm = FALSE) {
+  chk_unused(...)
   chk_numeric(x)
   chk_subset(side, c("left", "right", "median"))
   chk_number(threshold)
   chk_subset(threshold_split, c("left", "right", "equal", "proportional", "exclude"))
+  chk_flag(skeptical)
   chk_flag(na_rm)
 
   if (anyNA(x)) {
@@ -110,12 +123,18 @@ directional_information <- function(x, side = "median", threshold = 0,
     i <- log2(p_r) - log2(p_l)
   }
 
-  i <- min(i, n) # max information difference is a bit for each sample
-  i <- max(i, -n)
-  # the two lines above are equivalent to, if o is the odds ratio:
-  # returning n   if o is  Inf, since n    = n / (n+1) / (1 / (n+1))
-  # returning 1/n if o is -Inf, since 1/n  = 1 / (n+1) / (n / (n+1))
-  # note that the odds ratio could be p_l / p_r or p_r / p_l
+  if (is.infinite(i)) {
+    if (skeptical) {
+      i <- sign(i) * log2(n)
+    } else {
+      i <- min(i, n) # max information difference is a bit for each sample
+      i <- max(i, -n)
+      # the two lines above are equivalent to, if o is the odds ratio:
+      # o being n   if i is  Inf, since n    = n / (n+1) / (1 / (n+1))
+      # o being 1/n if i is -Inf, since 1/n  = 1 / (n+1) / (n / (n+1))
+      # note that o could be p_l / p_r or p_r / p_l
+    }
+  }
   i
 }
 

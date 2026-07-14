@@ -206,8 +206,10 @@ export(zeros)
 export(zscore)
 import(chk)
 importFrom(lifecycle,deprecated)
-importFrom(stats,dbinom)
-importFrom(stats,dlnorm)
-importFrom(stats,dnbinom)
-importFrom(stats,dnorm)
-importFrom(stats,dpois)
+importFrom(stats,
+  dbinom,
+  dlnorm,
+  dnbinom,
+  dnorm,
+  dpois
+)

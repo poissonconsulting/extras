@@ -7,9 +7,11 @@
 \usage{
 directional_information(
   x,
+  ...,
   side = "median",
   threshold = 0,
   threshold_split = "proportional",
+  skeptical = TRUE,
   na_rm = FALSE
 )
 
@@ -17,6 +19,8 @@ p2info(p, n = Inf)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
+
+\item{...}{Unused.}
 
 \item{side}{A string indicating whether to calculate
 the directional information relative to the left side (\code{"left"}; \code{x < threshold}),
@@ -39,6 +43,12 @@ proportionally to the values of \code{x} on the left and right sides,
 (identical to using \code{"proportional"}).
 }}
 
+\item{skeptical}{A flag specifying whether or not to add one sample to the
+empty side of the threshold when 100\% of samples are on one side. Avoids
+zero p-values and infinite s-values, and also imposes stronger bounds on
+directional information than [-n, n], which assume the MCMC samples are
+independent and representative.}
+
 \item{na_rm}{A flag specifying whether to remove missing values.}
 
 \item{p}{A numeric vector of probabilities of direction.}
@@ -57,6 +67,12 @@ information depending on the event's probability.
 \details{
 Quantifies the information about direction in a posterior distribution based on the directional probability.
 This function calculates such information using the difference in the probability of direction (see \code{\link[=probability_direction]{probability_direction()}}), after converting each probability to bits (also see \code{\link[=svalue]{svalue()}}.
+
+When \code{skeptical = TRUE} (default), one sample is added to the empty side,
+giving bounds of \eqn{\pm \log_2(n)} rather than \eqn{\pm n}, to mimic the
+behaviour of \code{pvalue()} and \code{svalue()}.
+When \code{skeptical = FALSE}, information is instead clamped to \eqn{[-n, n]},
+which is assumes the MCMC samples are independent and representative.
 }
 \section{Functions}{
 \itemize{
@@ -78,6 +94,8 @@ directional_information(rnorm(1e3, mean = 10)) # all coin flips are positive
 directional_information(rnorm(1e3, mean = -10)) # all coin flips are negative
 directional_information(rnorm(1e3, mean = 1e3)) # only quantiles matter
 directional_information(rnorm(1e6, mean = 1e3)) # more `x` implies more info
+directional_information(rep(1, 1000)) # skeptical = TRUE (default) gives log2(n)
+directional_information(rep(1, 1000), skeptical = FALSE) # skeptical = FALSE gives n
 
 p2info(seq(0, 1, by = 0.1))
 p2info(seq(0, 1, by = 0.1), n = 10) # limit information to be in [-10, 10]
