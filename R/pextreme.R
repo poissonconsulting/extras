@@ -12,7 +12,7 @@
 #' @examples
 #' pextreme(seq(0, 1, by = 0.1))
 pextreme <- function(x) {
-  lifecycle::deprecate_soft("0.1.1", "pextreme()", id = "sextreme")
+  lifecycle::deprecate_warn("0.10.0", "pextreme()", id = "sextreme")
   chk_numeric(x)
   chk_range(x)
 
