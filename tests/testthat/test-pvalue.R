@@ -153,6 +153,24 @@ test_that("pvalue() returns the correct one-sided p-values", {
   )
 })
 
+test_that("pvalue() errors with unused arguments", {
+  expect_error(pvalue(1, 0), "`...` must be unused.")
+  expect_error(pvalue(1, foo = TRUE), "`...` must be unused.")
+})
+
+test_that("pvalue() skeptical argument controls sample-size correction", {
+  expect_identical(pvalue(1:9), 1 / 10)
+  expect_identical(pvalue(1:9, skeptical = FALSE), 0)
+  expect_identical(pvalue(-(1:9)), 1 / 10)
+  expect_identical(pvalue(-(1:9), skeptical = FALSE), 0)
+  expect_identical(pvalue(c(-1, 1, 1)),
+                   pvalue(c(-1, 1, 1), skeptical = FALSE))
+  expect_identical(pvalue(c(-1, 1, 1), side = "left"),
+                   pvalue(c(-1, 1, 1), side = "left", skeptical = FALSE))
+  expect_identical(pvalue(c(-1, 1, 1), side = "right"),
+                   pvalue(c(-1, 1, 1), side = "right", skeptical = FALSE))
+})
+
 test_that("pvalue() only accepts `side` as left, right, or both.", {
   expect_no_error(pvalue(1))
   expect_no_error(pvalue(1, side = "both"))

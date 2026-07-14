@@ -17,6 +17,10 @@
 #' \eqn{p_{c} = p * n / (n + 1)} to avoid p-values of 0. The function can still
 #' return p-values of 1.
 #'
+#' When `skeptical = TRUE` (default), a floor of \eqn{1 / (n + 1)} is applied
+#' to avoid p-values of 0 when all samples are on one side of the threshold.
+#' When `skeptical = FALSE`, p-values of 0 are allowed.
+#'
 #' To use as a measure of certainty in the direction of the estimate (i.e.,
 #' positive or negative), see [`probability_direction()`].
 #'
@@ -27,6 +31,7 @@
 #' @param x A numeric vector of MCMC values.
 #' @param side A character vector of length 1 indicating whether to calculate
 #' p-values for the left tail (`"left"`), right tail (`"right"`), or two-sided (`"both"`; default).
+#' @param ... Unused.
 #' @inheritParams params
 #' @return A number between 0 and 1.
 #' If `x` has `NA` values but `na_rm` is `FALSE`, returns `NA_real`.
@@ -41,7 +46,11 @@
 #' pvalue(x) # should be 0.05 * 2
 #' pvalue(x, side = "left") # should be 0.95
 #' pvalue(x, side = "right") # should be 0.05
-pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
+#' pvalue(rep(1, 10)) # skeptical = TRUE (default) avoids p = 0
+#' pvalue(rep(1, 10), skeptical = FALSE) # skeptical = FALSE allows p = 0
+pvalue <- function(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE) {
+  chk_unused(...)
+  chk_flag(skeptical)
   chk_numeric(x)
   chk_string(side)
   chk_subset(side, c("left", "right", "both"))
@@ -74,6 +83,8 @@ pvalue <- function(x, side = "both", threshold = 0, na_rm = FALSE) {
     s <- sum(x >= threshold) # include threshold samples
   }
   p <- s / n
-  p <- max(p, 1 / (n + 1)) # avoid pvalues of 0
+  if (skeptical) {
+    p <- max(p, 1 / (n + 1)) # avoid pvalues of 0
+  }
   p
 }
