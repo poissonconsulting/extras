@@ -67,7 +67,7 @@ test_that("numericise.list", {
 test_that("numericise.data.frame", {
   expect_identical(
     numericise(data.frame(x = TRUE)),
-    structure(1L, .Dim = c(1L, 1L), .Dimnames = list(NULL, "x"))
+    structure(1L, dim = c(1L, 1L), dimnames = list(NULL, "x"))
   )
   expect_error(
     numericise(data.frame(
@@ -88,11 +88,11 @@ test_that("numericise.data.frame", {
     )),
     structure(
       c(1, NA, 1, 2, 2.5, 1.5, 11324, 11323, 2, 1),
-      .Dim = c(
+      dim = c(
         2L,
         5L
       ),
-      .Dimnames = list(NULL, c("lgl", "int", "dbl", "dte", "fac"))
+      dimnames = list(NULL, c("lgl", "int", "dbl", "dte", "fac"))
     )
   )
 })
