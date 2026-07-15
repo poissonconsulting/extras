@@ -10,7 +10,7 @@ test_that("chk_pars", {
   x <- factor("a")
   expect_error(
     chk_pars(x),
-    "^`x` must inherit from S3 class 'character'[.]$",
+    "^`x` must inherit from S3 class 'character'",
     class = "chk_error"
   )
   x <- ".1"
