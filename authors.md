@@ -17,8 +17,7 @@
   Hussein](https://www.poissonconsulting.ca/author/nadine-hussein/)**.
   Contributor. [](https://orcid.org/0000-0003-4470-8361)
 
-- **Stefano Mezzini**. Contributor.
-  [](https://orcid.org/0000-0001-8551-7436)
+- **Stefano Mezzini**. Author. [](https://orcid.org/0000-0001-8551-7436)
 
 - **[![](https://github.com/poissonconsulting.png)](https://www.poissonconsulting.ca/)**.
   Copyright holder, funder.
@@ -28,14 +27,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/poissonconsulting/extras/blob/main/DESCRIPTION)
 
-Hill N, Thorley J (2026). *extras: Helper Functions for Bayesian
-Analyses*. R package version 0.9.0,
+Hill N, Thorley J, Mezzini S (2026). *extras: Helper Functions for
+Bayesian Analyses*. R package version 0.10.0,
 <https://poissonconsulting.github.io/extras/>.
 
     @Manual{,
       title = {extras: Helper Functions for Bayesian Analyses},
-      author = {Nicole Hill and Joe Thorley},
+      author = {Nicole Hill and Joe Thorley and Stefano Mezzini},
       year = {2026},
-      note = {R package version 0.9.0},
+      note = {R package version 0.10.0},
       url = {https://poissonconsulting.github.io/extras/},
     }

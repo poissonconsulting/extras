@@ -35,7 +35,7 @@ By default it returns the 95% credible limit which corresponds to the
 
 Other summary:
 [`direction()`](https://poissonconsulting.github.io/extras/reference/direction.md),
-[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional_information.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional-information.md),
 [`kurtosis()`](https://poissonconsulting.github.io/extras/reference/kurtosis.md),
 [`lower()`](https://poissonconsulting.github.io/extras/reference/lower.md),
 [`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md),

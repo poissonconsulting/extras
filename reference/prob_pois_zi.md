@@ -42,6 +42,7 @@ Other prob_dist:
 [`prob_neg_binom()`](https://poissonconsulting.github.io/extras/reference/prob_neg_binom.md),
 [`prob_norm()`](https://poissonconsulting.github.io/extras/reference/prob_norm.md),
 [`prob_pois()`](https://poissonconsulting.github.io/extras/reference/prob_pois.md),
+[`prob_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/prob_skewlnorm.md),
 [`prob_skewnorm()`](https://poissonconsulting.github.io/extras/reference/prob_skewnorm.md),
 [`prob_student()`](https://poissonconsulting.github.io/extras/reference/prob_student.md),
 [`prob_unif()`](https://poissonconsulting.github.io/extras/reference/prob_unif.md)

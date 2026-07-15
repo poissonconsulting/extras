@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">extras</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.10.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,50 +37,26 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.10.0" id="extras-0100">extras 0.10.0<a class="anchor" aria-label="anchor" href="#extras-0100"></a></h2>
+<ul><li>Add <code><a href="../reference/probability_direction.html">probability_direction()</a></code> and <code><a href="../reference/directional-information.html">directional_information()</a></code> (<a href="https://github.com/poissonconsulting/extras/issues/106" class="external-link">#106</a>).</li>
+<li>Add functions to calculate s-values and information from vectors of probabilities: <code><a href="../reference/svalue.html">p2svalue()</a></code> and <code><a href="../reference/directional-information.html">p2info()</a></code> (<a href="https://github.com/poissonconsulting/extras/issues/122" class="external-link">#122</a>).</li>
+<li>Add functions to calculate the Region of Practical Equivalence (ROPE) and credible intervals: <code><a href="../reference/xtr_ci.html">xtr_ci()</a></code>, <code><a href="../reference/xtr_ci_eti.html">xtr_ci_eti()</a></code>, <code><a href="../reference/xtr_ci_hdi.html">xtr_ci_hdi()</a></code>, <code><a href="../reference/xtr_rope.html">xtr_rope()</a></code> (<a href="https://github.com/poissonconsulting/extras/issues/110" class="external-link">#110</a>).</li>
+<li>Add skew-lognormal distribution family (<code><a href="../reference/skewlnorm.html">dskewlnorm()</a></code>, <code><a href="../reference/skewlnorm.html">pskewlnorm()</a></code>, <code><a href="../reference/skewlnorm.html">qskewlnorm()</a></code>, <code><a href="../reference/skewlnorm.html">rskewlnorm()</a></code>, <code><a href="../reference/ran_skewlnorm.html">ran_skewlnorm()</a></code>, <code><a href="../reference/sens_skewlnorm.html">sens_skewlnorm()</a></code>, <code><a href="../reference/quant_skewlnorm.html">quant_skewlnorm()</a></code>, <code><a href="../reference/dev_skewlnorm.html">dev_skewlnorm()</a></code>, <code><a href="../reference/res_skewlnorm.html">res_skewlnorm()</a></code>, <code><a href="../reference/log_lik_skewlnorm.html">log_lik_skewlnorm()</a></code>, <code><a href="../reference/prob_skewlnorm.html">prob_skewlnorm()</a></code>) (<a href="https://github.com/poissonconsulting/extras/issues/127" class="external-link">#127</a>).</li>
+<li>Add <code>skeptical</code> argument to <code><a href="../reference/pvalue.html">pvalue()</a></code>, <code><a href="../reference/svalue.html">svalue()</a></code>, and <code><a href="../reference/directional-information.html">directional_information()</a></code>, defaulting to <code>TRUE</code> (<a href="https://github.com/poissonconsulting/extras/issues/133" class="external-link">#133</a>).</li>
+<li>Advance deprecation of <code><a href="../reference/as_list_unnamed.html">as_list_unnamed()</a></code>, <code><a href="../reference/pextreme.html">pextreme()</a></code>, and <code><a href="../reference/sextreme.html">sextreme()</a></code> from soft-deprecated to warnings (<a href="https://github.com/poissonconsulting/extras/issues/140" class="external-link">#140</a>).</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.0" id="extras-090">extras 0.9.0<a class="anchor" aria-label="anchor" href="#extras-090"></a></h2>
-<ul><li>Add truncation arguments to log_lik functions; add prob and quant families (<a href="https://github.com/poissonconsulting/extras/issues/119" class="external-link">#119</a>).</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.8.0.9003" id="extras-0809003">extras 0.8.0.9003<a class="anchor" aria-label="anchor" href="#extras-0809003"></a></h2>
-<ul><li><p>Tidy tests for <code>log_lik</code>, <code>res</code>, <code>ran</code>, and <code>dev</code> (<a href="https://github.com/poissonconsulting/extras/issues/117" class="external-link">#117</a>) (<a href="https://github.com/poissonconsulting/extras/issues/33" class="external-link">#33</a>).</p></li>
-<li><p>Update <code>roxygen</code> to 8.0.0.9000 (<a href="https://github.com/poissonconsulting/extras/issues/116" class="external-link">#116</a>).</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.8.0.9002" id="extras-0809002">extras 0.8.0.9002<a class="anchor" aria-label="anchor" href="#extras-0809002"></a></h2>
-<ul><li>
-<p>Merge pull request <a href="https://github.com/poissonconsulting/extras/issues/100" class="external-link">#100</a> from poissonconsulting/1sided-pvalues.</p>
-<p>allow one-sided p-values</p>
-</li>
-<li>
-<p>Merge pull request <a href="https://github.com/poissonconsulting/extras/issues/102" class="external-link">#102</a> from poissonconsulting/fix-gh-actions-2026-04.</p>
-<p>Fix gh actions 2026 04</p>
-</li>
-<li>
-<p>Merge pull request <a href="https://github.com/poissonconsulting/extras/issues/103" class="external-link">#103</a> from poissonconsulting/add-loglik-beta-exp-unif.</p>
-<p>Add <code>log_lik_ *()</code> for beta, exp, and unif to site</p>
-</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.8.0.9001" id="extras-0809001">extras 0.8.0.9001<a class="anchor" aria-label="anchor" href="#extras-0809001"></a></h2>
-<ul><li>Added <code><a href="../reference/log_lik_exp.html">log_lik_exp()</a></code>.</li>
-<li>Added <code><a href="../reference/log_lik_beta.html">log_lik_beta()</a></code>.</li>
-<li>Added ‘log_lik_unif()’.</li>
+<ul><li>Add <code><a href="../reference/log_lik_exp.html">log_lik_exp()</a></code>, <code><a href="../reference/log_lik_beta.html">log_lik_beta()</a></code>, and <code><a href="../reference/log_lik_unif.html">log_lik_unif()</a></code> (<a href="https://github.com/poissonconsulting/extras/issues/93" class="external-link">#93</a>, <a href="https://github.com/poissonconsulting/extras/issues/94" class="external-link">#94</a>, <a href="https://github.com/poissonconsulting/extras/issues/95" class="external-link">#95</a>).</li>
+<li>Allow one-sided p-values and s-values via the <code>side</code> argument of <code><a href="../reference/pvalue.html">pvalue()</a></code> and <code><a href="../reference/svalue.html">svalue()</a></code>; tighten <code><a href="../reference/pvalue.html">pvalue()</a></code>’s sample-size correction to only apply when it would otherwise return exactly 0 (<a href="https://github.com/poissonconsulting/extras/issues/100" class="external-link">#100</a>, <a href="https://github.com/poissonconsulting/extras/issues/105" class="external-link">#105</a>).</li>
+<li>Add truncation arguments (<code>tlower</code>, <code>tupper</code>) to <code>log_lik_*()</code> functions; add <code>prob_*()</code> and <code>quant_*()</code> function families (<a href="https://github.com/poissonconsulting/extras/issues/119" class="external-link">#119</a>).</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.0" id="extras-080">extras 0.8.0<a class="anchor" aria-label="anchor" href="#extras-080"></a></h2><p class="text-muted">CRAN release: 2025-01-13</p>
 <ul><li>Added a scalar case to <code><a href="../reference/log_lik_beta_binom.html">log_lik_beta_binom()</a></code> to improve speed for scalar inputs.</li>
 <li>Add memoization (if memoize package is installed) and data has &gt; 800 rows to gain speed from repeated function calls.</li>
 <li>Use a vectorized optimization to improve speed of optimization required for deviance calculation.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.7.3.9002" id="extras-0739002">extras 0.7.3.9002<a class="anchor" aria-label="anchor" href="#extras-0739002"></a></h2>
-<ul><li>Remove dependency on MASS package so minimum R version can be brought down to 4.0.0 from 4.3.0.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.7.3.9001" id="extras-0739001">extras 0.7.3.9001<a class="anchor" aria-label="anchor" href="#extras-0739001"></a></h2>
-<ul><li>Register poissontemplate usage.</li>
-<li>Fix actions.</li>
-<li>Perform upkeep on package.</li>
+<li>Remove dependency on MASS package so minimum R version can be brought down to 4.0.0 from 4.3.0.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.3" id="extras-073">extras 0.7.3<a class="anchor" aria-label="anchor" href="#extras-073"></a></h2><p class="text-muted">CRAN release: 2024-08-27</p>
@@ -231,11 +207,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://www.poissonconsulting.ca/author/nicole-hill/" class="external-link">Nicole Hill</a>, <a href="https://www.poissonconsulting.ca/author/joe-thorley/" class="external-link">Joe Thorley</a>, <a href="https://www.poissonconsulting.ca/" class="external-link"><img src="https://github.com/poissonconsulting.png" height="24" alt=""></a>.</p>
+  <p>Developed by <a href="https://www.poissonconsulting.ca/author/nicole-hill/" class="external-link">Nicole Hill</a>, <a href="https://www.poissonconsulting.ca/author/joe-thorley/" class="external-link">Joe Thorley</a>, Stefano Mezzini, <a href="https://www.poissonconsulting.ca/" class="external-link"><img src="https://github.com/poissonconsulting.png" height="24" alt=""></a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

@@ -30,6 +30,11 @@ functions.
 
   A non-negative numeric vector of means.
 
+- level:
+
+  A number \> 0 and \<= 1 specifying the probability coverage of the
+  interval.
+
 - log:
 
   A flag specifying whether to return the log-transformed value.
@@ -70,7 +75,7 @@ functions.
 
 - p:
 
-  A vector of probabilities.
+  A numeric vector of probabilities.
 
 - prob:
 
@@ -119,6 +124,14 @@ functions.
 - size:
 
   A non-negative whole numeric vector of the number of trials.
+
+- skeptical:
+
+  A flag specifying whether or not to add one sample to the empty side
+  of the threshold when 100% of samples are on one side. Avoids zero
+  p-values and infinite s-values, and also imposes stronger bounds on
+  directional information than \[-n, n\], which assume the MCMC samples
+  are independent and representative.
 
 - theta:
 

@@ -1,47 +1,76 @@
 # Changelog
 
+## extras 0.10.0
+
+- Add
+  [`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md)
+  and
+  [`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional-information.md)
+  ([\#106](https://github.com/poissonconsulting/extras/issues/106)).
+- Add functions to calculate s-values and information from vectors of
+  probabilities:
+  [`p2svalue()`](https://poissonconsulting.github.io/extras/reference/svalue.md)
+  and
+  [`p2info()`](https://poissonconsulting.github.io/extras/reference/directional-information.md)
+  ([\#122](https://github.com/poissonconsulting/extras/issues/122)).
+- Add functions to calculate the Region of Practical Equivalence (ROPE)
+  and credible intervals:
+  [`xtr_ci()`](https://poissonconsulting.github.io/extras/reference/xtr_ci.md),
+  [`xtr_ci_eti()`](https://poissonconsulting.github.io/extras/reference/xtr_ci_eti.md),
+  [`xtr_ci_hdi()`](https://poissonconsulting.github.io/extras/reference/xtr_ci_hdi.md),
+  [`xtr_rope()`](https://poissonconsulting.github.io/extras/reference/xtr_rope.md)
+  ([\#110](https://github.com/poissonconsulting/extras/issues/110)).
+- Add skew-lognormal distribution family
+  ([`dskewlnorm()`](https://poissonconsulting.github.io/extras/reference/skewlnorm.md),
+  [`pskewlnorm()`](https://poissonconsulting.github.io/extras/reference/skewlnorm.md),
+  [`qskewlnorm()`](https://poissonconsulting.github.io/extras/reference/skewlnorm.md),
+  [`rskewlnorm()`](https://poissonconsulting.github.io/extras/reference/skewlnorm.md),
+  [`ran_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/ran_skewlnorm.md),
+  [`sens_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/sens_skewlnorm.md),
+  [`quant_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/quant_skewlnorm.md),
+  [`dev_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/dev_skewlnorm.md),
+  [`res_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/res_skewlnorm.md),
+  [`log_lik_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/log_lik_skewlnorm.md),
+  [`prob_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/prob_skewlnorm.md))
+  ([\#127](https://github.com/poissonconsulting/extras/issues/127)).
+- Add `skeptical` argument to
+  [`pvalue()`](https://poissonconsulting.github.io/extras/reference/pvalue.md),
+  [`svalue()`](https://poissonconsulting.github.io/extras/reference/svalue.md),
+  and
+  [`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional-information.md),
+  defaulting to `TRUE`
+  ([\#133](https://github.com/poissonconsulting/extras/issues/133)).
+- Advance deprecation of
+  [`as_list_unnamed()`](https://poissonconsulting.github.io/extras/reference/as_list_unnamed.md),
+  [`pextreme()`](https://poissonconsulting.github.io/extras/reference/pextreme.md),
+  and
+  [`sextreme()`](https://poissonconsulting.github.io/extras/reference/sextreme.md)
+  from soft-deprecated to warnings
+  ([\#140](https://github.com/poissonconsulting/extras/issues/140)).
+
 ## extras 0.9.0
 
-- Add truncation arguments to log_lik functions; add prob and quant
-  families
+- Add
+  [`log_lik_exp()`](https://poissonconsulting.github.io/extras/reference/log_lik_exp.md),
+  [`log_lik_beta()`](https://poissonconsulting.github.io/extras/reference/log_lik_beta.md),
+  and
+  [`log_lik_unif()`](https://poissonconsulting.github.io/extras/reference/log_lik_unif.md)
+  ([\#93](https://github.com/poissonconsulting/extras/issues/93),
+  [\#94](https://github.com/poissonconsulting/extras/issues/94),
+  [\#95](https://github.com/poissonconsulting/extras/issues/95)).
+- Allow one-sided p-values and s-values via the `side` argument of
+  [`pvalue()`](https://poissonconsulting.github.io/extras/reference/pvalue.md)
+  and
+  [`svalue()`](https://poissonconsulting.github.io/extras/reference/svalue.md);
+  tighten
+  [`pvalue()`](https://poissonconsulting.github.io/extras/reference/pvalue.md)’s
+  sample-size correction to only apply when it would otherwise return
+  exactly 0
+  ([\#100](https://github.com/poissonconsulting/extras/issues/100),
+  [\#105](https://github.com/poissonconsulting/extras/issues/105)).
+- Add truncation arguments (`tlower`, `tupper`) to `log_lik_*()`
+  functions; add `prob_*()` and `quant_*()` function families
   ([\#119](https://github.com/poissonconsulting/extras/issues/119)).
-
-## extras 0.8.0.9003
-
-- Tidy tests for `log_lik`, `res`, `ran`, and `dev`
-  ([\#117](https://github.com/poissonconsulting/extras/issues/117))
-  ([\#33](https://github.com/poissonconsulting/extras/issues/33)).
-
-- Update `roxygen` to 8.0.0.9000
-  ([\#116](https://github.com/poissonconsulting/extras/issues/116)).
-
-## extras 0.8.0.9002
-
-- Merge pull request
-  [\#100](https://github.com/poissonconsulting/extras/issues/100) from
-  poissonconsulting/1sided-pvalues.
-
-  allow one-sided p-values
-
-- Merge pull request
-  [\#102](https://github.com/poissonconsulting/extras/issues/102) from
-  poissonconsulting/fix-gh-actions-2026-04.
-
-  Fix gh actions 2026 04
-
-- Merge pull request
-  [\#103](https://github.com/poissonconsulting/extras/issues/103) from
-  poissonconsulting/add-loglik-beta-exp-unif.
-
-  Add `log_lik_ *()` for beta, exp, and unif to site
-
-## extras 0.8.0.9001
-
-- Added
-  [`log_lik_exp()`](https://poissonconsulting.github.io/extras/reference/log_lik_exp.md).
-- Added
-  [`log_lik_beta()`](https://poissonconsulting.github.io/extras/reference/log_lik_beta.md).
-- Added ‘log_lik_unif()’.
 
 ## extras 0.8.0
 
@@ -54,17 +83,8 @@ CRAN release: 2025-01-13
   rows to gain speed from repeated function calls.
 - Use a vectorized optimization to improve speed of optimization
   required for deviance calculation.
-
-## extras 0.7.3.9002
-
 - Remove dependency on MASS package so minimum R version can be brought
   down to 4.0.0 from 4.3.0.
-
-## extras 0.7.3.9001
-
-- Register poissontemplate usage.
-- Fix actions.
-- Perform upkeep on package.
 
 ## extras 0.7.3
 

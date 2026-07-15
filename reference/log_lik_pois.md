@@ -45,6 +45,7 @@ Other log_lik_dist:
 [`log_lik_neg_binom()`](https://poissonconsulting.github.io/extras/reference/log_lik_neg_binom.md),
 [`log_lik_norm()`](https://poissonconsulting.github.io/extras/reference/log_lik_norm.md),
 [`log_lik_pois_zi()`](https://poissonconsulting.github.io/extras/reference/log_lik_pois_zi.md),
+[`log_lik_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/log_lik_skewlnorm.md),
 [`log_lik_skewnorm()`](https://poissonconsulting.github.io/extras/reference/log_lik_skewnorm.md),
 [`log_lik_student()`](https://poissonconsulting.github.io/extras/reference/log_lik_student.md),
 [`log_lik_unif()`](https://poissonconsulting.github.io/extras/reference/log_lik_unif.md)

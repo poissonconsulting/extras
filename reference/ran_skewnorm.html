@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">extras</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.10.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,20 +85,21 @@ generate.</p></dd>
 <code><a href="ran_norm.html">ran_norm()</a></code>,
 <code><a href="ran_pois.html">ran_pois()</a></code>,
 <code><a href="ran_pois_zi.html">ran_pois_zi()</a></code>,
+<code><a href="ran_skewlnorm.html">ran_skewlnorm()</a></code>,
 <code><a href="ran_student.html">ran_student()</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">ran_skewnorm</span><span class="op">(</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  1.1488493 -1.0576383 -1.7706145 -1.1805689 -0.4948229 -0.4146651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -2.1106997 -0.5657500 -1.0593348 -0.5968130</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -1.4598895 -1.7300920 -0.3785464 -0.6900374 -0.9216302 -1.4594648</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -0.9637518 -0.9933685 -0.7869584 -1.3534472</span>
 <span class="r-in"><span><span class="fu">ran_skewnorm</span><span class="op">(</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  0.4314644  0.4896186  0.2866172 -1.1371789 -0.1864812  1.1594164</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -0.1794256 -1.0604289  1.6750532  0.7599024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.3432754 -0.4327656  0.1801635  1.7244790 -0.6515033 -0.1581936</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -1.4571486 -0.9542045  1.1945719 -0.9032592</span>
 <span class="r-in"><span><span class="fu">ran_skewnorm</span><span class="op">(</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  1.23042949  2.39665789 -0.05533427 -0.14119500 -0.13616026  0.16254137</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7]  0.68906027  1.61610437  1.52232370  0.25063858</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  1.05591563 -0.57251003  0.07059691  0.13657298  0.97029838  1.84298062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -0.38607216  1.73498890  0.92340047  0.71429037</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -106,11 +107,11 @@ generate.</p></dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://www.poissonconsulting.ca/author/nicole-hill/" class="external-link">Nicole Hill</a>, <a href="https://www.poissonconsulting.ca/author/joe-thorley/" class="external-link">Joe Thorley</a>, <a href="https://www.poissonconsulting.ca/" class="external-link"><img src="https://github.com/poissonconsulting.png" height="24" alt=""></a>.</p>
+  <p>Developed by <a href="https://www.poissonconsulting.ca/author/nicole-hill/" class="external-link">Nicole Hill</a>, <a href="https://www.poissonconsulting.ca/author/joe-thorley/" class="external-link">Joe Thorley</a>, Stefano Mezzini, <a href="https://www.poissonconsulting.ca/" class="external-link"><img src="https://github.com/poissonconsulting.png" height="24" alt=""></a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

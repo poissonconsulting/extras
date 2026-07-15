@@ -42,7 +42,7 @@ rskewnorm(n = 1, mean = 0, sd = 1, shape = 0)
 
 - p:
 
-  A vector of probabilities.
+  A numeric vector of probabilities.
 
 - n:
 
@@ -72,7 +72,7 @@ pskewnorm(q = -2:2, mean = 0, sd = 1, shape = 0.1)
 pskewnorm(q = -2:2, mean = 0, sd = 1, shape = -1)
 #> [1] 0.0449827 0.2921390 0.7500000 0.9748285 0.9994824
 rskewnorm(n = 3, mean = 0, sd = 1, shape = 0.1)
-#> [1]  0.4108872 -0.7255282  2.2048751
+#> [1]  0.06119718 -0.91936053  0.55349209
 rskewnorm(n = 3, mean = 0, sd = 1, shape = -1)
-#> [1]  0.4762621 -0.8002841 -1.3798484
+#> [1] -1.494791 -1.172111 -1.274561
 ```

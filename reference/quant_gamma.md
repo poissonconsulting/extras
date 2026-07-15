@@ -40,6 +40,7 @@ Other quant_dist:
 [`quant_norm()`](https://poissonconsulting.github.io/extras/reference/quant_norm.md),
 [`quant_pois()`](https://poissonconsulting.github.io/extras/reference/quant_pois.md),
 [`quant_pois_zi()`](https://poissonconsulting.github.io/extras/reference/quant_pois_zi.md),
+[`quant_skewlnorm()`](https://poissonconsulting.github.io/extras/reference/quant_skewlnorm.md),
 [`quant_skewnorm()`](https://poissonconsulting.github.io/extras/reference/quant_skewnorm.md),
 [`quant_student()`](https://poissonconsulting.github.io/extras/reference/quant_student.md),
 [`quant_unif()`](https://poissonconsulting.github.io/extras/reference/quant_unif.md)

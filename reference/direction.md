@@ -48,7 +48,7 @@ of missing values when `na_rm = FALSE`.
 ## See also
 
 Other summary:
-[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional_information.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional-information.md),
 [`kurtosis()`](https://poissonconsulting.github.io/extras/reference/kurtosis.md),
 [`lower()`](https://poissonconsulting.github.io/extras/reference/lower.md),
 [`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md),

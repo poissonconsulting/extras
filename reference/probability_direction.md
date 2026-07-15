@@ -61,7 +61,7 @@ Front. Psychol. 10: 2767.
 
 Other summary:
 [`direction()`](https://poissonconsulting.github.io/extras/reference/direction.md),
-[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional_information.md),
+[`directional_information()`](https://poissonconsulting.github.io/extras/reference/directional-information.md),
 [`kurtosis()`](https://poissonconsulting.github.io/extras/reference/kurtosis.md),
 [`lower()`](https://poissonconsulting.github.io/extras/reference/lower.md),
 [`pvalue()`](https://poissonconsulting.github.io/extras/reference/pvalue.md),

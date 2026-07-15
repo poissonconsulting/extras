@@ -1,7 +1,7 @@
 # As List
 
 Coerces an object to an list. All attributes are removed except any
-names.
+names. **\[deprecated\]**
 
 ## Usage
 
@@ -30,7 +30,7 @@ A list.
 
 ``` r
 as_list_unnamed(1:3)
-#> Warning: `as_list_unnamed()` was deprecated in extras 0.1.1.
+#> Warning: `as_list_unnamed()` was deprecated in extras 0.10.0.
 #> ℹ Please use `as_list()` instead.
 #> [[1]]
 #> [1] 1
