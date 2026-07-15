@@ -1,6 +1,6 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
-# extras 0.10.0 2026-07-14
+# extras 0.9.0.9006
 
 - Add functions to calculate s-values and information from vectors of probabilities (#122).
 - Add skew-lognormal distribution family (`dskewlnorm()`, `pskewlnorm()`, `qskewlnorm()`, `rskewlnorm()`, `ran_skewlnorm()`, `sens_skewlnorm()`, `quant_skewlnorm()`, `dev_skewlnorm()`, `res_skewlnorm()`, `log_lik_skewlnorm()`, `prob_skewlnorm()`) (#127).
