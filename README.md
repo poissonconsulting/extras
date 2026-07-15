@@ -41,13 +41,13 @@ library(extras)
 set.seed(1)
 x <- rnorm(100)
 svalue(rnorm(100))
-#> [1] 0.3183615
+#> [1] 0.3219281
 svalue(rnorm(100, mean = 1))
-#> [1] 1.704015
+#> [1] 1.736966
 svalue(rnorm(100, mean = 2))
-#> [1] 3.850857
+#> [1] 4.058894
 svalue(rnorm(100, mean = 3))
-#> [1] 5.073249
+#> [1] 5.643856
 ```
 
 ### Distributions
