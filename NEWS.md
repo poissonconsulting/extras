@@ -1,21 +1,19 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
-# extras 0.9.0.9007
+# extras 0.10.0
 
-- Same as previous version.
-
-
-# extras 0.9.0.9006
-
-- Add functions to calculate s-values and information from vectors of probabilities (#122).
+- Add `probability_direction()` and `directional_information()` (#106).
+- Add functions to calculate s-values and information from vectors of probabilities: `p2svalue()` and `p2info()` (#122).
+- Add functions to calculate the Region of Practical Equivalence (ROPE) and credible intervals: `xtr_ci()`, `xtr_ci_eti()`, `xtr_ci_hdi()`, `xtr_rope()` (#110).
 - Add skew-lognormal distribution family (`dskewlnorm()`, `pskewlnorm()`, `qskewlnorm()`, `rskewlnorm()`, `ran_skewlnorm()`, `sens_skewlnorm()`, `quant_skewlnorm()`, `dev_skewlnorm()`, `res_skewlnorm()`, `log_lik_skewlnorm()`, `prob_skewlnorm()`) (#127).
+- Add `skeptical` argument to `pvalue()`, `svalue()`, and `directional_information()`, defaulting to `TRUE` (#133).
+- Advance deprecation of `as_list_unnamed()`, `pextreme()`, and `sextreme()` from soft-deprecated to warnings (#140).
 
 # extras 0.9.0
 
-- Add truncation arguments to log_lik functions; add prob and quant families (#119).
-- Tidy tests for `log_lik`, `res`, `ran`, and `dev` (#117) (#33).
-- Allow one-sided p-values.
-- Added `log_lik_exp()`, `log_lik_beta()`, and `log_lik_unif()`.
+- Add `log_lik_exp()`, `log_lik_beta()`, and `log_lik_unif()` (#93, #94, #95).
+- Allow one-sided p-values and s-values via the `side` argument of `pvalue()` and `svalue()`; tighten `pvalue()`'s sample-size correction to only apply when it would otherwise return exactly 0 (#100, #105).
+- Add truncation arguments (`tlower`, `tupper`) to `log_lik_*()` functions; add `prob_*()` and `quant_*()` function families (#119).
 
 # extras 0.8.0
 
