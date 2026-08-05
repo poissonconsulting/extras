@@ -25,7 +25,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/poissonconsulting/extras/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/poissonconsulting/extras/blob/v0.10.0/DESCRIPTION)
 
 Hill N, Thorley J, Mezzini S (2026). *extras: Helper Functions for
 Bayesian Analyses*. R package version 0.10.0,

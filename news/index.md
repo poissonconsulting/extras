@@ -2,6 +2,8 @@
 
 ## extras 0.10.0
 
+CRAN release: 2026-07-15
+
 - Add
   [`probability_direction()`](https://poissonconsulting.github.io/extras/reference/probability_direction.md)
   and
