@@ -507,6 +507,45 @@ test_that("res_gamma_pois simulate", {
   })
 })
 
+test_that("res_multinom", {
+  x <- c(1, 3, 6)
+  size <- 10
+  prob <- c(0.2, 0.3, 0.5)
+  group <- c(1, 1, 1)
+
+  expect_equal(
+    res_multinom(x, size, prob, group, type = "dev"),
+    dev_multinom(x, size, prob, res = TRUE)
+  )
+  expect_equal(
+    res_multinom(x, size, prob, group, type = "raw"),
+    x - size * prob
+  )
+  # a category count is marginally binomial, so the standardized residual
+  # matches res_binom exactly
+  expect_equal(
+    res_multinom(x, size, prob, group, type = "standardized"),
+    res_binom(x, size, prob, type = "standardized")
+  )
+  expect_equal(
+    res_multinom(x, size, prob, group, type = "data"),
+    x
+  )
+  expect_error(res_multinom(x, size, prob, group, type = "unknown"))
+
+  # sum of squared deviance residuals recovers the row-level deviance
+  expect_equal(
+    sum(res_multinom(x, size, prob, group, type = "dev")^2),
+    2 * sum(x * log(x / (size * prob)))
+  )
+
+  withr::with_seed(101, {
+    sim <- res_multinom(x, size, prob, group, type = "data", simulate = TRUE)
+    expect_identical(sum(sim), as.integer(size))
+    expect_length(sim, 3L)
+  })
+})
+
 test_that("res_neg_binom", {
   expect_identical(
     res_neg_binom(integer(0), integer(0), integer(0)),

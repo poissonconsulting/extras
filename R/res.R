@@ -251,6 +251,68 @@ res_lnorm <- function(
   )
 }
 
+#' Multinomial Residuals
+#'
+#' The multinomial distribution models the counts across two or more
+#' mutually exclusive categories arising from a fixed number of trials. Data
+#' are in \emph{long} format: one row per category per trial, with `group`
+#' identifying which rows belong to the same trial (see
+#' [log_lik_multinom()] for details). `res_multinom()` returns one residual
+#' per row (per category per trial), not one per trial -- since a trial's
+#' categories are not independent, there's no single meaningful residual (or
+#' sign) for the trial as a whole. The classic per-trial deviance statistic
+#' can always be recovered by summing the squared `type = "dev"` residuals
+#' within a `group`.
+#'
+#' Because a category count is marginally binomial (`x ~ Binomial(size,
+#' prob)`), the `"standardized"` residual uses the same formula as
+#' [res_binom()]; this is already the covariance-adjusted (unit-variance)
+#' residual, not the naive independent-Poisson version.
+#'
+#' `group` is only used when `simulate = TRUE`, to draw a joint,
+#' correlation-preserving replicate for each trial (via [ran_multinom()])
+#' rather than simulating each category independently, which would
+#' understate the true (negative) covariance among a trial's categories. For
+#' the simulated residuals from this function to be valid inputs to
+#' `embr::posterior_predictive_check()`, the model must be fit with
+#' `new_expr_vec = TRUE`, so that `res_multinom()` is evaluated once on the
+#' full data vector (with visibility of every row in each `group`) rather
+#' than row by row.
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of the category counts.
+#' @param prob A numeric vector of the probability of the category. Must sum
+#'   to 1 across the rows sharing the same `group`.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
+res_multinom <- function(
+  x,
+  size = 1,
+  prob,
+  group,
+  type = "dev",
+  simulate = FALSE
+) {
+  chk_string(type)
+  if (!vld_false(simulate)) {
+    x <- ran_multinom(size = size, prob = prob, group = group)
+  }
+  mu <- size * prob
+  switch(
+    type,
+    data = x,
+    raw = x - mu,
+    standardized = (x - mu) / sqrt(mu * (1 - prob)),
+    dev = dev_multinom(x, size = size, prob = prob, res = TRUE),
+    chk_subset(x, c("data", "raw", "dev", "standardized"))
+  )
+}
+
 #' Negative Binomial Residuals
 #'
 #' @inheritParams params

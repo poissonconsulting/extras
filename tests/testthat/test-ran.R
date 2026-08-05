@@ -107,6 +107,35 @@ test_that("ran_gamma_pois", {
   })
 })
 
+test_that("ran_multinom", {
+  expect_identical(
+    ran_multinom(size = numeric(0), prob = numeric(0), group = numeric(0)),
+    integer(0)
+  )
+  expect_error(
+    ran_multinom(size = c(10, 5), prob = c(0.5, 0.5), group = c(1, 1)),
+    "`size` must be the same for every row belonging to the same `group`"
+  )
+  expect_error(
+    ran_multinom(size = 10, prob = c(0.5, 0.4), group = c(1, 1)),
+    "`prob` must sum to 1 for every `group`"
+  )
+  withr::with_seed(101, {
+    x <- ran_multinom(size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
+    expect_identical(sum(x), 10L)
+    expect_length(x, 3L)
+  })
+  withr::with_seed(101, {
+    x <- ran_multinom(
+      size = c(10, 10, 6, 6),
+      prob = c(0.2, 0.8, 0.5, 0.5),
+      group = c(1, 1, 2, 2)
+    )
+    expect_identical(x[1] + x[2], 10L)
+    expect_identical(x[3] + x[4], 6L)
+  })
+})
+
 test_that("ran_neg_binom", {
   expect_error(ran_neg_binom(NA_integer_))
   expect_error(ran_neg_binom(integer(0)))

@@ -45,6 +45,7 @@ Other res_dist:
 \code{\link[=res_gamma]{res_gamma()}},
 \code{\link[=res_gamma_pois]{res_gamma_pois()}},
 \code{\link[=res_lnorm]{res_lnorm()}},
+\code{\link[=res_multinom]{res_multinom()}},
 \code{\link[=res_neg_binom]{res_neg_binom()}},
 \code{\link[=res_norm]{res_norm()}},
 \code{\link[=res_pois]{res_pois()}},

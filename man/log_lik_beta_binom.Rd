@@ -58,6 +58,7 @@ Other log_lik_dist:
 \code{\link[=log_lik_gamma_pois]{log_lik_gamma_pois()}},
 \code{\link[=log_lik_gamma_pois_zi]{log_lik_gamma_pois_zi()}},
 \code{\link[=log_lik_lnorm]{log_lik_lnorm()}},
+\code{\link[=log_lik_multinom]{log_lik_multinom()}},
 \code{\link[=log_lik_neg_binom]{log_lik_neg_binom()}},
 \code{\link[=log_lik_norm]{log_lik_norm()}},
 \code{\link[=log_lik_pois]{log_lik_pois()}},

@@ -427,6 +427,52 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
   log_lik
 }
 
+#' Multinomial Log-Likelihood
+#'
+#' The multinomial distribution models the counts across two or more
+#' mutually exclusive categories arising from a fixed number of trials. Data
+#' are in \emph{long} format: one row per category per trial, with `group`
+#' identifying which rows belong to the same trial. All rows sharing a
+#' `group` must have the same `size`, and their `prob` values must sum to 1.
+#'
+#' A trial's log-likelihood doesn't split evenly across its category rows,
+#' because the multinomial coefficient is a property of the whole trial, not
+#' any one category. `log_lik_multinom()` uses the identity that a
+#' multinomial is equivalent to independent Poissons conditional on the
+#' trial total: the log-likelihood of category `k` of trial `i` is the
+#' Poisson log-likelihood of `x` given `mu = size * prob`, minus an even
+#' share of the trial's normalizing constant (so that summing
+#' `log_lik_multinom()` over the rows of one `group` recovers the trial's
+#' exact multinomial log-likelihood).
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of the category counts.
+#' @param prob A numeric vector of the probability of the category. Must sum
+#'   to 1 across the rows sharing the same `group`.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods, one value
+#'   per row of `x`.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
+log_lik_multinom <- function(x, size = 1, prob, group) {
+  n <- length(x)
+  if (!n || !length(size) || !length(prob) || !length(group)) {
+    return(numeric(0))
+  }
+  size <- rep_len(size, n)
+  prob <- rep_len(prob, n)
+  group <- rep_len(group, n)
+  chk_multinom_group(size, prob, group)
+  mu <- size * prob
+  log_lik <- log_lik_pois(x, mu)
+  k <- ave(seq_along(group), group, FUN = length)
+  const <- log_lik_pois(size, size)
+  log_lik - const / k
+}
+
 #' Negative Binomial Log-Likelihood
 #'
 #' @inheritParams params
