@@ -33,6 +33,7 @@ Suggests:
     covr,
     extraDistr,
     ggplot2,
+    glmnet,
     hms,
     knitr,
     memoise,

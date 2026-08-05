@@ -32,6 +32,7 @@ Other ran_dist:
 \code{\link[=ran_gamma_pois]{ran_gamma_pois()}},
 \code{\link[=ran_gamma_pois_zi]{ran_gamma_pois_zi()}},
 \code{\link[=ran_lnorm]{ran_lnorm()}},
+\code{\link[=ran_multinom]{ran_multinom()}},
 \code{\link[=ran_neg_binom]{ran_neg_binom()}},
 \code{\link[=ran_norm]{ran_norm()}},
 \code{\link[=ran_pois]{ran_pois()}},

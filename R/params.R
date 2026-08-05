@@ -16,6 +16,10 @@
 #'   level.
 #' @param directional A flag specifying whether probabilities less than 0.5
 #'   should be returned as negative values.
+#' @param group A vector identifying which rows belong to the same
+#'   multinomial trial, i.e., whose `x` values must sum to `size` and whose
+#'   `prob` values must sum to 1. Required because the categories within a
+#'   single multinomial trial are not independent.
 #' @param lambda A non-negative numeric vector of means.
 #' @param level A number > 0 and <= 1 specifying the probability coverage of the
 #' interval.

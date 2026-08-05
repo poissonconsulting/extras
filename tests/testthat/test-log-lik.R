@@ -332,6 +332,44 @@ test_that("log_lik_lnorm truncated", {
   )
 })
 
+test_that("log_lik_multinom", {
+  expect_identical(
+    log_lik_multinom(numeric(0), numeric(0), numeric(0), numeric(0)),
+    numeric(0)
+  )
+  expect_error(
+    log_lik_multinom(c(1, 3, 6), c(10, 10, 5), c(0.2, 0.3, 0.5), c(1, 1, 1)),
+    "`size` must be the same for every row belonging to the same `group`"
+  )
+  expect_error(
+    log_lik_multinom(c(1, 3, 6), 10, c(0.2, 0.3, 0.4), c(1, 1, 1)),
+    "`prob` must sum to 1 for every `group`"
+  )
+  expect_equal(
+    sum(log_lik_multinom(
+      c(1, 3, 6),
+      size = 10,
+      prob = c(0.2, 0.3, 0.5),
+      group = c(1, 1, 1)
+    )),
+    dmultinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), log = TRUE)
+  )
+  # multiple trials in long format
+  x <- c(1, 3, 6, 2, 2)
+  size <- c(10, 10, 10, 4, 4)
+  prob <- c(0.2, 0.3, 0.5, 0.5, 0.5)
+  group <- c(1, 1, 1, 2, 2)
+  ll <- log_lik_multinom(x, size, prob, group)
+  expect_equal(
+    sum(ll[group == 1]),
+    dmultinom(x[group == 1], size = 10, prob = prob[group == 1], log = TRUE)
+  )
+  expect_equal(
+    sum(ll[group == 2]),
+    dmultinom(x[group == 2], size = 4, prob = prob[group == 2], log = TRUE)
+  )
+})
+
 test_that("log_lik_neg_binom", {
   expect_identical(
     log_lik_neg_binom(0, 2, 1),
