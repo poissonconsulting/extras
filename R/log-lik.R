@@ -468,7 +468,8 @@ log_lik_multinom <- function(x, size = 1, prob, group) {
   chk_multinom_group(size, prob, group)
   mu <- size * prob
   log_lik <- log_lik_pois(x, mu)
-  k <- ave(seq_along(group), group, FUN = length)
+  group_size <- table(group)
+  k <- as.numeric(group_size[as.character(group)])
   const <- log_lik_pois(size, size)
   log_lik - const / k
 }
