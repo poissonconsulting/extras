@@ -264,11 +264,6 @@ res_lnorm <- function(
 #' can always be recovered by summing the squared `type = "dev"` residuals
 #' within a `group`.
 #'
-#' Because a category count is marginally binomial (`x ~ Binomial(size,
-#' prob)`), the `"standardized"` residual uses the same formula as
-#' [res_binom()]; this is already the covariance-adjusted (unit-variance)
-#' residual, not the naive independent-Poisson version.
-#'
 #' `group` is only used when `simulate = TRUE`, to draw a joint,
 #' correlation-preserving replicate for each trial (via [ran_multinom()])
 #' rather than simulating each category independently, which would

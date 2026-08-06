@@ -16,8 +16,9 @@ to 1 across the rows sharing the same \code{group}.}
 
 \item{group}{A vector identifying which rows belong to the same
 multinomial trial, i.e., whose \code{x} values must sum to \code{size} and whose
-\code{prob} values must sum to 1. Required because the categories within a
-single multinomial trial are not independent.}
+\code{prob} values must sum to 1. Each group must contain at least 2 rows (a
+trial needs at least 2 categories). Required because the categories
+within a single multinomial trial are not independent.}
 
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
 deviance residuals and 'data' for the data.}
@@ -40,10 +41,6 @@ can always be recovered by summing the squared \code{type = "dev"} residuals
 within a \code{group}.
 }
 \details{
-Because a category count is marginally binomial (\code{x ~ Binomial(size, prob)}), the \code{"standardized"} residual uses the same formula as
-\code{\link[=res_binom]{res_binom()}}; this is already the covariance-adjusted (unit-variance)
-residual, not the naive independent-Poisson version.
-
 \code{group} is only used when \code{simulate = TRUE}, to draw a joint,
 correlation-preserving replicate for each trial (via \code{\link[=ran_multinom]{ran_multinom()}})
 rather than simulating each category independently, which would

@@ -16,8 +16,9 @@ to 1 across the rows sharing the same \code{group}.}
 
 \item{group}{A vector identifying which rows belong to the same
 multinomial trial, i.e., whose \code{x} values must sum to \code{size} and whose
-\code{prob} values must sum to 1. Required because the categories within a
-single multinomial trial are not independent.}
+\code{prob} values must sum to 1. Each group must contain at least 2 rows (a
+trial needs at least 2 categories). Required because the categories
+within a single multinomial trial are not independent.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods, one value
