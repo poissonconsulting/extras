@@ -272,12 +272,10 @@ res_lnorm <- function(
 #' `group` is only used when `simulate = TRUE`, to draw a joint,
 #' correlation-preserving replicate for each trial (via [ran_multinom()])
 #' rather than simulating each category independently, which would
-#' understate the true (negative) covariance among a trial's categories. For
-#' the simulated residuals from this function to be valid inputs to
-#' `embr::posterior_predictive_check()`, the model must be fit with
-#' `new_expr_vec = TRUE`, so that `res_multinom()` is evaluated once on the
-#' full data vector (with visibility of every row in each `group`) rather
-#' than row by row.
+#' understate the true (negative) covariance among a trial's categories.
+#' This requires `res_multinom()` to be evaluated on the full data vector at
+#' once, so that every row sharing a `group` is visible in the same call,
+#' rather than evaluated separately for each row.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of the category counts.

@@ -345,6 +345,10 @@ test_that("log_lik_multinom", {
     log_lik_multinom(c(1, 3, 6), 10, c(0.2, 0.3, 0.4), c(1, 1, 1)),
     "`prob` must sum to 1 for every `group`"
   )
+  expect_error(
+    log_lik_multinom(4, 10, 1, 1),
+    "must contain at least 2 rows"
+  )
   expect_equal(
     sum(log_lik_multinom(
       c(1, 3, 6),

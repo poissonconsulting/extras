@@ -120,6 +120,18 @@ test_that("ran_multinom", {
     ran_multinom(size = 10, prob = c(0.5, 0.4), group = c(1, 1)),
     "`prob` must sum to 1 for every `group`"
   )
+  expect_error(
+    ran_multinom(size = 10, prob = 1, group = 1),
+    "must contain at least 2 rows"
+  )
+  expect_error(
+    ran_multinom(
+      size = c(10, 10, 10, 10),
+      prob = c(0.2, 0.3, 0.5, 1),
+      group = c(1, 1, 1, 2)
+    ),
+    "must contain at least 2 rows"
+  )
   withr::with_seed(101, {
     x <- ran_multinom(size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
     expect_identical(sum(x), 10L)

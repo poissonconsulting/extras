@@ -47,12 +47,10 @@ residual, not the naive independent-Poisson version.
 \code{group} is only used when \code{simulate = TRUE}, to draw a joint,
 correlation-preserving replicate for each trial (via \code{\link[=ran_multinom]{ran_multinom()}})
 rather than simulating each category independently, which would
-understate the true (negative) covariance among a trial's categories. For
-the simulated residuals from this function to be valid inputs to
-\code{embr::posterior_predictive_check()}, the model must be fit with
-\code{new_expr_vec = TRUE}, so that \code{res_multinom()} is evaluated once on the
-full data vector (with visibility of every row in each \code{group}) rather
-than row by row.
+understate the true (negative) covariance among a trial's categories.
+This requires \code{res_multinom()} to be evaluated on the full data vector at
+once, so that every row sharing a \code{group} is visible in the same call,
+rather than evaluated separately for each row.
 }
 \examples{
 res_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
