@@ -546,6 +546,38 @@ test_that("res_multinom", {
   })
 })
 
+test_that("res_multinom simulate", {
+  n_group <- 10000
+  size <- rep(10, n_group * 3)
+  prob <- rep(c(0.2, 0.3, 0.5), n_group)
+  group <- rep(seq_len(n_group), each = 3)
+
+  withr::with_seed(101, {
+    res <- res_multinom(
+      rep(0, n_group * 3),
+      size = size,
+      prob = prob,
+      group = group,
+      simulate = TRUE,
+      type = "dev"
+    )
+    expect_equal(mean(res), -0.0794000903313601)
+    expect_equal(sd(res), 0.859943455555756)
+  })
+  withr::with_seed(101, {
+    res <- res_multinom(
+      rep(0, n_group * 3),
+      size = size,
+      prob = prob,
+      group = group,
+      simulate = TRUE,
+      type = "standardized"
+    )
+    expect_equal(mean(res), 0.000255549022088425)
+    expect_equal(sd(res), 1.00164264126585)
+  })
+})
+
 test_that("res_neg_binom", {
   expect_identical(
     res_neg_binom(integer(0), integer(0), integer(0)),
