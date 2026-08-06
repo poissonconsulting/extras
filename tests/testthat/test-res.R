@@ -532,6 +532,10 @@ test_that("res_multinom", {
     x
   )
   expect_error(res_multinom(x, size, prob, group, type = "unknown"))
+  expect_error(
+    res_multinom(4, 10, 1, 1, simulate = TRUE),
+    "must contain at least 2 rows"
+  )
 
   # sum of squared deviance residuals recovers the row-level deviance
   expect_equal(
