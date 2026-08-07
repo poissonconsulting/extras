@@ -115,24 +115,22 @@ ran_lnorm <- function(n = 1, meanlog = 0, sdlog = 1) {
 
 #' Multinomial Random Samples
 #'
-#' The multinomial distribution models the counts across two or more
-#' mutually exclusive categories arising from a fixed number of trials. Data
-#' (and therefore random samples) are in \emph{long} format: one value per
-#' category per trial, with `group` identifying which rows belong to the
-#' same trial. All rows sharing a `group` must have the same `size`, and
-#' their `prob` values must sum to 1. This is intended for use with
-#' ordinary multinomial logistic regression, where every trial has the
-#' same fixed set of possible categories: every group must have the same
-#' number of rows (the most common number of rows across the data).
+#' Models the counts across two or more mutually exclusive categories from a
+#' fixed number of trials, in \emph{long} format: one value per category per
+#' trial, with `group` identifying which rows belong to the same trial. All
+#' rows sharing a `group` must have the same `size`, and their `prob` values
+#' must sum to 1.
 #'
 #' Unlike the other `ran_*()` functions, `ran_multinom()` has no `n`
 #' argument: the number of samples is fully determined by `length(prob)`
-#' (equivalently `length(group)`), because a trial's categories can't be
+#' (equivalently `length(group)`), since a trial's categories can't be
 #' generated independently of one another.
 #'
 #' @inheritParams params
 #' @param prob A numeric vector of the probability of the category. Must sum
-#'   to 1 across the rows sharing the same `group`.
+#'   to 1 across the rows sharing the same `group`. `NA` in `size` or `prob`
+#'   for any row of a trial makes the sample `NA` for every row of that
+#'   trial, since a trial's categories are drawn jointly.
 #' @return An integer vector of the random samples, one per row of `prob`.
 #' @family ran_dist
 #' @export

@@ -515,7 +515,7 @@ test_that("res_multinom", {
 
   expect_equal(
     res_multinom(x, size, prob, group, type = "dev"),
-    dev_multinom(x, size, prob, res = TRUE)
+    dev_multinom(x, size, prob, group, res = TRUE)
   )
   expect_equal(
     res_multinom(x, size, prob, group, type = "raw"),
@@ -578,6 +578,16 @@ test_that("res_multinom", {
       simulate = TRUE
     ),
     "must not have any missing values"
+  )
+  # group is validated even when simulate = FALSE, so a bad prob sum can't
+  # silently fall through to a wrong (rather than an errored) residual
+  expect_error(
+    res_multinom(4, 10, 1, 1, simulate = FALSE),
+    "must contain at least 2 rows"
+  )
+  expect_error(
+    res_multinom(c(4, 6), c(10, 10), c(0.4, 0.4), c(1, 1), simulate = FALSE),
+    "`prob` must sum to 1"
   )
 
   # sum of squared deviance residuals recovers the row-level deviance

@@ -429,26 +429,25 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
 
 #' Multinomial Log-Likelihood
 #'
-#' The multinomial distribution models the counts across two or more
-#' mutually exclusive categories arising from a fixed number of trials. Data
-#' are in \emph{long} format: one row per category per trial, with `group`
-#' identifying which rows belong to the same trial. All rows sharing a
-#' `group` must have the same `size`, and their `prob` values must sum to 1.
+#' Models the counts across two or more mutually exclusive categories from a
+#' fixed number of trials, in \emph{long} format: one row per category per
+#' trial, with `group` identifying which rows belong to the same trial. All
+#' rows sharing a `group` must have the same `size`, and their `prob` values
+#' must sum to 1.
 #'
-#' A trial's log-likelihood doesn't split evenly across its category rows,
-#' because the multinomial coefficient is a property of the whole trial, not
-#' any one category. `log_lik_multinom()` uses the identity that a
-#' multinomial is equivalent to independent Poissons conditional on the
-#' trial total: the log-likelihood of category `k` of trial `i` is the
-#' Poisson log-likelihood of `x` given `mu = size * prob`, minus an even
-#' share of the trial's normalizing constant (so that summing
-#' `log_lik_multinom()` over the rows of one `group` recovers the trial's
-#' exact multinomial log-likelihood).
+#' A trial's log-likelihood doesn't split evenly across its rows, since the
+#' multinomial coefficient belongs to the whole trial. `log_lik_multinom()`
+#' uses the multinomial-as-independent-Poissons identity: each row's value
+#' is the Poisson log-likelihood of `x` given `mu = size * prob`, minus an
+#' even share of the trial's normalizing constant, so summing over a
+#' `group` recovers the trial's exact multinomial log-likelihood.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of the category counts.
 #' @param prob A numeric vector of the probability of the category. Must sum
-#'   to 1 across the rows sharing the same `group`.
+#'   to 1 across the rows sharing the same `group`. `NA` in `size` or `prob`
+#'   for any row of a trial makes the log-likelihood `NA` for every row of
+#'   that trial, since a trial's categories are scored jointly.
 #'
 #' @return An numeric vector of the corresponding log-likelihoods, one value
 #'   per row of `x`.

@@ -12,42 +12,34 @@ log_lik_multinom(x, size = 1, prob, group)
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
 \item{prob}{A numeric vector of the probability of the category. Must sum
-to 1 across the rows sharing the same \code{group}.}
+to 1 across the rows sharing the same \code{group}. \code{NA} in \code{size} or \code{prob}
+for any row of a trial makes the log-likelihood \code{NA} for every row of
+that trial, since a trial's categories are scored jointly.}
 
 \item{group}{A vector identifying which rows belong to the same
-multinomial trial, i.e., whose \code{x} values must sum to \code{size} and whose
-\code{prob} values must sum to 1. This is for ordinary multinomial logistic
-regression, where every trial has the same fixed set of possible
-categories: every group must contain at least 2 rows (a trial needs at
-least 2 categories), and every group must have the same number of rows
-(the most common number of rows across the data). \code{group} must not
-contain \code{NA}, since there's no way to know which trial an unlabelled
-row belongs to. \code{NA} in \code{size} or \code{prob} for any row of a trial makes
-the result \code{NA} for every row of that trial (not just the row it
-appears in), since the categories within a single multinomial trial
-are not independent -- they're drawn/scored jointly.}
+multinomial trial (whose \code{x} values sum to \code{size} and \code{prob} values sum
+to 1). Every group must have at least 2 rows and the same number of
+rows as the rest of the data (a fixed set of categories, as in
+multinomial logistic regression), and must not contain \code{NA}.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods, one value
 per row of \code{x}.
 }
 \description{
-The multinomial distribution models the counts across two or more
-mutually exclusive categories arising from a fixed number of trials. Data
-are in \emph{long} format: one row per category per trial, with \code{group}
-identifying which rows belong to the same trial. All rows sharing a
-\code{group} must have the same \code{size}, and their \code{prob} values must sum to 1.
+Models the counts across two or more mutually exclusive categories from a
+fixed number of trials, in \emph{long} format: one row per category per
+trial, with \code{group} identifying which rows belong to the same trial. All
+rows sharing a \code{group} must have the same \code{size}, and their \code{prob} values
+must sum to 1.
 }
 \details{
-A trial's log-likelihood doesn't split evenly across its category rows,
-because the multinomial coefficient is a property of the whole trial, not
-any one category. \code{log_lik_multinom()} uses the identity that a
-multinomial is equivalent to independent Poissons conditional on the
-trial total: the log-likelihood of category \code{k} of trial \code{i} is the
-Poisson log-likelihood of \code{x} given \code{mu = size * prob}, minus an even
-share of the trial's normalizing constant (so that summing
-\code{log_lik_multinom()} over the rows of one \code{group} recovers the trial's
-exact multinomial log-likelihood).
+A trial's log-likelihood doesn't split evenly across its rows, since the
+multinomial coefficient belongs to the whole trial. \code{log_lik_multinom()}
+uses the multinomial-as-independent-Poissons identity: each row's value
+is the Poisson log-likelihood of \code{x} given \code{mu = size * prob}, minus an
+even share of the trial's normalizing constant, so summing over a
+\code{group} recovers the trial's exact multinomial log-likelihood.
 }
 \examples{
 log_lik_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))

@@ -15,17 +15,10 @@ res_multinom(x, size = 1, prob, group, type = "dev", simulate = FALSE)
 to 1 across the rows sharing the same \code{group}.}
 
 \item{group}{A vector identifying which rows belong to the same
-multinomial trial, i.e., whose \code{x} values must sum to \code{size} and whose
-\code{prob} values must sum to 1. This is for ordinary multinomial logistic
-regression, where every trial has the same fixed set of possible
-categories: every group must contain at least 2 rows (a trial needs at
-least 2 categories), and every group must have the same number of rows
-(the most common number of rows across the data). \code{group} must not
-contain \code{NA}, since there's no way to know which trial an unlabelled
-row belongs to. \code{NA} in \code{size} or \code{prob} for any row of a trial makes
-the result \code{NA} for every row of that trial (not just the row it
-appears in), since the categories within a single multinomial trial
-are not independent -- they're drawn/scored jointly.}
+multinomial trial (whose \code{x} values sum to \code{size} and \code{prob} values sum
+to 1). Every group must have at least 2 rows and the same number of
+rows as the rest of the data (a fixed set of categories, as in
+multinomial logistic regression), and must not contain \code{NA}.}
 
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
 deviance residuals and 'data' for the data.}
@@ -36,25 +29,22 @@ deviance residuals and 'data' for the data.}
 An numeric vector of the corresponding residuals.
 }
 \description{
-The multinomial distribution models the counts across two or more
-mutually exclusive categories arising from a fixed number of trials. Data
-are in \emph{long} format: one row per category per trial, with \code{group}
-identifying which rows belong to the same trial (see
+Models the counts across two or more mutually exclusive categories from a
+fixed number of trials, in \emph{long} format: one row per category per
+trial, with \code{group} identifying which rows belong to the same trial (see
 \code{\link[=log_lik_multinom]{log_lik_multinom()}} for details). \code{res_multinom()} returns one residual
-per row (per category per trial), not one per trial -- since a trial's
-categories are not independent, there's no single meaningful residual (or
-sign) for the trial as a whole. The classic per-trial deviance statistic
-can always be recovered by summing the squared \code{type = "dev"} residuals
-within a \code{group}.
+per row, not one per trial, since a trial's categories aren't
+independent and so have no single meaningful residual as a whole; the
+classic per-trial deviance statistic can be recovered by summing the
+squared \code{type = "dev"} residuals within a \code{group}.
 }
 \details{
-\code{group} is only used when \code{simulate = TRUE}, to draw a joint,
-correlation-preserving replicate for each trial (via \code{\link[=ran_multinom]{ran_multinom()}})
-rather than simulating each category independently, which would
-understate the true (negative) covariance among a trial's categories.
-This requires \code{res_multinom()} to be evaluated on the full data vector at
-once, so that every row sharing a \code{group} is visible in the same call,
-rather than evaluated separately for each row.
+\code{group} is validated (same \code{size}, \code{prob} summing to 1, no singleton or
+short groups, no \code{NA}) regardless of \code{simulate}, but is only otherwise
+used when \code{simulate = TRUE}, to draw a joint, correlation-preserving
+replicate per trial (via \code{\link[=ran_multinom]{ran_multinom()}}) rather than simulating each
+category independently, which requires \code{res_multinom()} to see every row
+of a \code{group} in the same call.
 }
 \examples{
 res_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))

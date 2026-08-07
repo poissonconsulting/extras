@@ -269,35 +269,35 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, res = FALSE) {
 
 #' Multinomial Deviances
 #'
-#' The multinomial distribution models the counts across two or more
-#' mutually exclusive categories arising from a fixed number of trials. Data
-#' are in \emph{long} format: one row per category per trial (see
-#' [log_lik_multinom()] for details of the `group` argument used elsewhere
-#' in the multinomial family).
+#' Models the counts across two or more mutually exclusive categories from a
+#' fixed number of trials, in \emph{long} format: one row per category per
+#' trial, with `group` identifying which rows belong to the same trial.
 #'
-#' Unlike the other `dev_*()` functions, `dev_multinom()` doesn't take a
-#' `group` argument, because a category's deviance contribution only depends
-#' on its own `x` and `mu = size * prob` -- the multinomial coefficient
-#' cancels out of the deviance difference. This is the Poisson-equivalent
-#' deviance (see [dev_pois()]): summing it over the rows of one trial
-#' recovers the trial's exact multinomial deviance, provided `prob` sums to
-#' 1 across those rows. Because each cell's deviance is an ordinary scalar
-#' comparison of `x` to `mu`, its deviance residual has an ordinary sign --
-#' there's no need for the "extended sign" methods proposed elsewhere for
-#' multinomial residuals.
+#' A category's deviance depends only on its own `x` and `mu = size * prob`,
+#' not on the rest of its trial, so `group` is used only to validate `size`
+#' and `prob` (see [log_lik_multinom()]), not in the calculation itself.
+#' `dev_multinom()` is the Poisson-equivalent deviance (see [dev_pois()]):
+#' summing it over a trial's rows recovers the trial's exact multinomial
+#' deviance.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of the category counts.
 #' @param prob A numeric vector of the probability of the category. Must sum
-#'   to 1 across the rows belonging to the same trial.
+#'   to 1 across the rows sharing the same `group`.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family dev_dist
 #' @export
 #'
 #' @examples
-#' dev_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5))
-dev_multinom <- function(x, size = 1, prob, res = FALSE) {
+#' dev_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
+dev_multinom <- function(x, size = 1, prob, group, res = FALSE) {
+  n <- length(x)
+  size <- rep_len(size, n)
+  prob <- rep_len(prob, n)
+  group <- rep_len(group, n)
+  chk_not_any_na(group)
+  chk_multinom_group(size, prob, group)
   dev_pois(x, lambda = size * prob, res = res)
 }
 
