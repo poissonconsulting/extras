@@ -120,7 +120,10 @@ ran_lnorm <- function(n = 1, meanlog = 0, sdlog = 1) {
 #' (and therefore random samples) are in \emph{long} format: one value per
 #' category per trial, with `group` identifying which rows belong to the
 #' same trial. All rows sharing a `group` must have the same `size`, and
-#' their `prob` values must sum to 1.
+#' their `prob` values must sum to 1. This is intended for use with
+#' ordinary multinomial logistic regression, where every trial has the
+#' same fixed set of possible categories: every group must have the same
+#' number of rows (the most common number of rows across the data).
 #'
 #' Unlike the other `ran_*()` functions, `ran_multinom()` has no `n`
 #' argument: the number of samples is fully determined by `length(prob)`
@@ -145,9 +148,14 @@ ran_multinom <- function(size = 1, prob, group) {
   size <- rep_len(size, n)
   prob <- rep_len(prob, n)
   group <- rep_len(group, n)
+  chk_not_any_na(group)
   chk_multinom_group(size, prob, group)
+  row_na <- multinom_row_na(size, prob, group)
   x <- rep(NA_real_, n)
   for (idx in split(seq_len(n), group)) {
+    if (row_na[idx[1]]) {
+      next
+    }
     x[idx] <- stats::rmultinom(1, size = size[idx[1]], prob = prob[idx])[, 1]
   }
   as.integer(x)

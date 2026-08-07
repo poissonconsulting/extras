@@ -465,13 +465,16 @@ log_lik_multinom <- function(x, size = 1, prob, group) {
   size <- rep_len(size, n)
   prob <- rep_len(prob, n)
   group <- rep_len(group, n)
+  chk_not_any_na(group)
   chk_multinom_group(size, prob, group)
   mu <- size * prob
   log_lik <- log_lik_pois(x, mu)
   group_size <- table(group)
   k <- as.numeric(group_size[as.character(group)])
   const <- log_lik_pois(size, size)
-  log_lik - const / k
+  log_lik <- log_lik - const / k
+  log_lik[multinom_row_na(size, prob, group)] <- NA_real_
+  log_lik
 }
 
 #' Negative Binomial Log-Likelihood

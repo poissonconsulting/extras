@@ -536,6 +536,49 @@ test_that("res_multinom", {
     res_multinom(4, 10, 1, 1, simulate = TRUE),
     "must contain at least 2 rows"
   )
+  # NA in size or prob is a structural input shared by the whole trial, so
+  # it makes the whole trial's result NA, not just the row where it appears
+  expect_identical(
+    res_multinom(c(4, 6), c(10, NA), c(0.4, 0.6), c(1, 1), type = "data", simulate = TRUE),
+    c(NA_integer_, NA_integer_)
+  )
+  # every group must have the same number of rows (categories) as the most
+  # common number of rows per group in the data
+  expect_error(
+    res_multinom(
+      c(4, 3, 3, 5, 5),
+      c(10, 10, 10, 6, 6),
+      c(0.2, 0.3, 0.5, 0.5, 0.5),
+      c(1, 1, 1, 2, 2),
+      type = "data",
+      simulate = TRUE
+    ),
+    "Every `group` should have the same number of rows"
+  )
+  # group must not contain NA -- there's no way to know which trial an
+  # unlabelled row belongs to
+  expect_error(
+    res_multinom(
+      c(4, 6, 10),
+      c(10, 10, 10),
+      c(0.4, 0.6, 1),
+      c(1, 1, NA),
+      type = "data",
+      simulate = TRUE
+    ),
+    "must not have any missing values"
+  )
+  expect_error(
+    res_multinom(
+      c(4, 6),
+      c(10, 10),
+      c(0.4, 0.6),
+      c(NA, NA),
+      type = "data",
+      simulate = TRUE
+    ),
+    "must not have any missing values"
+  )
 
   # sum of squared deviance residuals recovers the row-level deviance
   expect_equal(

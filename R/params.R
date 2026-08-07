@@ -18,9 +18,16 @@
 #'   should be returned as negative values.
 #' @param group A vector identifying which rows belong to the same
 #'   multinomial trial, i.e., whose `x` values must sum to `size` and whose
-#'   `prob` values must sum to 1. Each group must contain at least 2 rows (a
-#'   trial needs at least 2 categories). Required because the categories
-#'   within a single multinomial trial are not independent.
+#'   `prob` values must sum to 1. This is for ordinary multinomial logistic
+#'   regression, where every trial has the same fixed set of possible
+#'   categories: every group must contain at least 2 rows (a trial needs at
+#'   least 2 categories), and every group must have the same number of rows
+#'   (the most common number of rows across the data). `group` must not
+#'   contain `NA`, since there's no way to know which trial an unlabelled
+#'   row belongs to. `NA` in `size` or `prob` for any row of a trial makes
+#'   the result `NA` for every row of that trial (not just the row it
+#'   appears in), since the categories within a single multinomial trial
+#'   are not independent -- they're drawn/scored jointly.
 #' @param lambda A non-negative numeric vector of means.
 #' @param level A number > 0 and <= 1 specifying the probability coverage of the
 #' interval.
