@@ -132,6 +132,49 @@ test_that("ran_multinom", {
     ),
     "must contain at least 2 rows"
   )
+  # every group must have the same number of rows (categories) as the most
+  # common number of rows per group in the data (ordinary multinomial
+  # logistic regression assumes a fixed set of categories for every trial)
+  expect_error(
+    ran_multinom(
+      size = c(10, 10, 10, 10, 10, 10, 6, 6),
+      prob = c(0.2, 0.3, 0.5, 0.2, 0.3, 0.5, 0.5, 0.5),
+      group = c(1, 1, 1, 2, 2, 2, 3, 3)
+    ),
+    "Every `group` should have the same number of rows"
+  )
+  # group must not contain NA -- there's no way to know which trial an
+  # unlabelled row belongs to
+  expect_error(
+    ran_multinom(size = c(10, 10, 10), prob = c(0.4, 0.6, 1), group = c(1, 1, NA)),
+    "must not have any missing values"
+  )
+  expect_error(
+    ran_multinom(size = c(10, 10), prob = c(0.4, 0.6), group = c(NA, NA)),
+    "must not have any missing values"
+  )
+  # NA in size or prob is a structural input shared by the whole trial (the
+  # categories aren't independent draws), so it makes the whole trial's
+  # result NA, not just the row where the NA appears
+  expect_identical(
+    ran_multinom(size = c(10, NA), prob = c(0.4, 0.6), group = c(1, 1)),
+    c(NA_integer_, NA_integer_)
+  )
+  expect_identical(
+    ran_multinom(size = c(10, 10), prob = c(0.4, NA), group = c(1, 1)),
+    c(NA_integer_, NA_integer_)
+  )
+  # an NA elsewhere doesn't leak into an unrelated, fully-known group (same
+  # number of categories in both groups, since groups must match on that)
+  withr::with_seed(101, {
+    x <- ran_multinom(
+      size = c(10, 10, NA, 6, 6, 6),
+      prob = c(0.2, 0.3, 0.5, 0.2, 0.3, 0.5),
+      group = c(1, 1, 1, 2, 2, 2)
+    )
+    expect_identical(x[1:3], c(NA_integer_, NA_integer_, NA_integer_))
+    expect_identical(sum(x[4:6]), 6L)
+  })
   withr::with_seed(101, {
     x <- ran_multinom(size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
     expect_identical(sum(x), 10L)
