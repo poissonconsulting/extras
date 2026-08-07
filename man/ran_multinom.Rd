@@ -10,39 +10,30 @@ ran_multinom(size = 1, prob, group)
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
 \item{prob}{A numeric vector of the probability of the category. Must sum
-to 1 across the rows sharing the same \code{group}.}
+to 1 across the rows sharing the same \code{group}. \code{NA} in \code{size} or \code{prob}
+for any row of a trial makes the sample \code{NA} for every row of that
+trial, since a trial's categories are drawn jointly.}
 
 \item{group}{A vector identifying which rows belong to the same
-multinomial trial, i.e., whose \code{x} values must sum to \code{size} and whose
-\code{prob} values must sum to 1. This is for ordinary multinomial logistic
-regression, where every trial has the same fixed set of possible
-categories: every group must contain at least 2 rows (a trial needs at
-least 2 categories), and every group must have the same number of rows
-(the most common number of rows across the data). \code{group} must not
-contain \code{NA}, since there's no way to know which trial an unlabelled
-row belongs to. \code{NA} in \code{size} or \code{prob} for any row of a trial makes
-the result \code{NA} for every row of that trial (not just the row it
-appears in), since the categories within a single multinomial trial
-are not independent -- they're drawn/scored jointly.}
+multinomial trial (whose \code{x} values sum to \code{size} and \code{prob} values sum
+to 1). Every group must have at least 2 rows and the same number of
+rows as the rest of the data (a fixed set of categories, as in
+multinomial logistic regression), and must not contain \code{NA}.}
 }
 \value{
 An integer vector of the random samples, one per row of \code{prob}.
 }
 \description{
-The multinomial distribution models the counts across two or more
-mutually exclusive categories arising from a fixed number of trials. Data
-(and therefore random samples) are in \emph{long} format: one value per
-category per trial, with \code{group} identifying which rows belong to the
-same trial. All rows sharing a \code{group} must have the same \code{size}, and
-their \code{prob} values must sum to 1. This is intended for use with
-ordinary multinomial logistic regression, where every trial has the
-same fixed set of possible categories: every group must have the same
-number of rows (the most common number of rows across the data).
+Models the counts across two or more mutually exclusive categories from a
+fixed number of trials, in \emph{long} format: one value per category per
+trial, with \code{group} identifying which rows belong to the same trial. All
+rows sharing a \code{group} must have the same \code{size}, and their \code{prob} values
+must sum to 1.
 }
 \details{
 Unlike the other \verb{ran_*()} functions, \code{ran_multinom()} has no \code{n}
 argument: the number of samples is fully determined by \code{length(prob)}
-(equivalently \code{length(group)}), because a trial's categories can't be
+(equivalently \code{length(group)}), since a trial's categories can't be
 generated independently of one another.
 }
 \examples{

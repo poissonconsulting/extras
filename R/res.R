@@ -253,24 +253,21 @@ res_lnorm <- function(
 
 #' Multinomial Residuals
 #'
-#' The multinomial distribution models the counts across two or more
-#' mutually exclusive categories arising from a fixed number of trials. Data
-#' are in \emph{long} format: one row per category per trial, with `group`
-#' identifying which rows belong to the same trial (see
+#' Models the counts across two or more mutually exclusive categories from a
+#' fixed number of trials, in \emph{long} format: one row per category per
+#' trial, with `group` identifying which rows belong to the same trial (see
 #' [log_lik_multinom()] for details). `res_multinom()` returns one residual
-#' per row (per category per trial), not one per trial -- since a trial's
-#' categories are not independent, there's no single meaningful residual (or
-#' sign) for the trial as a whole. The classic per-trial deviance statistic
-#' can always be recovered by summing the squared `type = "dev"` residuals
-#' within a `group`.
+#' per row, not one per trial, since a trial's categories aren't
+#' independent and so have no single meaningful residual as a whole; the
+#' classic per-trial deviance statistic can be recovered by summing the
+#' squared `type = "dev"` residuals within a `group`.
 #'
-#' `group` is only used when `simulate = TRUE`, to draw a joint,
-#' correlation-preserving replicate for each trial (via [ran_multinom()])
-#' rather than simulating each category independently, which would
-#' understate the true (negative) covariance among a trial's categories.
-#' This requires `res_multinom()` to be evaluated on the full data vector at
-#' once, so that every row sharing a `group` is visible in the same call,
-#' rather than evaluated separately for each row.
+#' `group` is validated (same `size`, `prob` summing to 1, no singleton or
+#' short groups, no `NA`) regardless of `simulate`, but is only otherwise
+#' used when `simulate = TRUE`, to draw a joint, correlation-preserving
+#' replicate per trial (via [ran_multinom()]) rather than simulating each
+#' category independently, which requires `res_multinom()` to see every row
+#' of a `group` in the same call.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of the category counts.
@@ -292,6 +289,12 @@ res_multinom <- function(
   simulate = FALSE
 ) {
   chk_string(type)
+  n <- length(x)
+  size <- rep_len(size, n)
+  prob <- rep_len(prob, n)
+  group <- rep_len(group, n)
+  chk_not_any_na(group)
+  chk_multinom_group(size, prob, group)
   if (!vld_false(simulate)) {
     x <- ran_multinom(size = size, prob = prob, group = group)
   }
@@ -301,7 +304,7 @@ res_multinom <- function(
     data = x,
     raw = x - mu,
     standardized = (x - mu) / sqrt(mu * (1 - prob)),
-    dev = dev_multinom(x, size = size, prob = prob, res = TRUE),
+    dev = dev_multinom(x, size = size, prob = prob, group = group, res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )
 }

@@ -4,7 +4,7 @@
 \alias{dev_multinom}
 \title{Multinomial Deviances}
 \usage{
-dev_multinom(x, size = 1, prob, res = FALSE)
+dev_multinom(x, size = 1, prob, group, res = FALSE)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of the category counts.}
@@ -12,7 +12,13 @@ dev_multinom(x, size = 1, prob, res = FALSE)
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
 \item{prob}{A numeric vector of the probability of the category. Must sum
-to 1 across the rows belonging to the same trial.}
+to 1 across the rows sharing the same \code{group}.}
+
+\item{group}{A vector identifying which rows belong to the same
+multinomial trial (whose \code{x} values sum to \code{size} and \code{prob} values sum
+to 1). Every group must have at least 2 rows and the same number of
+rows as the rest of the data (a fixed set of categories, as in
+multinomial logistic regression), and must not contain \code{NA}.}
 
 \item{res}{A flag specifying whether to return the deviance residual as
 opposed to the deviance.}
@@ -21,26 +27,20 @@ opposed to the deviance.}
 An numeric vector of the corresponding deviances or deviance residuals.
 }
 \description{
-The multinomial distribution models the counts across two or more
-mutually exclusive categories arising from a fixed number of trials. Data
-are in \emph{long} format: one row per category per trial (see
-\code{\link[=log_lik_multinom]{log_lik_multinom()}} for details of the \code{group} argument used elsewhere
-in the multinomial family).
+Models the counts across two or more mutually exclusive categories from a
+fixed number of trials, in \emph{long} format: one row per category per
+trial, with \code{group} identifying which rows belong to the same trial.
 }
 \details{
-Unlike the other \verb{dev_*()} functions, \code{dev_multinom()} doesn't take a
-\code{group} argument, because a category's deviance contribution only depends
-on its own \code{x} and \code{mu = size * prob} -- the multinomial coefficient
-cancels out of the deviance difference. This is the Poisson-equivalent
-deviance (see \code{\link[=dev_pois]{dev_pois()}}): summing it over the rows of one trial
-recovers the trial's exact multinomial deviance, provided \code{prob} sums to
-1 across those rows. Because each cell's deviance is an ordinary scalar
-comparison of \code{x} to \code{mu}, its deviance residual has an ordinary sign --
-there's no need for the "extended sign" methods proposed elsewhere for
-multinomial residuals.
+A category's deviance depends only on its own \code{x} and \code{mu = size * prob},
+not on the rest of its trial, so \code{group} is used only to validate \code{size}
+and \code{prob} (see \code{\link[=log_lik_multinom]{log_lik_multinom()}}), not in the calculation itself.
+\code{dev_multinom()} is the Poisson-equivalent deviance (see \code{\link[=dev_pois]{dev_pois()}}):
+summing it over a trial's rows recovers the trial's exact multinomial
+deviance.
 }
 \examples{
-dev_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5))
+dev_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
 }
 \seealso{
 Other dev_dist:
