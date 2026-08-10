@@ -337,6 +337,17 @@ test_that("log_lik_multinom", {
     log_lik_multinom(numeric(0), numeric(0), numeric(0), numeric(0)),
     numeric(0)
   )
+  # a mismatched, non-recyclable length errors clearly instead of being
+  # silently (and wrongly) recycled by rep_len(), or silently returning
+  # numeric(0) just because one argument happened to be empty
+  expect_error(
+    log_lik_multinom(1:3, 10, numeric(0), c(1, 1, 1)),
+    "must be all zero length or the same length"
+  )
+  expect_error(
+    log_lik_multinom(1:5, c(10, 10, 10), c(0.2, 0.3, 0.5), c(1, 1, 1, 2, 2)),
+    "must be all zero length or the same length"
+  )
   expect_error(
     log_lik_multinom(c(1, 3, 6), c(10, 10, 5), c(0.2, 0.3, 0.5), c(1, 1, 1)),
     "`size` must be the same for every row belonging to the same `group`"

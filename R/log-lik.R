@@ -457,22 +457,21 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
 #' @examples
 #' log_lik_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
 log_lik_multinom <- function(x, size = 1, prob, group) {
+  chk_compatible_lengths(x, size, prob, group)
   n <- length(x)
-  if (!n || !length(size) || !length(prob) || !length(group)) {
-    return(numeric(0))
-  }
   size <- rep_len(size, n)
   prob <- rep_len(prob, n)
   group <- rep_len(group, n)
   chk_not_any_na(group)
-  chk_multinom_group(size, prob, group)
+  groups <- multinom_split(group)
+  chk_multinom_group(size, prob, group, groups)
   mu <- size * prob
   log_lik <- log_lik_pois(x, mu)
   group_size <- table(group)
   k <- as.numeric(group_size[as.character(group)])
   const <- log_lik_pois(size, size)
   log_lik <- log_lik - const / k
-  log_lik[multinom_row_na(size, prob, group)] <- NA_real_
+  log_lik[multinom_row_na(size, prob, group, groups)] <- NA_real_
   log_lik
 }
 

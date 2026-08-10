@@ -478,6 +478,16 @@ test_that("dev_multinom", {
     dev_multinom(numeric(0), numeric(0), numeric(0), group = numeric(0)),
     numeric(0)
   )
+  # a mismatched, non-recyclable length errors clearly instead of being
+  # silently (and wrongly) recycled/NA-padded by rep_len()
+  expect_error(
+    dev_multinom(1:3, 10, numeric(0), group = c(1, 1, 1)),
+    "must be all zero length or the same length"
+  )
+  expect_error(
+    dev_multinom(1:5, c(10, 10, 10), c(0.2, 0.3, 0.5), group = c(1, 1, 1, 2, 2)),
+    "must be all zero length or the same length"
+  )
   expect_identical(
     dev_multinom(c(2, 3, 5), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1)),
     c(0, 0, 0)

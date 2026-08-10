@@ -292,6 +292,7 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, res = FALSE) {
 #' @examples
 #' dev_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
 dev_multinom <- function(x, size = 1, prob, group, res = FALSE) {
+  chk_compatible_lengths(x, size, prob, group)
   n <- length(x)
   size <- rep_len(size, n)
   prob <- rep_len(prob, n)

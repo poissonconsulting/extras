@@ -112,6 +112,12 @@ test_that("ran_multinom", {
     ran_multinom(size = numeric(0), prob = numeric(0), group = numeric(0)),
     integer(0)
   )
+  # a mismatched, non-recyclable length errors clearly instead of being
+  # silently (and wrongly) recycled by rep_len()
+  expect_error(
+    ran_multinom(size = c(10, 10, 10), prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1, 2, 2)),
+    "must be all zero length or the same length"
+  )
   expect_error(
     ran_multinom(size = c(10, 5), prob = c(0.5, 0.5), group = c(1, 1)),
     "`size` must be the same for every row belonging to the same `group`"

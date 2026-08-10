@@ -2,6 +2,13 @@ dev_res <- function(x, mu, dev) {
   sign(x - mu) * sqrt(dev)
 }
 
+# Row indices for each `group`, shared across the multinom_* helpers within
+# a single call (chk_multinom_group(), multinom_row_na(), the sampling loop
+# in ran_multinom()) so `group` isn't re-split by every one of them.
+multinom_split <- function(group) {
+  split(seq_along(group), group)
+}
+
 # Checks every group shares one `size` and `prob` values summing to 1
 # (required by rmultinom() and the deviance/log-lik identities), has >= 2
 # rows (a trial needs >= 2 categories -- singletons usually mean `group`
@@ -10,8 +17,7 @@ dev_res <- function(x, mu, dev) {
 # lost). Only non-NA values are compared, so lone NAs don't error here --
 # see multinom_row_na(). Callers must chk_not_any_na(group) first; `group`
 # itself can't be NA-tolerant since it's what identifies the trial.
-chk_multinom_group <- function(size, prob, group) {
-  groups <- split(seq_along(group), group)
+chk_multinom_group <- function(size, prob, group, groups = multinom_split(group)) {
   for (idx in groups) {
     if (length(idx) < 2L) {
       stop(
@@ -26,8 +32,17 @@ chk_multinom_group <- function(size, prob, group) {
         call. = FALSE
       )
     }
-    prob_sum <- sum(prob[idx])
-    if (!is.na(prob_sum) && abs(prob_sum - 1) > 1e-6) {
+    known_prob <- prob[idx][!is.na(prob[idx])]
+    known_prob_sum <- sum(known_prob)
+    # a group with a missing prob can only be validated one-sided: the known
+    # values must not already exceed 1, since a full sum-to-1 check would be
+    # (wrongly) skipped whenever any prob in the group is NA
+    prob_bad <- if (length(known_prob) < length(idx)) {
+      known_prob_sum > 1 + 1e-6
+    } else {
+      abs(known_prob_sum - 1) > 1e-6
+    }
+    if (prob_bad) {
       stop(
         "`prob` must sum to 1 for every `group` (multinomial trial).",
         call. = FALSE
@@ -37,6 +52,8 @@ chk_multinom_group <- function(size, prob, group) {
   if (length(groups) > 1L) {
     group_sizes <- lengths(groups)
     size_counts <- table(group_sizes)
+    # ties are broken in favour of the smallest row count (table()'s names
+    # are sorted ascending, and which.max() takes the first maximum)
     mode_size <- as.integer(names(size_counts)[which.max(size_counts)])
     bad <- group_sizes != mode_size
     if (any(bad)) {
@@ -55,10 +72,10 @@ chk_multinom_group <- function(size, prob, group) {
 
 # Flags every row whose trial has an NA `size`/`prob` anywhere in the group,
 # since a trial's categories are scored/drawn jointly, not independently.
-multinom_row_na <- function(size, prob, group) {
+multinom_row_na <- function(size, prob, group, groups = multinom_split(group)) {
   bad <- is.na(size) | is.na(prob)
   result <- rep(FALSE, length(group))
-  for (idx in split(seq_along(group), group)) {
+  for (idx in groups) {
     if (any(bad[idx])) {
       result[idx] <- TRUE
     }

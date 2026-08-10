@@ -138,19 +138,17 @@ ran_lnorm <- function(n = 1, meanlog = 0, sdlog = 1) {
 #' @examples
 #' ran_multinom(size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
 ran_multinom <- function(size = 1, prob, group) {
+  chk_compatible_lengths(size, prob, group)
   n <- length(prob)
-  if (!n) {
-    return(integer(0))
-  }
-  chk_compatible_lengths(rep(1, n), size, group)
   size <- rep_len(size, n)
   prob <- rep_len(prob, n)
   group <- rep_len(group, n)
   chk_not_any_na(group)
-  chk_multinom_group(size, prob, group)
-  row_na <- multinom_row_na(size, prob, group)
+  groups <- multinom_split(group)
+  chk_multinom_group(size, prob, group, groups)
+  row_na <- multinom_row_na(size, prob, group, groups)
   x <- rep(NA_real_, n)
-  for (idx in split(seq_len(n), group)) {
+  for (idx in groups) {
     if (row_na[idx[1]]) {
       next
     }

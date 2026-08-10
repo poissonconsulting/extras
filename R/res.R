@@ -289,6 +289,7 @@ res_multinom <- function(
   simulate = FALSE
 ) {
   chk_string(type)
+  chk_compatible_lengths(x, size, prob, group)
   n <- length(x)
   size <- rep_len(size, n)
   prob <- rep_len(prob, n)
