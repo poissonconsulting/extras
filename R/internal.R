@@ -15,7 +15,7 @@ chk_multinom_group <- function(size, prob, group) {
   for (idx in groups) {
     if (length(idx) < 2L) {
       stop(
-        "Each `group` must contain at least 2 rows (a multinomial trial needs at least 2 categories); found a group with only 1 row. This usually means `group` lost the rows that should share a trial before reaching here.",
+        "Each `group` must contain at least 2 rows (a multinomial trial needs at least 2 categories); found a group with only 1 row. This usually means `group`/`size`/`prob` were passed one row at a time instead of as vectors.",
         call. = FALSE
       )
     }
