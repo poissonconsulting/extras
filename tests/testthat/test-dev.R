@@ -1006,6 +1006,18 @@ test_that("dev_skewnorm res", {
   )
 })
 
+test_that("dev_skewnorm res has no gap between the mode and the mean", {
+  skip_if_not_installed("sn")
+  # for shape != 0 the mode and mean of the fitted distribution differ;
+  # the deviance is 0 at the mode, so a point strictly between the mode
+  # and the mean must get a small-magnitude residual signed relative to
+  # the mode, not a large one signed relative to the mean
+  expect_equal(
+    dev_skewnorm(0.617181160588129, 0, 1, 3, res = TRUE),
+    0.24487123575488
+  )
+})
+
 test_that("dev_skewnorm log_lik", {
   skip_if_not_installed("sn")
   expect_equal(
@@ -1023,8 +1035,8 @@ test_that("dev_skewnorm ran", {
     expect_equal(mean(samples), 3.17851201086154)
     expect_equal(var(samples), 0.215894351753986)
     res <- dev_skewnorm(samples, 3, 0.5, 0.5, res = TRUE)
-    expect_equal(mean(res), 0.00818696278884169)
-    expect_equal(sd(res), 0.995441552601596)
+    expect_equal(mean(res), 0.00825163481429528)
+    expect_equal(sd(res), 0.995441018603231)
   })
 })
 

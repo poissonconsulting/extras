@@ -389,7 +389,7 @@ dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
   if (vld_false(res)) {
     return(dev)
   }
-  dev_res(x, mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi), dev)
+  dev_res(x, mode_sat, dev)
 }
 
 #' Skew-Lognormal Deviances
