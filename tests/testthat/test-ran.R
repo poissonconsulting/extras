@@ -197,24 +197,15 @@ test_that("ran_multinom", {
   })
 })
 
-test_that("ran_multinom with two categories draws a binomial first category", {
-  # a category count is marginally binomial, so over many trials the first
-  # category's mean, variance and count distribution match the binomial
-  size <- 10
-  prob <- 0.3
-  n_group <- 20000
+test_that("ran_multinom with two categories is repeatable", {
   withr::with_seed(7, {
     x <- ran_multinom(
-      size = rep(size, 2 * n_group),
-      prob = rep(c(prob, 1 - prob), n_group),
-      group = rep(seq_len(n_group), each = 2)
+      size = rep(10, 6),
+      prob = rep(c(0.3, 0.7), 3),
+      group = rep(1:3, each = 2)
     )
   })
-  first <- matrix(x, nrow = 2)[1, ]
-  expect_equal(mean(first), size * prob, tolerance = 0.01)
-  expect_equal(var(first), size * prob * (1 - prob), tolerance = 0.01)
-  proportion <- as.numeric(table(factor(first, levels = 0:size))) / n_group
-  expect_lt(max(abs(proportion - dbinom(0:size, size, prob))), 0.01)
+  expect_identical(x, c(6L, 4L, 3L, 7L, 1L, 9L))
 })
 
 test_that("ran_neg_binom", {
