@@ -44,6 +44,17 @@ even share of the trial's normalizing constant, so summing over a
 \examples{
 log_lik_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
 }
+\references{
+Baker, S.G. 1994. The multinomial-Poisson transformation.
+The Statistician 43(4): 495-504. \doi{10.2307/2348134}.
+
+McCullagh, P., and Nelder, J.A. 1989.
+Generalized Linear Models. 2nd edition. Chapman and Hall, London.
+
+Forster, J.J. 2010. Bayesian inference for Poisson and multinomial
+log-linear models. Statistical Methodology 7(3): 210-224.
+\doi{10.1016/j.stamet.2009.12.004}.
+}
 \seealso{
 Other log_lik_dist:
 \code{\link[=log_lik_bern]{log_lik_bern()}},

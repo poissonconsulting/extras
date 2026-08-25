@@ -452,6 +452,16 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
 #' @return An numeric vector of the corresponding log-likelihoods, one value
 #'   per row of `x`.
 #' @family log_lik_dist
+#' @references
+#' Baker, S.G. 1994. The multinomial-Poisson transformation.
+#' The Statistician 43(4): 495-504. \doi{10.2307/2348134}.
+#'
+#' McCullagh, P., and Nelder, J.A. 1989.
+#' Generalized Linear Models. 2nd edition. Chapman and Hall, London.
+#'
+#' Forster, J.J. 2010. Bayesian inference for Poisson and multinomial
+#' log-linear models. Statistical Methodology 7(3): 210-224.
+#' \doi{10.1016/j.stamet.2009.12.004}.
 #' @export
 #'
 #' @examples

@@ -39,6 +39,14 @@ generated independently of one another.
 \examples{
 ran_multinom(size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
 }
+\references{
+Johnson, N.L., Kotz, S., and Balakrishnan, N. 1997.
+Discrete Multivariate Distributions. John Wiley and Sons, New York.
+
+Gelman, A., Meng, X.-L., and Stern, H. 1996. Posterior predictive
+assessment of model fitness via realized discrepancies.
+Statistica Sinica 6(4): 733-807.
+}
 \seealso{
 Other ran_dist:
 \code{\link[=ran_bern]{ran_bern()}},

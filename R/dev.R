@@ -287,6 +287,15 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, res = FALSE) {
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family dev_dist
+#' @references
+#' McCullagh, P., and Nelder, J.A. 1989.
+#' Generalized Linear Models. 2nd edition. Chapman and Hall, London.
+#'
+#' Baker, S.G. 1994. The multinomial-Poisson transformation.
+#' The Statistician 43(4): 495-504. \doi{10.2307/2348134}.
+#'
+#' Agresti, A. 2013. Categorical Data Analysis. 3rd edition.
+#' John Wiley and Sons, Hoboken, New Jersey.
 #' @export
 #'
 #' @examples
