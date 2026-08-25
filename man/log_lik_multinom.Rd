@@ -45,7 +45,8 @@ The even split of the normalizing constant is a bookkeeping convention:
 only the sum over a \code{group} is exact, so an individual row's value is not
 a valid pointwise log-likelihood. Cross-validation and information
 criteria should therefore treat the trial, not the row, as the
-leave-one-out unit.
+leave-one-out unit, which is achieved by summing the values within each
+\code{group} to get the trial's exact log-likelihood.
 }
 \examples{
 log_lik_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))

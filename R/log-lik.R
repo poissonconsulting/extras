@@ -446,7 +446,8 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
 #' only the sum over a `group` is exact, so an individual row's value is not
 #' a valid pointwise log-likelihood. Cross-validation and information
 #' criteria should therefore treat the trial, not the row, as the
-#' leave-one-out unit.
+#' leave-one-out unit, which is achieved by summing the values within each
+#' `group` to get the trial's exact log-likelihood.
 #'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of the category counts.
