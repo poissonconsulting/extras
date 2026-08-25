@@ -649,6 +649,52 @@ test_that("res_multinom simulate", {
     expect_equal(sd(res), 1.00164264126585)
   })
 })
+test_that("res_multinom with two categories matches res_binom", {
+  x <- c(0, 3, 7, 10)
+  size <- 10
+  prob <- c(0.05, 0.2, 0.5, 0.9)
+  group <- rep(seq_along(x), each = 2)
+  x_long <- as.vector(rbind(x, size - x))
+  prob_long <- as.vector(rbind(prob, 1 - prob))
+
+  res_type <- function(type) {
+    matrix(
+      res_multinom(x_long, size, prob_long, group, type = type),
+      nrow = 2
+    )
+  }
+
+  expect_equal(res_type("raw")[1, ], res_binom(x, size, prob, type = "raw"))
+  # the second category is the first one's complement, so its standardized
+  # residual is the negative of it
+  standardized <- res_binom(x, size, prob, type = "standardized")
+  expect_equal(res_type("standardized")[1, ], standardized)
+  expect_equal(res_type("standardized")[2, ], -standardized)
+  # a per-category deviance residual isn't the binomial one, but squaring
+  # and summing within the trial recovers the binomial deviance
+  expect_equal(colSums(res_type("dev")^2), dev_binom(x, size, prob))
+  expect_equal(
+    sign(res_type("dev")[1, ]),
+    sign(res_binom(x, size, prob, type = "dev"))
+  )
+
+  # a simulated two-category trial is a single rbinom() draw, so it is
+  # stream-identical to res_binom(simulate = TRUE)
+  withr::with_seed(3, {
+    sim <- res_multinom(
+      x_long,
+      size,
+      prob_long,
+      group,
+      type = "data",
+      simulate = TRUE
+    )
+  })
+  withr::with_seed(3, {
+    sim_binom <- res_binom(x, size, prob, type = "data", simulate = TRUE)
+  })
+  expect_equal(matrix(sim, nrow = 2)[1, ], sim_binom)
+})
 
 test_that("res_neg_binom", {
   expect_identical(

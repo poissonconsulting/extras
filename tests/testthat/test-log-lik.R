@@ -427,6 +427,23 @@ test_that("log_lik_multinom", {
     dmultinom(x[group == 2], size = 4, prob = prob[group == 2], log = TRUE)
   )
 })
+test_that("log_lik_multinom with two categories matches log_lik_binom", {
+  # a two-category multinomial is a binomial, so a trial's log-likelihood
+  # (the sum over its rows) must match log_lik_binom() on the first category
+  x <- c(0, 3, 7, 10)
+  size <- 10
+  prob <- c(0.05, 0.2, 0.5, 0.9)
+  log_lik <- log_lik_multinom(
+    as.vector(rbind(x, size - x)),
+    size = size,
+    prob = as.vector(rbind(prob, 1 - prob)),
+    group = rep(seq_along(x), each = 2)
+  )
+  expect_equal(
+    colSums(matrix(log_lik, nrow = 2)),
+    log_lik_binom(x, size, prob)
+  )
+})
 
 test_that("log_lik_neg_binom", {
   expect_identical(

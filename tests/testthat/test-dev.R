@@ -569,6 +569,32 @@ test_that("dev_multinom res", {
   expect_equal(sign(res), sign(x - size * prob))
   expect_equal(sum(res^2), sum(dev_multinom(x, size, prob, group)))
 })
+test_that("dev_multinom with two categories matches dev_binom", {
+  x <- c(0, 3, 7, 10)
+  size <- 10
+  prob <- c(0.05, 0.2, 0.5, 0.9)
+  group <- rep(seq_along(x), each = 2)
+  x_long <- as.vector(rbind(x, size - x))
+  prob_long <- as.vector(rbind(prob, 1 - prob))
+
+  # the Poisson-form rows carry offsets that the binomial deviance doesn't,
+  # but they cancel within a trial, so the trial totals agree exactly
+  dev <- dev_multinom(x_long, size = size, prob = prob_long, group = group)
+  expect_equal(colSums(matrix(dev, nrow = 2)), dev_binom(x, size, prob))
+
+  res <- dev_multinom(
+    x_long,
+    size = size,
+    prob = prob_long,
+    group = group,
+    res = TRUE
+  )
+  expect_equal(colSums(matrix(res, nrow = 2)^2), dev_binom(x, size, prob))
+  expect_equal(
+    sign(matrix(res, nrow = 2)[1, ]),
+    sign(res_binom(x, size, prob, type = "dev"))
+  )
+})
 
 test_that("dev_neg_binom", {
   expect_identical(
