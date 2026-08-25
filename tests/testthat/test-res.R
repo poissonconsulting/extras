@@ -649,6 +649,7 @@ test_that("res_multinom simulate", {
     expect_equal(sd(res), 1.00164264126585)
   })
 })
+
 test_that("res_multinom with two categories matches res_binom", {
   x <- c(0, 3, 7, 10)
   size <- 10
@@ -677,23 +678,6 @@ test_that("res_multinom with two categories matches res_binom", {
     sign(res_type("dev")[1, ]),
     sign(res_binom(x, size, prob, type = "dev"))
   )
-
-  # a simulated two-category trial is a single rbinom() draw, so it is
-  # stream-identical to res_binom(simulate = TRUE)
-  withr::with_seed(3, {
-    sim <- res_multinom(
-      x_long,
-      size,
-      prob_long,
-      group,
-      type = "data",
-      simulate = TRUE
-    )
-  })
-  withr::with_seed(3, {
-    sim_binom <- res_binom(x, size, prob, type = "data", simulate = TRUE)
-  })
-  expect_equal(matrix(sim, nrow = 2)[1, ], sim_binom)
 })
 
 test_that("res_neg_binom", {

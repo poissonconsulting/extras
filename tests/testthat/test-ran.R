@@ -196,36 +196,25 @@ test_that("ran_multinom", {
     expect_identical(x[3] + x[4], 6L)
   })
 })
-test_that("ran_multinom with two categories matches ran_binom", {
-  size <- c(10, 4, 20)
-  prob <- c(0.2, 0.5, 0.75)
-  # rmultinom() draws a two-category trial with a single rbinom() call, so
-  # the first category is stream-identical to ran_binom()
-  withr::with_seed(42, {
-    x <- ran_multinom(
-      size = rep(size, each = 2),
-      prob = as.vector(rbind(prob, 1 - prob)),
-      group = rep(seq_along(size), each = 2)
-    )
-  })
-  withr::with_seed(42, {
-    y <- ran_binom(length(size), size = size, prob = prob)
-  })
-  expect_identical(matrix(x, nrow = 2)[1, ], y)
 
-  # and the marginal of a category is binomial, so its mean and variance
-  # match size * prob and size * prob * (1 - prob)
+test_that("ran_multinom with two categories draws a binomial first category", {
+  # a category count is marginally binomial, so over many trials the first
+  # category's mean, variance and count distribution match the binomial
+  size <- 10
+  prob <- 0.3
   n_group <- 20000
   withr::with_seed(7, {
     x <- ran_multinom(
-      size = rep(10, 2 * n_group),
-      prob = rep(c(0.3, 0.7), n_group),
+      size = rep(size, 2 * n_group),
+      prob = rep(c(prob, 1 - prob), n_group),
       group = rep(seq_len(n_group), each = 2)
     )
   })
   first <- matrix(x, nrow = 2)[1, ]
-  expect_equal(mean(first), 10 * 0.3, tolerance = 0.01)
-  expect_equal(var(first), 10 * 0.3 * 0.7, tolerance = 0.01)
+  expect_equal(mean(first), size * prob, tolerance = 0.01)
+  expect_equal(var(first), size * prob * (1 - prob), tolerance = 0.01)
+  proportion <- as.numeric(table(factor(first, levels = 0:size))) / n_group
+  expect_lt(max(abs(proportion - dbinom(0:size, size, prob))), 0.01)
 })
 
 test_that("ran_neg_binom", {

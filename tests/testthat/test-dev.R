@@ -569,6 +569,7 @@ test_that("dev_multinom res", {
   expect_equal(sign(res), sign(x - size * prob))
   expect_equal(sum(res^2), sum(dev_multinom(x, size, prob, group)))
 })
+
 test_that("dev_multinom with two categories matches dev_binom", {
   x <- c(0, 3, 7, 10)
   size <- 10

@@ -427,6 +427,7 @@ test_that("log_lik_multinom", {
     dmultinom(x[group == 2], size = 4, prob = prob[group == 2], log = TRUE)
   )
 })
+
 test_that("log_lik_multinom with two categories matches log_lik_binom", {
   # a two-category multinomial is a binomial, so a trial's log-likelihood
   # (the sum over its rows) must match log_lik_binom() on the first category
