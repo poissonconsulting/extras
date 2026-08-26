@@ -33,6 +33,7 @@ Other ran_dist:
 [`ran_gamma_pois()`](https://poissonconsulting.github.io/extras/dev/reference/ran_gamma_pois.md),
 [`ran_gamma_pois_zi()`](https://poissonconsulting.github.io/extras/dev/reference/ran_gamma_pois_zi.md),
 [`ran_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_lnorm.md),
+[`ran_multinom()`](https://poissonconsulting.github.io/extras/dev/reference/ran_multinom.md),
 [`ran_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/ran_neg_binom.md),
 [`ran_norm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_norm.md),
 [`ran_pois()`](https://poissonconsulting.github.io/extras/dev/reference/ran_pois.md),

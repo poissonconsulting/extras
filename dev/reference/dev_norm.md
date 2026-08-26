@@ -40,6 +40,7 @@ Other dev_dist:
 [`dev_gamma()`](https://poissonconsulting.github.io/extras/dev/reference/dev_gamma.md),
 [`dev_gamma_pois()`](https://poissonconsulting.github.io/extras/dev/reference/dev_gamma_pois.md),
 [`dev_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/dev_lnorm.md),
+[`dev_multinom()`](https://poissonconsulting.github.io/extras/dev/reference/dev_multinom.md),
 [`dev_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/dev_neg_binom.md),
 [`dev_pois()`](https://poissonconsulting.github.io/extras/dev/reference/dev_pois.md),
 [`dev_pois_zi()`](https://poissonconsulting.github.io/extras/dev/reference/dev_pois_zi.md),

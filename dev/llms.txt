@@ -352,6 +352,8 @@ Deviances and Deviance Residuals
   : Zero-Inflated Gamma-Poisson Deviances
 - [`dev_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/dev_lnorm.md)
   : Log-Normal Deviances
+- [`dev_multinom()`](https://poissonconsulting.github.io/extras/dev/reference/dev_multinom.md)
+  : Multinomial Deviances
 - [`dev_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/dev_neg_binom.md)
   : Negative Binomial Deviances
 - [`dev_norm()`](https://poissonconsulting.github.io/extras/dev/reference/dev_norm.md)
@@ -385,6 +387,8 @@ Raw and Deviance Residuals
   : Zero-Inflated Gamma-Poisson Residuals
 - [`res_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/res_lnorm.md)
   : Log-Normal Residuals
+- [`res_multinom()`](https://poissonconsulting.github.io/extras/dev/reference/res_multinom.md)
+  : Multinomial Residuals
 - [`res_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/res_neg_binom.md)
   : Negative Binomial Residuals
 - [`res_norm()`](https://poissonconsulting.github.io/extras/dev/reference/res_norm.md)
@@ -422,6 +426,8 @@ Log-likelihood functions
   : Exponential Log-Likelihood
 - [`log_lik_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_lnorm.md)
   : Log-Normal Log-Likelihood
+- [`log_lik_multinom()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_multinom.md)
+  : Multinomial Log-Likelihood
 - [`log_lik_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_neg_binom.md)
   : Negative Binomial Log-Likelihood
 - [`log_lik_norm()`](https://poissonconsulting.github.io/extras/dev/reference/log_lik_norm.md)
@@ -533,6 +539,8 @@ Random sample functions
   : Zero-Inflated Gamma-Poisson Random Samples
 - [`ran_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_lnorm.md)
   : Log-Normal Random Samples
+- [`ran_multinom()`](https://poissonconsulting.github.io/extras/dev/reference/ran_multinom.md)
+  : Multinomial Random Samples
 - [`ran_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/ran_neg_binom.md)
   : Negative Binomial Random Samples
 - [`ran_norm()`](https://poissonconsulting.github.io/extras/dev/reference/ran_norm.md)

@@ -71,6 +71,14 @@ level.</p></dd>
 should be returned as negative values.</p></dd>
 
 
+<dt id="arg-group">group<a class="anchor" aria-label="anchor" href="#arg-group"></a></dt>
+<dd><p>A vector identifying which rows belong to the same
+multinomial trial (whose <code>x</code> values sum to <code>size</code> and <code>prob</code> values sum
+to 1). Every group must have at least 2 rows and the same number of
+rows as the rest of the data (a fixed set of categories, as in
+multinomial logistic regression), and must not contain <code>NA</code>.</p></dd>
+
+
 <dt id="arg-lambda">lambda<a class="anchor" aria-label="anchor" href="#arg-lambda"></a></dt>
 <dd><p>A non-negative numeric vector of means.</p></dd>
 

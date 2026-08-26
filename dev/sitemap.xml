@@ -23,6 +23,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_gamma_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_gamma_pois_zi.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_lnorm.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_multinom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_neg_binom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/dev_pois.html</loc></url>
@@ -59,6 +60,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_gamma_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_gamma_pois_zi.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_lnorm.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_multinom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_neg_binom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/log_lik_pois.html</loc></url>
@@ -131,6 +133,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_gamma_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_gamma_pois_zi.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_lnorm.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_multinom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_neg_binom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/ran_pois.html</loc></url>
@@ -145,6 +148,7 @@
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_gamma_pois.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_gamma_pois_zi.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_lnorm.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_multinom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_neg_binom.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_norm.html</loc></url>
 <url><loc>https://poissonconsulting.github.io/extras/dev/reference/res_pois.html</loc></url>

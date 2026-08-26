@@ -49,6 +49,7 @@ Other res_dist:
 [`res_gamma_pois()`](https://poissonconsulting.github.io/extras/dev/reference/res_gamma_pois.md),
 [`res_gamma_pois_zi()`](https://poissonconsulting.github.io/extras/dev/reference/res_gamma_pois_zi.md),
 [`res_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/res_lnorm.md),
+[`res_multinom()`](https://poissonconsulting.github.io/extras/dev/reference/res_multinom.md),
 [`res_neg_binom()`](https://poissonconsulting.github.io/extras/dev/reference/res_neg_binom.md),
 [`res_norm()`](https://poissonconsulting.github.io/extras/dev/reference/res_norm.md),
 [`res_pois()`](https://poissonconsulting.github.io/extras/dev/reference/res_pois.md),
