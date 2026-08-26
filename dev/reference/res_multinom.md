@@ -62,6 +62,22 @@ replicate per trial (via
 rather than simulating each category independently, which requires
 `res_multinom()` to see every row of a `group` in the same call.
 
+## References
+
+Haberman, S.J. 1973. The analysis of residuals in cross-classified
+tables. Biometrics 29(1): 205-220.
+[doi:10.2307/2529686](https://doi.org/10.2307/2529686) .
+
+Pierce, D.A., and Schafer, D.W. 1986. Residuals in generalized linear
+models. Journal of the American Statistical Association 81(396):
+977-986.
+[doi:10.1080/01621459.1986.10478361](https://doi.org/10.1080/01621459.1986.10478361)
+.
+
+Gelman, A., Meng, X.-L., and Stern, H. 1996. Posterior predictive
+assessment of model fitness via realized discrepancies. Statistica
+Sinica 6(4): 733-807.
+
 ## See also
 
 Other res_dist:

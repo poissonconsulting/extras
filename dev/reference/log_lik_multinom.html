@@ -98,6 +98,29 @@ uses the multinomial-as-independent-Poissons identity: each row's value
 is the Poisson log-likelihood of <code>x</code> given <code>mu = size * prob</code>, minus an
 even share of the trial's normalizing constant, so summing over a
 <code>group</code> recovers the trial's exact multinomial log-likelihood.</p>
+<p>The even split of the normalizing constant is a bookkeeping convention:
+only the sum over a <code>group</code> is exact, so an individual row's value is not
+a valid pointwise log-likelihood. Cross-validation and information
+criteria should therefore treat the trial, not the row, as the
+leave-one-out unit, which is achieved by summing the values within each
+<code>group</code> to get the trial's exact log-likelihood.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Baker, S.G. 1994. The multinomial-Poisson transformation.
+The Statistician 43(4): 495-504. <a href="https://doi.org/10.2307/2348134" class="external-link">doi:10.2307/2348134</a>
+.</p>
+<p>McCullagh, P., and Nelder, J.A. 1989.
+Generalized Linear Models. 2nd edition. Chapman and Hall, London.</p>
+<p>Forster, J.J. 2010. Bayesian inference for Poisson and multinomial
+log-linear models. Statistical Methodology 7(3): 210-224.
+<a href="https://doi.org/10.1016/j.stamet.2009.12.004" class="external-link">doi:10.1016/j.stamet.2009.12.004</a>
+.</p>
+<p>Vehtari, A., Gelman, A., and Gabry, J. 2017. Practical Bayesian model
+evaluation using leave-one-out cross-validation and WAIC.
+Statistics and Computing 27(5): 1413-1432.
+<a href="https://doi.org/10.1007/s11222-016-9696-3" class="external-link">doi:10.1007/s11222-016-9696-3</a>
+.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

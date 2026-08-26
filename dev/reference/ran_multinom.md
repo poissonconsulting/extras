@@ -44,6 +44,15 @@ argument: the number of samples is fully determined by `length(prob)`
 (equivalently `length(group)`), since a trial's categories can't be
 generated independently of one another.
 
+## References
+
+Johnson, N.L., Kotz, S., and Balakrishnan, N. 1997. Discrete
+Multivariate Distributions. John Wiley and Sons, New York.
+
+Gelman, A., Meng, X.-L., and Stern, H. 1996. Posterior predictive
+assessment of model fitness via realized discrepancies. Statistica
+Sinica 6(4): 733-807.
+
 ## See also
 
 Other ran_dist:

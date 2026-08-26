@@ -54,6 +54,18 @@ Poisson-equivalent deviance (see
 summing it over a trial's rows recovers the trial's exact multinomial
 deviance.
 
+## References
+
+McCullagh, P., and Nelder, J.A. 1989. Generalized Linear Models. 2nd
+edition. Chapman and Hall, London.
+
+Baker, S.G. 1994. The multinomial-Poisson transformation. The
+Statistician 43(4): 495-504.
+[doi:10.2307/2348134](https://doi.org/10.2307/2348134) .
+
+Agresti, A. 2013. Categorical Data Analysis. 3rd edition. John Wiley and
+Sons, Hoboken, New Jersey.
+
 ## See also
 
 Other dev_dist:
