@@ -197,6 +197,17 @@ test_that("ran_multinom", {
   })
 })
 
+test_that("ran_multinom with two categories is repeatable", {
+  withr::with_seed(7, {
+    x <- ran_multinom(
+      size = rep(10, 6),
+      prob = rep(c(0.3, 0.7), 3),
+      group = rep(1:3, each = 2)
+    )
+  })
+  expect_identical(x, c(6L, 4L, 3L, 7L, 1L, 9L))
+})
+
 test_that("ran_neg_binom", {
   expect_error(ran_neg_binom(NA_integer_))
   expect_error(ran_neg_binom(integer(0)))

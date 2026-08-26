@@ -650,6 +650,36 @@ test_that("res_multinom simulate", {
   })
 })
 
+test_that("res_multinom with two categories matches res_binom", {
+  x <- c(0, 3, 7, 10)
+  size <- 10
+  prob <- c(0.05, 0.2, 0.5, 0.9)
+  group <- rep(seq_along(x), each = 2)
+  x_long <- as.vector(rbind(x, size - x))
+  prob_long <- as.vector(rbind(prob, 1 - prob))
+
+  res_type <- function(type) {
+    matrix(
+      res_multinom(x_long, size, prob_long, group, type = type),
+      nrow = 2
+    )
+  }
+
+  expect_equal(res_type("raw")[1, ], res_binom(x, size, prob, type = "raw"))
+  # the second category is the first one's complement, so its standardized
+  # residual is the negative of it
+  standardized <- res_binom(x, size, prob, type = "standardized")
+  expect_equal(res_type("standardized")[1, ], standardized)
+  expect_equal(res_type("standardized")[2, ], -standardized)
+  # a per-category deviance residual isn't the binomial one, but squaring
+  # and summing within the trial recovers the binomial deviance
+  expect_equal(colSums(res_type("dev")^2), dev_binom(x, size, prob))
+  expect_equal(
+    sign(res_type("dev")[1, ]),
+    sign(res_binom(x, size, prob, type = "dev"))
+  )
+})
+
 test_that("res_neg_binom", {
   expect_identical(
     res_neg_binom(integer(0), integer(0), integer(0)),
