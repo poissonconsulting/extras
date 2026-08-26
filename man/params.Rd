@@ -19,6 +19,12 @@ level.}
 \item{directional}{A flag specifying whether probabilities less than 0.5
 should be returned as negative values.}
 
+\item{group}{A vector identifying which rows belong to the same
+multinomial trial (whose \code{x} values sum to \code{size} and \code{prob} values sum
+to 1). Every group must have at least 2 rows and the same number of
+rows as the rest of the data (a fixed set of categories, as in
+multinomial logistic regression), and must not contain \code{NA}.}
+
 \item{lambda}{A non-negative numeric vector of means.}
 
 \item{level}{A number > 0 and <= 1 specifying the probability coverage of the

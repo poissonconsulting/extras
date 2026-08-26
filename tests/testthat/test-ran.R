@@ -107,6 +107,96 @@ test_that("ran_gamma_pois", {
   })
 })
 
+test_that("ran_multinom", {
+  expect_identical(
+    ran_multinom(size = numeric(0), prob = numeric(0), group = numeric(0)),
+    integer(0)
+  )
+  # a mismatched, non-recyclable length errors clearly instead of being
+  # silently (and wrongly) recycled by rep_len()
+  expect_error(
+    ran_multinom(size = c(10, 10, 10), prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1, 2, 2)),
+    "must be all zero length or the same length"
+  )
+  expect_error(
+    ran_multinom(size = c(10, 5), prob = c(0.5, 0.5), group = c(1, 1)),
+    "`size` must be the same for every row belonging to the same `group`"
+  )
+  expect_error(
+    ran_multinom(size = 10, prob = c(0.5, 0.4), group = c(1, 1)),
+    "`prob` must sum to 1 for every `group`"
+  )
+  expect_error(
+    ran_multinom(size = 10, prob = 1, group = 1),
+    "must contain at least 2 rows"
+  )
+  expect_error(
+    ran_multinom(
+      size = c(10, 10, 10, 10),
+      prob = c(0.2, 0.3, 0.5, 1),
+      group = c(1, 1, 1, 2)
+    ),
+    "must contain at least 2 rows"
+  )
+  # every group must have the same number of rows (categories) as the most
+  # common number of rows per group in the data (ordinary multinomial
+  # logistic regression assumes a fixed set of categories for every trial)
+  expect_error(
+    ran_multinom(
+      size = c(10, 10, 10, 10, 10, 10, 6, 6),
+      prob = c(0.2, 0.3, 0.5, 0.2, 0.3, 0.5, 0.5, 0.5),
+      group = c(1, 1, 1, 2, 2, 2, 3, 3)
+    ),
+    "Every `group` should have the same number of rows"
+  )
+  # group must not contain NA -- there's no way to know which trial an
+  # unlabelled row belongs to
+  expect_error(
+    ran_multinom(size = c(10, 10, 10), prob = c(0.4, 0.6, 1), group = c(1, 1, NA)),
+    "must not have any missing values"
+  )
+  expect_error(
+    ran_multinom(size = c(10, 10), prob = c(0.4, 0.6), group = c(NA, NA)),
+    "must not have any missing values"
+  )
+  # NA in size or prob is a structural input shared by the whole trial (the
+  # categories aren't independent draws), so it makes the whole trial's
+  # result NA, not just the row where the NA appears
+  expect_identical(
+    ran_multinom(size = c(10, NA), prob = c(0.4, 0.6), group = c(1, 1)),
+    c(NA_integer_, NA_integer_)
+  )
+  expect_identical(
+    ran_multinom(size = c(10, 10), prob = c(0.4, NA), group = c(1, 1)),
+    c(NA_integer_, NA_integer_)
+  )
+  # an NA elsewhere doesn't leak into an unrelated, fully-known group (same
+  # number of categories in both groups, since groups must match on that)
+  withr::with_seed(101, {
+    x <- ran_multinom(
+      size = c(10, 10, NA, 6, 6, 6),
+      prob = c(0.2, 0.3, 0.5, 0.2, 0.3, 0.5),
+      group = c(1, 1, 1, 2, 2, 2)
+    )
+    expect_identical(x[1:3], c(NA_integer_, NA_integer_, NA_integer_))
+    expect_identical(sum(x[4:6]), 6L)
+  })
+  withr::with_seed(101, {
+    x <- ran_multinom(size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
+    expect_identical(sum(x), 10L)
+    expect_length(x, 3L)
+  })
+  withr::with_seed(101, {
+    x <- ran_multinom(
+      size = c(10, 10, 6, 6),
+      prob = c(0.2, 0.8, 0.5, 0.5),
+      group = c(1, 1, 2, 2)
+    )
+    expect_identical(x[1] + x[2], 10L)
+    expect_identical(x[3] + x[4], 6L)
+  })
+})
+
 test_that("ran_neg_binom", {
   expect_error(ran_neg_binom(NA_integer_))
   expect_error(ran_neg_binom(integer(0)))

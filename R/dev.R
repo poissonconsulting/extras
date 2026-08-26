@@ -267,6 +267,41 @@ dev_lnorm <- function(x, meanlog = 0, sdlog = 1, res = FALSE) {
   dev_norm(log(x), mean = meanlog, sd = sdlog, res = res)
 }
 
+#' Multinomial Deviances
+#'
+#' Models the counts across two or more mutually exclusive categories from a
+#' fixed number of trials, in \emph{long} format: one row per category per
+#' trial, with `group` identifying which rows belong to the same trial.
+#'
+#' A category's deviance depends only on its own `x` and `mu = size * prob`,
+#' not on the rest of its trial, so `group` is used only to validate `size`
+#' and `prob` (see [log_lik_multinom()]), not in the calculation itself.
+#' `dev_multinom()` is the Poisson-equivalent deviance (see [dev_pois()]):
+#' summing it over a trial's rows recovers the trial's exact multinomial
+#' deviance.
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of the category counts.
+#' @param prob A numeric vector of the probability of the category. Must sum
+#'   to 1 across the rows sharing the same `group`.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
+dev_multinom <- function(x, size = 1, prob, group, res = FALSE) {
+  chk_compatible_lengths(x, size, prob, group)
+  n <- length(x)
+  size <- rep_len(size, n)
+  prob <- rep_len(prob, n)
+  group <- rep_len(group, n)
+  chk_not_any_na(group)
+  chk_multinom_group(size, prob, group)
+  dev_pois(x, lambda = size * prob, res = res)
+}
+
 #' Negative Binomial Deviances
 #'
 #' @inheritParams params

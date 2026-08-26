@@ -507,6 +507,149 @@ test_that("res_gamma_pois simulate", {
   })
 })
 
+test_that("res_multinom", {
+  x <- c(1, 3, 6)
+  size <- 10
+  prob <- c(0.2, 0.3, 0.5)
+  group <- c(1, 1, 1)
+
+  expect_identical(
+    res_multinom(numeric(0), numeric(0), numeric(0), numeric(0)),
+    numeric(0)
+  )
+  # a mismatched, non-recyclable length errors clearly instead of being
+  # silently (and wrongly) recycled/NA-padded by rep_len()
+  expect_error(
+    res_multinom(1:3, 10, numeric(0), c(1, 1, 1)),
+    "must be all zero length or the same length"
+  )
+  expect_error(
+    res_multinom(1:5, c(10, 10, 10), c(0.2, 0.3, 0.5), c(1, 1, 1, 2, 2)),
+    "must be all zero length or the same length"
+  )
+
+  expect_equal(
+    res_multinom(x, size, prob, group, type = "dev"),
+    dev_multinom(x, size, prob, group, res = TRUE)
+  )
+  expect_equal(
+    res_multinom(x, size, prob, group, type = "raw"),
+    x - size * prob
+  )
+  # a category count is marginally binomial, so the standardized residual
+  # matches res_binom exactly
+  expect_equal(
+    res_multinom(x, size, prob, group, type = "standardized"),
+    res_binom(x, size, prob, type = "standardized")
+  )
+  expect_equal(
+    res_multinom(x, size, prob, group, type = "data"),
+    x
+  )
+  expect_error(res_multinom(x, size, prob, group, type = "unknown"))
+  expect_error(
+    res_multinom(4, 10, 1, 1, simulate = TRUE),
+    "must contain at least 2 rows"
+  )
+  # NA in size or prob is a structural input shared by the whole trial, so
+  # it makes the whole trial's result NA, not just the row where it appears
+  expect_identical(
+    res_multinom(c(4, 6), c(10, NA), c(0.4, 0.6), c(1, 1), type = "data", simulate = TRUE),
+    c(NA_integer_, NA_integer_)
+  )
+  # every group must have the same number of rows (categories) as the most
+  # common number of rows per group in the data
+  expect_error(
+    res_multinom(
+      c(4, 3, 3, 5, 5),
+      c(10, 10, 10, 6, 6),
+      c(0.2, 0.3, 0.5, 0.5, 0.5),
+      c(1, 1, 1, 2, 2),
+      type = "data",
+      simulate = TRUE
+    ),
+    "Every `group` should have the same number of rows"
+  )
+  # group must not contain NA -- there's no way to know which trial an
+  # unlabelled row belongs to
+  expect_error(
+    res_multinom(
+      c(4, 6, 10),
+      c(10, 10, 10),
+      c(0.4, 0.6, 1),
+      c(1, 1, NA),
+      type = "data",
+      simulate = TRUE
+    ),
+    "must not have any missing values"
+  )
+  expect_error(
+    res_multinom(
+      c(4, 6),
+      c(10, 10),
+      c(0.4, 0.6),
+      c(NA, NA),
+      type = "data",
+      simulate = TRUE
+    ),
+    "must not have any missing values"
+  )
+  # group is validated even when simulate = FALSE, so a bad prob sum can't
+  # silently fall through to a wrong (rather than an errored) residual
+  expect_error(
+    res_multinom(4, 10, 1, 1, simulate = FALSE),
+    "must contain at least 2 rows"
+  )
+  expect_error(
+    res_multinom(c(4, 6), c(10, 10), c(0.4, 0.4), c(1, 1), simulate = FALSE),
+    "`prob` must sum to 1"
+  )
+
+  # sum of squared deviance residuals recovers the row-level deviance
+  expect_equal(
+    sum(res_multinom(x, size, prob, group, type = "dev")^2),
+    2 * sum(x * log(x / (size * prob)))
+  )
+
+  withr::with_seed(101, {
+    sim <- res_multinom(x, size, prob, group, type = "data", simulate = TRUE)
+    expect_identical(sum(sim), as.integer(size))
+    expect_length(sim, 3L)
+  })
+})
+
+test_that("res_multinom simulate", {
+  n_group <- 10000
+  size <- rep(10, n_group * 3)
+  prob <- rep(c(0.2, 0.3, 0.5), n_group)
+  group <- rep(seq_len(n_group), each = 3)
+
+  withr::with_seed(101, {
+    res <- res_multinom(
+      rep(0, n_group * 3),
+      size = size,
+      prob = prob,
+      group = group,
+      simulate = TRUE,
+      type = "dev"
+    )
+    expect_equal(mean(res), -0.0794000903313601)
+    expect_equal(sd(res), 0.859943455555756)
+  })
+  withr::with_seed(101, {
+    res <- res_multinom(
+      rep(0, n_group * 3),
+      size = size,
+      prob = prob,
+      group = group,
+      simulate = TRUE,
+      type = "standardized"
+    )
+    expect_equal(mean(res), 0.000255549022088425)
+    expect_equal(sd(res), 1.00164264126585)
+  })
+})
+
 test_that("res_neg_binom", {
   expect_identical(
     res_neg_binom(integer(0), integer(0), integer(0)),

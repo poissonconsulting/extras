@@ -113,6 +113,50 @@ ran_lnorm <- function(n = 1, meanlog = 0, sdlog = 1) {
   stats::rlnorm(n, meanlog = meanlog, sdlog = sdlog)
 }
 
+#' Multinomial Random Samples
+#'
+#' Models the counts across two or more mutually exclusive categories from a
+#' fixed number of trials, in \emph{long} format: one value per category per
+#' trial, with `group` identifying which rows belong to the same trial. All
+#' rows sharing a `group` must have the same `size`, and their `prob` values
+#' must sum to 1.
+#'
+#' Unlike the other `ran_*()` functions, `ran_multinom()` has no `n`
+#' argument: the number of samples is fully determined by `length(prob)`
+#' (equivalently `length(group)`), since a trial's categories can't be
+#' generated independently of one another.
+#'
+#' @inheritParams params
+#' @param prob A numeric vector of the probability of the category. Must sum
+#'   to 1 across the rows sharing the same `group`. `NA` in `size` or `prob`
+#'   for any row of a trial makes the sample `NA` for every row of that
+#'   trial, since a trial's categories are drawn jointly.
+#' @return An integer vector of the random samples, one per row of `prob`.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_multinom(size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
+ran_multinom <- function(size = 1, prob, group) {
+  chk_compatible_lengths(size, prob, group)
+  n <- length(prob)
+  size <- rep_len(size, n)
+  prob <- rep_len(prob, n)
+  group <- rep_len(group, n)
+  chk_not_any_na(group)
+  groups <- multinom_split(group)
+  chk_multinom_group(size, prob, group, groups)
+  row_na <- multinom_row_na(size, prob, group, groups)
+  x <- rep(NA_real_, n)
+  for (idx in groups) {
+    if (row_na[idx[1]]) {
+      next
+    }
+    x[idx] <- stats::rmultinom(1, size = size[idx[1]], prob = prob[idx])[, 1]
+  }
+  as.integer(x)
+}
+
 #' Negative Binomial Random Samples
 #'
 #' Identical to Gamma-Poisson Random Samples.

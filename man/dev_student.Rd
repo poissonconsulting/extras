@@ -36,6 +36,7 @@ Other dev_dist:
 \code{\link[=dev_gamma]{dev_gamma()}},
 \code{\link[=dev_gamma_pois]{dev_gamma_pois()}},
 \code{\link[=dev_lnorm]{dev_lnorm()}},
+\code{\link[=dev_multinom]{dev_multinom()}},
 \code{\link[=dev_neg_binom]{dev_neg_binom()}},
 \code{\link[=dev_norm]{dev_norm()}},
 \code{\link[=dev_pois]{dev_pois()}},

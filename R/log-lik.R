@@ -427,6 +427,54 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
   log_lik
 }
 
+#' Multinomial Log-Likelihood
+#'
+#' Models the counts across two or more mutually exclusive categories from a
+#' fixed number of trials, in \emph{long} format: one row per category per
+#' trial, with `group` identifying which rows belong to the same trial. All
+#' rows sharing a `group` must have the same `size`, and their `prob` values
+#' must sum to 1.
+#'
+#' A trial's log-likelihood doesn't split evenly across its rows, since the
+#' multinomial coefficient belongs to the whole trial. `log_lik_multinom()`
+#' uses the multinomial-as-independent-Poissons identity: each row's value
+#' is the Poisson log-likelihood of `x` given `mu = size * prob`, minus an
+#' even share of the trial's normalizing constant, so summing over a
+#' `group` recovers the trial's exact multinomial log-likelihood.
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of the category counts.
+#' @param prob A numeric vector of the probability of the category. Must sum
+#'   to 1 across the rows sharing the same `group`. `NA` in `size` or `prob`
+#'   for any row of a trial makes the log-likelihood `NA` for every row of
+#'   that trial, since a trial's categories are scored jointly.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods, one value
+#'   per row of `x`.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
+log_lik_multinom <- function(x, size = 1, prob, group) {
+  chk_compatible_lengths(x, size, prob, group)
+  n <- length(x)
+  size <- rep_len(size, n)
+  prob <- rep_len(prob, n)
+  group <- rep_len(group, n)
+  chk_not_any_na(group)
+  groups <- multinom_split(group)
+  chk_multinom_group(size, prob, group, groups)
+  mu <- size * prob
+  log_lik <- log_lik_pois(x, mu)
+  group_size <- table(group)
+  k <- as.numeric(group_size[as.character(group)])
+  const <- log_lik_pois(size, size)
+  log_lik <- log_lik - const / k
+  log_lik[multinom_row_na(size, prob, group, groups)] <- NA_real_
+  log_lik
+}
+
 #' Negative Binomial Log-Likelihood
 #'
 #' @inheritParams params

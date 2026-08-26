@@ -473,6 +473,103 @@ test_that("dev_lnorm deviance", {
   expect_equal(deviance, deviance(mod))
 })
 
+test_that("dev_multinom", {
+  expect_identical(
+    dev_multinom(numeric(0), numeric(0), numeric(0), group = numeric(0)),
+    numeric(0)
+  )
+  # a mismatched, non-recyclable length errors clearly instead of being
+  # silently (and wrongly) recycled/NA-padded by rep_len()
+  expect_error(
+    dev_multinom(1:3, 10, numeric(0), group = c(1, 1, 1)),
+    "must be all zero length or the same length"
+  )
+  expect_error(
+    dev_multinom(1:5, c(10, 10, 10), c(0.2, 0.3, 0.5), group = c(1, 1, 1, 2, 2)),
+    "must be all zero length or the same length"
+  )
+  expect_identical(
+    dev_multinom(c(2, 3, 5), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1)),
+    c(0, 0, 0)
+  )
+  expect_identical(
+    dev_multinom(c(1, 4), c(10, 10), c(0.2, 0.8), group = c(1, 1)),
+    dev_pois(c(1, 4), c(10, 10) * c(0.2, 0.8))
+  )
+  # row-level deviance identity: summing the per-cell deviances within a
+  # trial recovers the classic multinomial saturated-model deviance
+  x <- c(1, 3, 6)
+  size <- 10
+  prob <- c(0.2, 0.3, 0.5)
+  group <- c(1, 1, 1)
+  expect_equal(
+    sum(dev_multinom(x, size, prob, group)),
+    2 * sum(x * log(x / (size * prob)))
+  )
+  # group is validated: prob must sum to 1 per group, and every group must
+  # have at least 2 rows and match the modal row count
+  expect_error(
+    dev_multinom(4, 10, 1, group = 1),
+    "must contain at least 2 rows"
+  )
+  expect_error(
+    dev_multinom(c(1, 2), c(10, 10), c(0.2, 0.2), group = c(1, 1)),
+    "`prob` must sum to 1"
+  )
+})
+
+test_that("dev_multinom matches glmnet deviance", {
+  skip_if_not_installed("glmnet")
+  withr::with_seed(7, {
+    n <- 150
+    K <- 4
+    x <- cbind(rnorm(n), rnorm(n), rnorm(n))
+    eta <- cbind(
+      0,
+      0.9 * x[, 1] - 0.4 * x[, 2],
+      -0.3 * x[, 1] + 0.6 * x[, 3],
+      0.5 * x[, 2] - 0.2 * x[, 3]
+    )
+    prob_true <- exp(eta) / rowSums(exp(eta))
+    y_wide <- t(sapply(seq_len(n), function(i) {
+      stats::rmultinom(1, size = 1, prob = prob_true[i, ])
+    }))
+    colnames(y_wide) <- paste0("cat", seq_len(K))
+
+    group <- rep(seq_len(n), each = K)
+    for (lambda in c(0, 0.01, 0.05)) {
+      fit <- glmnet::glmnet(
+        x,
+        y_wide,
+        family = "multinomial",
+        lambda = lambda,
+        intercept = TRUE
+      )
+      dev_glmnet <- deviance(fit)
+      prob_hat <- predict(fit, newx = x, type = "response")[, , 1]
+      expect_equal(
+        sum(dev_multinom(
+          as.vector(t(y_wide)),
+          size = 1,
+          prob = as.vector(t(prob_hat)),
+          group = group
+        )),
+        as.numeric(dev_glmnet)
+      )
+    }
+  })
+})
+
+test_that("dev_multinom res", {
+  x <- c(1, 3, 6)
+  size <- 10
+  prob <- c(0.2, 0.3, 0.5)
+  group <- c(1, 1, 1)
+  res <- dev_multinom(x, size, prob, group, res = TRUE)
+  expect_equal(sign(res), sign(x - size * prob))
+  expect_equal(sum(res^2), sum(dev_multinom(x, size, prob, group)))
+})
+
 test_that("dev_neg_binom", {
   expect_identical(
     dev_neg_binom(integer(0), integer(0), integer(0)),

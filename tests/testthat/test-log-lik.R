@@ -332,6 +332,102 @@ test_that("log_lik_lnorm truncated", {
   )
 })
 
+test_that("log_lik_multinom", {
+  expect_identical(
+    log_lik_multinom(numeric(0), numeric(0), numeric(0), numeric(0)),
+    numeric(0)
+  )
+  # a mismatched, non-recyclable length errors clearly instead of being
+  # silently (and wrongly) recycled by rep_len(), or silently returning
+  # numeric(0) just because one argument happened to be empty
+  expect_error(
+    log_lik_multinom(1:3, 10, numeric(0), c(1, 1, 1)),
+    "must be all zero length or the same length"
+  )
+  expect_error(
+    log_lik_multinom(1:5, c(10, 10, 10), c(0.2, 0.3, 0.5), c(1, 1, 1, 2, 2)),
+    "must be all zero length or the same length"
+  )
+  expect_error(
+    log_lik_multinom(c(1, 3, 6), c(10, 10, 5), c(0.2, 0.3, 0.5), c(1, 1, 1)),
+    "`size` must be the same for every row belonging to the same `group`"
+  )
+  expect_error(
+    log_lik_multinom(c(1, 3, 6), 10, c(0.2, 0.3, 0.4), c(1, 1, 1)),
+    "`prob` must sum to 1 for every `group`"
+  )
+  expect_error(
+    log_lik_multinom(4, 10, 1, 1),
+    "must contain at least 2 rows"
+  )
+  # group must not contain NA -- there's no way to know which trial an
+  # unlabelled row belongs to
+  expect_error(
+    log_lik_multinom(c(4, 6, 10), c(10, 10, 10), c(0.4, 0.6, 1), c(1, 1, NA)),
+    "must not have any missing values"
+  )
+  expect_error(
+    log_lik_multinom(c(4, 6), c(10, 10), c(0.4, 0.6), c(NA, NA)),
+    "must not have any missing values"
+  )
+  # NA in size or prob is a structural input shared by the whole trial, so
+  # it makes the whole trial's result NA, not just the row where it appears
+  expect_identical(
+    log_lik_multinom(c(4, 6), c(10, NA), c(0.4, 0.6), c(1, 1)),
+    c(NA_real_, NA_real_)
+  )
+  # NA in x is just a missing observation for that one category -- it
+  # doesn't need the rest of the trial to compute its own log_lik, so it
+  # doesn't taint sibling rows the way NA size/prob/group does
+  res <- log_lik_multinom(c(4, NA), c(10, 10), c(0.4, 0.6), c(1, 1))
+  expect_false(is.na(res[1]))
+  expect_true(is.na(res[2]))
+  # an NA elsewhere doesn't leak into an unrelated, fully-known group (same
+  # number of categories in both groups, since groups must match on that)
+  res <- log_lik_multinom(
+    c(4, 3, 3, 2, 2, 2),
+    c(10, 10, NA, 6, 6, 6),
+    c(0.2, 0.3, 0.5, 0.2, 0.3, 0.5),
+    c(1, 1, 1, 2, 2, 2)
+  )
+  expect_identical(res[1:3], c(NA_real_, NA_real_, NA_real_))
+  expect_false(anyNA(res[4:6]))
+  # every group must have the same number of rows (categories) as the most
+  # common number of rows per group in the data
+  expect_error(
+    log_lik_multinom(
+      c(4, 3, 3, 5, 5, 3, 3),
+      c(10, 10, 10, 10, 10, 6, 6),
+      c(0.2, 0.3, 0.5, 0.5, 0.5, 0.5, 0.5),
+      c(1, 1, 1, 2, 2, 3, 3)
+    ),
+    "Every `group` should have the same number of rows"
+  )
+  expect_equal(
+    sum(log_lik_multinom(
+      c(1, 3, 6),
+      size = 10,
+      prob = c(0.2, 0.3, 0.5),
+      group = c(1, 1, 1)
+    )),
+    dmultinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), log = TRUE)
+  )
+  # multiple trials in long format (same number of categories per group)
+  x <- c(1, 3, 6, 2, 1, 1)
+  size <- c(10, 10, 10, 4, 4, 4)
+  prob <- c(0.2, 0.3, 0.5, 0.5, 0.25, 0.25)
+  group <- c(1, 1, 1, 2, 2, 2)
+  ll <- log_lik_multinom(x, size, prob, group)
+  expect_equal(
+    sum(ll[group == 1]),
+    dmultinom(x[group == 1], size = 10, prob = prob[group == 1], log = TRUE)
+  )
+  expect_equal(
+    sum(ll[group == 2]),
+    dmultinom(x[group == 2], size = 4, prob = prob[group == 2], log = TRUE)
+  )
+})
+
 test_that("log_lik_neg_binom", {
   expect_identical(
     log_lik_neg_binom(0, 2, 1),

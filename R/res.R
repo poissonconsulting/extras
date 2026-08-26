@@ -251,6 +251,65 @@ res_lnorm <- function(
   )
 }
 
+#' Multinomial Residuals
+#'
+#' Models the counts across two or more mutually exclusive categories from a
+#' fixed number of trials, in \emph{long} format: one row per category per
+#' trial, with `group` identifying which rows belong to the same trial (see
+#' [log_lik_multinom()] for details). `res_multinom()` returns one residual
+#' per row, not one per trial, since a trial's categories aren't
+#' independent and so have no single meaningful residual as a whole; the
+#' classic per-trial deviance statistic can be recovered by summing the
+#' squared `type = "dev"` residuals within a `group`.
+#'
+#' `group` is validated (same `size`, `prob` summing to 1, no singleton or
+#' short groups, no `NA`) regardless of `simulate`, but is only otherwise
+#' used when `simulate = TRUE`, to draw a joint, correlation-preserving
+#' replicate per trial (via [ran_multinom()]) rather than simulating each
+#' category independently, which requires `res_multinom()` to see every row
+#' of a `group` in the same call.
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of the category counts.
+#' @param prob A numeric vector of the probability of the category. Must sum
+#'   to 1 across the rows sharing the same `group`.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
+res_multinom <- function(
+  x,
+  size = 1,
+  prob,
+  group,
+  type = "dev",
+  simulate = FALSE
+) {
+  chk_string(type)
+  chk_compatible_lengths(x, size, prob, group)
+  n <- length(x)
+  size <- rep_len(size, n)
+  prob <- rep_len(prob, n)
+  group <- rep_len(group, n)
+  chk_not_any_na(group)
+  chk_multinom_group(size, prob, group)
+  if (!vld_false(simulate)) {
+    x <- ran_multinom(size = size, prob = prob, group = group)
+  }
+  mu <- size * prob
+  switch(
+    type,
+    data = x,
+    raw = x - mu,
+    standardized = (x - mu) / sqrt(mu * (1 - prob)),
+    dev = dev_multinom(x, size = size, prob = prob, group = group, res = TRUE),
+    chk_subset(x, c("data", "raw", "dev", "standardized"))
+  )
+}
+
 #' Negative Binomial Residuals
 #'
 #' @inheritParams params
