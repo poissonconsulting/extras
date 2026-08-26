@@ -42,6 +42,16 @@ deviance.
 \examples{
 dev_multinom(c(1, 3, 6), size = 10, prob = c(0.2, 0.3, 0.5), group = c(1, 1, 1))
 }
+\references{
+McCullagh, P., and Nelder, J.A. 1989.
+Generalized Linear Models. 2nd edition. Chapman and Hall, London.
+
+Baker, S.G. 1994. The multinomial-Poisson transformation.
+The Statistician 43(4): 495-504. \doi{10.2307/2348134}.
+
+Agresti, A. 2013. Categorical Data Analysis. 3rd edition.
+John Wiley and Sons, Hoboken, New Jersey.
+}
 \seealso{
 Other dev_dist:
 \code{\link[=dev_bern]{dev_bern()}},

@@ -442,6 +442,13 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
 #' even share of the trial's normalizing constant, so summing over a
 #' `group` recovers the trial's exact multinomial log-likelihood.
 #'
+#' The even split of the normalizing constant is a bookkeeping convention:
+#' only the sum over a `group` is exact, so an individual row's value is not
+#' a valid pointwise log-likelihood. Cross-validation and information
+#' criteria should therefore treat the trial, not the row, as the
+#' leave-one-out unit, which is achieved by summing the values within each
+#' `group` to get the trial's exact log-likelihood.
+#'
 #' @inheritParams params
 #' @param x A non-negative whole numeric vector of the category counts.
 #' @param prob A numeric vector of the probability of the category. Must sum
@@ -452,6 +459,21 @@ log_lik_lnorm <- function(x, meanlog = 0, sdlog = 1, tlower = 0, tupper = Inf) {
 #' @return An numeric vector of the corresponding log-likelihoods, one value
 #'   per row of `x`.
 #' @family log_lik_dist
+#' @references
+#' Baker, S.G. 1994. The multinomial-Poisson transformation.
+#' The Statistician 43(4): 495-504. \doi{10.2307/2348134}.
+#'
+#' McCullagh, P., and Nelder, J.A. 1989.
+#' Generalized Linear Models. 2nd edition. Chapman and Hall, London.
+#'
+#' Forster, J.J. 2010. Bayesian inference for Poisson and multinomial
+#' log-linear models. Statistical Methodology 7(3): 210-224.
+#' \doi{10.1016/j.stamet.2009.12.004}.
+#'
+#' Vehtari, A., Gelman, A., and Gabry, J. 2017. Practical Bayesian model
+#' evaluation using leave-one-out cross-validation and WAIC.
+#' Statistics and Computing 27(5): 1413-1432.
+#' \doi{10.1007/s11222-016-9696-3}.
 #' @export
 #'
 #' @examples

@@ -133,6 +133,13 @@ ran_lnorm <- function(n = 1, meanlog = 0, sdlog = 1) {
 #'   trial, since a trial's categories are drawn jointly.
 #' @return An integer vector of the random samples, one per row of `prob`.
 #' @family ran_dist
+#' @references
+#' Johnson, N.L., Kotz, S., and Balakrishnan, N. 1997.
+#' Discrete Multivariate Distributions. John Wiley and Sons, New York.
+#'
+#' Gelman, A., Meng, X.-L., and Stern, H. 1996. Posterior predictive
+#' assessment of model fitness via realized discrepancies.
+#' Statistica Sinica 6(4): 733-807.
 #' @export
 #'
 #' @examples
