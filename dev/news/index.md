@@ -1,7 +1,5 @@
 # Changelog
 
-## extras (development version)
-
 ## extras 0.10.0
 
 CRAN release: 2026-07-15
