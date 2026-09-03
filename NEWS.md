@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.10.0.9001
+
+- Move the fledge preamble back to the first line of NEWS.md (#150).
+
+- Fix dev_skewnorm() residual sign to use the mode, not the mean (#144).
+
+
 # extras 0.10.0
 
 - Add `probability_direction()` and `directional_information()` (#106).
