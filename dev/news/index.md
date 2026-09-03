@@ -1,5 +1,13 @@
 # Changelog
 
+## extras 0.10.0.9001
+
+- Move the fledge preamble back to the first line of NEWS.md
+  ([\#150](https://github.com/poissonconsulting/extras/issues/150)).
+
+- Fix dev_skewnorm() residual sign to use the mode, not the mean
+  ([\#144](https://github.com/poissonconsulting/extras/issues/144)).
+
 ## extras 0.10.0
 
 CRAN release: 2026-07-15
