@@ -467,10 +467,10 @@ res_skewnorm <- function(
   switch(
     type,
     data = x,
-    raw = x - mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi),
+    raw = x - (mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi)),
     standardized = (x -
       (mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi))) /
-      (sd^2 * (1 - ((2 * (shape / sqrt(1 + shape^2))^2) / pi))),
+      sqrt(sd^2 * (1 - ((2 * (shape / sqrt(1 + shape^2))^2) / pi))),
     dev = dev_skewnorm(x, mean = mean, sd = sd, shape = shape, res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )
