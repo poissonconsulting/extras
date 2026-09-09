@@ -1380,7 +1380,7 @@ test_that("res_skewnorm", {
         simulate = TRUE,
         type = "standardized"
       ),
-      c(-0.713119218167245, -0.0574564315318186)
+      c(-0.249771006896373, -0.020124195773685)
     )
   })
   expect_equal(
@@ -1423,7 +1423,7 @@ test_that("res_skewnorm", {
         simulate = TRUE,
         type = "standardized"
       ),
-      c(1.10492371083828, 0.428718918086851)
+      c(0.552461855419138, 0.214359459043425)
     )
   })
   withr::with_seed(101, {
@@ -1435,8 +1435,8 @@ test_that("res_skewnorm", {
       simulate = TRUE,
       type = "standardized"
     )
-    expect_equal(mean(res), 0.0236707225149864)
-    expect_equal(sd(res), 3.34458775450197)
+    expect_equal(mean(res), 0.0070137399798361)
+    expect_equal(sd(res), 0.991016173459387)
   })
   expect_error(res_skewnorm(10, type = "unknown"))
 })
@@ -1462,6 +1462,33 @@ test_that("res_skewnorm raw residuals subtract the mean", {
                         1, 2, shape, simulate = TRUE, type = "raw"
       )),
       0,
+      tolerance = 0.05
+    )
+  })
+})
+
+test_that("res_skewnorm standardized residuals divide by the sd", {
+  skip_if_not_installed("sn")
+  # with shape = 0 the skew normal is the normal
+  expect_equal(
+    res_skewnorm(-2:2, 1, 2, 0, type = "standardized"),
+    res_norm(-2:2, 1, 2, type = "standardized")
+  )
+  # otherwise they divide by sd * sqrt(1 - 2 * delta^2 / pi)
+  shape <- 5
+  delta <- shape / sqrt(1 + shape^2)
+  expect_equal(
+    res_skewnorm(-2:2, 1, 2, shape, type = "standardized"),
+    (-2:2 - (1 + 2 * delta * sqrt(2 / pi))) /
+      (2 * sqrt(1 - 2 * delta^2 / pi))
+  )
+  # so standardized residuals of data from the distribution have sd 1
+  withr::with_seed(101, {
+    expect_equal(
+      sd(res_skewnorm(rep(0, 10000), 1, 2, shape,
+        simulate = TRUE, type = "standardized"
+      )),
+      1,
       tolerance = 0.05
     )
   })
