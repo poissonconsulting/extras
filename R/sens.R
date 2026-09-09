@@ -57,6 +57,7 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
 #' of the Skew Normal distribution without changing the mean.
 #'
 #' @inheritParams params
+#' @param shape A numeric vector of shape.
 #'
 #' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
@@ -88,6 +89,7 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
 #' `log(x)`), mirroring [sens_lnorm()], to which it reduces when `shape = 0`.
 #'
 #' @inheritParams params
+#' @param shape A numeric vector of shape.
 #'
 #' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
