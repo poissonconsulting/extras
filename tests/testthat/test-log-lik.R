@@ -1006,7 +1006,7 @@ test_that("log_lik_skewnorm missing values", {
   )
   expect_identical(log_lik_skewnorm(1, numeric(0)), numeric(0))
   expect_identical(
-    log_lik_skewnorm(1, 1, sd = numeric(0)),
+    log_lik_skewnorm(1, 1, scale = numeric(0)),
     numeric(0)
   )
   expect_identical(

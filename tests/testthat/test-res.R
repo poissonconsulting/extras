@@ -1375,7 +1375,7 @@ test_that("res_skewnorm", {
       res_skewnorm(
         1:2,
         2,
-        sd = 0.5,
+        scale = 0.5,
         shape = 2,
         simulate = TRUE,
         type = "standardized"
@@ -1418,7 +1418,7 @@ test_that("res_skewnorm", {
       res_skewnorm(
         1:2,
         2,
-        sd = 0.5,
+        scale = 0.5,
         shape = 0,
         simulate = TRUE,
         type = "standardized"
@@ -1429,8 +1429,8 @@ test_that("res_skewnorm", {
   withr::with_seed(101, {
     res <- res_skewnorm(
       rep(2, 10000),
-      mean = 10,
-      sd = 0.3,
+      location = 10,
+      scale = 0.3,
       shape = 0.2,
       simulate = TRUE,
       type = "standardized"

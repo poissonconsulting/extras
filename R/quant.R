@@ -169,9 +169,8 @@ quant_pois_zi <- function(x, lambda = 1, prob = 0) {
 
 #' Skew Normal Quantile Function
 #'
-#' @inheritParams params
+#' @inheritParams dskewnorm
 #' @param x A numeric vector of probabilities.
-#' @param shape A numeric vector of shape.
 #'
 #' @return An numeric vector of the corresponding quantiles.
 #' @family quant_dist
@@ -181,8 +180,21 @@ quant_pois_zi <- function(x, lambda = 1, prob = 0) {
 #' quant_skewnorm(c(0.1, 0.4, 0.6))
 #' quant_skewnorm(c(0.1, 0.4, 0.6), shape = -2)
 #' quant_skewnorm(c(0.1, 0.4, 0.6), shape = 2)
-quant_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
-  qskewnorm(p = x, mean = mean, sd = sd, shape = shape)
+quant_skewnorm <- function(x, location = 0, scale = 1, shape = 0, ..., mean, sd) {
+  if (!missing(mean)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "quant_skewnorm(mean)",
+                              id = "quant_skewnorm location",
+                              with = "quant_skewnorm(location)")
+    location <- mean
+  }
+  if (!missing(sd)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "quant_skewnorm(sd)",
+                              id = "quant_skewnorm scale",
+                              with = "quant_skewnorm(scale)")
+    scale <- sd
+  }
+  chk_unused(...)
+  qskewnorm(p = x, location = location, scale = scale, shape = shape)
 }
 
 #' Skew-Lognormal Quantile Function

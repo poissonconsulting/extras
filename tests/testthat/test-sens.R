@@ -594,263 +594,263 @@ test_that("sens_exp errors with negative sd_mult", {
 # skew normal ----
 test_that("sens_skewnorm returns a numeric vector of length 3 with correct names", {
   skip_if_not_installed("sn")
-  expect_snapshot(sens_skewnorm(mean = 2, sd = 10, shape = -1, sd_mult = 2))
+  expect_snapshot(sens_skewnorm(location = 2, scale = 10, shape = -1, scale_mult = 2))
 })
 
-test_that("sens_skewnorm errors with NULL input for mean", {
+test_that("sens_skewnorm errors with NULL input for location", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = NULL, sd = 10, shape = 0.1, sd_mult = 2)
+    sens_skewnorm(location = NULL, scale = 10, shape = 0.1, scale_mult = 2)
   )
 })
 
-test_that("sens_skewnorm errors with NULL input for sd", {
+test_that("sens_skewnorm errors with NULL input for scale", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 0, sd = NULL, shape = 0.1, sd_mult = 2)
+    sens_skewnorm(location = 0, scale = NULL, shape = 0.1, scale_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors with NULL input for shape", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 0, sd = 0.3, shape = NULL, sd_mult = 2)
+    sens_skewnorm(location = 0, scale = 0.3, shape = NULL, scale_mult = 2)
   )
 })
 
-test_that("sens_skewnorm errors with NULL input for sd_mult", {
+test_that("sens_skewnorm errors with NULL input for scale_mult", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 10, sd = 10, shape = 0.1, sd_mult = NULL)
+    sens_skewnorm(location = 10, scale = 10, shape = 0.1, scale_mult = NULL)
   )
 })
 
-test_that("sens_skewnorm errors with empty numeric input for mean", {
+test_that("sens_skewnorm errors with empty numeric input for location", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = numeric(0), sd = 10, shape = 0.1, sd_mult = 2)
+    sens_skewnorm(location = numeric(0), scale = 10, shape = 0.1, scale_mult = 2)
   )
 })
 
-test_that("sens_skewnorm errors with empty numeric input for sd", {
+test_that("sens_skewnorm errors with empty numeric input for scale", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 0, sd = numeric(0), shape = 0.1, sd_mult = 2)
+    sens_skewnorm(location = 0, scale = numeric(0), shape = 0.1, scale_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors with empty numeric input for shape", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 0, sd = 12, shape = numeric(0), sd_mult = 2)
+    sens_skewnorm(location = 0, scale = 12, shape = numeric(0), scale_mult = 2)
   )
 })
 
-test_that("sens_skewnorm errors with empty numeric input for sd_mult", {
+test_that("sens_skewnorm errors with empty numeric input for scale_mult", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 10, sd = 10, shape = 0.1, sd_mult = numeric(0))
+    sens_skewnorm(location = 10, scale = 10, shape = 0.1, scale_mult = numeric(0))
   )
 })
 
-test_that("sens_skewnorm errors when provided with a vector of values for mean", {
+test_that("sens_skewnorm errors when provided with a vector of values for location", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 10:13, sd = 10, shape = 0.1, sd_mult = 2)
+    sens_skewnorm(location = 10:13, scale = 10, shape = 0.1, scale_mult = 2)
   )
 })
 
-test_that("sens_skewnorm errors when provided with a vector of values for sd", {
+test_that("sens_skewnorm errors when provided with a vector of values for scale", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 10, sd = 10:13, shape = 0.1, sd_mult = 2)
+    sens_skewnorm(location = 10, scale = 10:13, shape = 0.1, scale_mult = 2)
   )
 })
 
 test_that("sens_skewnorm errors when provided with a vector of values for shape", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 10, sd = 10, shape = 1:2, sd_mult = 2)
+    sens_skewnorm(location = 10, scale = 10, shape = 1:2, scale_mult = 2)
   )
 })
 
-test_that("sens_skewnorm errors when provided with a vector of values for sd_mult", {
+test_that("sens_skewnorm errors when provided with a vector of values for scale_mult", {
   skip_if_not_installed("sn")
   expect_chk_error(
-    sens_skewnorm(mean = 10, sd = 10, shape = 0.1, sd_mult = 2:3)
+    sens_skewnorm(location = 10, scale = 10, shape = 0.1, scale_mult = 2:3)
   )
 })
 
-test_that("sd of skewnorm deviates expands as expected", {
+test_that("scale of skewnorm deviates expands as expected", {
   skip_if_not_installed("sn")
-  mean <- 10
-  sd <- 20
+  location <- 10
+  scale <- 20
   shape <- -1
-  sd_mult <- 5
+  scale_mult <- 5
   new_pars <- sens_skewnorm(
-    mean = mean,
-    sd = sd,
+    location = location,
+    scale = scale,
     shape = shape,
-    sd_mult = sd_mult
+    scale_mult = scale_mult
   )
   withr::with_seed(
     101,
     {
-      ran_original <- ran_skewnorm(10000, mean, sd, shape)
-      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$sd, new_pars$shape)
+      ran_original <- ran_skewnorm(10000, location, scale, shape)
+      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$scale, new_pars$shape)
       expect_equal(sd(ran_new) / sd(ran_original), 4.98784228891484)
     }
   )
 })
 
-test_that("sd of skewnorm deviates decreases as expected", {
+test_that("scale of skewnorm deviates decreases as expected", {
   skip_if_not_installed("sn")
-  mean <- 10
-  sd <- 20
+  location <- 10
+  scale <- 20
   shape <- 2
-  sd_mult <- 0.4
+  scale_mult <- 0.4
   new_pars <- sens_skewnorm(
-    mean = mean,
-    sd = sd,
+    location = location,
+    scale = scale,
     shape = shape,
-    sd_mult = sd_mult
+    scale_mult = scale_mult
   )
   withr::with_seed(
     101,
     {
-      ran_original <- ran_skewnorm(10000, mean, sd, shape)
-      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$sd, new_pars$shape)
+      ran_original <- ran_skewnorm(10000, location, scale, shape)
+      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$scale, new_pars$shape)
       expect_equal(sd(ran_new) / sd(ran_original), 0.399731342111579)
     }
   )
 })
 
-test_that("mean of skewnorm deviates changes expectedly with expanding sd", {
+test_that("location of skewnorm deviates changes expectedly with expanding scale", {
   skip_if_not_installed("sn")
-  mean <- 100
-  sd <- 20
+  location <- 100
+  scale <- 20
   shape <- 2
-  sd_mult <- 2
+  scale_mult <- 2
   new_pars <- sens_skewnorm(
-    mean = mean,
-    sd = sd,
+    location = location,
+    scale = scale,
     shape = shape,
-    sd_mult = sd_mult
+    scale_mult = scale_mult
   )
   withr::with_seed(
     101,
     {
-      ran_original <- ran_skewnorm(10000, mean, sd, shape)
-      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$sd, new_pars$shape)
+      ran_original <- ran_skewnorm(10000, location, scale, shape)
+      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$scale, new_pars$shape)
       expect_equal(mean(ran_new) - mean(ran_original), -0.169525559258474)
     }
   )
 })
 
-test_that("mean of skewnorm deviates changes expectedly with reducing sd", {
+test_that("location of skewnorm deviates changes expectedly with reducing scale", {
   skip_if_not_installed("sn")
-  mean <- 100
-  sd <- 20
+  location <- 100
+  scale <- 20
   shape <- 2
-  sd_mult <- 0.4
+  scale_mult <- 0.4
   new_pars <- sens_skewnorm(
-    mean = mean,
-    sd = sd,
+    location = location,
+    scale = scale,
     shape = shape,
-    sd_mult = sd_mult
+    scale_mult = scale_mult
   )
   withr::with_seed(
     101,
     {
-      ran_original <- ran_skewnorm(10000, mean, sd, shape)
-      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$sd, new_pars$shape)
+      ran_original <- ran_skewnorm(10000, location, scale, shape)
+      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$scale, new_pars$shape)
       expect_equal(mean(ran_new) - mean(ran_original), -0.0428204928375919)
     }
   )
 })
 
-test_that("sens_skewnorm errors with character mean", {
+test_that("sens_skewnorm errors with character location", {
   skip_if_not_installed("sn")
-  mean <- "100"
-  sd <- 20
+  location <- "100"
+  scale <- 20
   shape <- 2
-  sd_mult <- 0.4
+  scale_mult <- 0.4
   expect_chk_error(
-    sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+    sens_skewnorm(location = location, scale = scale, shape = shape, scale_mult = scale_mult)
   )
 })
 
-test_that("sens_skewnorm errors with character sd", {
+test_that("sens_skewnorm errors with character scale", {
   skip_if_not_installed("sn")
-  mean <- 100
-  sd <- "twenty"
+  location <- 100
+  scale <- "twenty"
   shape <- 2
-  sd_mult <- 0.4
+  scale_mult <- 0.4
   expect_chk_error(
-    sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+    sens_skewnorm(location = location, scale = scale, shape = shape, scale_mult = scale_mult)
   )
 })
 
-test_that("sens_skewnorm errors when sd < 0", {
+test_that("sens_skewnorm errors when scale < 0", {
   skip_if_not_installed("sn")
-  mean <- 100
-  sd <- -1
+  location <- 100
+  scale <- -1
   shape <- 5
-  sd_mult <- 0.4
+  scale_mult <- 0.4
   expect_chk_error(
-    sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+    sens_skewnorm(location = location, scale = scale, shape = shape, scale_mult = scale_mult)
   )
 })
 
 test_that("sens_skewnorm errors with character shape", {
   skip_if_not_installed("sn")
-  mean <- 100
-  sd <- 10
+  location <- 100
+  scale <- 10
   shape <- "five"
-  sd_mult <- 0.4
+  scale_mult <- 0.4
   expect_chk_error(
-    sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult),
+    sens_skewnorm(location = location, scale = scale, shape = shape, scale_mult = scale_mult),
     "`shape` must be a number"
   )
 })
 
-test_that("sens_skewnorm errors with character sd_mult", {
+test_that("sens_skewnorm errors with character scale_mult", {
   skip_if_not_installed("sn")
-  mean <- 100
-  sd <- 10
+  location <- 100
+  scale <- 10
   shape <- 5
-  sd_mult <- "ten"
+  scale_mult <- "ten"
   expect_chk_error(
-    sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+    sens_skewnorm(location = location, scale = scale, shape = shape, scale_mult = scale_mult)
   )
 })
 
-test_that("sens_skewnorm errors when sd_mult < 0", {
+test_that("sens_skewnorm errors when scale_mult < 0", {
   skip_if_not_installed("sn")
-  mean <- 100
-  sd <- 1
+  location <- 100
+  scale <- 1
   shape <- 5
-  sd_mult <- -2
+  scale_mult <- -2
   expect_chk_error(
-    sens_skewnorm(mean = mean, sd = sd, shape = shape, sd_mult = sd_mult)
+    sens_skewnorm(location = location, scale = scale, shape = shape, scale_mult = scale_mult)
   )
 })
 
 test_that("sens_skewnorm has same behaviour as normal when shape = 0", {
   skip_if_not_installed("sn")
-  mean <- 100
-  sd <- 10
+  location <- 100
+  scale <- 10
   shape <- 0
-  sd_mult <- 2
+  scale_mult <- 2
   new_pars_skewnorm <- sens_skewnorm(
-    mean = mean,
-    sd = sd,
+    location = location,
+    scale = scale,
     shape = shape,
-    sd_mult = sd_mult
+    scale_mult = scale_mult
   )
-  new_pars_norm <- sens_norm(mean = mean, sd = sd, sd_mult = sd_mult)
+  new_pars_norm <- sens_norm(mean = location, sd = scale, sd_mult = scale_mult)
   expect_equal(new_pars_skewnorm$mean, new_pars_norm$mean)
-  expect_equal(new_pars_skewnorm$sd, new_pars_norm$sd)
+  expect_equal(new_pars_skewnorm$scale, new_pars_norm$sd)
 })
 
 # Log-normal ----

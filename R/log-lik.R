@@ -659,9 +659,8 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf) {
 
 #' Skew Normal Log-Likelihood
 #'
-#' @inheritParams params
+#' @inheritParams dskewnorm
 #' @param x A numeric vector of values.
-#' @param shape A numeric vector of shape.
 #'
 #' @return An numeric vector of the corresponding log-likelihoods.
 #' @family log_lik_dist
@@ -673,22 +672,38 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf) {
 #' log_lik_skewnorm(c(-2:2), shape = 2)
 log_lik_skewnorm <- function(
   x,
-  mean = 0,
-  sd = 1,
+  location = 0,
+  scale = 1,
   shape = 0,
   tlower = -Inf,
-  tupper = Inf
+  tupper = Inf,
+  ...,
+  mean,
+  sd
 ) {
   if (!length(tlower) || !length(tupper)) {
     return(numeric(0))
   }
   rlang::check_installed("sn")
-  log_lik <- dskewnorm(x = x, mean = mean, sd = sd, shape = shape, log = TRUE)
+  if (!missing(mean)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "log_lik_skewnorm(mean)",
+                              id = "log_lik_skewnorm location",
+                              with = "log_lik_skewnorm(location)")
+    location <- mean
+  }
+  if (!missing(sd)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "log_lik_skewnorm(sd)",
+                              id = "log_lik_skewnorm scale",
+                              with = "log_lik_skewnorm(scale)")
+    scale <- sd
+  }
+  chk_unused(...)
+  log_lik <- dskewnorm(x = x, location = location, scale = scale, shape = shape, log = TRUE)
   use_norm <- !is.na(shape) & shape == 0
-  lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
+  lnorm <- log_lik_norm(x = x, mean = location, sd = scale)
   lengths <- as.logical(length(x)) +
-    as.logical(length(mean)) +
-    as.logical(length(sd)) +
+    as.logical(length(location)) +
+    as.logical(length(scale)) +
     as.logical(length(shape))
   if (lengths >= 4) {
     log_lik[use_norm] <- lnorm[use_norm]
@@ -699,8 +714,8 @@ log_lik_skewnorm <- function(
   if (any(truncated & !is.na(truncated))) {
     log_lik_truncated <- log_lik -
       log(
-        prob_skewnorm(tupper, mean = mean, sd = sd, shape = shape) -
-          prob_skewnorm(tlower, mean = mean, sd = sd, shape = shape)
+        prob_skewnorm(tupper, location = location, scale = scale, shape = shape) -
+          prob_skewnorm(tlower, location = location, scale = scale, shape = shape)
       )
     log_lik_truncated[x < tlower | x > tupper] <- -Inf
     log_lik[truncated] <- log_lik_truncated[truncated]

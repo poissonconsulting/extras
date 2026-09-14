@@ -30,6 +30,8 @@ multinomial logistic regression), and must not contain \code{NA}.}
 \item{level}{A number > 0 and <= 1 specifying the probability coverage of the
 interval.}
 
+\item{location}{A numeric vector of the location parameter.}
+
 \item{log}{A flag specifying whether to return the log-transformed value.}
 
 \item{lower.tail}{A flag specifying whether to return the lower or upper tail
@@ -62,7 +64,7 @@ success.}
 \item{res}{A flag specifying whether to return the deviance residual as
 opposed to the deviance.}
 
-\item{scale}{A non-negative numeric vector of the scale.}
+\item{scale}{A non-negative numeric vector of the scale parameter.}
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 

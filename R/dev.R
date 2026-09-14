@@ -403,8 +403,8 @@ dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
 #' Skew Normal Deviances
 #'
 #' @inheritParams params
+#' @inheritParams dskewnorm
 #' @param x A numeric vector of values.
-#' @param shape A numeric vector of shape.
 #'
 #' @return An numeric vector of the corresponding deviances or deviance residuals.
 #' @family dev_dist
@@ -414,8 +414,22 @@ dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
 #' dev_skewnorm(c(-2:2))
 #' dev_skewnorm(-2:2, 0, 1, 5)
 #' dev_skewnorm(-2:2, 0, 1, 5, res = TRUE)
-dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
+dev_skewnorm <- function(x, location = 0, scale = 1, shape = 0, res = FALSE, ...,
+                         mean, sd) {
   rlang::check_installed("sn")
+  if (!missing(mean)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "dev_skewnorm(mean)",
+                              id = "dev_skewnorm location",
+                              with = "dev_skewnorm(location)")
+    location <- mean
+  }
+  if (!missing(sd)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "dev_skewnorm(sd)",
+                              id = "dev_skewnorm scale",
+                              with = "dev_skewnorm(scale)")
+    scale <- sd
+  }
+  chk_unused(...)
   delta <- shape / sqrt(1 + shape^2)
   mu_z <- sqrt(2 / pi) * delta
   sig_z <- sqrt(1 - mu_z^2)
@@ -424,9 +438,9 @@ dev_skewnorm <- function(x, mean = 0, sd = 1, shape = 0, res = FALSE) {
   m_o <- mu_z -
     (gam_1 * sig_z / 2) -
     (sign(shape) / 2) * exp(-2 * pi / abs(shape))
-  mode_sat <- mean + sd * m_o
-  dev <- log_lik_skewnorm(mode_sat, mean = mean, sd = sd, shape = shape) -
-    log_lik_skewnorm(x, mean = mean, sd = sd, shape = shape)
+  mode_sat <- location + scale * m_o
+  dev <- log_lik_skewnorm(mode_sat, location = location, scale = scale, shape = shape) -
+    log_lik_skewnorm(x, location = location, scale = scale, shape = shape)
   neg <- dev < 0
   dev[neg] <- 0
   dev <- dev * 2

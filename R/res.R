@@ -441,9 +441,8 @@ res_pois_zi <- function(
 
 #' Skew Normal Residuals
 #'
-#' @inheritParams params
+#' @inheritParams dskewnorm
 #' @param x A numeric vector of values.
-#' @param shape A numeric vector of shape.
 #'
 #' @return An numeric vector of the corresponding residuals.
 #' @family res_dist
@@ -453,25 +452,42 @@ res_pois_zi <- function(
 #' res_skewnorm(c(-2:2))
 res_skewnorm <- function(
   x,
-  mean = 0,
-  sd = 1,
+  location = 0,
+  scale = 1,
   shape = 0,
   type = "dev",
-  simulate = FALSE
+  simulate = FALSE,
+  ...,
+  mean,
+  sd
 ) {
   rlang::check_installed("sn")
+  chk_unused(...)
+  if (!missing(mean)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewnorm(mean)",
+                              id = "res_skewnorm location",
+                              with = "res_skewnorm(location)")
+    location <- mean
+  }
+  if (!missing(sd)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewnorm(sd)",
+                              id = "res_skewnorm scale",
+                              with = "res_skewnorm(scale)")
+    scale <- sd
+  }
   chk_string(type)
   if (!vld_false(simulate)) {
-    x <- ran_skewnorm(length(x), mean = mean, sd = sd, shape = shape)
+    x <- ran_skewnorm(length(x), location = location, scale = scale, shape = shape)
   }
   switch(
     type,
     data = x,
-    raw = x - (mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi)),
+    raw = x - (location + scale * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi)),
     standardized = (x -
-      (mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi))) /
-      sqrt(sd^2 * (1 - ((2 * (shape / sqrt(1 + shape^2))^2) / pi))),
-    dev = dev_skewnorm(x, mean = mean, sd = sd, shape = shape, res = TRUE),
+      (location + scale * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi))) /
+      sqrt(scale^2 * (1 - ((2 * (shape / sqrt(1 + shape^2))^2) / pi))),
+    dev = dev_skewnorm(x, location = location, scale = scale, shape = shape,
+                       res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )
 }

@@ -214,9 +214,8 @@ prob_pois_zi <- function(x, lambda = 1, prob = 0) {
 
 #' Skew Normal Cumulative Distribution Function
 #'
-#' @inheritParams params
+#' @inheritParams dskewnorm
 #' @param x A numeric vector of quantiles.
-#' @param shape A numeric vector of shape.
 #'
 #' @return An numeric vector of the corresponding probabilities.
 #' @family prob_dist
@@ -226,8 +225,22 @@ prob_pois_zi <- function(x, lambda = 1, prob = 0) {
 #' prob_skewnorm(c(-2:2))
 #' prob_skewnorm(c(-2:2), shape = -2)
 #' prob_skewnorm(c(-2:2), shape = 2)
-prob_skewnorm <- function(x, mean = 0, sd = 1, shape = 0) {
-  pskewnorm(q = x, mean = mean, sd = sd, shape = shape)
+prob_skewnorm <- function(x, location = 0, scale = 1, shape = 0, ...,
+                          mean, sd) {
+  if (!missing(mean)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "prob_skewnorm(mean)",
+                              id = "prob_skewnorm location",
+                              with = "prob_skewnorm(location)")
+    location <- mean
+  }
+  if (!missing(sd)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "prob_skewnorm(sd)",
+                              id = "prob_skewnorm scale",
+                              with = "prob_skewnorm(scale)")
+    scale <- sd
+  }
+  chk_unused(...)
+  pskewnorm(q = x, location = location, scale = scale, shape = shape)
 }
 
 #' Skew-Lognormal Cumulative Distribution Function

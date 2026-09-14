@@ -454,7 +454,7 @@ test_that("ran_skewnorm", {
   expect_error(ran_skewnorm(NA_integer_))
   expect_error(ran_skewnorm(NULL))
   expect_error(ran_skewnorm(integer(0)))
-  expect_error(ran_skewnorm(1, 0, sd = -1))
+  expect_error(ran_skewnorm(1, 0, scale = -1))
   expect_identical(ran_skewnorm(0L), numeric(0))
   withr::with_seed(101, {
     expect_equal(ran_skewnorm(), 0.552461855419139)
@@ -467,19 +467,19 @@ test_that("ran_skewnorm", {
     expect_equal(ran_skewnorm(1, c(5, 10)), c(4.8066620350025))
   })
   withr::with_seed(101, {
-    expect_equal(ran_skewnorm(sd = 1), 0.552461855419139)
-    expect_equal(ran_skewnorm(2, sd = 2), c(0.428718918086851, 2.3479325751254))
+    expect_equal(ran_skewnorm(scale = 1), 0.552461855419139)
+    expect_equal(ran_skewnorm(2, scale = 2), c(0.428718918086851, 2.3479325751254))
     expect_equal(
-      ran_skewnorm(2, 10, sd = 3),
+      ran_skewnorm(2, 10, scale = 3),
       c(9.66179705573736, 9.33022190611821)
     )
     expect_equal(
-      ran_skewnorm(2, c(5, 10), sd = 2),
+      ran_skewnorm(2, c(5, 10), scale = 2),
       c(3.41031112916989, 7.06636061167307)
     )
-    expect_equal(ran_skewnorm(1, c(5, 10), sd = 1), c(4.8066620350025))
-    expect_equal(ran_skewnorm(1, 0, sd = 3), 0.175396493548505)
-    expect_equal(ran_skewnorm(1, 0, sd = 4), -8.20123126255853)
+    expect_equal(ran_skewnorm(1, c(5, 10), scale = 1), c(4.8066620350025))
+    expect_equal(ran_skewnorm(1, 0, scale = 3), 0.175396493548505)
+    expect_equal(ran_skewnorm(1, 0, scale = 4), -8.20123126255853)
   })
   withr::with_seed(101, {
     expect_equal(ran_skewnorm(shape = 10), 0.379390442659801)
@@ -506,26 +506,26 @@ test_that("ran_skewnorm", {
     expect_equal(ran_skewnorm(1, c(10, 100), shape = -1), c(8.77536013503756))
   })
   withr::with_seed(101, {
-    expect_equal(ran_skewnorm(sd = 1, shape = 5), 0.428051766065545)
+    expect_equal(ran_skewnorm(scale = 1, shape = 5), 0.428051766065545)
     expect_equal(
-      ran_skewnorm(2, sd = 1, shape = 5),
+      ran_skewnorm(2, scale = 1, shape = 5),
       c(0.703876239197544, 0.534968020196629)
     )
     expect_equal(
-      ran_skewnorm(2, 10, sd = 3, shape = 5),
+      ran_skewnorm(2, 10, scale = 3, shape = 5),
       c(11.7539930699001, 12.5663063681019)
     )
     expect_equal(
-      ran_skewnorm(2, 10, sd = 2, shape = -2),
+      ran_skewnorm(2, 10, scale = 2, shape = -2),
       c(8.3473305357842, 6.13398981871521)
     )
     expect_equal(
-      ran_skewnorm(2, c(10, 100), sd = 5, shape = -2),
+      ran_skewnorm(2, c(10, 100), scale = 5, shape = -2),
       c(8.50920292023333, 96.3305141003515)
     )
-    expect_equal(ran_skewnorm(2, c(10, 100), sd = 0, shape = -1), c(10, 100))
+    expect_equal(ran_skewnorm(2, c(10, 100), scale = 0, shape = -1), c(10, 100))
     expect_equal(
-      ran_skewnorm(1, c(10, 100), sd = 10, shape = -1),
+      ran_skewnorm(1, c(10, 100), scale = 10, shape = -1),
       c(-2.24639864962439)
     )
   })
