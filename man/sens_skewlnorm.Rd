@@ -12,7 +12,7 @@ sens_skewlnorm(meanlog, sdlog, shape, sd_mult = 2)
 \item{sdlog}{A non-negative numeric vector of the standard deviations on the
 log scale.}
 
-\item{shape}{A non-negative numeric vector of shape.}
+\item{shape}{A numeric vector of shape.}
 
 \item{sd_mult}{A non-negative multiplier on the standard deviation of the
 distribution.}
