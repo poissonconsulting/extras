@@ -26,7 +26,7 @@ sens_skewlnorm(meanlog, sdlog, shape, sd_mult = 2)
 
 - shape:
 
-  A non-negative numeric vector of shape.
+  A numeric vector of shape.
 
 - sd_mult:
 
