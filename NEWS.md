@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.10.0.9002
+
+- Fix raw and standardized residuals in res_skewnorm() (#152, #153) (#161) (#152).
+
+- Document shape as unbounded for `sens_skewnorm()` and `sens_skewlnorm()` (#158) (#162) (#158).
+
+
 # extras 0.10.0.9001
 
 - Move the fledge preamble back to the first line of NEWS.md (#150).
