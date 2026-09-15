@@ -174,7 +174,7 @@ test_that("prob_skewlnorm", {
   expect_identical(prob_skewlnorm(numeric(0)), numeric(0))
   expect_identical(prob_skewlnorm(NA), NA_real_)
   expect_identical(prob_skewlnorm(0), 0)
-  expect_equal(prob_skewlnorm(1:5, 0.3, 0.7, shape = 0), plnorm(1:5, 0.3, 0.7))
+  expect_equal(prob_skewlnorm(1:5, 0.3, 0.7, shape_log = 0), plnorm(1:5, 0.3, 0.7))
   expect_equal(prob_skewlnorm(2, 0, 1, 2), 0.521879277607988)
   expect_equal(prob_skewlnorm(1:5, 0, 1, 2), pskewlnorm(1:5, 0, 1, 2))
 })

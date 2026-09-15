@@ -535,7 +535,7 @@ test_that("ran_skewlnorm", {
   skip_if_not_installed("sn")
   expect_error(ran_skewlnorm(NA_integer_))
   expect_error(ran_skewlnorm(NULL))
-  expect_error(ran_skewlnorm(1, 0, sdlog = -1))
+  expect_error(ran_skewlnorm(1, 0, scale_log = -1))
   expect_identical(ran_skewlnorm(0L), numeric(0))
   withr::with_seed(
     101,

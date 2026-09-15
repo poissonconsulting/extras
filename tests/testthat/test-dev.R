@@ -1184,7 +1184,7 @@ test_that("dev_skewlnorm missing values", {
   expect_identical(dev_skewlnorm(1, 1, 1, NA), NA_real_)
 })
 
-test_that("dev_skewlnorm equal to dev_lnorm when shape = 0", {
+test_that("dev_skewlnorm equal to dev_lnorm when shape_log = 0", {
   skip_if_not_installed("sn")
   expect_equal(
     dev_skewlnorm(exp(-2:2), 0.3, 0.7, 0),
@@ -1212,7 +1212,7 @@ test_that("dev_skewlnorm res", {
 test_that("dev_skewlnorm log_lik", {
   skip_if_not_installed("sn")
   expect_equal(
-    dev_skewlnorm(1:3, 0.5, 0.7, shape = 0),
+    dev_skewlnorm(1:3, 0.5, 0.7, shape_log = 0),
     dev_lnorm(1:3, 0.5, 0.7)
   )
 })

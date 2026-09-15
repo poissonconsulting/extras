@@ -1521,9 +1521,9 @@ test_that("res_skewlnorm", {
   withr::with_seed(101, {
     res <- res_skewlnorm(
       rep(2, 10000),
-      meanlog = 10,
-      sdlog = 0.3,
-      shape = 0.2,
+      location_log = 10,
+      scale_log = 0.3,
+      shape_log = 0.2,
       simulate = TRUE,
       type = "standardized"
     )

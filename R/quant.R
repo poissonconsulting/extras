@@ -199,9 +199,8 @@ quant_skewnorm <- function(x, location = 0, scale = 1, shape = 0, ..., mean, sd)
 
 #' Skew-Lognormal Quantile Function
 #'
-#' @inheritParams params
+#' @inheritParams dskewlnorm
 #' @param x A numeric vector of probabilities.
-#' @param shape A numeric vector of shape.
 #'
 #' @return An numeric vector of the corresponding quantiles.
 #' @family quant_dist
@@ -209,10 +208,31 @@ quant_skewnorm <- function(x, location = 0, scale = 1, shape = 0, ..., mean, sd)
 #'
 #' @examplesIf rlang::is_installed("sn")
 #' quant_skewlnorm(c(0.1, 0.4, 0.6))
-#' quant_skewlnorm(c(0.1, 0.4, 0.6), shape = -2)
-#' quant_skewlnorm(c(0.1, 0.4, 0.6), shape = 2)
-quant_skewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0) {
-  qskewlnorm(p = x, meanlog = meanlog, sdlog = sdlog, shape = shape)
+#' quant_skewlnorm(c(0.1, 0.4, 0.6), shape_log = -2)
+#' quant_skewlnorm(c(0.1, 0.4, 0.6), shape_log = 2)
+quant_skewlnorm <- function(x, location_log = 0, scale_log = 1, shape_log = 0,
+                            ..., meanlog, sdlog, shape) {
+  if (!missing(meanlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "quant_skewlnorm(meanlog)",
+                              id = "quant_skewlnorm location_log",
+                              with = "quant_skewlnorm(location_log)")
+    location_log <- meanlog
+  }
+  if (!missing(sdlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "quant_skewlnorm(sdlog)",
+                              id = "quant_skewlnorm scale_log",
+                              with = "quant_skewlnorm(scale_log)")
+    scale_log <- sdlog
+  }
+  if (!missing(shape)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "quant_skewlnorm(shape)",
+                              id = "quant_skewlnorm shape_log",
+                              with = "quant_skewlnorm(shape_log)")
+    shape_log <- shape
+  }
+  chk_unused(...)
+  qskewlnorm(p = x, location_log = location_log, scale_log = scale_log,
+             shape_log = shape_log)
 }
 
 #' Student's t Quantile Function

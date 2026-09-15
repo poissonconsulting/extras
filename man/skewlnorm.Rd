@@ -7,25 +7,78 @@
 \alias{rskewlnorm}
 \title{Skew-Lognormal Distribution}
 \usage{
-dskewlnorm(x, meanlog = 0, sdlog = 1, shape = 0, log = FALSE)
+dskewlnorm(
+  x,
+  location_log = 0,
+  scale_log = 1,
+  shape_log = 0,
+  log = FALSE,
+  ...,
+  meanlog,
+  sdlog,
+  shape
+)
 
-pskewlnorm(q, meanlog = 0, sdlog = 1, shape = 0)
+pskewlnorm(
+  q,
+  location_log = 0,
+  scale_log = 1,
+  shape_log = 0,
+  ...,
+  meanlog,
+  sdlog,
+  shape
+)
 
-qskewlnorm(p, meanlog = 0, sdlog = 1, shape = 0)
+qskewlnorm(
+  p,
+  location_log = 0,
+  scale_log = 1,
+  shape_log = 0,
+  ...,
+  meanlog,
+  sdlog,
+  shape
+)
 
-rskewlnorm(n = 1, meanlog = 0, sdlog = 1, shape = 0)
+rskewlnorm(
+  n = 1,
+  location_log = 0,
+  scale_log = 1,
+  shape_log = 0,
+  ...,
+  meanlog,
+  sdlog,
+  shape
+)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
 
-\item{meanlog}{A numeric vector of the means on the log scale.}
+\item{location_log}{A numeric vector of location parameters of \code{log(x)}.}
 
-\item{sdlog}{A non-negative numeric vector of the standard deviations on the
-log scale.}
+\item{scale_log}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
 
-\item{shape}{A numeric vector of values.}
+\item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
+Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{log}{A flag specifying whether to return the log-transformed value.}
+
+\item{...}{Unused.}
+
+\item{meanlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of location parameters of \code{log(x)}.
+Described as "a numeric vector of the means on the log scale" prior to v.
+0.10.1.
+Will be removed in a future version.}
+
+\item{sdlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A non-negative numeric vector of scale parameters of
+\code{log(x)}.
+Described as "a non-negative numeric vector of the standard deviations on the
+log scale" prior to v. 0.10.1.
+Will be removed in a future version.}
+
+\item{shape}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of shape parameters of \code{log(x)}.
+Will be removed in a future version.}
 
 \item{q}{A vector of quantiles.}
 
@@ -39,21 +92,21 @@ generate.}
 \code{pskewlnorm} and \code{qskewlnorm} use the lower tail probability.
 }
 \description{
-The skew-lognormal distribution of a value \code{x} whose natural logarithm
-follows a \link[=dskewnorm]{Skew-Normal} distribution with location \code{meanlog},
-scale \code{sdlog} and \code{shape}.
-It reduces to the Log-Normal distribution when \code{shape = 0}.
+The skew-lognormal distribution of a random variable whose natural logarithm
+follows a \link[=dskewnorm]{Skew-Normal} distribution with location \code{location_log},
+scale \code{scale_log} and \code{shape_log}.
+It reduces to the Log-Normal distribution when \code{shape_log = 0}.
 }
 \examples{
 \dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
-dskewlnorm(x = 1:5, meanlog = 0, sdlog = 1, shape = 0.1)
-dskewlnorm(x = 1:5, meanlog = 0, sdlog = 1, shape = -1)
-qskewlnorm(p = c(0.1, 0.4), meanlog = 0, sdlog = 1, shape = 0.1)
-qskewlnorm(p = c(0.1, 0.4), meanlog = 0, sdlog = 1, shape = -1)
-pskewlnorm(q = 1:5, meanlog = 0, sdlog = 1, shape = 0.1)
-pskewlnorm(q = 1:5, meanlog = 0, sdlog = 1, shape = -1)
-rskewlnorm(n = 3, meanlog = 0, sdlog = 1, shape = 0.1)
-rskewlnorm(n = 3, meanlog = 0, sdlog = 1, shape = -1)
+dskewlnorm(x = 1:5, location_log = 0, scale_log = 1, shape_log = 0.1)
+dskewlnorm(x = 1:5, location_log = 0, scale_log = 1, shape_log = -1)
+qskewlnorm(p = c(0.1, 0.4), location_log = 0, scale_log = 1, shape_log = 0.1)
+qskewlnorm(p = c(0.1, 0.4), location_log = 0, scale_log = 1, shape_log = -1)
+pskewlnorm(q = 1:5, location_log = 0, scale_log = 1, shape_log = 0.1)
+pskewlnorm(q = 1:5, location_log = 0, scale_log = 1, shape_log = -1)
+rskewlnorm(n = 3, location_log = 0, scale_log = 1, shape_log = 0.1)
+rskewlnorm(n = 3, location_log = 0, scale_log = 1, shape_log = -1)
 \dontshow{\}) # examplesIf}
 }
 \concept{skewlnorm}

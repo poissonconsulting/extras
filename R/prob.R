@@ -245,9 +245,8 @@ prob_skewnorm <- function(x, location = 0, scale = 1, shape = 0, ...,
 
 #' Skew-Lognormal Cumulative Distribution Function
 #'
-#' @inheritParams params
+#' @inheritParams dskewlnorm
 #' @param x A numeric vector of quantiles.
-#' @param shape A numeric vector of shape.
 #'
 #' @return An numeric vector of the corresponding probabilities.
 #' @family prob_dist
@@ -255,10 +254,31 @@ prob_skewnorm <- function(x, location = 0, scale = 1, shape = 0, ...,
 #'
 #' @examplesIf rlang::is_installed("sn")
 #' prob_skewlnorm(1:5)
-#' prob_skewlnorm(1:5, shape = -2)
-#' prob_skewlnorm(1:5, shape = 2)
-prob_skewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0) {
-  pskewlnorm(q = x, meanlog = meanlog, sdlog = sdlog, shape = shape)
+#' prob_skewlnorm(1:5, shape_log = -2)
+#' prob_skewlnorm(1:5, shape_log = 2)
+prob_skewlnorm <- function(x, location_log = 0, scale_log = 1, shape_log = 0,
+                           ..., meanlog, sdlog, shape) {
+  if (!missing(meanlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "prob_skewlnorm(meanlog)",
+                              id = "prob_skewlnorm location_log",
+                              with = "prob_skewlnorm(location_log)")
+    location_log <- meanlog
+  }
+  if (!missing(sdlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "prob_skewlnorm(sdlog)",
+                              id = "prob_skewlnorm scale_log",
+                              with = "prob_skewlnorm(scale_log)")
+    scale_log <- sdlog
+  }
+  if (!missing(shape)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "prob_skewlnorm(shape)",
+                              id = "prob_skewlnorm shape_log",
+                              with = "prob_skewlnorm(shape_log)")
+    shape_log <- shape
+  }
+  chk_unused(...)
+  pskewlnorm(q = x, location_log = location_log, scale_log = scale_log,
+             shape_log = shape_log)
 }
 
 #' Student's t Cumulative Distribution Function

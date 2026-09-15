@@ -173,7 +173,7 @@ test_that("quant_skewlnorm", {
   skip_if_not_installed("sn")
   expect_identical(quant_skewlnorm(NA), NA_real_)
   expect_equal(
-    quant_skewlnorm(c(0.1, 0.5, 0.9), 0.3, 0.7, shape = 0),
+    quant_skewlnorm(c(0.1, 0.5, 0.9), 0.3, 0.7, shape_log = 0),
     quant_lnorm(c(0.1, 0.5, 0.9), 0.3, 0.7)
   )
   expect_equal(quant_skewlnorm(0.5, 0, 1, 2), 1.92585572275397)

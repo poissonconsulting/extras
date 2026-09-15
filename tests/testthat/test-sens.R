@@ -2083,78 +2083,79 @@ test_that("sens_gamma_pois_zi errors with sd_mult < 0", {
   )
 })
 
+# Skew Log-normal ----
 test_that("sens_skewlnorm returns a numeric list of length 3 with correct names", {
   skip_if_not_installed("sn")
-  new_pars <- sens_skewlnorm(meanlog = 0, sdlog = 1, shape = 2, sd_mult = 2)
-  expect_named(new_pars, c("meanlog", "sdlog", "shape"))
+  new_pars <- sens_skewlnorm(location_log = 0, scale_log = 1, shape_log = 2, scale_mult = 2)
+  expect_named(new_pars, c("location_log", "scale_log", "shape_log"))
   expect_equal(
     new_pars,
-    list(meanlog = -0.640663659621582, sdlog = 1.44169785274557, shape = 2)
+    list(location_log = -0.640663659621582, scale_log = 1.44169785274557, shape_log = 2)
   )
 })
 
 test_that("sens_skewlnorm errors with NULL, empty, or vector inputs", {
   skip_if_not_installed("sn")
   expect_error(sens_skewlnorm(
-    meanlog = NULL,
-    sdlog = 1,
-    shape = 2,
-    sd_mult = 2
+    location_log = NULL,
+    scale_log = 1,
+    shape_log = 2,
+    scale_mult = 2
   ))
   expect_error(sens_skewlnorm(
-    meanlog = 0,
-    sdlog = numeric(0),
-    shape = 2,
-    sd_mult = 2
+    location_log = 0,
+    scale_log = numeric(0),
+    shape_log = 2,
+    scale_mult = 2
   ))
-  expect_error(sens_skewlnorm(meanlog = 0:1, sdlog = 1, shape = 2, sd_mult = 2))
-  expect_error(sens_skewlnorm(meanlog = 0, sdlog = -1, shape = 2, sd_mult = 2))
-  expect_error(sens_skewlnorm(meanlog = 0, sdlog = 1, shape = 2, sd_mult = -1))
+  expect_error(sens_skewlnorm(location_log = 0:1, scale_log = 1, shape_log = 2, scale_mult = 2))
+  expect_error(sens_skewlnorm(location_log = 0, scale_log = -1, shape_log = 2, scale_mult = 2))
+  expect_error(sens_skewlnorm(location_log = 0, scale_log = 1, shape_log = 2, scale_mult = -1))
 })
 
-test_that("sens_skewlnorm reduces to sens_lnorm when shape = 0", {
+test_that("sens_skewlnorm reduces to sens_lnorm when shape_log = 0", {
   skip_if_not_installed("sn")
   new_skewlnorm <- sens_skewlnorm(
-    meanlog = 0.3,
-    sdlog = 0.7,
-    shape = 0,
-    sd_mult = 2
+    location_log = 0.3,
+    scale_log = 0.7,
+    shape_log = 0,
+    scale_mult = 2
   )
-  new_lnorm <- sens_lnorm(meanlog = 0.3, sdlog = 0.7, sd_mult = 2)
-  expect_equal(new_skewlnorm$meanlog, new_lnorm$meanlog)
-  expect_equal(new_skewlnorm$sdlog, new_lnorm$sdlog)
+  new_lnorm <- sens_lnorm(meanlog = 0.3, sdlog =  0.7, sd_mult = 2)
+  expect_equal(new_skewlnorm$location_log, new_lnorm$meanlog)
+  expect_equal(new_skewlnorm$scale_log, new_lnorm$sdlog)
 })
 
-test_that("sens_skewlnorm returns the input unchanged when sdlog = 0", {
+test_that("sens_skewlnorm returns the input unchanged when scale_log = 0", {
   skip_if_not_installed("sn")
   expect_equal(
     sens_skewlnorm(2, 0, 1, 2),
-    list(meanlog = 2, sdlog = 0, shape = 1)
+    list(location_log = 2, scale_log = 0, shape_log = 1)
   )
 })
 
-test_that("sd of skewlnorm deviates scales by sd_mult while preserving the mean", {
+test_that("scale_log of skewlnorm deviates scales by scale_mult while preserving the mean", {
   skip_if_not_installed("sn")
-  meanlog <- 0.3
-  sdlog <- 0.7
-  shape <- 2
-  for (sd_mult in c(0.5, 2)) {
+  location_log <- 0.3
+  scale_log <- 0.7
+  shape_log <- 2
+  for (scale_mult in c(0.5, 2)) {
     new_pars <- sens_skewlnorm(
-      meanlog = meanlog,
-      sdlog = sdlog,
-      shape = shape,
-      sd_mult = sd_mult
+      location_log = location_log,
+      scale_log = scale_log,
+      shape_log = shape_log,
+      scale_mult = scale_mult
     )
     withr::with_seed(101, {
-      ran_original <- ran_skewlnorm(1e6, meanlog, sdlog, shape)
+      ran_original <- ran_skewlnorm(1e6, location_log, scale_log, shape_log)
       ran_new <- ran_skewlnorm(
         1e6,
-        new_pars$meanlog,
-        new_pars$sdlog,
-        new_pars$shape
+        new_pars$location_log,
+        new_pars$scale_log,
+        new_pars$shape_log
       )
     })
     expect_equal(mean(ran_new), mean(ran_original), tolerance = 0.02)
-    expect_equal(sd(ran_new) / sd(ran_original), sd_mult, tolerance = 0.02)
+    expect_equal(sd(ran_new) / sd(ran_original), scale_mult, tolerance = 0.02)
   }
 })
