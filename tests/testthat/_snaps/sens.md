@@ -39,7 +39,7 @@
     Code
       sens_skewnorm(location = 2, scale = 10, shape = -1, scale_mult = 2)
     Output
-      $mean
+      $location
       [1] 7.641896
       
       $scale

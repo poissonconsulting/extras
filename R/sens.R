@@ -99,10 +99,8 @@ sens_skewnorm <- function(location, scale, shape, scale_mult = 2, ...,
   new_scale <- scale * scale_mult
   delta <- shape / sqrt(1 + shape^2)
   original_mean <- location + scale * delta * sqrt(2 / pi)
-  new_mean <- location + new_scale * delta * sqrt(2 / pi)
-  diff_means <- new_mean - original_mean
-  adjusted_mean <- location - diff_means
-  return(list(mean = adjusted_mean, scale = new_scale, shape = shape))
+  new_location <- original_mean - new_scale * delta * sqrt(2 / pi)
+  return(list(location = new_location, scale = new_scale, shape = shape))
 }
 
 #' Adjust Skew-Lognormal Distribution Parameters for Sensitivity Analyses

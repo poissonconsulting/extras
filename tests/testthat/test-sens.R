@@ -697,7 +697,7 @@ test_that("scale of skewnorm deviates expands as expected", {
     101,
     {
       ran_original <- ran_skewnorm(10000, location, scale, shape)
-      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$scale, new_pars$shape)
+      ran_new <- ran_skewnorm(10000, new_pars$location, new_pars$scale, new_pars$shape)
       expect_equal(sd(ran_new) / sd(ran_original), 4.98784228891484)
     }
   )
@@ -719,7 +719,7 @@ test_that("scale of skewnorm deviates decreases as expected", {
     101,
     {
       ran_original <- ran_skewnorm(10000, location, scale, shape)
-      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$scale, new_pars$shape)
+      ran_new <- ran_skewnorm(10000, new_pars$location, new_pars$scale, new_pars$shape)
       expect_equal(sd(ran_new) / sd(ran_original), 0.399731342111579)
     }
   )
@@ -741,7 +741,7 @@ test_that("location of skewnorm deviates changes expectedly with expanding scale
     101,
     {
       ran_original <- ran_skewnorm(10000, location, scale, shape)
-      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$scale, new_pars$shape)
+      ran_new <- ran_skewnorm(10000, new_pars$location, new_pars$scale, new_pars$shape)
       expect_equal(mean(ran_new) - mean(ran_original), -0.169525559258474)
     }
   )
@@ -763,7 +763,7 @@ test_that("location of skewnorm deviates changes expectedly with reducing scale"
     101,
     {
       ran_original <- ran_skewnorm(10000, location, scale, shape)
-      ran_new <- ran_skewnorm(10000, new_pars$mean, new_pars$scale, new_pars$shape)
+      ran_new <- ran_skewnorm(10000, new_pars$location, new_pars$scale, new_pars$shape)
       expect_equal(mean(ran_new) - mean(ran_original), -0.0428204928375919)
     }
   )
@@ -849,7 +849,7 @@ test_that("sens_skewnorm has same behaviour as normal when shape = 0", {
     scale_mult = scale_mult
   )
   new_pars_norm <- sens_norm(mean = location, sd = scale, sd_mult = scale_mult)
-  expect_equal(new_pars_skewnorm$mean, new_pars_norm$mean)
+  expect_equal(new_pars_skewnorm$location, new_pars_norm$mean)
   expect_equal(new_pars_skewnorm$scale, new_pars_norm$sd)
 })
 
