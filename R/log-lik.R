@@ -660,6 +660,7 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0, tlower = 0, tupper = Inf) {
 #' Skew Normal Log-Likelihood
 #'
 #' @inheritParams dskewnorm
+#' @inheritParams params
 #' @param x A numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding log-likelihoods.
@@ -730,6 +731,7 @@ log_lik_skewnorm <- function(
 #' Skew-Lognormal Log-Likelihood
 #'
 #' @inheritParams dskewlnorm
+#' @inheritParams params
 #'
 #' @return An numeric vector of the corresponding log-likelihoods.
 #' @family log_lik_dist

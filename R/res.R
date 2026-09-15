@@ -442,6 +442,7 @@ res_pois_zi <- function(
 #' Skew Normal Residuals
 #'
 #' @inheritParams dskewnorm
+#' @inheritParams params
 #' @param x A numeric vector of values.
 #'
 #' @return An numeric vector of the corresponding residuals.
@@ -495,6 +496,7 @@ res_skewnorm <- function(
 #' Skew-Lognormal Residuals
 #'
 #' @inheritParams dskewlnorm
+#' @inheritParams params
 #'
 #' @return An numeric vector of the corresponding residuals.
 #' @family res_dist

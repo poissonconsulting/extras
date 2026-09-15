@@ -27,6 +27,10 @@ log_lik_skewlnorm(
 \item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
 Negative values result in leftward skew, while positive values result in rightward skew.}
 
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
+
 \item{...}{Unused.}
 
 \item{meanlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of location parameters of \code{log(x)}.

@@ -27,6 +27,11 @@ res_skewlnorm(
 \item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
 Negative values result in leftward skew, while positive values result in rightward skew.}
 
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.}
+
+\item{simulate}{A flag specifying whether to simulate residuals.}
+
 \item{...}{Unused.}
 
 \item{meanlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of location parameters of \code{log(x)}.
