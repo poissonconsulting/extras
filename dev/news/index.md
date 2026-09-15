@@ -1,5 +1,21 @@
 # Changelog
 
+## extras 0.10.0.9002
+
+- Fix raw and standardized residuals in res_skewnorm()
+  ([\#152](https://github.com/poissonconsulting/extras/issues/152),
+  [\#153](https://github.com/poissonconsulting/extras/issues/153))
+  ([\#161](https://github.com/poissonconsulting/extras/issues/161))
+  ([\#152](https://github.com/poissonconsulting/extras/issues/152)).
+
+- Document shape as unbounded for
+  [`sens_skewnorm()`](https://poissonconsulting.github.io/extras/dev/reference/sens_skewnorm.md)
+  and
+  [`sens_skewlnorm()`](https://poissonconsulting.github.io/extras/dev/reference/sens_skewlnorm.md)
+  ([\#158](https://github.com/poissonconsulting/extras/issues/158))
+  ([\#162](https://github.com/poissonconsulting/extras/issues/162))
+  ([\#158](https://github.com/poissonconsulting/extras/issues/158)).
+
 ## extras 0.10.0.9001
 
 - Move the fledge preamble back to the first line of NEWS.md
