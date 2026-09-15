@@ -161,6 +161,25 @@ test_that("prob_skewnorm", {
   expect_equal(prob_skewnorm(1, 2, 1, 2), 0.00171887994528883)
 })
 
+test_that("skewnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(prob_skewnorm(bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(prob_skewnorm(1, mean = 2, sd = 3, shape = 4)),
+               prob_skewnorm(1, location = 2, scale = 3, shape = 4))
+
+  # warn for old args
+  expect_warning(prob_skewnorm(1, mean = 2, scale = 1, shape = 1), "The `mean` argument of `prob_skewnorm")
+  expect_warning(prob_skewnorm(1, sd = 2, location = 1, shape = 1), "The `sd` argument of `prob_skewnorm")
+  expect_warning(
+    expect_warning(
+      prob_skewnorm(1, mean = 2, sd = 2, shape = 1),
+      "The `mean` argument of `prob_skewnorm"),
+    "The `sd` argument of `prob_skewnorm")
+})
+
 test_that("prob_student", {
   expect_identical(prob_student(NA, 1, 1, 0.5), NA_real_)
   expect_error(prob_student(1, sd = -1, theta = 0.5))
@@ -174,7 +193,28 @@ test_that("prob_skewlnorm", {
   expect_identical(prob_skewlnorm(numeric(0)), numeric(0))
   expect_identical(prob_skewlnorm(NA), NA_real_)
   expect_identical(prob_skewlnorm(0), 0)
-  expect_equal(prob_skewlnorm(1:5, 0.3, 0.7, shape = 0), plnorm(1:5, 0.3, 0.7))
+  expect_equal(prob_skewlnorm(1:5, 0.3, 0.7, shape_log = 0), plnorm(1:5, 0.3, 0.7))
   expect_equal(prob_skewlnorm(2, 0, 1, 2), 0.521879277607988)
   expect_equal(prob_skewlnorm(1:5, 0, 1, 2), pskewlnorm(1:5, 0, 1, 2))
+})
+
+test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(prob_skewlnorm(1, bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(prob_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
+               prob_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+
+  # warn for old args
+  expect_warning(prob_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `prob_skewlnorm")
+  expect_warning(prob_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `prob_skewlnorm")
+  expect_warning(
+    expect_warning(
+      expect_warning(
+        prob_skewlnorm(1, meanlog = 2, sdlog = 2, shape = 1),
+        "The `meanlog` argument of `prob_skewlnorm"),
+      "The `sdlog` argument of `prob_skewlnorm"),
+    "The `shape` argument of `prob_skewlnorm")
 })

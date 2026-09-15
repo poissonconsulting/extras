@@ -454,7 +454,7 @@ test_that("ran_skewnorm", {
   expect_error(ran_skewnorm(NA_integer_))
   expect_error(ran_skewnorm(NULL))
   expect_error(ran_skewnorm(integer(0)))
-  expect_error(ran_skewnorm(1, 0, sd = -1))
+  expect_error(ran_skewnorm(1, 0, scale = -1))
   expect_identical(ran_skewnorm(0L), numeric(0))
   withr::with_seed(101, {
     expect_equal(ran_skewnorm(), 0.552461855419139)
@@ -467,19 +467,19 @@ test_that("ran_skewnorm", {
     expect_equal(ran_skewnorm(1, c(5, 10)), c(4.8066620350025))
   })
   withr::with_seed(101, {
-    expect_equal(ran_skewnorm(sd = 1), 0.552461855419139)
-    expect_equal(ran_skewnorm(2, sd = 2), c(0.428718918086851, 2.3479325751254))
+    expect_equal(ran_skewnorm(scale = 1), 0.552461855419139)
+    expect_equal(ran_skewnorm(2, scale = 2), c(0.428718918086851, 2.3479325751254))
     expect_equal(
-      ran_skewnorm(2, 10, sd = 3),
+      ran_skewnorm(2, 10, scale = 3),
       c(9.66179705573736, 9.33022190611821)
     )
     expect_equal(
-      ran_skewnorm(2, c(5, 10), sd = 2),
+      ran_skewnorm(2, c(5, 10), scale = 2),
       c(3.41031112916989, 7.06636061167307)
     )
-    expect_equal(ran_skewnorm(1, c(5, 10), sd = 1), c(4.8066620350025))
-    expect_equal(ran_skewnorm(1, 0, sd = 3), 0.175396493548505)
-    expect_equal(ran_skewnorm(1, 0, sd = 4), -8.20123126255853)
+    expect_equal(ran_skewnorm(1, c(5, 10), scale = 1), c(4.8066620350025))
+    expect_equal(ran_skewnorm(1, 0, scale = 3), 0.175396493548505)
+    expect_equal(ran_skewnorm(1, 0, scale = 4), -8.20123126255853)
   })
   withr::with_seed(101, {
     expect_equal(ran_skewnorm(shape = 10), 0.379390442659801)
@@ -506,36 +506,57 @@ test_that("ran_skewnorm", {
     expect_equal(ran_skewnorm(1, c(10, 100), shape = -1), c(8.77536013503756))
   })
   withr::with_seed(101, {
-    expect_equal(ran_skewnorm(sd = 1, shape = 5), 0.428051766065545)
+    expect_equal(ran_skewnorm(scale = 1, shape = 5), 0.428051766065545)
     expect_equal(
-      ran_skewnorm(2, sd = 1, shape = 5),
+      ran_skewnorm(2, scale = 1, shape = 5),
       c(0.703876239197544, 0.534968020196629)
     )
     expect_equal(
-      ran_skewnorm(2, 10, sd = 3, shape = 5),
+      ran_skewnorm(2, 10, scale = 3, shape = 5),
       c(11.7539930699001, 12.5663063681019)
     )
     expect_equal(
-      ran_skewnorm(2, 10, sd = 2, shape = -2),
+      ran_skewnorm(2, 10, scale = 2, shape = -2),
       c(8.3473305357842, 6.13398981871521)
     )
     expect_equal(
-      ran_skewnorm(2, c(10, 100), sd = 5, shape = -2),
+      ran_skewnorm(2, c(10, 100), scale = 5, shape = -2),
       c(8.50920292023333, 96.3305141003515)
     )
-    expect_equal(ran_skewnorm(2, c(10, 100), sd = 0, shape = -1), c(10, 100))
+    expect_equal(ran_skewnorm(2, c(10, 100), scale = 0, shape = -1), c(10, 100))
     expect_equal(
-      ran_skewnorm(1, c(10, 100), sd = 10, shape = -1),
+      ran_skewnorm(1, c(10, 100), scale = 10, shape = -1),
       c(-2.24639864962439)
     )
   })
+})
+
+test_that("skewnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(ran_skewnorm(bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(
+    suppressWarnings(
+      withr::with_seed(10, ran_skewnorm(1, mean = 2, sd = 3, shape = 4))),
+    withr::with_seed(10, ran_skewnorm(1, location = 2, scale = 3, shape = 4)))
+
+  # warn for old args
+  expect_warning(ran_skewnorm(1, mean = 2, scale = 1, shape = 1), "The `mean` argument of `ran_skewnorm")
+  expect_warning(ran_skewnorm(1, sd = 2, location = 1, shape = 1), "The `sd` argument of `ran_skewnorm")
+  expect_warning(
+    expect_warning(
+      ran_skewnorm(1, mean = 2, sd = 2, shape = 1),
+      "The `mean` argument of `ran_skewnorm"),
+    "The `sd` argument of `ran_skewnorm")
 })
 
 test_that("ran_skewlnorm", {
   skip_if_not_installed("sn")
   expect_error(ran_skewlnorm(NA_integer_))
   expect_error(ran_skewlnorm(NULL))
-  expect_error(ran_skewlnorm(1, 0, sdlog = -1))
+  expect_error(ran_skewlnorm(1, 0, scale_log = -1))
   expect_identical(ran_skewlnorm(0L), numeric(0))
   withr::with_seed(
     101,
@@ -548,4 +569,31 @@ test_that("ran_skewlnorm", {
       c(1.71375069101727, 2.01285193758523, 2.23216981261934)
     )
   )
+})
+
+test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(ran_skewlnorm(1, bad_arg = 1), "`...` must be unused.")
+
+    # test that shims work
+    withr::local_preserve_seed()
+
+    expect_equal(
+      suppressWarnings(
+        withr::with_seed(10,
+                         ran_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4))),
+      withr::with_seed(10,
+                 ran_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4)))
+
+  # warn for old args
+  expect_warning(ran_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `ran_skewlnorm")
+  expect_warning(ran_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `ran_skewlnorm")
+  expect_warning(
+    expect_warning(
+      expect_warning(
+        ran_skewlnorm(1, meanlog = 2, sdlog = 2, shape = 1),
+        "The `meanlog` argument of `ran_skewlnorm"),
+      "The `sdlog` argument of `ran_skewlnorm"),
+    "The `shape` argument of `ran_skewlnorm")
 })

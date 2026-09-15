@@ -27,15 +27,15 @@ test_that("dskewnorm errors with character arguments", {
   expect_chk_error(dskewnorm("1"), "`character` must be FALSE.")
 })
 
-test_that("dskewnorm does not allow negative sd argument", {
+test_that("dskewnorm does not allow negative scale argument", {
   skip_if_not_installed("sn")
   expect_chk_error(
     dskewnorm(1, 0, -5, 0),
-    "`sd` must be greater than or equal to 0, not -5."
+    "`scale` must be greater than or equal to 0, not -5."
   )
   expect_chk_error(
     dskewnorm(1, 0, -1, -10),
-    "`sd` must be greater than or equal to 0, not -1."
+    "`scale` must be greater than or equal to 0, not -1."
   )
 })
 
@@ -83,7 +83,7 @@ test_that("dskewnorm returns 0 with mean = -Inf", {
   expect_identical(dskewnorm(1, -Inf, 2, -10), 0)
 })
 
-test_that("dskewnorm returns 0 with sd = Inf", {
+test_that("dskewnorm returns 0 with scale = Inf", {
   skip_if_not_installed("sn")
   expect_identical(dskewnorm(1, 0, Inf, 3), 0)
   expect_identical(dskewnorm(1, 0, Inf, -1), 0)
@@ -226,15 +226,15 @@ test_that("pskewnorm errors with character arguments", {
   expect_chk_error(pskewnorm("1"), "`character` must be FALSE.")
 })
 
-test_that("pskewnorm does not allow negative sd argument", {
+test_that("pskewnorm does not allow negative scale argument", {
   skip_if_not_installed("sn")
   expect_chk_error(
     pskewnorm(1, 0, -5, 0),
-    "`sd` must be greater than or equal to 0, not -5."
+    "`scale` must be greater than or equal to 0, not -5."
   )
   expect_chk_error(
     pskewnorm(1, 0, -1, -10),
-    "`sd` must be greater than or equal to 0, not -1."
+    "`scale` must be greater than or equal to 0, not -1."
   )
 })
 
@@ -282,7 +282,7 @@ test_that("pskewnorm returns 0 with mean = -Inf", {
   expect_identical(pskewnorm(1, -Inf, 2, -10), 1)
 })
 
-test_that("pskewnorm returns expected value with sd = Inf", {
+test_that("pskewnorm returns expected value with scale = Inf", {
   skip_if_not_installed("sn")
   expect_equal(pskewnorm(1, 0, Inf, 3), 0.102416382349567)
   expect_equal(pskewnorm(1, 0, Inf, -1), 0.75)
@@ -406,15 +406,15 @@ test_that("qskewnorm errors with character arguments", {
   expect_chk_error(qskewnorm("1"), "`character` must be FALSE.")
 })
 
-test_that("qskewnorm does not allow negative sd argument", {
+test_that("qskewnorm does not allow negative scale argument", {
   skip_if_not_installed("sn")
   expect_chk_error(
     qskewnorm(1, 0, -5, 0),
-    "`sd` must be greater than or equal to 0, not -5."
+    "`scale` must be greater than or equal to 0, not -5."
   )
   expect_chk_error(
     qskewnorm(1, 0, -1, -10),
-    "`sd` must be greater than or equal to 0, not -1."
+    "`scale` must be greater than or equal to 0, not -1."
   )
 })
 
@@ -464,7 +464,7 @@ test_that("qskewnorm returns Inf with mean = -Inf", {
   expect_identical(qskewnorm(0.5, -Inf, 2, -10), -Inf)
 })
 
-test_that("qskewnorm returns expected value with sd = Inf", {
+test_that("qskewnorm returns expected value with scale = Inf", {
   skip_if_not_installed("sn")
   expect_equal(qskewnorm(0.5, 0, Inf, 3), Inf)
   expect_equal(qskewnorm(0.5, 0, Inf, -1), -Inf)
@@ -598,15 +598,15 @@ test_that("rskewnorm errors with character arguments", {
   expect_chk_error(rskewnorm("1"), "`n` must be a whole number.")
 })
 
-test_that("rskewnorm does not allow negative sd argument", {
+test_that("rskewnorm does not allow negative scale argument", {
   skip_if_not_installed("sn")
   expect_chk_error(
     rskewnorm(1, 0, -5, 0),
-    "`sd` must be greater than or equal to 0, not -5."
+    "`scale` must be greater than or equal to 0, not -5."
   )
   expect_chk_error(
     rskewnorm(1, 0, -1, -10),
-    "`sd` must be greater than or equal to 0, not -1."
+    "`scale` must be greater than or equal to 0, not -1."
   )
 })
 
@@ -676,7 +676,7 @@ test_that("rskewnorm returns 0 with mean = -Inf", {
   expect_identical(rskewnorm(2, -Inf, 2, -10), rep(-Inf, 2))
 })
 
-test_that("rskewnorm returns expected value with sd = Inf", {
+test_that("rskewnorm returns expected value with scale = Inf", {
   skip_if_not_installed("sn")
   set.seed(101)
   expect_equal(rskewnorm(1, 0, Inf, 3), Inf)
@@ -777,4 +777,60 @@ test_that("rskewnorm errors if argument lengths are incompatible", {
     rskewnorm(11, 0:10, 3, 1:5),
     "... objects must be all zero length or the same length with some of length of 1 but not lengths 1, 5 and 11."
   )
+})
+
+test_that("*skewnorm checks that `...` is unused to prevent accidental use of deprecated args in the future", {
+  skip_if_not_installed("sn")
+  expect_error(dskewnorm(x = 0, bad_arg = 1), "`...` must be unused.")
+  expect_error(pskewnorm(q = 0, bad_arg = 1), "`...` must be unused.")
+  expect_error(qskewnorm(p = 0, bad_arg = 1), "`...` must be unused.")
+  expect_error(rskewnorm(n = 1, bad_arg = 1), "`...` must be unused.")
+})
+
+test_that("*skewnorm warns if the user uses the mean or sd arguments", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_warning(dskewnorm(x = 0, mean = 2), "The `mean` argument of `dskewnorm")
+  expect_warning(pskewnorm(q = 0, mean = 2), "The `mean` argument of `pskewnorm")
+  expect_warning(qskewnorm(p = 0, mean = 2), "The `mean` argument of `qskewnorm")
+  expect_warning(rskewnorm(n = 1, mean = 2), "The `mean` argument of `rskewnorm")
+
+  expect_warning(dskewnorm(x = 0, sd = 2), "The `sd` argument of `dskewnorm")
+  expect_warning(pskewnorm(q = 0, sd = 2), "The `sd` argument of `pskewnorm")
+  expect_warning(qskewnorm(p = 0, sd = 2), "The `sd` argument of `qskewnorm")
+  expect_warning(rskewnorm(n = 1, sd = 2), "The `sd` argument of `rskewnorm")
+
+  expect_warning(
+    expect_warning(
+      dskewnorm(x = 0, mean = 2, sd = 2),
+      "The `mean` argument of `dskewnorm"),
+    "The `sd` argument of `dskewnorm")
+  expect_warning(
+    expect_warning(
+      pskewnorm(q = 0, mean = 2, sd = 2),
+      "The `mean` argument of `pskewnorm"),
+    "The `sd` argument of `pskewnorm")
+  expect_warning(
+    expect_warning(
+      qskewnorm(p = 0, mean = 2, sd = 2),
+      "The `mean` argument of `qskewnorm"),
+    "The `sd` argument of `qskewnorm")
+  expect_warning(
+    expect_warning(
+      rskewnorm(n = 1, mean = 2, sd = 2),
+      "The `mean` argument of `rskewnorm"),
+    "The `sd` argument of `rskewnorm")
+})
+
+test_that("*skewnorm moves the deprecated argument to the correct new one", {
+  skip_if_not_installed("sn")
+  expect_equal(suppressWarnings(dskewnorm(1, mean = 2, sd = 3)),
+               dskewnorm(1, location = 2, scale = 3))
+  expect_equal(suppressWarnings(pskewnorm(1, mean = 2, sd = 3)),
+               pskewnorm(1, location = 2, scale = 3))
+  expect_equal(suppressWarnings(qskewnorm(1, mean = 2, sd = 3)),
+               qskewnorm(1, location = 2, scale = 3))
+  expect_equal(
+    withr::with_seed(10, suppressWarnings(rskewnorm(1, mean = 2, sd = 3))),
+    withr::with_seed(10, rskewnorm(1, location = 2, scale = 3)))
 })

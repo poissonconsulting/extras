@@ -4,27 +4,55 @@
 \alias{sens_skewlnorm}
 \title{Adjust Skew-Lognormal Distribution Parameters for Sensitivity Analyses}
 \usage{
-sens_skewlnorm(meanlog, sdlog, shape, sd_mult = 2)
+sens_skewlnorm(
+  location_log,
+  scale_log,
+  shape_log,
+  scale_mult = 2,
+  ...,
+  meanlog,
+  sdlog,
+  shape,
+  sd_mult
+)
 }
 \arguments{
-\item{meanlog}{A numeric vector of the means on the log scale.}
+\item{location_log}{A numeric vector of location parameters of \code{log(x)}.}
 
-\item{sdlog}{A non-negative numeric vector of the standard deviations on the
-log scale.}
+\item{scale_log}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
 
-\item{shape}{A numeric vector of shape.}
+\item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
+Negative values result in leftward skew, while positive values result in rightward skew.}
 
-\item{sd_mult}{A non-negative multiplier on the standard deviation of the
-distribution.}
+\item{scale_mult}{A non-negative multiplier on the scale of the distribution.}
+
+\item{...}{Unused.}
+
+\item{meanlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of location parameters of \code{log(x)}.
+Described as "a numeric vector of the means on the log scale" prior to v.
+0.10.1.
+Will be removed in a future version.}
+
+\item{sdlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A non-negative numeric vector of scale parameters of
+\code{log(x)}.
+Described as "a non-negative numeric vector of the standard deviations on the
+log scale" prior to v. 0.10.1.
+Will be removed in a future version.}
+
+\item{shape}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of shape parameters of \code{log(x)}.
+Will be removed in a future version.}
+
+\item{sd_mult}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A non-negative multiplier
+on the scale of the distribution.}
 }
 \value{
 A named list of the adjusted distribution's parameters.
 }
 \description{
-Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
-of the Skew-Lognormal distribution while preserving its mean and \code{shape}.
+Expands (\code{scale_mult > 1}) or reduces (\code{scale_mult < 1}) the scale parameter
+of the Skew-Lognormal distribution while preserving its mean and \code{shape_log}.
 The adjustment is made on the natural scale (i.e. for \code{x}, not for
-\code{log(x)}), mirroring \code{\link[=sens_lnorm]{sens_lnorm()}}, to which it reduces when \code{shape = 0}.
+\code{log(x)}), mirroring \code{\link[=sens_lnorm]{sens_lnorm()}}, to which it reduces when \code{shape_log = 0}.
 }
 \examples{
 \dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}

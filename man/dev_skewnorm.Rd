@@ -4,19 +4,25 @@
 \alias{dev_skewnorm}
 \title{Skew Normal Deviances}
 \usage{
-dev_skewnorm(x, mean = 0, sd = 1, shape = 0, res = FALSE)
+dev_skewnorm(x, location = 0, scale = 1, shape = 0, res = FALSE, ..., mean, sd)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
 
-\item{mean}{A numeric vector of the means.}
+\item{location}{A numeric vector of the location parameter.}
 
-\item{sd}{A non-negative numeric vector of the standard deviations.}
+\item{scale}{A non-negative numeric vector of the scale parameter.}
 
-\item{shape}{A numeric vector of shape.}
+\item{shape}{A non-negative numeric vector of shape.}
 
 \item{res}{A flag specifying whether to return the deviance residual as
 opposed to the deviance.}
+
+\item{...}{Other arguments passed to methods.}
+
+\item{mean}{A numeric vector of the means.}
+
+\item{sd}{A non-negative numeric vector of the standard deviations.}
 }
 \value{
 An numeric vector of the corresponding deviances or deviance residuals.

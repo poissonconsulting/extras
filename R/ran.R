@@ -226,8 +226,7 @@ ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
 
 #' Skew Normal Random Samples
 #'
-#' @inheritParams params
-#' @param shape A numeric vector of shape.
+#' @inheritParams dskewnorm
 #' @return A numeric vector of the random samples.
 #' @family ran_dist
 #' @export
@@ -236,30 +235,64 @@ ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
 #' ran_skewnorm(10, shape = -1)
 #' ran_skewnorm(10, shape = 0)
 #' ran_skewnorm(10, shape = 1)
-ran_skewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
+ran_skewnorm <- function(n = 1, location = 0, scale = 1, shape = 0, ...,
+                         mean, sd) {
   rlang::check_installed("sn")
+  if (!missing(mean)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "ran_skewnorm(mean)",
+                              id = "ran_skewnorm location",
+                              with = "ran_skewnorm(location)")
+    location <- mean
+  }
+  if (!missing(sd)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "ran_skewnorm(sd)",
+                              id = "ran_skewnorm scale",
+                              with = "ran_skewnorm(scale)")
+    scale <- sd
+  }
   chk_whole_number(n)
   chk_gte(n)
-  rskewnorm(n = n, mean = mean, sd = sd, shape = shape)
+  chk_unused(...)
+  rskewnorm(n = n, location = location, scale = scale, shape = shape)
 }
 
 #' Skew-Lognormal Random Samples
 #'
-#' @inheritParams params
-#' @param shape A numeric vector of shape.
+#' @inheritParams dskewlnorm
 #' @return A numeric vector of the random samples.
 #' @family ran_dist
 #' @export
 #'
 #' @examplesIf rlang::is_installed("sn")
-#' ran_skewlnorm(10, shape = -1)
-#' ran_skewlnorm(10, shape = 0)
-#' ran_skewlnorm(10, shape = 1)
-ran_skewlnorm <- function(n = 1, meanlog = 0, sdlog = 1, shape = 0) {
+#' ran_skewlnorm(10, shape_log = -1)
+#' ran_skewlnorm(10, shape_log = 0)
+#' ran_skewlnorm(10, shape_log = 1)
+ran_skewlnorm <- function(n = 1, location_log = 0, scale_log = 1, shape_log = 0,
+                          ..., meanlog, sdlog, shape) {
   rlang::check_installed("sn")
+  if (!missing(meanlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "ran_skewlnorm(meanlog)",
+                              id = "ran_skewlnorm location_log",
+                              with = "ran_skewlnorm(location_log)")
+    location_log <- meanlog
+  }
+  if (!missing(sdlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "ran_skewlnorm(sdlog)",
+                              id = "ran_skewlnorm scale_log",
+                              with = "ran_skewlnorm(scale_log)")
+    scale_log <- sdlog
+  }
+  if (!missing(shape)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "ran_skewlnorm(shape)",
+                              id = "ran_skewlnorm shape_log",
+                              with = "ran_skewlnorm(shape_log)")
+    shape_log <- shape
+  }
+  chk_unused(...)
   chk_whole_number(n)
   chk_gte(n)
-  rskewlnorm(n = n, meanlog = meanlog, sdlog = sdlog, shape = shape)
+  rskewlnorm(n = n, location_log = location_log, scale_log = scale_log,
+             shape_log = shape_log)
 }
 
 #' Student's t Random Samples

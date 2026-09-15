@@ -6,27 +6,47 @@
 \usage{
 res_skewlnorm(
   x,
-  meanlog = 0,
-  sdlog = 1,
-  shape = 0,
+  location_log = 0,
+  scale_log = 1,
+  shape_log = 0,
   type = "dev",
-  simulate = FALSE
+  simulate = FALSE,
+  ...,
+  meanlog,
+  sdlog,
+  shape
 )
 }
 \arguments{
 \item{x}{A numeric vector of values.}
 
-\item{meanlog}{A numeric vector of the means on the log scale.}
+\item{location_log}{A numeric vector of location parameters of \code{log(x)}.}
 
-\item{sdlog}{A non-negative numeric vector of the standard deviations on the
-log scale.}
+\item{scale_log}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
 
-\item{shape}{A numeric vector of shape.}
+\item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
+Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
 deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
+
+\item{...}{Unused.}
+
+\item{meanlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of location parameters of \code{log(x)}.
+Described as "a numeric vector of the means on the log scale" prior to v.
+0.10.1.
+Will be removed in a future version.}
+
+\item{sdlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A non-negative numeric vector of scale parameters of
+\code{log(x)}.
+Described as "a non-negative numeric vector of the standard deviations on the
+log scale" prior to v. 0.10.1.
+Will be removed in a future version.}
+
+\item{shape}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of shape parameters of \code{log(x)}.
+Will be removed in a future version.}
 }
 \value{
 An numeric vector of the corresponding residuals.

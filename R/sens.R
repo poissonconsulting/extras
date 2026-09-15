@@ -53,11 +53,14 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
 
 #' Adjust Skew Normal Distribution Parameters for Sensitivity Analyses
 #'
-#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
+#' Expands (`scale_mult > 1`) or reduces (`scale_mult < 1`) the scale parameter
 #' of the Skew Normal distribution without changing the mean.
 #'
+#' @inheritParams dskewnorm
 #' @inheritParams params
-#' @param shape A numeric vector of shape.
+#' @param scale_mult A non-negative multiplier on the scale of the distribution.
+#' @param sd_mult `r lifecycle::badge("deprecated")` A non-negative multiplier
+#' on the scale of the distribution.
 #'
 #' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
@@ -66,30 +69,52 @@ sens_student <- function(mean, sd, theta, sd_mult = 2) {
 #' @examplesIf rlang::is_installed("sn")
 #' sens_skewnorm(10, 3, -1, 2)
 #' sens_skewnorm(10, 3, 3, 0.8)
-sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
-  chk::chk_number(mean)
-  chk::chk_number(sd)
-  chk::chk_gte(sd, value = 0)
+sens_skewnorm <- function(location, scale, shape, scale_mult = 2, ...,
+                          mean, sd, sd_mult) {
+  if (!missing(mean)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "sens_skewnorm(mean)",
+                              id = "sens_skewnorm location",
+                              with = "sens_skewnorm(location)")
+    location <- mean
+  }
+  if (!missing(sd)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "sens_skewnorm(sd)",
+                              id = "sens_skewnorm scale",
+                              with = "sens_skewnorm(scale)")
+    scale <- sd
+  }
+  if (!missing(sd_mult)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "sens_skewnorm(sd_mult)",
+                              id = "sens_skewnorm scale_mult",
+                              with = "sens_skewnorm(scale_mult)")
+    scale_mult <- sd_mult
+  }
+  chk_unused(...)
+  chk::chk_number(location)
+  chk::chk_number(scale)
+  chk::chk_gte(scale, value = 0)
   chk::chk_number(shape)
-  chk::chk_number(sd_mult)
-  chk::chk_gt(sd_mult, value = 0)
-  new_sd <- sd * sd_mult
-  original_mean <- mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi)
-  new_mean <- mean + new_sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi)
-  diff_means <- new_mean - original_mean
-  adjusted_mean <- mean - diff_means
-  return(list(mean = adjusted_mean, sd = new_sd, shape = shape))
+  chk::chk_number(scale_mult)
+  chk::chk_gt(scale_mult, value = 0)
+  new_scale <- scale * scale_mult
+  delta <- shape / sqrt(1 + shape^2)
+  original_mean <- location + scale * delta * sqrt(2 / pi)
+  new_location <- original_mean - new_scale * delta * sqrt(2 / pi)
+  return(list(location = new_location, scale = new_scale, shape = shape))
 }
 
 #' Adjust Skew-Lognormal Distribution Parameters for Sensitivity Analyses
 #'
-#' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation
-#' of the Skew-Lognormal distribution while preserving its mean and `shape`.
+#' Expands (`scale_mult > 1`) or reduces (`scale_mult < 1`) the scale parameter
+#' of the Skew-Lognormal distribution while preserving its mean and `shape_log`.
 #' The adjustment is made on the natural scale (i.e. for `x`, not for
-#' `log(x)`), mirroring [sens_lnorm()], to which it reduces when `shape = 0`.
+#' `log(x)`), mirroring [sens_lnorm()], to which it reduces when `shape_log = 0`.
 #'
+#' @inheritParams dskewlnorm
 #' @inheritParams params
-#' @param shape A numeric vector of shape.
+#' @param scale_mult A non-negative multiplier on the scale of the distribution.
+#' @param sd_mult `r lifecycle::badge("deprecated")` A non-negative multiplier
+#' on the scale of the distribution.
 #'
 #' @return A named list of the adjusted distribution's parameters.
 #' @family sens_dist
@@ -98,40 +123,66 @@ sens_skewnorm <- function(mean, sd, shape, sd_mult = 2) {
 #' @examplesIf rlang::is_installed("sn")
 #' sens_skewlnorm(0, 1, 2, 2)
 #' sens_skewlnorm(0, 1, 2, 0.8)
-sens_skewlnorm <- function(meanlog, sdlog, shape, sd_mult = 2) {
-  chk::chk_number(meanlog)
-  chk::chk_number(sdlog)
-  chk::chk_gte(sdlog, value = 0)
-  chk::chk_number(shape)
-  chk::chk_number(sd_mult)
-  chk::chk_gt(sd_mult, value = 0)
+sens_skewlnorm <- function(location_log, scale_log, shape_log, scale_mult = 2,
+                           ..., meanlog, sdlog, shape, sd_mult) {
+  if (!missing(meanlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "sens_skewlnorm(meanlog)",
+                              id = "sens_skewlnorm location_log",
+                              with = "sens_skewlnorm(location_log)")
+    location_log <- meanlog
+  }
+  if (!missing(sdlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "sens_skewlnorm(sdlog)",
+                              id = "sens_skewlnorm scale_log",
+                              with = "sens_skewlnorm(scale_log)")
+    scale_log <- sdlog
+  }
+  if (!missing(shape)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "sens_skewlnorm(shape)",
+                              id = "sens_skewlnorm shape_log",
+                              with = "sens_skewlnorm(shape_log)")
+    shape_log <- shape
+  }
+  if (!missing(sd_mult)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "sens_skewlnorm(sd_mult)",
+                              id = "sens_skewlnorm scale_mult",
+                              with = "sens_skewlnorm(scale_mult)")
+    scale_mult <- sd_mult
+  }
+  chk_unused(...)
+  chk::chk_number(location_log)
+  chk::chk_number(scale_log)
+  chk::chk_gte(scale_log, value = 0)
+  chk::chk_number(shape_log)
+  chk::chk_number(scale_mult)
+  chk::chk_gt(scale_mult, value = 0)
 
-  delta <- shape / sqrt(1 + shape^2)
-  # squared coefficient of variation plus one, as a function of sdlog
+  delta <- shape_log / sqrt(1 + shape_log^2)
+  # squared coefficient of variation plus one, as a function of scale_log
   cv2p1 <- function(sl) {
     exp(sl^2) * stats::pnorm(2 * delta * sl) / (2 * stats::pnorm(delta * sl)^2)
   }
 
-  if (sdlog == 0) {
-    return(list(meanlog = meanlog, sdlog = sdlog, shape = shape))
+  if (scale_log == 0) {
+    return(list(location_log = location_log, scale_log = scale_log, shape_log = shape_log))
   }
 
-  original_mean <- 2 * exp(meanlog + sdlog^2 / 2) * stats::pnorm(delta * sdlog)
-  target <- sd_mult^2 * (cv2p1(sdlog) - 1) + 1
+  original_mean <- 2 * exp(location_log + scale_log^2 / 2) * stats::pnorm(delta * scale_log)
+  target <- scale_mult^2 * (cv2p1(scale_log) - 1) + 1
 
-  hi <- max(sdlog, 1)
+  hi <- max(scale_log, 1)
   while (cv2p1(hi) < target) {
     hi <- hi * 2
   }
-  new_sdlog <- stats::uniroot(
+  new_scale_log <- stats::uniroot(
     function(sl) cv2p1(sl) - target,
     interval = c(0, hi),
     tol = .Machine$double.eps^0.5
   )$root
-  new_meanlog <- log(original_mean / (2 * stats::pnorm(delta * new_sdlog))) -
-    new_sdlog^2 / 2
+  new_location_log <- log(original_mean / (2 * stats::pnorm(delta * new_scale_log))) -
+    new_scale_log^2 / 2
 
-  return(list(meanlog = new_meanlog, sdlog = new_sdlog, shape = shape))
+  return(list(location_log = new_location_log, scale_log = new_scale_log, shape_log = shape_log))
 }
 
 #' Adjust Log-Normal Distribution Parameters for Sensitivity Analysis
