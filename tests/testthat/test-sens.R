@@ -853,6 +853,28 @@ test_that("sens_skewnorm has same behaviour as normal when shape = 0", {
   expect_equal(new_pars_skewnorm$scale, new_pars_norm$sd)
 })
 
+test_that("check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(sens_skewnorm(bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(sens_skewnorm(mean = 2, sd = 3, shape = 4)),
+               sens_skewnorm(location = 2, scale = 3, shape = 4))
+
+  # warn for old args
+  expect_warning(sens_skewnorm(mean = 2, scale = 1, shape = 1), "The `mean` argument of `sens_skewnorm")
+  expect_warning(sens_skewnorm(sd = 2, location = 1, shape = 1), "The `sd` argument of `sens_skewnorm")
+  expect_warning(sens_skewnorm(sd_mult = 2, location = 1, scale = 1, shape = 1), "The `sd_mult` argument of `sens_skewnorm")
+  expect_warning(
+    expect_warning(
+      expect_warning(
+        sens_skewnorm(mean = 2, sd = 2, shape = 1, sd_mult = 2),
+        "The `mean` argument of `sens_skewnorm"),
+      "The `sd` argument of `sens_skewnorm"),
+    "The `sd_mult` argument of `sens_skewnorm")
+})
+
 # Log-normal ----
 test_that("sens_lnorm returns a numeric vector of length 2 with correct names", {
   expect_snapshot(sens_lnorm(meanlog = 2, sdlog = 10, sd_mult = 2))
@@ -2158,4 +2180,30 @@ test_that("scale_log of skewlnorm deviates scales by scale_mult while preserving
     expect_equal(mean(ran_new), mean(ran_original), tolerance = 0.02)
     expect_equal(sd(ran_new) / sd(ran_original), scale_mult, tolerance = 0.02)
   }
+})
+
+test_that("check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(sens_skewlnorm(bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(sens_skewlnorm(meanlog = 2, sdlog = 3, shape = 4)),
+               sens_skewlnorm(location_log = 2, scale_log = 3, shape_log = 4))
+
+  # warn for old args
+  expect_warning(sens_skewlnorm(meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `sens_skewlnorm")
+  expect_warning(sens_skewlnorm(sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `sens_skewlnorm")
+  expect_warning(
+    sens_skewlnorm(sd_mult = 2, location_log = 1, scale_log = 1, shape_log = 1),
+    "The `sd_mult` argument of `sens_skewlnorm")
+  expect_warning(
+    expect_warning(
+      expect_warning(
+        expect_warning(
+          sens_skewlnorm(meanlog = 2, sdlog = 2, shape = 1, sd_mult = 2),
+          "The `meanlog` argument of `sens_skewlnorm"),
+        "The `sdlog` argument of `sens_skewlnorm"),
+      "The `shape` argument of `sens_skewlnorm"),
+    "The `sd_mult` argument of `sens_skewlnorm")
 })

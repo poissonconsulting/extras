@@ -531,6 +531,27 @@ test_that("ran_skewnorm", {
   })
 })
 
+test_that("skewnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(ran_skewnorm(bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(
+    suppressWarnings(
+      withr::with_seed(10, ran_skewnorm(1, mean = 2, sd = 3, shape = 4))),
+    withr::with_seed(10, ran_skewnorm(1, location = 2, scale = 3, shape = 4)))
+
+  # warn for old args
+  expect_warning(ran_skewnorm(1, mean = 2, scale = 1, shape = 1), "The `mean` argument of `ran_skewnorm")
+  expect_warning(ran_skewnorm(1, sd = 2, location = 1, shape = 1), "The `sd` argument of `ran_skewnorm")
+  expect_warning(
+    expect_warning(
+      ran_skewnorm(1, mean = 2, sd = 2, shape = 1),
+      "The `mean` argument of `ran_skewnorm"),
+    "The `sd` argument of `ran_skewnorm")
+})
+
 test_that("ran_skewlnorm", {
   skip_if_not_installed("sn")
   expect_error(ran_skewlnorm(NA_integer_))
@@ -548,4 +569,31 @@ test_that("ran_skewlnorm", {
       c(1.71375069101727, 2.01285193758523, 2.23216981261934)
     )
   )
+})
+
+test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(ran_skewlnorm(1, bad_arg = 1), "`...` must be unused.")
+
+    # test that shims work
+    withr::local_preserve_seed()
+
+    expect_equal(
+      suppressWarnings(
+        withr::with_seed(10,
+                         ran_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4))),
+      withr::with_seed(10,
+                 ran_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4)))
+
+  # warn for old args
+  expect_warning(ran_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `ran_skewlnorm")
+  expect_warning(ran_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `ran_skewlnorm")
+  expect_warning(
+    expect_warning(
+      expect_warning(
+        ran_skewlnorm(1, meanlog = 2, sdlog = 2, shape = 1),
+        "The `meanlog` argument of `ran_skewlnorm"),
+      "The `sdlog` argument of `ran_skewlnorm"),
+    "The `shape` argument of `ran_skewlnorm")
 })

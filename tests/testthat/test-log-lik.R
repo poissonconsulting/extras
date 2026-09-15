@@ -1133,6 +1133,25 @@ test_that("log_lik_skewnorm truncated", {
   )
 })
 
+test_that("skewnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(log_lik_skewnorm(bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(log_lik_skewnorm(1, mean = 2, sd = 3, shape = 4)),
+               log_lik_skewnorm(1, location = 2, scale = 3, shape = 4))
+
+  # warn for old args
+  expect_warning(log_lik_skewnorm(1, mean = 2, scale = 1, shape = 1), "The `mean` argument of `log_lik_skewnorm")
+  expect_warning(log_lik_skewnorm(1, sd = 2, location = 1, shape = 1), "The `sd` argument of `log_lik_skewnorm")
+  expect_warning(
+    expect_warning(
+      log_lik_skewnorm(1, mean = 2, sd = 2, shape = 1),
+      "The `mean` argument of `log_lik_skewnorm"),
+    "The `sd` argument of `log_lik_skewnorm")
+})
+
 test_that("log_lik_unif", {
   expect_identical(log_lik_unif(numeric(0)), numeric(0))
   expect_identical(log_lik_unif(1, numeric(0)), numeric(0))
@@ -1199,4 +1218,25 @@ test_that("log_lik_skewlnorm truncated", {
     log_lik_skewlnorm(2, 0.5, 0.7, 0, tupper = 3),
     log_lik_lnorm(2, 0.5, 0.7, tupper = 3)
   )
+})
+
+test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(log_lik_skewlnorm(1, bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(log_lik_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
+               log_lik_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+
+  # warn for old args
+  expect_warning(log_lik_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `log_lik_skewlnorm")
+  expect_warning(log_lik_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `log_lik_skewlnorm")
+  expect_warning(
+    expect_warning(
+      expect_warning(
+        log_lik_skewlnorm(1, meanlog = 2, sdlog = 2, shape = 1),
+        "The `meanlog` argument of `log_lik_skewlnorm"),
+      "The `sdlog` argument of `log_lik_skewlnorm"),
+    "The `shape` argument of `log_lik_skewlnorm")
 })

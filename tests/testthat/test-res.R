@@ -1494,6 +1494,25 @@ test_that("res_skewnorm standardized residuals divide by the sd", {
   })
 })
 
+test_that("skewnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(res_skewnorm(bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(res_skewnorm(1, mean = 2, sd = 3, shape = 4)),
+               res_skewnorm(1, location = 2, scale = 3, shape = 4))
+
+  # warn for old args
+  expect_warning(res_skewnorm(1, mean = 2, scale = 1, shape = 1), "The `mean` argument of `res_skewnorm")
+  expect_warning(res_skewnorm(1, sd = 2, location = 1, shape = 1), "The `sd` argument of `res_skewnorm")
+  expect_warning(
+    expect_warning(
+      res_skewnorm(1, mean = 2, sd = 2, shape = 1),
+      "The `mean` argument of `res_skewnorm"),
+    "The `sd` argument of `res_skewnorm")
+})
+
 test_that("res_skewlnorm", {
   skip_if_not_installed("sn")
   expect_identical(
@@ -1530,4 +1549,25 @@ test_that("res_skewlnorm", {
     expect_equal(mean(res), 0.00463040173426368)
     expect_equal(sd(res), 0.995340625582139)
   })
+})
+
+test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(res_skewlnorm(bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(res_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
+               res_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+
+  # warn for old args
+  expect_warning(res_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `res_skewlnorm")
+  expect_warning(res_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `res_skewlnorm")
+  expect_warning(
+    expect_warning(
+      expect_warning(
+        res_skewlnorm(1, meanlog = 2, sdlog = 2, shape = 1),
+        "The `meanlog` argument of `res_skewlnorm"),
+      "The `sdlog` argument of `res_skewlnorm"),
+    "The `shape` argument of `res_skewlnorm")
 })

@@ -158,6 +158,25 @@ test_that("quant_skewnorm", {
   )
 })
 
+test_that("skewnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(quant_skewnorm(bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(quant_skewnorm(1, mean = 2, sd = 3, shape = 4)),
+               quant_skewnorm(1, location = 2, scale = 3, shape = 4))
+
+  # warn for old args
+  expect_warning(quant_skewnorm(1, mean = 2, scale = 1, shape = 1), "The `mean` argument of `quant_skewnorm")
+  expect_warning(quant_skewnorm(1, sd = 2, location = 1, shape = 1), "The `sd` argument of `quant_skewnorm")
+  expect_warning(
+    expect_warning(
+      quant_skewnorm(1, mean = 2, sd = 2, shape = 1),
+      "The `mean` argument of `quant_skewnorm"),
+    "The `sd` argument of `quant_skewnorm")
+})
+
 test_that("quant_student", {
   expect_identical(quant_student(NA, 1, 1, 0.5), NA_real_)
   expect_equal(quant_student(0.5, c(1, 2), 1, 0.5), c(1, 2))
@@ -182,4 +201,25 @@ test_that("quant_skewlnorm", {
     0.7,
     tolerance = 1e-6
   )
+})
+
+test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args", {
+  skip_if_not_installed("sn")
+  withr::local_options(list(lifecycle_verbosity = "warning"))
+  expect_error(quant_skewlnorm(1, bad_arg = 1), "`...` must be unused.")
+
+  # test that shims work
+  expect_equal(suppressWarnings(quant_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
+               quant_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+
+  # warn for old args
+  expect_warning(quant_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `quant_skewlnorm")
+  expect_warning(quant_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `quant_skewlnorm")
+  expect_warning(
+    expect_warning(
+      expect_warning(
+        quant_skewlnorm(1, meanlog = 2, sdlog = 2, shape = 1),
+        "The `meanlog` argument of `quant_skewlnorm"),
+      "The `sdlog` argument of `quant_skewlnorm"),
+    "The `shape` argument of `quant_skewlnorm")
 })
