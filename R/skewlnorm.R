@@ -69,7 +69,7 @@ dskewlnorm <- function(x, location_log = 0, scale_log = 1, shape_log = 0,
     as.logical(length(location_log)) +
     as.logical(length(scale_log)) +
     as.logical(length(shape_log))
-  if (lengths >= 4) {
+  if (lengths == 4) {
     nas <- any(is.na(x), is.na(location_log), is.na(scale_log), is.na(shape_log))
     if (!nas) chk_compatible_lengths(x, location_log, scale_log, shape_log)
   }
@@ -134,7 +134,7 @@ pskewlnorm <- function(q, location_log = 0, scale_log = 1, shape_log = 0, ...,
     as.logical(length(location_log)) +
     as.logical(length(scale_log)) +
     as.logical(length(shape_log))
-  if (lengths >= 4) {
+  if (lengths == 4) {
     nas <- any(is.na(q), is.na(location_log), is.na(scale_log), is.na(shape_log))
     if (!nas) chk_compatible_lengths(q, location_log, scale_log, shape_log)
   }
@@ -192,7 +192,7 @@ qskewlnorm <- function(p, location_log = 0, scale_log = 1, shape_log = 0, ...,
     as.logical(length(location_log)) +
     as.logical(length(scale_log)) +
     as.logical(length(shape_log))
-  if (lengths >= 4) {
+  if (lengths == 4) {
     nas <- any(is.na(p), is.na(location_log), is.na(scale_log), is.na(shape_log))
     if (!nas) chk_compatible_lengths(p, location_log, scale_log, shape_log)
   }
@@ -263,7 +263,7 @@ rskewlnorm <- function(n = 1, location_log = 0, scale_log = 1, shape_log = 0,
     return(vector(mode = "numeric"))
   }
   chk_whole_number(n)
-  if (lengths >= 4 && n != 0L) {
+  if (lengths == 4 && n != 0L) {
     nas <- any(is.na(n), is.na(location_log), is.na(scale_log), is.na(shape_log))
     if (!nas) {
       chk_compatible_lengths(rep(1, n), location_log, scale_log, shape_log)

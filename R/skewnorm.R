@@ -53,7 +53,7 @@ dskewnorm <- function(x, location = 0, scale = 1, shape = 0, log = FALSE, ...,
     as.logical(length(location)) +
     as.logical(length(scale)) +
     as.logical(length(shape))
-  if (lengths >= 4) {
+  if (lengths == 4) {
     nas <- any(is.na(x), is.na(location), is.na(scale), is.na(shape))
     if (!nas) chk_compatible_lengths(x, location, scale, shape)
   }
@@ -100,7 +100,7 @@ pskewnorm <- function(q, location = 0, scale = 1, shape = 0, ..., mean, sd) {
     as.logical(length(location)) +
     as.logical(length(scale)) +
     as.logical(length(shape))
-  if (lengths >= 4) {
+  if (lengths == 4) {
     nas <- any(is.na(q), is.na(location), is.na(scale), is.na(shape))
     if (!nas) chk_compatible_lengths(q, location, scale, shape)
   }
@@ -150,7 +150,7 @@ qskewnorm <- function(p, location = 0, scale = 1, shape = 0, ...,
     as.logical(length(location)) +
     as.logical(length(scale)) +
     as.logical(length(shape))
-  if (lengths >= 4) {
+  if (lengths == 4) {
     nas <- any(is.na(p), is.na(location), is.na(scale), is.na(shape))
     if (!nas) chk_compatible_lengths(p, location, scale, shape)
   }
@@ -214,7 +214,7 @@ rskewnorm <- function(n = 1, location = 0, scale = 1, shape = 0, ...,
     return(vector(mode = "numeric"))
   }
   chk_whole_number(n)
-  if (lengths >= 4 && n != 0L) {
+  if (lengths == 4 && n != 0L) {
     nas <- any(is.na(n), is.na(location), is.na(scale), is.na(shape))
     if (!nas) {
       chk_compatible_lengths(rep(1, n), location, scale, shape)

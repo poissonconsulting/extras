@@ -706,7 +706,7 @@ log_lik_skewnorm <- function(
     as.logical(length(location)) +
     as.logical(length(scale)) +
     as.logical(length(shape))
-  if (lengths >= 4) {
+  if (lengths == 4) {
     log_lik[use_norm] <- lnorm[use_norm]
   }
   truncated <- (!is.infinite(tlower) | !is.infinite(tupper)) &
@@ -789,7 +789,7 @@ log_lik_skewlnorm <- function(
     as.logical(length(location_log)) +
     as.logical(length(scale_log)) +
     as.logical(length(shape_log))
-  if (lengths >= 4) {
+  if (lengths == 4) {
     log_lik[use_lnorm] <- llnorm[use_lnorm]
   }
   truncated <- (tlower != 0 | !is.infinite(tupper)) &
