@@ -554,7 +554,14 @@ test_that("res_multinom", {
   # NA in size or prob is a structural input shared by the whole trial, so
   # it makes the whole trial's result NA, not just the row where it appears
   expect_identical(
-    res_multinom(c(4, 6), c(10, NA), c(0.4, 0.6), c(1, 1), type = "data", simulate = TRUE),
+    res_multinom(
+      c(4, 6),
+      c(10, NA),
+      c(0.4, 0.6),
+      c(1, 1),
+      type = "data",
+      simulate = TRUE
+    ),
     c(NA_integer_, NA_integer_)
   )
   # every group must have the same number of rows (categories) as the most
@@ -1458,8 +1465,13 @@ test_that("res_skewnorm raw residuals subtract the mean", {
   # so raw residuals of data from the distribution have mean 0
   withr::with_seed(101, {
     expect_equal(
-      mean(res_skewnorm(rep(0, 10000), # x values are irrelevant when simulating
-                        1, 2, shape, simulate = TRUE, type = "raw"
+      mean(res_skewnorm(
+        rep(0, 10000), # x values are irrelevant when simulating
+        1,
+        2,
+        shape,
+        simulate = TRUE,
+        type = "raw"
       )),
       0,
       tolerance = 0.05
@@ -1485,8 +1497,13 @@ test_that("res_skewnorm standardized residuals divide by the sd", {
   # so standardized residuals of data from the distribution have sd 1
   withr::with_seed(101, {
     expect_equal(
-      sd(res_skewnorm(rep(0, 10000), 1, 2, shape,
-        simulate = TRUE, type = "standardized"
+      sd(res_skewnorm(
+        rep(0, 10000),
+        1,
+        2,
+        shape,
+        simulate = TRUE,
+        type = "standardized"
       )),
       1,
       tolerance = 0.05
@@ -1530,4 +1547,15 @@ test_that("res_skewlnorm", {
     expect_equal(mean(res), 0.00463040173426368)
     expect_equal(sd(res), 0.995340625582139)
   })
+})
+
+test_that("res_* return 0 not NaN when fit equals x to machine precision", {
+  eps <- .Machine$double.eps
+  expect_no_warning(res <- res_pois(12, 12 * (1 - eps)))
+  expect_identical(res, 0)
+  lambda <- 12 + c(-1, 1) * eps * 12 * c(1, 4)
+  expect_no_warning(res <- res_gamma_pois(12, lambda, 0.3))
+  expect_true(all(abs(res) < 1e-7))
+  expect_no_warning(res <- res_neg_binom(12, 12 * (1 + 4 * eps), 0.3))
+  expect_true(abs(res) < 1e-7)
 })
