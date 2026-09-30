@@ -1558,4 +1558,8 @@ test_that("res_* return 0 not NaN when fit equals x to machine precision", {
   expect_true(all(abs(res) < 1e-7))
   expect_no_warning(res <- res_neg_binom(12, 12 * (1 + 4 * eps), 0.3))
   expect_true(abs(res) < 1e-7)
+  shape <- 12 * (1 + c(-3, 3) * eps)
+  expect_true(all(dev_gamma(12, shape) < 0))
+  expect_no_warning(res <- res_gamma(12, shape))
+  expect_identical(res, c(0, 0))
 })
