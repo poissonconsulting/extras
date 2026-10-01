@@ -5,7 +5,16 @@ Skew-Lognormal Cumulative Distribution Function
 ## Usage
 
 ``` r
-prob_skewlnorm(x, meanlog = 0, sdlog = 1, shape = 0)
+prob_skewlnorm(
+  x,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
+  ...,
+  meanlog,
+  sdlog,
+  shape
+)
 ```
 
 ## Arguments
@@ -14,18 +23,41 @@ prob_skewlnorm(x, meanlog = 0, sdlog = 1, shape = 0)
 
   A numeric vector of quantiles.
 
+- locationlog:
+
+  A numeric vector of location parameters of `log(x)`.
+
+- scalelog:
+
+  A non-negative numeric vector of scale parameters of `log(x)`.
+
+- shapelog:
+
+  A numeric vector of shape parameters of `log(x)`. Negative values
+  result in leftward skew, while positive values result in rightward
+  skew.
+
+- ...:
+
+  Unused.
+
 - meanlog:
 
-  A numeric vector of the means on the log scale.
+  **\[deprecated\]** A numeric vector of location parameters of
+  `log(x)`. Described as "a numeric vector of the means on the log
+  scale" prior to v. 0.10.1. Will be removed in a future version.
 
 - sdlog:
 
-  A non-negative numeric vector of the standard deviations on the log
-  scale.
+  **\[deprecated\]** A non-negative numeric vector of scale parameters
+  of `log(x)`. Described as "a non-negative numeric vector of the
+  standard deviations on the log scale" prior to v. 0.10.1. Will be
+  removed in a future version.
 
 - shape:
 
-  A numeric vector of shape.
+  **\[deprecated\]** A numeric vector of shape parameters of `log(x)`.
+  Will be removed in a future version.
 
 ## Value
 
@@ -56,8 +88,8 @@ Other prob_dist:
 ``` r
 prob_skewlnorm(1:5)
 #> [1] 0.5000000 0.7558914 0.8640314 0.9171715 0.9462397
-prob_skewlnorm(1:5, shape = -2)
+prob_skewlnorm(1:5, shapelog = -2)
 #> [1] 0.8524164 0.9899035 0.9991047 0.9998950 0.9999845
-prob_skewlnorm(1:5, shape = 2)
+prob_skewlnorm(1:5, shapelog = 2)
 #> [1] 0.1475836 0.5218793 0.7289581 0.8344480 0.8924949
 ```

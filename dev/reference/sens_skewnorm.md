@@ -1,31 +1,52 @@
 # Adjust Skew Normal Distribution Parameters for Sensitivity Analyses
 
-Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard
-deviation of the Skew Normal distribution without changing the mean.
+Expands (`scale_mult > 1`) or reduces (`scale_mult < 1`) the scale
+parameter of the Skew Normal distribution without changing the mean.
 
 ## Usage
 
 ``` r
-sens_skewnorm(mean, sd, shape, sd_mult = 2)
+sens_skewnorm(location, scale, shape, scale_mult = 2, ..., mean, sd, sd_mult)
 ```
 
 ## Arguments
 
-- mean:
+- location:
 
-  A numeric vector of the means.
+  A numeric vector of the location parameter.
 
-- sd:
+- scale:
 
-  A non-negative numeric vector of the standard deviations.
+  A non-negative numeric vector of the scale parameter.
 
 - shape:
 
-  A numeric vector of shape.
+  A numeric vector of shape. Negative values result in leftward skew,
+  while positive values result in rightward skew.
+
+- scale_mult:
+
+  A non-negative multiplier on the scale of the distribution.
+
+- ...:
+
+  Unused.
+
+- mean:
+
+  **\[deprecated\]** A numeric vector of the location parameter.
+  Described as "a numeric vector of the means" prior to to v. 0.10.1.
+  Will be removed in a future version.
+
+- sd:
+
+  **\[deprecated\]** A non-negative numeric vector of the scale
+  parameter. Described as "a non-negative numeric vector of the standard
+  deviations" prior to v. 0.10.1. Will be removed in a future version.
 
 - sd_mult:
 
-  A non-negative multiplier on the standard deviation of the
+  **\[deprecated\]** A non-negative multiplier on the scale of the
   distribution.
 
 ## Value
@@ -51,20 +72,20 @@ Other sens_dist:
 
 ``` r
 sens_skewnorm(10, 3, -1, 2)
-#> $mean
+#> $location
 #> [1] 11.69257
 #> 
-#> $sd
+#> $scale
 #> [1] 6
 #> 
 #> $shape
 #> [1] -1
 #> 
 sens_skewnorm(10, 3, 3, 0.8)
-#> $mean
+#> $location
 #> [1] 10.45416
 #> 
-#> $sd
+#> $scale
 #> [1] 2.4
 #> 
 #> $shape

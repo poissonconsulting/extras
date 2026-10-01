@@ -1,36 +1,73 @@
 # Adjust Skew-Lognormal Distribution Parameters for Sensitivity Analyses
 
-Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard
-deviation of the Skew-Lognormal distribution while preserving its mean
-and `shape`. The adjustment is made on the natural scale (i.e. for `x`,
-not for `log(x)`), mirroring
+Expands (`scale_mult > 1`) or reduces (`scale_mult < 1`) the scale
+parameter of the Skew-Lognormal distribution while preserving its mean
+and `shapelog`. The adjustment is made on the natural scale (i.e. for
+`x`, not for `log(x)`), mirroring
 [`sens_lnorm()`](https://poissonconsulting.github.io/extras/dev/reference/sens_lnorm.md),
-to which it reduces when `shape = 0`.
+to which it reduces when `shapelog = 0`.
 
 ## Usage
 
 ``` r
-sens_skewlnorm(meanlog, sdlog, shape, sd_mult = 2)
+sens_skewlnorm(
+  locationlog,
+  scalelog,
+  shapelog,
+  scale_mult = 2,
+  ...,
+  meanlog,
+  sdlog,
+  shape,
+  sd_mult
+)
 ```
 
 ## Arguments
 
+- locationlog:
+
+  A numeric vector of location parameters of `log(x)`.
+
+- scalelog:
+
+  A non-negative numeric vector of scale parameters of `log(x)`.
+
+- shapelog:
+
+  A numeric vector of shape parameters of `log(x)`. Negative values
+  result in leftward skew, while positive values result in rightward
+  skew.
+
+- scale_mult:
+
+  A non-negative multiplier on the scale of the distribution.
+
+- ...:
+
+  Unused.
+
 - meanlog:
 
-  A numeric vector of the means on the log scale.
+  **\[deprecated\]** A numeric vector of location parameters of
+  `log(x)`. Described as "a numeric vector of the means on the log
+  scale" prior to v. 0.10.1. Will be removed in a future version.
 
 - sdlog:
 
-  A non-negative numeric vector of the standard deviations on the log
-  scale.
+  **\[deprecated\]** A non-negative numeric vector of scale parameters
+  of `log(x)`. Described as "a non-negative numeric vector of the
+  standard deviations on the log scale" prior to v. 0.10.1. Will be
+  removed in a future version.
 
 - shape:
 
-  A numeric vector of shape.
+  **\[deprecated\]** A numeric vector of shape parameters of `log(x)`.
+  Will be removed in a future version.
 
 - sd_mult:
 
-  A non-negative multiplier on the standard deviation of the
+  **\[deprecated\]** A non-negative multiplier on the scale of the
   distribution.
 
 ## Value
@@ -56,23 +93,23 @@ Other sens_dist:
 
 ``` r
 sens_skewlnorm(0, 1, 2, 2)
-#> $meanlog
+#> $locationlog
 #> [1] -0.6406637
 #> 
-#> $sdlog
+#> $scalelog
 #> [1] 1.441698
 #> 
-#> $shape
+#> $shapelog
 #> [1] 2
 #> 
 sens_skewlnorm(0, 1, 2, 0.8)
-#> $meanlog
+#> $locationlog
 #> [1] 0.1720714
 #> 
-#> $sdlog
+#> $scalelog
 #> [1] 0.8620703
 #> 
-#> $shape
+#> $shapelog
 #> [1] 2
 #> 
 ```

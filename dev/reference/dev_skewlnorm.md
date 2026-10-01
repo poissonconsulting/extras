@@ -5,7 +5,17 @@ Skew-Lognormal Deviances
 ## Usage
 
 ``` r
-dev_skewlnorm(x, meanlog = 0, sdlog = 1, shape = 0, res = FALSE)
+dev_skewlnorm(
+  x,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
+  res = FALSE,
+  ...,
+  meanlog,
+  sdlog,
+  shape
+)
 ```
 
 ## Arguments
@@ -13,6 +23,29 @@ dev_skewlnorm(x, meanlog = 0, sdlog = 1, shape = 0, res = FALSE)
 - x:
 
   A numeric vector of values.
+
+- locationlog:
+
+  A numeric vector of location parameters of `log(x)`.
+
+- scalelog:
+
+  A non-negative numeric vector of scale parameters of `log(x)`.
+
+- shapelog:
+
+  A numeric vector of shape parameters of `log(x)`. Negative values
+  result in leftward skew, while positive values result in rightward
+  skew.
+
+- res:
+
+  A flag specifying whether to return the deviance residual as opposed
+  to the deviance.
+
+- ...:
+
+  Other arguments passed to methods.
 
 - meanlog:
 
@@ -25,12 +58,7 @@ dev_skewlnorm(x, meanlog = 0, sdlog = 1, shape = 0, res = FALSE)
 
 - shape:
 
-  A numeric vector of shape.
-
-- res:
-
-  A flag specifying whether to return the deviance residual as opposed
-  to the deviance.
+  A non-negative numeric vector of shape.
 
 ## Value
 

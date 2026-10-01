@@ -5,7 +5,17 @@ Skew Normal Log-Likelihood
 ## Usage
 
 ``` r
-log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupper = Inf)
+log_lik_skewnorm(
+  x,
+  location = 0,
+  scale = 1,
+  shape = 0,
+  tlower = -Inf,
+  tupper = Inf,
+  ...,
+  mean,
+  sd
+)
 ```
 
 ## Arguments
@@ -14,17 +24,18 @@ log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupper = Inf)
 
   A numeric vector of values.
 
-- mean:
+- location:
 
-  A numeric vector of the means.
+  A numeric vector of the location parameter.
 
-- sd:
+- scale:
 
-  A non-negative numeric vector of the standard deviations.
+  A non-negative numeric vector of the scale parameter.
 
 - shape:
 
-  A numeric vector of shape.
+  A numeric vector of shape. Negative values result in leftward skew,
+  while positive values result in rightward skew.
 
 - tlower:
 
@@ -33,6 +44,22 @@ log_lik_skewnorm(x, mean = 0, sd = 1, shape = 0, tlower = -Inf, tupper = Inf)
 - tupper:
 
   A numeric vector of the upper truncation point.
+
+- ...:
+
+  Unused.
+
+- mean:
+
+  **\[deprecated\]** A numeric vector of the location parameter.
+  Described as "a numeric vector of the means" prior to to v. 0.10.1.
+  Will be removed in a future version.
+
+- sd:
+
+  **\[deprecated\]** A non-negative numeric vector of the scale
+  parameter. Described as "a non-negative numeric vector of the standard
+  deviations" prior to v. 0.10.1. Will be removed in a future version.
 
 ## Value
 

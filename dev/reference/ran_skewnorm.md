@@ -5,7 +5,7 @@ Skew Normal Random Samples
 ## Usage
 
 ``` r
-ran_skewnorm(n = 1, mean = 0, sd = 1, shape = 0)
+ran_skewnorm(n = 1, location = 0, scale = 1, shape = 0, ..., mean, sd)
 ```
 
 ## Arguments
@@ -15,17 +15,34 @@ ran_skewnorm(n = 1, mean = 0, sd = 1, shape = 0)
   A non-negative whole number of the number of random samples to
   generate.
 
-- mean:
+- location:
 
-  A numeric vector of the means.
+  A numeric vector of the location parameter.
 
-- sd:
+- scale:
 
-  A non-negative numeric vector of the standard deviations.
+  A non-negative numeric vector of the scale parameter.
 
 - shape:
 
-  A numeric vector of shape.
+  A numeric vector of shape. Negative values result in leftward skew,
+  while positive values result in rightward skew.
+
+- ...:
+
+  Unused.
+
+- mean:
+
+  **\[deprecated\]** A numeric vector of the location parameter.
+  Described as "a numeric vector of the means" prior to to v. 0.10.1.
+  Will be removed in a future version.
+
+- sd:
+
+  **\[deprecated\]** A non-negative numeric vector of the scale
+  parameter. Described as "a non-negative numeric vector of the standard
+  deviations" prior to v. 0.10.1. Will be removed in a future version.
 
 ## Value
 

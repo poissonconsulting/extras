@@ -43,7 +43,16 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ran_skewlnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ran_skewlnorm</span><span class="op">(</span></span>
+<span>  n <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  locationlog <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  scalelog <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  shapelog <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  <span class="va">meanlog</span>,</span>
+<span>  <span class="va">sdlog</span>,</span>
+<span>  <span class="va">shape</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -55,17 +64,41 @@
 generate.</p></dd>
 
 
+<dt id="arg-locationlog">locationlog<a class="anchor" aria-label="anchor" href="#arg-locationlog"></a></dt>
+<dd><p>A numeric vector of location parameters of <code>log(x)</code>.</p></dd>
+
+
+<dt id="arg-scalelog">scalelog<a class="anchor" aria-label="anchor" href="#arg-scalelog"></a></dt>
+<dd><p>A non-negative numeric vector of scale parameters of <code>log(x)</code>.</p></dd>
+
+
+<dt id="arg-shapelog">shapelog<a class="anchor" aria-label="anchor" href="#arg-shapelog"></a></dt>
+<dd><p>A numeric vector of shape parameters of <code>log(x)</code>.
+Negative values result in leftward skew, while positive values result in rightward skew.</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Unused.</p></dd>
+
+
 <dt id="arg-meanlog">meanlog<a class="anchor" aria-label="anchor" href="#arg-meanlog"></a></dt>
-<dd><p>A numeric vector of the means on the log scale.</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> A numeric vector of location parameters of <code>log(x)</code>.
+Described as "a numeric vector of the means on the log scale" prior to v.
+0.10.1.
+Will be removed in a future version.</p></dd>
 
 
 <dt id="arg-sdlog">sdlog<a class="anchor" aria-label="anchor" href="#arg-sdlog"></a></dt>
-<dd><p>A non-negative numeric vector of the standard deviations on the
-log scale.</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> A non-negative numeric vector of scale parameters of
+<code>log(x)</code>.
+Described as "a non-negative numeric vector of the standard deviations on the
+log scale" prior to v. 0.10.1.
+Will be removed in a future version.</p></dd>
 
 
 <dt id="arg-shape">shape<a class="anchor" aria-label="anchor" href="#arg-shape"></a></dt>
-<dd><p>A numeric vector of shape.</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> A numeric vector of shape parameters of <code>log(x)</code>.
+Will be removed in a future version.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -93,13 +126,13 @@ log scale.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">ran_skewlnorm</span><span class="op">(</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">ran_skewlnorm</span><span class="op">(</span><span class="fl">10</span>, shapelog <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 3.1545608 0.3472750 0.1702284 0.3071040 0.6096789 0.6605615 0.1211532</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.5679340 0.3466864 0.5505635</span>
-<span class="r-in"><span><span class="fu">ran_skewlnorm</span><span class="op">(</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ran_skewlnorm</span><span class="op">(</span><span class="fl">10</span>, shapelog <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1.5395104 1.6316938 1.3319142 0.3207225 0.8298741 3.1880723 0.8357501</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.3463072 5.3390789 2.1380676</span>
-<span class="r-in"><span><span class="fu">ran_skewlnorm</span><span class="op">(</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ran_skewlnorm</span><span class="op">(</span><span class="fl">10</span>, shapelog <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  3.4226992 10.9863972  0.9461688  0.8683200  0.8727028  1.1764970</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7]  1.9918429  5.0334436  4.5828620  1.2848456</span>
 </code></pre></div>

@@ -7,11 +7,15 @@ Skew-Lognormal Log-Likelihood
 ``` r
 log_lik_skewlnorm(
   x,
-  meanlog = 0,
-  sdlog = 1,
-  shape = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   tlower = 0,
-  tupper = Inf
+  tupper = Inf,
+  ...,
+  meanlog,
+  sdlog,
+  shape
 )
 ```
 
@@ -21,18 +25,19 @@ log_lik_skewlnorm(
 
   A numeric vector of values.
 
-- meanlog:
+- locationlog:
 
-  A numeric vector of the means on the log scale.
+  A numeric vector of location parameters of `log(x)`.
 
-- sdlog:
+- scalelog:
 
-  A non-negative numeric vector of the standard deviations on the log
-  scale.
+  A non-negative numeric vector of scale parameters of `log(x)`.
 
-- shape:
+- shapelog:
 
-  A numeric vector of shape.
+  A numeric vector of shape parameters of `log(x)`. Negative values
+  result in leftward skew, while positive values result in rightward
+  skew.
 
 - tlower:
 
@@ -41,6 +46,28 @@ log_lik_skewlnorm(
 - tupper:
 
   A numeric vector of the upper truncation point.
+
+- ...:
+
+  Unused.
+
+- meanlog:
+
+  **\[deprecated\]** A numeric vector of location parameters of
+  `log(x)`. Described as "a numeric vector of the means on the log
+  scale" prior to v. 0.10.1. Will be removed in a future version.
+
+- sdlog:
+
+  **\[deprecated\]** A non-negative numeric vector of scale parameters
+  of `log(x)`. Described as "a non-negative numeric vector of the
+  standard deviations on the log scale" prior to v. 0.10.1. Will be
+  removed in a future version.
+
+- shape:
+
+  **\[deprecated\]** A numeric vector of shape parameters of `log(x)`.
+  Will be removed in a future version.
 
 ## Value
 
@@ -72,8 +99,8 @@ Other log_lik_dist:
 ``` r
 log_lik_skewlnorm(1:5)
 #> [1] -0.9189385 -1.8523122 -2.6210253 -3.2661389 -3.8235216
-log_lik_skewlnorm(1:5, shape = -2)
+log_lik_skewlnorm(1:5, shapelog = -2)
 #> [1]  -0.9189385  -3.6501479  -6.1964185  -8.4580739 -10.4790080
-log_lik_skewlnorm(1:5, shape = 2)
+log_lik_skewlnorm(1:5, shapelog = 2)
 #> [1] -0.9189385 -1.2456259 -1.9419793 -2.5757762 -3.1310181
 ```

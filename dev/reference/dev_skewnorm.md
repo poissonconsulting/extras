@@ -5,7 +5,7 @@ Skew Normal Deviances
 ## Usage
 
 ``` r
-dev_skewnorm(x, mean = 0, sd = 1, shape = 0, res = FALSE)
+dev_skewnorm(x, location = 0, scale = 1, shape = 0, res = FALSE, ..., mean, sd)
 ```
 
 ## Arguments
@@ -14,6 +14,27 @@ dev_skewnorm(x, mean = 0, sd = 1, shape = 0, res = FALSE)
 
   A numeric vector of values.
 
+- location:
+
+  A numeric vector of the location parameter.
+
+- scale:
+
+  A non-negative numeric vector of the scale parameter.
+
+- shape:
+
+  A non-negative numeric vector of shape.
+
+- res:
+
+  A flag specifying whether to return the deviance residual as opposed
+  to the deviance.
+
+- ...:
+
+  Other arguments passed to methods.
+
 - mean:
 
   A numeric vector of the means.
@@ -21,15 +42,6 @@ dev_skewnorm(x, mean = 0, sd = 1, shape = 0, res = FALSE)
 - sd:
 
   A non-negative numeric vector of the standard deviations.
-
-- shape:
-
-  A numeric vector of shape.
-
-- res:
-
-  A flag specifying whether to return the deviance residual as opposed
-  to the deviance.
 
 ## Value
 

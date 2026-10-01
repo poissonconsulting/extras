@@ -43,13 +43,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dskewnorm</span><span class="op">(</span><span class="va">x</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dskewnorm</span><span class="op">(</span><span class="va">x</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span>, log <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span>, <span class="va">mean</span>, <span class="va">sd</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">pskewnorm</span><span class="op">(</span><span class="va">q</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu">pskewnorm</span><span class="op">(</span><span class="va">q</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span>, <span class="va">mean</span>, <span class="va">sd</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">qskewnorm</span><span class="op">(</span><span class="va">p</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu">qskewnorm</span><span class="op">(</span><span class="va">p</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span>, <span class="va">mean</span>, <span class="va">sd</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">rskewnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">rskewnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span>, <span class="va">mean</span>, <span class="va">sd</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -60,20 +60,37 @@
 <dd><p>A numeric vector of values.</p></dd>
 
 
-<dt id="arg-mean">mean<a class="anchor" aria-label="anchor" href="#arg-mean"></a></dt>
-<dd><p>A numeric vector of the means.</p></dd>
+<dt id="arg-location">location<a class="anchor" aria-label="anchor" href="#arg-location"></a></dt>
+<dd><p>A numeric vector of the location parameter.</p></dd>
 
 
-<dt id="arg-sd">sd<a class="anchor" aria-label="anchor" href="#arg-sd"></a></dt>
-<dd><p>A non-negative numeric vector of the standard deviations.</p></dd>
+<dt id="arg-scale">scale<a class="anchor" aria-label="anchor" href="#arg-scale"></a></dt>
+<dd><p>A non-negative numeric vector of the scale parameter.</p></dd>
 
 
 <dt id="arg-shape">shape<a class="anchor" aria-label="anchor" href="#arg-shape"></a></dt>
-<dd><p>A numeric vector of values.</p></dd>
+<dd><p>A numeric vector of shape. Negative values result in leftward skew, while positive values result in rightward skew.</p></dd>
 
 
 <dt id="arg-log">log<a class="anchor" aria-label="anchor" href="#arg-log"></a></dt>
 <dd><p>A flag specifying whether to return the log-transformed value.</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Unused.</p></dd>
+
+
+<dt id="arg-mean">mean<a class="anchor" aria-label="anchor" href="#arg-mean"></a></dt>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> A numeric vector of the location parameter.
+Described as "a numeric vector of the means" prior to to v. 0.10.1.
+Will be removed in a future version.</p></dd>
+
+
+<dt id="arg-sd">sd<a class="anchor" aria-label="anchor" href="#arg-sd"></a></dt>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> A non-negative numeric vector of the scale parameter.
+Described as "a non-negative numeric vector of the standard deviations" prior
+to v. 0.10.1.
+Will be removed in a future version.</p></dd>
 
 
 <dt id="arg-q">q<a class="anchor" aria-label="anchor" href="#arg-q"></a></dt>
@@ -97,21 +114,21 @@ generate.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">dskewnorm</span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">dskewnorm</span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.04543235 0.22269638 0.39894228 0.26124507 0.06254958</span>
-<span class="r-in"><span><span class="fu">dskewnorm</span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">dskewnorm</span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.105525330 0.407161596 0.398942280 0.076779853 0.002456603</span>
-<span class="r-in"><span><span class="fu">qskewnorm</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.4</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">qskewnorm</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.4</span><span class="op">)</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.1980898 -0.1731883</span>
-<span class="r-in"><span><span class="fu">qskewnorm</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.4</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">qskewnorm</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.4</span><span class="op">)</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.6322188 -0.7540709</span>
-<span class="r-in"><span><span class="fu">pskewnorm</span><span class="op">(</span>q <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pskewnorm</span><span class="op">(</span>q <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.01848493 0.13944469 0.46827448 0.82213418 0.97298466</span>
-<span class="r-in"><span><span class="fu">pskewnorm</span><span class="op">(</span>q <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pskewnorm</span><span class="op">(</span>q <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0449827 0.2921390 0.7500000 0.9748285 0.9994824</span>
-<span class="r-in"><span><span class="fu">rskewnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">rskewnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  0.06119718 -0.91936053  0.55349209</span>
-<span class="r-in"><span><span class="fu">rskewnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">rskewnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.494791 -1.172111 -1.274561</span>
 </code></pre></div>
     </div>

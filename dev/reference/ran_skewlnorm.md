@@ -5,7 +5,16 @@ Skew-Lognormal Random Samples
 ## Usage
 
 ``` r
-ran_skewlnorm(n = 1, meanlog = 0, sdlog = 1, shape = 0)
+ran_skewlnorm(
+  n = 1,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
+  ...,
+  meanlog,
+  sdlog,
+  shape
+)
 ```
 
 ## Arguments
@@ -15,18 +24,41 @@ ran_skewlnorm(n = 1, meanlog = 0, sdlog = 1, shape = 0)
   A non-negative whole number of the number of random samples to
   generate.
 
+- locationlog:
+
+  A numeric vector of location parameters of `log(x)`.
+
+- scalelog:
+
+  A non-negative numeric vector of scale parameters of `log(x)`.
+
+- shapelog:
+
+  A numeric vector of shape parameters of `log(x)`. Negative values
+  result in leftward skew, while positive values result in rightward
+  skew.
+
+- ...:
+
+  Unused.
+
 - meanlog:
 
-  A numeric vector of the means on the log scale.
+  **\[deprecated\]** A numeric vector of location parameters of
+  `log(x)`. Described as "a numeric vector of the means on the log
+  scale" prior to v. 0.10.1. Will be removed in a future version.
 
 - sdlog:
 
-  A non-negative numeric vector of the standard deviations on the log
-  scale.
+  **\[deprecated\]** A non-negative numeric vector of scale parameters
+  of `log(x)`. Described as "a non-negative numeric vector of the
+  standard deviations on the log scale" prior to v. 0.10.1. Will be
+  removed in a future version.
 
 - shape:
 
-  A numeric vector of shape.
+  **\[deprecated\]** A numeric vector of shape parameters of `log(x)`.
+  Will be removed in a future version.
 
 ## Value
 
@@ -53,13 +85,13 @@ Other ran_dist:
 ## Examples
 
 ``` r
-ran_skewlnorm(10, shape = -1)
+ran_skewlnorm(10, shapelog = -1)
 #>  [1] 3.1545608 0.3472750 0.1702284 0.3071040 0.6096789 0.6605615 0.1211532
 #>  [8] 0.5679340 0.3466864 0.5505635
-ran_skewlnorm(10, shape = 0)
+ran_skewlnorm(10, shapelog = 0)
 #>  [1] 1.5395104 1.6316938 1.3319142 0.3207225 0.8298741 3.1880723 0.8357501
 #>  [8] 0.3463072 5.3390789 2.1380676
-ran_skewlnorm(10, shape = 1)
+ran_skewlnorm(10, shapelog = 1)
 #>  [1]  3.4226992 10.9863972  0.9461688  0.8683200  0.8727028  1.1764970
 #>  [7]  1.9918429  5.0334436  4.5828620  1.2848456
 ```

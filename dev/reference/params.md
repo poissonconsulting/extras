@@ -43,6 +43,10 @@ functions.
   A number \> 0 and \<= 1 specifying the probability coverage of the
   interval.
 
+- location:
+
+  A numeric vector of the location parameter.
+
 - log:
 
   A flag specifying whether to return the log-transformed value.
@@ -105,7 +109,7 @@ functions.
 
 - scale:
 
-  A non-negative numeric vector of the scale.
+  A non-negative numeric vector of the scale parameter.
 
 - sd:
 

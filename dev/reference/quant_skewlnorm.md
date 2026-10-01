@@ -5,7 +5,16 @@ Skew-Lognormal Quantile Function
 ## Usage
 
 ``` r
-quant_skewlnorm(x, meanlog = 0, sdlog = 1, shape = 0)
+quant_skewlnorm(
+  x,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
+  ...,
+  meanlog,
+  sdlog,
+  shape
+)
 ```
 
 ## Arguments
@@ -14,18 +23,41 @@ quant_skewlnorm(x, meanlog = 0, sdlog = 1, shape = 0)
 
   A numeric vector of probabilities.
 
+- locationlog:
+
+  A numeric vector of location parameters of `log(x)`.
+
+- scalelog:
+
+  A non-negative numeric vector of scale parameters of `log(x)`.
+
+- shapelog:
+
+  A numeric vector of shape parameters of `log(x)`. Negative values
+  result in leftward skew, while positive values result in rightward
+  skew.
+
+- ...:
+
+  Unused.
+
 - meanlog:
 
-  A numeric vector of the means on the log scale.
+  **\[deprecated\]** A numeric vector of location parameters of
+  `log(x)`. Described as "a numeric vector of the means on the log
+  scale" prior to v. 0.10.1. Will be removed in a future version.
 
 - sdlog:
 
-  A non-negative numeric vector of the standard deviations on the log
-  scale.
+  **\[deprecated\]** A non-negative numeric vector of scale parameters
+  of `log(x)`. Described as "a non-negative numeric vector of the
+  standard deviations on the log scale" prior to v. 0.10.1. Will be
+  removed in a future version.
 
 - shape:
 
-  A numeric vector of shape.
+  **\[deprecated\]** A numeric vector of shape parameters of `log(x)`.
+  Will be removed in a future version.
 
 ## Value
 
@@ -55,8 +87,8 @@ Other quant_dist:
 ``` r
 quant_skewlnorm(c(0.1, 0.4, 0.6))
 #> [1] 0.2776062 0.7761984 1.2883304
-quant_skewlnorm(c(0.1, 0.4, 0.6), shape = -2)
+quant_skewlnorm(c(0.1, 0.4, 0.6), shapelog = -2)
 #> [1] 0.1930513 0.4346470 0.6150948
-quant_skewlnorm(c(0.1, 0.4, 0.6), shape = 2)
+quant_skewlnorm(c(0.1, 0.4, 0.6), shapelog = 2)
 #> [1] 0.8747552 1.6257658 2.3007178
 ```

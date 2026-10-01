@@ -7,11 +7,15 @@ Skew-Lognormal Residuals
 ``` r
 res_skewlnorm(
   x,
-  meanlog = 0,
-  sdlog = 1,
-  shape = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   type = "dev",
-  simulate = FALSE
+  simulate = FALSE,
+  ...,
+  meanlog,
+  sdlog,
+  shape
 )
 ```
 
@@ -21,18 +25,19 @@ res_skewlnorm(
 
   A numeric vector of values.
 
-- meanlog:
+- locationlog:
 
-  A numeric vector of the means on the log scale.
+  A numeric vector of location parameters of `log(x)`.
 
-- sdlog:
+- scalelog:
 
-  A non-negative numeric vector of the standard deviations on the log
-  scale.
+  A non-negative numeric vector of scale parameters of `log(x)`.
 
-- shape:
+- shapelog:
 
-  A numeric vector of shape.
+  A numeric vector of shape parameters of `log(x)`. Negative values
+  result in leftward skew, while positive values result in rightward
+  skew.
 
 - type:
 
@@ -42,6 +47,28 @@ res_skewlnorm(
 - simulate:
 
   A flag specifying whether to simulate residuals.
+
+- ...:
+
+  Unused.
+
+- meanlog:
+
+  **\[deprecated\]** A numeric vector of location parameters of
+  `log(x)`. Described as "a numeric vector of the means on the log
+  scale" prior to v. 0.10.1. Will be removed in a future version.
+
+- sdlog:
+
+  **\[deprecated\]** A non-negative numeric vector of scale parameters
+  of `log(x)`. Described as "a non-negative numeric vector of the
+  standard deviations on the log scale" prior to v. 0.10.1. Will be
+  removed in a future version.
+
+- shape:
+
+  **\[deprecated\]** A numeric vector of shape parameters of `log(x)`.
+  Will be removed in a future version.
 
 ## Value
 
