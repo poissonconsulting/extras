@@ -24,6 +24,7 @@
 #' @param lambda A non-negative numeric vector of means.
 #' @param level A number > 0 and <= 1 specifying the probability coverage of the
 #' interval.
+#' @param location A numeric vector of the location parameter.
 #' @param log A flag specifying whether to return the log-transformed value.
 #' @param lower.tail A flag specifying whether to return the lower or upper tail
 #'   of the distribution.
@@ -42,7 +43,7 @@
 #' @param rate A non-negative numeric vector of rate.
 #' @param res A flag specifying whether to return the deviance residual as
 #'   opposed to the deviance.
-#' @param scale A non-negative numeric vector of the scale.
+#' @param scale A non-negative numeric vector of the scale parameter.
 #' @param sd A non-negative numeric vector of the standard deviations.
 #' @param sd_mult A non-negative multiplier on the standard deviation of the
 #'   distribution.

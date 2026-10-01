@@ -1,14 +1,28 @@
 #' Skew-Lognormal Distribution
 #'
-#' The skew-lognormal distribution of a value `x` whose natural logarithm
-#' follows a [Skew-Normal][dskewnorm] distribution with location `meanlog`,
-#' scale `sdlog` and `shape`.
-#' It reduces to the Log-Normal distribution when `shape = 0`.
+#' The skew-lognormal distribution of a random variable whose natural logarithm
+#' follows a [Skew-Normal][dskewnorm] distribution with location `locationlog`,
+#' scale `scalelog` and `shapelog`.
+#' It reduces to the Log-Normal distribution when `shapelog = 0`.
 #'
 #' @inheritParams params
 #' @param x A numeric vector of values.
-#' @param shape A numeric vector of values.
-#'
+#' @param locationlog A numeric vector of location parameters of `log(x)`.
+#' @param scalelog A non-negative numeric vector of scale parameters of `log(x)`.
+#' @param shapelog A numeric vector of shape parameters of `log(x)`.
+#' Negative values result in leftward skew, while positive values result in rightward skew.
+#' @param ... Unused.
+#' @param meanlog `r lifecycle::badge("deprecated")` A numeric vector of location parameters of `log(x)`.
+#' Described as "a numeric vector of the means on the log scale" prior to v.
+#' 0.10.1.
+#' Will be removed in a future version.
+#' @param sdlog `r lifecycle::badge("deprecated")` A non-negative numeric vector of scale parameters of
+#' `log(x)`.
+#' Described as "a non-negative numeric vector of the standard deviations on the
+#' log scale" prior to v. 0.10.1.
+#' Will be removed in a future version.
+#' @param shape `r lifecycle::badge("deprecated")` A numeric vector of shape parameters of `log(x)`.
+#' Will be removed in a future version.
 #' @return `dskewlnorm` gives the density, `pskewlnorm` gives the distribution function, `qskewlnorm` gives the quantile function, and `rskewlnorm` generates random deviates.
 #' `pskewlnorm` and `qskewlnorm` use the lower tail probability.
 #' @family skewlnorm
@@ -16,167 +30,247 @@
 #' @export
 #'
 #' @examplesIf rlang::is_installed("sn")
-#' dskewlnorm(x = 1:5, meanlog = 0, sdlog = 1, shape = 0.1)
-#' dskewlnorm(x = 1:5, meanlog = 0, sdlog = 1, shape = -1)
-#' qskewlnorm(p = c(0.1, 0.4), meanlog = 0, sdlog = 1, shape = 0.1)
-#' qskewlnorm(p = c(0.1, 0.4), meanlog = 0, sdlog = 1, shape = -1)
-#' pskewlnorm(q = 1:5, meanlog = 0, sdlog = 1, shape = 0.1)
-#' pskewlnorm(q = 1:5, meanlog = 0, sdlog = 1, shape = -1)
-#' rskewlnorm(n = 3, meanlog = 0, sdlog = 1, shape = 0.1)
-#' rskewlnorm(n = 3, meanlog = 0, sdlog = 1, shape = -1)
-dskewlnorm <- function(x, meanlog = 0, sdlog = 1, shape = 0, log = FALSE) {
+#' dskewlnorm(x = 1:5, locationlog = 0, scalelog = 1, shapelog = 0.1)
+#' dskewlnorm(x = 1:5, locationlog = 0, scalelog = 1, shapelog = -1)
+#' qskewlnorm(p = c(0.1, 0.4), locationlog = 0, scalelog = 1, shapelog = 0.1)
+#' qskewlnorm(p = c(0.1, 0.4), locationlog = 0, scalelog = 1, shapelog = -1)
+#' pskewlnorm(q = 1:5, locationlog = 0, scalelog = 1, shapelog = 0.1)
+#' pskewlnorm(q = 1:5, locationlog = 0, scalelog = 1, shapelog = -1)
+#' rskewlnorm(n = 3, locationlog = 0, scalelog = 1, shapelog = 0.1)
+#' rskewlnorm(n = 3, locationlog = 0, scalelog = 1, shapelog = -1)
+dskewlnorm <- function(x, locationlog = 0, scalelog = 1, shapelog = 0,
+                       log = FALSE, ..., meanlog, sdlog, shape) {
   rlang::check_installed("sn")
-  chk_gte(sdlog)
-  nulls <- any(is.null(x), is.null(meanlog), is.null(sdlog), is.null(shape))
+  if (!missing(meanlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "dskewlnorm(meanlog)",
+                              id = "dskewlnorm locationlog",
+                              with = "dskewlnorm(locationlog)")
+    locationlog <- meanlog
+  }
+  if (!missing(sdlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "dskewlnorm(sdlog)",
+                              id = "dskewlnorm scalelog",
+                              with = "dskewlnorm(scalelog)")
+    scalelog <- sdlog
+  }
+  if (!missing(shape)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "dskewlnorm(shape)",
+                              id = "dskewlnorm shapelog",
+                              with = "dskewlnorm(shapelog)")
+    shapelog <- shape
+  }
+  chk_unused(...)
+  chk_gte(scalelog)
+  nulls <- any(is.null(x), is.null(locationlog), is.null(scalelog), is.null(shapelog))
   if (nulls) {
     stop("invalid arguments")
   }
   lengths <- as.logical(length(x)) +
-    as.logical(length(meanlog)) +
-    as.logical(length(sdlog)) +
-    as.logical(length(shape))
-  if (lengths >= 4) {
-    nas <- any(is.na(x), is.na(meanlog), is.na(sdlog), is.na(shape))
-    if (!nas) chk_compatible_lengths(x, meanlog, sdlog, shape)
+    as.logical(length(locationlog)) +
+    as.logical(length(scalelog)) +
+    as.logical(length(shapelog))
+  if (lengths == 4) {
+    nas <- any(is.na(x), is.na(locationlog), is.na(scalelog), is.na(shapelog))
+    if (!nas) chk_compatible_lengths(x, locationlog, scalelog, shapelog)
   }
   character <- any(
     is.character(x),
-    is.character(meanlog),
-    is.character(sdlog),
-    is.character(shape)
+    is.character(locationlog),
+    is.character(scalelog),
+    is.character(shapelog)
   )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
   chk_false(character)
-  na_shape <- is.na(shape)
-  shape[na_shape] <- 0
+  na_shapelog <- is.na(shapelog)
+  shapelog[na_shapelog] <- 0
   logx <- suppressWarnings(log(x))
   log_lik <- sn::dsn(
     x = logx,
-    xi = meanlog,
-    omega = sdlog,
-    alpha = shape,
+    xi = locationlog,
+    omega = scalelog,
+    alpha = shapelog,
     log = TRUE
   ) -
     logx
   xr <- rep_len(x, length(log_lik))
   log_lik[!is.na(xr) & xr <= 0] <- -Inf
   lik <- if (isTRUE(log)) log_lik else exp(log_lik)
-  lik[na_shape] <- NA_real_
+  lik[na_shapelog] <- NA_real_
   lik
 }
 
 #' @rdname skewlnorm
 #' @export
-pskewlnorm <- function(q, meanlog = 0, sdlog = 1, shape = 0) {
+pskewlnorm <- function(q, locationlog = 0, scalelog = 1, shapelog = 0, ...,
+                       meanlog, sdlog, shape) {
   rlang::check_installed("sn")
-  chk_gte(sdlog)
-  nulls <- any(is.null(q), is.null(meanlog), is.null(sdlog), is.null(shape))
+  if (!missing(meanlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "pskewlnorm(meanlog)",
+                              id = "pskewlnorm locationlog",
+                              with = "pskewlnorm(locationlog)")
+    locationlog <- meanlog
+  }
+  if (!missing(sdlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "pskewlnorm(sdlog)",
+                              id = "pskewlnorm scalelog",
+                              with = "pskewlnorm(scalelog)")
+    scalelog <- sdlog
+  }
+  if (!missing(shape)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "pskewlnorm(shape)",
+                              id = "pskewlnorm shapelog",
+                              with = "pskewlnorm(shapelog)")
+    shapelog <- shape
+  }
+  chk_unused(...)
+  chk_gte(scalelog)
+  nulls <- any(is.null(q), is.null(locationlog), is.null(scalelog), is.null(shapelog))
   if (nulls) {
     stop("invalid arguments")
   }
   lengths <- as.logical(length(q)) +
-    as.logical(length(meanlog)) +
-    as.logical(length(sdlog)) +
-    as.logical(length(shape))
-  if (lengths >= 4) {
-    nas <- any(is.na(q), is.na(meanlog), is.na(sdlog), is.na(shape))
-    if (!nas) chk_compatible_lengths(q, meanlog, sdlog, shape)
+    as.logical(length(locationlog)) +
+    as.logical(length(scalelog)) +
+    as.logical(length(shapelog))
+  if (lengths == 4) {
+    nas <- any(is.na(q), is.na(locationlog), is.na(scalelog), is.na(shapelog))
+    if (!nas) chk_compatible_lengths(q, locationlog, scalelog, shapelog)
   }
   character <- any(
     is.character(q),
-    is.character(meanlog),
-    is.character(sdlog),
-    is.character(shape)
+    is.character(locationlog),
+    is.character(scalelog),
+    is.character(shapelog)
   )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
   chk_false(character)
-  na_shape <- is.na(shape)
-  shape[na_shape] <- 0
+  na_shapelog <- is.na(shapelog)
+  shapelog[na_shapelog] <- 0
   logq <- suppressWarnings(log(q))
   logq[!is.na(q) & q <= 0] <- -Inf
-  p <- mapply(sn::psn, x = logq, xi = meanlog, omega = sdlog, alpha = shape)
-  p[na_shape] <- NA_real_
+  p <- mapply(sn::psn, x = logq, xi = locationlog, omega = scalelog, alpha = shapelog)
+  p[na_shapelog] <- NA_real_
   p
 }
 
 #' @rdname skewlnorm
 #' @export
-qskewlnorm <- function(p, meanlog = 0, sdlog = 1, shape = 0) {
+qskewlnorm <- function(p, locationlog = 0, scalelog = 1, shapelog = 0, ...,
+                       meanlog, sdlog, shape) {
   rlang::check_installed("sn")
-  chk_gte(sdlog)
+  if (!missing(meanlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "qskewlnorm(meanlog)",
+                              id = "qskewlnorm locationlog",
+                              with = "qskewlnorm(locationlog)")
+    locationlog <- meanlog
+  }
+  if (!missing(sdlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "qskewlnorm(sdlog)",
+                              id = "qskewlnorm scalelog",
+                              with = "qskewlnorm(scalelog)")
+    scalelog <- sdlog
+  }
+  if (!missing(shape)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "qskewlnorm(shape)",
+                              id = "qskewlnorm shapelog",
+                              with = "qskewlnorm(shapelog)")
+    shapelog <- shape
+  }
+  chk_unused(...)
+  chk_gte(scalelog)
   chk_gte(p)
   chk_lte(p, 1)
-  nulls <- any(is.null(p), is.null(meanlog), is.null(sdlog), is.null(shape))
+  nulls <- any(is.null(p), is.null(locationlog), is.null(scalelog), is.null(shapelog))
   if (nulls) {
     stop("invalid arguments")
   }
   lengths <- as.logical(length(p)) +
-    as.logical(length(meanlog)) +
-    as.logical(length(sdlog)) +
-    as.logical(length(shape))
-  if (lengths >= 4) {
-    nas <- any(is.na(p), is.na(meanlog), is.na(sdlog), is.na(shape))
-    if (!nas) chk_compatible_lengths(p, meanlog, sdlog, shape)
+    as.logical(length(locationlog)) +
+    as.logical(length(scalelog)) +
+    as.logical(length(shapelog))
+  if (lengths == 4) {
+    nas <- any(is.na(p), is.na(locationlog), is.na(scalelog), is.na(shapelog))
+    if (!nas) chk_compatible_lengths(p, locationlog, scalelog, shapelog)
   }
   character <- any(
     is.character(p),
-    is.character(meanlog),
-    is.character(sdlog),
-    is.character(shape)
+    is.character(locationlog),
+    is.character(scalelog),
+    is.character(shapelog)
   )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
   chk_false(character)
-  na_shape <- is.na(shape)
-  shape[na_shape] <- 0
-  na_sd <- is.na(sdlog)
-  sdlog[na_sd] <- 0.1
-  q <- mapply(sn::qsn, p = p, xi = meanlog, omega = sdlog, alpha = shape)
+  na_shapelog <- is.na(shapelog)
+  shapelog[na_shapelog] <- 0
+  na_sd <- is.na(scalelog)
+  scalelog[na_sd] <- 0.1
+  q <- mapply(sn::qsn, p = p, xi = locationlog, omega = scalelog, alpha = shapelog)
   q <- exp(q)
-  q[na_shape] <- NA_real_
+  q[na_shapelog] <- NA_real_
   q[na_sd] <- NA_real_
   q
 }
 
 #' @rdname skewlnorm
 #' @export
-rskewlnorm <- function(n = 1, meanlog = 0, sdlog = 1, shape = 0) {
+rskewlnorm <- function(n = 1, locationlog = 0, scalelog = 1, shapelog = 0,
+                       ..., meanlog, sdlog, shape) {
   rlang::check_installed("sn")
+  if (!missing(meanlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "rskewlnorm(meanlog)",
+                              id = "rskewlnorm locationlog",
+                              with = "rskewlnorm(locationlog)")
+    locationlog <- meanlog
+  }
+  if (!missing(sdlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "rskewlnorm(sdlog)",
+                              id = "rskewlnorm scalelog",
+                              with = "rskewlnorm(scalelog)")
+    scalelog <- sdlog
+  }
+  if (!missing(shape)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "rskewlnorm(shape)",
+                              id = "rskewlnorm shapelog",
+                              with = "rskewlnorm(shapelog)")
+    shapelog <- shape
+  }
+  chk_unused(...)
   chk_gte(n)
   chk_lt(n, Inf)
   chk_not_any_na(n)
-  chk_gte(sdlog)
-  nulls <- any(is.null(n), is.null(meanlog), is.null(sdlog), is.null(shape))
+  chk_gte(scalelog)
+  nulls <- any(is.null(n), is.null(locationlog), is.null(scalelog), is.null(shapelog))
   if (nulls) {
     stop("invalid arguments")
   }
   lengths <- as.logical(length(n)) +
-    as.logical(length(meanlog)) +
-    as.logical(length(sdlog)) +
-    as.logical(length(shape))
+    as.logical(length(locationlog)) +
+    as.logical(length(scalelog)) +
+    as.logical(length(shapelog))
   character <- any(
     is.character(n),
-    is.character(meanlog),
-    is.character(sdlog),
-    is.character(shape)
+    is.character(locationlog),
+    is.character(scalelog),
+    is.character(shapelog)
   )
   if (lengths < 4 && !character) {
     return(vector(mode = "numeric"))
   }
   chk_whole_number(n)
-  if (lengths >= 4 && n != 0L) {
-    nas <- any(is.na(n), is.na(meanlog), is.na(sdlog), is.na(shape))
+  if (lengths == 4 && n != 0L) {
+    nas <- any(is.na(n), is.na(locationlog), is.na(scalelog), is.na(shapelog))
     if (!nas) {
-      chk_compatible_lengths(rep(1, n), meanlog, sdlog, shape)
+      chk_compatible_lengths(rep(1, n), locationlog, scalelog, shapelog)
     }
   }
   chk_false(character)
-  ran <- exp(sn::rsn(n, xi = meanlog, omega = sdlog, alpha = shape))
+  ran <- exp(sn::rsn(n, xi = locationlog, omega = scalelog, alpha = shapelog))
   attributes(ran) <- NULL
   if (n == 0L) {
     return(ran)

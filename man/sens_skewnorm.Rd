@@ -4,23 +4,36 @@
 \alias{sens_skewnorm}
 \title{Adjust Skew Normal Distribution Parameters for Sensitivity Analyses}
 \usage{
-sens_skewnorm(mean, sd, shape, sd_mult = 2)
+sens_skewnorm(location, scale, shape, scale_mult = 2, ..., mean, sd, sd_mult)
 }
 \arguments{
-\item{mean}{A numeric vector of the means.}
+\item{location}{A numeric vector of the location parameter.}
 
-\item{sd}{A non-negative numeric vector of the standard deviations.}
+\item{scale}{A non-negative numeric vector of the scale parameter.}
 
-\item{shape}{A numeric vector of shape.}
+\item{shape}{A numeric vector of shape. Negative values result in leftward skew, while positive values result in rightward skew.}
 
-\item{sd_mult}{A non-negative multiplier on the standard deviation of the
-distribution.}
+\item{scale_mult}{A non-negative multiplier on the scale of the distribution.}
+
+\item{...}{Unused.}
+
+\item{mean}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of the location parameter.
+Described as "a numeric vector of the means" prior to to v. 0.10.1.
+Will be removed in a future version.}
+
+\item{sd}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A non-negative numeric vector of the scale parameter.
+Described as "a non-negative numeric vector of the standard deviations" prior
+to v. 0.10.1.
+Will be removed in a future version.}
+
+\item{sd_mult}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A non-negative multiplier
+on the scale of the distribution.}
 }
 \value{
 A named list of the adjusted distribution's parameters.
 }
 \description{
-Expands (\code{sd_mult > 1}) or reduces (\code{sd_mult < 1}) the standard deviation
+Expands (\code{scale_mult > 1}) or reduces (\code{scale_mult < 1}) the scale parameter
 of the Skew Normal distribution without changing the mean.
 }
 \examples{

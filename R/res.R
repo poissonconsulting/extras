@@ -441,9 +441,9 @@ res_pois_zi <- function(
 
 #' Skew Normal Residuals
 #'
+#' @inheritParams dskewnorm
 #' @inheritParams params
 #' @param x A numeric vector of values.
-#' @param shape A numeric vector of shape.
 #'
 #' @return An numeric vector of the corresponding residuals.
 #' @family res_dist
@@ -453,34 +453,50 @@ res_pois_zi <- function(
 #' res_skewnorm(c(-2:2))
 res_skewnorm <- function(
   x,
-  mean = 0,
-  sd = 1,
+  location = 0,
+  scale = 1,
   shape = 0,
   type = "dev",
-  simulate = FALSE
+  simulate = FALSE,
+  ...,
+  mean,
+  sd
 ) {
   rlang::check_installed("sn")
+  chk_unused(...)
+  if (!missing(mean)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewnorm(mean)",
+                              id = "res_skewnorm location",
+                              with = "res_skewnorm(location)")
+    location <- mean
+  }
+  if (!missing(sd)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewnorm(sd)",
+                              id = "res_skewnorm scale",
+                              with = "res_skewnorm(scale)")
+    scale <- sd
+  }
   chk_string(type)
   if (!vld_false(simulate)) {
-    x <- ran_skewnorm(length(x), mean = mean, sd = sd, shape = shape)
+    x <- ran_skewnorm(length(x), location = location, scale = scale, shape = shape)
   }
   switch(
     type,
     data = x,
-    raw = x - (mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi)),
+    raw = x - (location + scale * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi)),
     standardized = (x -
-      (mean + sd * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi))) /
-      sqrt(sd^2 * (1 - ((2 * (shape / sqrt(1 + shape^2))^2) / pi))),
-    dev = dev_skewnorm(x, mean = mean, sd = sd, shape = shape, res = TRUE),
+      (location + scale * (shape / sqrt(1 + shape^2)) * sqrt(2 / pi))) /
+      sqrt(scale^2 * (1 - ((2 * (shape / sqrt(1 + shape^2))^2) / pi))),
+    dev = dev_skewnorm(x, location = location, scale = scale, shape = shape,
+                       res = TRUE),
     chk_subset(x, c("data", "raw", "dev", "standardized"))
   )
 }
 
 #' Skew-Lognormal Residuals
 #'
+#' @inheritParams dskewlnorm
 #' @inheritParams params
-#' @param x A numeric vector of values.
-#' @param shape A numeric vector of shape.
 #'
 #' @return An numeric vector of the corresponding residuals.
 #' @family res_dist
@@ -490,25 +506,45 @@ res_skewnorm <- function(
 #' res_skewlnorm(exp(-2:2))
 res_skewlnorm <- function(
   x,
-  meanlog = 0,
-  sdlog = 1,
-  shape = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   type = "dev",
-  simulate = FALSE
-) {
+  simulate = FALSE,
+  ...,
+  meanlog, sdlog, shape) {
   rlang::check_installed("sn")
+  chk_unused(...)
+  if (!missing(meanlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewlnorm(meanlog)",
+                              id = "res_skewlnorm locationlog",
+                              with = "res_skewlnorm(locationlog)")
+    locationlog <- meanlog
+  }
+  if (!missing(sdlog)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewlnorm(sdlog)",
+                              id = "res_skewlnorm scalelog",
+                              with = "res_skewlnorm(scalelog)")
+    scalelog <- sdlog
+  }
+  if (!missing(shape)) {
+    lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewlnorm(shape)",
+                              id = "res_skewlnorm shapelog",
+                              with = "res_skewlnorm(shapelog)")
+    shapelog <- shape
+  }
   chk_string(type)
   if (!vld_false(simulate)) {
     x <- ran_skewlnorm(
       length(x),
-      meanlog = meanlog,
-      sdlog = sdlog,
-      shape = shape
+      locationlog = locationlog,
+      scalelog = scalelog,
+      shapelog = shapelog
     )
   }
-  delta <- shape / sqrt(1 + shape^2)
-  mean_sln <- 2 * exp(meanlog + sdlog^2 / 2) * stats::pnorm(delta * sdlog)
-  m2_sln <- 2 * exp(2 * meanlog + 2 * sdlog^2) * stats::pnorm(2 * delta * sdlog)
+  delta <- shapelog / sqrt(1 + shapelog^2)
+  mean_sln <- 2 * exp(locationlog + scalelog^2 / 2) * stats::pnorm(delta * scalelog)
+  m2_sln <- 2 * exp(2 * locationlog + 2 * scalelog^2) * stats::pnorm(2 * delta * scalelog)
   sd_sln <- sqrt(m2_sln - mean_sln^2)
   switch(
     type,
@@ -517,9 +553,9 @@ res_skewlnorm <- function(
     standardized = (x - mean_sln) / sd_sln,
     dev = dev_skewlnorm(
       x,
-      meanlog = meanlog,
-      sdlog = sdlog,
-      shape = shape,
+      locationlog = locationlog,
+      scalelog = scalelog,
+      shapelog = shapelog,
       res = TRUE
     ),
     chk_subset(x, c("data", "raw", "dev", "standardized"))

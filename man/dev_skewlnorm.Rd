@@ -4,20 +4,39 @@
 \alias{dev_skewlnorm}
 \title{Skew-Lognormal Deviances}
 \usage{
-dev_skewlnorm(x, meanlog = 0, sdlog = 1, shape = 0, res = FALSE)
+dev_skewlnorm(
+  x,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
+  res = FALSE,
+  ...,
+  meanlog,
+  sdlog,
+  shape
+)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
+
+\item{locationlog}{A numeric vector of location parameters of \code{log(x)}.}
+
+\item{scalelog}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
+
+\item{shapelog}{A numeric vector of shape parameters of \code{log(x)}.
+Negative values result in leftward skew, while positive values result in rightward skew.}
+
+\item{res}{A flag specifying whether to return the deviance residual as
+opposed to the deviance.}
+
+\item{...}{Other arguments passed to methods.}
 
 \item{meanlog}{A numeric vector of the means on the log scale.}
 
 \item{sdlog}{A non-negative numeric vector of the standard deviations on the
 log scale.}
 
-\item{shape}{A numeric vector of shape.}
-
-\item{res}{A flag specifying whether to return the deviance residual as
-opposed to the deviance.}
+\item{shape}{A non-negative numeric vector of shape.}
 }
 \value{
 An numeric vector of the corresponding deviances or deviance residuals.

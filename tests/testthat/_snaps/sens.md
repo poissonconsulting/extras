@@ -37,12 +37,12 @@
 # sens_skewnorm returns a numeric vector of length 3 with correct names
 
     Code
-      sens_skewnorm(mean = 2, sd = 10, shape = -1, sd_mult = 2)
+      sens_skewnorm(location = 2, scale = 10, shape = -1, scale_mult = 2)
     Output
-      $mean
+      $location
       [1] 7.641896
       
-      $sd
+      $scale
       [1] 20
       
       $shape

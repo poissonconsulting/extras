@@ -7,24 +7,35 @@
 \alias{rskewnorm}
 \title{Skew-Normal Distribution}
 \usage{
-dskewnorm(x, mean = 0, sd = 1, shape = 0, log = FALSE)
+dskewnorm(x, location = 0, scale = 1, shape = 0, log = FALSE, ..., mean, sd)
 
-pskewnorm(q, mean = 0, sd = 1, shape = 0)
+pskewnorm(q, location = 0, scale = 1, shape = 0, ..., mean, sd)
 
-qskewnorm(p, mean = 0, sd = 1, shape = 0)
+qskewnorm(p, location = 0, scale = 1, shape = 0, ..., mean, sd)
 
-rskewnorm(n = 1, mean = 0, sd = 1, shape = 0)
+rskewnorm(n = 1, location = 0, scale = 1, shape = 0, ..., mean, sd)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
 
-\item{mean}{A numeric vector of the means.}
+\item{location}{A numeric vector of the location parameter.}
 
-\item{sd}{A non-negative numeric vector of the standard deviations.}
+\item{scale}{A non-negative numeric vector of the scale parameter.}
 
-\item{shape}{A numeric vector of values.}
+\item{shape}{A numeric vector of shape. Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{log}{A flag specifying whether to return the log-transformed value.}
+
+\item{...}{Unused.}
+
+\item{mean}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of the location parameter.
+Described as "a numeric vector of the means" prior to to v. 0.10.1.
+Will be removed in a future version.}
+
+\item{sd}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A non-negative numeric vector of the scale parameter.
+Described as "a non-negative numeric vector of the standard deviations" prior
+to v. 0.10.1.
+Will be removed in a future version.}
 
 \item{q}{A vector of quantiles.}
 
@@ -42,14 +53,14 @@ Skew-Normal Distribution
 }
 \examples{
 \dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
-dskewnorm(x = -2:2, mean = 0, sd = 1, shape = 0.1)
-dskewnorm(x = -2:2, mean = 0, sd = 1, shape = -1)
-qskewnorm(p = c(0.1, 0.4), mean = 0, sd = 1, shape = 0.1)
-qskewnorm(p = c(0.1, 0.4), mean = 0, sd = 1, shape = -1)
-pskewnorm(q = -2:2, mean = 0, sd = 1, shape = 0.1)
-pskewnorm(q = -2:2, mean = 0, sd = 1, shape = -1)
-rskewnorm(n = 3, mean = 0, sd = 1, shape = 0.1)
-rskewnorm(n = 3, mean = 0, sd = 1, shape = -1)
+dskewnorm(x = -2:2, location = 0, scale = 1, shape = 0.1)
+dskewnorm(x = -2:2, location = 0, scale = 1, shape = -1)
+qskewnorm(p = c(0.1, 0.4), location = 0, scale = 1, shape = 0.1)
+qskewnorm(p = c(0.1, 0.4), location = 0, scale = 1, shape = -1)
+pskewnorm(q = -2:2, location = 0, scale = 1, shape = 0.1)
+pskewnorm(q = -2:2, location = 0, scale = 1, shape = -1)
+rskewnorm(n = 3, location = 0, scale = 1, shape = 0.1)
+rskewnorm(n = 3, location = 0, scale = 1, shape = -1)
 \dontshow{\}) # examplesIf}
 }
 \concept{skewnorm}

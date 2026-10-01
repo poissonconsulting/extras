@@ -4,21 +4,42 @@
 \alias{res_skewnorm}
 \title{Skew Normal Residuals}
 \usage{
-res_skewnorm(x, mean = 0, sd = 1, shape = 0, type = "dev", simulate = FALSE)
+res_skewnorm(
+  x,
+  location = 0,
+  scale = 1,
+  shape = 0,
+  type = "dev",
+  simulate = FALSE,
+  ...,
+  mean,
+  sd
+)
 }
 \arguments{
 \item{x}{A numeric vector of values.}
 
-\item{mean}{A numeric vector of the means.}
+\item{location}{A numeric vector of the location parameter.}
 
-\item{sd}{A non-negative numeric vector of the standard deviations.}
+\item{scale}{A non-negative numeric vector of the scale parameter.}
 
-\item{shape}{A numeric vector of shape.}
+\item{shape}{A numeric vector of shape. Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
 deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
+
+\item{...}{Unused.}
+
+\item{mean}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A numeric vector of the location parameter.
+Described as "a numeric vector of the means" prior to to v. 0.10.1.
+Will be removed in a future version.}
+
+\item{sd}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} A non-negative numeric vector of the scale parameter.
+Described as "a non-negative numeric vector of the standard deviations" prior
+to v. 0.10.1.
+Will be removed in a future version.}
 }
 \value{
 An numeric vector of the corresponding residuals.
