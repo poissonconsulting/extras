@@ -6,9 +6,9 @@
 \usage{
 dev_skewlnorm(
   x,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   res = FALSE,
   ...,
   meanlog,
@@ -19,11 +19,11 @@ dev_skewlnorm(
 \arguments{
 \item{x}{A numeric vector of values.}
 
-\item{location_log}{A numeric vector of location parameters of \code{log(x)}.}
+\item{locationlog}{A numeric vector of location parameters of \code{log(x)}.}
 
-\item{scale_log}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
+\item{scalelog}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
 
-\item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
+\item{shapelog}{A numeric vector of shape parameters of \code{log(x)}.
 Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{res}{A flag specifying whether to return the deviance residual as

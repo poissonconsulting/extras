@@ -506,9 +506,9 @@ res_skewnorm <- function(
 #' res_skewlnorm(exp(-2:2))
 res_skewlnorm <- function(
   x,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   type = "dev",
   simulate = FALSE,
   ...,
@@ -517,34 +517,34 @@ res_skewlnorm <- function(
   chk_unused(...)
   if (!missing(meanlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewlnorm(meanlog)",
-                              id = "res_skewlnorm location_log",
-                              with = "res_skewlnorm(location_log)")
-    location_log <- meanlog
+                              id = "res_skewlnorm locationlog",
+                              with = "res_skewlnorm(locationlog)")
+    locationlog <- meanlog
   }
   if (!missing(sdlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewlnorm(sdlog)",
-                              id = "res_skewlnorm scale_log",
-                              with = "res_skewlnorm(scale_log)")
-    scale_log <- sdlog
+                              id = "res_skewlnorm scalelog",
+                              with = "res_skewlnorm(scalelog)")
+    scalelog <- sdlog
   }
   if (!missing(shape)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "res_skewlnorm(shape)",
-                              id = "res_skewlnorm shape_log",
-                              with = "res_skewlnorm(shape_log)")
-    shape_log <- shape
+                              id = "res_skewlnorm shapelog",
+                              with = "res_skewlnorm(shapelog)")
+    shapelog <- shape
   }
   chk_string(type)
   if (!vld_false(simulate)) {
     x <- ran_skewlnorm(
       length(x),
-      location_log = location_log,
-      scale_log = scale_log,
-      shape_log = shape_log
+      locationlog = locationlog,
+      scalelog = scalelog,
+      shapelog = shapelog
     )
   }
-  delta <- shape_log / sqrt(1 + shape_log^2)
-  mean_sln <- 2 * exp(location_log + scale_log^2 / 2) * stats::pnorm(delta * scale_log)
-  m2_sln <- 2 * exp(2 * location_log + 2 * scale_log^2) * stats::pnorm(2 * delta * scale_log)
+  delta <- shapelog / sqrt(1 + shapelog^2)
+  mean_sln <- 2 * exp(locationlog + scalelog^2 / 2) * stats::pnorm(delta * scalelog)
+  m2_sln <- 2 * exp(2 * locationlog + 2 * scalelog^2) * stats::pnorm(2 * delta * scalelog)
   sd_sln <- sqrt(m2_sln - mean_sln^2)
   switch(
     type,
@@ -553,9 +553,9 @@ res_skewlnorm <- function(
     standardized = (x - mean_sln) / sd_sln,
     dev = dev_skewlnorm(
       x,
-      location_log = location_log,
-      scale_log = scale_log,
-      shape_log = shape_log,
+      locationlog = locationlog,
+      scalelog = scalelog,
+      shapelog = shapelog,
       res = TRUE
     ),
     chk_subset(x, c("data", "raw", "dev", "standardized"))

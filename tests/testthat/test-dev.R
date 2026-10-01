@@ -1204,7 +1204,7 @@ test_that("dev_skewlnorm missing values", {
   expect_identical(dev_skewlnorm(1, 1, 1, NA), NA_real_)
 })
 
-test_that("dev_skewlnorm equal to dev_lnorm when shape_log = 0", {
+test_that("dev_skewlnorm equal to dev_lnorm when shapelog = 0", {
   skip_if_not_installed("sn")
   expect_equal(
     dev_skewlnorm(exp(-2:2), 0.3, 0.7, 0),
@@ -1232,7 +1232,7 @@ test_that("dev_skewlnorm res", {
 test_that("dev_skewlnorm log_lik", {
   skip_if_not_installed("sn")
   expect_equal(
-    dev_skewlnorm(1:3, 0.5, 0.7, shape_log = 0),
+    dev_skewlnorm(1:3, 0.5, 0.7, shapelog = 0),
     dev_lnorm(1:3, 0.5, 0.7)
   )
 })
@@ -1244,11 +1244,11 @@ test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args
 
   # test that shims work
   expect_equal(suppressWarnings(dev_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
-               dev_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+               dev_skewlnorm(1, locationlog = 2, scalelog = 3, shapelog = 4))
 
   # warn for old args
-  expect_warning(dev_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `dev_skewlnorm")
-  expect_warning(dev_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `dev_skewlnorm")
+  expect_warning(dev_skewlnorm(1, meanlog = 2, scalelog = 1, shapelog = 1), "The `meanlog` argument of `dev_skewlnorm")
+  expect_warning(dev_skewlnorm(1, sdlog = 2, locationlog = 1, shapelog = 1), "The `sdlog` argument of `dev_skewlnorm")
   expect_warning(
     expect_warning(
       expect_warning(

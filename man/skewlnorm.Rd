@@ -9,9 +9,9 @@
 \usage{
 dskewlnorm(
   x,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   log = FALSE,
   ...,
   meanlog,
@@ -21,9 +21,9 @@ dskewlnorm(
 
 pskewlnorm(
   q,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   ...,
   meanlog,
   sdlog,
@@ -32,9 +32,9 @@ pskewlnorm(
 
 qskewlnorm(
   p,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   ...,
   meanlog,
   sdlog,
@@ -43,9 +43,9 @@ qskewlnorm(
 
 rskewlnorm(
   n = 1,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   ...,
   meanlog,
   sdlog,
@@ -55,11 +55,11 @@ rskewlnorm(
 \arguments{
 \item{x}{A numeric vector of values.}
 
-\item{location_log}{A numeric vector of location parameters of \code{log(x)}.}
+\item{locationlog}{A numeric vector of location parameters of \code{log(x)}.}
 
-\item{scale_log}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
+\item{scalelog}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
 
-\item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
+\item{shapelog}{A numeric vector of shape parameters of \code{log(x)}.
 Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{log}{A flag specifying whether to return the log-transformed value.}
@@ -93,20 +93,20 @@ generate.}
 }
 \description{
 The skew-lognormal distribution of a random variable whose natural logarithm
-follows a \link[=dskewnorm]{Skew-Normal} distribution with location \code{location_log},
-scale \code{scale_log} and \code{shape_log}.
-It reduces to the Log-Normal distribution when \code{shape_log = 0}.
+follows a \link[=dskewnorm]{Skew-Normal} distribution with location \code{locationlog},
+scale \code{scalelog} and \code{shapelog}.
+It reduces to the Log-Normal distribution when \code{shapelog = 0}.
 }
 \examples{
 \dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
-dskewlnorm(x = 1:5, location_log = 0, scale_log = 1, shape_log = 0.1)
-dskewlnorm(x = 1:5, location_log = 0, scale_log = 1, shape_log = -1)
-qskewlnorm(p = c(0.1, 0.4), location_log = 0, scale_log = 1, shape_log = 0.1)
-qskewlnorm(p = c(0.1, 0.4), location_log = 0, scale_log = 1, shape_log = -1)
-pskewlnorm(q = 1:5, location_log = 0, scale_log = 1, shape_log = 0.1)
-pskewlnorm(q = 1:5, location_log = 0, scale_log = 1, shape_log = -1)
-rskewlnorm(n = 3, location_log = 0, scale_log = 1, shape_log = 0.1)
-rskewlnorm(n = 3, location_log = 0, scale_log = 1, shape_log = -1)
+dskewlnorm(x = 1:5, locationlog = 0, scalelog = 1, shapelog = 0.1)
+dskewlnorm(x = 1:5, locationlog = 0, scalelog = 1, shapelog = -1)
+qskewlnorm(p = c(0.1, 0.4), locationlog = 0, scalelog = 1, shapelog = 0.1)
+qskewlnorm(p = c(0.1, 0.4), locationlog = 0, scalelog = 1, shapelog = -1)
+pskewlnorm(q = 1:5, locationlog = 0, scalelog = 1, shapelog = 0.1)
+pskewlnorm(q = 1:5, locationlog = 0, scalelog = 1, shapelog = -1)
+rskewlnorm(n = 3, locationlog = 0, scalelog = 1, shapelog = 0.1)
+rskewlnorm(n = 3, locationlog = 0, scalelog = 1, shapelog = -1)
 \dontshow{\}) # examplesIf}
 }
 \concept{skewlnorm}

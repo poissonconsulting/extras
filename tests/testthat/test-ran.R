@@ -556,7 +556,7 @@ test_that("ran_skewlnorm", {
   skip_if_not_installed("sn")
   expect_error(ran_skewlnorm(NA_integer_))
   expect_error(ran_skewlnorm(NULL))
-  expect_error(ran_skewlnorm(1, 0, scale_log = -1))
+  expect_error(ran_skewlnorm(1, 0, scalelog = -1))
   expect_identical(ran_skewlnorm(0L), numeric(0))
   withr::with_seed(
     101,
@@ -584,11 +584,11 @@ test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args
         withr::with_seed(10,
                          ran_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4))),
       withr::with_seed(10,
-                 ran_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4)))
+                 ran_skewlnorm(1, locationlog = 2, scalelog = 3, shapelog = 4)))
 
   # warn for old args
-  expect_warning(ran_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `ran_skewlnorm")
-  expect_warning(ran_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `ran_skewlnorm")
+  expect_warning(ran_skewlnorm(1, meanlog = 2, scalelog = 1, shapelog = 1), "The `meanlog` argument of `ran_skewlnorm")
+  expect_warning(ran_skewlnorm(1, sdlog = 2, locationlog = 1, shapelog = 1), "The `sdlog` argument of `ran_skewlnorm")
   expect_warning(
     expect_warning(
       expect_warning(

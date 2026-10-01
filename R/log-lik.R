@@ -739,13 +739,13 @@ log_lik_skewnorm <- function(
 #'
 #' @examplesIf rlang::is_installed("sn")
 #' log_lik_skewlnorm(1:5)
-#' log_lik_skewlnorm(1:5, shape_log = -2)
-#' log_lik_skewlnorm(1:5, shape_log = 2)
+#' log_lik_skewlnorm(1:5, shapelog = -2)
+#' log_lik_skewlnorm(1:5, shapelog = 2)
 log_lik_skewlnorm <- function(
   x,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   tlower = 0,
   tupper = Inf,
   ...,
@@ -759,36 +759,36 @@ log_lik_skewlnorm <- function(
   rlang::check_installed("sn")
   if (!missing(meanlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "log_lik_skewlnorm(meanlog)",
-                              id = "log_lik_skewlnorm location_log",
-                              with = "log_lik_skewlnorm(location_log)")
-    location_log <- meanlog
+                              id = "log_lik_skewlnorm locationlog",
+                              with = "log_lik_skewlnorm(locationlog)")
+    locationlog <- meanlog
   }
   if (!missing(sdlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "log_lik_skewlnorm(sdlog)",
-                              id = "log_lik_skewlnorm scale_log",
-                              with = "log_lik_skewlnorm(scale_log)")
-    scale_log <- sdlog
+                              id = "log_lik_skewlnorm scalelog",
+                              with = "log_lik_skewlnorm(scalelog)")
+    scalelog <- sdlog
   }
   if (!missing(shape)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "log_lik_skewlnorm(shape)",
-                              id = "log_lik_skewlnorm shape_log",
-                              with = "log_lik_skewlnorm(shape_log)")
-    shape_log <- shape
+                              id = "log_lik_skewlnorm shapelog",
+                              with = "log_lik_skewlnorm(shapelog)")
+    shapelog <- shape
   }
   chk_unused(...)
   log_lik <- dskewlnorm(
     x = x,
-    location_log = location_log,
-    scale_log = scale_log,
-    shape_log = shape_log,
+    locationlog = locationlog,
+    scalelog = scalelog,
+    shapelog = shapelog,
     log = TRUE
   )
-  use_lnorm <- !is.na(shape_log) & shape_log == 0
-  llnorm <- log_lik_lnorm(x = x, meanlog = location_log, sdlog = scale_log)
+  use_lnorm <- !is.na(shapelog) & shapelog == 0
+  llnorm <- log_lik_lnorm(x = x, meanlog = locationlog, sdlog = scalelog)
   lengths <- as.logical(length(x)) +
-    as.logical(length(location_log)) +
-    as.logical(length(scale_log)) +
-    as.logical(length(shape_log))
+    as.logical(length(locationlog)) +
+    as.logical(length(scalelog)) +
+    as.logical(length(shapelog))
   if (lengths == 4) {
     log_lik[use_lnorm] <- llnorm[use_lnorm]
   }
@@ -800,15 +800,15 @@ log_lik_skewlnorm <- function(
       log(
         prob_skewlnorm(
           tupper,
-          location_log = location_log,
-          scale_log = scale_log,
-          shape_log = shape_log
+          locationlog = locationlog,
+          scalelog = scalelog,
+          shapelog = shapelog
         ) -
           prob_skewlnorm(
             tlower,
-            location_log = location_log,
-            scale_log = scale_log,
-            shape_log = shape_log
+            locationlog = locationlog,
+            scalelog = scalelog,
+            shapelog = shapelog
           )
       )
     log_lik_truncated[x < tlower | x > tupper] <- -Inf

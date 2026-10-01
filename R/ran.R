@@ -264,35 +264,35 @@ ran_skewnorm <- function(n = 1, location = 0, scale = 1, shape = 0, ...,
 #' @export
 #'
 #' @examplesIf rlang::is_installed("sn")
-#' ran_skewlnorm(10, shape_log = -1)
-#' ran_skewlnorm(10, shape_log = 0)
-#' ran_skewlnorm(10, shape_log = 1)
-ran_skewlnorm <- function(n = 1, location_log = 0, scale_log = 1, shape_log = 0,
+#' ran_skewlnorm(10, shapelog = -1)
+#' ran_skewlnorm(10, shapelog = 0)
+#' ran_skewlnorm(10, shapelog = 1)
+ran_skewlnorm <- function(n = 1, locationlog = 0, scalelog = 1, shapelog = 0,
                           ..., meanlog, sdlog, shape) {
   rlang::check_installed("sn")
   if (!missing(meanlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "ran_skewlnorm(meanlog)",
-                              id = "ran_skewlnorm location_log",
-                              with = "ran_skewlnorm(location_log)")
-    location_log <- meanlog
+                              id = "ran_skewlnorm locationlog",
+                              with = "ran_skewlnorm(locationlog)")
+    locationlog <- meanlog
   }
   if (!missing(sdlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "ran_skewlnorm(sdlog)",
-                              id = "ran_skewlnorm scale_log",
-                              with = "ran_skewlnorm(scale_log)")
-    scale_log <- sdlog
+                              id = "ran_skewlnorm scalelog",
+                              with = "ran_skewlnorm(scalelog)")
+    scalelog <- sdlog
   }
   if (!missing(shape)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "ran_skewlnorm(shape)",
-                              id = "ran_skewlnorm shape_log",
-                              with = "ran_skewlnorm(shape_log)")
-    shape_log <- shape
+                              id = "ran_skewlnorm shapelog",
+                              with = "ran_skewlnorm(shapelog)")
+    shapelog <- shape
   }
   chk_unused(...)
   chk_whole_number(n)
   chk_gte(n)
-  rskewlnorm(n = n, location_log = location_log, scale_log = scale_log,
-             shape_log = shape_log)
+  rskewlnorm(n = n, locationlog = locationlog, scalelog = scalelog,
+             shapelog = shapelog)
 }
 
 #' Student's t Random Samples

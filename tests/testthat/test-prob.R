@@ -193,7 +193,7 @@ test_that("prob_skewlnorm", {
   expect_identical(prob_skewlnorm(numeric(0)), numeric(0))
   expect_identical(prob_skewlnorm(NA), NA_real_)
   expect_identical(prob_skewlnorm(0), 0)
-  expect_equal(prob_skewlnorm(1:5, 0.3, 0.7, shape_log = 0), plnorm(1:5, 0.3, 0.7))
+  expect_equal(prob_skewlnorm(1:5, 0.3, 0.7, shapelog = 0), plnorm(1:5, 0.3, 0.7))
   expect_equal(prob_skewlnorm(2, 0, 1, 2), 0.521879277607988)
   expect_equal(prob_skewlnorm(1:5, 0, 1, 2), pskewlnorm(1:5, 0, 1, 2))
 })
@@ -205,11 +205,11 @@ test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args
 
   # test that shims work
   expect_equal(suppressWarnings(prob_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
-               prob_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+               prob_skewlnorm(1, locationlog = 2, scalelog = 3, shapelog = 4))
 
   # warn for old args
-  expect_warning(prob_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `prob_skewlnorm")
-  expect_warning(prob_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `prob_skewlnorm")
+  expect_warning(prob_skewlnorm(1, meanlog = 2, scalelog = 1, shapelog = 1), "The `meanlog` argument of `prob_skewlnorm")
+  expect_warning(prob_skewlnorm(1, sdlog = 2, locationlog = 1, shapelog = 1), "The `sdlog` argument of `prob_skewlnorm")
   expect_warning(
     expect_warning(
       expect_warning(

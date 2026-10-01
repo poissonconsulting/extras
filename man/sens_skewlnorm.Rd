@@ -5,9 +5,9 @@
 \title{Adjust Skew-Lognormal Distribution Parameters for Sensitivity Analyses}
 \usage{
 sens_skewlnorm(
-  location_log,
-  scale_log,
-  shape_log,
+  locationlog,
+  scalelog,
+  shapelog,
   scale_mult = 2,
   ...,
   meanlog,
@@ -17,11 +17,11 @@ sens_skewlnorm(
 )
 }
 \arguments{
-\item{location_log}{A numeric vector of location parameters of \code{log(x)}.}
+\item{locationlog}{A numeric vector of location parameters of \code{log(x)}.}
 
-\item{scale_log}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
+\item{scalelog}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
 
-\item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
+\item{shapelog}{A numeric vector of shape parameters of \code{log(x)}.
 Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{scale_mult}{A non-negative multiplier on the scale of the distribution.}
@@ -50,9 +50,9 @@ A named list of the adjusted distribution's parameters.
 }
 \description{
 Expands (\code{scale_mult > 1}) or reduces (\code{scale_mult < 1}) the scale parameter
-of the Skew-Lognormal distribution while preserving its mean and \code{shape_log}.
+of the Skew-Lognormal distribution while preserving its mean and \code{shapelog}.
 The adjustment is made on the natural scale (i.e. for \code{x}, not for
-\code{log(x)}), mirroring \code{\link[=sens_lnorm]{sens_lnorm()}}, to which it reduces when \code{shape_log = 0}.
+\code{log(x)}), mirroring \code{\link[=sens_lnorm]{sens_lnorm()}}, to which it reduces when \code{shapelog = 0}.
 }
 \examples{
 \dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}

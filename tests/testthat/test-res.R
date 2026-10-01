@@ -1540,9 +1540,9 @@ test_that("res_skewlnorm", {
   withr::with_seed(101, {
     res <- res_skewlnorm(
       rep(2, 10000),
-      location_log = 10,
-      scale_log = 0.3,
-      shape_log = 0.2,
+      locationlog = 10,
+      scalelog = 0.3,
+      shapelog = 0.2,
       simulate = TRUE,
       type = "standardized"
     )
@@ -1558,11 +1558,11 @@ test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args
 
   # test that shims work
   expect_equal(suppressWarnings(res_skewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
-               res_skewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+               res_skewlnorm(1, locationlog = 2, scalelog = 3, shapelog = 4))
 
   # warn for old args
-  expect_warning(res_skewlnorm(1, meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `res_skewlnorm")
-  expect_warning(res_skewlnorm(1, sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `res_skewlnorm")
+  expect_warning(res_skewlnorm(1, meanlog = 2, scalelog = 1, shapelog = 1), "The `meanlog` argument of `res_skewlnorm")
+  expect_warning(res_skewlnorm(1, sdlog = 2, locationlog = 1, shapelog = 1), "The `sdlog` argument of `res_skewlnorm")
   expect_warning(
     expect_warning(
       expect_warning(

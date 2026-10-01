@@ -464,31 +464,31 @@ dev_skewnorm <- function(x, location = 0, scale = 1, shape = 0, res = FALSE, ...
 #' dev_skewlnorm(exp(-2:2))
 #' dev_skewlnorm(exp(-2:2), 0, 1, 5)
 #' dev_skewlnorm(exp(-2:2), 0, 1, 5, res = TRUE)
-dev_skewlnorm <- function(x, location_log = 0, scale_log = 1, shape_log = 0,
+dev_skewlnorm <- function(x, locationlog = 0, scalelog = 1, shapelog = 0,
                           res = FALSE, ..., meanlog, sdlog, shape) {
   rlang::check_installed("sn")
   if (!missing(meanlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "dev_skewlnorm(meanlog)",
-                              id = "dev_skewlnorm location_log",
-                              with = "dev_skewlnorm(location_log)")
-    location_log <- meanlog
+                              id = "dev_skewlnorm locationlog",
+                              with = "dev_skewlnorm(locationlog)")
+    locationlog <- meanlog
   }
   if (!missing(sdlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "dev_skewlnorm(sdlog)",
-                              id = "dev_skewlnorm scale_log",
-                              with = "dev_skewlnorm(scale_log)")
-    scale_log <- sdlog
+                              id = "dev_skewlnorm scalelog",
+                              with = "dev_skewlnorm(scalelog)")
+    scalelog <- sdlog
   }
   if (!missing(shape)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "dev_skewlnorm(shape)",
-                              id = "dev_skewlnorm shape_log",
-                              with = "dev_skewlnorm(shape_log)")
-    shape_log <- shape
+                              id = "dev_skewlnorm shapelog",
+                              with = "dev_skewlnorm(shapelog)")
+    shapelog <- shape
   }
   chk_unused(...)
   x <- pmax(x, 0)
-  dev_skewnorm(log(x), location = location_log, scale = scale_log,
-               shape = shape_log, res = res)
+  dev_skewnorm(log(x), location = locationlog, scale = scalelog,
+               shape = shapelog, res = res)
 }
 
 #' Student's t Deviances

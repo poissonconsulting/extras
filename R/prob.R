@@ -254,31 +254,31 @@ prob_skewnorm <- function(x, location = 0, scale = 1, shape = 0, ...,
 #'
 #' @examplesIf rlang::is_installed("sn")
 #' prob_skewlnorm(1:5)
-#' prob_skewlnorm(1:5, shape_log = -2)
-#' prob_skewlnorm(1:5, shape_log = 2)
-prob_skewlnorm <- function(x, location_log = 0, scale_log = 1, shape_log = 0,
+#' prob_skewlnorm(1:5, shapelog = -2)
+#' prob_skewlnorm(1:5, shapelog = 2)
+prob_skewlnorm <- function(x, locationlog = 0, scalelog = 1, shapelog = 0,
                            ..., meanlog, sdlog, shape) {
   if (!missing(meanlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "prob_skewlnorm(meanlog)",
-                              id = "prob_skewlnorm location_log",
-                              with = "prob_skewlnorm(location_log)")
-    location_log <- meanlog
+                              id = "prob_skewlnorm locationlog",
+                              with = "prob_skewlnorm(locationlog)")
+    locationlog <- meanlog
   }
   if (!missing(sdlog)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "prob_skewlnorm(sdlog)",
-                              id = "prob_skewlnorm scale_log",
-                              with = "prob_skewlnorm(scale_log)")
-    scale_log <- sdlog
+                              id = "prob_skewlnorm scalelog",
+                              with = "prob_skewlnorm(scalelog)")
+    scalelog <- sdlog
   }
   if (!missing(shape)) {
     lifecycle::deprecate_warn(when = "0.10.1", what = "prob_skewlnorm(shape)",
-                              id = "prob_skewlnorm shape_log",
-                              with = "prob_skewlnorm(shape_log)")
-    shape_log <- shape
+                              id = "prob_skewlnorm shapelog",
+                              with = "prob_skewlnorm(shapelog)")
+    shapelog <- shape
   }
   chk_unused(...)
-  pskewlnorm(q = x, location_log = location_log, scale_log = scale_log,
-             shape_log = shape_log)
+  pskewlnorm(q = x, locationlog = locationlog, scalelog = scalelog,
+             shapelog = shapelog)
 }
 
 #' Student's t Cumulative Distribution Function

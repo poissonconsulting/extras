@@ -6,9 +6,9 @@
 \usage{
 quant_skewlnorm(
   x,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   ...,
   meanlog,
   sdlog,
@@ -18,11 +18,11 @@ quant_skewlnorm(
 \arguments{
 \item{x}{A numeric vector of probabilities.}
 
-\item{location_log}{A numeric vector of location parameters of \code{log(x)}.}
+\item{locationlog}{A numeric vector of location parameters of \code{log(x)}.}
 
-\item{scale_log}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
+\item{scalelog}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
 
-\item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
+\item{shapelog}{A numeric vector of shape parameters of \code{log(x)}.
 Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{...}{Unused.}
@@ -50,8 +50,8 @@ Skew-Lognormal Quantile Function
 \examples{
 \dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
 quant_skewlnorm(c(0.1, 0.4, 0.6))
-quant_skewlnorm(c(0.1, 0.4, 0.6), shape_log = -2)
-quant_skewlnorm(c(0.1, 0.4, 0.6), shape_log = 2)
+quant_skewlnorm(c(0.1, 0.4, 0.6), shapelog = -2)
+quant_skewlnorm(c(0.1, 0.4, 0.6), shapelog = 2)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

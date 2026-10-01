@@ -27,15 +27,15 @@ test_that("dskewlnorm errors with character arguments", {
   expect_chk_error(dskewlnorm("1"), "`character` must be FALSE.")
 })
 
-test_that("dskewlnorm does not allow negative scale_log argument", {
+test_that("dskewlnorm does not allow negative scalelog argument", {
   skip_if_not_installed("sn")
   expect_chk_error(
     dskewlnorm(1, 0, -5, 0),
-    "`scale_log` must be greater than or equal to 0, not -5."
+    "`scalelog` must be greater than or equal to 0, not -5."
   )
   expect_chk_error(
     dskewlnorm(1, 0, -1, -10),
-    "`scale_log` must be greater than or equal to 0, not -1."
+    "`scalelog` must be greater than or equal to 0, not -1."
   )
 })
 
@@ -52,8 +52,8 @@ test_that("dskewlnorm returns 0 for non-positive x", {
   expect_identical(dskewlnorm(0), 0)
   expect_identical(dskewlnorm(-1, 0, 1, 2), 0)
   expect_equal(
-    dskewlnorm(c(-1, 0, 1), shape_log = 1),
-    c(0, 0, dskewlnorm(1, shape_log = 1))
+    dskewlnorm(c(-1, 0, 1), shapelog = 1),
+    c(0, 0, dskewlnorm(1, shapelog = 1))
   )
 })
 
@@ -63,7 +63,7 @@ test_that("dskewlnorm returns 0 with x = Inf", {
   expect_identical(dskewlnorm(Inf, 4, 2, -1), 0)
 })
 
-test_that("dskewlnorm equal to dlnorm when shape_log = 0", {
+test_that("dskewlnorm equal to dlnorm when shapelog = 0", {
   skip_if_not_installed("sn")
   expect_equal(dskewlnorm(1:5, 0.3, 0.7, 0), stats::dlnorm(1:5, 0.3, 0.7))
   expect_equal(
@@ -125,11 +125,11 @@ test_that("pskewlnorm errors with character arguments", {
   expect_chk_error(pskewlnorm("1"), "`character` must be FALSE.")
 })
 
-test_that("pskewlnorm does not allow negative scale_log argument", {
+test_that("pskewlnorm does not allow negative scalelog argument", {
   skip_if_not_installed("sn")
   expect_chk_error(
     pskewlnorm(1, 0, -5, 0),
-    "`scale_log` must be greater than or equal to 0, not -5."
+    "`scalelog` must be greater than or equal to 0, not -5."
   )
 })
 
@@ -143,8 +143,8 @@ test_that("pskewlnorm returns 0 for non-positive q", {
   skip_if_not_installed("sn")
   expect_identical(pskewlnorm(0), 0)
   expect_equal(
-    pskewlnorm(c(-1, 0, 1), shape_log = 1),
-    c(0, 0, pskewlnorm(1, shape_log = 1))
+    pskewlnorm(c(-1, 0, 1), shapelog = 1),
+    c(0, 0, pskewlnorm(1, shapelog = 1))
   )
 })
 
@@ -154,7 +154,7 @@ test_that("pskewlnorm returns 1 with q = Inf", {
   expect_identical(pskewlnorm(Inf, 4, 2, -1), 1)
 })
 
-test_that("pskewlnorm equal to plnorm when shape_log = 0", {
+test_that("pskewlnorm equal to plnorm when shapelog = 0", {
   skip_if_not_installed("sn")
   expect_equal(pskewlnorm(1:5, 0.3, 0.7, 0), stats::plnorm(1:5, 0.3, 0.7))
 })
@@ -204,11 +204,11 @@ test_that("qskewlnorm errors with p < 0 or p > 1", {
   )
 })
 
-test_that("qskewlnorm does not allow negative scale_log argument", {
+test_that("qskewlnorm does not allow negative scalelog argument", {
   skip_if_not_installed("sn")
   expect_chk_error(
     qskewlnorm(0.5, 0, -5, 0),
-    "`scale_log` must be greater than or equal to 0, not -5."
+    "`scalelog` must be greater than or equal to 0, not -5."
   )
 })
 
@@ -224,7 +224,7 @@ test_that("qskewlnorm returns 0 and Inf at boundary probabilities", {
   expect_identical(qskewlnorm(1, 0, 1, 2), Inf)
 })
 
-test_that("qskewlnorm equal to qlnorm when shape_log = 0", {
+test_that("qskewlnorm equal to qlnorm when shapelog = 0", {
   skip_if_not_installed("sn")
   expect_equal(
     qskewlnorm(c(0.1, 0.5, 0.9), 0.3, 0.7, 0),
@@ -269,7 +269,7 @@ test_that("rskewlnorm errors as expected", {
   )
   expect_chk_error(
     rskewlnorm(1, 0, -5, 0),
-    "`scale_log` must be greater than or equal to 0, not -5."
+    "`scalelog` must be greater than or equal to 0, not -5."
   )
 })
 
@@ -286,7 +286,7 @@ test_that("rskewlnorm returns positive deviates", {
   )
 })
 
-test_that("rskewlnorm has same mean and sd as rlnorm when shape_log = 0", {
+test_that("rskewlnorm has same mean and sd as rlnorm when shapelog = 0", {
   skip_if_not_installed("sn")
   withr::with_seed(
     101,
@@ -369,12 +369,12 @@ test_that("*skewlnorm warns if the user uses the meanlog or sdlog arguments", {
 test_that("*skewlnorm moves the deprecated argument to the correct new one", {
   skip_if_not_installed("sn")
   expect_equal(suppressWarnings(dskewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
-               dskewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+               dskewlnorm(1, locationlog = 2, scalelog = 3, shapelog = 4))
   expect_equal(suppressWarnings(pskewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
-               pskewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+               pskewlnorm(1, locationlog = 2, scalelog = 3, shapelog = 4))
   expect_equal(suppressWarnings(qskewlnorm(1, meanlog = 2, sdlog = 3, shape = 4)),
-               qskewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4))
+               qskewlnorm(1, locationlog = 2, scalelog = 3, shapelog = 4))
   expect_equal(
     withr::with_seed(10, suppressWarnings(rskewlnorm(1, meanlog = 2, sdlog = 3, shape = 4))),
-    withr::with_seed(10, rskewlnorm(1, location_log = 2, scale_log = 3, shape_log = 4)))
+    withr::with_seed(10, rskewlnorm(1, locationlog = 2, scalelog = 3, shapelog = 4)))
 })

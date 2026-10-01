@@ -6,9 +6,9 @@
 \usage{
 log_lik_skewlnorm(
   x,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   tlower = 0,
   tupper = Inf,
   ...,
@@ -20,11 +20,11 @@ log_lik_skewlnorm(
 \arguments{
 \item{x}{A numeric vector of values.}
 
-\item{location_log}{A numeric vector of location parameters of \code{log(x)}.}
+\item{locationlog}{A numeric vector of location parameters of \code{log(x)}.}
 
-\item{scale_log}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
+\item{scalelog}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
 
-\item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
+\item{shapelog}{A numeric vector of shape parameters of \code{log(x)}.
 Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{tlower}{A numeric vector of the lower truncation point.}
@@ -56,8 +56,8 @@ Skew-Lognormal Log-Likelihood
 \examples{
 \dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
 log_lik_skewlnorm(1:5)
-log_lik_skewlnorm(1:5, shape_log = -2)
-log_lik_skewlnorm(1:5, shape_log = 2)
+log_lik_skewlnorm(1:5, shapelog = -2)
+log_lik_skewlnorm(1:5, shapelog = 2)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

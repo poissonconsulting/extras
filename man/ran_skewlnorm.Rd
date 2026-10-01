@@ -6,9 +6,9 @@
 \usage{
 ran_skewlnorm(
   n = 1,
-  location_log = 0,
-  scale_log = 1,
-  shape_log = 0,
+  locationlog = 0,
+  scalelog = 1,
+  shapelog = 0,
   ...,
   meanlog,
   sdlog,
@@ -19,11 +19,11 @@ ran_skewlnorm(
 \item{n}{A non-negative whole number of the number of random samples to
 generate.}
 
-\item{location_log}{A numeric vector of location parameters of \code{log(x)}.}
+\item{locationlog}{A numeric vector of location parameters of \code{log(x)}.}
 
-\item{scale_log}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
+\item{scalelog}{A non-negative numeric vector of scale parameters of \code{log(x)}.}
 
-\item{shape_log}{A numeric vector of shape parameters of \code{log(x)}.
+\item{shapelog}{A numeric vector of shape parameters of \code{log(x)}.
 Negative values result in leftward skew, while positive values result in rightward skew.}
 
 \item{...}{Unused.}
@@ -50,9 +50,9 @@ Skew-Lognormal Random Samples
 }
 \examples{
 \dontshow{if (rlang::is_installed("sn")) withAutoprint(\{ # examplesIf}
-ran_skewlnorm(10, shape_log = -1)
-ran_skewlnorm(10, shape_log = 0)
-ran_skewlnorm(10, shape_log = 1)
+ran_skewlnorm(10, shapelog = -1)
+ran_skewlnorm(10, shapelog = 0)
+ran_skewlnorm(10, shapelog = 1)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

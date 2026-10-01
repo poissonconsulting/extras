@@ -2108,73 +2108,73 @@ test_that("sens_gamma_pois_zi errors with sd_mult < 0", {
 # Skew Log-normal ----
 test_that("sens_skewlnorm returns a numeric list of length 3 with correct names", {
   skip_if_not_installed("sn")
-  new_pars <- sens_skewlnorm(location_log = 0, scale_log = 1, shape_log = 2, scale_mult = 2)
-  expect_named(new_pars, c("location_log", "scale_log", "shape_log"))
+  new_pars <- sens_skewlnorm(locationlog = 0, scalelog = 1, shapelog = 2, scale_mult = 2)
+  expect_named(new_pars, c("locationlog", "scalelog", "shapelog"))
   expect_equal(
     new_pars,
-    list(location_log = -0.640663659621582, scale_log = 1.44169785274557, shape_log = 2)
+    list(locationlog = -0.640663659621582, scalelog = 1.44169785274557, shapelog = 2)
   )
 })
 
 test_that("sens_skewlnorm errors with NULL, empty, or vector inputs", {
   skip_if_not_installed("sn")
   expect_error(sens_skewlnorm(
-    location_log = NULL,
-    scale_log = 1,
-    shape_log = 2,
+    locationlog = NULL,
+    scalelog = 1,
+    shapelog = 2,
     scale_mult = 2
   ))
   expect_error(sens_skewlnorm(
-    location_log = 0,
-    scale_log = numeric(0),
-    shape_log = 2,
+    locationlog = 0,
+    scalelog = numeric(0),
+    shapelog = 2,
     scale_mult = 2
   ))
-  expect_error(sens_skewlnorm(location_log = 0:1, scale_log = 1, shape_log = 2, scale_mult = 2))
-  expect_error(sens_skewlnorm(location_log = 0, scale_log = -1, shape_log = 2, scale_mult = 2))
-  expect_error(sens_skewlnorm(location_log = 0, scale_log = 1, shape_log = 2, scale_mult = -1))
+  expect_error(sens_skewlnorm(locationlog = 0:1, scalelog = 1, shapelog = 2, scale_mult = 2))
+  expect_error(sens_skewlnorm(locationlog = 0, scalelog = -1, shapelog = 2, scale_mult = 2))
+  expect_error(sens_skewlnorm(locationlog = 0, scalelog = 1, shapelog = 2, scale_mult = -1))
 })
 
-test_that("sens_skewlnorm reduces to sens_lnorm when shape_log = 0", {
+test_that("sens_skewlnorm reduces to sens_lnorm when shapelog = 0", {
   skip_if_not_installed("sn")
   new_skewlnorm <- sens_skewlnorm(
-    location_log = 0.3,
-    scale_log = 0.7,
-    shape_log = 0,
+    locationlog = 0.3,
+    scalelog = 0.7,
+    shapelog = 0,
     scale_mult = 2
   )
   new_lnorm <- sens_lnorm(meanlog = 0.3, sdlog =  0.7, sd_mult = 2)
-  expect_equal(new_skewlnorm$location_log, new_lnorm$meanlog)
-  expect_equal(new_skewlnorm$scale_log, new_lnorm$sdlog)
+  expect_equal(new_skewlnorm$locationlog, new_lnorm$meanlog)
+  expect_equal(new_skewlnorm$scalelog, new_lnorm$sdlog)
 })
 
-test_that("sens_skewlnorm returns the input unchanged when scale_log = 0", {
+test_that("sens_skewlnorm returns the input unchanged when scalelog = 0", {
   skip_if_not_installed("sn")
   expect_equal(
     sens_skewlnorm(2, 0, 1, 2),
-    list(location_log = 2, scale_log = 0, shape_log = 1)
+    list(locationlog = 2, scalelog = 0, shapelog = 1)
   )
 })
 
-test_that("scale_log of skewlnorm deviates scales by scale_mult while preserving the mean", {
+test_that("scalelog of skewlnorm deviates scales by scale_mult while preserving the mean", {
   skip_if_not_installed("sn")
-  location_log <- 0.3
-  scale_log <- 0.7
-  shape_log <- 2
+  locationlog <- 0.3
+  scalelog <- 0.7
+  shapelog <- 2
   for (scale_mult in c(0.5, 2)) {
     new_pars <- sens_skewlnorm(
-      location_log = location_log,
-      scale_log = scale_log,
-      shape_log = shape_log,
+      locationlog = locationlog,
+      scalelog = scalelog,
+      shapelog = shapelog,
       scale_mult = scale_mult
     )
     withr::with_seed(101, {
-      ran_original <- ran_skewlnorm(1e6, location_log, scale_log, shape_log)
+      ran_original <- ran_skewlnorm(1e6, locationlog, scalelog, shapelog)
       ran_new <- ran_skewlnorm(
         1e6,
-        new_pars$location_log,
-        new_pars$scale_log,
-        new_pars$shape_log
+        new_pars$locationlog,
+        new_pars$scalelog,
+        new_pars$shapelog
       )
     })
     expect_equal(mean(ran_new), mean(ran_original), tolerance = 0.02)
@@ -2189,13 +2189,13 @@ test_that("check `...` arg barrier, test shims, and warn for old args", {
 
   # test that shims work
   expect_equal(suppressWarnings(sens_skewlnorm(meanlog = 2, sdlog = 3, shape = 4)),
-               sens_skewlnorm(location_log = 2, scale_log = 3, shape_log = 4))
+               sens_skewlnorm(locationlog = 2, scalelog = 3, shapelog = 4))
 
   # warn for old args
-  expect_warning(sens_skewlnorm(meanlog = 2, scale_log = 1, shape_log = 1), "The `meanlog` argument of `sens_skewlnorm")
-  expect_warning(sens_skewlnorm(sdlog = 2, location_log = 1, shape_log = 1), "The `sdlog` argument of `sens_skewlnorm")
+  expect_warning(sens_skewlnorm(meanlog = 2, scalelog = 1, shapelog = 1), "The `meanlog` argument of `sens_skewlnorm")
+  expect_warning(sens_skewlnorm(sdlog = 2, locationlog = 1, shapelog = 1), "The `sdlog` argument of `sens_skewlnorm")
   expect_warning(
-    sens_skewlnorm(sd_mult = 2, location_log = 1, scale_log = 1, shape_log = 1),
+    sens_skewlnorm(sd_mult = 2, locationlog = 1, scalelog = 1, shapelog = 1),
     "The `sd_mult` argument of `sens_skewlnorm")
   expect_warning(
     expect_warning(
