@@ -1,4 +1,7 @@
+# A deviance is analytically non-negative but can compute as a tiny negative
+# number when mu equals x to machine precision, which sqrt() turns into NaN.
 dev_res <- function(x, mu, dev) {
+  dev[!is.na(dev) & dev < 0 & dev > -sqrt(.Machine$double.eps)] <- 0
   sign(x - mu) * sqrt(dev)
 }
 
@@ -17,7 +20,12 @@ multinom_split <- function(group) {
 # lost). Only non-NA values are compared, so lone NAs don't error here --
 # see multinom_row_na(). Callers must chk_not_any_na(group) first; `group`
 # itself can't be NA-tolerant since it's what identifies the trial.
-chk_multinom_group <- function(size, prob, group, groups = multinom_split(group)) {
+chk_multinom_group <- function(
+  size,
+  prob,
+  group,
+  groups = multinom_split(group)
+) {
   for (idx in groups) {
     if (length(idx) < 2L) {
       stop(
