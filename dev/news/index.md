@@ -1,5 +1,13 @@
 # Changelog
 
+## extras 0.10.0.9003
+
+- Rename skewnorm and skewlnorm parameters and fix definitions
+  ([\#164](https://github.com/poissonconsulting/extras/issues/164)).
+
+- Treat near-zero negative deviances as 0 in dev_res()
+  ([\#167](https://github.com/poissonconsulting/extras/issues/167)).
+
 ## extras 0.10.0.9002
 
 - Fix raw and standardized residuals in res_skewnorm()
