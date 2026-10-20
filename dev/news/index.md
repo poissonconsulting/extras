@@ -1,5 +1,10 @@
 # Changelog
 
+## extras 0.10.0.9004
+
+- Standardize CI (tier: cran)
+  ([\#169](https://github.com/poissonconsulting/extras/issues/169)).
+
 ## extras 0.10.0.9003
 
 - Rename skewnorm and skewlnorm parameters and fix definitions
