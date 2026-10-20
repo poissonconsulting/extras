@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.10.0.9004
+
+- Standardize CI (tier: cran) (#169).
+
+
 # extras 0.10.0.9003
 
 - Rename skewnorm and skewlnorm parameters and fix definitions (#164).
