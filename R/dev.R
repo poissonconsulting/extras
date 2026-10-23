@@ -198,7 +198,7 @@ dev_binom <- function(x, size = 1, prob = 0.5, res = FALSE) {
 dev_gamma <- function(x, shape = 1, rate = 1, res = FALSE) {
   mu <- shape / rate
   dev <- -log(x / mu) + ((x - mu) / mu)
-  dev <- 2 * dev
+  dev <- 2 * shape * dev
   if (vld_false(res)) {
     return(dev)
   }
