@@ -899,7 +899,7 @@ test_that("res_gamma", {
     )
     expect_equal(
       res_gamma(1:2, 2, 2, simulate = TRUE),
-      c(-0.682136415630992, -0.0483989592818978)
+      c(-0.964686570373919, -0.068446464621203)
     )
   })
   withr::with_seed(101, {
@@ -909,7 +909,7 @@ test_that("res_gamma", {
     )
     expect_equal(
       res_gamma(1:2, 2, 0.5, simulate = TRUE),
-      c(-0.682136415630992, -0.0483989592818978)
+      c(-0.964686570373919, -0.068446464621203)
     )
   })
   withr::with_seed(101, {

@@ -848,40 +848,40 @@ test_that("dev_gamma known values", {
   expect_identical(dev_gamma(0, 1), Inf)
   expect_identical(dev_gamma(0, 1, 0.5), Inf)
   expect_equal(dev_gamma(1, 1, 0.5), 0.386294361119891)
-  expect_equal(dev_gamma(1, 1000, 1), 11.8175105579643)
+  expect_equal(dev_gamma(1, 1000, 1), 11817.5105579643)
   expect_equal(dev_gamma(0, 2, 0.5), Inf)
-  expect_equal(dev_gamma(1, 2), 0.386294361119891)
-  expect_equal(dev_gamma(1, 2, 0.5), 1.27258872223978)
+  expect_equal(dev_gamma(1, 2), 0.772588722239781)
+  expect_equal(dev_gamma(1, 2, 0.5), 2.54517744447956)
   expect_equal(
     dev_gamma(3, 3.5, res = TRUE),
-    -0.150289966199447
+    -0.281166781094084
   )
   expect_equal(
     dev_gamma(3, 3.5, 0.1, res = TRUE),
-    -1.75638837307447
+    -3.28590176507898
   )
   expect_equal(
     dev_gamma(3, 3.5, 0.2, res = TRUE),
-    -1.36749198439328
+    -2.55834324237963
   )
   expect_equal(
     dev_gamma(3, 3.5, 0.90, res = TRUE),
-    -0.248755972445511
+    -0.465379810902441
   )
 })
 
 test_that("dev_gamma vectorized", {
   expect_equal(
     dev_gamma(0:3, 2, 1),
-    c(Inf, 0.386294361119891, 0, 0.189069783783671)
+    c(Inf, 0.772588722239781, 0, 0.378139567567342)
   )
   expect_equal(
     dev_gamma(0:3, 1:4, c(0.1, 0.5, 1, 2)),
-    c(Inf, 1.27258872223978, 0.144263549549662, 0.189069783783671)
+    c(Inf, 2.54517744447956, 0.432790648648987, 0.756279135134685)
   )
   expect_equal(
     dev_gamma(0:3, 4:1, c(0.1, 0.5, 1, 2)),
-    c(Inf, 1.91685227178944, 0, 6.41648106154389)
+    c(Inf, 5.75055681536833, 0, 6.41648106154389)
   )
 })
 
@@ -902,7 +902,8 @@ test_that("dev_gamma res", {
   )
 })
 
-# couldn't determine exact parameter values for saturated log likelihood
+# shape is held fixed at its true value in the saturated fit, matching the
+# other dev_*() functions, which keep every parameter but the mean fixed
 test_that("dev_gamma log_lik", {
   expect_equal(
     dev_gamma(1, 1, 1),
@@ -912,10 +913,9 @@ test_that("dev_gamma log_lik", {
     dev_gamma(2, 1, 1),
     2 * (log_lik_gamma(2, 1, 0.5) - log_lik_gamma(2, 1, 1))
   )
-  # hack to divide multiply by 1 / shape
   expect_equal(
     dev_gamma(5, 3, 2),
-    2 * (1 / 3) * (log_lik_gamma(5, 3, 3 / 5) - log_lik_gamma(5, 3, 2))
+    2 * (log_lik_gamma(5, 3, 3 / 5) - log_lik_gamma(5, 3, 2))
   )
 })
 
@@ -925,15 +925,17 @@ test_that("dev_gamma ran", {
     expect_equal(mean(samples), 2.98927441565774)
     expect_equal(sd(samples), 1.71676055992005)
     res <- dev_gamma(samples, 3, 1, res = TRUE)
-    expect_equal(mean(res), -0.115132947326996)
-    expect_equal(sd(res), 0.579070230993174)
+    expect_equal(mean(res), -0.199416114395508)
+    expect_equal(sd(res), 1.00297906123082)
   })
 })
 
 test_that("dev_gamma deviance", {
+  # shape = 1 so the `dev_gamma()` scale factor is a no-op and the sum still
+  # matches glm()'s dispersion-free residual deviance for the Gamma family
   samples <- ran_gamma(1000, 3, 1 / 2)
   mod <- glm(samples ~ 1, family = Gamma(link = "identity"))
-  deviance <- sum(dev_gamma(samples, coef(mod)))
+  deviance <- sum(dev_gamma(samples, shape = 1, rate = 1 / coef(mod)))
   expect_equal(deviance, deviance(mod))
 })
 
