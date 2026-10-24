@@ -1,5 +1,12 @@
 # Changelog
 
+## extras 0.10.0.9005
+
+- Scale dev_gamma() by shape so deviance residuals have unit scaling
+  ([\#170](https://github.com/poissonconsulting/extras/issues/170))
+  ([\#171](https://github.com/poissonconsulting/extras/issues/171))
+  ([\#170](https://github.com/poissonconsulting/extras/issues/170)).
+
 ## extras 0.10.0.9004
 
 - Standardize CI (tier: cran)
