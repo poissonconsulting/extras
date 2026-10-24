@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.10.0.9005
+
+- Scale dev_gamma() by shape so deviance residuals have unit scaling (#170) (#171) (#170).
+
+
 # extras 0.10.0.9004
 
 - Standardize CI (tier: cran) (#169).
