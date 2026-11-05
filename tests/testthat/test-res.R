@@ -1603,3 +1603,54 @@ test_that("res_* return 0 not NaN when fit equals x to machine precision", {
   expect_no_warning(res <- res_gamma(12, shape))
   expect_identical(res, c(0, 0))
 })
+
+test_that("res_pois_lnorm", {
+  expect_identical(
+    res_pois_lnorm(integer(0), integer(0), integer(0)),
+    numeric(0)
+  )
+  expect_identical(res_pois_lnorm(1, 1, 0), 0)
+  expect_equal(res_pois_lnorm(0, 1, 0), res_pois(0, 1))
+  expect_identical(res_pois_lnorm(NA, 1, 1), NA_real_)
+  expect_identical(res_pois_lnorm(1, NA, 1), NA_real_)
+  expect_identical(res_pois_lnorm(1, 1, NA), NA_real_)
+  expect_error(res_pois_lnorm(1, 3, 1, type = "unknown"))
+  expect_equal(res_pois_lnorm(1, 3, 1, type = "raw"), -2)
+  expect_equal(res_pois_lnorm(1:2, 3, 1, type = "data"), 1:2)
+  expect_equal(
+    res_pois_lnorm(1, 3, 2),
+    dev_pois_lnorm(1, 3, 2, res = TRUE)
+  )
+  expect_equal(
+    res_pois_lnorm(c(1, 3, 6), 3, 0.5, type = "standardized"),
+    c(-2, 0, 3) / sqrt(3 + 9 * (exp(0.25) - 1))
+  )
+  expect_equal(
+    res_pois_lnorm(0:5, 3, 0, type = "standardized"),
+    res_pois(0:5, 3, type = "standardized")
+  )
+  withr::with_seed(101, {
+    expect_identical(
+      res_pois_lnorm(1:2, 2.5, 1, simulate = TRUE, type = "raw"),
+      c(-2.5, -0.5)
+    )
+    expect_equal(
+      res_pois_lnorm(1:2, 2.5, 1, simulate = TRUE),
+      c(0.765983938782022, 0.473381874304391)
+    )
+  })
+})
+
+test_that("res_pois_lnorm simulate", {
+  withr::with_seed(101, {
+    res <- res_pois_lnorm(
+      rep(2, 10000),
+      lambda = 20,
+      sdlog = 0.5,
+      simulate = TRUE,
+      type = "standardized"
+    )
+  })
+  expect_equal(mean(res), 0, tolerance = 0.05)
+  expect_equal(sd(res), 1, tolerance = 0.05)
+})

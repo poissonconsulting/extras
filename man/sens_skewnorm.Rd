@@ -53,6 +53,7 @@ Other sens_dist:
 \code{\link[=sens_neg_binom]{sens_neg_binom()}},
 \code{\link[=sens_norm]{sens_norm()}},
 \code{\link[=sens_pois]{sens_pois()}},
+\code{\link[=sens_pois_lnorm]{sens_pois_lnorm()}},
 \code{\link[=sens_skewlnorm]{sens_skewlnorm()}},
 \code{\link[=sens_student]{sens_student()}}
 }

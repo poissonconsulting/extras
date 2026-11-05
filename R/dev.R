@@ -372,6 +372,51 @@ dev_pois <- function(x, lambda, res = FALSE) {
   dev_res(x, lambda, dev)
 }
 
+#' Poisson-Lognormal Deviances
+#'
+#' The Poisson-lognormal distribution is a Poisson distribution with mean
+#' `lambda * exp(sdlog * z - sdlog^2 / 2)` where `z` is a standard normal
+#' deviate. Its expected value is `lambda` and its variance is
+#' `lambda + lambda^2 * (exp(sdlog^2) - 1)`. When `sdlog = 0`, the
+#' Poisson-lognormal reverts to the Poisson distribution.
+#'
+#' The saturated log-likelihood is the maximum of the marginal log-likelihood
+#' over `lambda` at fixed `sdlog`, which is found numerically for each value
+#' with `x > 0`.
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance
+#'   residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_pois_lnorm(c(0, 1, 2), 1, 0.5)
+dev_pois_lnorm <- function(x, lambda = 1, sdlog = 0, res = FALSE) {
+  args <- pois_lnorm_recycle(x, lambda, sdlog)
+  x <- args$x
+  lambda <- args$lambda
+  sdlog <- args$sdlog
+  log_lik_sat <- rep(NA_real_, length(x))
+  log_lik_sat[!is.na(x) & x == 0] <- 0
+  sat <- pois_lnorm_use_quad(x, 1, sdlog) & x > 0
+  if (any(sat)) {
+    lambda_sat <- exp(pois_lnorm_saturated(x[sat], sdlog[sat]))
+    log_lik_sat[sat] <- pois_lnorm_quad(x[sat], lambda_sat, sdlog[sat])
+  }
+  dev <- log_lik_sat - log_lik_pois_lnorm(x, lambda = lambda, sdlog = sdlog)
+  dev[!is.na(dev) & dev < 0 & dev > -1e-7] <- 0
+  dev <- dev * 2
+  pois <- !is.na(sdlog) & sdlog == 0
+  dev[pois] <- dev_pois(x[pois], lambda[pois], res = FALSE)
+  if (vld_false(res)) {
+    return(dev)
+  }
+  dev_res(x, lambda, dev)
+}
+
 #' Zero-Inflated Poisson Deviances
 #'
 #' @inheritParams params

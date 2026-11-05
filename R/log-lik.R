@@ -610,6 +610,69 @@ log_lik_pois <- function(x, lambda = 1, tlower = 0, tupper = Inf) {
   log_lik
 }
 
+#' Poisson-Lognormal Log-Likelihood
+#'
+#' The Poisson-lognormal distribution is a Poisson distribution with mean
+#' `lambda * exp(sdlog * z - sdlog^2 / 2)` where `z` is a standard normal
+#' deviate. Its expected value is `lambda` and its variance is
+#' `lambda + lambda^2 * (exp(sdlog^2) - 1)`. When `sdlog = 0`, the
+#' Poisson-lognormal reverts to the Poisson distribution.
+#'
+#' The marginal log-likelihood has no closed form and is calculated by
+#' adaptive Gauss-Hermite quadrature with 10 nodes centred on the mode of the
+#' integrand. The absolute error is less than 1e-4 for `sdlog <= 1` and less
+#' than 1e-3 for `sdlog <= 2`.
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_pois_lnorm(c(0, 1, 2), 1, 0.5)
+log_lik_pois_lnorm <- function(
+  x,
+  lambda = 1,
+  sdlog = 0,
+  tlower = 0,
+  tupper = Inf
+) {
+  args <- pois_lnorm_recycle(x, lambda, sdlog)
+  x <- args$x
+  lambda <- args$lambda
+  sdlog <- args$sdlog
+  log_lik <- stats::dpois(x, lambda, log = TRUE)
+  log_lik[is.na(sdlog)] <- NA_real_
+  log_lik[!is.na(sdlog) & sdlog < 0] <- NaN
+  sdlog_inf <- !is.na(log_lik) & !is.na(sdlog) & sdlog == Inf
+  log_lik[sdlog_inf] <- ifelse(x[sdlog_inf] == 0, 0, -Inf)
+  quad <- pois_lnorm_use_quad(x, lambda, sdlog)
+  log_lik[quad] <- pois_lnorm_quad(x[quad], lambda[quad], sdlog[quad])
+  if (!length(tlower) || !length(tupper)) {
+    return(numeric(0))
+  }
+  truncated <- (tlower != 0 | !is.infinite(tupper)) &
+    !is.na(tlower) &
+    !is.na(tupper)
+  if (any(truncated & !is.na(truncated))) {
+    log_lik_truncated <- log_lik -
+      log(
+        prob_pois_lnorm(tupper, lambda = lambda, sdlog = sdlog) -
+          prob_pois_lnorm(tlower, lambda = lambda, sdlog = sdlog) +
+          exp(log_lik_pois_lnorm(tlower, lambda = lambda, sdlog = sdlog))
+      )
+    log_lik_truncated[x < tlower | x > tupper] <- -Inf
+    log_lik[truncated] <- log_lik_truncated[truncated]
+  }
+  trunc_na <- is.na(tlower) | is.na(tupper)
+  if (length(log_lik)) {
+    log_lik[trunc_na] <- NA
+  }
+  log_lik
+}
+
 #' Zero-Inflated Poisson Log-Likelihood
 #'
 #' @inheritParams params

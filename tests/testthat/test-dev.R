@@ -1259,3 +1259,78 @@ test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args
       "The `sdlog` argument of `dev_skewlnorm"),
     "The `shape` argument of `dev_skewlnorm")
 })
+
+test_that("dev_pois_lnorm missing values", {
+  expect_identical(
+    dev_pois_lnorm(logical(0), integer(0), numeric(0)),
+    numeric(0)
+  )
+  expect_identical(dev_pois_lnorm(NA, 1, 1), NA_real_)
+  expect_identical(dev_pois_lnorm(1, NA, 1), NA_real_)
+  expect_identical(dev_pois_lnorm(1, 1, NA), NA_real_)
+  expect_equal(dev_pois_lnorm(c(NA, 1), 1:2, 1), c(NA, dev_pois_lnorm(1, 2, 1)))
+})
+
+test_that("dev_pois_lnorm known values", {
+  expect_equal(
+    dev_pois_lnorm(c(0, 1, 5, 20), 5, 0.8),
+    c(4.87788287453813, 1.49894533689484, 0.0692505175270925, 4.08524435874967)
+  )
+  expect_identical(dev_pois_lnorm(0, 0, 1), 0)
+  expect_identical(dev_pois_lnorm(1, 0, 1), Inf)
+  expect_equal(dev_pois_lnorm(0, 2, 1), -2 * log_lik_pois_lnorm(0, 2, 1))
+})
+
+test_that("dev_pois_lnorm reverts to dev_pois when sdlog = 0", {
+  expect_identical(dev_pois_lnorm(0:10, 3, 0), dev_pois(0:10, 3))
+  expect_identical(
+    dev_pois_lnorm(0:10, 3, 0, res = TRUE),
+    dev_pois(0:10, 3, res = TRUE)
+  )
+})
+
+test_that("dev_pois_lnorm res", {
+  x <- c(0:2, 4:10)
+  expect_equal(
+    dev_pois_lnorm(x, 3, 0.8),
+    dev_pois_lnorm(x, 3, 0.8, res = TRUE)^2
+  )
+  expect_identical(
+    sign(dev_pois_lnorm(c(1, 3, 5), 3, 0.8, res = TRUE)),
+    c(-1, 0, 1)
+  )
+})
+
+test_that("dev_pois_lnorm saturated matches optimize", {
+  grid <- expand.grid(
+    x = c(1, 2, 5, 10, 100, 1000),
+    sdlog = c(0.01, 0.1, 0.5, 1, 1.5, 2)
+  )
+  log_lik_sat <- mapply(
+    function(x, sdlog) {
+      -stats::optimize(
+        function(eta) -log_lik_pois_lnorm(x, exp(eta), sdlog),
+        log(x) + c(-1, sdlog^2 / 2 + 1),
+        tol = 1e-10
+      )$objective
+    },
+    grid$x,
+    grid$sdlog
+  )
+  dev <- dev_pois_lnorm(grid$x, 3, grid$sdlog)
+  expect_equal(
+    dev,
+    2 * (log_lik_sat - log_lik_pois_lnorm(grid$x, 3, grid$sdlog)),
+    tolerance = 1e-8
+  )
+  expect_true(all(dev >= 0))
+})
+
+test_that("dev_pois_lnorm fast", {
+  skip_on_cran()
+  withr::with_seed(101, {
+    x <- ran_pois_lnorm(1e5, 20, 1)
+  })
+  time <- system.time(dev_pois_lnorm(x, 20, 1))[["elapsed"]]
+  expect_lt(time, 10)
+})

@@ -318,6 +318,47 @@ sens_pois <- function(lambda, sd_mult = 2) {
   return(list(lambda = new_lambda))
 }
 
+#' Adjust Poisson-Lognormal Distribution Parameters for Sensitivity Analyses
+#'
+#' Expands (`sd_mult > 1`) the standard deviation of the Poisson-lognormal
+#' distribution by increasing `sdlog`. This function does not currently have
+#' the option to reduce the standard deviation.
+#'
+#' The Poisson-lognormal distribution is a Poisson distribution with mean
+#' `lambda * exp(sdlog * z - sdlog^2 / 2)` where `z` is a standard normal
+#' deviate. Its expected value is `lambda` and its variance is
+#' `lambda + lambda^2 * (exp(sdlog^2) - 1)`. When `sdlog = 0`, the
+#' Poisson-lognormal reverts to the Poisson distribution.
+#'
+#' @inheritParams params
+#'
+#' @return A named list of the adjusted distribution's parameters.
+#' @family sens_dist
+#' @export
+#'
+#' @examples
+#' sens_pois_lnorm(10, 0.5, 2)
+sens_pois_lnorm <- function(lambda, sdlog, sd_mult = 2) {
+  chk::chk_number(lambda)
+  chk::chk_gte(lambda, value = 0)
+  chk::chk_number(sdlog)
+  chk::chk_gte(sdlog, value = 0)
+  chk::chk_number(sd_mult)
+  chk::chk_gt(sd_mult, value = 0)
+
+  if (sd_mult < 1) {
+    stop(
+      "This function does not currently have the option to reduce the standard deviation."
+    )
+  }
+
+  original_sd <- sqrt(lambda + lambda^2 * (exp(sdlog^2) - 1))
+  desired_sd <- original_sd * sd_mult
+  new_sdlog <- sqrt(log(1 + (desired_sd^2 - lambda) / lambda^2))
+
+  return(list(lambda = lambda, sdlog = new_sdlog))
+}
+
 #' Adjust Gamma Distribution Parameters for Sensitivity Analyses
 #'
 #' Expands (`sd_mult > 1`) or reduces (`sd_mult < 1`) the standard deviation

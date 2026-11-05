@@ -133,3 +133,15 @@
       [1] 0.3
       
 
+# sens_pois_lnorm returns a numeric vector of length 2 with correct names
+
+    Code
+      sens_pois_lnorm(lambda = 10, sdlog = 0.5, sd_mult = 2)
+    Output
+      $lambda
+      [1] 10
+      
+      $sdlog
+      [1] 0.9436096
+      
+

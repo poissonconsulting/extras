@@ -1240,3 +1240,142 @@ test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args
       "The `sdlog` argument of `log_lik_skewlnorm"),
     "The `shape` argument of `log_lik_skewlnorm")
 })
+
+test_that("log_lik_pois_lnorm missing values", {
+  expect_identical(
+    log_lik_pois_lnorm(numeric(0), numeric(0), numeric(0)),
+    numeric(0)
+  )
+  expect_identical(log_lik_pois_lnorm(1, numeric(0), 1), numeric(0))
+  expect_identical(log_lik_pois_lnorm(1, 1, numeric(0)), numeric(0))
+  expect_identical(log_lik_pois_lnorm(NA, 1, 1), NA_real_)
+  expect_identical(log_lik_pois_lnorm(1, NA, 1), NA_real_)
+  expect_identical(log_lik_pois_lnorm(1, 1, NA), NA_real_)
+  expect_identical(
+    log_lik_pois_lnorm(c(NA, 1, 2), c(1, NA, 1), c(1, 1, NA)),
+    rep(NA_real_, 3)
+  )
+})
+
+test_that("log_lik_pois_lnorm known values", {
+  expect_equal(
+    log_lik_pois_lnorm(c(0, 1, 5, 20), 5, 0.8),
+    c(
+      -2.43894143726907,
+      -1.99212477744944,
+      -2.48528122645157,
+      -5.77261295788506
+    )
+  )
+  expect_identical(log_lik_pois_lnorm(0, 0, 1), 0)
+  expect_identical(log_lik_pois_lnorm(1, 0, 1), -Inf)
+  expect_identical(log_lik_pois_lnorm(-1, 1, 1), -Inf)
+  expect_identical(log_lik_pois_lnorm(Inf, 1, 1), -Inf)
+  expect_identical(log_lik_pois_lnorm(1, 1, -1), NaN)
+  expect_identical(log_lik_pois_lnorm(c(0, 1), 1, Inf), c(0, -Inf))
+  expect_warning(
+    expect_identical(log_lik_pois_lnorm(1.5, 1, 1), -Inf),
+    "non-integer"
+  )
+})
+
+test_that("log_lik_pois_lnorm reverts to log_lik_pois when sdlog = 0", {
+  expect_identical(log_lik_pois_lnorm(0:10, 3, 0), log_lik_pois(0:10, 3))
+  expect_identical(
+    log_lik_pois_lnorm(0:3, c(0.5, 3), c(0, 1))[c(1, 3)],
+    log_lik_pois(c(0, 2), 0.5)
+  )
+  expect_equal(
+    log_lik_pois_lnorm(c(0, 1, 10, 100), 10, 1e-8),
+    log_lik_pois(c(0, 1, 10, 100), 10),
+    tolerance = 1e-12
+  )
+})
+
+test_that("log_lik_pois_lnorm vectorized with recycling", {
+  expect_equal(
+    log_lik_pois_lnorm(0:3, c(1, 2), c(0.5, 1, 1.5, 2)),
+    c(
+      log_lik_pois_lnorm(0, 1, 0.5),
+      log_lik_pois_lnorm(1, 2, 1),
+      log_lik_pois_lnorm(2, 1, 1.5),
+      log_lik_pois_lnorm(3, 2, 2)
+    )
+  )
+})
+
+test_that("log_lik_pois_lnorm probabilities sum to 1 with mean lambda", {
+  x <- 0:2000
+  for (sdlog in c(0.1, 0.5, 1)) {
+    pmf <- exp(log_lik_pois_lnorm(x, 5, sdlog))
+    expect_equal(sum(pmf), 1, tolerance = 1e-4)
+    expect_equal(sum(x * pmf), 5, tolerance = 1e-4)
+  }
+  pmf <- exp(log_lik_pois_lnorm(x, 5, 1.5))
+  expect_equal(sum(pmf), 1, tolerance = 1e-3)
+  expect_equal(sum(x * pmf), 5, tolerance = 1e-3)
+})
+
+test_that("log_lik_pois_lnorm matches stats::integrate", {
+  grid <- expand.grid(
+    x = c(0:10, 20, 30, 50, 84, 100, 1000, 10000),
+    lambda = c(1e-3, 0.1, 0.6, 1, 3, 10, 36, 100, 1e4),
+    sdlog = c(1e-4, 0.01, 0.1, 0.5, 0.9, 1, 1.2, 1.5, 2)
+  )
+  error <- abs(
+    log_lik_pois_lnorm(grid$x, grid$lambda, grid$sdlog) -
+      log_lik_pois_lnorm_integrate(grid$x, grid$lambda, grid$sdlog)
+  )
+  expect_true(all(is.finite(error)))
+  expect_lt(max(error[grid$sdlog <= 1]), 1e-4)
+  expect_lt(max(error[grid$sdlog <= 2]), 1e-3)
+})
+
+test_that("log_lik_pois_lnorm finite for extreme values", {
+  grid <- expand.grid(
+    x = c(0, 1, 1e6),
+    lambda = c(1e-8, 1, 1e8),
+    sdlog = c(1e-8, 1, 10)
+  )
+  log_lik <- log_lik_pois_lnorm(grid$x, grid$lambda, grid$sdlog)
+  expect_true(all(is.finite(log_lik)))
+  expect_true(all(log_lik <= 0))
+})
+
+test_that("log_lik_pois_lnorm truncated", {
+  expect_identical(log_lik_pois_lnorm(1, 1, 1, tlower = NA), NA_real_)
+  expect_identical(log_lik_pois_lnorm(1, 1, 1, tupper = NA), NA_real_)
+  expect_identical(log_lik_pois_lnorm(1, 1, 1, tlower = numeric(0)), numeric(0))
+  expect_identical(log_lik_pois_lnorm(1, 1, 1, tupper = numeric(0)), numeric(0))
+  expect_identical(log_lik_pois_lnorm(1, 10, 0.5, tlower = 2), -Inf)
+  expect_equal(
+    log_lik_pois_lnorm(c(2, 4, 7), 10, 0.5, tlower = 2, tupper = 7),
+    c(-2.51195392187196, -1.78093453985164, -1.54263975153256)
+  )
+  expect_equal(
+    log_lik_pois_lnorm(c(1, 8), 10, 0.5, tlower = 2, tupper = 7),
+    rep(-Inf, 2)
+  )
+  expect_equal(
+    sum(exp(log_lik_pois_lnorm(2:7, 10, 0.5, tlower = 2, tupper = 7))),
+    1
+  )
+  expect_equal(
+    log_lik_pois_lnorm(3, 10, 0.5, tlower = 2),
+    log_lik_pois_lnorm(3, 10, 0.5) -
+      log(1 - prob_pois_lnorm(1, 10, 0.5))
+  )
+  expect_equal(
+    log_lik_pois_lnorm(1, 10, 0.5, tlower = 0),
+    log_lik_pois_lnorm(1, 10, 0.5, tlower = -1)
+  )
+})
+
+test_that("log_lik_pois_lnorm fast", {
+  skip_on_cran()
+  withr::with_seed(101, {
+    x <- ran_pois_lnorm(1e5, 20, 1)
+  })
+  time <- system.time(log_lik_pois_lnorm(x, 20, 1))[["elapsed"]]
+  expect_lt(time, 2)
+})

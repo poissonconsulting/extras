@@ -597,3 +597,36 @@ test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args
       "The `sdlog` argument of `ran_skewlnorm"),
     "The `shape` argument of `ran_skewlnorm")
 })
+
+test_that("ran_pois_lnorm", {
+  expect_error(ran_pois_lnorm(NA_integer_))
+  expect_error(ran_pois_lnorm(integer(0)))
+  expect_identical(ran_pois_lnorm(0L), integer(0))
+  expect_identical(ran_pois_lnorm(0L, 1, 1), integer(0))
+  withr::with_seed(101, {
+    expect_identical(ran_pois_lnorm(5, 5, 0.8), c(5L, 7L, 3L, 8L, 4L))
+  })
+})
+
+test_that("ran_pois_lnorm reverts to ran_pois when sdlog = 0", {
+  expect_identical(
+    withr::with_seed(101, ran_pois_lnorm(10, 3)),
+    withr::with_seed(101, ran_pois(10, 3))
+  )
+  expect_identical(
+    withr::with_seed(101, ran_pois_lnorm(10, c(1, 100), 0)),
+    withr::with_seed(101, ran_pois(10, c(1, 100)))
+  )
+})
+
+test_that("ran_pois_lnorm mean and variance", {
+  withr::with_seed(101, {
+    x <- ran_pois_lnorm(1e5, 5, 0.8)
+  })
+  expect_equal(mean(x), 5, tolerance = 0.01)
+  expect_equal(var(x), 5 + 25 * (exp(0.64) - 1), tolerance = 0.05)
+  withr::with_seed(101, {
+    x <- ran_pois_lnorm(4, c(0.1, 1000), c(0, 1))
+  })
+  expect_identical(x[c(1, 3)] <= 2L, c(TRUE, TRUE))
+})

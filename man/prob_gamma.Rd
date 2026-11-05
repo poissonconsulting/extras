@@ -35,6 +35,7 @@ Other prob_dist:
 \code{\link[=prob_neg_binom]{prob_neg_binom()}},
 \code{\link[=prob_norm]{prob_norm()}},
 \code{\link[=prob_pois]{prob_pois()}},
+\code{\link[=prob_pois_lnorm]{prob_pois_lnorm()}},
 \code{\link[=prob_pois_zi]{prob_pois_zi()}},
 \code{\link[=prob_skewlnorm]{prob_skewlnorm()}},
 \code{\link[=prob_skewnorm]{prob_skewnorm()}},

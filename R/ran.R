@@ -211,6 +211,32 @@ ran_pois <- function(n = 1, lambda = 1) {
   stats::rpois(n, lambda = lambda)
 }
 
+#' Poisson-Lognormal Random Samples
+#'
+#' The Poisson-lognormal distribution is a Poisson distribution with mean
+#' `lambda * exp(sdlog * z - sdlog^2 / 2)` where `z` is a standard normal
+#' deviate. Its expected value is `lambda` and its variance is
+#' `lambda + lambda^2 * (exp(sdlog^2) - 1)`. When `sdlog = 0`, the
+#' Poisson-lognormal reverts to the Poisson distribution.
+#'
+#' @inheritParams params
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_pois_lnorm(10, 3, 0.5)
+ran_pois_lnorm <- function(n = 1, lambda = 1, sdlog = 0) {
+  chk_whole_number(n)
+  chk_gte(n)
+  if (all(!is.na(sdlog) & sdlog == 0)) {
+    return(ran_pois(n, lambda = lambda))
+  }
+  lambda <- rep_len(lambda, n)
+  sdlog <- rep_len(sdlog, n)
+  stats::rpois(n, lambda = lambda * exp(sdlog * stats::rnorm(n) - sdlog^2 / 2))
+}
+
 #' Zero-Inflated Poisson Random Samples
 #'
 #' @inheritParams params

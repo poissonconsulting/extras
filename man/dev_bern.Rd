@@ -35,6 +35,7 @@ Other dev_dist:
 \code{\link[=dev_neg_binom]{dev_neg_binom()}},
 \code{\link[=dev_norm]{dev_norm()}},
 \code{\link[=dev_pois]{dev_pois()}},
+\code{\link[=dev_pois_lnorm]{dev_pois_lnorm()}},
 \code{\link[=dev_pois_zi]{dev_pois_zi()}},
 \code{\link[=dev_skewlnorm]{dev_skewlnorm()}},
 \code{\link[=dev_skewnorm]{dev_skewnorm()}},

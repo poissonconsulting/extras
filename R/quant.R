@@ -152,6 +152,60 @@ quant_pois <- function(x, lambda = 1) {
   stats::qpois(p = x, lambda = lambda)
 }
 
+#' Poisson-Lognormal Quantile Function
+#'
+#' The Poisson-lognormal distribution is a Poisson distribution with mean
+#' `lambda * exp(sdlog * z - sdlog^2 / 2)` where `z` is a standard normal
+#' deviate. Its expected value is `lambda` and its variance is
+#' `lambda + lambda^2 * (exp(sdlog^2) - 1)`. When `sdlog = 0`, the
+#' Poisson-lognormal reverts to the Poisson distribution.
+#'
+#' The quantiles are found by summing the probability masses from 0 (see
+#' [log_lik_pois_lnorm()]) so the computation time increases with the
+#' quantile.
+#'
+#' @inheritParams params
+#' @param x A numeric vector of probabilities.
+#'
+#' @return An numeric vector of the corresponding quantiles.
+#' @family quant_dist
+#' @export
+#'
+#' @examples
+#' quant_pois_lnorm(c(0.1, 0.4, 0.6), 1, 0.5)
+quant_pois_lnorm <- function(x, lambda = 1, sdlog = 0) {
+  args <- pois_lnorm_recycle(x, lambda, sdlog)
+  p <- args$x
+  lambda <- args$lambda
+  sdlog <- args$sdlog
+  quant <- stats::qpois(p = p, lambda = lambda)
+  quant[is.na(sdlog)] <- NA_real_
+  quant[!is.na(sdlog) & sdlog < 0] <- NaN
+  quant[!is.na(quant) & !is.na(sdlog) & sdlog == Inf & p < 1] <- 0
+  quad <- pois_lnorm_use_quad(0, lambda, sdlog) & !is.na(p) & p > 0 & p < 1
+  if (any(quad)) {
+    p <- p[quad]
+    lambda <- lambda[quad]
+    sdlog <- sdlog[quad]
+    # Upper bound: P(X <= upper) >= P(z <= z0) * ppois(upper, lam(z0)) >= p
+    # where P(z <= z0) = sqrt(p).
+    root <- sqrt(p)
+    upper <- stats::qpois(
+      root,
+      lambda * exp(sdlog * stats::qnorm(root) - sdlog^2 / 2)
+    )
+    idx <- rep(seq_along(p), upper + 1)
+    k <- sequence(upper + 1) - 1
+    pmf <- exp(pois_lnorm_quad(k, lambda[idx], sdlog[idx]))
+    cum <- stats::ave(pmf, idx, FUN = cumsum)
+    hit <- cum >= p[idx] * (1 - 64 * .Machine$double.eps)
+    k[!hit] <- Inf
+    first <- vapply(split(k, idx), min, numeric(1), USE.NAMES = FALSE)
+    quant[quad] <- pmin(first, upper)
+  }
+  quant
+}
+
 #' Zero-Inflated Poisson Quantile Function
 #'
 #' @inheritParams params

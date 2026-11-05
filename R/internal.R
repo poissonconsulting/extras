@@ -90,3 +90,160 @@ multinom_row_na <- function(size, prob, group, groups = multinom_split(group)) {
   }
   result
 }
+
+# Gauss-Hermite nodes and weights for integrals of the form
+# integral(f(x) * exp(-x^2)) by the Golub-Welsch algorithm.
+gauss_hermite <- function(n) {
+  jacobi <- matrix(0, n, n)
+  off <- sqrt(seq_len(n - 1) / 2)
+  jacobi[cbind(seq_len(n - 1), 2:n)] <- off
+  jacobi[cbind(2:n, seq_len(n - 1))] <- off
+  e <- eigen(jacobi, symmetric = TRUE)
+  list(x = e$values, w = sqrt(pi) * e$vectors[1, ]^2)
+}
+
+# The 10-node rule used by the Poisson-lognormal quadrature, computed once at
+# build time. `lw` holds log(w) + x^2 so that the nodes can be applied to an
+# integrand that already includes the standard normal density.
+pois_lnorm_gh <- local({
+  gh <- gauss_hermite(10)
+  list(x = gh$x, lw = log(gh$w) + gh$x^2)
+})
+
+# Mode of the log integrand of the Poisson-lognormal over the standard normal
+# deviate z, i.e. the root of x * sdlog - sdlog * lam(z) - z where
+# lam(z) = lambda * exp(sdlog * z - sdlog^2 / 2). The function is concave and
+# decreasing in z, so Newton steps from the right of the root converge
+# monotonically. Starting points left of the root are moved right by one
+# Newton step (which overshoots the root) and then capped at an upper bound
+# whose lam(z) is max(x + 0.5, lambda), which keeps exp() finite.
+# Requires x >= 0, lambda > 0 and sdlog > 0, all finite and of equal length.
+pois_lnorm_mode <- function(x, lambda, sdlog, tol = 1e-10, maxit = 200L) {
+  score <- function(z, i) {
+    x[i] *
+      sdlog[i] -
+      sdlog[i] * lambda[i] * exp(sdlog[i] * z - sdlog[i]^2 / 2) -
+      z
+  }
+  slope <- function(z, i) {
+    -sdlog[i]^2 * lambda[i] * exp(sdlog[i] * z - sdlog[i]^2 / 2) - 1
+  }
+  all <- seq_along(x)
+  z <- sdlog * (log((x + 0.5) / lambda) + sdlog^2 / 2) / (1 + sdlog^2)
+  left <- which(score(z, all) > 0)
+  z[left] <- z[left] - score(z[left], left) / slope(z[left], left)
+  z_upper <- (log(pmax(x + 0.5, lambda) / lambda) + sdlog^2 / 2) / sdlog
+  z <- pmin(z, z_upper)
+  active <- all
+  for (i in seq_len(maxit)) {
+    if (!length(active)) {
+      break
+    }
+    za <- z[active]
+    step <- -score(za, active) / slope(za, active)
+    z[active] <- za + step
+    active <- active[abs(step) > tol * pmax(1, abs(za))]
+  }
+  z
+}
+
+# Marginal log-likelihood of the Poisson-lognormal by adaptive Gauss-Hermite
+# quadrature centred on the mode of the integrand and scaled by its curvature.
+# With `moments = TRUE` also returns the posterior mean and variance of the
+# Poisson rate given x, which are used to find the saturated lambda.
+# Requires x >= 0 whole, lambda > 0 and sdlog > 0, all finite and of equal
+# length.
+pois_lnorm_quad <- function(x, lambda, sdlog, moments = FALSE) {
+  nodes <- length(pois_lnorm_gh$x)
+  z <- pois_lnorm_mode(x, lambda, sdlog)
+  lam <- lambda * exp(sdlog * z - sdlog^2 / 2)
+  sd <- 1 / sqrt(sdlog^2 * lam + 1)
+  zk <- z + outer(sqrt(2) * sd, pois_lnorm_gh$x)
+  lamk <- lambda * exp(sdlog * zk - sdlog^2 / 2)
+  log_node <- stats::dpois(x, lamk, log = TRUE) +
+    stats::dnorm(zk, log = TRUE) +
+    rep(pois_lnorm_gh$lw, each = length(x))
+  # Bounds every node so exp() cannot overflow.
+  offset <- stats::dpois(x, lam, log = TRUE) +
+    stats::dnorm(z, log = TRUE) +
+    max(pois_lnorm_gh$lw)
+  weight <- exp(log_node - offset)
+  sum_weight <- rowSums(weight)
+  log_lik <- offset + log(sum_weight) + log(sqrt(2) * sd)
+  if (!moments) {
+    return(log_lik)
+  }
+  mean <- rowSums(weight * lamk) / sum_weight
+  var <- rowSums(weight * lamk^2) / sum_weight - mean^2
+  list(log_lik = log_lik, mean = mean, var = var)
+}
+
+# Recycles the arguments of a pois_lnorm function to a common length following
+# the base R d/p/q functions (length zero if any argument has length zero).
+pois_lnorm_recycle <- function(x, lambda, sdlog) {
+  n <- if (length(x) && length(lambda) && length(sdlog)) {
+    max(length(x), length(lambda), length(sdlog))
+  } else {
+    0L
+  }
+  list(
+    x = rep_len(as.numeric(x), n),
+    lambda = rep_len(as.numeric(lambda), n),
+    sdlog = rep_len(as.numeric(sdlog), n)
+  )
+}
+
+# Whether the Poisson-lognormal quadrature applies: x finite non-negative whole,
+# lambda finite positive and sdlog finite positive. All other values are
+# handled by the Poisson distribution or as limiting cases.
+pois_lnorm_use_quad <- function(x, lambda, sdlog) {
+  !is.na(x) &
+    !is.na(lambda) &
+    !is.na(sdlog) &
+    is.finite(x) &
+    x >= 0 &
+    x == floor(x) &
+    is.finite(lambda) &
+    lambda > 0 &
+    is.finite(sdlog) &
+    sdlog > 0
+}
+
+# Lambda that maximises the Poisson-lognormal marginal log-likelihood of x > 0
+# at fixed sdlog. The maximum is where the posterior mean of the Poisson rate
+# equals x and lies between x and x * exp(sdlog^2 / 2) (the large x limit).
+# Safeguarded Newton steps on log(lambda) fall back to bisection when a step
+# leaves the bracket. Requires x > 0 whole and sdlog > 0, both finite and of
+# equal length.
+pois_lnorm_saturated <- function(x, sdlog, tol = 1e-10, maxit = 100L) {
+  lower <- log(x)
+  upper <- log(x) + sdlog^2 / 2
+  eta <- log(x) + sdlog^2 / 2 * x / (x + 1)
+  active <- seq_along(x)
+  for (i in seq_len(maxit)) {
+    if (!length(active)) {
+      break
+    }
+    quad <- pois_lnorm_quad(
+      x[active],
+      exp(eta[active]),
+      sdlog[active],
+      moments = TRUE
+    )
+    score <- x[active] - quad$mean
+    slope <- quad$var - quad$mean
+    pos <- score > 0
+    lower[active][pos] <- eta[active][pos]
+    upper[active][!pos] <- eta[active][!pos]
+    new <- eta[active] - score / slope
+    bisect <- !is.finite(new) |
+      slope >= 0 |
+      new <= lower[active] |
+      new >= upper[active]
+    new[bisect] <- (lower[active][bisect] + upper[active][bisect]) / 2
+    step <- abs(new - eta[active])
+    eta[active] <- new
+    active <- active[step > tol & upper[active] - lower[active] > tol]
+  }
+  eta
+}

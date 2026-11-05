@@ -197,6 +197,47 @@ prob_pois <- function(x, lambda = 1) {
   stats::ppois(q = x, lambda = lambda)
 }
 
+#' Poisson-Lognormal Cumulative Distribution Function
+#'
+#' The Poisson-lognormal distribution is a Poisson distribution with mean
+#' `lambda * exp(sdlog * z - sdlog^2 / 2)` where `z` is a standard normal
+#' deviate. Its expected value is `lambda` and its variance is
+#' `lambda + lambda^2 * (exp(sdlog^2) - 1)`. When `sdlog = 0`, the
+#' Poisson-lognormal reverts to the Poisson distribution.
+#'
+#' The probabilities are the sums of the probability masses from 0 to
+#' `floor(x)` (see [log_lik_pois_lnorm()]) so the computation time increases
+#' with `x`.
+#'
+#' @inheritParams params
+#' @param x A numeric vector of quantiles.
+#'
+#' @return An numeric vector of the corresponding probabilities.
+#' @family prob_dist
+#' @export
+#'
+#' @examples
+#' prob_pois_lnorm(c(0, 1, 2), 1, 0.5)
+prob_pois_lnorm <- function(x, lambda = 1, sdlog = 0) {
+  args <- pois_lnorm_recycle(x, lambda, sdlog)
+  x <- floor(args$x)
+  lambda <- args$lambda
+  sdlog <- args$sdlog
+  prob <- stats::ppois(q = x, lambda = lambda)
+  prob[is.na(sdlog)] <- NA_real_
+  prob[!is.na(sdlog) & sdlog < 0] <- NaN
+  prob[!is.na(prob) & !is.na(sdlog) & sdlog == Inf & x >= 0] <- 1
+  quad <- pois_lnorm_use_quad(x, lambda, sdlog)
+  if (any(quad)) {
+    q <- x[quad]
+    idx <- rep(seq_along(q), q + 1)
+    k <- sequence(q + 1) - 1
+    pmf <- exp(pois_lnorm_quad(k, lambda[quad][idx], sdlog[quad][idx]))
+    prob[quad] <- pmin(1, as.vector(rowsum(pmf, idx)))
+  }
+  prob
+}
+
 #' Zero-Inflated Poisson Cumulative Distribution Function
 #'
 #' @inheritParams params

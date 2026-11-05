@@ -218,3 +218,21 @@ test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args
       "The `sdlog` argument of `prob_skewlnorm"),
     "The `shape` argument of `prob_skewlnorm")
 })
+
+test_that("prob_pois_lnorm", {
+  expect_identical(prob_pois_lnorm(numeric(0)), numeric(0))
+  expect_identical(prob_pois_lnorm(NA), NA_real_)
+  expect_identical(prob_pois_lnorm(1, NA, 1), NA_real_)
+  expect_identical(prob_pois_lnorm(1, 1, NA), NA_real_)
+  expect_identical(prob_pois_lnorm(0:5, 3, 0), prob_pois(0:5, 3))
+  expect_identical(prob_pois_lnorm(c(-1, Inf), 3, 1), c(0, 1))
+  expect_equal(
+    prob_pois_lnorm(c(0, 3, 10), 5, 0.8),
+    c(0.0872531655424377, 0.491841005751926, 0.892133839670842)
+  )
+  expect_equal(
+    prob_pois_lnorm(0:20, 5, 0.8),
+    cumsum(exp(log_lik_pois_lnorm(0:20, 5, 0.8)))
+  )
+  expect_identical(prob_pois_lnorm(2.5, 5, 0.8), prob_pois_lnorm(2, 5, 0.8))
+})

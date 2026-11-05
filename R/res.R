@@ -405,6 +405,45 @@ res_pois <- function(x, lambda = 1, type = "dev", simulate = FALSE) {
   )
 }
 
+#' Poisson-Lognormal Residuals
+#'
+#' The Poisson-lognormal distribution is a Poisson distribution with mean
+#' `lambda * exp(sdlog * z - sdlog^2 / 2)` where `z` is a standard normal
+#' deviate. Its expected value is `lambda` and its variance is
+#' `lambda + lambda^2 * (exp(sdlog^2) - 1)`. When `sdlog = 0`, the
+#' Poisson-lognormal reverts to the Poisson distribution.
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding residuals.
+#' @family res_dist
+#' @export
+#'
+#' @examples
+#' res_pois_lnorm(c(0, 1, 2), 1, 0.5)
+res_pois_lnorm <- function(
+  x,
+  lambda = 1,
+  sdlog = 0,
+  type = "dev",
+  simulate = FALSE
+) {
+  chk_string(type)
+  if (!vld_false(simulate)) {
+    x <- ran_pois_lnorm(length(x), lambda = lambda, sdlog = sdlog)
+  }
+  switch(
+    type,
+    data = x,
+    raw = x - lambda,
+    standardized = (x - lambda) /
+      sqrt(lambda + lambda^2 * (exp(sdlog^2) - 1)),
+    dev = dev_pois_lnorm(x, lambda = lambda, sdlog = sdlog, res = TRUE),
+    chk_subset(x, c("data", "raw", "dev", "standardized"))
+  )
+}
+
 #' Zero-Inflated Poisson Residuals
 #'
 #' @inheritParams params

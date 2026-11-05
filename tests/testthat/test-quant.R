@@ -223,3 +223,25 @@ test_that("skewlnorm: check `...` arg barrier, test shims, and warn for old args
       "The `sdlog` argument of `quant_skewlnorm"),
     "The `shape` argument of `quant_skewlnorm")
 })
+
+test_that("quant_pois_lnorm", {
+  expect_identical(quant_pois_lnorm(numeric(0)), numeric(0))
+  expect_identical(quant_pois_lnorm(NA), NA_real_)
+  expect_identical(quant_pois_lnorm(0.5, NA, 1), NA_real_)
+  expect_identical(quant_pois_lnorm(0.5, 1, NA), NA_real_)
+  expect_identical(
+    quant_pois_lnorm(c(0, 0.1, 0.5, 0.9, 1), 3, 0),
+    quant_pois(c(0, 0.1, 0.5, 0.9, 1), 3)
+  )
+  expect_identical(quant_pois_lnorm(c(0, 1), 3, 1), c(0, Inf))
+  expect_equal(quant_pois_lnorm(c(0.1, 0.5, 0.9), 5, 0.8), c(1, 4, 11))
+})
+
+test_that("quant_pois_lnorm inverts prob_pois_lnorm", {
+  p <- c(0.001, 0.1, 0.25, 0.5, 0.75, 0.9, 0.999)
+  for (sdlog in c(0.1, 1, 2)) {
+    quant <- quant_pois_lnorm(p, 10, sdlog)
+    expect_true(all(prob_pois_lnorm(quant, 10, sdlog) >= p))
+    expect_true(all(prob_pois_lnorm(quant - 1, 10, sdlog) < p))
+  }
+})

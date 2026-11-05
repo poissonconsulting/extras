@@ -2207,3 +2207,49 @@ test_that("check `...` arg barrier, test shims, and warn for old args", {
       "The `shape` argument of `sens_skewlnorm"),
     "The `sd_mult` argument of `sens_skewlnorm")
 })
+
+# Poisson-lognormal ----
+test_that("sens_pois_lnorm returns a numeric vector of length 2 with correct names", {
+  expect_snapshot(sens_pois_lnorm(lambda = 10, sdlog = 0.5, sd_mult = 2))
+})
+
+test_that("sens_pois_lnorm errors with invalid inputs", {
+  expect_chk_error(sens_pois_lnorm(lambda = NULL, sdlog = 0.5))
+  expect_chk_error(sens_pois_lnorm(lambda = 10, sdlog = NULL))
+  expect_chk_error(sens_pois_lnorm(lambda = 10, sdlog = 0.5, sd_mult = NULL))
+  expect_chk_error(sens_pois_lnorm(lambda = numeric(0), sdlog = 0.5))
+  expect_chk_error(sens_pois_lnorm(lambda = 10:13, sdlog = 0.5))
+  expect_chk_error(sens_pois_lnorm(lambda = 10, sdlog = c(0.5, 1)))
+  expect_chk_error(sens_pois_lnorm(lambda = "ten", sdlog = 0.5))
+  expect_chk_error(sens_pois_lnorm(lambda = -1, sdlog = 0.5))
+  expect_chk_error(sens_pois_lnorm(lambda = 10, sdlog = -1))
+  expect_chk_error(sens_pois_lnorm(lambda = 10, sdlog = 0.5, sd_mult = 0))
+})
+
+test_that("sens_pois_lnorm errors when trying to reduce sd", {
+  expect_error(
+    sens_pois_lnorm(lambda = 10, sdlog = 0.5, sd_mult = 0.5),
+    "This function does not currently have the option to reduce the standard deviation"
+  )
+})
+
+test_that("sens_pois_lnorm expands the sd by sd_mult and keeps the mean", {
+  sd_pois_lnorm <- function(lambda, sdlog) {
+    sqrt(lambda + lambda^2 * (exp(sdlog^2) - 1))
+  }
+  for (sdlog in c(0, 0.5, 1.5)) {
+    new_pars <- sens_pois_lnorm(lambda = 10, sdlog = sdlog, sd_mult = 3)
+    expect_identical(new_pars$lambda, 10)
+    expect_equal(
+      sd_pois_lnorm(new_pars$lambda, new_pars$sdlog),
+      3 * sd_pois_lnorm(10, sdlog)
+    )
+  }
+  expect_equal(sens_pois_lnorm(10, 0.5, 1), list(lambda = 10, sdlog = 0.5))
+  withr::with_seed(101, {
+    ran_original <- ran_pois_lnorm(1e5, 10, 0.5)
+    new_pars <- sens_pois_lnorm(10, 0.5, 2)
+    ran_new <- ran_pois_lnorm(1e5, new_pars$lambda, new_pars$sdlog)
+  })
+  expect_equal(sd(ran_new) / sd(ran_original), 2, tolerance = 0.05)
+})
